@@ -30,7 +30,11 @@
     "client",
     "api"
   ],
-  "author": "Rijk van Zanten <rijkvanzanten@me.com>",
+  "author": "RANGER Studio LLC",
+  "contributors": [
+    "Rijk van Zanten <rijkvanzanten@me.com>",
+    "Jan Biasi <biasijan@gmail.com>"
+  ],
   "license": "GPL-3.0",
   "bugs": {
     "url": "https://github.com/directus/directus-sdk-javascript/issues"
