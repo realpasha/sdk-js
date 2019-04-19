@@ -1,22 +1,24 @@
-const chai = require('chai');
+// tslint:disable: no-unused-expression
+import * as chai from 'chai';
+import * as sinon from 'sinon';
+import * as sinonChai from 'sinon-chai';
+import SDK from '../../src/index';
+
 const expect = chai.expect;
-const sinon = require('sinon');
-chai.use(require('sinon-chai'));
+chai.use(sinonChai);
 
-const SDK = require('../../src/index');
-
-describe('Items', function() {
+describe('Items', () => {
   let client;
 
-  beforeEach(function() {
+  beforeEach(() => {
     client = new SDK({
-      url: 'https://demo-api.getdirectus.com'
+      url: 'https://demo-api.getdirectus.com',
     });
 
     const responseJSON = {
       data: {
-        data: {}
-      }
+        data: {},
+      },
     };
 
     sinon.stub(client, 'get').resolves(responseJSON);
@@ -26,7 +28,7 @@ describe('Items', function() {
     sinon.stub(client, 'delete').resolves(responseJSON);
   });
 
-  afterEach(function() {
+  afterEach(() => {
     client.get.restore();
     client.put.restore();
     client.patch.restore();
@@ -34,19 +36,21 @@ describe('Items', function() {
     client.delete.restore();
   });
 
-  describe('#getActivity()', function() {
-    it('Defaults to an empty object if no parameters are passed', function() {
+  describe('#getActivity()', () => {
+    it('Defaults to an empty object if no parameters are passed', () => {
       client.getActivity();
       expect(client.get).to.have.been.calledWith('/activity', {});
     });
 
-    it('Errors if parameter `params` is of a wrong type', function() {
+    it('Errors if parameter `params` is of a wrong type', () => {
       expect(() => client.getActivity('params')).to.throw();
     });
 
-    it('Calls get() for the right endpoint', function() {
+    it('Calls get() for the right endpoint', () => {
       client.getActivity({ limit: 50 });
-      expect(client.get).to.have.been.calledWith('/activity', { limit: 50 });
+      expect(client.get).to.have.been.calledWith('/activity', {
+        limit: 50,
+      });
     });
   });
 });

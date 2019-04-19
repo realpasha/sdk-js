@@ -1,23 +1,24 @@
-const chai = require('chai');
+// tslint:disable: no-unused-expression
+import * as chai from 'chai';
+import * as sinon from 'sinon';
+import * as sinonChai from 'sinon-chai';
+import SDK from '../../src/index';
+
 const expect = chai.expect;
-const jwt = require('jsonwebtoken');
-const sinon = require('sinon');
-chai.use(require('sinon-chai'));
+chai.use(sinonChai);
 
-const SDK = require('../../src/index');
-
-describe('Items', function() {
+describe('Items', () => {
   let client;
 
-  beforeEach(function() {
+  beforeEach(() => {
     client = new SDK({
-      url: 'https://demo-api.getdirectus.com'
+      url: 'https://demo-api.getdirectus.com',
     });
 
     const responseJSON = {
       data: {
-        data: {}
-      }
+        data: {},
+      },
     };
 
     sinon.stub(client, 'get').resolves(responseJSON);
@@ -27,7 +28,7 @@ describe('Items', function() {
     sinon.stub(client, 'delete').resolves(responseJSON);
   });
 
-  afterEach(function() {
+  afterEach(() => {
     client.get.restore();
     client.put.restore();
     client.patch.restore();
@@ -35,12 +36,12 @@ describe('Items', function() {
     client.delete.restore();
   });
 
-  describe('#createCollectionPreset', function() {
-    it('Errors when the data parameter is missing', function() {
+  describe('#createCollectionPreset', () => {
+    it('Errors when the data parameter is missing', () => {
       expect(client.createCollectionPreset).to.throw();
     });
 
-    it('Calls post with the right parameters', async function() {
+    it('Calls post with the right parameters', async () => {
       await client.createCollectionPreset({
         view_type: 'tiles',
       });
@@ -50,16 +51,16 @@ describe('Items', function() {
     });
   });
 
-  describe('#updateCollectionPreset', function() {
-    it('Errors when the primaryKey parameter is missing', function() {
+  describe('#updateCollectionPreset', () => {
+    it('Errors when the primaryKey parameter is missing', () => {
       expect(client.updateCollectionPreset).to.throw();
     });
 
-    it('Errors when the data parameter is missing', function() {
+    it('Errors when the data parameter is missing', () => {
       expect(() => client.updateCollectionPreset(15)).to.throw();
     });
 
-    it('Calls patch with the right parameters', async function() {
+    it('Calls patch with the right parameters', async () => {
       await client.updateCollectionPreset(15, {
         view_type: 'tiles',
       });
@@ -69,12 +70,12 @@ describe('Items', function() {
     });
   });
 
-  describe('#updateCollectionPreset', function() {
-    it('Errors when the primaryKey parameter is missing', function() {
+  describe('#updateCollectionPreset', () => {
+    it('Errors when the primaryKey parameter is missing', () => {
       expect(client.updateCollectionPreset).to.throw();
     });
 
-    it('Calls delete with the right parameters', async function() {
+    it('Calls delete with the right parameters', async () => {
       await client.deleteCollectionPreset(15);
       expect(client.delete).to.have.been.calledWith('/collection_presets/15');
     });

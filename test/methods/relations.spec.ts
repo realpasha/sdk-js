@@ -1,22 +1,25 @@
-const chai = require('chai');
+// tslint:disable: no-unused-expression
+import * as chai from 'chai';
+import * as jwt from 'jsonwebtoken';
+import * as sinon from 'sinon';
+import * as sinonChai from 'sinon-chai';
+import SDK from '../../src/index';
+
 const expect = chai.expect;
-const sinon = require('sinon');
-chai.use(require('sinon-chai'));
+chai.use(sinonChai);
 
-const SDK = require('../../src/index');
-
-describe('Relations', function() {
+describe('Relations', () => {
   let client;
 
-  beforeEach(function() {
+  beforeEach(() => {
     client = new SDK({
-      url: 'https://demo-api.getdirectus.com'
+      url: 'https://demo-api.getdirectus.com',
     });
 
     const responseJSON = {
       data: {
-        data: {}
-      }
+        data: {},
+      },
     };
 
     sinon.stub(client, 'get').resolves(responseJSON);
@@ -26,7 +29,7 @@ describe('Relations', function() {
     sinon.stub(client, 'delete').resolves(responseJSON);
   });
 
-  afterEach(function() {
+  afterEach(() => {
     client.get.restore();
     client.put.restore();
     client.patch.restore();
@@ -34,17 +37,18 @@ describe('Relations', function() {
     client.delete.restore();
   });
 
-  describe('#getCollectionRelations()', function() {
-    it('Errors on missing `collection` parameter', function() {
+  describe('#getCollectionRelations()', () => {
+    it('Errors on missing `collection` parameter', () => {
       expect(client.getCollectionRelations).to.throw();
     });
 
-    it('Errors if parameter `params` is of a wrong type', function() {
+    it('Errors if parameter `params` is of a wrong type', () => {
       expect(() => client.getCollectionRelations('projects', 'params')).to.throw();
     });
 
-    it('Calls get() twice', async function() {
+    it('Calls get() twice', async () => {
       client.getCollectionRelations('projects', { limit: 50 });
+      // tslint:disable-next-line: no-unused-expression
       expect(client.get).to.have.been.calledTwice;
     });
   });

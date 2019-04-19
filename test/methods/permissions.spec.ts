@@ -1,22 +1,24 @@
-const chai = require('chai');
+// tslint:disable: no-unused-expression
+import * as chai from 'chai';
+import * as sinon from 'sinon';
+import * as sinonChai from 'sinon-chai';
+import SDK from '../../src/index';
+
 const expect = chai.expect;
-const sinon = require('sinon');
-chai.use(require('sinon-chai'));
+chai.use(sinonChai);
 
-const SDK = require('../../src/index');
-
-describe('Relations', function() {
+describe('Relations', () => {
   let client;
 
-  beforeEach(function() {
+  beforeEach(() => {
     client = new SDK({
-      url: 'https://demo-api.getdirectus.com'
+      url: 'https://demo-api.getdirectus.com',
     });
 
     const responseJSON = {
       data: {
-        data: {}
-      }
+        data: {},
+      },
     };
 
     sinon.stub(client, 'get').resolves(responseJSON);
@@ -26,7 +28,7 @@ describe('Relations', function() {
     sinon.stub(client, 'delete').resolves(responseJSON);
   });
 
-  afterEach(function() {
+  afterEach(() => {
     client.get.restore();
     client.put.restore();
     client.patch.restore();
@@ -34,47 +36,49 @@ describe('Relations', function() {
     client.delete.restore();
   });
 
-  describe('#getPermissions()', function() {
-    it('Defaults to an empty object if no parameters are passed', function() {
+  describe('#getPermissions()', () => {
+    it('Defaults to an empty object if no parameters are passed', () => {
       client.getPermissions();
       expect(client.get).to.have.been.calledWith('/permissions', {});
     });
 
-    it('Errors if parameter `params` is of a wrong type', function() {
+    it('Errors if parameter `params` is of a wrong type', () => {
       expect(() => client.getPermissions('params')).to.throw();
     });
 
-    it('Calls get() for the right endpoint', function() {
+    it('Calls get() for the right endpoint', () => {
       client.getPermissions({ limit: 50 });
-      expect(client.get).to.have.been.calledWith('/permissions', { limit: 50 });
+      expect(client.get).to.have.been.calledWith('/permissions', {
+        limit: 50,
+      });
     });
   });
 
-  describe('#updatePermissions()', function() {
-    it('Errors on missing `data` parameter', function() {
+  describe('#updatePermissions()', () => {
+    it('Errors on missing `data` parameter', () => {
       expect(client.updatePermissions).to.throw();
     });
 
-    it('Errors on wrong `data` parameter', function() {
+    it('Errors on wrong `data` parameter', () => {
       expect(() => client.createPermissions('projects')).to.throw();
     });
 
-    it('Calls post() for the right endpoint', function() {
+    it('Calls post() for the right endpoint', () => {
       client.createPermissions([{ read: 'none', collection: 'projects' }]);
       expect(client.post).to.have.been.calledWith('/permissions', [{ read: 'none', collection: 'projects' }]);
     });
   });
 
-  describe('#updatePermissions()', function() {
-    it('Errors on missing `data` parameter', function() {
+  describe('#updatePermissions()', () => {
+    it('Errors on missing `data` parameter', () => {
       expect(client.updatePermissions).to.throw();
     });
 
-    it('Errors on wrong `data` parameter', function() {
+    it('Errors on wrong `data` parameter', () => {
       expect(() => client.updatePermissions('projects')).to.throw();
     });
 
-    it('Calls post() for the right endpoint', function() {
+    it('Calls post() for the right endpoint', () => {
       client.updatePermissions([{ read: 'none', collection: 'projects' }]);
       expect(client.patch).to.have.been.calledWith('/permissions', [{ read: 'none', collection: 'projects' }]);
     });

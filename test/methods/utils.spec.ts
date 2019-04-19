@@ -1,22 +1,24 @@
-const chai = require('chai');
+// tslint:disable: no-unused-expression
+import * as chai from 'chai';
+import * as sinon from 'sinon';
+import * as sinonChai from 'sinon-chai';
+import SDK from '../../src/index';
+
 const expect = chai.expect;
-const sinon = require('sinon');
-chai.use(require('sinon-chai'));
+chai.use(sinonChai);
 
-const SDK = require('../../src/index');
-
-describe('Utils', function() {
+describe('Utils', () => {
   let client;
 
-  beforeEach(function() {
+  beforeEach(() => {
     client = new SDK({
-      url: 'https://demo-api.getdirectus.com'
+      url: 'https://demo-api.getdirectus.com',
     });
 
     const responseJSON = {
       data: {
-        data: {}
-      }
+        data: {},
+      },
     };
 
     sinon.stub(client, 'request').resolves(responseJSON);
@@ -27,7 +29,7 @@ describe('Utils', function() {
     sinon.stub(client, 'delete').resolves(responseJSON);
   });
 
-  afterEach(function() {
+  afterEach(() => {
     client.request.restore();
     client.get.restore();
     client.put.restore();
@@ -36,15 +38,15 @@ describe('Utils', function() {
     client.delete.restore();
   });
 
-  describe('#ping()', function() {
-    it('It calls get for the ping endpoint', function() {
+  describe('#ping()', () => {
+    it('It calls get for the ping endpoint', () => {
       client.ping();
-      expect(client.request).to.have.been.calledWith('get', '/server/ping', {}, {}, true, true);
+      expect(client.request).to.have.been.calledWith('get', '/server/ping', {}, {}, true);
     });
   });
 
-  describe('#getThirdPartyAuthProviders()', function() {
-    it('It calls get for the sso endpoint', function() {
+  describe('#getThirdPartyAuthProviders()', () => {
+    it('It calls get for the sso endpoint', () => {
       client.getThirdPartyAuthProviders();
       expect(client.get).to.have.been.calledWith('/auth/sso');
     });
