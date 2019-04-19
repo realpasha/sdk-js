@@ -1,20 +1,28 @@
 import * as AV from 'argument-validator';
-import axios, { AxiosError } from 'axios';
+import axios from 'axios';
 import * as qsStringify from 'qs/lib/stringify';
 
+// HTTP schemes
+import { BodyType } from 'schemes/http/Body';
+import { RequestMethod } from 'schemes/http/Request';
+
+// Authentication schemes
+import { ILoginCredentials, ILoginOptions } from './schemes/auth/Login';
+
+// Response schemes
+import { IRevisionResponse } from 'schemes/response/Revision';
+import { IActivityResponse } from './schemes/response/Activity';
+import { ICollectionResponse, ICollectionsResponse } from './schemes/response/Collection';
+import { IError } from './schemes/response/Error';
+import { IField } from './schemes/response/Field';
+import { ILoginResponse } from './schemes/response/Login';
+import { IRoleResponse } from './schemes/response/Role';
+import { IRefreshTokenResponse } from './schemes/response/Token';
+import { IUserResponse, IUsersResponse } from './schemes/response/User';
+
 import { getPayload } from './payload';
-import {
-  BodyType,
-  DirectusResponse,
-  IClientOptions,
-  ICollection,
-  ILoginCredentials,
-  ILoginOptions,
-  ILoginResponse,
-  IStorage,
-  PrimaryKeyType,
-  RequestMethod,
-} from './types';
+
+import { IClientOptions, IStorage, PrimaryKeyType } from './types';
 
 class SDK {
   /**
@@ -42,13 +50,13 @@ class SDK {
   private project: string = '_';
   private localExp?: number;
   private storage?: IStorage;
+  private refreshInterval?: number;
+  private onAutoRefreshError?: (msg: object) => void;
+  private onAutoRefreshSuccess?: (msg: IClientOptions) => void;
   private readonly xhr = axios.create({
     paramsSerializer: qsStringify,
     timeout: 10 * 60 * 1000, // 10 min
   });
-  private refreshInterval?: number;
-  private onAutoRefreshError?: (msg: object) => void;
-  private onAutoRefreshSuccess?: (msg: IClientOptions) => void;
 
   /**
    * Create a new SDK instance
@@ -175,8 +183,9 @@ class SDK {
    * Refresh the token if it is about to expire (within 30 seconds of expiry date).
    * - Calls onAutoRefreshSuccess with the new token if the refreshing is successful.
    * - Calls onAutoRefreshError if refreshing the token fails for some reason.
+   * @returns {[boolean, Error?]}
    */
-  public refreshIfNeeded(): void {
+  public refreshIfNeeded(): Promise<[boolean, Error?]> {
     const payload = this.getPayload<{ exp: any }>();
 
     if (!AV.hasStringKeys(this, ['token', 'url', 'project'])) {
@@ -200,46 +209,55 @@ class SDK {
     }
 
     if (timeDiff < 30000) {
-      this.refresh(this.token)
-        .then((res: { data: { token: string } }) => {
-          this.token = res.data.token;
-          this.localExp = new Date(Date.now() + 5 * 60000).getTime();
+      return new Promise<[boolean, Error?]>((resolve: (res: [boolean, Error?]) => any) => {
+        this.refresh(this.token)
+          .then((res: IRefreshTokenResponse) => {
+            this.token = res.data.token;
+            this.localExp = new Date(Date.now() + 5 * 60000).getTime();
 
-          if (AV.isFunction(this.onAutoRefreshSuccess)) {
-            this.onAutoRefreshSuccess({
-              localExp: this.localExp,
-              project: this.project,
-              token: this.token,
-              url: this.url,
-            });
-          }
-
-          if (this.storage) {
-            this.storage.setItem(
-              'directus-sdk-js',
-              JSON.stringify({
+            // if autorefresh succeeded
+            if (AV.isFunction(this.onAutoRefreshSuccess)) {
+              this.onAutoRefreshSuccess({
                 localExp: this.localExp,
                 project: this.project,
                 token: this.token,
                 url: this.url,
-              })
-            );
-          }
-        })
-        .catch((error: Error) => {
-          if (AV.isFunction(this.onAutoRefreshError)) {
-            this.onAutoRefreshError(error);
-          }
-        });
+              });
+              resolve([true]);
+            }
+
+            // if expiration via storage
+            if (this.storage) {
+              this.storage.setItem(
+                'directus-sdk-js',
+                JSON.stringify({
+                  localExp: this.localExp,
+                  project: this.project,
+                  token: this.token,
+                  url: this.url,
+                })
+              );
+              resolve([true]);
+            }
+          })
+          .catch((error: Error) => {
+            if (AV.isFunction(this.onAutoRefreshError)) {
+              this.onAutoRefreshError(error);
+            }
+            resolve([true, error]);
+          });
+      });
+    } else {
+      Promise.resolve([false]);
     }
   }
 
   /**
    * Use the passed token to request a new one
    */
-  public refresh(token: string): DirectusResponse {
+  public refresh(token: string): Promise<IRefreshTokenResponse> {
     AV.string(token, 'token');
-    return this.post('/auth/refresh', { token });
+    return this.post<IRefreshTokenResponse>('/auth/refresh', { token });
   }
 
   /**
@@ -247,9 +265,9 @@ class SDK {
    * The API will send an email to the given email address with a link to generate a new
    * temporary password.
    */
-  public requestPasswordReset(email: string): DirectusResponse {
+  public requestPasswordReset<T extends any = any>(email: string): Promise<T> {
     AV.string(email, 'email');
-    return this.post('/auth/password/request', {
+    return this.post<T>('/auth/password/request', {
       email,
     });
   }
@@ -259,17 +277,19 @@ class SDK {
   /**
    * Get activity
    */
-  public getActivity(params: object = {}): DirectusResponse {
+  public getActivity(params: object = {}): Promise<IActivityResponse> {
     AV.objectOrEmpty(params, 'params');
-    return this.get('/activity', params);
+    return this.get<IActivityResponse>('/activity', params);
   }
 
   /// BOOKMARKS ----------------------------------------------------------------
 
   /**
    * Get the bookmarks of the current user
+   * TODO: Add deprecation warning
+   * @see https://docs.directus.io/advanced/legacy-upgrades.html#directus-bookmarks
    */
-  public getMyBookmarks(params: object = {}): Promise<any[]> {
+  public getMyBookmarks<T extends any[] = any[]>(params: object = {}): Promise<T> {
     AV.string(this.token, 'this.token');
     AV.objectOrEmpty(params);
 
@@ -286,8 +306,8 @@ class SDK {
         'filter[user][null]': 1,
       }),
     ]).then((values: Array<{ data: any }>) => {
-      const [user, role] = values; // eslint-disable-line no-shadow
-      return [...(user.data || []), ...(role.data || [])];
+      const [user, role] = values;
+      return [...(user.data || []), ...(role.data || [])] as T;
     });
   }
 
@@ -296,43 +316,43 @@ class SDK {
   /**
    * Get all available collections
    */
-  public getCollections(params: object = {}): Promise<ICollection[]> {
+  public getCollections(params: object = {}): Promise<ICollectionsResponse[]> {
     AV.objectOrEmpty(params, 'params');
-    return this.get('/collections', params);
+    return this.get<ICollectionsResponse[]>('/collections', params);
   }
 
   /**
    * Get collection info by name
    */
-  public getCollection(collection: string, params: object = {}): Promise<ICollection> {
+  public getCollection(collection: string, params: object = {}): Promise<ICollectionResponse> {
     AV.string(collection, 'collection');
     AV.objectOrEmpty(params, 'params');
-    return this.get(`/collections/${collection}`, params);
+    return this.get<ICollectionResponse>(`/collections/${collection}`, params);
   }
 
   /**
    * Create a collection
    */
-  public createCollection(data: object): DirectusResponse {
+  public createCollection(data: object): Promise<ICollectionResponse> {
     AV.object(data, 'data');
-    return this.post('/collections', data);
+    return this.post<ICollectionResponse>('/collections', data);
   }
 
   /**
    * Updates a certain collection
    */
-  public updateCollection(collection: string, data: object): DirectusResponse {
+  public updateCollection(collection: string, data: object): Promise<ICollectionResponse> {
     AV.string(collection, 'collection');
     AV.object(data, 'data');
-    return this.patch(`/collections/${collection}`, data);
+    return this.patch<ICollectionResponse>(`/collections/${collection}`, data);
   }
 
   /**
    * Deletes a certain collection
    */
-  public deleteCollection(collection: string): DirectusResponse {
+  public deleteCollection(collection: string): Promise<void> {
     AV.string(collection, 'collection');
-    return this.delete(`/collections/${collection}`);
+    return this.delete<void>(`/collections/${collection}`);
   }
 
   /// COLLECTION PRESETS -------------------------------------------------------
@@ -340,27 +360,27 @@ class SDK {
   /**
    * Create a new collection preset (bookmark / listing preferences)
    */
-  public createCollectionPreset(data: object): DirectusResponse {
+  public createCollectionPreset<T extends any = any>(data: object): Promise<T> {
     AV.object(data);
-    return this.post('/collection_presets', data);
+    return this.post<T>('/collection_presets', data);
   }
 
   /**
    * Update collection preset (bookmark / listing preference)
    */
-  public updateCollectionPreset(primaryKey: PrimaryKeyType, data: object): DirectusResponse {
+  public updateCollectionPreset<T extends any = any>(primaryKey: PrimaryKeyType, data: object): Promise<T> {
     AV.notNull(primaryKey, 'primaryKey');
     AV.object(data, 'data');
 
-    return this.patch(`/collection_presets/${primaryKey}`, data);
+    return this.patch<T>(`/collection_presets/${primaryKey}`, data);
   }
 
   /**
    * Delete collection preset by primarykey
    */
-  public deleteCollectionPreset(primaryKey: PrimaryKeyType): DirectusResponse {
+  public deleteCollectionPreset(primaryKey: PrimaryKeyType): Promise<void> {
     AV.notNull(primaryKey, 'primaryKey');
-    return this.delete(`/collection_presets/${primaryKey}`);
+    return this.delete<void>(`/collection_presets/${primaryKey}`);
   }
 
   /// DATABASE -----------------------------------------------------------------
@@ -369,7 +389,7 @@ class SDK {
    * This will update the database of the API instance to the latest version
    * using the migrations in the API
    */
-  public updateDatabase(): DirectusResponse {
+  public updateDatabase(): Promise<void> {
     return this.post('/update');
   }
 
@@ -378,22 +398,22 @@ class SDK {
   /**
    * Get the meta information of all installed interfaces
    */
-  public getInterfaces(): DirectusResponse {
-    return this.request('get', '/interfaces', {}, {}, true);
+  public getInterfaces<T extends any = any>(): Promise<T> {
+    return this.request<T>('get', '/interfaces', {}, {}, true);
   }
 
   /**
    * Get the meta information of all installed layouts
    */
-  public getLayouts(): DirectusResponse {
-    return this.request('get', '/layouts', {}, {}, true);
+  public getLayouts<T extends any = any>(): Promise<T> {
+    return this.request<T>('get', '/layouts', {}, {}, true);
   }
 
   /**
    * Get the meta information of all installed pages
    */
-  public getPages(): DirectusResponse {
-    return this.request('get', '/pages', {}, {}, true);
+  public getPages<T extends any = any>(): Promise<T> {
+    return this.request<T>('get', '/pages', {}, {}, true);
   }
 
   /// FIELDS -------------------------------------------------------------------
@@ -401,47 +421,47 @@ class SDK {
   /**
    * Get all fields that are in Directus
    */
-  public getAllFields(params: object = {}): DirectusResponse {
+  public getAllFields<T extends any = any>(params: object = {}): Promise<T> {
     AV.objectOrEmpty(params, 'params');
-    return this.get('/fields', params);
+    return this.get<T>('/fields', params);
   }
 
   /**
    * Get the fields that have been setup for a given collection
    */
-  public getFields(collection: string, params: object = {}): DirectusResponse {
+  public getFields<T extends any = any>(collection: string, params: object = {}): Promise<T> {
     AV.string(collection, 'collection');
     AV.objectOrEmpty(params, 'params');
-    return this.get(`/fields/${collection}`, params);
+    return this.get<T>(`/fields/${collection}`, params);
   }
 
   /**
    * Get the field information for a single given field
    */
-  public getField(collection: string, fieldName: string, params: object = {}): DirectusResponse {
+  public getField<T extends any = any>(collection: string, fieldName: string, params: object = {}): Promise<T> {
     AV.string(collection, 'collection');
     AV.string(fieldName, 'fieldName');
     AV.objectOrEmpty(params, 'params');
-    return this.get(`/fields/${collection}/${fieldName}`, params);
+    return this.get<T>(`/fields/${collection}/${fieldName}`, params);
   }
 
   /**
    * Create a field in the given collection
    */
-  public createField(collection: string, fieldInfo: object): DirectusResponse {
+  public createField<T extends any = any>(collection: string, fieldInfo: object): Promise<T> {
     AV.string(collection, 'collection');
     AV.object(fieldInfo, 'fieldInfo');
-    return this.post(`/fields/${collection}`, fieldInfo);
+    return this.post<T>(`/fields/${collection}`, fieldInfo);
   }
 
   /**
    * Update a given field in a given collection
    */
-  public updateField(collection: string, fieldName: string, fieldInfo: object): DirectusResponse {
+  public updateField<T extends any = any>(collection: string, fieldName: string, fieldInfo: object): Promise<T> {
     AV.string(collection, 'collection');
     AV.string(fieldName, 'fieldName');
     AV.object(fieldInfo, 'fieldInfo');
-    return this.patch(`/fields/${collection}/${fieldName}`, fieldInfo);
+    return this.patch<T>(`/fields/${collection}/${fieldName}`, fieldInfo);
   }
 
   /**
@@ -470,11 +490,11 @@ class SDK {
    *   }
    * ])
    */
-  public updateFields(
+  public updateFields<T extends any[] = any[]>(
     collection: string,
     fieldsInfoOrFieldNames: string[] | object[],
     fieldInfo: object = null
-  ): DirectusResponse {
+  ): Promise<IField<T> | undefined> {
     AV.string(collection, 'collection');
     AV.array(fieldsInfoOrFieldNames, 'fieldsInfoOrFieldNames');
 
@@ -492,7 +512,7 @@ class SDK {
   /**
    * Delete a field from a collection
    */
-  public deleteField(collection: string, fieldName: string): DirectusResponse {
+  public deleteField(collection: string, fieldName: string): Promise<void> {
     AV.string(collection, 'collection');
     AV.string(fieldName, 'fieldName');
     return this.delete(`/fields/${collection}/${fieldName}`);
@@ -503,7 +523,7 @@ class SDK {
   /**
    * Upload multipart files in multipart/form-data
    */
-  public uploadFiles(data: object, onUploadProgress: () => object = () => ({})): DirectusResponse {
+  public uploadFiles<T extends any = any[]>(data: object, onUploadProgress: () => object = () => ({})): Promise<T> {
     const headers = {
       Authorization: `Bearer ${this.token}`,
       'Content-Type': 'multipart/form-data',
@@ -515,7 +535,7 @@ class SDK {
         onUploadProgress,
       })
       .then((res: { data: any }) => res.data)
-      .catch((error: AxiosError) => {
+      .catch((error: IError) => {
         if (error.response) {
           throw error.response.data.error;
         } else {
@@ -533,12 +553,12 @@ class SDK {
   /**
    * Update an existing item
    */
-  public updateItem(
+  public updateItem<T extends any = any>(
     collection: string,
     primaryKey: PrimaryKeyType,
     body: BodyType,
     params: object = {}
-  ): DirectusResponse {
+  ): Promise<T> {
     AV.string(collection, 'collection');
     AV.notNull(primaryKey, 'primaryKey');
     AV.object(body, 'body');
@@ -547,41 +567,48 @@ class SDK {
       return this.patch(`/${collection.substring(9)}/${primaryKey}`, body, params);
     }
 
-    return this.patch(`/items/${collection}/${primaryKey}`, body, params);
+    return this.patch<T>(`/items/${collection}/${primaryKey}`, body, params);
   }
 
   /**
    * Update multiple items
    */
-  public updateItems(collection: string, body: BodyType, params: object = {}): DirectusResponse {
+  public updateItems<T extends any[] = any[]>(collection: string, body: BodyType, params: object = {}): Promise<T> {
     AV.string(collection, 'collection');
     AV.array(body, 'body');
 
     if (collection.startsWith('directus_')) {
-      return this.patch(`/${collection.substring(9)}`, body, params);
+      return this.patch<T>(`/${collection.substring(9)}`, body, params);
     }
 
-    return this.patch(`/items/${collection}`, body, params);
+    return this.patch<T>(`/items/${collection}`, body, params);
   }
 
   /**
    * Create a new item
    */
-  public createItem(collection: string, body: BodyType): DirectusResponse {
+  public createItem<T extends any = any>(collection: string, body: BodyType): Promise<T> {
     AV.string(collection, 'collection');
     AV.object(body, 'body');
 
     if (collection.startsWith('directus_')) {
-      return this.post(`/${collection.substring(9)}`, body);
+      return this.post<T>(`/${collection.substring(9)}`, body);
     }
 
-    return this.post(`/items/${collection}`, body);
+    return this.post<T>(`/items/${collection}`, body);
   }
 
   /**
    * Create multiple items
+   * TODO: what should we do:
+   *  a) <T extends any[] = any[]> -> Promise<IField<T>>
+   *  b) <T extends any = any> -> Promise<IField<T[]>>
+   *
+   * which will result in the following
+   *  a) createItems<Person> => Promise<IField<Person[]>>
+   *  b) createItems<Person[]> => Promise<IField<Person[]>>
    */
-  public createItems(collection: string, body: BodyType): DirectusResponse {
+  public createItems<T extends any[] = any[]>(collection: string, body: BodyType): Promise<IField<T>> {
     AV.string(collection, 'collection');
     AV.array(body, 'body');
 
@@ -589,13 +616,13 @@ class SDK {
       return this.post(`/${collection.substring(9)}`, body);
     }
 
-    return this.post(`/items/${collection}`, body);
+    return this.post<IField<T>>(`/items/${collection}`, body);
   }
 
   /**
    * Get items from a given collection
    */
-  public getItems(collection: string, params: object = {}): DirectusResponse<any[]> {
+  public getItems<T extends any[] = any[]>(collection: string, params: object = {}): Promise<IField<T>> {
     AV.string(collection, 'collection');
     AV.objectOrEmpty(params, 'params');
 
@@ -603,13 +630,17 @@ class SDK {
       return this.get(`/${collection.substring(9)}`, params);
     }
 
-    return this.get(`/items/${collection}`, params);
+    return this.get<IField<T>>(`/items/${collection}`, params);
   }
 
   /**
    * Get a single item by primary key
    */
-  public getItem(collection: string, primaryKey: PrimaryKeyType, params: object = {}): DirectusResponse {
+  public getItem<T extends any = any>(
+    collection: string,
+    primaryKey: PrimaryKeyType,
+    params: object = {}
+  ): Promise<IField<T>> {
     AV.string(collection, 'collection');
     AV.notNull(primaryKey, 'primaryKey');
     AV.objectOrEmpty(params, 'params');
@@ -618,30 +649,27 @@ class SDK {
       return this.get(`/${collection.substring(9)}/${primaryKey}`, params);
     }
 
-    return this.get(`/items/${collection}/${primaryKey}`, params);
+    return this.get<IField<T>>(`/items/${collection}/${primaryKey}`, params);
   }
 
   /**
    * Delete a single item by primary key
-   * @param  {String} collection  The collection to delete the item from
-   * @param  {String|Number} primaryKey Primary key of the item
-   * @return {DirectusResponse}
    */
-  public deleteItem(collection: string, primaryKey: PrimaryKeyType) {
+  public deleteItem(collection: string, primaryKey: PrimaryKeyType): Promise<void> {
     AV.string(collection, 'collection');
     AV.notNull(primaryKey, 'primaryKey');
 
     if (collection.startsWith('directus_')) {
-      return this.delete(`/${collection.substring(9)}/${primaryKey}`);
+      return this.delete<void>(`/${collection.substring(9)}/${primaryKey}`);
     }
 
-    return this.delete(`/items/${collection}/${primaryKey}`);
+    return this.delete<void>(`/items/${collection}/${primaryKey}`);
   }
 
   /**
    * Delete multiple items by primary key
    */
-  public deleteItems(collection: string, primaryKeys: PrimaryKeyType[]): DirectusResponse {
+  public deleteItems(collection: string, primaryKeys: PrimaryKeyType[]): Promise<void> {
     AV.string(collection, 'collection');
     AV.array(primaryKeys, 'primaryKeys');
 
@@ -657,14 +685,14 @@ class SDK {
   /**
    * Get the collection presets of the current user for a single collection
    */
-  public getMyListingPreferences(collection: string, params: object = {}): DirectusResponse {
+  public getMyListingPreferences<T extends any[] = any[]>(collection: string, params: object = {}): Promise<T> {
     AV.string(this.token, 'this.token');
     AV.objectOrEmpty(params, 'params');
 
     const payload = this.getPayload<{ role: string; id: string }>();
 
     return Promise.all([
-      this.get('/collection_presets', {
+      this.get<IField<any>>('/collection_presets', {
         'filter[collection][eq]': collection,
         'filter[role][null]': 1,
         'filter[title][null]': 1,
@@ -672,7 +700,7 @@ class SDK {
         limit: 1,
         sort: '-id',
       }),
-      this.get('/collection_presets', {
+      this.get<IField<any>>('/collection_presets', {
         'filter[collection][eq]': collection,
         'filter[role][eq]': payload.role,
         'filter[title][null]': 1,
@@ -680,7 +708,7 @@ class SDK {
         limit: 1,
         sort: '-id',
       }),
-      this.get('/collection_presets', {
+      this.get<IField<any>>('/collection_presets', {
         'filter[collection][eq]': collection,
         'filter[role][eq]': payload.role,
         'filter[title][null]': 1,
@@ -688,18 +716,22 @@ class SDK {
         limit: 1,
         sort: '-id',
       }),
-    ]).then((values: any[]) => {
+    ]).then((values: Array<IField<any>>) => {
       const [col, role, user] = values;
+
       if (user.data && user.data.length > 0) {
-        return user.data[0];
+        return user.data[0] as T;
       }
+
       if (role.data && role.data.length > 0) {
-        return role.data[0];
+        return role.data[0] as T;
       }
+
       if (col.data && col.data.length > 0) {
-        return col.data[0];
+        return col.data[0] as T;
       }
-      return {};
+
+      return {} as T;
     });
   }
 
@@ -708,15 +740,15 @@ class SDK {
   /**
    * Get permissions
    */
-  public getPermissions(params: object = {}): DirectusResponse {
+  public getPermissions<T extends any[] = any[]>(params: object = {}): Promise<IField<T>> {
     AV.objectOrEmpty(params, 'params');
-    return this.getItems('directus_permissions', params);
+    return this.getItems<T>('directus_permissions', params);
   }
 
   /**
    * Get the currently logged in user's permissions
    */
-  public getMyPermissions(params: object = {}): DirectusResponse {
+  public getMyPermissions<T extends any[] = any[]>(params: object = {}): Promise<T> {
     AV.objectOrEmpty(params, 'params');
     return this.get('/permissions/me', params);
   }
@@ -724,7 +756,7 @@ class SDK {
   /**
    * Create multiple new permissions
    */
-  public createPermissions(data: /* TODO: */ any[]): DirectusResponse {
+  public createPermissions<T extends any[] = any[]>(data: /* TODO: */ any[]): Promise<T> {
     AV.array(data);
     return this.post('/permissions', data);
   }
@@ -732,9 +764,9 @@ class SDK {
   /**
    * Update multiple permission records
    */
-  public updatePermissions(data: /* TODO: */ any[]): DirectusResponse {
+  public updatePermissions<T extends any[] = any[]>(data: /* TODO: */ any[]): Promise<T> {
     AV.array(data);
-    return this.patch('/permissions', data);
+    return this.patch<T>('/permissions', data);
   }
 
   /// RELATIONS ----------------------------------------------------------------
@@ -742,37 +774,37 @@ class SDK {
   /**
    * Get all relationships
    */
-  public getRelations(params: object = {}): DirectusResponse<any[]> {
+  public getRelations<T extends any[] = any[]>(params: object = {}): Promise<T> {
     AV.objectOrEmpty(params);
-    return this.get('/relations', params);
+    return this.get<T>('/relations', params);
   }
 
   /**
    * Creates new relation
    */
-  public createRelation(data: /* TODO: */ object): DirectusResponse {
-    return this.post('/relations', data);
+  public createRelation<T extends any = any>(data: /* TODO: */ object): Promise<T> {
+    return this.post<T>('/relations', data);
   }
 
   /**
    * Updates existing relation
    */
-  public updateRelation(primaryKey: PrimaryKeyType, data: /* TODO: */ object): DirectusResponse {
-    return this.patch(`/relations/${primaryKey}`, data);
+  public updateRelation<T extends any = any>(primaryKey: PrimaryKeyType, data: /* TODO: */ object): Promise<T> {
+    return this.patch<T>(`/relations/${primaryKey}`, data);
   }
 
   /**
    * Get the relationship information for the given collection
    */
-  public getCollectionRelations(collection: string, params: object = {}): DirectusResponse {
+  public getCollectionRelations<T extends any = any>(collection: string, params: object = {}): Promise<T[]> {
     AV.string(collection, 'collection');
     AV.objectOrEmpty(params);
 
     return Promise.all([
-      this.get('/relations', {
+      this.get<T>('/relations', {
         'filter[collection_a][eq]': collection,
       }),
-      this.get('/relations', {
+      this.get<T>('/relations', {
         'filter[collection_b][eq]': collection,
       }),
     ]);
@@ -783,22 +815,26 @@ class SDK {
   /**
    * Get a single item's revisions by primary key
    */
-  public getItemRevisions(collection: string, primaryKey: PrimaryKeyType, params: object = {}): DirectusResponse {
+  public getItemRevisions<T extends any = any>(
+    collection: string,
+    primaryKey: PrimaryKeyType,
+    params: object = {}
+  ): Promise<IRevisionResponse<T>> {
     AV.string(collection, 'collection');
     AV.notNull(primaryKey, 'primaryKey');
     AV.objectOrEmpty(params, 'params');
 
     if (collection.startsWith('directus_')) {
-      return this.get(`/${collection.substring(9)}/${primaryKey}/revisions`, params);
+      return this.get<IRevisionResponse<T>>(`/${collection.substring(9)}/${primaryKey}/revisions`, params);
     }
 
-    return this.get(`/items/${collection}/${primaryKey}/revisions`, params);
+    return this.get<IRevisionResponse<T>>(`/items/${collection}/${primaryKey}/revisions`, params);
   }
 
   /**
    * Revert an item to a previous state
    */
-  public revert(collection: string, primaryKey: PrimaryKeyType, revisionID: number): DirectusResponse {
+  public revert(collection: string, primaryKey: PrimaryKeyType, revisionID: number): Promise<void> {
     AV.string(collection, 'collection');
     AV.notNull(primaryKey, 'primaryKey');
     AV.number(revisionID, 'revisionID');
@@ -815,41 +851,41 @@ class SDK {
   /**
    * Get a single user role
    */
-  public getRole(primaryKey: PrimaryKeyType, params: object = {}): DirectusResponse {
+  public getRole(primaryKey: PrimaryKeyType, params: object = {}): Promise<IRoleResponse> {
     AV.number(primaryKey, 'primaryKey');
     AV.objectOrEmpty(params, 'params');
-    return this.get(`/roles/${primaryKey}`, params);
+    return this.get<IRoleResponse>(`/roles/${primaryKey}`, params);
   }
 
   /**
    * Get the user roles
    */
-  public getRoles(params: object = {}): DirectusResponse {
+  public getRoles(params: object = {}): Promise<IRoleResponse[]> {
     AV.objectOrEmpty(params, 'params');
-    return this.get('/roles', params);
+    return this.get<IRoleResponse[]>('/roles', params);
   }
 
   /**
    * Update a user role
    */
-  public updateRole(primaryKey: PrimaryKeyType, body: BodyType): DirectusResponse {
+  public updateRole(primaryKey: PrimaryKeyType, body: BodyType): Promise<IRoleResponse> {
     AV.notNull(primaryKey, 'primaryKey');
     AV.object(body, 'body');
-    return this.updateItem('directus_roles', primaryKey, body);
+    return this.updateItem<IRoleResponse>('directus_roles', primaryKey, body);
   }
 
   /**
    * Create a new user role
    */
-  public createRole(body: BodyType): DirectusResponse {
+  public createRole(body: BodyType): Promise<IRoleResponse> {
     AV.object(body, 'body');
-    return this.createItem('directus_roles', body);
+    return this.createItem<IRoleResponse>('directus_roles', body);
   }
 
   /**
    * Delete a user rol by primary key
    */
-  public deleteRole(primaryKey: PrimaryKeyType): DirectusResponse {
+  public deleteRole(primaryKey: PrimaryKeyType): Promise<void> {
     AV.notNull(primaryKey, 'primaryKey');
     return this.deleteItem('directus_roles', primaryKey);
   }
@@ -859,7 +895,7 @@ class SDK {
   /**
    * Get Directus' global settings
    */
-  public getSettings(params: object = {}): DirectusResponse {
+  public getSettings(params: object = {}): Promise<any> {
     AV.objectOrEmpty(params, 'params');
     return this.get('/settings', params);
   }
@@ -867,7 +903,7 @@ class SDK {
   /**
    * Get the "fields" for directus_settings
    */
-  public getSettingsFields(params: object = {}): DirectusResponse {
+  public getSettingsFields(params: object = {}): Promise<any> {
     AV.objectOrEmpty(params, 'params');
     return this.get('/settings/fields', params);
   }
@@ -877,7 +913,7 @@ class SDK {
   /**
    * Get a list of available users in Directus
    */
-  public getUsers(params: object = {}): DirectusResponse {
+  public getUsers(params: object = {}): Promise<IUsersResponse> {
     AV.objectOrEmpty(params, 'params');
     return this.get('/users', params);
   }
@@ -885,7 +921,7 @@ class SDK {
   /**
    * Get a single Directus user
    */
-  public getUser(primaryKey: PrimaryKeyType, params: object = {}): DirectusResponse {
+  public getUser(primaryKey: PrimaryKeyType, params: object = {}): Promise<IUserResponse> {
     AV.notNull(primaryKey, 'primaryKey');
     AV.objectOrEmpty(params, 'params');
     return this.get(`/users/${primaryKey}`, params);
@@ -894,7 +930,7 @@ class SDK {
   /**
    * Get the user info of the currently logged in user
    */
-  public getMe(params: object = {}): DirectusResponse {
+  public getMe(params: object = {}): Promise<IUserResponse> {
     AV.objectOrEmpty(params, 'params');
     return this.get('/users/me', params);
   }
@@ -902,7 +938,7 @@ class SDK {
   /**
    * Update a single user based on primaryKey
    */
-  public updateUser(primaryKey: PrimaryKeyType, body: BodyType): DirectusResponse {
+  public updateUser(primaryKey: PrimaryKeyType, body: BodyType): Promise<IUserResponse> {
     AV.notNull(primaryKey, 'primaryKey');
     AV.object(body, 'body');
     return this.updateItem('directus_users', primaryKey, body);
@@ -913,28 +949,28 @@ class SDK {
   /**
    * Ping the API to check if it exists / is up and running
    */
-  public ping(): DirectusResponse {
+  public ping(): Promise<void> {
     return this.request('get', '/server/ping', {}, {}, true);
   }
 
   /**
    * Get the server info from the API
    */
-  public serverInfo(): DirectusResponse {
+  public serverInfo(): Promise<any> {
     return this.request('get', '/', {}, {}, true);
   }
 
   /**
    * Get the server info from the project
    */
-  public projectInfo(): DirectusResponse {
+  public projectInfo(): Promise<any> {
     return this.request('get', '/');
   }
 
   /**
    * Get all the setup third party auth providers
    */
-  public getThirdPartyAuthProviders(): DirectusResponse {
+  public getThirdPartyAuthProviders(): Promise<any> {
     return this.get('/auth/sso');
   }
 
@@ -1018,7 +1054,7 @@ class SDK {
 
         return responseData;
       })
-      .catch((error: AxiosError & { json?: boolean; error: Error; data: any }) => {
+      .catch((error: IError) => {
         if (error.response) {
           throw error.response.data.error;
         } else if (error.json === true) {
@@ -1041,7 +1077,7 @@ class SDK {
   /**
    * GET convenience method. Calls the request method for you
    */
-  private get<T extends any = any>(endpoint: string, params: object = {}): DirectusResponse<T> {
+  private get<T extends any = any>(endpoint: string, params: object = {}): Promise<T> {
     AV.string(endpoint, 'endpoint');
     AV.objectOrEmpty(params, 'params');
 
@@ -1051,7 +1087,7 @@ class SDK {
   /**
    * POST convenience method. Calls the request method for you
    */
-  private post<T extends any = any>(endpoint: string, body: BodyType = {}, params: object = {}): DirectusResponse<T> {
+  private post<T extends any = any>(endpoint: string, body: BodyType = {}, params: object = {}): Promise<T> {
     AV.string(endpoint, 'endpoint');
     Array.isArray(body) ? AV.arrayOrEmpty(body, 'body') : AV.objectOrEmpty(body, 'body');
 
@@ -1061,7 +1097,7 @@ class SDK {
   /**
    * PATCH convenience method. Calls the request method for you
    */
-  private patch<T extends any = any>(endpoint: string, body: BodyType = {}, params: object = {}): DirectusResponse<T> {
+  private patch<T extends any = any>(endpoint: string, body: BodyType = {}, params: object = {}): Promise<T> {
     AV.string(endpoint, 'endpoint');
     Array.isArray(body) ? AV.arrayOrEmpty(body, 'body') : AV.objectOrEmpty(body, 'body');
 
@@ -1071,7 +1107,7 @@ class SDK {
   /**
    * PUT convenience method. Calls the request method for you
    */
-  private put<T extends any = any>(endpoint: string, body: BodyType = {}, params: object = {}): DirectusResponse<T> {
+  private put<T extends any = any>(endpoint: string, body: BodyType = {}, params: object = {}): Promise<T> {
     AV.string(endpoint, 'endpoint');
     Array.isArray(body) ? AV.arrayOrEmpty(body, 'body') : AV.objectOrEmpty(body, 'body');
 
@@ -1081,7 +1117,7 @@ class SDK {
   /**
    * DELETE convenience method. Calls the request method for you
    */
-  private delete<T extends any = any>(endpoint: string): DirectusResponse<T> {
+  private delete<T extends any = any>(endpoint: string): Promise<T> {
     AV.string(endpoint, 'endpoint');
 
     return this.request<T>('delete', endpoint);
