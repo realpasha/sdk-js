@@ -1,8 +1,12 @@
 ## `@directus/sdk-js` with Angular 2+
 
-#### Directus Service
+* [Service approach](#service-approach)
+* [RXJS](./RXJS.md)
+
+### Service approach
+First off we want to take a look on how to provide the API layer as a generic service.
 This service provides the main access to the SDK. It will be used in other
-services as reference to the API.
+services as reference to the API, which is the classic angular approach.
 
 
 ###### `directus.service.ts`
@@ -35,7 +39,7 @@ export class DirectusService {
 }
 ```
 
-Next up we create services for each table which can be used within e.g. an RXJS
+Next up we create services for each table which can be used within e.g. a
 store layer or something similar.
 
 ###### `movie.service.ts`
