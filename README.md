@@ -30,9 +30,12 @@ Or download the repo and include `/dist/remote.umd.js` into your document:
 Or use a service that distributes npm packages like [unpkg](https://unpkg.org):
 `<script src="https://unpkg.com/@directus/sdk-js"></script>`
 
+### TypeScript
+
+This package provides full [TypeScript](https://www.typescriptlang.org/) support because it is built with it. No need to install declaration files or typings.
+
 ---
 
 <p align="center">
   Directus is released under the <a href="http://www.gnu.org/copyleft/gpl.html">GPLv3</a> license. <a href="http://rangerstudio.com">RANGER Studio LLC</a> owns all Directus trademarks and logos on behalf of our project's community. Copyright © 2006-2018, <a href="http://rangerstudio.com">RANGER Studio LLC</a>.
 </p>
-
