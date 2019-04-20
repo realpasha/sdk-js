@@ -3,25 +3,24 @@ import axios from 'axios';
 import * as qsStringify from 'qs/lib/stringify';
 
 // HTTP schemes
-import { BodyType } from 'schemes/http/Body';
-import { RequestMethod } from 'schemes/http/Request';
+import { BodyType } from './schemes/http/Body';
+import { RequestMethod } from './schemes/http/Request';
 
 // Authentication schemes
 import { ILoginCredentials, ILoginOptions } from './schemes/auth/Login';
 
 // Response schemes
-import { IRevisionResponse } from 'schemes/response/Revision';
 import { IActivityResponse } from './schemes/response/Activity';
 import { ICollectionResponse, ICollectionsResponse } from './schemes/response/Collection';
 import { IError } from './schemes/response/Error';
 import { IField } from './schemes/response/Field';
 import { ILoginResponse } from './schemes/response/Login';
+import { IRevisionResponse } from './schemes/response/Revision';
 import { IRoleResponse } from './schemes/response/Role';
 import { IRefreshTokenResponse } from './schemes/response/Token';
 import { IUserResponse, IUsersResponse } from './schemes/response/User';
 
 import { getPayload } from './payload';
-
 import { IClientOptions, IStorage, PrimaryKeyType } from './types';
 
 class SDK {
