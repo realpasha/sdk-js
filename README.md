@@ -36,7 +36,7 @@ Or use a service that distributes npm packages like [unpkg](https://unpkg.org):
 This package provides full [TypeScript](https://www.typescriptlang.org/) support because it is built with it. No need to install declaration files or typings. For more information about usage and the signatures 
 head over to the [recipes](./tree/masteer/recipes).
 
-### Framework agnostic
+### Framework agnostic
 
 The SDK can be integrated in all modern frameworks with ease. More information about 
 your dedicated framework can be found in the [recipes](./tree/masteer/recipes). If your 
