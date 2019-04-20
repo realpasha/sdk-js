@@ -21,17 +21,6 @@ export interface IRequestResponse {
     object: any;
     error?: Error;
 }
-export interface ILoginCredentials {
-    email: string;
-    password: string;
-    url?: string;
-    project?: string;
-    persist?: boolean;
-}
-export interface ILoginOptions {
-    persist: boolean;
-    storage: boolean;
-}
 /**
  * Logging in promise
  * @promise LoginPromise
@@ -39,36 +28,40 @@ export interface ILoginOptions {
  * @reject {Error}   Network error (if no connection to API)
  * @reject {Error}   Directus error (eg not logged in or 404)
  */
-export interface ILoginResponse {
-    url: string;
-    project: string;
-    token: string;
-    localExp: number;
-}
-export interface IField {
-    collection: string;
-    id: number;
-    field: string;
-    type: string;
-}
-export interface ICollection {
-    collection: string;
-    fields: {
-        string: IField;
-    };
-    hidden: boolean;
-    icon?: string;
-    managed: boolean;
-    note?: string;
-    single: boolean;
-    translation?: string;
-}
-export interface IItem {
-    id: number;
-}
-export declare type BodyType = object | any[];
 export declare type PrimaryKeyType = string | number;
+/**
+ * Arbitrary wrapper for any kind of responses.
+ * Mostly used together with the Response scheme to define
+ * the responded data
+ * @see IResponse ./schemes/Response
+ *
+ * @example
+ *
+ * type NumberResponse = DirectusResponse<number>;
+ * // this would define the response "100" or "-192"
+ *
+ * type MyResponse = DirectusResponse<IResponse<{ name: string }>>;
+ * //  this would define a fully featured directus response
+ * //  {
+ * //    meta: { ... },
+ * //    data: {
+ * //       name: "Max Mustermann"
+ * //       ...
+ * //    }
+ * //  }
+ *
+ *
+ * type MyMultiResponse = DirectusResponse<IResponse<{ age: number }[]>>
+ * //  this would define a fully featured array directus response
+ * //  {
+ * //    meta: { ... },
+ * //    data: [
+ * //       { age: 58 },
+ * //       { age: 31 }
+ * //    ]
+ * //  }
+ *
+ */
 export declare type DirectusResponse<T extends any = any> = Promise<T>;
 export declare type HashAlgorithm = 'core' | 'bcrypt' | 'sha1' | 'sha224' | 'sha256' | 'sha384' | 'sha512';
-export declare type RequestMethod = 'get' | 'post' | 'put' | 'patch' | 'delete';
 //# sourceMappingURL=types.d.ts.map
