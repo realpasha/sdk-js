@@ -41,12 +41,12 @@ logout(): void;
 reset(): void;
 refreshIfNeeded(): Promise<[boolean, Error?]>;
 refresh(token: string): Promise<IRefreshTokenResponse>;
-requestPasswordReset<T extends any = any>(email: string): Promise<T>;
+requestPasswordReset<T>(email: string): Promise<T>;
 getThirdPartyAuthProviders(): Promise<any>;
 
 // Activity and user based
 getActivity(params?: object): Promise<IActivityResponse>;
-getMyBookmarks<T extends any[] = any[]>(params?: object): Promise<T>;
+getMyBookmarks<T[]>(params?: object): Promise<T>;
 
 // Collection
 getCollections(params?: object): Promise<ICollectionsResponse[]>;
@@ -54,57 +54,57 @@ getCollection(collection: string, params?: object): Promise<ICollectionResponse>
 createCollection(data: object): Promise<ICollectionResponse>;
 updateCollection(collection: string, data: object): Promise<ICollectionResponse>;
 deleteCollection(collection: string): Promise<void>;
-createCollectionPreset<T extends any = any>(data: object): Promise<T>;
-updateCollectionPreset<T extends any = any>(primaryKey: PrimaryKeyType, data: object): Promise<T>;
+createCollectionPreset<T>(data: object): Promise<T>;
+updateCollectionPreset<T>(primaryKey: PrimaryKeyType, data: object): Promise<T>;
 deleteCollectionPreset(primaryKey: PrimaryKeyType): Promise<void>;
 
 // Database
 updateDatabase(): Promise<void>;
 
 // Predefined
-getInterfaces<T extends any = any>(): Promise<T>;
-getLayouts<T extends any = any>(): Promise<T>;
-getPages<T extends any = any>(): Promise<T>;
+getInterfaces<T>(): Promise<T>;
+getLayouts<T>(): Promise<T>;
+getPages<T>(): Promise<T>;
 
 // Fields
-getAllFields<T extends any = any>(params?: object): Promise<T>;
-getFields<T extends any = any>(collection: string, params?: object): Promise<T>;
-getField<T extends any = any>(collection: string, fieldName: string, params?: object): Promise<T>;
-createField<T extends any = any>(collection: string, fieldInfo: object): Promise<T>;
-updateField<T extends any = any>(collection: string, fieldName: string, fieldInfo: object): Promise<T>;
-updateFields<T extends any[] = any[]>(collection: string, fieldsInfoOrFieldNames: string[] | object[], fieldInfo?: object): Promise<IField<T> | undefined>;
+getAllFields<T>(params?: object): Promise<T>;
+getFields<T>(collection: string, params?: object): Promise<T>;
+getField<T>(collection: string, fieldName: string, params?: object): Promise<T>;
+createField<T>(collection: string, fieldInfo: object): Promise<T>;
+updateField<T>(collection: string, fieldName: string, fieldInfo: object): Promise<T>;
+updateFields<T[]>(collection: string, fieldsInfoOrFieldNames: string[] | object[], fieldInfo?: object): Promise<IField<T> | undefined>;
 deleteField(collection: string, fieldName: string): Promise<void>;
 
 // Files
 uploadFiles<T extends any = any[]>(data: object, onUploadProgress?: () => object): Promise<T>;
 
 // Items
-updateItem<T extends any = any>(collection: string, primaryKey: PrimaryKeyType, body: BodyType, params?: object): Promise<T>;
-updateItems<T extends any[] = any[]>(collection: string, body: BodyType, params?: object): Promise<T>;
-createItem<T extends any = any>(collection: string, body: BodyType): Promise<T>;
-createItems<T extends any[] = any[]>(collection: string, body: BodyType): Promise<IField<T>>;
-getItems<T extends any[] = any[]>(collection: string, params?: object): Promise<IField<T>>;
-getItem<T extends any = any>(collection: string, primaryKey: PrimaryKeyType, params?: object): Promise<IField<T>>;
+updateItem<T>(collection: string, primaryKey: PrimaryKeyType, body: BodyType, params?: object): Promise<T>;
+updateItems<T[]>(collection: string, body: BodyType, params?: object): Promise<T>;
+createItem<T>(collection: string, body: BodyType): Promise<T>;
+createItems<T[]>(collection: string, body: BodyType): Promise<IField<T>>;
+getItems<T[]>(collection: string, params?: object): Promise<IField<T>>;
+getItem<T>(collection: string, primaryKey: PrimaryKeyType, params?: object): Promise<IField<T>>;
 deleteItem(collection: string, primaryKey: PrimaryKeyType): Promise<void>;
 deleteItems(collection: string, primaryKeys: PrimaryKeyType[]): Promise<void>;
 
 // Listing preferences
-getMyListingPreferences<T extends any[] = any[]>(collection: string, params?: object): Promise<T>;
+getMyListingPreferences<T[]>(collection: string, params?: object): Promise<T>;
 
 // Permissions
-getPermissions<T extends any[] = any[]>(params?: object): Promise<IField<T>>;
-getMyPermissions<T extends any[] = any[]>(params?: object): Promise<T>;
-createPermissions<T extends any[] = any[]>(data: any[]): Promise<T>;
-updatePermissions<T extends any[] = any[]>(data: any[]): Promise<T>;
+getPermissions<T[]>(params?: object): Promise<IField<T>>;
+getMyPermissions<T[]>(params?: object): Promise<T>;
+createPermissions<T[]>(data: any[]): Promise<T>;
+updatePermissions<T[]>(data: any[]): Promise<T>;
 
 // Relations
-getRelations<T extends any[] = any[]>(params?: object): Promise<T>;
-createRelation<T extends any = any>(data: object): Promise<T>;
-updateRelation<T extends any = any>(primaryKey: PrimaryKeyType, data: object): Promise<T>;
-getCollectionRelations<T extends any = any>(collection: string, params?: object): Promise<T[]>;
+getRelations<T[]>(params?: object): Promise<T>;
+createRelation<T>(data: object): Promise<T>;
+updateRelation<T>(primaryKey: PrimaryKeyType, data: object): Promise<T>;
+getCollectionRelations<T>(collection: string, params?: object): Promise<T[]>;
 
 // Revision and versioning
-getItemRevisions<T extends any = any>(collection: string, primaryKey: PrimaryKeyType, params?: object): Promise<IRevisionResponse<T>>;
+getItemRevisions<T>(collection: string, primaryKey: PrimaryKeyType, params?: object): Promise<IRevisionResponse<T>>;
 revert(collection: string, primaryKey: PrimaryKeyType, revisionID: number): Promise<void>;
 
 // Roles
