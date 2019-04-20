@@ -139,7 +139,7 @@ describe('Fields', () => {
       expect(() => client.updateFields()).to.throw();
     });
 
-    it("Errors if fieldsInfoOrFieldNames isn't an array", () => {
+    it('Errors if fieldsInfoOrFieldNames isn not an array', () => {
       expect(() => client.updateFields('projects', 'updates'));
     });
 

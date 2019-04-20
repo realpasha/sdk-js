@@ -175,7 +175,7 @@ describe('Request', () => {
       });
     });
 
-    it("Returns network error if the API didn't respond", async () => {
+    it('Returns network error if the API did not respond', async () => {
       client.xhr.request.returns(Promise.reject({ request: {} }));
 
       let error;
