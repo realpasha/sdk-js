@@ -39,6 +39,9 @@ jspm_packages
 # debug
 debug
 
+# misc
 .DS_Store
-
 .vscode
+
+# webpack report
+dist/*.html
