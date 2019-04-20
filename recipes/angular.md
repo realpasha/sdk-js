@@ -7,6 +7,9 @@ We want to take a look on how to provide the API layer as a generic service.
 This service provides the main access to the SDK. It will be used in other
 services as reference to the API, which is the classic angular approach.
 
+If you're interested in using the SDK together with NGRX, please head over to the 
+[NGRX](./NGRX.md) section.
+
 ```ts
 import { Injectable } from '@angular/core';
 import DirectusSDK from "@directus/sdk-js";
