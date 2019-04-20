@@ -83,7 +83,7 @@ export class MovieListComponent implements OnInit {
 
   public async ngOnInit() {
     try {
-      this.movies = await this.movieService.getAll  ();
+      this.movies = await this.movieService.getAll();
     } catch (err) {
       this.error = err.message;
     }
