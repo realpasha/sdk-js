@@ -1,15 +1,12 @@
 ## `@directus/sdk-js` with Angular 2+
 
-* [Service approach](#service-approach)
-* [RXJS](./RXJS.md)
+> If you're using Angular together with NGRX we'd suggest you to take a look at 
+the [RXJS](./RXJS.md) recipe.
 
-### Service approach
-First off we want to take a look on how to provide the API layer as a generic service.
+We want to take a look on how to provide the API layer as a generic service.
 This service provides the main access to the SDK. It will be used in other
 services as reference to the API, which is the classic angular approach.
 
-
-###### `directus.service.ts`
 ```ts
 import { Injectable } from '@angular/core';
 import DirectusSDK from "@directus/sdk-js";
