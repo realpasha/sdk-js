@@ -7,7 +7,7 @@ are please head over to the [TypeScript documentation about generics](https://ww
 > In all our provided cases, the `client` will be an instance of the SDK!
 
 #### Fetching items
-> [index.ts#L625](../../src/index.ts#L625)
+> [index.ts#L625](../src/index.ts#L625)
 ```ts
 type Article = {
     title: string,
