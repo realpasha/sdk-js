@@ -5,8 +5,14 @@ node_js:
   - "9"
   - "10"
   - "11"
-cache: npm
+cache:
+  directories:
+    - node_modules
 install:
   - npm install
+before_script:
+  - node --version
 script:
   - npm run test
+# after_success:
+#   - npm run coverage
