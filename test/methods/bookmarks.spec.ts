@@ -1,19 +1,19 @@
 // tslint:disable: no-unused-expression
-import * as chai from 'chai';
-import * as jwt from 'jsonwebtoken';
-import * as sinon from 'sinon';
-import * as sinonChai from 'sinon-chai';
-import SDK from '../../src/index';
+import * as chai from "chai";
+import * as jwt from "jsonwebtoken";
+import * as sinon from "sinon";
+import * as sinonChai from "sinon-chai";
+import SDK from "../../src/index";
 
 const expect = chai.expect;
 chai.use(sinonChai);
 
-describe('Items', () => {
+describe("Items", () => {
   let client;
 
   beforeEach(() => {
     client = new SDK({
-      url: 'https://demo-api.getdirectus.com',
+      url: "https://demo-api.getdirectus.com",
     });
 
     const responseJSON = {
@@ -22,11 +22,11 @@ describe('Items', () => {
       },
     };
 
-    sinon.stub(client, 'get').resolves(responseJSON);
-    sinon.stub(client, 'put').resolves(responseJSON);
-    sinon.stub(client, 'patch').resolves(responseJSON);
-    sinon.stub(client, 'post').resolves(responseJSON);
-    sinon.stub(client, 'delete').resolves(responseJSON);
+    sinon.stub(client, "get").resolves(responseJSON);
+    sinon.stub(client, "put").resolves(responseJSON);
+    sinon.stub(client, "patch").resolves(responseJSON);
+    sinon.stub(client, "post").resolves(responseJSON);
+    sinon.stub(client, "delete").resolves(responseJSON);
   });
 
   afterEach(() => {
@@ -37,15 +37,15 @@ describe('Items', () => {
     client.delete.restore();
   });
 
-  describe('#getMyBookmarks()', () => {
-    it('Errors if parameter `params` is of a wrong type', () => {
-      expect(() => client.getMyListingPreferences('params')).to.throw();
+  describe("#getMyBookmarks()", () => {
+    it("Errors if parameter `params` is of a wrong type", () => {
+      expect(() => client.getMyListingPreferences("params")).to.throw();
     });
 
-    it('Calls get() two times', () => {
+    it("Calls get() two times", () => {
       try {
-        client.token = jwt.sign({ foo: 'bar' }, 'secret-string', {
-          expiresIn: '1h',
+        client.token = jwt.sign({ foo: "bar" }, "secret-string", {
+          expiresIn: "1h",
           noTimestamp: true,
         });
 

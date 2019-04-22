@@ -70,4 +70,4 @@ export type PrimaryKeyType = string | number;
  */
 export type DirectusResponse<T extends any = any> = Promise<T>;
 
-export type HashAlgorithm = 'core' | 'bcrypt' | 'sha1' | 'sha224' | 'sha256' | 'sha384' | 'sha512';
+export type HashAlgorithm = "core" | "bcrypt" | "sha1" | "sha224" | "sha256" | "sha384" | "sha512";

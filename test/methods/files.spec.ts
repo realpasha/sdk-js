@@ -1,8 +1,8 @@
 // tslint:disable: no-unused-expression
-import * as chai from 'chai';
-import * as sinon from 'sinon';
-import * as sinonChai from 'sinon-chai';
-import SDK from '../../src/index';
+import * as chai from "chai";
+import * as sinon from "sinon";
+import * as sinonChai from "sinon-chai";
+import SDK from "../../src/index";
 
 const expect = chai.expect;
 chai.use(sinonChai);
@@ -14,12 +14,12 @@ chai.use(sinonChai);
  * owners found the correct way how the test should work!
  */
 
-describe('Items', () => {
+describe("Items", () => {
   let client;
 
   beforeEach(() => {
     client = new SDK({
-      url: 'https://demo-api.getdirectus.com',
+      url: "https://demo-api.getdirectus.com",
     });
 
     const responseJSON = {
@@ -28,12 +28,12 @@ describe('Items', () => {
       },
     };
 
-    sinon.stub(client, 'request').resolves(responseJSON);
-    sinon.stub(client, 'get').resolves(responseJSON);
-    sinon.stub(client, 'put').resolves(responseJSON);
-    sinon.stub(client, 'patch').resolves(responseJSON);
-    sinon.stub(client, 'post').resolves(responseJSON);
-    sinon.stub(client, 'delete').resolves(responseJSON);
+    sinon.stub(client, "request").resolves(responseJSON);
+    sinon.stub(client, "get").resolves(responseJSON);
+    sinon.stub(client, "put").resolves(responseJSON);
+    sinon.stub(client, "patch").resolves(responseJSON);
+    sinon.stub(client, "post").resolves(responseJSON);
+    sinon.stub(client, "delete").resolves(responseJSON);
   });
 
   afterEach(() => {
@@ -45,18 +45,18 @@ describe('Items', () => {
     client.delete.restore();
   });
 
-  describe('#uploadFiles()', () => {
-    it('Errors on missing `fileslist` parameter', () => {
+  describe("#uploadFiles()", () => {
+    it("Errors on missing `fileslist` parameter", () => {
       expect(client.uploadFiles).to.throw();
     });
 
     /**
      * FIXME: [ERR_STABLE]
      */
-    it.skip('Calls post() for the right endpoint', () => {
-      client.uploadFiles(['fileA', 'fileB']);
-      expect(client.request).to.have.been.calledWith('POST', '/files', {}, ['fileA', 'fileB'], false, {
-        'Content-Type': 'multipart/form-data',
+    it.skip("Calls post() for the right endpoint", () => {
+      client.uploadFiles(["fileA", "fileB"]);
+      expect(client.request).to.have.been.calledWith("POST", "/files", {}, ["fileA", "fileB"], false, {
+        "Content-Type": "multipart/form-data",
       });
     });
   });

@@ -1,5 +1,5 @@
-import { IRoleDataSet } from './Role';
-import { IUserDataSet } from './User';
+import { IRoleDataSet } from "./Role";
+import { IUserDataSet } from "./User";
 
 export type ActivityAction = string; // update ...
 export type ActivityCollection = string; // members ...

@@ -1,92 +1,92 @@
 // tslint:disable: no-unused-expression
-import * as chai from 'chai';
-import * as jwt from 'jsonwebtoken';
-import * as sinon from 'sinon';
-import * as sinonChai from 'sinon-chai';
-import SDK from '../src/index';
+import * as chai from "chai";
+import * as jwt from "jsonwebtoken";
+import * as sinon from "sinon";
+import * as sinonChai from "sinon-chai";
+import SDK from "../src/index";
 
 const expect = chai.expect;
 chai.use(sinonChai);
 
-describe('Request', () => {
+describe("Request", () => {
   let client;
 
   beforeEach(() => {
     client = new SDK({
-      url: 'https://demo-api.getdirectus.com',
+      url: "https://demo-api.getdirectus.com",
     });
   });
 
-  describe('#request()', () => {
+  describe("#request()", () => {
     beforeEach(() => {
-      sinon.stub(client.xhr, 'request').resolves();
+      sinon.stub(client.xhr, "request").resolves();
     });
 
     afterEach(() => {
       client.xhr.request.restore();
     });
 
-    it('Errors on missing parameter method', () => {
+    it("Errors on missing parameter method", () => {
       expect(client.request).to.throw();
     });
 
-    it('Errors on missing parameter endpoint', () => {
-      expect(() => client.request('get')).to.throw();
+    it("Errors on missing parameter endpoint", () => {
+      expect(() => client.request("get")).to.throw();
     });
 
-    it('Errors if params is not of the right type', () => {
-      expect(() => client.request('get', '/items', 'wrong-params')).to.throw();
+    it("Errors if params is not of the right type", () => {
+      expect(() => client.request("get", "/items", "wrong-params")).to.throw();
     });
 
-    describe('Allows arrays and objects for data', () => {
-      it('Errors on a non-array/non-object type', () => {
-        expect(() => client.request('post', '/items', {}, 'data')).to.throw();
+    describe("Allows arrays and objects for data", () => {
+      it("Errors on a non-array/non-object type", () => {
+        expect(() => client.request("post", "/items", {}, "data")).to.throw();
       });
 
-      it('Does not error when body is an array or object', () => {
-        expect(() => client.request('post', '/items', {}, [])).to.not.throw();
-        expect(() => client.request('post', '/items', {}, {})).to.not.throw();
+      it("Does not error when body is an array or object", () => {
+        expect(() => client.request("post", "/items", {}, [])).to.not.throw();
+        expect(() => client.request("post", "/items", {}, {})).to.not.throw();
       });
     });
 
-    it('Errors when there is no API URL set', () => {
+    it("Errors when there is no API URL set", () => {
       client.url = null;
-      expect(() => client.request('get', '/items')).to.throw();
+      expect(() => client.request("get", "/items")).to.throw();
     });
 
-    it('Calls Axios with the right config', () => {
+    it("Calls Axios with the right config", () => {
       client.xhr.request.returns(
         Promise.resolve({
           response: {
             data: {
               error: {
                 code: 1,
-                message: 'Not Found',
+                message: "Not Found",
               },
             },
           },
         })
       );
 
-      client.request('get', '/ping');
+      client.request("get", "/ping");
 
       expect(client.xhr.request).to.have.been.calledWith({
-        baseURL: 'https://demo-api.getdirectus.com/_/',
+        baseURL: "https://demo-api.getdirectus.com/_/",
         data: {},
-        method: 'get',
+        method: "get",
         params: {},
-        url: '/ping',
+        url: "/ping",
       });
     });
 
-    it('Calls Axios with the right config (body)', () => {
+    it("Calls Axios with the right config (body)", () => {
       client.xhr.request.returns(
         Promise.resolve({
           response: {
             data: {
               error: {
                 code: 1,
-                message: 'Not Found',
+                message: "Not Found",
               },
             },
           },
@@ -94,8 +94,8 @@ describe('Request', () => {
       );
 
       client.request(
-        'post',
-        '/utils/random_string',
+        "post",
+        "/utils/random_string",
         {},
         {
           testing: true,
@@ -103,85 +103,85 @@ describe('Request', () => {
       );
 
       expect(client.xhr.request).to.have.been.calledWith({
-        baseURL: 'https://demo-api.getdirectus.com/_/',
+        baseURL: "https://demo-api.getdirectus.com/_/",
         data: {
           testing: true,
         },
-        method: 'post',
+        method: "post",
         params: {},
-        url: '/utils/random_string',
+        url: "/utils/random_string",
       });
     });
 
-    it('Calls Axios with the right config (params)', () => {
+    it("Calls Axios with the right config (params)", () => {
       client.xhr.request.returns(
         Promise.resolve({
           response: {
             data: {
               error: {
                 code: 1,
-                message: 'Not Found',
+                message: "Not Found",
               },
             },
           },
         })
       );
 
-      client.request('get', '/utils/random_string', { queryParam: true });
+      client.request("get", "/utils/random_string", { queryParam: true });
 
       expect(client.xhr.request).to.have.been.calledWith({
-        baseURL: 'https://demo-api.getdirectus.com/_/',
+        baseURL: "https://demo-api.getdirectus.com/_/",
         data: {},
-        method: 'get',
+        method: "get",
         params: {
           queryParam: true,
         },
-        url: '/utils/random_string',
+        url: "/utils/random_string",
       });
     });
 
-    it('Adds Bearer header if access token is set', () => {
+    it("Adds Bearer header if access token is set", () => {
       client.xhr.request.returns(
         Promise.resolve({
           response: {
             data: {
               error: {
                 code: 1,
-                message: 'Not Found',
+                message: "Not Found",
               },
             },
           },
         })
       );
 
-      client.token = jwt.sign({ foo: 'bar' }, 'secret-string', {
-        expiresIn: '1h',
+      client.token = jwt.sign({ foo: "bar" }, "secret-string", {
+        expiresIn: "1h",
         noTimestamp: true,
       });
 
-      client.request('get', '/utils/random_string', { queryParam: true });
+      client.request("get", "/utils/random_string", { queryParam: true });
 
       expect(client.xhr.request).to.have.been.calledWith({
-        baseURL: 'https://demo-api.getdirectus.com/_/',
+        baseURL: "https://demo-api.getdirectus.com/_/",
         data: {},
         headers: {
           Authorization: `Bearer ${client.token}`,
         },
-        method: 'get',
+        method: "get",
         params: {
           queryParam: true,
         },
-        url: '/utils/random_string',
+        url: "/utils/random_string",
       });
     });
 
-    it('Returns network error if the API did not respond', async () => {
+    it("Returns network error if the API did not respond", async () => {
       client.xhr.request.returns(Promise.reject({ request: {} }));
 
       let error;
 
       try {
-        await client.request('get', '/ping');
+        await client.request("get", "/ping");
       } catch (err) {
         error = err;
       }
@@ -191,18 +191,18 @@ describe('Request', () => {
         error: {
           request: {},
         },
-        message: 'Network Error',
+        message: "Network Error",
       });
     });
 
-    it('Returns API error if available', async () => {
+    it("Returns API error if available", async () => {
       client.xhr.request.returns(
         Promise.reject({
           response: {
             data: {
               error: {
                 code: 1,
-                message: 'Not Found',
+                message: "Not Found",
               },
             },
           },
@@ -212,18 +212,18 @@ describe('Request', () => {
       let error;
 
       try {
-        await client.request('get', '/ping');
+        await client.request("get", "/ping");
       } catch (err) {
         error = err;
       }
 
       expect(error).to.deep.equal({
         code: 1,
-        message: 'Not Found',
+        message: "Not Found",
       });
     });
 
-    it('Strips out Axios metadata from response', async () => {
+    it("Strips out Axios metadata from response", async () => {
       client.xhr.request.resolves({
         data: {
           data: {},
@@ -233,7 +233,7 @@ describe('Request', () => {
         status: 200,
       });
 
-      const result = await client.request('get', '/ping');
+      const result = await client.request("get", "/ping");
 
       expect(result).to.deep.equal({
         data: {},
@@ -241,201 +241,201 @@ describe('Request', () => {
       });
     });
 
-    it('Supports an optional fifth parameter to make the request without the env', async () => {
+    it("Supports an optional fifth parameter to make the request without the env", async () => {
       client.xhr.request.resolves({
         response: {
           data: {
             error: {
               code: 1,
-              message: 'Not Found',
+              message: "Not Found",
             },
           },
         },
       });
 
-      await client.request('get', '/interfaces', {}, {});
+      await client.request("get", "/interfaces", {}, {});
 
       expect(client.xhr.request).to.have.been.calledWith({
-        baseURL: 'https://demo-api.getdirectus.com/_/',
+        baseURL: "https://demo-api.getdirectus.com/_/",
         data: {},
-        method: 'get',
+        method: "get",
         params: {},
-        url: '/interfaces',
+        url: "/interfaces",
       });
 
-      await client.request('get', '/interfaces', {}, {}, true);
+      await client.request("get", "/interfaces", {}, {}, true);
 
       expect(client.xhr.request).to.have.been.calledWith({
-        baseURL: 'https://demo-api.getdirectus.com/',
+        baseURL: "https://demo-api.getdirectus.com/",
         data: {},
-        method: 'get',
+        method: "get",
         params: {},
-        url: '/interfaces',
+        url: "/interfaces",
       });
     });
   });
 
-  describe('#get()', () => {
+  describe("#get()", () => {
     beforeEach(() => {
-      sinon.stub(client, 'request');
+      sinon.stub(client, "request");
     });
 
     afterEach(() => {
       client.request.restore();
     });
 
-    it('Errors on missing parameter method', () => {
+    it("Errors on missing parameter method", () => {
       expect(client.get).to.throw();
     });
 
-    it('Calls request() with the right parameters', () => {
-      client.get('/items/projects', {
+    it("Calls request() with the right parameters", () => {
+      client.get("/items/projects", {
         limit: 20,
       });
 
-      expect(client.request).to.have.been.calledWith('get', '/items/projects', {
+      expect(client.request).to.have.been.calledWith("get", "/items/projects", {
         limit: 20,
       });
     });
   });
 
-  describe('#post()', () => {
+  describe("#post()", () => {
     beforeEach(() => {
-      sinon.stub(client, 'request');
+      sinon.stub(client, "request");
     });
 
     afterEach(() => {
       client.request.restore();
     });
 
-    it('Errors on missing parameter method', () => {
+    it("Errors on missing parameter method", () => {
       expect(client.post).to.throw();
     });
 
-    describe('Allows arrays and objects for body', () => {
-      it('Errors on a non-array/non-object type', () => {
-        expect(() => client.post('projects', 'body')).to.throw();
+    describe("Allows arrays and objects for body", () => {
+      it("Errors on a non-array/non-object type", () => {
+        expect(() => client.post("projects", "body")).to.throw();
       });
 
-      it('Does not error when body is an array or object', () => {
-        expect(() => client.post('projects', [])).to.not.throw();
-        expect(() => client.post('projects', {})).to.not.throw();
+      it("Does not error when body is an array or object", () => {
+        expect(() => client.post("projects", [])).to.not.throw();
+        expect(() => client.post("projects", {})).to.not.throw();
       });
     });
 
-    it('Calls request() with the right parameters', () => {
-      client.post('/items/projects', {
-        title: 'New Project',
+    it("Calls request() with the right parameters", () => {
+      client.post("/items/projects", {
+        title: "New Project",
       });
 
       expect(client.request).to.have.been.calledWith(
-        'post',
-        '/items/projects',
+        "post",
+        "/items/projects",
         {},
         {
-          title: 'New Project',
+          title: "New Project",
         }
       );
     });
   });
 
-  describe('#patch()', () => {
+  describe("#patch()", () => {
     beforeEach(() => {
-      sinon.stub(client, 'request');
+      sinon.stub(client, "request");
     });
 
     afterEach(() => {
       client.request.restore();
     });
 
-    it('Errors on missing parameter method', () => {
+    it("Errors on missing parameter method", () => {
       expect(client.patch).to.throw();
     });
 
-    describe('Allows arrays and objects for body', () => {
-      it('Errors on a non-array/non-object type', () => {
-        expect(() => client.patch('projects', 'body')).to.throw();
+    describe("Allows arrays and objects for body", () => {
+      it("Errors on a non-array/non-object type", () => {
+        expect(() => client.patch("projects", "body")).to.throw();
       });
 
-      it('Does not error when body is an array or object', () => {
-        expect(() => client.patch('projects', [])).to.not.throw();
-        expect(() => client.patch('projects', {})).to.not.throw();
+      it("Does not error when body is an array or object", () => {
+        expect(() => client.patch("projects", [])).to.not.throw();
+        expect(() => client.patch("projects", {})).to.not.throw();
       });
     });
 
-    it('Calls request() with the right parameters', () => {
-      client.patch('/items/projects/1', {
-        title: 'New Project',
+    it("Calls request() with the right parameters", () => {
+      client.patch("/items/projects/1", {
+        title: "New Project",
       });
 
       expect(client.request).to.have.been.calledWith(
-        'patch',
-        '/items/projects/1',
+        "patch",
+        "/items/projects/1",
         {},
         {
-          title: 'New Project',
+          title: "New Project",
         }
       );
     });
   });
 
-  describe('#put()', () => {
+  describe("#put()", () => {
     beforeEach(() => {
-      sinon.stub(client, 'request');
+      sinon.stub(client, "request");
     });
 
     afterEach(() => {
       client.request.restore();
     });
 
-    it('Errors on missing parameter method', () => {
+    it("Errors on missing parameter method", () => {
       expect(client.put).to.throw();
     });
 
-    describe('Allows arrays and objects for body', () => {
-      it('Errors on a non-array/non-object type', () => {
-        expect(() => client.put('projects', 'body')).to.throw();
+    describe("Allows arrays and objects for body", () => {
+      it("Errors on a non-array/non-object type", () => {
+        expect(() => client.put("projects", "body")).to.throw();
       });
 
-      it('Does not error when body is an array or object', () => {
-        expect(() => client.put('projects', [])).to.not.throw();
-        expect(() => client.put('projects', {})).to.not.throw();
+      it("Does not error when body is an array or object", () => {
+        expect(() => client.put("projects", [])).to.not.throw();
+        expect(() => client.put("projects", {})).to.not.throw();
       });
     });
 
-    it('Calls request() with the right parameters', () => {
-      client.put('/items/projects/1', {
-        title: 'New Project',
+    it("Calls request() with the right parameters", () => {
+      client.put("/items/projects/1", {
+        title: "New Project",
       });
 
       expect(client.request).to.have.been.calledWith(
-        'put',
-        '/items/projects/1',
+        "put",
+        "/items/projects/1",
         {},
         {
-          title: 'New Project',
+          title: "New Project",
         }
       );
     });
   });
 
-  describe('#delete()', () => {
+  describe("#delete()", () => {
     beforeEach(() => {
-      sinon.stub(client, 'request');
+      sinon.stub(client, "request");
     });
 
     afterEach(() => {
       client.request.restore();
     });
 
-    it('Errors on missing parameter method', () => {
+    it("Errors on missing parameter method", () => {
       expect(client.delete).to.throw();
     });
 
-    it('Calls request() with the right parameters', () => {
-      client.delete('/items/projects/1');
+    it("Calls request() with the right parameters", () => {
+      client.delete("/items/projects/1");
 
-      expect(client.request).to.have.been.calledWith('delete', '/items/projects/1');
+      expect(client.request).to.have.been.calledWith("delete", "/items/projects/1");
     });
   });
 });

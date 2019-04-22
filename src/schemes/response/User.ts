@@ -1,6 +1,6 @@
-import { IRoleDataSet } from './Role';
+import { IRoleDataSet } from "./Role";
 
-export type UserStatus = 'active' | 'inactive';
+export type UserStatus = "active" | "inactive";
 
 export interface IUserDataSet {
   avatar: any | null;
