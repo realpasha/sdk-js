@@ -1,15 +1,15 @@
-import { BodyType } from './schemes/http/Body';
-import { ILoginCredentials, ILoginOptions } from './schemes/auth/Login';
-import { IActivityResponse } from './schemes/response/Activity';
-import { ICollectionResponse, ICollectionsResponse } from './schemes/response/Collection';
-import { IField } from './schemes/response/Field';
-import { ILoginResponse } from './schemes/response/Login';
-import { IRevisionResponse } from './schemes/response/Revision';
-import { IRoleResponse } from './schemes/response/Role';
-import { IRefreshTokenResponse } from './schemes/response/Token';
-import { IUserResponse, IUsersResponse } from './schemes/response/User';
-import { getPayload } from './payload';
-import { IClientOptions, PrimaryKeyType } from './types';
+import { BodyType } from "./schemes/http/Body";
+import { ILoginCredentials, ILoginOptions } from "./schemes/auth/Login";
+import { IActivityResponse } from "./schemes/response/Activity";
+import { ICollectionResponse, ICollectionsResponse } from "./schemes/response/Collection";
+import { IField } from "./schemes/response/Field";
+import { ILoginResponse } from "./schemes/response/Login";
+import { IRevisionResponse } from "./schemes/response/Revision";
+import { IRoleResponse } from "./schemes/response/Role";
+import { IRefreshTokenResponse } from "./schemes/response/Token";
+import { IUserResponse, IUsersResponse } from "./schemes/response/User";
+import { getPayload } from "./payload";
+import { IClientOptions, PrimaryKeyType } from "./types";
 declare class SDK {
     /**
      * If the current auth status is logged in

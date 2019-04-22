@@ -1,4 +1,4 @@
-import { IField } from './Field';
+import { IField } from "./Field";
 interface IRevisionDataSet<T> {
     activity: number;
     collection: string;

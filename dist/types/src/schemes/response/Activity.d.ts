@@ -1,5 +1,5 @@
-import { IRoleDataSet } from './Role';
-import { IUserDataSet } from './User';
+import { IRoleDataSet } from "./Role";
+import { IUserDataSet } from "./User";
 export declare type ActivityAction = string;
 export declare type ActivityCollection = string;
 export interface IActivityDataSet {

@@ -63,5 +63,5 @@ export declare type PrimaryKeyType = string | number;
  *
  */
 export declare type DirectusResponse<T extends any = any> = Promise<T>;
-export declare type HashAlgorithm = 'core' | 'bcrypt' | 'sha1' | 'sha224' | 'sha256' | 'sha384' | 'sha512';
+export declare type HashAlgorithm = "core" | "bcrypt" | "sha1" | "sha224" | "sha256" | "sha384" | "sha512";
 //# sourceMappingURL=types.d.ts.map

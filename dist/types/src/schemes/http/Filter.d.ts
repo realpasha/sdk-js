@@ -1,2 +1,2 @@
-export declare type FilterOperator = '=' | 'eq' | '<>' | '!=' | 'neq' | '<' | 'lt' | '<=' | 'lte' | '>' | 'gt' | '>=' | 'gte' | 'in' | 'nin' | 'null' | 'nnull' | 'contains' | 'like' | 'ncontains' | 'nlike' | 'rlike' | 'nrlike' | 'between' | 'nbetween' | 'empty' | 'nempty' | 'all' | 'has';
+export declare type FilterOperator = "=" | "eq" | "<>" | "!=" | "neq" | "<" | "lt" | "<=" | "lte" | ">" | "gt" | ">=" | "gte" | "in" | "nin" | "null" | "nnull" | "contains" | "like" | "ncontains" | "nlike" | "rlike" | "nrlike" | "between" | "nbetween" | "empty" | "nempty" | "all" | "has";
 //# sourceMappingURL=Filter.d.ts.map
