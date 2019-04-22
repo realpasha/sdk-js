@@ -9,6 +9,10 @@ os:
   # - windows -> early access at the moment, we shouldn't use it
   - linux
   - osx
+# prepare for v12
+# matrix:
+#   allow_failures:
+#   - node: 12
 cache:
   directories:
     - node_modules
