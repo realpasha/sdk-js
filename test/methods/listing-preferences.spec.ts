@@ -119,7 +119,7 @@ describe("Items", () => {
 
       const result = await client.getMyListingPreferences("faq");
 
-      expect(result).to.deep.equal({
+      expect(result).to.deep.include({
         request: "user",
       });
     });
@@ -176,7 +176,7 @@ describe("Items", () => {
 
       const result = await client.getMyListingPreferences("faq");
 
-      expect(result).to.deep.equal({
+      expect(result).to.deep.include({
         request: "group",
       });
     });
@@ -229,7 +229,7 @@ describe("Items", () => {
 
       const result = await client.getMyListingPreferences("faq");
 
-      expect(result).to.deep.equal({
+      expect(result).to.deep.include({
         request: "collection",
       });
     });

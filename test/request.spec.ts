@@ -186,7 +186,7 @@ describe("Request", () => {
         error = err;
       }
 
-      expect(error).to.deep.equal({
+      expect(error).to.deep.include({
         code: -1,
         error: {
           request: {},
@@ -217,7 +217,7 @@ describe("Request", () => {
         error = err;
       }
 
-      expect(error).to.deep.equal({
+      expect(error).to.deep.include({
         code: 1,
         message: "Not Found",
       });
@@ -235,7 +235,7 @@ describe("Request", () => {
 
       const result = await client.request("get", "/ping");
 
-      expect(result).to.deep.equal({
+      expect(result).to.deep.include({
         data: {},
         meta: {},
       });

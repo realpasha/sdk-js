@@ -29,7 +29,7 @@ describe("JWT Payload", () => {
     client.token = jwt.sign({ foo: "bar" }, "secret-string", {
       noTimestamp: true,
     });
-    expect(client.payload).to.deep.equal({ foo: "bar" });
+    expect(client.payload).to.deep.include({ foo: "bar" });
   });
 
   it("Converts the optional exp in payload to the correct JS Date", () => {

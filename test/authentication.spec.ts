@@ -112,7 +112,7 @@ describe("Authentication", () => {
         url: "https://example.com",
       });
 
-      expect(result).to.deep.equal({
+      expect(result).to.deep.include({
         env: "testEnv",
         token: "abcdef",
         url: "https://example.com",
@@ -139,7 +139,7 @@ describe("Authentication", () => {
 
     it("Resolves with the new token", async () => {
       const result = await client.refresh("oldToken");
-      expect(result).to.deep.equal({
+      expect(result).to.deep.include({
         data: {
           token: "abcdef",
         },
@@ -219,7 +219,7 @@ describe("Authentication", () => {
       });
 
       client.onAutoRefreshSuccess = info => {
-        expect(info).to.deep.equal({
+        expect(info).to.deep.include({
           env: "_",
           token: "abcdef",
           url: "https://demo-api.getdirectus.com",
@@ -247,7 +247,7 @@ describe("Authentication", () => {
       });
 
       client.onAutoRefreshError = error => {
-        expect(error).to.deep.equal({
+        expect(error).to.deep.include({
           code: -1,
           message: "Network Error",
         });
@@ -277,7 +277,7 @@ describe("Authentication", () => {
       });
 
       client.onAutoRefreshError = error => {
-        expect(error).to.deep.equal({
+        expect(error).to.deep.include({
           code: 102,
           message: "auth_expired_token",
         });
