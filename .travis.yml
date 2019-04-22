@@ -6,7 +6,7 @@ node_js:
   - "10"
   - "11"
 os:
-  - windows
+  # - windows -> early access at the moment, we shouldn't use it
   - linux
   - osx
 cache:
