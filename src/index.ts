@@ -1,4 +1,3 @@
-import * as AV from "argument-validator";
 import axios from "axios";
 import * as qsStringify from "qs/lib/stringify";
 
@@ -23,17 +22,26 @@ import { IUserResponse, IUsersResponse } from "./schemes/response/User";
 import { getPayload } from "./payload";
 import { IClientOptions, IStorage, PrimaryKeyType } from "./types";
 
+// Invariant violation
+import { invariant } from "./utils/invariant";
+import {
+  hasKeysWithString,
+  isArray,
+  isArrayOrEmpty,
+  isFunction,
+  isNotNull,
+  isNumber,
+  isObject,
+  isObjectOrEmpty,
+  isString,
+} from "./utils/is";
+
 class SDK {
   /**
    * If the current auth status is logged in
    */
   public get loggedIn(): boolean {
-    if (
-      AV.isString(this.token) &&
-      AV.isString(this.url) &&
-      AV.isString(this.project) &&
-      AV.isObject(this.getPayload())
-    ) {
+    if (isString(this.token) && isString(this.url) && isString(this.project) && isObject(this.getPayload())) {
       if (this.localExp > Date.now()) {
         return true;
       }
@@ -102,16 +110,16 @@ class SDK {
     credentials: ILoginCredentials,
     options: ILoginOptions = { persist: true, storage: false }
   ): Promise<ILoginResponse> {
-    AV.object(credentials, "credentials");
-    AV.keysWithString(credentials, ["email", "password"], "credentials");
+    invariant(isObject(credentials), "Malformed credentials");
+    invariant(hasKeysWithString(credentials, ["email", "password"]), "email & password required in credentials");
 
     this.token = null;
 
-    if (AV.hasKeysWithString(credentials, ["url"])) {
+    if (hasKeysWithString(credentials, ["url"])) {
       this.url = credentials.url;
     }
 
-    if (AV.hasKeysWithString(credentials, ["project"])) {
+    if (hasKeysWithString(credentials, ["project"])) {
       this.project = credentials.project;
     }
 
@@ -187,7 +195,7 @@ class SDK {
   public refreshIfNeeded(): Promise<[boolean, Error?]> {
     const payload = this.getPayload<{ exp: any }>();
 
-    if (!AV.hasStringKeys(this, ["token", "url", "project"])) {
+    if (!hasKeysWithString(this, ["token", "url", "project"])) {
       return;
     }
 
@@ -198,7 +206,7 @@ class SDK {
     const timeDiff = this.localExp - Date.now();
 
     if (timeDiff <= 0) {
-      if (AV.isFunction(this.onAutoRefreshError)) {
+      if (isFunction(this.onAutoRefreshError)) {
         this.onAutoRefreshError({
           code: 102,
           message: "auth_expired_token",
@@ -215,7 +223,7 @@ class SDK {
             this.localExp = new Date(Date.now() + 5 * 60000).getTime();
 
             // if autorefresh succeeded
-            if (AV.isFunction(this.onAutoRefreshSuccess)) {
+            if (isFunction(this.onAutoRefreshSuccess)) {
               this.onAutoRefreshSuccess({
                 localExp: this.localExp,
                 project: this.project,
@@ -240,7 +248,7 @@ class SDK {
             }
           })
           .catch((error: Error) => {
-            if (AV.isFunction(this.onAutoRefreshError)) {
+            if (isFunction(this.onAutoRefreshError)) {
               this.onAutoRefreshError(error);
             }
             resolve([true, error]);
@@ -255,7 +263,8 @@ class SDK {
    * Use the passed token to request a new one
    */
   public refresh(token: string): Promise<IRefreshTokenResponse> {
-    AV.string(token, "token");
+    invariant(isString(token), "token must be a string");
+
     return this.post<IRefreshTokenResponse>("/auth/refresh", { token });
   }
 
@@ -265,7 +274,8 @@ class SDK {
    * temporary password.
    */
   public requestPasswordReset<T extends any = any>(email: string): Promise<T> {
-    AV.string(email, "email");
+    invariant(isString(email), "email must be a string");
+
     return this.post<T>("/auth/password/request", {
       email,
     });
@@ -277,7 +287,8 @@ class SDK {
    * Get activity
    */
   public getActivity(params: object = {}): Promise<IActivityResponse> {
-    AV.objectOrEmpty(params, "params");
+    invariant(isObjectOrEmpty(params), "params must be an object or empty");
+
     return this.get<IActivityResponse>("/activity", params);
   }
 
@@ -289,8 +300,8 @@ class SDK {
    * @see https://docs.directus.io/advanced/legacy-upgrades.html#directus-bookmarks
    */
   public getMyBookmarks<T extends any[] = any[]>(params: object = {}): Promise<T> {
-    AV.string(this.token, "this.token");
-    AV.objectOrEmpty(params);
+    invariant(isString(this.token), "defined token is not a string");
+    invariant(isObjectOrEmpty(params), "params must be an object or empty");
 
     const payload = this.getPayload<{ id: string; role: string }>();
 
@@ -306,6 +317,7 @@ class SDK {
       }),
     ]).then((values: Array<{ data: any }>) => {
       const [user, role] = values;
+
       return [...(user.data || []), ...(role.data || [])] as T;
     });
   }
@@ -316,7 +328,8 @@ class SDK {
    * Get all available collections
    */
   public getCollections(params: object = {}): Promise<ICollectionsResponse[]> {
-    AV.objectOrEmpty(params, "params");
+    invariant(isObjectOrEmpty(params), "params must be an object or empty");
+
     return this.get<ICollectionsResponse[]>("/collections", params);
   }
 
@@ -324,8 +337,9 @@ class SDK {
    * Get collection info by name
    */
   public getCollection(collection: string, params: object = {}): Promise<ICollectionResponse> {
-    AV.string(collection, "collection");
-    AV.objectOrEmpty(params, "params");
+    invariant(isString(collection), "collection must be a string");
+    invariant(isObjectOrEmpty(params), "params must be an object or empty");
+
     return this.get<ICollectionResponse>(`/collections/${collection}`, params);
   }
 
@@ -333,7 +347,7 @@ class SDK {
    * Create a collection
    */
   public createCollection(data: object): Promise<ICollectionResponse> {
-    AV.object(data, "data");
+    invariant(isObject(data), "data must be an object");
     return this.post<ICollectionResponse>("/collections", data);
   }
 
@@ -341,8 +355,9 @@ class SDK {
    * Updates a certain collection
    */
   public updateCollection(collection: string, data: object): Promise<ICollectionResponse> {
-    AV.string(collection, "collection");
-    AV.object(data, "data");
+    invariant(isString(collection), "collection must be a string");
+    invariant(isObject(data), "data must be an object");
+
     return this.patch<ICollectionResponse>(`/collections/${collection}`, data);
   }
 
@@ -350,7 +365,8 @@ class SDK {
    * Deletes a certain collection
    */
   public deleteCollection(collection: string): Promise<void> {
-    AV.string(collection, "collection");
+    invariant(isString(collection), "collection must be a string");
+
     return this.delete<void>(`/collections/${collection}`);
   }
 
@@ -360,7 +376,8 @@ class SDK {
    * Create a new collection preset (bookmark / listing preferences)
    */
   public createCollectionPreset<T extends any = any>(data: object): Promise<T> {
-    AV.object(data);
+    invariant(isObject(data), "data must be an object");
+
     return this.post<T>("/collection_presets", data);
   }
 
@@ -368,8 +385,8 @@ class SDK {
    * Update collection preset (bookmark / listing preference)
    */
   public updateCollectionPreset<T extends any = any>(primaryKey: PrimaryKeyType, data: object): Promise<T> {
-    AV.notNull(primaryKey, "primaryKey");
-    AV.object(data, "data");
+    invariant(isNotNull(primaryKey), "primaryKey must be defined");
+    invariant(isObject(data), "data must be an object");
 
     return this.patch<T>(`/collection_presets/${primaryKey}`, data);
   }
@@ -378,7 +395,8 @@ class SDK {
    * Delete collection preset by primarykey
    */
   public deleteCollectionPreset(primaryKey: PrimaryKeyType): Promise<void> {
-    AV.notNull(primaryKey, "primaryKey");
+    invariant(isNotNull(primaryKey), "primaryKey must be defined");
+
     return this.delete<void>(`/collection_presets/${primaryKey}`);
   }
 
@@ -421,7 +439,8 @@ class SDK {
    * Get all fields that are in Directus
    */
   public getAllFields<T extends any = any>(params: object = {}): Promise<T> {
-    AV.objectOrEmpty(params, "params");
+    invariant(isObjectOrEmpty(params), "params must be an object or empty");
+
     return this.get<T>("/fields", params);
   }
 
@@ -429,8 +448,9 @@ class SDK {
    * Get the fields that have been setup for a given collection
    */
   public getFields<T extends any = any>(collection: string, params: object = {}): Promise<T> {
-    AV.string(collection, "collection");
-    AV.objectOrEmpty(params, "params");
+    invariant(isString(collection), "collection must be a string");
+    invariant(isObjectOrEmpty(params), "params must be an object or empty");
+
     return this.get<T>(`/fields/${collection}`, params);
   }
 
@@ -438,9 +458,10 @@ class SDK {
    * Get the field information for a single given field
    */
   public getField<T extends any = any>(collection: string, fieldName: string, params: object = {}): Promise<T> {
-    AV.string(collection, "collection");
-    AV.string(fieldName, "fieldName");
-    AV.objectOrEmpty(params, "params");
+    invariant(isString(collection), "collection must be a string");
+    invariant(isString(fieldName), "fieldName must be a string");
+    invariant(isObjectOrEmpty(params), "params must be an object or empty");
+
     return this.get<T>(`/fields/${collection}/${fieldName}`, params);
   }
 
@@ -448,8 +469,9 @@ class SDK {
    * Create a field in the given collection
    */
   public createField<T extends any = any>(collection: string, fieldInfo: object): Promise<T> {
-    AV.string(collection, "collection");
-    AV.object(fieldInfo, "fieldInfo");
+    invariant(isString(collection), "collection must be a string");
+    invariant(isObject(fieldInfo), "fieldInfo must be an object");
+
     return this.post<T>(`/fields/${collection}`, fieldInfo);
   }
 
@@ -457,9 +479,10 @@ class SDK {
    * Update a given field in a given collection
    */
   public updateField<T extends any = any>(collection: string, fieldName: string, fieldInfo: object): Promise<T> {
-    AV.string(collection, "collection");
-    AV.string(fieldName, "fieldName");
-    AV.object(fieldInfo, "fieldInfo");
+    invariant(isString(collection), "collection must be a string");
+    invariant(isString(fieldName), "fieldName must be a string");
+    invariant(isObject(fieldInfo), "fieldInfo must be an object");
+
     return this.patch<T>(`/fields/${collection}/${fieldName}`, fieldInfo);
   }
 
@@ -494,11 +517,11 @@ class SDK {
     fieldsInfoOrFieldNames: string[] | object[],
     fieldInfo: object = null
   ): Promise<IField<T> | undefined> {
-    AV.string(collection, "collection");
-    AV.array(fieldsInfoOrFieldNames, "fieldsInfoOrFieldNames");
+    invariant(isString(collection), "collection must be a string");
+    invariant(isArray(fieldsInfoOrFieldNames), "fieldsInfoOrFieldNames must be an array");
 
     if (fieldInfo) {
-      AV.object(fieldInfo);
+      invariant(isObject(fieldInfo), "fieldInfo must be an object");
     }
 
     if (fieldInfo) {
@@ -512,8 +535,9 @@ class SDK {
    * Delete a field from a collection
    */
   public deleteField(collection: string, fieldName: string): Promise<void> {
-    AV.string(collection, "collection");
-    AV.string(fieldName, "fieldName");
+    invariant(isString(collection), "collection must be a string");
+    invariant(isString(fieldName), "fieldName must be a string");
+
     return this.delete(`/fields/${collection}/${fieldName}`);
   }
 
@@ -558,9 +582,9 @@ class SDK {
     body: BodyType,
     params: object = {}
   ): Promise<T> {
-    AV.string(collection, "collection");
-    AV.notNull(primaryKey, "primaryKey");
-    AV.object(body, "body");
+    invariant(isString(collection), "collection must be a string");
+    invariant(isNotNull(primaryKey), "primaryKey must be defined");
+    invariant(isObject(body), "body must be an object");
 
     if (collection.startsWith("directus_")) {
       return this.patch(`/${collection.substring(9)}/${primaryKey}`, body, params);
@@ -573,8 +597,8 @@ class SDK {
    * Update multiple items
    */
   public updateItems<T extends any[] = any[]>(collection: string, body: BodyType, params: object = {}): Promise<T> {
-    AV.string(collection, "collection");
-    AV.array(body, "body");
+    invariant(isString(collection), "collection must be a string");
+    invariant(isArray(body), "body must be an array");
 
     if (collection.startsWith("directus_")) {
       return this.patch<T>(`/${collection.substring(9)}`, body, params);
@@ -587,8 +611,8 @@ class SDK {
    * Create a new item
    */
   public createItem<T extends any = any>(collection: string, body: BodyType): Promise<T> {
-    AV.string(collection, "collection");
-    AV.object(body, "body");
+    invariant(isString(collection), "collection must be a string");
+    invariant(isObject(body), "body must be an object");
 
     if (collection.startsWith("directus_")) {
       return this.post<T>(`/${collection.substring(9)}`, body);
@@ -608,8 +632,8 @@ class SDK {
    *  b) createItems<Person[]> => Promise<IField<Person[]>>
    */
   public createItems<T extends any[] = any[]>(collection: string, body: BodyType): Promise<IField<T>> {
-    AV.string(collection, "collection");
-    AV.array(body, "body");
+    invariant(isString(collection), "collection must be a string");
+    invariant(isArray(body), "body must be an array");
 
     if (collection.startsWith("directus_")) {
       return this.post(`/${collection.substring(9)}`, body);
@@ -622,8 +646,8 @@ class SDK {
    * Get items from a given collection
    */
   public getItems<T extends any[] = any[]>(collection: string, params: object = {}): Promise<IField<T>> {
-    AV.string(collection, "collection");
-    AV.objectOrEmpty(params, "params");
+    invariant(isString(collection), "collection must be a string");
+    invariant(isObjectOrEmpty(params), "params must be an object or empty");
 
     if (collection.startsWith("directus_")) {
       return this.get(`/${collection.substring(9)}`, params);
@@ -640,9 +664,9 @@ class SDK {
     primaryKey: PrimaryKeyType,
     params: object = {}
   ): Promise<IField<T>> {
-    AV.string(collection, "collection");
-    AV.notNull(primaryKey, "primaryKey");
-    AV.objectOrEmpty(params, "params");
+    invariant(isString(collection), "collection must be a string");
+    invariant(isNotNull(primaryKey), "primaryKey must be defined");
+    invariant(isObjectOrEmpty(params), "params must be an object or empty");
 
     if (collection.startsWith("directus_")) {
       return this.get(`/${collection.substring(9)}/${primaryKey}`, params);
@@ -655,8 +679,8 @@ class SDK {
    * Delete a single item by primary key
    */
   public deleteItem(collection: string, primaryKey: PrimaryKeyType): Promise<void> {
-    AV.string(collection, "collection");
-    AV.notNull(primaryKey, "primaryKey");
+    invariant(isString(collection), "collection must be a string");
+    invariant(isNotNull(primaryKey), "primaryKey must be defined");
 
     if (collection.startsWith("directus_")) {
       return this.delete<void>(`/${collection.substring(9)}/${primaryKey}`);
@@ -669,8 +693,8 @@ class SDK {
    * Delete multiple items by primary key
    */
   public deleteItems(collection: string, primaryKeys: PrimaryKeyType[]): Promise<void> {
-    AV.string(collection, "collection");
-    AV.array(primaryKeys, "primaryKeys");
+    invariant(isString(collection), "collection must be a string");
+    invariant(isArray(primaryKeys), "primaryKeys must be an array");
 
     if (collection.startsWith("directus_")) {
       return this.delete(`/${collection.substring(9)}/${primaryKeys.join()}`);
@@ -685,8 +709,8 @@ class SDK {
    * Get the collection presets of the current user for a single collection
    */
   public getMyListingPreferences<T extends any[] = any[]>(collection: string, params: object = {}): Promise<T> {
-    AV.string(this.token, "this.token");
-    AV.objectOrEmpty(params, "params");
+    invariant(isString(this.token), "token must be defined in constructor");
+    invariant(isObjectOrEmpty(params), "params must be an object or empty");
 
     const payload = this.getPayload<{ role: string; id: string }>();
 
@@ -740,7 +764,7 @@ class SDK {
    * Get permissions
    */
   public getPermissions<T extends any[] = any[]>(params: object = {}): Promise<IField<T>> {
-    AV.objectOrEmpty(params, "params");
+    invariant(isObjectOrEmpty(params), "params must be an object or empty");
     return this.getItems<T>("directus_permissions", params);
   }
 
@@ -748,7 +772,7 @@ class SDK {
    * Get the currently logged in user's permissions
    */
   public getMyPermissions<T extends any[] = any[]>(params: object = {}): Promise<T> {
-    AV.objectOrEmpty(params, "params");
+    invariant(isObjectOrEmpty(params), "params must be an object or empty");
     return this.get("/permissions/me", params);
   }
 
@@ -756,7 +780,7 @@ class SDK {
    * Create multiple new permissions
    */
   public createPermissions<T extends any[] = any[]>(data: /* TODO: */ any[]): Promise<T> {
-    AV.array(data);
+    invariant(isArray(data), "data must be anarry");
     return this.post("/permissions", data);
   }
 
@@ -764,7 +788,7 @@ class SDK {
    * Update multiple permission records
    */
   public updatePermissions<T extends any[] = any[]>(data: /* TODO: */ any[]): Promise<T> {
-    AV.array(data);
+    invariant(isArray(data), "data must be anarry");
     return this.patch<T>("/permissions", data);
   }
 
@@ -774,7 +798,7 @@ class SDK {
    * Get all relationships
    */
   public getRelations<T extends any[] = any[]>(params: object = {}): Promise<T> {
-    AV.objectOrEmpty(params);
+    invariant(isObjectOrEmpty(params), "params must be an object or empty");
     return this.get<T>("/relations", params);
   }
 
@@ -796,8 +820,8 @@ class SDK {
    * Get the relationship information for the given collection
    */
   public getCollectionRelations<T extends any = any>(collection: string, params: object = {}): Promise<T[]> {
-    AV.string(collection, "collection");
-    AV.objectOrEmpty(params);
+    invariant(isString(collection), "collection must be a string");
+    invariant(isObjectOrEmpty(params), "params must be an object or empty");
 
     return Promise.all([
       this.get<T>("/relations", {
@@ -819,9 +843,9 @@ class SDK {
     primaryKey: PrimaryKeyType,
     params: object = {}
   ): Promise<IRevisionResponse<T>> {
-    AV.string(collection, "collection");
-    AV.notNull(primaryKey, "primaryKey");
-    AV.objectOrEmpty(params, "params");
+    invariant(isString(collection), "collection must be a string");
+    invariant(isNotNull(primaryKey), "primaryKey must be defined");
+    invariant(isObjectOrEmpty(params), "params must be an object or empty");
 
     if (collection.startsWith("directus_")) {
       return this.get<IRevisionResponse<T>>(`/${collection.substring(9)}/${primaryKey}/revisions`, params);
@@ -834,9 +858,9 @@ class SDK {
    * Revert an item to a previous state
    */
   public revert(collection: string, primaryKey: PrimaryKeyType, revisionID: number): Promise<void> {
-    AV.string(collection, "collection");
-    AV.notNull(primaryKey, "primaryKey");
-    AV.number(revisionID, "revisionID");
+    invariant(isString(collection), "collection must be a string");
+    invariant(isNotNull(primaryKey), "primaryKey must be defined");
+    invariant(isNumber(revisionID), "revisionID must be a number");
 
     if (collection.startsWith("directus_")) {
       return this.patch(`/${collection.substring(9)}/${primaryKey}/revert/${revisionID}`);
@@ -851,8 +875,8 @@ class SDK {
    * Get a single user role
    */
   public getRole(primaryKey: PrimaryKeyType, params: object = {}): Promise<IRoleResponse> {
-    AV.number(primaryKey, "primaryKey");
-    AV.objectOrEmpty(params, "params");
+    invariant(isNumber(primaryKey), "primaryKey must be a number");
+    invariant(isObjectOrEmpty(params), "params must be an object or empty");
     return this.get<IRoleResponse>(`/roles/${primaryKey}`, params);
   }
 
@@ -860,7 +884,7 @@ class SDK {
    * Get the user roles
    */
   public getRoles(params: object = {}): Promise<IRoleResponse[]> {
-    AV.objectOrEmpty(params, "params");
+    invariant(isObjectOrEmpty(params), "params must be an object or empty");
     return this.get<IRoleResponse[]>("/roles", params);
   }
 
@@ -868,8 +892,8 @@ class SDK {
    * Update a user role
    */
   public updateRole(primaryKey: PrimaryKeyType, body: BodyType): Promise<IRoleResponse> {
-    AV.notNull(primaryKey, "primaryKey");
-    AV.object(body, "body");
+    invariant(isNotNull(primaryKey), "primaryKey must be defined");
+    invariant(isObject(body), "body must be an object");
     return this.updateItem<IRoleResponse>("directus_roles", primaryKey, body);
   }
 
@@ -877,7 +901,7 @@ class SDK {
    * Create a new user role
    */
   public createRole(body: BodyType): Promise<IRoleResponse> {
-    AV.object(body, "body");
+    invariant(isObject(body), "body must be an object");
     return this.createItem<IRoleResponse>("directus_roles", body);
   }
 
@@ -885,7 +909,7 @@ class SDK {
    * Delete a user rol by primary key
    */
   public deleteRole(primaryKey: PrimaryKeyType): Promise<void> {
-    AV.notNull(primaryKey, "primaryKey");
+    invariant(isNotNull(primaryKey), "primaryKey must be defined");
     return this.deleteItem("directus_roles", primaryKey);
   }
 
@@ -895,7 +919,8 @@ class SDK {
    * Get Directus' global settings
    */
   public getSettings(params: object = {}): Promise<any> {
-    AV.objectOrEmpty(params, "params");
+    invariant(isObjectOrEmpty(params), "params must be an object or empty");
+
     return this.get("/settings", params);
   }
 
@@ -903,7 +928,8 @@ class SDK {
    * Get the "fields" for directus_settings
    */
   public getSettingsFields(params: object = {}): Promise<any> {
-    AV.objectOrEmpty(params, "params");
+    invariant(isObjectOrEmpty(params), "params must be an object or empty");
+
     return this.get("/settings/fields", params);
   }
 
@@ -913,7 +939,8 @@ class SDK {
    * Get a list of available users in Directus
    */
   public getUsers(params: object = {}): Promise<IUsersResponse> {
-    AV.objectOrEmpty(params, "params");
+    invariant(isObjectOrEmpty(params), "params must be an object or empty");
+
     return this.get("/users", params);
   }
 
@@ -921,8 +948,9 @@ class SDK {
    * Get a single Directus user
    */
   public getUser(primaryKey: PrimaryKeyType, params: object = {}): Promise<IUserResponse> {
-    AV.notNull(primaryKey, "primaryKey");
-    AV.objectOrEmpty(params, "params");
+    invariant(isNotNull(primaryKey), "primaryKey must be defined");
+    invariant(isObjectOrEmpty(params), "params must be an object or empty");
+
     return this.get(`/users/${primaryKey}`, params);
   }
 
@@ -930,7 +958,8 @@ class SDK {
    * Get the user info of the currently logged in user
    */
   public getMe(params: object = {}): Promise<IUserResponse> {
-    AV.objectOrEmpty(params, "params");
+    invariant(isObjectOrEmpty(params), "params must be an object or empty");
+
     return this.get("/users/me", params);
   }
 
@@ -938,8 +967,9 @@ class SDK {
    * Update a single user based on primaryKey
    */
   public updateUser(primaryKey: PrimaryKeyType, body: BodyType): Promise<IUserResponse> {
-    AV.notNull(primaryKey, "primaryKey");
-    AV.object(body, "body");
+    invariant(isNotNull(primaryKey), "primaryKey must be defined");
+    invariant(isObject(body), "body must be an object");
+
     return this.updateItem("directus_users", primaryKey, body);
   }
 
@@ -1005,11 +1035,11 @@ class SDK {
     noEnv: boolean = false,
     headers: { [key: string]: string } = {}
   ): Promise<T> {
-    AV.string(method, "method");
-    AV.string(endpoint, "endpoint");
-    AV.objectOrEmpty(params, "params");
-    Array.isArray(data) ? AV.arrayOrEmpty(data, "data") : AV.objectOrEmpty(data, "data");
-    AV.string(this.url, "this.url");
+    invariant(isString(method), "method must be a string");
+    invariant(isString(endpoint), "endpoint must be a string");
+    invariant(isObjectOrEmpty(params), "params must be an object or empty");
+    invariant(isString(this.url), "main url must be defined (see constructor)");
+    invariant(Array.isArray(data) ? isArrayOrEmpty(data) : isObjectOrEmpty(data), "data must be an array or object");
 
     let baseURL = `${this.url}/`;
 
@@ -1077,8 +1107,8 @@ class SDK {
    * GET convenience method. Calls the request method for you
    */
   private get<T extends any = any>(endpoint: string, params: object = {}): Promise<T> {
-    AV.string(endpoint, "endpoint");
-    AV.objectOrEmpty(params, "params");
+    invariant(isString(endpoint), "endpoint must be a string");
+    invariant(isObjectOrEmpty(params), "params must be an object or empty");
 
     return this.request("get", endpoint, params);
   }
@@ -1087,8 +1117,8 @@ class SDK {
    * POST convenience method. Calls the request method for you
    */
   private post<T extends any = any>(endpoint: string, body: BodyType = {}, params: object = {}): Promise<T> {
-    AV.string(endpoint, "endpoint");
-    Array.isArray(body) ? AV.arrayOrEmpty(body, "body") : AV.objectOrEmpty(body, "body");
+    invariant(isString(endpoint), "endpoint must be a string");
+    invariant(Array.isArray(body) ? isArrayOrEmpty(body) : isObjectOrEmpty(body), "body must be an array or object");
 
     return this.request<T>("post", endpoint, params, body);
   }
@@ -1097,8 +1127,8 @@ class SDK {
    * PATCH convenience method. Calls the request method for you
    */
   private patch<T extends any = any>(endpoint: string, body: BodyType = {}, params: object = {}): Promise<T> {
-    AV.string(endpoint, "endpoint");
-    Array.isArray(body) ? AV.arrayOrEmpty(body, "body") : AV.objectOrEmpty(body, "body");
+    invariant(isString(endpoint), "endpoint must be a string");
+    invariant(Array.isArray(body) ? isArrayOrEmpty(body) : isObjectOrEmpty(body), "body must be an array or object");
 
     return this.request<T>("patch", endpoint, params, body);
   }
@@ -1107,8 +1137,8 @@ class SDK {
    * PUT convenience method. Calls the request method for you
    */
   private put<T extends any = any>(endpoint: string, body: BodyType = {}, params: object = {}): Promise<T> {
-    AV.string(endpoint, "endpoint");
-    Array.isArray(body) ? AV.arrayOrEmpty(body, "body") : AV.objectOrEmpty(body, "body");
+    invariant(isString(endpoint), "endpoint must be a string");
+    invariant(Array.isArray(body) ? isArrayOrEmpty(body) : isObjectOrEmpty(body), "body must be an array or object");
 
     return this.request<T>("put", endpoint, params, body);
   }
@@ -1117,7 +1147,7 @@ class SDK {
    * DELETE convenience method. Calls the request method for you
    */
   private delete<T extends any = any>(endpoint: string): Promise<T> {
-    AV.string(endpoint, "endpoint");
+    invariant(isString(endpoint), "endpoint must be a string");
 
     return this.request<T>("delete", endpoint);
   }
@@ -1126,7 +1156,7 @@ class SDK {
    * Gets the payload of the current token, return type can be generic
    */
   private getPayload<T extends object = object>(): T {
-    if (!AV.isString(this.token)) {
+    if (!isString(this.token)) {
       return null;
     }
 
