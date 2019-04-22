@@ -8,7 +8,7 @@ const expect = chai.expect;
 chai.use(sinonChai);
 
 describe("Collections", () => {
-  let client;
+  let client: SDK & any;
 
   beforeEach(() => {
     client = new SDK({
