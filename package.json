@@ -37,7 +37,7 @@
   ],
   "license": "GPL-3.0",
   "bugs": {
-    "url": "https://github.com/directus/directus-sdk-javascript/issues"
+    "url": "https://github.com/directus/directus-sdk-js/issues"
   },
   "homepage": "https://docs.directus.io/sdk/js.html",
   "dependencies": {
