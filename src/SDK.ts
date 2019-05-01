@@ -17,14 +17,100 @@ import { getCollectionItemPath } from "./utils/collection";
 import { getPayload } from "./utils/payload";
 
 // Manager classes
-import { API } from "./API";
+import { API, IAPI } from "./API";
 import { Configuration, IConfiguration, IConfigurationOptions } from "./Configuration";
 
 // Invariant violation
 import { invariant } from "./utils/invariant";
 import { isArray, isNotNull, isNumber, isObject, isObjectOrEmpty, isString } from "./utils/is";
 
-export class SDK {
+export interface ISDK {
+  loggedIn: boolean;
+  config: IConfiguration;
+  api: IAPI;
+  payload: any;
+  login(credentials: ILoginCredentials, options?: ILoginOptions): Promise<ILoginResponse>;
+  logout(): void;
+  reset(): void;
+  refreshIfNeeded(): Promise<[boolean, Error?]>;
+  refresh(token: string): Promise<IRefreshTokenResponse>;
+  requestPasswordReset<T extends any = any>(email: string): Promise<T>;
+  getActivity(params?: object): Promise<IActivityResponse>;
+  getMyBookmarks<T extends any[] = any[]>(params?: object): Promise<T>;
+  getCollections(params?: object): Promise<ICollectionsResponse[]>;
+  getCollection(collection: string, params?: object): Promise<ICollectionResponse>;
+  createCollection(data: object): Promise<ICollectionResponse>;
+  updateCollection(collection: string, data: object): Promise<ICollectionResponse>;
+  deleteCollection(collection: string): Promise<void>;
+  createCollectionPreset<T extends any = any>(data: object): Promise<T>;
+  updateCollectionPreset<T extends any = any>(primaryKey: PrimaryKeyType, data: object): Promise<T>;
+  deleteCollectionPreset(primaryKey: PrimaryKeyType): Promise<void>;
+  updateDatabase(): Promise<void>;
+  getInterfaces<T extends any = any>(): Promise<T>;
+  getLayouts<T extends any = any>(): Promise<T>;
+  getPages<T extends any = any>(): Promise<T>;
+  getAllFields<T extends any = any>(params?: object): Promise<T>;
+  getFields<T extends any = any>(collection: string, params?: object): Promise<T>;
+  getField<T extends any = any>(collection: string, fieldName: string, params?: object): Promise<T>;
+  createField<T extends any = any>(collection: string, fieldInfo: object): Promise<T>;
+  updateField<T extends any = any>(collection: string, fieldName: string, fieldInfo: object): Promise<T>;
+  updateFields<T extends any[] = any[]>(
+    collection: string,
+    fieldsInfoOrFieldNames: string[] | object[],
+    fieldInfo?: object
+  ): Promise<IField<T> | undefined>;
+  deleteField(collection: string, fieldName: string): Promise<void>;
+  uploadFiles<T extends any = any[]>(data: object, onUploadProgress?: () => object): Promise<T>;
+  updateItem<T extends any = any>(
+    collection: string,
+    primaryKey: PrimaryKeyType,
+    body: BodyType,
+    params?: object
+  ): Promise<T>;
+  updateItems<T extends any[] = any[]>(collection: string, body: BodyType, params?: object): Promise<T>;
+  createItem<T extends any = any>(collection: string, body: BodyType): Promise<T>;
+  createItems<T extends any[] = any[]>(collection: string, body: BodyType): Promise<IField<T>>;
+  getItems<T extends any[] = any[]>(collection: string, params: object): Promise<IField<T>>;
+  getItem<T extends any = any>(
+    collection: string,
+    primaryKey: PrimaryKeyType,
+    params?: object
+  ): Promise<IField<T>>;
+  deleteItem(collection: string, primaryKey: PrimaryKeyType): Promise<void>;
+  deleteItems(collection: string, primaryKeys: PrimaryKeyType[]): Promise<void>;
+  getMyListingPreferences<T extends any[] = any[]>(collection: string, params?: object): Promise<T>;
+  getPermissions<T extends any[] = any[]>(params?: object): Promise<IField<T>>;
+  getMyPermissions<T extends any[] = any[]>(params?: object): Promise<T>;
+  createPermissions<T extends any[] = any[]>(data: any[]): Promise<T>;
+  updatePermissions<T extends any[] = any[]>(data: any[]): Promise<T>;
+  getRelations<T extends any[] = any[]>(params?: object): Promise<T>;
+  createRelation<T extends any = any>(data: object): Promise<T>;
+  updateRelation<T extends any = any>(primaryKey: PrimaryKeyType, data: object): Promise<T>;
+  getCollectionRelations<T extends any = any>(collection: string, params?: object): Promise<T[]>;
+  getItemRevisions<T extends any = any>(
+    collection: string,
+    primaryKey: PrimaryKeyType,
+    params?: object
+  ): Promise<IRevisionResponse<T>>;
+  revert(collection: string, primaryKey: PrimaryKeyType, revisionID: number): Promise<void>;
+  getRole(primaryKey: PrimaryKeyType, params?: object): Promise<IRoleResponse>;
+  getRoles(params?: object): Promise<IRoleResponse[]>;
+  updateRole(primaryKey: PrimaryKeyType, body: BodyType): Promise<IRoleResponse>;
+  createRole(body: BodyType): Promise<IRoleResponse>;
+  deleteRole(primaryKey: PrimaryKeyType): Promise<void>;
+  getSettings(params?: object): Promise<any>;
+  getSettingsFields(params?: object): Promise<any>;
+  getUsers(params?: object): Promise<IUsersResponse>;
+  getUser(primaryKey: PrimaryKeyType, params?: object): Promise<IUserResponse>;
+  getMe(params?: object): Promise<IUserResponse>;
+  updateUser(primaryKey: PrimaryKeyType, body: BodyType): Promise<IUserResponse>;
+  ping(): Promise<void>;
+  serverInfo(): Promise<any>;
+  projectInfo(): Promise<any>;
+  getThirdPartyAuthProviders(): Promise<any>;
+}
+
+export class SDK implements ISDK {
   /**
    * If the current auth status is logged in
    */
@@ -32,12 +118,20 @@ export class SDK {
     return this.api.auth.isLoggedIn();
   }
 
+  public get payload(): any {
+    if (!this.config.token) {
+      return null;
+    }
+
+    return this.api.getPayload();
+  }
+
   // convenience method
   public static getPayload = getPayload;
 
   // api connection and settings
   public config: IConfiguration;
-  public api: API;
+  public api: IAPI;
 
   // create a new instance with an API
   constructor(options: IConfigurationOptions) {
@@ -372,14 +466,24 @@ export class SDK {
       "Content-Type": "multipart/form-data",
     };
 
-    // TODO: Refactor to use the API.post() function
+    // limit concurrent requests to 5
+    this.api.concurrent.attach(5);
+
     return this.api.xhr
       .post(`${this.config.url}/${this.config.project}/files`, data, {
         headers,
         onUploadProgress,
       })
-      .then((res: { data: any }) => res.data)
+      .then((res: { data: any }) => {
+        // detach concurrency manager
+        this.api.concurrent.detach();
+
+        return res.data;
+      })
       .catch((error: IError) => {
+        // detach concurrency manager
+        this.api.concurrent.detach();
+
         if (error.response) {
           throw error.response.data.error;
         } else {
