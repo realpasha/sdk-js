@@ -21,7 +21,7 @@ export const hasKeysWith = (validator: (v: any) => boolean, obj: any, keys: stri
 
 export const isNotNull = (v: any) => v !== null && v !== undefined;
 
-export const isString = (v: any) => typeof v === "string" && /\S/.test(v);
+export const isString = (v: any) => v && typeof v === "string" && /\S/.test(v);
 
 export const isNumber = (v: any) => isType("Number", v) && isFinite(v) && !isNaN(parseFloat(v));
 

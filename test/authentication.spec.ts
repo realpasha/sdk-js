@@ -392,7 +392,7 @@ describe("Authentication", () => {
         await client.requestPasswordReset("test@example.com");
 
         expect(client.api.post).to.have.been.calledWith("/auth/password/request", {
-          email: "test@example.com"
+          email: "test@example.com",
         });
       });
     });

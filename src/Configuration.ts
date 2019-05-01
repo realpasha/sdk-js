@@ -52,7 +52,7 @@ export class Configuration implements IConfiguration {
     }
 
     // make it safe for the untyped JavaScript world to prevent issues
-    initialConfig = initialConfig || {} as any;
+    initialConfig = initialConfig || ({} as any);
 
     const project = dehydratedConfig.project || initialConfig.project || "_";
     const tokenExpirationTime =

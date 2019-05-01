@@ -2,6 +2,7 @@ import axios, { AxiosInstance } from "axios";
 import * as qsStringify from "qs/lib/stringify";
 
 import { Authentication, IAuthentication } from "./Authentication";
+import { concurrencyManager } from "./ConcurrencyManager";
 import { IConfiguration } from "./Configuration";
 
 // Scheme types
@@ -17,6 +18,7 @@ import { getPayload } from "./utils/payload";
 export interface IAPI {
   auth: IAuthentication;
   xhr: AxiosInstance;
+  concurrent: ReturnType<typeof concurrencyManager>;
   reset(): void;
   get<T extends any = any>(endpoint: string, params?: object): Promise<T>;
   post<T extends any = any>(endpoint: string, body?: BodyType, params?: object): Promise<T>;
@@ -40,10 +42,11 @@ export class API implements IAPI {
     paramsSerializer: qsStringify,
     timeout: 10 * 60 * 1000, // 10 min
   });
+  public concurrent = concurrencyManager(this.xhr, 10);
 
   constructor(private config: IConfiguration) {
     this.auth = new Authentication(config, {
-      post: this.post,
+      post: this.post.bind(this),
     });
   }
 
@@ -61,6 +64,7 @@ export class API implements IAPI {
    * GET convenience method. Calls the request method for you
    */
   public get<T extends any = any>(endpoint: string, params: object = {}): Promise<T> {
+    console.log("API#get", endpoint, params);
     invariant(isString(endpoint), "endpoint must be a string");
     invariant(isObjectOrEmpty(params), "params must be an object or empty");
 

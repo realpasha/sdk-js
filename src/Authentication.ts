@@ -8,7 +8,7 @@ import { IRefreshTokenResponse } from "./schemes/response/Token";
 
 // Utilities
 import { invariant } from "./utils/invariant";
-import { hasKeysWithString, isFunction, isObject, isString } from './utils/is';
+import { hasKeysWithString, isFunction, isObject, isString } from "./utils/is";
 import { getPayload } from "./utils/payload";
 
 interface IAuthenticationRefreshError {
@@ -91,7 +91,7 @@ export class Authentication implements IAuthentication {
         })
         .then((res: IAuthenticateResponse) => {
           // Save new token in configuration
-          return this.config.token = res.data.token;
+          return (this.config.token = res.data.token);
         })
         .then((token: string) => {
           // Expiry date is the moment we got the token + 5 minutes
@@ -130,11 +130,7 @@ export class Authentication implements IAuthentication {
   public refreshIfNeeded(): Promise<[boolean, Error?]> {
     const payload = this.getPayload<{ exp: any }>();
 
-    if (
-      !isString(this.config.token) ||
-      !isString(this.config.url) ||
-      !isString(this.config.project)
-    ) {
+    if (!isString(this.config.token) || !isString(this.config.url) || !isString(this.config.project)) {
       return;
     }
 
@@ -158,8 +154,8 @@ export class Authentication implements IAuthentication {
       return new Promise<[boolean, Error?]>((resolve: (res: [boolean, Error?]) => any) => {
         this.refresh(this.config.token)
           .then((res: IRefreshTokenResponse) => {
-            const localExp = this.config.localExp = new Date(Date.now() + this.config.tokenExpirationTime).getTime();
-            const token = this.config.token = res.data.token || this.config.token;
+            const localExp = (this.config.localExp = new Date(Date.now() + this.config.tokenExpirationTime).getTime());
+            const token = (this.config.token = res.data.token || this.config.token);
             const autorefreshResult = {
               localExp,
               project: this.config.project,

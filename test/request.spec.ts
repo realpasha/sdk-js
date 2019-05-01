@@ -198,9 +198,11 @@ describe("Request", () => {
     });
 
     it("Returns network error if the API did not respond", async () => {
-      (client.api.xhr.request as any).returns(Promise.reject({
-        request: {},
-      }));
+      (client.api.xhr.request as any).returns(
+        Promise.reject({
+          request: {},
+        })
+      );
 
       let error;
 

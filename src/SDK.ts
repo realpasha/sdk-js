@@ -71,11 +71,7 @@ export interface ISDK {
   createItem<T extends any = any>(collection: string, body: BodyType): Promise<T>;
   createItems<T extends any[] = any[]>(collection: string, body: BodyType): Promise<IField<T>>;
   getItems<T extends any[] = any[]>(collection: string, params: object): Promise<IField<T>>;
-  getItem<T extends any = any>(
-    collection: string,
-    primaryKey: PrimaryKeyType,
-    params?: object
-  ): Promise<IField<T>>;
+  getItem<T extends any = any>(collection: string, primaryKey: PrimaryKeyType, params?: object): Promise<IField<T>>;
   deleteItem(collection: string, primaryKey: PrimaryKeyType): Promise<void>;
   deleteItems(collection: string, primaryKeys: PrimaryKeyType[]): Promise<void>;
   getMyListingPreferences<T extends any[] = any[]>(collection: string, params?: object): Promise<T>;
@@ -649,7 +645,7 @@ export class SDK implements ISDK {
         sort: "-id",
       }),
     ]).then((values: Array<IField<any>>) => {
-      console.log('#getMyListing->resolve', values);
+      console.log("#getMyListing->resolve", values);
       const [col, role, user] = values;
 
       if (user.data && user.data.length > 0) {

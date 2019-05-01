@@ -40,9 +40,12 @@ describe("Configuration", () => {
         url: "https://demo-api.getdirectus.com",
       });
 
-      const config = new Configuration({
-        url: "https://demo-api.getdirectus.com",
-      }, fakeStorage);
+      const config = new Configuration(
+        {
+          url: "https://demo-api.getdirectus.com",
+        },
+        fakeStorage
+      );
 
       expect(config.url).to.equal("https://demo-api.getdirectus.com");
       expect(config.project).to.equal(fakeStorage.values.project);
@@ -63,9 +66,12 @@ describe("Configuration", () => {
           url: "https://demo-api.getdirectus.com",
         });
 
-        const config = new Configuration({
-          url: "https://demo-api.getdirectus.com",
-        }, fakeStorage);
+        const config = new Configuration(
+          {
+            url: "https://demo-api.getdirectus.com",
+          },
+          fakeStorage
+        );
 
         expect(config.url).to.equal("https://demo-api.getdirectus.com");
         expect(config.project).to.equal(fakeStorage.values.project);
@@ -91,9 +97,12 @@ describe("Configuration", () => {
           url: "https://demo-api.getdirectus.com",
         });
 
-        const config = new Configuration({
-          url: "https://demo-api.getdirectus.com",
-        }, fakeStorage);
+        const config = new Configuration(
+          {
+            url: "https://demo-api.getdirectus.com",
+          },
+          fakeStorage
+        );
 
         expect(config.token).toEqual("abcdef");
 
