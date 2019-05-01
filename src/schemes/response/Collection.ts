@@ -1,3 +1,4 @@
+import { IAPIResponse } from "../APIResponse";
 type CollectionFieldDataType = string; // "TEXT" ...
 type CollectionFieldWidthType = string; // "full" ...
 type CollectionFieldInterfaceType = string; // "wysiwyg-full"
@@ -42,10 +43,6 @@ export interface ICollectionDataSet {
   translation: any;
 }
 
-export interface ICollectionResponse {
-  data: ICollectionDataSet;
-}
+export interface ICollectionResponse extends IAPIResponse<ICollectionDataSet> {}
 
-export interface ICollectionsResponse {
-  data: ICollectionDataSet[];
-}
+export interface ICollectionsResponse extends IAPIResponse<ICollectionDataSet[]> {}

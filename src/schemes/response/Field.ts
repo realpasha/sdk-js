@@ -1,3 +1,4 @@
+import { IAPIResponse } from "../APIResponse";
 export interface IFieldMeta {
   Deleted: number;
   Draft: number;
@@ -14,7 +15,4 @@ export interface IFieldDataInfo {
   status: number | null;
 }
 
-export interface IField<T = any> {
-  meta: IFieldMeta;
-  data: T & IFieldDataInfo;
-}
+export interface IField<T> extends IAPIResponse<T & IFieldDataInfo, IFieldMeta> {}

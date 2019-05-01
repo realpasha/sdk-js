@@ -1,4 +1,6 @@
+import { IAPIResponse } from "../APIResponse";
 import { IField } from "./Field";
+
 interface IRevisionDataSet<T> {
   activity: number;
   collection: string;
@@ -11,6 +13,4 @@ interface IRevisionDataSet<T> {
   parent_item: any | null;
 }
 
-export interface IRevisionResponse<T extends any = any> {
-  data: Array<IRevisionDataSet<T>>;
-}
+export interface IRevisionResponse<T> extends IAPIResponse<Array<IRevisionDataSet<T>>> { }

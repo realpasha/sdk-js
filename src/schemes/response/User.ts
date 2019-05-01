@@ -1,3 +1,4 @@
+import { IAPIMetaList, IAPIResponse } from "../APIResponse";
 import { IRoleDataSet } from "./Role";
 
 export type UserStatus = "active" | "inactive";
@@ -23,14 +24,6 @@ export interface IUserDataSet {
   token: string;
 }
 
-export interface IUsersResponse {
-  meta: {
-    result_count: number;
-    total_count: number;
-  };
-  data: IUserDataSet[];
-}
+export interface IUsersResponse extends IAPIResponse<IUserDataSet[], IAPIMetaList> { }
 
-export interface IUserResponse {
-  data: IUserDataSet;
-}
+export interface IUserResponse extends IAPIResponse<IUserDataSet> { }
