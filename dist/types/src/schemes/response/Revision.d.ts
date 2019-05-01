@@ -1,3 +1,4 @@
+import { IAPIResponse } from "../APIResponse";
 import { IField } from "./Field";
 interface IRevisionDataSet<T> {
     activity: number;
@@ -10,8 +11,7 @@ interface IRevisionDataSet<T> {
     parent_collection: any | null;
     parent_item: any | null;
 }
-export interface IRevisionResponse<T extends any = any> {
-    data: Array<IRevisionDataSet<T>>;
+export interface IRevisionResponse<T> extends IAPIResponse<Array<IRevisionDataSet<T>>> {
 }
 export {};
 //# sourceMappingURL=Revision.d.ts.map

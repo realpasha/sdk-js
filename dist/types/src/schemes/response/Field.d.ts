@@ -1,3 +1,4 @@
+import { IAPIResponse } from "../APIResponse";
 export interface IFieldMeta {
     Deleted: number;
     Draft: number;
@@ -12,8 +13,6 @@ export interface IFieldDataInfo {
     sort: number | null;
     status: number | null;
 }
-export interface IField<T = any> {
-    meta: IFieldMeta;
-    data: T & IFieldDataInfo;
+export interface IField<T> extends IAPIResponse<T & IFieldDataInfo, IFieldMeta> {
 }
 //# sourceMappingURL=Field.d.ts.map

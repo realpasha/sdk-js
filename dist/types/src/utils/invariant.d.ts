@@ -1,5 +1,2 @@
-export declare const invariant: {
-    (condition: boolean, message: string): void;
-    params(params: any): void;
-};
+export declare const invariant: (condition: boolean, message: string) => void;
 //# sourceMappingURL=invariant.d.ts.map

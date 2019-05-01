@@ -1,3 +1,4 @@
+import { IAPIResponse } from "../APIResponse";
 export interface IRoleDataSet {
     description: string;
     external_id: any | null;
@@ -7,7 +8,6 @@ export interface IRoleDataSet {
     nav_blacklist: any | null;
     nav_override: any | null;
 }
-export interface IRoleResponse {
-    data: IRoleDataSet[];
+export interface IRoleResponse extends IAPIResponse<IRoleDataSet[]> {
 }
 //# sourceMappingURL=Role.d.ts.map

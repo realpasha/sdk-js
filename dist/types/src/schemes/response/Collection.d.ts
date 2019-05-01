@@ -1,3 +1,4 @@
+import { IAPIResponse } from "../APIResponse";
 declare type CollectionFieldDataType = string;
 declare type CollectionFieldWidthType = string;
 declare type CollectionFieldInterfaceType = string;
@@ -39,11 +40,9 @@ export interface ICollectionDataSet {
     single: boolean;
     translation: any;
 }
-export interface ICollectionResponse {
-    data: ICollectionDataSet;
+export interface ICollectionResponse extends IAPIResponse<ICollectionDataSet> {
 }
-export interface ICollectionsResponse {
-    data: ICollectionDataSet[];
+export interface ICollectionsResponse extends IAPIResponse<ICollectionDataSet[]> {
 }
 export {};
 //# sourceMappingURL=Collection.d.ts.map

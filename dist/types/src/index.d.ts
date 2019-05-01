@@ -1,5 +1,5 @@
-import { BodyType } from "./schemes/http/Body";
 import { ILoginCredentials, ILoginOptions } from "./schemes/auth/Login";
+import { BodyType } from "./schemes/http/Body";
 import { IActivityResponse } from "./schemes/response/Activity";
 import { ICollectionResponse, ICollectionsResponse } from "./schemes/response/Collection";
 import { IField } from "./schemes/response/Field";
@@ -8,29 +8,21 @@ import { IRevisionResponse } from "./schemes/response/Revision";
 import { IRoleResponse } from "./schemes/response/Role";
 import { IRefreshTokenResponse } from "./schemes/response/Token";
 import { IUserResponse, IUsersResponse } from "./schemes/response/User";
-import { getPayload } from "./payload";
-import { IClientOptions, PrimaryKeyType } from "./types";
+import { PrimaryKeyType } from "./types";
+import { getPayload } from "./utils/payload";
+import { API } from "./API";
+import { IConfiguration, IConfigurationOptions } from "./Configuration";
 declare class SDK {
     /**
      * If the current auth status is logged in
      */
     readonly loggedIn: boolean;
     static getPayload: typeof getPayload;
-    private token;
-    private url;
-    private project;
-    private localExp?;
-    private storage?;
-    private refreshInterval?;
-    private onAutoRefreshError?;
-    private onAutoRefreshSuccess?;
-    private readonly xhr;
+    config: IConfiguration;
+    api: API;
+    constructor(options: IConfigurationOptions);
     /**
-     * Create a new SDK instance
-     */
-    constructor(options?: IClientOptions);
-    /**
-     * Login to the API; Gets a new token from the API and stores it in this.token.
+     * Login to the API; Gets a new token from the API and stores it in this.api.token.
      */
     login(credentials: ILoginCredentials, options?: ILoginOptions): Promise<ILoginResponse>;
     /**
@@ -315,42 +307,6 @@ declare class SDK {
      * Get all the setup third party auth providers
      */
     getThirdPartyAuthProviders(): Promise<any>;
-    /**
-     * Starts an interval of 10 seconds that will check if the token needs refreshing
-     */
-    private startInterval;
-    /**
-     * Clears and nullifies the token refreshing interval
-     */
-    private stopInterval;
-    /**
-     * Perform an API request to the Directus API
-     */
-    private request;
-    /**
-     * GET convenience method. Calls the request method for you
-     */
-    private get;
-    /**
-     * POST convenience method. Calls the request method for you
-     */
-    private post;
-    /**
-     * PATCH convenience method. Calls the request method for you
-     */
-    private patch;
-    /**
-     * PUT convenience method. Calls the request method for you
-     */
-    private put;
-    /**
-     * DELETE convenience method. Calls the request method for you
-     */
-    private delete;
-    /**
-     * Gets the payload of the current token, return type can be generic
-     */
-    private getPayload;
 }
 export default SDK;
 //# sourceMappingURL=index.d.ts.map

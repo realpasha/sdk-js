@@ -1,3 +1,4 @@
+import { IAPIMetaList, IAPIResponse } from "../APIResponse";
 import { IRoleDataSet } from "./Role";
 import { IUserDataSet } from "./User";
 export declare type ActivityAction = string;
@@ -16,11 +17,6 @@ export interface IActivityDataSet {
     item: string;
     user_agent: string;
 }
-export interface IActivityResponse {
-    meta: {
-        result_count: number;
-        total_count: number;
-    };
-    data: IActivityDataSet[];
+export interface IActivityResponse extends IAPIResponse<IActivityDataSet[], IAPIMetaList> {
 }
 //# sourceMappingURL=Activity.d.ts.map
