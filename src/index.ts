@@ -1,14 +1,6 @@
-import axios from "axios";
-import * as qsStringify from "qs/lib/stringify";
-
-// HTTP schemes
-import { BodyType } from "./schemes/http/Body";
-import { RequestMethod } from "./schemes/http/Request";
-
-// Authentication schemes
+// Schemes types
 import { ILoginCredentials, ILoginOptions } from "./schemes/auth/Login";
-
-// Response schemes
+import { BodyType } from "./schemes/http/Body";
 import { IActivityResponse } from "./schemes/response/Activity";
 import { ICollectionResponse, ICollectionsResponse } from "./schemes/response/Collection";
 import { IError } from "./schemes/response/Error";
@@ -18,172 +10,65 @@ import { IRevisionResponse } from "./schemes/response/Revision";
 import { IRoleResponse } from "./schemes/response/Role";
 import { IRefreshTokenResponse } from "./schemes/response/Token";
 import { IUserResponse, IUsersResponse } from "./schemes/response/User";
+import { PrimaryKeyType } from "./types";
 
-import { getPayload } from "./payload";
-import { IClientOptions, IStorage, PrimaryKeyType } from "./types";
+// Utilities
+import { getCollectionItemPath } from "./utils/collection";
+import { getPayload } from "./utils/payload";
+
+// Manager classes
+import { API } from "./API";
+import { Configuration, IConfiguration, IConfigurationOptions } from "./Configuration";
 
 // Invariant violation
 import { invariant } from "./utils/invariant";
-import {
-  hasKeysWithString,
-  isArray,
-  isArrayOrEmpty,
-  isFunction,
-  isNotNull,
-  isNumber,
-  isObject,
-  isObjectOrEmpty,
-  isString,
-} from "./utils/is";
+import { isArray, isNotNull, isNumber, isObject, isObjectOrEmpty, isString } from "./utils/is";
 
 class SDK {
   /**
    * If the current auth status is logged in
    */
   public get loggedIn(): boolean {
-    if (isString(this.token) && isString(this.url) && isString(this.project) && isObject(this.getPayload())) {
-      if (this.localExp > Date.now()) {
-        return true;
-      }
-    }
-    return false;
+    return this.api.auth.isLoggedIn();
   }
 
   // convenience method
   public static getPayload = getPayload;
 
-  private token: string;
-  private url: string;
-  private project: string = "_";
-  private localExp?: number;
-  private storage?: IStorage;
-  private refreshInterval?: number;
-  private onAutoRefreshError?: (msg: object) => void;
-  private onAutoRefreshSuccess?: (msg: IClientOptions) => void;
-  private readonly xhr = axios.create({
-    paramsSerializer: qsStringify,
-    timeout: 10 * 60 * 1000, // 10 min
-  });
+  // api connection and settings
+  public config: IConfiguration;
+  public api: API;
 
-  /**
-   * Create a new SDK instance
-   */
-  constructor(options: IClientOptions = { url: "#no-url-specified" }) {
-    if (options.storage) {
-      let storedInfo = options.storage.getItem("directus-sdk-js");
-
-      if (storedInfo) {
-        storedInfo = JSON.parse(storedInfo);
-
-        this.token = storedInfo.token;
-        this.url = storedInfo.url;
-        this.project = storedInfo.project;
-        this.localExp = storedInfo.localExp;
-      }
-    }
-
-    if (options.token) {
-      this.token = options.token;
-    }
-    if (options.url) {
-      this.url = options.url;
-    }
-    if (options.project) {
-      this.project = options.project;
-    }
-    if (options.localExp) {
-      this.localExp = options.localExp;
-    }
-
-    // Only start the auto refresh interval if the token exists and it's a JWT
-    if (this.token && this.token.includes(".")) {
-      this.startInterval(true);
-    }
+  // create a new instance with an API
+  constructor(options: IConfigurationOptions) {
+    this.config = new Configuration(options);
+    this.api = new API(this.config);
   }
 
   /// AUTHENTICATION -----------------------------------------------------------
 
   /**
-   * Login to the API; Gets a new token from the API and stores it in this.token.
+   * Login to the API; Gets a new token from the API and stores it in this.api.token.
    */
   public login(
     credentials: ILoginCredentials,
     options: ILoginOptions = { persist: true, storage: false }
   ): Promise<ILoginResponse> {
-    invariant(isObject(credentials), "Malformed credentials");
-    invariant(hasKeysWithString(credentials, ["email", "password"]), "email & password required in credentials");
-
-    this.token = null;
-
-    if (hasKeysWithString(credentials, ["url"])) {
-      this.url = credentials.url;
-    }
-
-    if (hasKeysWithString(credentials, ["project"])) {
-      this.project = credentials.project;
-    }
-
-    if (credentials.persist || options.persist) {
-      this.startInterval();
-    }
-
-    return new Promise((resolve, reject) => {
-      this.post("/auth/authenticate", {
-        email: credentials.email,
-        password: credentials.password,
-      })
-        .then((res: { data: { token: string } }) => res.data.token)
-        .then((token: string) => {
-          this.token = token;
-
-          // Expiry date is the moment we got the token + 5 minutes
-          this.localExp = new Date(Date.now() + 5 * 60000).getTime();
-
-          if (this.storage) {
-            this.storage.setItem(
-              "directus-sdk-js",
-              JSON.stringify({
-                localExp: this.localExp,
-                project: this.project,
-                token: this.token,
-                url: this.url,
-              })
-            );
-          }
-
-          resolve({
-            localExp: this.localExp,
-            project: this.project,
-            token: this.token,
-            url: this.url,
-          });
-        })
-        .catch(reject);
-    });
+    return this.api.auth.login(credentials, options);
   }
 
   /**
    * Logs the user out by "forgetting" the token, and clearing the refresh interval
    */
   public logout(): void {
-    this.token = null;
-
-    if (this.refreshInterval) {
-      this.stopInterval();
-    }
-
-    if (this.storage) {
-      this.storage.removeItem("directus-sdk-js");
-    }
+    this.api.auth.logout();
   }
 
   /**
    * Resets the client instance by logging out and removing the URL and project
    */
   public reset(): void {
-    this.logout();
-    this.url = null;
-    this.project = null;
+    this.api.reset();
   }
 
   /**
@@ -193,79 +78,14 @@ class SDK {
    * @returns {[boolean, Error?]}
    */
   public refreshIfNeeded(): Promise<[boolean, Error?]> {
-    const payload = this.getPayload<{ exp: any }>();
-
-    if (!hasKeysWithString(this, ["token", "url", "project"])) {
-      return;
-    }
-
-    if (!payload || !payload.exp) {
-      return;
-    }
-
-    const timeDiff = this.localExp - Date.now();
-
-    if (timeDiff <= 0) {
-      if (isFunction(this.onAutoRefreshError)) {
-        this.onAutoRefreshError({
-          code: 102,
-          message: "auth_expired_token",
-        });
-      }
-      return;
-    }
-
-    if (timeDiff < 30000) {
-      return new Promise<[boolean, Error?]>((resolve: (res: [boolean, Error?]) => any) => {
-        this.refresh(this.token)
-          .then((res: IRefreshTokenResponse) => {
-            this.token = res.data.token;
-            this.localExp = new Date(Date.now() + 5 * 60000).getTime();
-
-            // if autorefresh succeeded
-            if (isFunction(this.onAutoRefreshSuccess)) {
-              this.onAutoRefreshSuccess({
-                localExp: this.localExp,
-                project: this.project,
-                token: this.token,
-                url: this.url,
-              });
-              resolve([true]);
-            }
-
-            // if expiration via storage
-            if (this.storage) {
-              this.storage.setItem(
-                "directus-sdk-js",
-                JSON.stringify({
-                  localExp: this.localExp,
-                  project: this.project,
-                  token: this.token,
-                  url: this.url,
-                })
-              );
-              resolve([true]);
-            }
-          })
-          .catch((error: Error) => {
-            if (isFunction(this.onAutoRefreshError)) {
-              this.onAutoRefreshError(error);
-            }
-            resolve([true, error]);
-          });
-      });
-    } else {
-      Promise.resolve([false]);
-    }
+    return this.api.auth.refreshIfNeeded();
   }
 
   /**
    * Use the passed token to request a new one
    */
   public refresh(token: string): Promise<IRefreshTokenResponse> {
-    invariant(isString(token), "token must be a string");
-
-    return this.post<IRefreshTokenResponse>("/auth/refresh", { token });
+    return this.api.auth.refresh(token);
   }
 
   /**
@@ -276,7 +96,7 @@ class SDK {
   public requestPasswordReset<T extends any = any>(email: string): Promise<T> {
     invariant(isString(email), "email must be a string");
 
-    return this.post<T>("/auth/password/request", {
+    return this.api.post<T>("/auth/password/request", {
       email,
     });
   }
@@ -289,7 +109,7 @@ class SDK {
   public getActivity(params: object = {}): Promise<IActivityResponse> {
     invariant(isObjectOrEmpty(params), "params must be an object or empty");
 
-    return this.get<IActivityResponse>("/activity", params);
+    return this.api.get<IActivityResponse>("/activity", params);
   }
 
   /// BOOKMARKS ----------------------------------------------------------------
@@ -300,17 +120,17 @@ class SDK {
    * @see https://docs.directus.io/advanced/legacy-upgrades.html#directus-bookmarks
    */
   public getMyBookmarks<T extends any[] = any[]>(params: object = {}): Promise<T> {
-    invariant(isString(this.token), "defined token is not a string");
+    invariant(isString(this.config.token), "defined token is not a string");
     invariant(isObjectOrEmpty(params), "params must be an object or empty");
 
-    const payload = this.getPayload<{ id: string; role: string }>();
+    const payload = this.api.getPayload<{ id: string; role: string }>();
 
     return Promise.all([
-      this.get("/collection_presets", {
+      this.api.get("/collection_presets", {
         "filter[title][nnull]": 1,
         "filter[user][eq]": payload.id,
       }),
-      this.get("/collection_presets", {
+      this.api.get("/collection_presets", {
         "filter[role][eq]": payload.role,
         "filter[title][nnull]": 1,
         "filter[user][null]": 1,
@@ -330,7 +150,7 @@ class SDK {
   public getCollections(params: object = {}): Promise<ICollectionsResponse[]> {
     invariant(isObjectOrEmpty(params), "params must be an object or empty");
 
-    return this.get<ICollectionsResponse[]>("/collections", params);
+    return this.api.get<ICollectionsResponse[]>("/collections", params);
   }
 
   /**
@@ -340,7 +160,7 @@ class SDK {
     invariant(isString(collection), "collection must be a string");
     invariant(isObjectOrEmpty(params), "params must be an object or empty");
 
-    return this.get<ICollectionResponse>(`/collections/${collection}`, params);
+    return this.api.get<ICollectionResponse>(`/collections/${collection}`, params);
   }
 
   /**
@@ -348,7 +168,7 @@ class SDK {
    */
   public createCollection(data: object): Promise<ICollectionResponse> {
     invariant(isObject(data), "data must be an object");
-    return this.post<ICollectionResponse>("/collections", data);
+    return this.api.post<ICollectionResponse>("/collections", data);
   }
 
   /**
@@ -358,7 +178,7 @@ class SDK {
     invariant(isString(collection), "collection must be a string");
     invariant(isObject(data), "data must be an object");
 
-    return this.patch<ICollectionResponse>(`/collections/${collection}`, data);
+    return this.api.patch<ICollectionResponse>(`/collections/${collection}`, data);
   }
 
   /**
@@ -367,7 +187,7 @@ class SDK {
   public deleteCollection(collection: string): Promise<void> {
     invariant(isString(collection), "collection must be a string");
 
-    return this.delete<void>(`/collections/${collection}`);
+    return this.api.delete<void>(`/collections/${collection}`);
   }
 
   /// COLLECTION PRESETS -------------------------------------------------------
@@ -378,7 +198,7 @@ class SDK {
   public createCollectionPreset<T extends any = any>(data: object): Promise<T> {
     invariant(isObject(data), "data must be an object");
 
-    return this.post<T>("/collection_presets", data);
+    return this.api.post<T>("/collection_presets", data);
   }
 
   /**
@@ -388,7 +208,7 @@ class SDK {
     invariant(isNotNull(primaryKey), "primaryKey must be defined");
     invariant(isObject(data), "data must be an object");
 
-    return this.patch<T>(`/collection_presets/${primaryKey}`, data);
+    return this.api.patch<T>(`/collection_presets/${primaryKey}`, data);
   }
 
   /**
@@ -397,7 +217,7 @@ class SDK {
   public deleteCollectionPreset(primaryKey: PrimaryKeyType): Promise<void> {
     invariant(isNotNull(primaryKey), "primaryKey must be defined");
 
-    return this.delete<void>(`/collection_presets/${primaryKey}`);
+    return this.api.delete<void>(`/collection_presets/${primaryKey}`);
   }
 
   /// DATABASE -----------------------------------------------------------------
@@ -407,7 +227,7 @@ class SDK {
    * using the migrations in the API
    */
   public updateDatabase(): Promise<void> {
-    return this.post("/update");
+    return this.api.post("/update");
   }
 
   /// EXTENSIONS ---------------------------------------------------------------
@@ -416,21 +236,21 @@ class SDK {
    * Get the meta information of all installed interfaces
    */
   public getInterfaces<T extends any = any>(): Promise<T> {
-    return this.request<T>("get", "/interfaces", {}, {}, true);
+    return this.api.request<T>("get", "/interfaces", {}, {}, true);
   }
 
   /**
    * Get the meta information of all installed layouts
    */
   public getLayouts<T extends any = any>(): Promise<T> {
-    return this.request<T>("get", "/layouts", {}, {}, true);
+    return this.api.request<T>("get", "/layouts", {}, {}, true);
   }
 
   /**
    * Get the meta information of all installed pages
    */
   public getPages<T extends any = any>(): Promise<T> {
-    return this.request<T>("get", "/pages", {}, {}, true);
+    return this.api.request<T>("get", "/pages", {}, {}, true);
   }
 
   /// FIELDS -------------------------------------------------------------------
@@ -441,7 +261,7 @@ class SDK {
   public getAllFields<T extends any = any>(params: object = {}): Promise<T> {
     invariant(isObjectOrEmpty(params), "params must be an object or empty");
 
-    return this.get<T>("/fields", params);
+    return this.api.get<T>("/fields", params);
   }
 
   /**
@@ -451,7 +271,7 @@ class SDK {
     invariant(isString(collection), "collection must be a string");
     invariant(isObjectOrEmpty(params), "params must be an object or empty");
 
-    return this.get<T>(`/fields/${collection}`, params);
+    return this.api.get<T>(`/fields/${collection}`, params);
   }
 
   /**
@@ -462,7 +282,7 @@ class SDK {
     invariant(isString(fieldName), "fieldName must be a string");
     invariant(isObjectOrEmpty(params), "params must be an object or empty");
 
-    return this.get<T>(`/fields/${collection}/${fieldName}`, params);
+    return this.api.get<T>(`/fields/${collection}/${fieldName}`, params);
   }
 
   /**
@@ -472,7 +292,7 @@ class SDK {
     invariant(isString(collection), "collection must be a string");
     invariant(isObject(fieldInfo), "fieldInfo must be an object");
 
-    return this.post<T>(`/fields/${collection}`, fieldInfo);
+    return this.api.post<T>(`/fields/${collection}`, fieldInfo);
   }
 
   /**
@@ -483,7 +303,7 @@ class SDK {
     invariant(isString(fieldName), "fieldName must be a string");
     invariant(isObject(fieldInfo), "fieldInfo must be an object");
 
-    return this.patch<T>(`/fields/${collection}/${fieldName}`, fieldInfo);
+    return this.api.patch<T>(`/fields/${collection}/${fieldName}`, fieldInfo);
   }
 
   /**
@@ -525,10 +345,10 @@ class SDK {
     }
 
     if (fieldInfo) {
-      return this.patch(`/fields/${collection}/${fieldsInfoOrFieldNames.join(",")}`, fieldInfo);
+      return this.api.patch(`/fields/${collection}/${fieldsInfoOrFieldNames.join(",")}`, fieldInfo);
     }
 
-    return this.patch(`/fields/${collection}`, fieldsInfoOrFieldNames);
+    return this.api.patch(`/fields/${collection}`, fieldsInfoOrFieldNames);
   }
 
   /**
@@ -538,7 +358,7 @@ class SDK {
     invariant(isString(collection), "collection must be a string");
     invariant(isString(fieldName), "fieldName must be a string");
 
-    return this.delete(`/fields/${collection}/${fieldName}`);
+    return this.api.delete(`/fields/${collection}/${fieldName}`);
   }
 
   /// FILES --------------------------------------------------------------------
@@ -548,12 +368,13 @@ class SDK {
    */
   public uploadFiles<T extends any = any[]>(data: object, onUploadProgress: () => object = () => ({})): Promise<T> {
     const headers = {
-      Authorization: `Bearer ${this.token}`,
+      Authorization: `Bearer ${this.config.token}`,
       "Content-Type": "multipart/form-data",
     };
 
-    return this.xhr
-      .post(`${this.url}/${this.project}/files`, data, {
+    // TODO: Refactor to use the API.post() function
+    return this.api.xhr
+      .post(`${this.config.url}/${this.config.project}/files`, data, {
         headers,
         onUploadProgress,
       })
@@ -586,11 +407,9 @@ class SDK {
     invariant(isNotNull(primaryKey), "primaryKey must be defined");
     invariant(isObject(body), "body must be an object");
 
-    if (collection.startsWith("directus_")) {
-      return this.patch(`/${collection.substring(9)}/${primaryKey}`, body, params);
-    }
+    const collectionBasePath = getCollectionItemPath(collection);
 
-    return this.patch<T>(`/items/${collection}/${primaryKey}`, body, params);
+    return this.api.patch<T>(`${collectionBasePath}/${primaryKey}`, body, params);
   }
 
   /**
@@ -600,11 +419,9 @@ class SDK {
     invariant(isString(collection), "collection must be a string");
     invariant(isArray(body), "body must be an array");
 
-    if (collection.startsWith("directus_")) {
-      return this.patch<T>(`/${collection.substring(9)}`, body, params);
-    }
+    const collectionBasePath = getCollectionItemPath(collection);
 
-    return this.patch<T>(`/items/${collection}`, body, params);
+    return this.api.patch<T>(collectionBasePath, body, params);
   }
 
   /**
@@ -614,11 +431,9 @@ class SDK {
     invariant(isString(collection), "collection must be a string");
     invariant(isObject(body), "body must be an object");
 
-    if (collection.startsWith("directus_")) {
-      return this.post<T>(`/${collection.substring(9)}`, body);
-    }
+    const collectionBasePath = getCollectionItemPath(collection);
 
-    return this.post<T>(`/items/${collection}`, body);
+    return this.api.post<T>(collectionBasePath, body);
   }
 
   /**
@@ -635,11 +450,9 @@ class SDK {
     invariant(isString(collection), "collection must be a string");
     invariant(isArray(body), "body must be an array");
 
-    if (collection.startsWith("directus_")) {
-      return this.post(`/${collection.substring(9)}`, body);
-    }
+    const collectionBasePath = getCollectionItemPath(collection);
 
-    return this.post<IField<T>>(`/items/${collection}`, body);
+    return this.api.post<IField<T>>(collectionBasePath, body);
   }
 
   /**
@@ -649,11 +462,9 @@ class SDK {
     invariant(isString(collection), "collection must be a string");
     invariant(isObjectOrEmpty(params), "params must be an object or empty");
 
-    if (collection.startsWith("directus_")) {
-      return this.get(`/${collection.substring(9)}`, params);
-    }
+    const collectionBasePath = getCollectionItemPath(collection);
 
-    return this.get<IField<T>>(`/items/${collection}`, params);
+    return this.api.get<IField<T>>(collectionBasePath, params);
   }
 
   /**
@@ -668,11 +479,9 @@ class SDK {
     invariant(isNotNull(primaryKey), "primaryKey must be defined");
     invariant(isObjectOrEmpty(params), "params must be an object or empty");
 
-    if (collection.startsWith("directus_")) {
-      return this.get(`/${collection.substring(9)}/${primaryKey}`, params);
-    }
+    const collectionBasePath = getCollectionItemPath(collection);
 
-    return this.get<IField<T>>(`/items/${collection}/${primaryKey}`, params);
+    return this.api.get<IField<T>>(`${collectionBasePath}/${primaryKey}`, params);
   }
 
   /**
@@ -682,11 +491,9 @@ class SDK {
     invariant(isString(collection), "collection must be a string");
     invariant(isNotNull(primaryKey), "primaryKey must be defined");
 
-    if (collection.startsWith("directus_")) {
-      return this.delete<void>(`/${collection.substring(9)}/${primaryKey}`);
-    }
+    const collectionBasePath = getCollectionItemPath(collection);
 
-    return this.delete<void>(`/items/${collection}/${primaryKey}`);
+    return this.api.delete<void>(`${collectionBasePath}/${primaryKey}`);
   }
 
   /**
@@ -696,11 +503,9 @@ class SDK {
     invariant(isString(collection), "collection must be a string");
     invariant(isArray(primaryKeys), "primaryKeys must be an array");
 
-    if (collection.startsWith("directus_")) {
-      return this.delete(`/${collection.substring(9)}/${primaryKeys.join()}`);
-    }
+    const collectionBasePath = getCollectionItemPath(collection);
 
-    return this.delete(`/items/${collection}/${primaryKeys.join()}`);
+    return this.api.delete(`${collectionBasePath}/${primaryKeys.join()}`);
   }
 
   /// LISTING PREFERENCES ------------------------------------------------------
@@ -709,13 +514,13 @@ class SDK {
    * Get the collection presets of the current user for a single collection
    */
   public getMyListingPreferences<T extends any[] = any[]>(collection: string, params: object = {}): Promise<T> {
-    invariant(isString(this.token), "token must be defined in constructor");
+    invariant(isString(this.config.token), "token must be defined");
     invariant(isObjectOrEmpty(params), "params must be an object or empty");
 
-    const payload = this.getPayload<{ role: string; id: string }>();
+    const payload = this.api.getPayload<{ role: string; id: string }>();
 
     return Promise.all([
-      this.get<IField<any>>("/collection_presets", {
+      this.api.get<IField<any>>("/collection_presets", {
         "filter[collection][eq]": collection,
         "filter[role][null]": 1,
         "filter[title][null]": 1,
@@ -723,7 +528,7 @@ class SDK {
         limit: 1,
         sort: "-id",
       }),
-      this.get<IField<any>>("/collection_presets", {
+      this.api.get<IField<any>>("/collection_presets", {
         "filter[collection][eq]": collection,
         "filter[role][eq]": payload.role,
         "filter[title][null]": 1,
@@ -731,7 +536,7 @@ class SDK {
         limit: 1,
         sort: "-id",
       }),
-      this.get<IField<any>>("/collection_presets", {
+      this.api.get<IField<any>>("/collection_presets", {
         "filter[collection][eq]": collection,
         "filter[role][eq]": payload.role,
         "filter[title][null]": 1,
@@ -765,6 +570,7 @@ class SDK {
    */
   public getPermissions<T extends any[] = any[]>(params: object = {}): Promise<IField<T>> {
     invariant(isObjectOrEmpty(params), "params must be an object or empty");
+
     return this.getItems<T>("directus_permissions", params);
   }
 
@@ -773,7 +579,8 @@ class SDK {
    */
   public getMyPermissions<T extends any[] = any[]>(params: object = {}): Promise<T> {
     invariant(isObjectOrEmpty(params), "params must be an object or empty");
-    return this.get("/permissions/me", params);
+
+    return this.api.get("/permissions/me", params);
   }
 
   /**
@@ -781,7 +588,8 @@ class SDK {
    */
   public createPermissions<T extends any[] = any[]>(data: /* TODO: */ any[]): Promise<T> {
     invariant(isArray(data), "data must be anarry");
-    return this.post("/permissions", data);
+
+    return this.api.post("/permissions", data);
   }
 
   /**
@@ -789,7 +597,8 @@ class SDK {
    */
   public updatePermissions<T extends any[] = any[]>(data: /* TODO: */ any[]): Promise<T> {
     invariant(isArray(data), "data must be anarry");
-    return this.patch<T>("/permissions", data);
+
+    return this.api.patch<T>("/permissions", data);
   }
 
   /// RELATIONS ----------------------------------------------------------------
@@ -799,21 +608,21 @@ class SDK {
    */
   public getRelations<T extends any[] = any[]>(params: object = {}): Promise<T> {
     invariant(isObjectOrEmpty(params), "params must be an object or empty");
-    return this.get<T>("/relations", params);
+    return this.api.get<T>("/relations", params);
   }
 
   /**
    * Creates new relation
    */
   public createRelation<T extends any = any>(data: /* TODO: */ object): Promise<T> {
-    return this.post<T>("/relations", data);
+    return this.api.post<T>("/relations", data);
   }
 
   /**
    * Updates existing relation
    */
   public updateRelation<T extends any = any>(primaryKey: PrimaryKeyType, data: /* TODO: */ object): Promise<T> {
-    return this.patch<T>(`/relations/${primaryKey}`, data);
+    return this.api.patch<T>(`/relations/${primaryKey}`, data);
   }
 
   /**
@@ -824,10 +633,10 @@ class SDK {
     invariant(isObjectOrEmpty(params), "params must be an object or empty");
 
     return Promise.all([
-      this.get<T>("/relations", {
+      this.api.get<T>("/relations", {
         "filter[collection_a][eq]": collection,
       }),
-      this.get<T>("/relations", {
+      this.api.get<T>("/relations", {
         "filter[collection_b][eq]": collection,
       }),
     ]);
@@ -847,11 +656,9 @@ class SDK {
     invariant(isNotNull(primaryKey), "primaryKey must be defined");
     invariant(isObjectOrEmpty(params), "params must be an object or empty");
 
-    if (collection.startsWith("directus_")) {
-      return this.get<IRevisionResponse<T>>(`/${collection.substring(9)}/${primaryKey}/revisions`, params);
-    }
+    const collectionBasePath = getCollectionItemPath(collection);
 
-    return this.get<IRevisionResponse<T>>(`/items/${collection}/${primaryKey}/revisions`, params);
+    return this.api.get<IRevisionResponse<T>>(`${collectionBasePath}/${primaryKey}/revisions`, params);
   }
 
   /**
@@ -862,11 +669,9 @@ class SDK {
     invariant(isNotNull(primaryKey), "primaryKey must be defined");
     invariant(isNumber(revisionID), "revisionID must be a number");
 
-    if (collection.startsWith("directus_")) {
-      return this.patch(`/${collection.substring(9)}/${primaryKey}/revert/${revisionID}`);
-    }
+    const collectionBasePath = getCollectionItemPath(collection);
 
-    return this.patch(`/items/${collection}/${primaryKey}/revert/${revisionID}`);
+    return this.api.patch(`${collectionBasePath}/${primaryKey}/revert/${revisionID}`);
   }
 
   /// ROLES --------------------------------------------------------------------
@@ -877,7 +682,8 @@ class SDK {
   public getRole(primaryKey: PrimaryKeyType, params: object = {}): Promise<IRoleResponse> {
     invariant(isNumber(primaryKey), "primaryKey must be a number");
     invariant(isObjectOrEmpty(params), "params must be an object or empty");
-    return this.get<IRoleResponse>(`/roles/${primaryKey}`, params);
+
+    return this.api.get<IRoleResponse>(`/roles/${primaryKey}`, params);
   }
 
   /**
@@ -885,7 +691,8 @@ class SDK {
    */
   public getRoles(params: object = {}): Promise<IRoleResponse[]> {
     invariant(isObjectOrEmpty(params), "params must be an object or empty");
-    return this.get<IRoleResponse[]>("/roles", params);
+
+    return this.api.get<IRoleResponse[]>("/roles", params);
   }
 
   /**
@@ -894,6 +701,7 @@ class SDK {
   public updateRole(primaryKey: PrimaryKeyType, body: BodyType): Promise<IRoleResponse> {
     invariant(isNotNull(primaryKey), "primaryKey must be defined");
     invariant(isObject(body), "body must be an object");
+
     return this.updateItem<IRoleResponse>("directus_roles", primaryKey, body);
   }
 
@@ -902,6 +710,7 @@ class SDK {
    */
   public createRole(body: BodyType): Promise<IRoleResponse> {
     invariant(isObject(body), "body must be an object");
+
     return this.createItem<IRoleResponse>("directus_roles", body);
   }
 
@@ -910,6 +719,7 @@ class SDK {
    */
   public deleteRole(primaryKey: PrimaryKeyType): Promise<void> {
     invariant(isNotNull(primaryKey), "primaryKey must be defined");
+
     return this.deleteItem("directus_roles", primaryKey);
   }
 
@@ -921,7 +731,7 @@ class SDK {
   public getSettings(params: object = {}): Promise<any> {
     invariant(isObjectOrEmpty(params), "params must be an object or empty");
 
-    return this.get("/settings", params);
+    return this.api.get("/settings", params);
   }
 
   /**
@@ -930,7 +740,7 @@ class SDK {
   public getSettingsFields(params: object = {}): Promise<any> {
     invariant(isObjectOrEmpty(params), "params must be an object or empty");
 
-    return this.get("/settings/fields", params);
+    return this.api.get("/settings/fields", params);
   }
 
   /// USERS ---------------------------------------------------------------------
@@ -941,7 +751,7 @@ class SDK {
   public getUsers(params: object = {}): Promise<IUsersResponse> {
     invariant(isObjectOrEmpty(params), "params must be an object or empty");
 
-    return this.get("/users", params);
+    return this.api.get("/users", params);
   }
 
   /**
@@ -951,7 +761,7 @@ class SDK {
     invariant(isNotNull(primaryKey), "primaryKey must be defined");
     invariant(isObjectOrEmpty(params), "params must be an object or empty");
 
-    return this.get(`/users/${primaryKey}`, params);
+    return this.api.get(`/users/${primaryKey}`, params);
   }
 
   /**
@@ -960,7 +770,7 @@ class SDK {
   public getMe(params: object = {}): Promise<IUserResponse> {
     invariant(isObjectOrEmpty(params), "params must be an object or empty");
 
-    return this.get("/users/me", params);
+    return this.api.get("/users/me", params);
   }
 
   /**
@@ -979,188 +789,28 @@ class SDK {
    * Ping the API to check if it exists / is up and running
    */
   public ping(): Promise<void> {
-    return this.request("get", "/server/ping", {}, {}, true);
+    return this.api.request("get", "/server/ping", {}, {}, true);
   }
 
   /**
    * Get the server info from the API
    */
   public serverInfo(): Promise<any> {
-    return this.request("get", "/", {}, {}, true);
+    return this.api.request("get", "/", {}, {}, true);
   }
 
   /**
    * Get the server info from the project
    */
   public projectInfo(): Promise<any> {
-    return this.request("get", "/");
+    return this.api.request("get", "/");
   }
 
   /**
    * Get all the setup third party auth providers
    */
   public getThirdPartyAuthProviders(): Promise<any> {
-    return this.get("/auth/sso");
-  }
-
-  /**
-   * Starts an interval of 10 seconds that will check if the token needs refreshing
-   */
-  private startInterval(fireImmediately?: boolean): void {
-    if (fireImmediately) {
-      this.refreshIfNeeded();
-    }
-
-    this.refreshInterval = setInterval(this.refreshIfNeeded.bind(this), 10000);
-  }
-
-  /**
-   * Clears and nullifies the token refreshing interval
-   */
-  private stopInterval(): void {
-    clearInterval(this.refreshInterval);
-    this.refreshInterval = null;
-  }
-
-  /// REQUEST METHODS ----------------------------------------------------------
-
-  /**
-   * Perform an API request to the Directus API
-   */
-  private request<T extends any = any>(
-    method: RequestMethod,
-    endpoint: string,
-    params: object = {},
-    data: object = {},
-    noEnv: boolean = false,
-    headers: { [key: string]: string } = {}
-  ): Promise<T> {
-    invariant(isString(method), "method must be a string");
-    invariant(isString(endpoint), "endpoint must be a string");
-    invariant(isObjectOrEmpty(params), "params must be an object or empty");
-    invariant(isString(this.url), "main url must be defined (see constructor)");
-    invariant(Array.isArray(data) ? isArrayOrEmpty(data) : isObjectOrEmpty(data), "data must be an array or object");
-
-    let baseURL = `${this.url}/`;
-
-    if (noEnv === false) {
-      baseURL += `${this.project}/`;
-    }
-
-    const requestOptions = {
-      baseURL,
-      data,
-      headers,
-      method,
-      params,
-      url: endpoint,
-    };
-
-    if (this.token && typeof this.token === "string" && this.token.length > 0) {
-      requestOptions.headers = headers;
-      requestOptions.headers.Authorization = `Bearer ${this.token}`;
-    }
-
-    return this.xhr
-      .request(requestOptions)
-      .then((res: { data: any }) => res.data)
-      .then((responseData: any) => {
-        if (!responseData || responseData.length === 0) {
-          return responseData;
-        }
-
-        if (typeof responseData !== "object") {
-          try {
-            return JSON.parse(responseData);
-          } catch (error) {
-            throw {
-              data: responseData,
-              error,
-              json: true,
-            };
-          }
-        }
-
-        return responseData;
-      })
-      .catch((error: IError) => {
-        if (error.response) {
-          throw error.response.data.error;
-        } else if (error.json === true) {
-          throw {
-            code: -2,
-            data: error.data,
-            error: error.error,
-            message: "API returned invalid JSON",
-          };
-        } else {
-          throw {
-            code: -1,
-            error,
-            message: "Network Error",
-          };
-        }
-      });
-  }
-
-  /**
-   * GET convenience method. Calls the request method for you
-   */
-  private get<T extends any = any>(endpoint: string, params: object = {}): Promise<T> {
-    invariant(isString(endpoint), "endpoint must be a string");
-    invariant(isObjectOrEmpty(params), "params must be an object or empty");
-
-    return this.request("get", endpoint, params);
-  }
-
-  /**
-   * POST convenience method. Calls the request method for you
-   */
-  private post<T extends any = any>(endpoint: string, body: BodyType = {}, params: object = {}): Promise<T> {
-    invariant(isString(endpoint), "endpoint must be a string");
-    invariant(Array.isArray(body) ? isArrayOrEmpty(body) : isObjectOrEmpty(body), "body must be an array or object");
-
-    return this.request<T>("post", endpoint, params, body);
-  }
-
-  /**
-   * PATCH convenience method. Calls the request method for you
-   */
-  private patch<T extends any = any>(endpoint: string, body: BodyType = {}, params: object = {}): Promise<T> {
-    invariant(isString(endpoint), "endpoint must be a string");
-    invariant(Array.isArray(body) ? isArrayOrEmpty(body) : isObjectOrEmpty(body), "body must be an array or object");
-
-    return this.request<T>("patch", endpoint, params, body);
-  }
-
-  /**
-   * PUT convenience method. Calls the request method for you
-   */
-  private put<T extends any = any>(endpoint: string, body: BodyType = {}, params: object = {}): Promise<T> {
-    invariant(isString(endpoint), "endpoint must be a string");
-    invariant(Array.isArray(body) ? isArrayOrEmpty(body) : isObjectOrEmpty(body), "body must be an array or object");
-
-    return this.request<T>("put", endpoint, params, body);
-  }
-
-  /**
-   * DELETE convenience method. Calls the request method for you
-   */
-  private delete<T extends any = any>(endpoint: string): Promise<T> {
-    invariant(isString(endpoint), "endpoint must be a string");
-
-    return this.request<T>("delete", endpoint);
-  }
-
-  /**
-   * Gets the payload of the current token, return type can be generic
-   */
-  private getPayload<T extends object = object>(): T {
-    if (!isString(this.token)) {
-      return null;
-    }
-
-    return getPayload<T>(this.token);
+    return this.api.get("/auth/sso");
   }
 }
 
