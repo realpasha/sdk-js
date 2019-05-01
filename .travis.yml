@@ -21,5 +21,7 @@ install:
 script:
   - npm run lint
   - npm run test
+  - npm run build:webpack
+  - npm run build:declaration
 # after_success:
 #   - npm run coverage
