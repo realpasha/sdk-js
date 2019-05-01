@@ -1,17 +1,3 @@
-export interface IStorage {
-  getItem<T extends any = any>(key: string): T;
-  setItem(key: string, value: any): void;
-  removeItem(key: string): void;
-}
-
-export interface IClientOptions {
-  url: string;
-  project?: string;
-  token?: string;
-  localExp?: number;
-  storage?: IStorage;
-}
-
 export interface IRequestError {
   json: boolean;
   code: number;
