@@ -4,6 +4,7 @@ import * as jwt from "jsonwebtoken";
 import * as sinon from "sinon";
 import * as sinonChai from "sinon-chai";
 import SDK from "../src/index";
+import { ISDK } from "../src/SDK";
 
 const expect = chai.expect;
 chai.use(sinonChai);
@@ -16,14 +17,17 @@ chai.use(sinonChai);
  */
 
 describe("Authentication", () => {
-  let client;
+  let client: ISDK;
 
   beforeEach(() => {
     client = new SDK({
       url: "https://demo-api.getdirectus.com",
     });
 
-    sinon.stub(client.xhr, "request").resolves({
+    client.config.reset();
+    client.config.url = "https://demo-api.getdirectus.com";
+
+    sinon.stub(client.api.xhr, "request").resolves({
       data: {
         data: {
           token: "abcdef",
@@ -33,7 +37,7 @@ describe("Authentication", () => {
   });
 
   afterEach(() => {
-    client.xhr.request.restore();
+    (client.api.xhr.request as any).restore();
   });
 
   describe("#login()", () => {
@@ -42,21 +46,21 @@ describe("Authentication", () => {
     });
 
     it("Errors on missing parameter credentials.email", () => {
-      expect(() => client.login({})).to.throw();
+      expect(() => client.login({} as any)).to.throw();
     });
 
     it("Errors on missing parameter credentials.password", () => {
-      expect(() => client.login({ email: "test@example.com" })).to.throw();
+      expect(() => client.login({ email: "test@example.com" } as any)).to.throw();
     });
 
     it("Sets the url in use when passed in credentials", async () => {
       await client.login({
         email: "test@example.com",
         password: "testPassword",
-        url: "https://testing.getdirectus.com",
+        url: "https://demo-api.getdirectus.com",
       });
 
-      expect(client.url).to.equal("https://testing.getdirectus.com");
+      expect(client.config.url).to.equal("https://demo-api.getdirectus.com");
     });
 
     it("Calls Axios with the right parameters", async () => {
@@ -65,12 +69,13 @@ describe("Authentication", () => {
         password: "testPassword",
       });
 
-      expect(client.xhr.request).to.have.been.calledWith({
+      expect(client.api.xhr.request).to.have.been.calledWith({
         baseURL: "https://demo-api.getdirectus.com/_/",
         data: {
           email: "test@example.com",
           password: "testPassword",
         },
+        headers: {},
         method: "post",
         params: {},
         url: "/auth/authenticate",
@@ -83,37 +88,37 @@ describe("Authentication", () => {
         password: "testPassword",
       });
 
-      expect(client.token).to.equal("abcdef");
+      expect(client.config.token).to.equal("abcdef");
     });
 
     /**
      * FIXME: [ERR_STABLE]
      */
-    it.skip("Replaces env and url if passed", async () => {
+    it("Replaces env and url if passed", async () => {
       await client.login({
         email: "text@example.com",
-        env: "testEnv",
+        // env: "testEnv",
         password: "testPassword",
         url: "https://example.com",
       });
 
-      expect(client.url).to.equal("https://example.com");
-      expect(client.env).to.equal("testEnv");
+      expect(client.config.url).to.equal("https://example.com");
+      // expect(client.config.env).to.equal("testEnv");
     });
 
     /**
      * FIXME: [ERR_STABLE]
      */
-    it.skip("Resolves with the currently logged in token, url, and env", async () => {
+    it("Resolves with the currently logged in token, url, and env", async () => {
       const result = await client.login({
         email: "text@example.com",
-        env: "testEnv",
         password: "testPassword",
+        project: "testProject",
         url: "https://example.com",
       });
 
       expect(result).to.deep.include({
-        env: "testEnv",
+        project: "testProject",
         token: "abcdef",
         url: "https://example.com",
       });
@@ -121,14 +126,11 @@ describe("Authentication", () => {
   });
 
   describe("#logout()", () => {
-    /**
-     * FIXME: [ERR_STABLE]
-     */
-    it.skip("Nullifies the token, url, and env", () => {
+    it("Nullifies the token, url, and project", () => {
       client.logout();
-      expect(client.token).to.be.null;
-      expect(client.url).to.be.null;
-      expect(client.env).to.equal("_");
+      expect(client.config.token).to.be.undefined;
+      expect(client.config.url).to.be.undefined;
+      expect(client.config.project).to.equal("_");
     });
   });
 
@@ -150,17 +152,17 @@ describe("Authentication", () => {
   describe("#refreshIfNeeded()", () => {
     it("Does nothing when token, url, env, or payload.exp is missing", () => {
       // Nothing
-      client.url = null;
-      client.env = null;
+      client.config.url = null;
+      client.config.project = null;
       expect(client.refreshIfNeeded()).to.be.undefined;
       // URL
-      client.url = "https://demo-api.getdirectus.com";
+      client.config.url = "https://demo-api.getdirectus.com";
       expect(client.refreshIfNeeded()).to.be.undefined;
       // URL + ENV
-      client.env = "_";
+      client.config.project = "_";
       expect(client.refreshIfNeeded()).to.be.undefined;
       // URL + ENV + TOKEN (no exp in payload)
-      client.token = jwt.sign({ foo: "bar" }, "secret-string", {
+      client.config.token = jwt.sign({ foo: "bar" }, "secret-string", {
         noTimestamp: true,
       });
       expect(client.refreshIfNeeded()).to.be.undefined;
@@ -169,84 +171,87 @@ describe("Authentication", () => {
     /**
      * FIXME: [ERR_STABLE]
      */
-    it.skip("Overwrites the saved token with the new one", async () => {
-      sinon.stub(client, "refresh").resolves({
+    it("Overwrites the saved token with the new one", async () => {
+      sinon.stub(client.api.auth, "refresh").resolves({
         data: {
           token: "abcdef",
         },
       });
-      client.token = jwt.sign({ foo: "bar" }, "secret-string", {
+      client.config.token = jwt.sign({ foo: "bar" }, "secret-string", {
         expiresIn: "20s",
         noTimestamp: true,
       });
+      client.config.localExp = Date.now() + 10e2;
       await client.refreshIfNeeded();
-      expect(client.token).to.equal("abcdef");
-      client.refresh.restore();
+      expect(client.config.token).to.equal("abcdef");
+      (client.api.auth.refresh as any).restore();
     });
 
     /**
      * FIXME: [ERR_STABLE]
      */
-    it.skip("Calls refresh() if expiry date is within 30 seconds of now", () => {
-      sinon.stub(client, "refresh").resolves();
-      client.token = jwt.sign({ foo: "bar" }, "secret-string", {
+    it("Calls refresh() if expiry date is within 30 seconds of now", async () => {
+      sinon.stub(client.api.auth, "refresh").resolves();
+      client.config.token = jwt.sign({ foo: "bar" }, "secret-string", {
         expiresIn: "1h",
         noTimestamp: true,
       });
-      expect(client.refreshIfNeeded()).to.be.undefined;
-      client.token = jwt.sign({ foo: "bar" }, "secret-string", {
+      expect(client.api.auth.refreshIfNeeded()).to.be.undefined;
+      client.config.token = jwt.sign({ foo: "bar" }, "secret-string", {
         expiresIn: "20s",
         noTimestamp: true,
       });
-      client.refreshIfNeeded();
-      expect(client.refresh).to.have.been.calledWith(client.token);
-      client.refresh.restore();
+      client.config.localExp = Date.now() + 10;
+      await client.api.auth.refreshIfNeeded();
+      expect(client.api.auth.refresh).to.have.been.calledWith(client.config.token);
+      (client.api.auth.refresh as any).restore();
     });
 
     /**
      * FIXME: [ERR_STABLE]
      */
-    it.skip("Calls the optional onAutoRefreshSuccess() callback when the request succeeds", done => {
-      sinon.stub(client, "refresh").resolves({
+    it("Calls the optional onAutoRefreshSuccess() callback when the request succeeds", done => {
+      sinon.stub(client.api.auth, "refresh").resolves({
         data: {
           token: "abcdef",
         },
       });
 
-      client.token = jwt.sign({ foo: "bar" }, "secret-string", {
-        expiresIn: "20s",
+      client.config.token = jwt.sign({ foo: "bar" }, "secret-string", {
+        expiresIn: "15s",
         noTimestamp: true,
       });
 
-      client.onAutoRefreshSuccess = info => {
+      (client.api.auth as any).onAutoRefreshSuccess = info => {
         expect(info).to.deep.include({
-          env: "_",
+          project: "_",
           token: "abcdef",
           url: "https://demo-api.getdirectus.com",
         });
+        (client.api.auth.refresh as any).restore();
         done();
       };
 
+      client.config.localExp = Date.now() + 10;
       client.refreshIfNeeded();
-
-      client.refresh.restore();
     });
 
     /**
      * FIXME: [ERR_STABLE]
      */
-    it.skip("Calls the optional onAutoRefreshError() callback when request fails", done => {
-      sinon.stub(client, "refresh").rejects({
+    it("Calls the optional onAutoRefreshError() callback when request fails", done => {
+      sinon.stub(client.api.auth, "refresh").rejects({
         code: -1,
         message: "Network Error",
       });
 
-      client.token = jwt.sign({ foo: "bar" }, "secret-string", {
+      client.config.token = jwt.sign({ foo: "bar" }, "secret-string", {
         expiresIn: "20s",
         noTimestamp: true,
       });
+      client.config.localExp = Date.now() + 10;
 
-      client.onAutoRefreshError = error => {
+      (client.api.auth as any).onAutoRefreshError = error => {
         expect(error).to.deep.include({
           code: -1,
           message: "Network Error",
@@ -256,11 +261,11 @@ describe("Authentication", () => {
 
       client.refreshIfNeeded();
 
-      client.refresh.restore();
+      (client.api.auth.refresh as any).restore();
     });
 
     it("Does nothing if the token is expired and no onAutoRefreshError() callback has been given", () => {
-      client.token = jwt.sign({ foo: "bar" }, "secret-string", {
+      client.config.token = jwt.sign({ foo: "bar" }, "secret-string", {
         expiresIn: "-20s",
         noTimestamp: true,
       });
@@ -270,13 +275,15 @@ describe("Authentication", () => {
     /**
      * FIXME: [ERR_STABLE]
      */
-    it.skip("Calls the optional onAutoRefreshError() callback when trying to refresh an expired token", done => {
-      client.token = jwt.sign({ foo: "bar" }, "secret-string", {
+    it("Calls the optional onAutoRefreshError() callback when trying to refresh an expired token", done => {
+      sinon.stub(client.api.auth, "refresh").rejects({});
+
+      client.config.token = jwt.sign({ foo: "bar" }, "secret-string", {
         expiresIn: "-20s",
         noTimestamp: true,
       });
 
-      client.onAutoRefreshError = error => {
+      (client.api.auth as any).onAutoRefreshError = error => {
         expect(error).to.deep.include({
           code: 102,
           message: "auth_expired_token",
@@ -285,37 +292,42 @@ describe("Authentication", () => {
       };
 
       client.refreshIfNeeded();
+
+      (client.api.auth.refresh as any).restore();
     });
   });
 
   describe("Interval", () => {
     beforeEach(() => {
       this.clock = sinon.useFakeTimers();
-      sinon.stub(client, "refreshIfNeeded");
+      sinon.stub(client.api.auth, "refreshIfNeeded");
     });
 
     afterEach(() => {
       this.clock.restore();
-      client.refreshIfNeeded.restore();
+      (client.api.auth as any).refreshIfNeeded.restore();
     });
 
     describe("#startInterval()", () => {
       it("Starts the interval", () => {
-        client.startInterval();
-        expect(client.refreshInterval).to.be.not.null;
+        // startInterval() is private
+        (client.api.auth as any).startInterval();
+        expect(client.api.auth.refreshInterval).to.be.not.null;
       });
 
       it("Fires immediately if true has been passed as parameter", () => {
-        client.startInterval(true);
-        expect(client.refreshIfNeeded).to.have.been.calledOnce;
+        // startInterval() is private
+        (client.api.auth as any).startInterval(true);
+        expect(client.api.auth.refreshIfNeeded).to.have.been.calledOnce;
       });
     });
 
     describe("#stopInterval()", () => {
       it("Stops (deletes) the interval", () => {
-        client.startInterval();
-        client.stopInterval();
-        expect(client.refreshInterval).to.be.null;
+        // startInterval() and stopInterval() are private
+        (client.api.auth as any).startInterval();
+        (client.api.auth as any).stopInterval();
+        expect(client.api.auth.refreshInterval).to.be.null;
       });
     });
 
@@ -328,7 +340,7 @@ describe("Authentication", () => {
           url: "https://demo-api.getdirectus.com",
         });
 
-        expect(client.refreshInterval).to.be.not.null;
+        expect(client.api.auth.refreshInterval).to.be.not.null;
 
         // cleanup
         client.logout();
@@ -344,7 +356,7 @@ describe("Authentication", () => {
           url: "https://demo-api.getdirectus.com",
         });
 
-        expect(client.refreshInterval).to.be.null;
+        expect(client.api.auth.refreshInterval).to.be.null;
       });
     });
 
@@ -359,31 +371,28 @@ describe("Authentication", () => {
 
         client.logout();
 
-        expect(client.refreshInterval).to.be.null;
+        expect(client.api.auth.refreshInterval).to.be.null;
       });
     });
 
     describe("#requestPasswordReset()", () => {
       beforeEach(() => {
-        sinon.stub(client, "post");
+        sinon.stub(client.api, "post");
       });
 
       afterEach(() => {
-        client.post.restore();
+        (client.api.post as any).restore();
       });
 
       it("Errors when email parameter is missing", () => {
         expect(client.requestPasswordReset).to.throw();
       });
 
-      /**
-       * FIXME: [ERR_STABLE]
-       */
-      it.skip("Calls post sending the required body", () => {
-        client.requestPasswordReset("test@example.com");
-        expect(client.post).to.have.been.calledWith("/auth/reset-request", {
-          email: "test@example.com",
-          instance: "https://demo-api.getdirectus.com",
+      it("Calls post sending the required body", async () => {
+        await client.requestPasswordReset("test@example.com");
+
+        expect(client.api.post).to.have.been.calledWith("/auth/password/request", {
+          email: "test@example.com"
         });
       });
     });
@@ -396,20 +405,20 @@ describe("Authentication", () => {
         url: "https://demo-api.getdirectus.com",
       });
 
-      expect(client.refreshIfNeeded).to.have.not.been.called;
+      expect(client.api.auth.refreshIfNeeded).to.have.not.been.called;
 
-      client.token = jwt.sign({ foo: "bar" }, "secret-string", {
+      client.config.token = jwt.sign({ foo: "bar" }, "secret-string", {
         expiresIn: "20s",
         noTimestamp: true,
       });
 
       this.clock.tick(11000);
 
-      expect(client.refreshIfNeeded).to.have.been.calledOnce;
+      expect(client.api.auth.refreshIfNeeded).to.have.been.calledOnce;
 
       this.clock.tick(11000);
 
-      expect(client.refreshIfNeeded).to.have.been.calledTwice;
+      expect(client.api.auth.refreshIfNeeded).to.have.been.calledTwice;
     });
   });
 
@@ -417,25 +426,24 @@ describe("Authentication", () => {
     /**
      * FIXME: [ERR_STABLE]
      */
-    it.skip("Returns true if the client has a valid accesstoken, url, env, and is not expired", () => {
-      client.token = jwt.sign({ foo: "bar" }, "secret-string", {
+    it("Returns true if the client has a valid accesstoken, url, env, and is not expired", () => {
+      client.config.token = jwt.sign({ foo: "bar" }, "secret-string", {
         expiresIn: "20s",
         noTimestamp: true,
       });
+      client.config.localExp = Date.now() + 10e3; // set expiration time in future
       expect(client.loggedIn).to.equal(true);
     });
-    /**
-     * FIXME: [ERR_STABLE]
-     */
-    it.skip("Returns false if the accesstoken, url, or env is missing", () => {
-      client.url = null;
+    it("Returns false if the accesstoken, url, or env is missing", () => {
+      client.config.url = null;
       expect(client.loggedIn).to.equal(false);
-      client.token = jwt.sign({ foo: "bar" }, "secret-string", {
+      client.config.token = jwt.sign({ foo: "bar" }, "secret-string", {
         expiresIn: "20s",
         noTimestamp: true,
       });
       expect(client.loggedIn).to.equal(false);
-      client.url = "https://demo-api.getdirectus.com";
+      client.config.url = "https://demo-api.getdirectus.com";
+      client.config.localExp = Date.now() + 10e3; // set expiration time in future
       expect(client.loggedIn).to.equal(true);
     });
   });

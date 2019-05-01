@@ -43,8 +43,10 @@ export class Configuration implements IConfiguration {
   private internalConfiguration: IConfigurationValues;
 
   constructor(initialConfig: IConfigurationOptions, private storage?: IStorageAPI) {
+    let dehydratedConfig: IConfigurationOptions = {} as any;
+
     if (storage) {
-      this.dehydrate();
+      dehydratedConfig = this.dehydrate();
       // TODO: maybe just dehydrate and skip re-setting the configuration?
       // return this;
     }
@@ -52,10 +54,15 @@ export class Configuration implements IConfiguration {
     // make it safe for the untyped JavaScript world to prevent issues
     initialConfig = initialConfig || {} as any;
 
+    const project = dehydratedConfig.project || initialConfig.project || "_";
+    const tokenExpirationTime =
+      dehydratedConfig.tokenExpirationTime || initialConfig.tokenExpirationTime || 5 * 6 * 1000;
+
     this.internalConfiguration = {
+      ...dehydratedConfig,
       ...initialConfig,
-      project: initialConfig.project || "_",
-      tokenExpirationTime: initialConfig.tokenExpirationTime || 5 * 6 * 1000,
+      project,
+      tokenExpirationTime,
     };
   }
 
@@ -121,8 +128,8 @@ export class Configuration implements IConfiguration {
 
   public partialUpdate(config: Partial<IConfigurationValues>): void {
     this.internalConfiguration = {
-      ...config,
       ...this.internalConfiguration,
+      ...config,
     };
 
     this.hydrate(this.internalConfiguration);
@@ -131,8 +138,9 @@ export class Configuration implements IConfiguration {
   public reset(): void {
     delete this.internalConfiguration.token;
     delete this.internalConfiguration.url;
-    delete this.internalConfiguration.project;
     delete this.internalConfiguration.localExp;
+
+    this.internalConfiguration.project = "_";
 
     this.delete();
   }

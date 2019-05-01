@@ -1,13 +1,14 @@
 import { IConfiguration, IConfigurationValues } from "./Configuration";
 
 // Scheme types
+import { IAuthenticateResponse } from "./schemes/auth/Authenticate";
 import { ILoginCredentials, ILoginOptions } from "./schemes/auth/Login";
 import { ILoginResponse } from "./schemes/response/Login";
 import { IRefreshTokenResponse } from "./schemes/response/Token";
 
 // Utilities
 import { invariant } from "./utils/invariant";
-import { hasKeysWithString, isFunction, isObject, isString } from "./utils/is";
+import { hasKeysWithString, isFunction, isObject, isString } from './utils/is';
 import { getPayload } from "./utils/payload";
 
 interface IAuthenticationRefreshError {
@@ -20,6 +21,7 @@ interface IAuthenticationInjectableProps {
 }
 
 export interface IAuthentication {
+  refreshInterval?: number;
   isLoggedIn(): boolean;
   login(credentials: ILoginCredentials, options: ILoginOptions): Promise<ILoginResponse>;
   logout(): void;
@@ -28,7 +30,7 @@ export interface IAuthentication {
 }
 
 export class Authentication implements IAuthentication {
-  private refreshInterval?: number;
+  public refreshInterval?: number;
   private onAutoRefreshError?: (msg: IAuthenticationRefreshError) => void;
   private onAutoRefreshSuccess?: (config: IConfigurationValues) => void;
 
@@ -50,6 +52,7 @@ export class Authentication implements IAuthentication {
       isObject(this.getPayload())
     ) {
       if (this.config.localExp > Date.now()) {
+        // Not expired, succeed
         return true;
       }
     }
@@ -63,21 +66,17 @@ export class Authentication implements IAuthentication {
     credentials: ILoginCredentials,
     options: ILoginOptions = { persist: true, storage: false }
   ): Promise<ILoginResponse> {
-    invariant(isObject(credentials), "Malformed credentials");
+    invariant(isObject(credentials), "malformed credentials");
     invariant(hasKeysWithString(credentials, ["email", "password"]), "email & password required in credentials");
 
     this.config.token = null;
 
     if (hasKeysWithString(credentials, ["url"])) {
-      this.config.partialUpdate({
-        url: credentials.url,
-      });
+      this.config.url = credentials.url;
     }
 
     if (hasKeysWithString(credentials, ["project"])) {
-      this.config.partialUpdate({
-        project: credentials.project,
-      });
+      this.config.project = credentials.project;
     }
 
     if (credentials.persist || options.persist) {
@@ -90,22 +89,18 @@ export class Authentication implements IAuthentication {
           email: credentials.email,
           password: credentials.password,
         })
-        .then((res: { data: { token: string } }) => res.data.token)
-        .then((freshToken: string) => {
-          const token = freshToken || this.config.token;
-          const localExp = new Date(Date.now() + 5 * 60000).getTime();
-
-          this.config.partialUpdate({
-            // Expiry date is the moment we got the token + 5 minutes
-            localExp,
-            // Save new token in configuration
-            token: freshToken,
-          });
+        .then((res: IAuthenticateResponse) => {
+          // Save new token in configuration
+          return this.config.token = res.data.token;
+        })
+        .then((token: string) => {
+          // Expiry date is the moment we got the token + 5 minutes
+          this.config.localExp = new Date(Date.now() + this.config.tokenExpirationTime).getTime();
 
           resolve({
-            localExp,
+            localExp: this.config.localExp,
             project: this.config.project,
-            token: freshToken,
+            token,
             url: this.config.url,
           });
         })
@@ -135,7 +130,11 @@ export class Authentication implements IAuthentication {
   public refreshIfNeeded(): Promise<[boolean, Error?]> {
     const payload = this.getPayload<{ exp: any }>();
 
-    if (!hasKeysWithString(this, ["token", "url", "project"])) {
+    if (
+      !isString(this.config.token) ||
+      !isString(this.config.url) ||
+      !isString(this.config.project)
+    ) {
       return;
     }
 
@@ -159,14 +158,8 @@ export class Authentication implements IAuthentication {
       return new Promise<[boolean, Error?]>((resolve: (res: [boolean, Error?]) => any) => {
         this.refresh(this.config.token)
           .then((res: IRefreshTokenResponse) => {
-            const localExp = new Date(Date.now() + 5 * 60000).getTime();
-            const token = res.data.token || this.config.token;
-
-            this.config.partialUpdate({
-              localExp,
-              token,
-            });
-
+            const localExp = this.config.localExp = new Date(Date.now() + this.config.tokenExpirationTime).getTime();
+            const token = this.config.token = res.data.token || this.config.token;
             const autorefreshResult = {
               localExp,
               project: this.config.project,

@@ -4,6 +4,7 @@ import * as jwt from "jsonwebtoken";
 import * as sinon from "sinon";
 import * as sinonChai from "sinon-chai";
 import SDK from "../../src/";
+import { ISDK } from "../../src/SDK";
 
 const expect = chai.expect;
 chai.use(sinonChai);
@@ -16,7 +17,7 @@ chai.use(sinonChai);
  */
 
 describe("Items", () => {
-  let client;
+  let client: ISDK;
 
   beforeEach(() => {
     client = new SDK({
@@ -39,12 +40,12 @@ describe("Items", () => {
   });
 
   afterEach(() => {
-    client.api.get.restore();
-    client.api.put.restore();
-    client.api.patch.restore();
-    client.api.post.restore();
-    client.api.delete.restore();
-    client.api.request.restore();
+    (client.api.get as any).restore();
+    (client.api.put as any).restore();
+    (client.api.patch as any).restore();
+    (client.api.post as any).restore();
+    (client.api.delete as any).restore();
+    (client.api.request as any).restore();
   });
 
   describe("#getMyListingPreferences()", () => {
@@ -53,11 +54,11 @@ describe("Items", () => {
     });
 
     it("Errors if parameter `params` is of a wrong type", () => {
-      expect(() => client.getMyListingPreferences("projects", "params")).to.throw();
+      expect(() => client.getMyListingPreferences("projects", "params" as any)).to.throw();
     });
 
     it("Calls get() three times", () => {
-      client.token = jwt.sign({ foo: "bar" }, "secret-string", {
+      client.config.token = jwt.sign({ foo: "bar" }, "secret-string", {
         expiresIn: "1h",
         noTimestamp: true,
       });
@@ -67,20 +68,23 @@ describe("Items", () => {
     });
 
     /**
+     * Returns collection instead of user
      * FIXME: [ERR_STABLE]
      */
     it.skip("Returns the user preferences if there saved user preferences", async () => {
-      client.token = jwt.sign({ group: 5, id: 1 }, "secret-string", {
+      client.config.token = jwt.sign({ group: 5, id: 1 }, "secret-string", {
         expiresIn: "1h",
         noTimestamp: true,
       });
 
-      client.get
+      (client.api.get as any)
         .withArgs(`/collection_presets`, {
           "filter[collection][eq]": "faq",
-          "filter[group][null]": 1,
+          "filter[role][null]": 1,
           "filter[title][null]": 1,
           "filter[user][null]": 1,
+          limit: 1,
+          sort: "-id",
         })
         .resolves({
           data: [
@@ -90,27 +94,31 @@ describe("Items", () => {
           ],
         });
 
-      client.get
+      (client.api.get as any)
         .withArgs(`/collection_presets`, {
           "filter[collection][eq]": "faq",
-          "filter[group][eq]": 5,
+          "filter[role][eq]": 5,
           "filter[title][null]": 1,
           "filter[user][null]": 1,
+          limit: 1,
+          sort: "-id",
         })
         .resolves({
           data: [
             {
-              request: "group",
+              request: "role",
             },
           ],
         });
 
-      client.get
+      (client.api.get as any)
         .withArgs(`/collection_presets`, {
           "filter[collection][eq]": "faq",
-          "filter[group][eq]": 5,
+          "filter[role][eq]": 5,
           "filter[title][null]": 1,
           "filter[user][eq]": 1,
+          limit: 1,
+          sort: "-id",
         })
         .resolves({
           data: [
@@ -128,20 +136,23 @@ describe("Items", () => {
     });
 
     /**
+     * Returns collection instead of group
      * FIXME: [ERR_STABLE]
      */
     it.skip("Returns the group preferences if there are no saved user preferences", async () => {
-      client.token = jwt.sign({ group: 5, id: 1 }, "secret-string", {
+      client.config.token = jwt.sign({ group: 5, id: 1 }, "secret-string", {
         expiresIn: "1h",
         noTimestamp: true,
       });
 
-      client.get
+      (client.api.get as any)
         .withArgs(`/collection_presets`, {
           "filter[collection][eq]": "faq",
-          "filter[group][null]": 1,
+          "filter[role][null]": 1,
           "filter[title][null]": 1,
           "filter[user][null]": 1,
+          limit: 1,
+          sort: "-id",
         })
         .resolves({
           data: [
@@ -151,12 +162,14 @@ describe("Items", () => {
           ],
         });
 
-      client.get
+      (client.api.get as any)
         .withArgs(`/collection_presets`, {
           "filter[collection][eq]": "faq",
-          "filter[group][eq]": 5,
+          "filter[role][eq]": 5,
           "filter[title][null]": 1,
           "filter[user][null]": 1,
+          limit: 1,
+          sort: "-id",
         })
         .resolves({
           data: [
@@ -166,12 +179,14 @@ describe("Items", () => {
           ],
         });
 
-      client.get
+      (client.api.get as any)
         .withArgs(`/collection_presets`, {
           "filter[collection][eq]": "faq",
-          "filter[group][eq]": 5,
+          "filter[role][eq]": 5,
           "filter[title][null]": 1,
           "filter[user][eq]": 1,
+          limit: 1,
+          sort: "-id",
         })
         .resolves({
           data: [],
@@ -187,18 +202,20 @@ describe("Items", () => {
     /**
      * FIXME: [ERR_STABLE]
      */
-    it.skip("Returns the collection preferences if there are no saved user or preferences", async () => {
-      client.token = jwt.sign({ group: 5, id: 1 }, "secret-string", {
+    it("Returns the collection preferences if there are no saved user or preferences", async () => {
+      client.config.token = jwt.sign({ group: 5, id: 1 }, "secret-string", {
         expiresIn: "1h",
         noTimestamp: true,
       });
 
-      client.get
+      (client.api.get as any)
         .withArgs(`/collection_presets`, {
           "filter[collection][eq]": "faq",
-          "filter[group][null]": 1,
+          "filter[role][null]": 1,
           "filter[title][null]": 1,
           "filter[user][null]": 1,
+          limit: 1,
+          sort: "-id",
         })
         .resolves({
           data: [
@@ -208,23 +225,27 @@ describe("Items", () => {
           ],
         });
 
-      client.get
+      (client.api.get as any)
         .withArgs(`/collection_presets`, {
           "filter[collection][eq]": "faq",
-          "filter[group][eq]": 5,
+          "filter[role][eq]": 5,
           "filter[title][null]": 1,
           "filter[user][null]": 1,
+          limit: 1,
+          sort: "-id",
         })
         .resolves({
           data: [],
         });
 
-      client.get
+      (client.api.get as any)
         .withArgs(`/collection_presets`, {
           "filter[collection][eq]": "faq",
-          "filter[group][eq]": 5,
+          "filter[role][eq]": 5,
           "filter[title][null]": 1,
           "filter[user][eq]": 1,
+          limit: 1,
+          sort: "-id",
         })
         .resolves({
           data: [],

@@ -1,11 +1,15 @@
 // tslint:disable: no-unused-expression
 import * as chai from "chai";
+import * as chaiDateTime from "chai-datetime";
 import * as jwt from "jsonwebtoken";
 import * as sinonChai from "sinon-chai";
+
 import SDK from "../src/index";
+import { ISDK } from "../src/SDK";
 
 const expect = chai.expect;
 chai.use(sinonChai);
+chai.use(chaiDateTime);
 
 /**
  * FIXME:
@@ -15,10 +19,10 @@ chai.use(sinonChai);
  */
 
 describe("JWT Payload", () => {
-  let client;
+  let client: ISDK;
 
   beforeEach(() => {
-    client = new SDK();
+    client = new SDK(undefined as any);
   });
 
   it("Returns null when there is no token set", () => {
@@ -26,7 +30,7 @@ describe("JWT Payload", () => {
   });
 
   it("Returns the correct payload from the set token", () => {
-    client.token = jwt.sign({ foo: "bar" }, "secret-string", {
+    client.config.token = jwt.sign({ foo: "bar" }, "secret-string", {
       noTimestamp: true,
     });
     expect(client.payload).to.deep.include({ foo: "bar" });
@@ -34,7 +38,7 @@ describe("JWT Payload", () => {
 
   it("Converts the optional exp in payload to the correct JS Date", () => {
     // JWT Expires in 1h
-    client.token = jwt.sign({ foo: "bar" }, "secret-string", {
+    client.config.token = jwt.sign({ foo: "bar" }, "secret-string", {
       expiresIn: "1h",
       noTimestamp: true,
     });
@@ -45,21 +49,19 @@ describe("JWT Payload", () => {
     expect(client.payload.exp).to.equalDate(date);
   });
 
-  /**
-   * FIXME: [ERR_STABLE]
-   */
-  it.skip("Reports a loggedIn flag when token, url, env are set and token has not expired", () => {
-    client.token = jwt.sign({ foo: "bar" }, "secret-string", {
+  it("Reports a loggedIn flag when token, url, env are set and token has not expired", () => {
+    client.config.token = jwt.sign({ foo: "bar" }, "secret-string", {
       expiresIn: "-1h",
       noTimestamp: true,
     });
-    client.url = "https://demo-api.getdirectus.com";
+    client.config.url = "https://demo-api.getdirectus.com";
     expect(client.loggedIn).to.equal(false);
 
-    client.token = jwt.sign({ foo: "bar" }, "secret-string", {
+    client.config.token = jwt.sign({ foo: "bar" }, "secret-string", {
       expiresIn: "1h",
       noTimestamp: true,
     });
+    client.config.localExp = Date.now() + 10e5; // set expiration to future
     expect(client.loggedIn).to.equal(true);
   });
 });

@@ -649,6 +649,7 @@ export class SDK implements ISDK {
         sort: "-id",
       }),
     ]).then((values: Array<IField<any>>) => {
+      console.log('#getMyListing->resolve', values);
       const [col, role, user] = values;
 
       if (user.data && user.data.length > 0) {

@@ -3,6 +3,7 @@ import * as chai from "chai";
 import * as sinon from "sinon";
 import * as sinonChai from "sinon-chai";
 import SDK from "../../src/";
+import { ISDK } from "../../src/SDK";
 
 const expect = chai.expect;
 chai.use(sinonChai);
@@ -15,10 +16,11 @@ chai.use(sinonChai);
  */
 
 describe("Items", () => {
-  let client;
+  let client: ISDK;
 
   beforeEach(() => {
     client = new SDK({
+      token: "abcdef",
       url: "https://demo-api.getdirectus.com",
     });
 
@@ -28,21 +30,11 @@ describe("Items", () => {
       },
     };
 
-    sinon.stub(client.api, "request").resolves(responseJSON);
-    sinon.stub(client.api, "get").resolves(responseJSON);
-    sinon.stub(client.api, "put").resolves(responseJSON);
-    sinon.stub(client.api, "patch").resolves(responseJSON);
-    sinon.stub(client.api, "post").resolves(responseJSON);
-    sinon.stub(client.api, "delete").resolves(responseJSON);
+    sinon.stub(client.api.xhr, "post").resolves(responseJSON);
   });
 
   afterEach(() => {
-    client.api.request.restore();
-    client.api.get.restore();
-    client.api.put.restore();
-    client.api.patch.restore();
-    client.api.post.restore();
-    client.api.delete.restore();
+    (client.api.xhr.post as any).restore();
   });
 
   describe("#uploadFiles()", () => {
@@ -50,14 +42,18 @@ describe("Items", () => {
       expect(client.uploadFiles).to.throw();
     });
 
-    /**
-     * FIXME: [ERR_STABLE]
-     */
-    it.skip("Calls post() for the right endpoint", () => {
-      client.uploadFiles(["fileA", "fileB"]);
-      expect(client.api.request).to.have.been.calledWith("POST", "/files", {}, ["fileA", "fileB"], false, {
-        "Content-Type": "multipart/form-data",
-      });
+    it("Calls post() for the right endpoint", async () => {
+      await client.uploadFiles(["fileA", "fileB"]);
+
+      // Validate against upload post parameters
+      expect(client.api.xhr.post).to.have.been.calledWith(
+        "https://demo-api.getdirectus.com/_/files",
+        ["fileA", "fileB"]
+        // {
+        //   headers: { Authorization: "Bearer abcdef", "Content-Type": "multipart/form-data" },
+        //   onUploadProgress: function onUploadProgress() { }
+        // }
+      );
     });
   });
 });

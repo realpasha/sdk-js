@@ -18,9 +18,7 @@ describe("Items", () => {
     });
 
     const responseJSON = {
-      data: {
-        data: {},
-      },
+      data: [],
     };
 
     sinon.stub(client.api, "get").resolves(responseJSON);
@@ -40,9 +38,9 @@ describe("Items", () => {
 
   describe("#getMyBookmarks()", () => {
     // TODO: This case doesn't exist anymore as params is default = {}
-    it.skip("Errors if parameter `params` is of a wrong type", () => {
-      expect(() => client.getMyListingPreferences("params")).to.throw();
-    });
+    // it.skip("Errors if parameter `params` is of a wrong type", () => {
+    //   expect(() => client.getMyListingPreferences("params")).to.throw();
+    // });
 
     it("Calls get() two times", () => {
       try {
