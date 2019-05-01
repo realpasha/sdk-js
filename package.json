@@ -18,7 +18,7 @@
     "lint": "npm-run-all lint:*",
     "lint:ts": "tslint --project ./tslint.json",
     "test": "run-s test:*",
-    "test:mocha": "ts-mocha -p ./tsconfig.test.json test/**/*.spec.ts --exit --recursive"
+    "test:mocha": "ts-mocha -p ./tsconfig.test.json \"test/**/*.spec.ts\" --recursive --exit"
   },
   "repository": "directus/sdk-js",
   "keywords": [
