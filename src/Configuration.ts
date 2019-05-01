@@ -14,6 +14,7 @@ export interface IConfigurationValues {
   project: string;
   token?: string;
   localExp?: number;
+  tokenExpirationTime?: number;
 }
 
 export interface IConfiguration {
@@ -21,6 +22,7 @@ export interface IConfiguration {
   url: string;
   project: string;
   localExp?: number;
+  tokenExpirationTime: number;
   dehydrate(): IConfigurationValues;
   delete();
   hydrate(config: IConfigurationValues);
@@ -34,6 +36,7 @@ export interface IConfigurationOptions {
   token?: string;
   project?: string;
   localExp?: number;
+  tokenExpirationTime?: number;
 }
 
 export class Configuration implements IConfiguration {
@@ -46,9 +49,13 @@ export class Configuration implements IConfiguration {
       // return this;
     }
 
+    // make it safe for the untyped JavaScript world to prevent issues
+    initialConfig = initialConfig || {} as any;
+
     this.internalConfiguration = {
       ...initialConfig,
       project: initialConfig.project || "_",
+      tokenExpirationTime: initialConfig.tokenExpirationTime || 5 * 6 * 1000,
     };
   }
 
@@ -58,16 +65,44 @@ export class Configuration implements IConfiguration {
     return this.internalConfiguration.token;
   }
 
+  public set token(token: string) {
+    this.partialUpdate({ token });
+  }
+
+  public get tokenExpirationTime(): number | undefined {
+    return this.internalConfiguration.tokenExpirationTime;
+  }
+
+  public set tokenExpirationTime(tokenExpirationTime: number) {
+    this.partialUpdate({
+      tokenExpirationTime: tokenExpirationTime * 60000,
+    });
+  }
+
   public get url(): string {
     return this.internalConfiguration.url;
+  }
+
+  public set url(url: string) {
+    this.partialUpdate({ url });
   }
 
   public get project(): string {
     return this.internalConfiguration.project;
   }
 
+  public set project(project: string) {
+    this.partialUpdate({
+      project: project || "_",
+    });
+  }
+
   public get localExp(): number | undefined {
     return this.internalConfiguration.localExp;
+  }
+
+  public set localExp(localExp: number | undefined) {
+    this.partialUpdate({ localExp });
   }
 
   // HELPER METHODS ============================================================
