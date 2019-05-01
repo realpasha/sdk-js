@@ -13,4 +13,4 @@ interface IRevisionDataSet<T> {
   parent_item: any | null;
 }
 
-export interface IRevisionResponse<T> extends IAPIResponse<Array<IRevisionDataSet<T>>> { }
+export interface IRevisionResponse<T> extends IAPIResponse<Array<IRevisionDataSet<T>>> {}

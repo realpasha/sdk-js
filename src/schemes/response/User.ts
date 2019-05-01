@@ -24,6 +24,6 @@ export interface IUserDataSet {
   token: string;
 }
 
-export interface IUsersResponse extends IAPIResponse<IUserDataSet[], IAPIMetaList> { }
+export interface IUsersResponse extends IAPIResponse<IUserDataSet[], IAPIMetaList> {}
 
-export interface IUserResponse extends IAPIResponse<IUserDataSet> { }
+export interface IUserResponse extends IAPIResponse<IUserDataSet> {}

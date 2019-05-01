@@ -71,7 +71,10 @@ describe("Items", () => {
 
     it("Calls patch() for the right endpoint", () => {
       client.updateItems("projects", [{ id: 1, title: "A" }, { id: 2, title: "B" }]);
-      expect(client.api.patch).to.have.been.calledWith("/items/projects", [{ id: 1, title: "A" }, { id: 2, title: "B" }]);
+      expect(client.api.patch).to.have.been.calledWith("/items/projects", [
+        { id: 1, title: "A" },
+        { id: 2, title: "B" },
+      ]);
     });
 
     it("Calls patch() for the system endpoint if a directus_* table is requested", () => {
