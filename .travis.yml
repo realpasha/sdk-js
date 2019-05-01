@@ -19,6 +19,7 @@ cache:
 install:
   - npm install
 script:
+  - npm run lint
   - npm run test
 # after_success:
 #   - npm run coverage
