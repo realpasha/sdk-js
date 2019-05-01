@@ -2,17 +2,10 @@
 import * as chai from "chai";
 import * as sinon from "sinon";
 import * as sinonChai from "sinon-chai";
-import SDK from "../../src/index";
+import SDK from "../../src/";
 
 const expect = chai.expect;
 chai.use(sinonChai);
-
-/**
- * FIXME:
- * [ERR_STABLE] means that this test fails in the current stable SDK
- * therefor this test will be skipped at the moment until the
- * owners found the correct way how the test should work!
- */
 
 describe("Items", () => {
   let client;
