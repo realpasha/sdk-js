@@ -7,5 +7,3 @@ export const invariant = (condition: boolean | null | undefined, message: string
 
   throw new Error(`Invariant violation: ${message}`);
 };
-
-invariant.params = (params: any) => invariant(isObjectOrEmpty(params), "params must be an object or empty");
