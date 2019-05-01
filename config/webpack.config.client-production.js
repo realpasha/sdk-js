@@ -6,10 +6,9 @@ const clientDevelopmentConfig = require('./webpack.config.client-development');
 module.exports = Object.assign({}, clientDevelopmentConfig, {
   mode: "production",
   devtool: "source-map",
-  output: {
-    ...clientDevelopmentConfig.output,
+  output: Object.assign({}, clientDevelopmentConfig.output, {
     filename: `${LIBRARY_NAME}.umd.min.js`
-  },
+  }),
   optimization: {
     minimize: true
   },

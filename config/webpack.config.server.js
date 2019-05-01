@@ -5,9 +5,8 @@ const nodeExternals = require('webpack-node-externals');
 module.exports = Object.assign({}, webpackBaseConfig, {
   target: "node",
   mode: "production",
-  output: {
-    ...webpackBaseConfig.output,
+  output: Object.assign({}, webpackBaseConfig.output, {
     filename: `${LIBRARY_NAME}.js`
-  },
+  }),
   externals: [nodeExternals()]
 });
