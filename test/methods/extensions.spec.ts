@@ -21,31 +21,31 @@ describe("Items", () => {
       },
     };
 
-    sinon.stub(client, "request").resolves(responseJSON);
+    sinon.stub(client.api, "request").resolves(responseJSON);
   });
 
   afterEach(() => {
-    client.request.restore();
+    client.api.request.restore();
   });
 
   describe("#getInterfaces()", () => {
     it("Calls request() for the right endpoint", () => {
       client.getInterfaces();
-      expect(client.request).to.have.been.calledWith("get", "/interfaces", {}, {}, true);
+      expect(client.api.request).to.have.been.calledWith("get", "/interfaces", {}, {}, true);
     });
   });
 
   describe("#getLayouts()", () => {
     it("Calls request() for the right endpoint", () => {
       client.getLayouts();
-      expect(client.request).to.have.been.calledWith("get", "/layouts", {}, {}, true);
+      expect(client.api.request).to.have.been.calledWith("get", "/layouts", {}, {}, true);
     });
   });
 
   describe("#getPages()", () => {
     it("Calls request() for the right endpoint", () => {
       client.getPages();
-      expect(client.request).to.have.been.calledWith("get", "/pages", {}, {}, true);
+      expect(client.api.request).to.have.been.calledWith("get", "/pages", {}, {}, true);
     });
   });
 });

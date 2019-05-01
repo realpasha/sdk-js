@@ -1,4 +1,4 @@
-// tslint:disable: no-unused-expression
+// tslint:disable
 import * as chai from "chai";
 import * as sinonChai from "sinon-chai";
 import SDK from "../src/index";
@@ -15,11 +15,11 @@ chai.use(sinonChai);
 
 describe("General", () => {
   it("Creates a new instance without errors", () => {
-    expect(() => new SDK()).not.to.throw();
+    expect(() => new SDK(undefined as any)).not.to.throw();
   });
 
   it("Allows you to set and retrieve the api url", () => {
-    const client = new SDK() as any;
+    const client = new SDK(undefined as any) as any;
     client.url = "https://demo-api.getdirectus.com/";
     expect(client.url).to.equal("https://demo-api.getdirectus.com/");
   });
@@ -32,7 +32,7 @@ describe("General", () => {
   });
 
   it("Allows you to set and retrieve the access token", () => {
-    const client = new SDK() as any;
+    const client = new SDK(undefined as any) as any;
     client.token = "abcdef123456";
     expect(client.token).to.equal("abcdef123456");
   });
@@ -45,7 +45,7 @@ describe("General", () => {
   });
 
   it("Allows you to set and retrieve the environment in use", () => {
-    const client = new SDK() as any;
+    const client = new SDK(undefined as any) as any;
     client.env = "staging";
     expect(client.env).to.equal("staging");
   });
@@ -64,7 +64,7 @@ describe("General", () => {
    * FIXME: [ERR_STABLE]
    */
   it.skip("Defaults the environment to underscore (_)", () => {
-    const client = new SDK() as any;
+    const client = new SDK(undefined as any) as any;
     expect(client.env).to.equal("_");
   });
 });

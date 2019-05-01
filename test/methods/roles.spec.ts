@@ -22,25 +22,25 @@ describe("Relations", () => {
       },
     };
 
-    sinon.stub(client, "get").resolves(responseJSON);
-    sinon.stub(client, "put").resolves(responseJSON);
-    sinon.stub(client, "patch").resolves(responseJSON);
-    sinon.stub(client, "post").resolves(responseJSON);
-    sinon.stub(client, "delete").resolves(responseJSON);
+    sinon.stub(client.api, "get").resolves(responseJSON);
+    sinon.stub(client.api, "put").resolves(responseJSON);
+    sinon.stub(client.api, "patch").resolves(responseJSON);
+    sinon.stub(client.api, "post").resolves(responseJSON);
+    sinon.stub(client.api, "delete").resolves(responseJSON);
   });
 
   afterEach(() => {
-    client.get.restore();
-    client.put.restore();
-    client.patch.restore();
-    client.post.restore();
-    client.delete.restore();
+    client.api.get.restore();
+    client.api.put.restore();
+    client.api.patch.restore();
+    client.api.post.restore();
+    client.api.delete.restore();
   });
 
   describe("#getRoles()", () => {
     it("Defaults to an empty object if no parameters are passed", () => {
       client.getRoles();
-      expect(client.get).to.have.been.calledWith("/roles", {});
+      expect(client.api.get).to.have.been.calledWith("/roles", {});
     });
 
     it("Errors if parameter `params` is of a wrong type", () => {
@@ -49,7 +49,7 @@ describe("Relations", () => {
 
     it("Calls get() for the right endpoint", async () => {
       client.getRoles({ limit: 50 });
-      expect(client.get).to.have.been.calledWith("/roles", { limit: 50 });
+      expect(client.api.get).to.have.been.calledWith("/roles", { limit: 50 });
     });
   });
 
@@ -68,7 +68,7 @@ describe("Relations", () => {
 
     it("Calls get() for the right endpoint", async () => {
       client.getRole(4, { fields: "name,id" });
-      expect(client.get).to.have.been.calledWith("/roles/4", {
+      expect(client.api.get).to.have.been.calledWith("/roles/4", {
         fields: "name,id",
       });
     });
@@ -85,7 +85,7 @@ describe("Relations", () => {
 
     it("Calls patch() for the right endpoint", () => {
       client.updateRole(15, { name: "Intern" });
-      expect(client.patch).to.have.been.calledWith("/roles/15", {
+      expect(client.api.patch).to.have.been.calledWith("/roles/15", {
         name: "Intern",
       });
     });
@@ -102,7 +102,7 @@ describe("Relations", () => {
 
     it("Calls post() for the right endpoint", () => {
       client.createRole({ name: "Intern" });
-      expect(client.post).to.have.been.calledWith("/roles", {
+      expect(client.api.post).to.have.been.calledWith("/roles", {
         name: "Intern",
       });
     });
@@ -115,7 +115,7 @@ describe("Relations", () => {
 
     it("Calls delete() for the right endpoint", () => {
       client.deleteRole(15);
-      expect(client.delete).to.have.been.calledWith("/roles/15");
+      expect(client.api.delete).to.have.been.calledWith("/roles/15");
     });
   });
 });

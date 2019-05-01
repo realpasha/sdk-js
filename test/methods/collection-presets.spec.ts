@@ -7,6 +7,13 @@ import SDK from "../../src/index";
 const expect = chai.expect;
 chai.use(sinonChai);
 
+/**
+ * FIXME:
+ * [ERR_STABLE] means that this test fails in the current stable SDK
+ * therefor this test will be skipped at the moment until the
+ * owners found the correct way how the test should work!
+ */
+
 describe("Items", () => {
   let client;
 
@@ -21,19 +28,19 @@ describe("Items", () => {
       },
     };
 
-    sinon.stub(client, "get").resolves(responseJSON);
-    sinon.stub(client, "put").resolves(responseJSON);
-    sinon.stub(client, "patch").resolves(responseJSON);
-    sinon.stub(client, "post").resolves(responseJSON);
-    sinon.stub(client, "delete").resolves(responseJSON);
+    sinon.stub(client.api, "get").resolves(responseJSON);
+    sinon.stub(client.api, "put").resolves(responseJSON);
+    sinon.stub(client.api, "patch").resolves(responseJSON);
+    sinon.stub(client.api, "post").resolves(responseJSON);
+    sinon.stub(client.api, "delete").resolves(responseJSON);
   });
 
   afterEach(() => {
-    client.get.restore();
-    client.put.restore();
-    client.patch.restore();
-    client.post.restore();
-    client.delete.restore();
+    client.api.get.restore();
+    client.api.put.restore();
+    client.api.patch.restore();
+    client.api.post.restore();
+    client.api.delete.restore();
   });
 
   describe("#createCollectionPreset", () => {
@@ -45,7 +52,7 @@ describe("Items", () => {
       await client.createCollectionPreset({
         view_type: "tiles",
       });
-      expect(client.post).to.have.been.calledWith("/collection_presets", {
+      expect(client.api.post).to.have.been.calledWith("/collection_presets", {
         view_type: "tiles",
       });
     });
@@ -64,7 +71,7 @@ describe("Items", () => {
       await client.updateCollectionPreset(15, {
         view_type: "tiles",
       });
-      expect(client.patch).to.have.been.calledWith("/collection_presets/15", {
+      expect(client.api.patch).to.have.been.calledWith("/collection_presets/15", {
         view_type: "tiles",
       });
     });
@@ -77,7 +84,7 @@ describe("Items", () => {
 
     it("Calls delete with the right parameters", async () => {
       await client.deleteCollectionPreset(15);
-      expect(client.delete).to.have.been.calledWith("/collection_presets/15");
+      expect(client.api.delete).to.have.been.calledWith("/collection_presets/15");
     });
   });
 });

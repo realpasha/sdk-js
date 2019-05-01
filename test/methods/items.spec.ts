@@ -21,19 +21,19 @@ describe("Items", () => {
       },
     };
 
-    sinon.stub(client, "get").resolves(responseJSON);
-    sinon.stub(client, "put").resolves(responseJSON);
-    sinon.stub(client, "patch").resolves(responseJSON);
-    sinon.stub(client, "post").resolves(responseJSON);
-    sinon.stub(client, "delete").resolves(responseJSON);
+    sinon.stub(client.api, "get").resolves(responseJSON);
+    sinon.stub(client.api, "put").resolves(responseJSON);
+    sinon.stub(client.api, "patch").resolves(responseJSON);
+    sinon.stub(client.api, "post").resolves(responseJSON);
+    sinon.stub(client.api, "delete").resolves(responseJSON);
   });
 
   afterEach(() => {
-    client.get.restore();
-    client.put.restore();
-    client.patch.restore();
-    client.post.restore();
-    client.delete.restore();
+    client.api.get.restore();
+    client.api.put.restore();
+    client.api.patch.restore();
+    client.api.post.restore();
+    client.api.delete.restore();
   });
 
   describe("#createItem()", () => {
@@ -47,14 +47,14 @@ describe("Items", () => {
 
     it("Calls post() for the right endpoint", () => {
       client.createItem("projects", { title: "Groetjes uit NYC" });
-      expect(client.post).to.have.been.calledWith("/items/projects", {
+      expect(client.api.post).to.have.been.calledWith("/items/projects", {
         title: "Groetjes uit NYC",
       });
     });
 
     it("Calls post() for the system endpoint if a directus_* table is requested", () => {
       client.createItem("directus_users", { title: "Groetjes uit NYC" });
-      expect(client.post).to.have.been.calledWith("/users", {
+      expect(client.api.post).to.have.been.calledWith("/users", {
         title: "Groetjes uit NYC",
       });
     });
@@ -71,12 +71,12 @@ describe("Items", () => {
 
     it("Calls patch() for the right endpoint", () => {
       client.updateItems("projects", [{ id: 1, title: "A" }, { id: 2, title: "B" }]);
-      expect(client.patch).to.have.been.calledWith("/items/projects", [{ id: 1, title: "A" }, { id: 2, title: "B" }]);
+      expect(client.api.patch).to.have.been.calledWith("/items/projects", [{ id: 1, title: "A" }, { id: 2, title: "B" }]);
     });
 
     it("Calls patch() for the system endpoint if a directus_* table is requested", () => {
       client.updateItems("directus_users", [{ id: 1, title: "A" }, { id: 2, title: "B" }]);
-      expect(client.patch).to.have.been.calledWith("/users", [{ id: 1, title: "A" }, { id: 2, title: "B" }]);
+      expect(client.api.patch).to.have.been.calledWith("/users", [{ id: 1, title: "A" }, { id: 2, title: "B" }]);
     });
   });
 
@@ -95,7 +95,7 @@ describe("Items", () => {
 
     it("Calls patch() for the right endpoint", () => {
       client.updateItem("projects", "15", { title: "Groetjes uit NYC" });
-      expect(client.patch).to.have.been.calledWith("/items/projects/15", {
+      expect(client.api.patch).to.have.been.calledWith("/items/projects/15", {
         title: "Groetjes uit NYC",
       });
     });
@@ -104,7 +104,7 @@ describe("Items", () => {
       client.updateItem("directus_users", "15", {
         title: "Groetjes uit NYC",
       });
-      expect(client.patch).to.have.been.calledWith("/users/15", {
+      expect(client.api.patch).to.have.been.calledWith("/users/15", {
         title: "Groetjes uit NYC",
       });
     });
@@ -121,14 +121,14 @@ describe("Items", () => {
 
     it("Calls get() for the right endpoint", () => {
       client.getItems("projects", { limit: 50 });
-      expect(client.get).to.have.been.calledWith("/items/projects", {
+      expect(client.api.get).to.have.been.calledWith("/items/projects", {
         limit: 50,
       });
     });
 
     it("Calls get() for the system endpoint if a directus_* table is requested", () => {
       client.getItems("directus_users", { limit: 50 });
-      expect(client.get).to.have.been.calledWith("/users", { limit: 50 });
+      expect(client.api.get).to.have.been.calledWith("/users", { limit: 50 });
     });
   });
 
@@ -147,7 +147,7 @@ describe("Items", () => {
 
     it("Calls get() for the right endpoint", () => {
       client.getItem("projects", 15, { fields: ["title", "author"] });
-      expect(client.get).to.have.been.calledWith("/items/projects/15", {
+      expect(client.api.get).to.have.been.calledWith("/items/projects/15", {
         fields: ["title", "author"],
       });
     });
@@ -156,7 +156,7 @@ describe("Items", () => {
       client.getItem("directus_users", 15, {
         fields: ["title", "author"],
       });
-      expect(client.get).to.have.been.calledWith("/users/15", {
+      expect(client.api.get).to.have.been.calledWith("/users/15", {
         fields: ["title", "author"],
       });
     });
@@ -173,12 +173,12 @@ describe("Items", () => {
 
     it("Calls delete() for the right endpoint", () => {
       client.deleteItem("projects", 15);
-      expect(client.delete).to.have.been.calledWith("/items/projects/15");
+      expect(client.api.delete).to.have.been.calledWith("/items/projects/15");
     });
 
     it("Calls delete() for the system endpoint if a directus_* table is requested", () => {
       client.deleteItem("directus_users", 15);
-      expect(client.delete).to.have.been.calledWith("/users/15");
+      expect(client.api.delete).to.have.been.calledWith("/users/15");
     });
   });
 
@@ -193,12 +193,12 @@ describe("Items", () => {
 
     it("Calls delete() for the right endpoint", () => {
       client.deleteItems("projects", [15, 21]);
-      expect(client.delete).to.have.been.calledWith("/items/projects/15,21");
+      expect(client.api.delete).to.have.been.calledWith("/items/projects/15,21");
     });
 
     it("Calls delete() for the system endpoint if a directus_* table is requested", () => {
       client.deleteItems("directus_users", [15, 21]);
-      expect(client.delete).to.have.been.calledWith("/users/15,21");
+      expect(client.api.delete).to.have.been.calledWith("/users/15,21");
     });
   });
 });

@@ -21,25 +21,25 @@ describe("Collections", () => {
       },
     };
 
-    sinon.stub(client, "get").resolves(responseJSON);
-    sinon.stub(client, "put").resolves(responseJSON);
-    sinon.stub(client, "patch").resolves(responseJSON);
-    sinon.stub(client, "post").resolves(responseJSON);
-    sinon.stub(client, "delete").resolves(responseJSON);
+    sinon.stub(client.api, "get").resolves(responseJSON);
+    sinon.stub(client.api, "put").resolves(responseJSON);
+    sinon.stub(client.api, "patch").resolves(responseJSON);
+    sinon.stub(client.api, "post").resolves(responseJSON);
+    sinon.stub(client.api, "delete").resolves(responseJSON);
   });
 
   afterEach(() => {
-    client.get.restore();
-    client.put.restore();
-    client.patch.restore();
-    client.post.restore();
-    client.delete.restore();
+    client.api.get.restore();
+    client.api.put.restore();
+    client.api.patch.restore();
+    client.api.post.restore();
+    client.api.delete.restore();
   });
 
   describe("#getCollections()", () => {
     it("Defaults to an empty object if no parameters are passed", () => {
       client.getCollections();
-      expect(client.get).to.have.been.calledWith("/collections", {});
+      expect(client.api.get).to.have.been.calledWith("/collections", {});
     });
 
     it("Errors if parameter `params` is of a wrong type", () => {
@@ -48,7 +48,7 @@ describe("Collections", () => {
 
     it("Calls get() for the right endpoint", () => {
       client.getCollections({ limit: 50 });
-      expect(client.get).to.have.been.calledWith("/collections", {
+      expect(client.api.get).to.have.been.calledWith("/collections", {
         limit: 50,
       });
     });
@@ -65,7 +65,7 @@ describe("Collections", () => {
 
     it("Calls get() for the right endpoint", () => {
       client.getCollection("projects", { limit: 50 });
-      expect(client.get).to.have.been.calledWith("/collections/projects", {
+      expect(client.api.get).to.have.been.calledWith("/collections/projects", {
         limit: 50,
       });
     });
@@ -78,7 +78,7 @@ describe("Collections", () => {
 
     it("Calls post() for the right endpoint", () => {
       client.createCollection({ collection: "test" });
-      expect(client.post).to.have.been.calledWith("/collections", {
+      expect(client.api.post).to.have.been.calledWith("/collections", {
         collection: "test",
       });
     });
@@ -95,7 +95,7 @@ describe("Collections", () => {
 
     it("Calls patch() for the right endpoint", () => {
       client.updateCollection("test", { note: "test note" });
-      expect(client.patch).to.have.been.calledWith("/collections/test", {
+      expect(client.api.patch).to.have.been.calledWith("/collections/test", {
         note: "test note",
       });
     });
@@ -108,7 +108,7 @@ describe("Collections", () => {
 
     it("Calls delete() for the right endpoint", () => {
       client.deleteCollection("test");
-      expect(client.delete).to.have.been.calledWith("/collections/test");
+      expect(client.api.delete).to.have.been.calledWith("/collections/test");
     });
   });
 });

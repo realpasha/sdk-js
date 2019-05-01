@@ -21,25 +21,25 @@ describe("Fields", () => {
       },
     };
 
-    sinon.stub(client, "get").resolves(responseJSON);
-    sinon.stub(client, "put").resolves(responseJSON);
-    sinon.stub(client, "patch").resolves(responseJSON);
-    sinon.stub(client, "post").resolves(responseJSON);
-    sinon.stub(client, "delete").resolves(responseJSON);
+    sinon.stub(client.api, "get").resolves(responseJSON);
+    sinon.stub(client.api, "put").resolves(responseJSON);
+    sinon.stub(client.api, "patch").resolves(responseJSON);
+    sinon.stub(client.api, "post").resolves(responseJSON);
+    sinon.stub(client.api, "delete").resolves(responseJSON);
   });
 
   afterEach(() => {
-    client.get.restore();
-    client.put.restore();
-    client.patch.restore();
-    client.post.restore();
-    client.delete.restore();
+    client.api.get.restore();
+    client.api.put.restore();
+    client.api.patch.restore();
+    client.api.post.restore();
+    client.api.delete.restore();
   });
 
   describe("#getAllFields()", () => {
     it("Defaults to an empty object if no parameters are passed", () => {
       client.getAllFields();
-      expect(client.get).to.have.been.calledWith("/fields", {});
+      expect(client.api.get).to.have.been.calledWith("/fields", {});
     });
 
     it("Errors if parameter `params` is of a wrong type", () => {
@@ -48,7 +48,7 @@ describe("Fields", () => {
 
     it("Calls get() for the right endpoint", () => {
       client.getAllFields({ limit: 50 });
-      expect(client.get).to.have.been.calledWith("/fields", {
+      expect(client.api.get).to.have.been.calledWith("/fields", {
         limit: 50,
       });
     });
@@ -65,7 +65,7 @@ describe("Fields", () => {
 
     it("Calls get() for the right endpoint", () => {
       client.getFields("projects", { limit: 50 });
-      expect(client.get).to.have.been.calledWith("/fields/projects", {
+      expect(client.api.get).to.have.been.calledWith("/fields/projects", {
         limit: 50,
       });
     });
@@ -82,7 +82,7 @@ describe("Fields", () => {
 
     it("Calls get() for the right endpoint", () => {
       client.getField("projects", "title", { fields: "interface" });
-      expect(client.get).to.have.been.calledWith("/fields/projects/title", {
+      expect(client.api.get).to.have.been.calledWith("/fields/projects/title", {
         fields: "interface",
       });
     });
@@ -102,7 +102,7 @@ describe("Fields", () => {
         field: "first_name",
         interface: "text-input",
       });
-      expect(client.post).to.have.been.calledWith("/fields/members", {
+      expect(client.api.post).to.have.been.calledWith("/fields/members", {
         field: "first_name",
         interface: "text-input",
       });
@@ -127,7 +127,7 @@ describe("Fields", () => {
         field: "first_name",
         interface: "text-input",
       });
-      expect(client.patch).to.have.been.calledWith("/fields/members/first_name", {
+      expect(client.api.patch).to.have.been.calledWith("/fields/members/first_name", {
         field: "first_name",
         interface: "text-input",
       });
@@ -152,7 +152,7 @@ describe("Fields", () => {
         default_value: "",
       });
 
-      expect(client.patch).to.have.been.calledWith("/fields/members/first_name,last_name", {
+      expect(client.api.patch).to.have.been.calledWith("/fields/members/first_name,last_name", {
         default_value: "",
       });
     });
@@ -169,7 +169,7 @@ describe("Fields", () => {
         },
       ]);
 
-      expect(client.patch).to.have.been.calledWith("/fields/members", [
+      expect(client.api.patch).to.have.been.calledWith("/fields/members", [
         {
           field: "id",
           sort: 1,
@@ -193,7 +193,7 @@ describe("Fields", () => {
 
     it("Calls delete() for the right endpoint", () => {
       client.deleteField("test", "field");
-      expect(client.delete).to.have.been.calledWith("/fields/test/field");
+      expect(client.api.delete).to.have.been.calledWith("/fields/test/field");
     });
   });
 });
