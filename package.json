@@ -11,12 +11,13 @@
   "scripts": {
     "prettier": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\" \"**/*.json\"",
     "develop": "webpack --progress --colors --watch",
-    "prebuild": "npm-run-all test",
+    "prebuild": "npm-run-all lint test",
     "build": "run-s build:*",
     "build:webpack": "webpack",
     "build:declaration": "tsc --project ./tsconfig.meta.json",
+    "lint": "npm-run-all lint:*",
+    "lint:ts": "tslint --project ./tslint.json",
     "test": "run-s test:*",
-    "test:lint": "tslint --project ./tslint.json",
     "test:mocha": "ts-mocha -p ./tsconfig.test.json test/**/*.spec.ts --exit --recursive"
   },
   "repository": "directus/sdk-js",
