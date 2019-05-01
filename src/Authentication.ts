@@ -203,7 +203,7 @@ export class Authentication implements IAuthentication {
       this.refreshIfNeeded();
     }
 
-    this.refreshInterval = setInterval(this.refreshIfNeeded.bind(this), 10000);
+    this.refreshInterval = setInterval(this.refreshIfNeeded.bind(this), 10000) as any;
   }
 
   /**

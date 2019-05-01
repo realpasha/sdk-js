@@ -1,3 +1,4 @@
+// @ts-check
 const path = require('path');
 const { ROOT, ENTRY, DIST, LIBRARY_NAME } = require('./utils');
 

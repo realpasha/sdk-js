@@ -6,6 +6,7 @@ interface IAuthenticationInjectableProps {
     post<T>(url: string, data: any): Promise<T>;
 }
 export interface IAuthentication {
+    refreshInterval?: number;
     isLoggedIn(): boolean;
     login(credentials: ILoginCredentials, options: ILoginOptions): Promise<ILoginResponse>;
     logout(): void;
@@ -15,7 +16,7 @@ export interface IAuthentication {
 export declare class Authentication implements IAuthentication {
     private config;
     private inject;
-    private refreshInterval?;
+    refreshInterval?: number;
     private onAutoRefreshError?;
     private onAutoRefreshSuccess?;
     constructor(config: IConfiguration, inject: IAuthenticationInjectableProps);

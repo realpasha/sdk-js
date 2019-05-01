@@ -8,6 +8,8 @@ const printPath = segment => cyan(segment.replace(ROOT, '~'));
 
 console.log([
   magenta(`-------------------------------------------------`),
+  `DIRECTUS JS SDK WEBPACK BUILD CONFIGURATION`,
+  magenta(`-------------------------------------------------`),
   `Root: ${cyan(ROOT)}`,
   `Entry: ${printPath(ENTRY)}`,
   `OutDir: ${printPath(DIST)}`,

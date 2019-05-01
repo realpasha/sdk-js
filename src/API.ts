@@ -64,7 +64,6 @@ export class API implements IAPI {
    * GET convenience method. Calls the request method for you
    */
   public get<T extends any = any>(endpoint: string, params: object = {}): Promise<T> {
-    console.log("API#get", endpoint, params);
     invariant(isString(endpoint), "endpoint must be a string");
     invariant(isObjectOrEmpty(params), "params must be an object or empty");
 

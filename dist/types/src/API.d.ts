@@ -1,11 +1,13 @@
 import { AxiosInstance } from "axios";
 import { IAuthentication } from "./Authentication";
+import { concurrencyManager } from "./ConcurrencyManager";
 import { IConfiguration } from "./Configuration";
 import { BodyType } from "./schemes/http/Body";
 import { RequestMethod } from "./schemes/http/Request";
 export interface IAPI {
     auth: IAuthentication;
     xhr: AxiosInstance;
+    concurrent: ReturnType<typeof concurrencyManager>;
     reset(): void;
     get<T extends any = any>(endpoint: string, params?: object): Promise<T>;
     post<T extends any = any>(endpoint: string, body?: BodyType, params?: object): Promise<T>;
@@ -21,6 +23,24 @@ export declare class API implements IAPI {
     private config;
     auth: IAuthentication;
     xhr: AxiosInstance;
+    concurrent: {
+        limit: number;
+        queue: import("./ConcurrencyManager").IConcurrencyQueueItem[];
+        running: import("./ConcurrencyManager").IConcurrencyQueueItem[];
+        interceptors: {
+            request: any;
+            response: any;
+        };
+        push(reqHandler: import("./ConcurrencyManager").IConcurrencyQueueItem): void;
+        shiftInitial(): void;
+        shift(): void;
+        requestHandler(req: import("axios").AxiosRequestConfig): Promise<import("axios").AxiosRequestConfig>;
+        responseHandler(res: import("axios").AxiosResponse<any>): import("axios").AxiosResponse<any>;
+        detach(): void; /**
+         * Resets the client instance by logging out and removing the URL and project
+         */
+        attach(limitConcurrentRequestsTo?: number): void;
+    };
     constructor(config: IConfiguration);
     /**
      * Resets the client instance by logging out and removing the URL and project
