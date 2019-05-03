@@ -1,5 +1,5 @@
-// tslint:disable: no-unused-expression
 import * as chai from "chai";
+// @ts-ignore wrong module format of chai-datetime!
 import * as chaiDateTime from "chai-datetime";
 import * as jwt from "jsonwebtoken";
 import * as sinonChai from "sinon-chai";
@@ -11,14 +11,7 @@ const expect = chai.expect;
 chai.use(sinonChai);
 chai.use(chaiDateTime);
 
-/**
- * FIXME:
- * [ERR_STABLE] means that this test fails in the current stable SDK
- * therefor this test will be skipped at the moment until the
- * owners found the correct way how the test should work!
- */
-
-describe("JWT Payload", () => {
+describe("Payload", () => {
   let client: ISDK;
 
   beforeEach(() => {
@@ -49,7 +42,7 @@ describe("JWT Payload", () => {
     expect(client.payload.exp).to.equalDate(date);
   });
 
-  it("Reports a loggedIn flag when token, url, env are set and token has not expired", () => {
+  it("Reports a loggedIn flag when token, url, project are set and token has not expired", () => {
     client.config.token = jwt.sign({ foo: "bar" }, "secret-string", {
       expiresIn: "-1h",
       noTimestamp: true,

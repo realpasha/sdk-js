@@ -1,14 +1,14 @@
-// tslint:disable: no-unused-expression
 import * as chai from "chai";
 import * as sinon from "sinon";
 import * as sinonChai from "sinon-chai";
 import SDK from "../../src/";
+import { ISDK } from "../../src/SDK";
 
 const expect = chai.expect;
 chai.use(sinonChai);
 
 describe("Fields", () => {
-  let client;
+  let client: ISDK;
 
   beforeEach(() => {
     client = new SDK({
@@ -29,11 +29,11 @@ describe("Fields", () => {
   });
 
   afterEach(() => {
-    client.api.get.restore();
-    client.api.put.restore();
-    client.api.patch.restore();
-    client.api.post.restore();
-    client.api.delete.restore();
+    (client.api.get as any).restore();
+    (client.api.put as any).restore();
+    (client.api.patch as any).restore();
+    (client.api.post as any).restore();
+    (client.api.delete as any).restore();
   });
 
   describe("#getAllFields()", () => {
@@ -43,7 +43,7 @@ describe("Fields", () => {
     });
 
     it("Errors if parameter `params` is of a wrong type", () => {
-      expect(() => client.getAllFields("params")).to.throw();
+      expect(() => client.getAllFields("params" as any)).to.throw();
     });
 
     it("Calls get() for the right endpoint", () => {
@@ -60,7 +60,7 @@ describe("Fields", () => {
     });
 
     it("Errors if parameter `params` is of a wrong type", () => {
-      expect(() => client.getFields("projects", "params")).to.throw();
+      expect(() => client.getFields("projects", "params" as any)).to.throw();
     });
 
     it("Calls get() for the right endpoint", () => {
@@ -77,7 +77,7 @@ describe("Fields", () => {
     });
 
     it("Errors on missing `fieldName` parameter", () => {
-      expect(() => client.getField("projects")).to.throw();
+      expect(() => client.getField("projects", undefined as any)).to.throw();
     });
 
     it("Calls get() for the right endpoint", () => {
@@ -94,7 +94,7 @@ describe("Fields", () => {
     });
 
     it("Errors on missing `fieldInfo` parameter", () => {
-      expect(() => client.createField("collection")).to.throw();
+      expect(() => client.createField("collection", undefined as any)).to.throw();
     });
 
     it("Calls post() for the right endpoint", () => {
@@ -115,11 +115,11 @@ describe("Fields", () => {
     });
 
     it("Errors on missing `fieldName` parameter", () => {
-      expect(() => client.updateField("collection")).to.throw();
+      expect(() => client.updateField("collection", undefined as any, undefined as any)).to.throw();
     });
 
     it("Errors on missing `fieldInfo` parameter", () => {
-      expect(() => client.updateField("members", "first_name")).to.throw();
+      expect(() => client.updateField("members", "first_name", undefined as any)).to.throw();
     });
 
     it("Calls patch() for the right endpoint", () => {
@@ -136,15 +136,15 @@ describe("Fields", () => {
 
   describe("#updateFields", () => {
     it("Errors on missing `collection` parameter", () => {
-      expect(() => client.updateFields()).to.throw();
+      expect(() => client.updateFields(undefined as any, undefined as any)).to.throw();
     });
 
     it("Errors if fieldsInfoOrFieldNames isn not an array", () => {
-      expect(() => client.updateFields("projects", "updates"));
+      expect(() => client.updateFields("projects", "updates" as any));
     });
 
     it("Errors if fieldInfo has been passed in a wrong format", () => {
-      expect(() => client.updateFields("projects", ["first_name", "last_name"], "update")).to.throw();
+      expect(() => client.updateFields("projects", ["first_name", "last_name"], "update" as any)).to.throw();
     });
 
     it("Calls patch() multiple fields same value", () => {
@@ -184,11 +184,11 @@ describe("Fields", () => {
 
   describe("#deleteField()", () => {
     it("Errors on missing `collection` parameter", () => {
-      expect(() => client.deleteField()).to.throw();
+      expect(() => client.deleteField(undefined as any, undefined as any)).to.throw();
     });
 
     it("Errors on missing `fieldName` parameter", () => {
-      expect(() => client.deleteField("test")).to.throw();
+      expect(() => client.deleteField("test", undefined as any)).to.throw();
     });
 
     it("Calls delete() for the right endpoint", () => {

@@ -6,13 +6,6 @@ import SDK from "../src/index";
 const expect = chai.expect;
 chai.use(sinonChai);
 
-/**
- * FIXME:
- * [ERR_STABLE] means that this test fails in the current stable SDK
- * therefor this test will be skipped at the moment until the
- * owners found the correct way how the test should work!
- */
-
 describe("General", () => {
   it("Creates a new instance without errors", () => {
     expect(() => new SDK(undefined as any)).not.to.throw();
@@ -44,30 +37,21 @@ describe("General", () => {
     expect(client.config.token).to.equal("abcdef123456");
   });
 
-  /**
-   * FIXME: [ERR_STABLE]
-   */
-  it.skip("Allows you to set and retrieve the environment in use", () => {
+  it("Allows you to set and retrieve the project in use", () => {
     const client = new SDK(undefined as any) as any;
-    client.env = "staging";
-    expect(client.env).to.equal("staging");
+    client.config.project = "staging";
+    expect(client.config.project).to.equal("staging");
   });
 
-  /**
-   * FIXME: [ERR_STABLE]
-   */
-  it.skip("Allows you to set the environment on creation", () => {
+  it("Allows you to set the project on creation", () => {
     const client = new SDK({
-      env: "staging",
+      project: "staging",
     } as any) as any;
-    expect(client.env).to.equal("staging");
+    expect(client.config.project).to.equal("staging");
   });
 
-  /**
-   * FIXME: [ERR_STABLE]
-   */
-  it.skip("Defaults the environment to underscore (_)", () => {
+  it("Defaults the project to underscore (_)", () => {
     const client = new SDK(undefined as any) as any;
-    expect(client.env).to.equal("_");
+    expect(client.config.project).to.equal("_");
   });
 });

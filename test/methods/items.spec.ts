@@ -1,14 +1,14 @@
-// tslint:disable: no-unused-expression
 import * as chai from "chai";
 import * as sinon from "sinon";
 import * as sinonChai from "sinon-chai";
 import SDK from "../../src/";
+import { ISDK } from "../../src/SDK";
 
 const expect = chai.expect;
 chai.use(sinonChai);
 
 describe("Items", () => {
-  let client;
+  let client: ISDK;
 
   beforeEach(() => {
     client = new SDK({
@@ -29,11 +29,11 @@ describe("Items", () => {
   });
 
   afterEach(() => {
-    client.api.get.restore();
-    client.api.put.restore();
-    client.api.patch.restore();
-    client.api.post.restore();
-    client.api.delete.restore();
+    (client.api.get as any).restore();
+    (client.api.put as any).restore();
+    (client.api.patch as any).restore();
+    (client.api.post as any).restore();
+    (client.api.delete as any).restore();
   });
 
   describe("#createItem()", () => {
@@ -42,7 +42,7 @@ describe("Items", () => {
     });
 
     it("Errors on missing `body` parameter", () => {
-      expect(() => client.createItem("projects")).to.throw();
+      expect(() => client.createItem("projects", undefined as any)).to.throw();
     });
 
     it("Calls post() for the right endpoint", () => {
@@ -66,7 +66,7 @@ describe("Items", () => {
     });
 
     it("Errors on missing `body` parameter", () => {
-      expect(() => client.updateItems("projects")).to.throw();
+      expect(() => client.updateItems("projects", undefined as any)).to.throw();
     });
 
     it("Calls patch() for the right endpoint", () => {
@@ -89,11 +89,11 @@ describe("Items", () => {
     });
 
     it("Errors on missing `primaryKey` parameter", () => {
-      expect(() => client.updateItem("projects")).to.throw();
+      expect(() => client.updateItem("projects", undefined as any, undefined as any)).to.throw();
     });
 
     it("Errors on missing `body` parameter", () => {
-      expect(() => client.updateItem("projects", "15")).to.throw();
+      expect(() => client.updateItem("projects", "15", undefined as any)).to.throw();
     });
 
     it("Calls patch() for the right endpoint", () => {
@@ -119,7 +119,7 @@ describe("Items", () => {
     });
 
     it("Errors if parameter `params` is of a wrong type", () => {
-      expect(() => client.getItems("projects", "params")).to.throw();
+      expect(() => client.getItems("projects", "params" as any)).to.throw();
     });
 
     it("Calls get() for the right endpoint", () => {
@@ -141,11 +141,11 @@ describe("Items", () => {
     });
 
     it("Errors on missing `primaryKey` parameter", () => {
-      expect(() => client.getItem("projects")).to.throw();
+      expect(() => client.getItem("projects", undefined as any)).to.throw();
     });
 
     it("Errors if parameter `params` is of a wrong type", () => {
-      expect(() => client.getItem("projects", 15, 140)).to.throw();
+      expect(() => client.getItem("projects", 15, 140 as any)).to.throw();
     });
 
     it("Calls get() for the right endpoint", () => {
@@ -171,7 +171,7 @@ describe("Items", () => {
     });
 
     it("Errors on missing `primaryKey` parameter", () => {
-      expect(() => client.deleteItem("projects")).to.throw();
+      expect(() => client.deleteItem("projects", undefined as any)).to.throw();
     });
 
     it("Calls delete() for the right endpoint", () => {
@@ -191,7 +191,7 @@ describe("Items", () => {
     });
 
     it("Errors on missing `primaryKeys` parameter", () => {
-      expect(() => client.deleteItems("projects")).to.throw();
+      expect(() => client.deleteItems("projects", undefined as any)).to.throw();
     });
 
     it("Calls delete() for the right endpoint", () => {

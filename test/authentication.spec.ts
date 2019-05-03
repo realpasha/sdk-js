@@ -1,4 +1,3 @@
-// tslint:disable: no-unused-expression
 import * as chai from "chai";
 import * as jwt from "jsonwebtoken";
 import * as sinon from "sinon";
@@ -8,13 +7,6 @@ import { ISDK } from "../src/SDK";
 
 const expect = chai.expect;
 chai.use(sinonChai);
-
-/**
- * FIXME:
- * [ERR_STABLE] means that this test fails in the current stable SDK
- * therefor this test will be skipped at the moment until the
- * owners found the correct way how the test should work!
- */
 
 describe("Authentication", () => {
   let client: ISDK;
@@ -28,11 +20,15 @@ describe("Authentication", () => {
     client.config.url = "https://demo-api.getdirectus.com";
 
     sinon.stub(client.api.xhr, "request").resolves({
+      config: {},
       data: {
         data: {
           token: "abcdef",
         },
       },
+      headers: {},
+      status: 200,
+      statusText: "OK",
     });
   });
 
@@ -91,25 +87,19 @@ describe("Authentication", () => {
       expect(client.config.token).to.equal("abcdef");
     });
 
-    /**
-     * FIXME: [ERR_STABLE]
-     */
-    it("Replaces env and url if passed", async () => {
+    it("Replaces project and url if passed", async () => {
       await client.login({
         email: "text@example.com",
-        // env: "testEnv",
         password: "testPassword",
+        project: "testProject",
         url: "https://example.com",
       });
 
       expect(client.config.url).to.equal("https://example.com");
-      // expect(client.config.env).to.equal("testEnv");
+      expect(client.config.project).to.equal("testProject");
     });
 
-    /**
-     * FIXME: [ERR_STABLE]
-     */
-    it("Resolves with the currently logged in token, url, and env", async () => {
+    it("Resolves with the currently logged in token, url, and project", async () => {
       const result = await client.login({
         email: "text@example.com",
         password: "testPassword",
@@ -117,7 +107,8 @@ describe("Authentication", () => {
         url: "https://example.com",
       });
 
-      expect(result).to.deep.include({
+      expect(result).to.deep.equal({
+        localExp: client.config.localExp,
         project: "testProject",
         token: "abcdef",
         url: "https://example.com",
@@ -150,7 +141,7 @@ describe("Authentication", () => {
   });
 
   describe("#refreshIfNeeded()", () => {
-    it("Does nothing when token, url, env, or payload.exp is missing", () => {
+    it("Does nothing when token, url, project, or payload.exp is missing", () => {
       // Nothing
       client.config.url = null;
       client.config.project = null;
@@ -168,14 +159,12 @@ describe("Authentication", () => {
       expect(client.refreshIfNeeded()).to.be.undefined;
     });
 
-    /**
-     * FIXME: [ERR_STABLE]
-     */
     it("Overwrites the saved token with the new one", async () => {
       sinon.stub(client.api.auth, "refresh").resolves({
         data: {
           token: "abcdef",
         },
+        meta: undefined,
       });
       client.config.token = jwt.sign({ foo: "bar" }, "secret-string", {
         expiresIn: "20s",
@@ -187,9 +176,6 @@ describe("Authentication", () => {
       (client.api.auth.refresh as any).restore();
     });
 
-    /**
-     * FIXME: [ERR_STABLE]
-     */
     it("Calls refresh() if expiry date is within 30 seconds of now", async () => {
       sinon.stub(client.api.auth, "refresh").resolves();
       client.config.token = jwt.sign({ foo: "bar" }, "secret-string", {
@@ -207,14 +193,12 @@ describe("Authentication", () => {
       (client.api.auth.refresh as any).restore();
     });
 
-    /**
-     * FIXME: [ERR_STABLE]
-     */
     it("Calls the optional onAutoRefreshSuccess() callback when the request succeeds", done => {
       sinon.stub(client.api.auth, "refresh").resolves({
         data: {
           token: "abcdef",
         },
+        meta: undefined,
       });
 
       client.config.token = jwt.sign({ foo: "bar" }, "secret-string", {
@@ -236,9 +220,6 @@ describe("Authentication", () => {
       client.refreshIfNeeded();
     });
 
-    /**
-     * FIXME: [ERR_STABLE]
-     */
     it("Calls the optional onAutoRefreshError() callback when request fails", done => {
       sinon.stub(client.api.auth, "refresh").rejects({
         code: -1,
@@ -272,9 +253,6 @@ describe("Authentication", () => {
       expect(client.refreshIfNeeded()).to.be.undefined;
     });
 
-    /**
-     * FIXME: [ERR_STABLE]
-     */
     it("Calls the optional onAutoRefreshError() callback when trying to refresh an expired token", done => {
       sinon.stub(client.api.auth, "refresh").rejects({});
 
@@ -346,17 +324,17 @@ describe("Authentication", () => {
         client.logout();
       });
 
-      /**
-       * FIXME: [ERR_STABLE]
-       */
-      it.skip("Does not start the interval without the persist key", () => {
-        client.login({
+      it("Does not start the interval without the persist key", async () => {
+        await client.logout();
+        client.config.reset();
+
+        await client.login({
           email: "testing@example.com",
           password: "testPassword",
           url: "https://demo-api.getdirectus.com",
         });
 
-        expect(client.api.auth.refreshInterval).to.be.null;
+        expect(client.api.auth.refreshInterval).to.be.undefined;
       });
     });
 
@@ -404,7 +382,6 @@ describe("Authentication", () => {
         persist: true,
         url: "https://demo-api.getdirectus.com",
       });
-
       expect(client.api.auth.refreshIfNeeded).to.have.not.been.called;
 
       client.config.token = jwt.sign({ foo: "bar" }, "secret-string", {
@@ -413,35 +390,34 @@ describe("Authentication", () => {
       });
 
       this.clock.tick(11000);
-
       expect(client.api.auth.refreshIfNeeded).to.have.been.calledOnce;
 
       this.clock.tick(11000);
-
       expect(client.api.auth.refreshIfNeeded).to.have.been.calledTwice;
     });
   });
 
   describe("#loggedIn", () => {
-    /**
-     * FIXME: [ERR_STABLE]
-     */
-    it("Returns true if the client has a valid accesstoken, url, env, and is not expired", () => {
+    it("Returns true if the client has a valid accesstoken, url, project, and is not expired", () => {
       client.config.token = jwt.sign({ foo: "bar" }, "secret-string", {
         expiresIn: "20s",
         noTimestamp: true,
       });
       client.config.localExp = Date.now() + 10e3; // set expiration time in future
+
       expect(client.loggedIn).to.equal(true);
     });
-    it("Returns false if the accesstoken, url, or env is missing", () => {
+
+    it("Returns false if the accesstoken, url, or project is missing", () => {
       client.config.url = null;
       expect(client.loggedIn).to.equal(false);
+
       client.config.token = jwt.sign({ foo: "bar" }, "secret-string", {
         expiresIn: "20s",
         noTimestamp: true,
       });
       expect(client.loggedIn).to.equal(false);
+
       client.config.url = "https://demo-api.getdirectus.com";
       client.config.localExp = Date.now() + 10e3; // set expiration time in future
       expect(client.loggedIn).to.equal(true);

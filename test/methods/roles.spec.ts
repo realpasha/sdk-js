@@ -1,15 +1,15 @@
-// tslint:disable: no-unused-expression
 import * as chai from "chai";
 import * as jwt from "jsonwebtoken";
 import * as sinon from "sinon";
 import * as sinonChai from "sinon-chai";
 import SDK from "../../src/";
+import { ISDK } from "../../src/SDK";
 
 const expect = chai.expect;
 chai.use(sinonChai);
 
-describe("Relations", () => {
-  let client;
+describe("Roles", () => {
+  let client: ISDK;
 
   beforeEach(() => {
     client = new SDK({
@@ -30,11 +30,11 @@ describe("Relations", () => {
   });
 
   afterEach(() => {
-    client.api.get.restore();
-    client.api.put.restore();
-    client.api.patch.restore();
-    client.api.post.restore();
-    client.api.delete.restore();
+    (client.api.get as any).restore();
+    (client.api.put as any).restore();
+    (client.api.patch as any).restore();
+    (client.api.post as any).restore();
+    (client.api.delete as any).restore();
   });
 
   describe("#getRoles()", () => {
@@ -44,7 +44,7 @@ describe("Relations", () => {
     });
 
     it("Errors if parameter `params` is of a wrong type", () => {
-      expect(() => client.getRoles("params")).to.throw();
+      expect(() => client.getRoles("params" as any)).to.throw();
     });
 
     it("Calls get() for the right endpoint", async () => {
@@ -59,11 +59,12 @@ describe("Relations", () => {
     });
 
     it("Errors if parameter `primaryKey` is of a wrong type", () => {
-      expect(() => client.getRole({})).to.throw();
+      // TODO: PrimaryKey = object should be an error, maybe wrong impl.?
+      expect(() => client.getRole({} as any, undefined as any)).to.throw();
     });
 
     it("Errors if parameter `params` is of a wrong type", () => {
-      expect(() => client.getRole(4, "params")).to.throw();
+      expect(() => client.getRole(4, "params" as any)).to.throw();
     });
 
     it("Calls get() for the right endpoint", async () => {
@@ -80,7 +81,7 @@ describe("Relations", () => {
     });
 
     it("Errors on missing `body` parameter", () => {
-      expect(() => client.updateRole(15)).to.throw();
+      expect(() => client.updateRole(15, undefined as any)).to.throw();
     });
 
     it("Calls patch() for the right endpoint", () => {
@@ -97,7 +98,7 @@ describe("Relations", () => {
     });
 
     it("Errors on wrong `body` parameter type", () => {
-      expect(() => client.createRole(15)).to.throw();
+      expect(() => client.createRole(15 as any)).to.throw();
     });
 
     it("Calls post() for the right endpoint", () => {

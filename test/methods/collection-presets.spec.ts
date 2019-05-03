@@ -1,14 +1,14 @@
-// tslint:disable: no-unused-expression
 import * as chai from "chai";
 import * as sinon from "sinon";
 import * as sinonChai from "sinon-chai";
 import SDK from "../../src/";
+import { ISDK } from "../../src/SDK";
 
 const expect = chai.expect;
 chai.use(sinonChai);
 
-describe("Items", () => {
-  let client;
+describe("Collection Presets", () => {
+  let client: ISDK;
 
   beforeEach(() => {
     client = new SDK({
@@ -29,11 +29,11 @@ describe("Items", () => {
   });
 
   afterEach(() => {
-    client.api.get.restore();
-    client.api.put.restore();
-    client.api.patch.restore();
-    client.api.post.restore();
-    client.api.delete.restore();
+    (client.api.get as any).restore();
+    (client.api.put as any).restore();
+    (client.api.patch as any).restore();
+    (client.api.post as any).restore();
+    (client.api.delete as any).restore();
   });
 
   describe("#createCollectionPreset", () => {
@@ -57,7 +57,7 @@ describe("Items", () => {
     });
 
     it("Errors when the data parameter is missing", () => {
-      expect(() => client.updateCollectionPreset(15)).to.throw();
+      expect(() => client.updateCollectionPreset(15, undefined as any)).to.throw();
     });
 
     it("Calls patch with the right parameters", async () => {

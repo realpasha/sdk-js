@@ -1,14 +1,14 @@
-// tslint:disable: no-unused-expression
 import * as chai from "chai";
 import * as sinon from "sinon";
 import * as sinonChai from "sinon-chai";
 import SDK from "../../src/";
+import { ISDK } from "../../src/SDK";
 
 const expect = chai.expect;
 chai.use(sinonChai);
 
 describe("Revisions", () => {
-  let client;
+  let client: ISDK;
 
   beforeEach(() => {
     client = new SDK({
@@ -29,11 +29,11 @@ describe("Revisions", () => {
   });
 
   afterEach(() => {
-    client.api.get.restore();
-    client.api.put.restore();
-    client.api.patch.restore();
-    client.api.post.restore();
-    client.api.delete.restore();
+    (client.api.get as any).restore();
+    (client.api.put as any).restore();
+    (client.api.patch as any).restore();
+    (client.api.post as any).restore();
+    (client.api.delete as any).restore();
   });
 
   describe("#getItemRevisions()", () => {
@@ -42,11 +42,11 @@ describe("Revisions", () => {
     });
 
     it("Errors on missing `primaryKey` parameter", () => {
-      expect(() => client.getItemRevisions("projects")).to.throw();
+      expect(() => client.getItemRevisions("projects", undefined as any)).to.throw();
     });
 
     it("Errors if parameter `params` is of a wrong type", () => {
-      expect(() => client.getItemRevisions("projects", 15, 140)).to.throw();
+      expect(() => client.getItemRevisions("projects", 15, 140 as any)).to.throw();
     });
 
     it("Calls get() for the right endpoint", () => {
@@ -72,11 +72,11 @@ describe("Revisions", () => {
     });
 
     it("Errors on missing `primaryKey` parameter", () => {
-      expect(() => client.revert("projects")).to.throw();
+      expect(() => client.revert("projects", undefined as any, undefined as any)).to.throw();
     });
 
     it("Errors on missing `revisionID` parameter", () => {
-      expect(() => client.revert("projects", 15)).to.throw();
+      expect(() => client.revert("projects", 15, undefined as any)).to.throw();
     });
 
     it("Calls patch() for the right endpoint", () => {

@@ -1,14 +1,14 @@
-// tslint:disable: no-unused-expression
 import * as chai from "chai";
 import * as sinon from "sinon";
 import * as sinonChai from "sinon-chai";
 import SDK from "../../src/";
+import { ISDK } from "../../src/SDK";
 
 const expect = chai.expect;
 chai.use(sinonChai);
 
 describe("Collections", () => {
-  let client: SDK & any;
+  let client: ISDK;
 
   beforeEach(() => {
     client = new SDK({
@@ -29,11 +29,11 @@ describe("Collections", () => {
   });
 
   afterEach(() => {
-    client.api.get.restore();
-    client.api.put.restore();
-    client.api.patch.restore();
-    client.api.post.restore();
-    client.api.delete.restore();
+    (client.api.get as any).restore();
+    (client.api.put as any).restore();
+    (client.api.patch as any).restore();
+    (client.api.post as any).restore();
+    (client.api.delete as any).restore();
   });
 
   describe("#getCollections()", () => {
@@ -43,7 +43,7 @@ describe("Collections", () => {
     });
 
     it("Errors if parameter `params` is of a wrong type", () => {
-      expect(() => client.getCollections("params")).to.throw();
+      expect(() => client.getCollections("params" as any)).to.throw();
     });
 
     it("Calls get() for the right endpoint", () => {
@@ -60,7 +60,7 @@ describe("Collections", () => {
     });
 
     it("Errors if parameter `params` is of a wrong type", () => {
-      expect(() => client.getCollection("projects", "params")).to.throw();
+      expect(() => client.getCollection("projects", "params" as any)).to.throw();
     });
 
     it("Calls get() for the right endpoint", () => {
@@ -90,7 +90,7 @@ describe("Collections", () => {
     });
 
     it("Errors on missing `data` parameter", () => {
-      expect(() => client.updateCollection("test")).to.throw();
+      expect(() => client.updateCollection("test", undefined as any)).to.throw();
     });
 
     it("Calls patch() for the right endpoint", () => {
@@ -103,7 +103,7 @@ describe("Collections", () => {
 
   describe("#deleteCollection()", () => {
     it("Errors on missing `collection` parameter", () => {
-      expect(() => client.deleteCollection()).to.throw();
+      expect(() => client.deleteCollection(undefined as any)).to.throw();
     });
 
     it("Calls delete() for the right endpoint", () => {

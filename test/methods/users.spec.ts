@@ -1,14 +1,14 @@
-// tslint:disable: no-unused-expression
 import * as chai from "chai";
 import * as sinon from "sinon";
 import * as sinonChai from "sinon-chai";
 import SDK from "../../src/";
+import { ISDK } from "../../src/SDK";
 
 const expect = chai.expect;
 chai.use(sinonChai);
 
 describe("Users", () => {
-  let client;
+  let client: ISDK;
 
   beforeEach(() => {
     client = new SDK({
@@ -30,12 +30,12 @@ describe("Users", () => {
   });
 
   afterEach(() => {
-    client.api.get.restore();
-    client.api.put.restore();
-    client.api.patch.restore();
-    client.api.post.restore();
-    client.api.delete.restore();
-    client.updateItem.restore();
+    (client.api.get as any).restore();
+    (client.api.put as any).restore();
+    (client.api.patch as any).restore();
+    (client.api.post as any).restore();
+    (client.api.delete as any).restore();
+    (client.updateItem as any).restore();
   });
 
   describe("#getUsers()", () => {
@@ -45,7 +45,7 @@ describe("Users", () => {
     });
 
     it("Errors if parameter `params` is of a wrong type", () => {
-      expect(() => client.getUsers("params")).to.throw();
+      expect(() => client.getUsers("params" as any)).to.throw();
     });
 
     it("Calls get() for the right endpoint", () => {
@@ -60,7 +60,7 @@ describe("Users", () => {
     });
 
     it("Errors if parameter `params` is of a wrong type", () => {
-      expect(() => client.getUser("projects", 140)).to.throw();
+      expect(() => client.getUser("projects", 140 as any)).to.throw();
     });
 
     it("Calls get() for the right endpoint", () => {
@@ -78,7 +78,7 @@ describe("Users", () => {
     });
 
     it("Errors if parameter `params` is of a wrong type", () => {
-      expect(() => client.getMe(140)).to.throw();
+      expect(() => client.getMe(140 as any)).to.throw();
     });
 
     it("Calls get() for the right endpoint", () => {
@@ -95,7 +95,7 @@ describe("Users", () => {
     });
 
     it("Errors on missing `body` parameter", () => {
-      expect(() => client.updateUser(15)).to.throw();
+      expect(() => client.updateUser(15, undefined as any)).to.throw();
     });
 
     it("Calls #updateItem()", () => {

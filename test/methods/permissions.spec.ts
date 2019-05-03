@@ -1,14 +1,14 @@
-// tslint:disable: no-unused-expression
 import * as chai from "chai";
 import * as sinon from "sinon";
 import * as sinonChai from "sinon-chai";
 import SDK from "../../src/";
+import { ISDK } from "../../src/SDK";
 
 const expect = chai.expect;
 chai.use(sinonChai);
 
-describe("Relations", () => {
-  let client;
+describe("Permissions", () => {
+  let client: ISDK;
 
   beforeEach(() => {
     client = new SDK({
@@ -29,11 +29,11 @@ describe("Relations", () => {
   });
 
   afterEach(() => {
-    client.api.get.restore();
-    client.api.put.restore();
-    client.api.patch.restore();
-    client.api.post.restore();
-    client.api.delete.restore();
+    (client.api.get as any).restore();
+    (client.api.put as any).restore();
+    (client.api.patch as any).restore();
+    (client.api.post as any).restore();
+    (client.api.delete as any).restore();
   });
 
   describe("#getPermissions()", () => {
@@ -43,7 +43,7 @@ describe("Relations", () => {
     });
 
     it("Errors if parameter `params` is of a wrong type", () => {
-      expect(() => client.getPermissions("params")).to.throw();
+      expect(() => client.getPermissions("params" as any)).to.throw();
     });
 
     it("Calls get() for the right endpoint", () => {
@@ -60,7 +60,7 @@ describe("Relations", () => {
     });
 
     it("Errors on wrong `data` parameter", () => {
-      expect(() => client.createPermissions("projects")).to.throw();
+      expect(() => client.createPermissions("projects" as any)).to.throw();
     });
 
     it("Calls post() for the right endpoint", () => {
@@ -75,7 +75,7 @@ describe("Relations", () => {
     });
 
     it("Errors on wrong `data` parameter", () => {
-      expect(() => client.updatePermissions("projects")).to.throw();
+      expect(() => client.updatePermissions("projects" as any)).to.throw();
     });
 
     it("Calls post() for the right endpoint", () => {

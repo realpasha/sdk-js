@@ -1,4 +1,3 @@
-// tslint:disable: no-unused-expression
 import * as chai from "chai";
 import * as jwt from "jsonwebtoken";
 import * as sinon from "sinon";

@@ -1,21 +1,14 @@
-// tslint:disable: no-unused-expression
 import * as chai from "chai";
 import * as sinon from "sinon";
 import * as sinonChai from "sinon-chai";
 import SDK from "../../src/";
 import { ISDK } from "../../src/SDK";
+import { mockAxiosResponse } from "../mock/response";
 
 const expect = chai.expect;
 chai.use(sinonChai);
 
-/**
- * FIXME:
- * [ERR_STABLE] means that this test fails in the current stable SDK
- * therefor this test will be skipped at the moment until the
- * owners found the correct way how the test should work!
- */
-
-describe("Items", () => {
+describe("Files", () => {
   let client: ISDK;
 
   beforeEach(() => {
@@ -24,11 +17,11 @@ describe("Items", () => {
       url: "https://demo-api.getdirectus.com",
     });
 
-    const responseJSON = {
+    const responseJSON = mockAxiosResponse({
       data: {
         data: {},
       },
-    };
+    });
 
     sinon.stub(client.api.xhr, "post").resolves(responseJSON);
   });

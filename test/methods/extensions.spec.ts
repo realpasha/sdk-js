@@ -1,14 +1,14 @@
-// tslint:disable: no-unused-expression
 import * as chai from "chai";
 import * as sinon from "sinon";
 import * as sinonChai from "sinon-chai";
 import SDK from "../../src/";
+import { ISDK } from "../../dist/types/src/SDK";
 
 const expect = chai.expect;
 chai.use(sinonChai);
 
-describe("Items", () => {
-  let client;
+describe("Extensions", () => {
+  let client: ISDK;
 
   beforeEach(() => {
     client = new SDK({
@@ -25,7 +25,7 @@ describe("Items", () => {
   });
 
   afterEach(() => {
-    client.api.request.restore();
+    (client.api.request as any).restore();
   });
 
   describe("#getInterfaces()", () => {

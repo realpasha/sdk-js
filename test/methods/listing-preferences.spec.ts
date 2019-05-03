@@ -1,4 +1,3 @@
-// tslint:disable: no-unused-expression
 import * as chai from "chai";
 import * as jwt from "jsonwebtoken";
 import * as sinon from "sinon";
@@ -16,7 +15,7 @@ chai.use(sinonChai);
  * owners found the correct way how the test should work!
  */
 
-describe("Items", () => {
+describe("Listing Preferences", () => {
   let client: ISDK;
 
   beforeEach(() => {

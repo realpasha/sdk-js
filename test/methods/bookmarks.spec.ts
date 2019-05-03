@@ -1,15 +1,15 @@
-// tslint:disable: no-unused-expression
 import * as chai from "chai";
 import * as jwt from "jsonwebtoken";
 import * as sinon from "sinon";
 import * as sinonChai from "sinon-chai";
 import SDK from "../../src/";
+import { ISDK } from "../../src/SDK";
 
 const expect = chai.expect;
 chai.use(sinonChai);
 
-describe("Items", () => {
-  let client;
+describe("Bookmarks", () => {
+  let client: ISDK;
 
   beforeEach(() => {
     client = new SDK({
@@ -29,22 +29,21 @@ describe("Items", () => {
   });
 
   afterEach(() => {
-    client.api.get.restore();
-    client.api.put.restore();
-    client.api.patch.restore();
-    client.api.post.restore();
-    client.api.delete.restore();
+    (client.api.get as any).restore();
+    (client.api.put as any).restore();
+    (client.api.patch as any).restore();
+    (client.api.post as any).restore();
+    (client.api.delete as any).restore();
   });
 
   describe("#getMyBookmarks()", () => {
-    // TODO: This case doesn't exist anymore as params is default = {}
-    // it.skip("Errors if parameter `params` is of a wrong type", () => {
-    //   expect(() => client.getMyListingPreferences("params")).to.throw();
-    // });
+    it("Errors if parameter `params` is of a wrong type", () => {
+      expect(() => client.getMyListingPreferences("params", "invalid type" as any)).to.throw();
+    });
 
     it("Calls get() two times", () => {
       try {
-        client.token = jwt.sign({ foo: "bar" }, "secret-string", {
+        client.config.token = jwt.sign({ foo: "bar" }, "secret-string", {
           expiresIn: "1h",
           noTimestamp: true,
         });
