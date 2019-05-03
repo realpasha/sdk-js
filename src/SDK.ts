@@ -18,6 +18,7 @@ import { getPayload } from "./utils/payload";
 
 // Manager classes
 import { API, IAPI } from "./API";
+import { IAuthentication } from "./Authentication";
 import { Configuration, IConfiguration, IConfigurationOptions } from "./Configuration";
 
 // Invariant violation
@@ -29,11 +30,11 @@ export interface ISDK {
   config: IConfiguration;
   api: IAPI;
   payload: any;
-  login(credentials: ILoginCredentials, options?: ILoginOptions): Promise<ILoginResponse>;
-  logout(): void;
+  login: IAuthentication["login"];
+  logout: IAuthentication["logout"];
+  refreshIfNeeded: IAuthentication["refreshIfNeeded"];
+  refresh: IAuthentication["refresh"];
   reset(): void;
-  refreshIfNeeded(): Promise<[boolean, Error?]>;
-  refresh(token: string): Promise<IRefreshTokenResponse>;
   requestPasswordReset<T extends any = any>(email: string): Promise<T>;
   getActivity(params?: object): Promise<IActivityResponse>;
   getMyBookmarks<T extends any[] = any[]>(params?: object): Promise<T>;
@@ -140,10 +141,7 @@ export class SDK implements ISDK {
   /**
    * Login to the API; Gets a new token from the API and stores it in this.api.token.
    */
-  public login(
-    credentials: ILoginCredentials,
-    options: ILoginOptions = { persist: true, storage: false }
-  ): Promise<ILoginResponse> {
+  public login(credentials: ILoginCredentials, options?: ILoginOptions): Promise<ILoginResponse> {
     return this.api.auth.login(credentials, options);
   }
 
