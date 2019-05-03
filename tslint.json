@@ -22,5 +22,8 @@
         "limit": 120
       }
     ]
+  },
+  "linterOptions": {
+    "exclude": ["test/**"]
   }
 }
