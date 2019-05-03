@@ -4,3 +4,5 @@ export interface ILoginResponse {
   token: string;
   localExp: number;
 }
+
+export type RefreshIfNeededResponse = [boolean, Error?];
