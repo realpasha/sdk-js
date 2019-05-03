@@ -3,18 +3,21 @@ import { isString } from "./utils/is";
 
 const STORAGE_KEY = "directus-sdk-js";
 
-interface IStorageAPI {
+// defining needed methods for the abstract storage adapter
+export interface IStorageAPI {
   getItem<T extends any = any>(key: string): T;
   setItem(key: string, value: any): void;
   removeItem(key: string): void;
 }
 
+// configuration merged with defaults
 export interface IConfigurationValues {
   url: string;
   project: string;
   token?: string;
   localExp?: number;
   tokenExpirationTime?: number;
+  persist: boolean;
 }
 
 export interface IConfiguration {
@@ -23,6 +26,7 @@ export interface IConfiguration {
   project: string;
   localExp?: number;
   tokenExpirationTime: number;
+  persist: boolean;
   dehydrate(): IConfigurationValues;
   delete();
   hydrate(config: IConfigurationValues);
@@ -31,36 +35,48 @@ export interface IConfiguration {
   update(config: IConfigurationValues);
 }
 
+// default settings
+export interface IConfigurationDefaults {
+  tokenExpirationTime: number;
+  project: string;
+}
+
+// constructor options
 export interface IConfigurationOptions {
   url: string;
   token?: string;
   project?: string;
   localExp?: number;
+  persist?: boolean;
   tokenExpirationTime?: number;
 }
 
 export class Configuration implements IConfiguration {
+  public static defaults: IConfigurationDefaults = {
+    project: "_",
+    tokenExpirationTime: 5 * 6 * 1000,
+  };
   private internalConfiguration: IConfigurationValues;
 
-  constructor(initialConfig: IConfigurationOptions, private storage?: IStorageAPI) {
-    let dehydratedConfig: IConfigurationOptions = {} as any;
+  constructor(initialConfig: IConfigurationOptions = {} as any, private storage?: IStorageAPI) {
+    let dehydratedConfig: IConfigurationValues = {} as IConfigurationValues;
 
-    if (storage) {
-      dehydratedConfig = this.dehydrate();
-      // TODO: maybe just dehydrate and skip re-setting the configuration?
-      // return this;
+    if (storage && Boolean(initialConfig && initialConfig.persist)) {
+      // dehydrate if storage was provided and persist flag is set
+      dehydratedConfig = this.dehydratedInitialConfiguration(storage);
     }
 
-    // make it safe for the untyped JavaScript world to prevent issues
-    initialConfig = initialConfig || ({} as any);
-
-    const project = dehydratedConfig.project || initialConfig.project || "_";
+    const persist = Boolean(dehydratedConfig.persist || initialConfig.persist);
+    const project = dehydratedConfig.project || initialConfig.project || Configuration.defaults.project;
     const tokenExpirationTime =
-      dehydratedConfig.tokenExpirationTime || initialConfig.tokenExpirationTime || 5 * 6 * 1000;
+      dehydratedConfig.tokenExpirationTime ||
+      initialConfig.tokenExpirationTime ||
+      Configuration.defaults.tokenExpirationTime;
 
     this.internalConfiguration = {
-      ...dehydratedConfig,
       ...initialConfig,
+      ...dehydratedConfig,
+      persist,
       project,
       tokenExpirationTime,
     };
@@ -81,6 +97,7 @@ export class Configuration implements IConfiguration {
   }
 
   public set tokenExpirationTime(tokenExpirationTime: number) {
+    // TODO: Optionally re-compute the localExp property for the auto-refresh
     this.partialUpdate({
       tokenExpirationTime: tokenExpirationTime * 60000,
     });
@@ -110,6 +127,14 @@ export class Configuration implements IConfiguration {
 
   public set localExp(localExp: number | undefined) {
     this.partialUpdate({ localExp });
+  }
+
+  public get persist(): boolean {
+    return this.internalConfiguration.persist;
+  }
+
+  public set persist(persist: boolean) {
+    this.internalConfiguration.persist = persist;
   }
 
   // HELPER METHODS ============================================================
@@ -148,7 +173,7 @@ export class Configuration implements IConfiguration {
   // STORAGE METHODS ===========================================================
 
   public dehydrate(): IConfigurationValues | undefined {
-    if (!this.storage) {
+    if (!this.storage || !this.persist) {
       return;
     }
 
@@ -165,7 +190,7 @@ export class Configuration implements IConfiguration {
   }
 
   public hydrate(props: IConfigurationValues) {
-    if (!this.storage) {
+    if (!this.storage || !this.persist) {
       return;
     }
 
@@ -173,10 +198,28 @@ export class Configuration implements IConfiguration {
   }
 
   public delete(): void {
-    if (!this.storage) {
+    if (!this.storage || !this.persist) {
       return;
     }
 
     this.storage.removeItem(STORAGE_KEY);
+  }
+
+  private dehydratedInitialConfiguration(storage: IStorageAPI): IConfigurationValues {
+    if (!storage) {
+      return {} as IConfigurationValues;
+    }
+
+    const nativeValue = storage.getItem(STORAGE_KEY);
+
+    if (!nativeValue) {
+      return;
+    }
+
+    try {
+      return JSON.parse(nativeValue);
+    } catch (err) {
+      return {} as IConfigurationValues;
+    }
   }
 }
