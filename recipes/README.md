@@ -1,8 +1,13 @@
-## @directus/sdk-js recipes
+## Recipes for the SDK
 
-* Using the SDK with [Angular](./Angular.md) (using `@Injectable`)
-* Using the SDK with [NGRX](./NGRX.md) (with `@ngrx/effects`)
-* Using the SDK with [React](./React.md) (build a higher order component)
-* Using the SDK with [Redux](./Redux.md) (using `redux-saga` or `redux-thunk`)
-* Using the SDK with [RXJS](./RXJS.md) (observables)
+### Basics
+* The basic [getting started](./Starter.md) guide!
 * Using the SDK with [TypeScript](./TypeScript.md) (semantic typing)
+* Adding [persistence](./Persistence.md) (store the configuration)
+
+### Frameworks
+* Using the SDK with [Angular](./frameworks/Angular.md) (using `@Injectable`)
+* Using the SDK with [NGRX](./frameworks/NGRX.md) (with `@ngrx/effects`)
+* Using the SDK with [React](./frameworks/React.md) (build a higher order component)
+* Using the SDK with [Redux](./frameworks/Redux.md) (using `redux-saga` or `redux-thunk`)
+* Using the SDK with [RXJS](./frameworks/RXJS.md) (observables)
