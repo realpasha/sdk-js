@@ -9,6 +9,7 @@
     "dist"
   ],
   "scripts": {
+    "documentation": "typedoc --theme markdown --out docs --mdEngine github --mdSourceRepo https://github.com/directus/directus-sdk-js",
     "prettier": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\" \"**/*.json\"",
     "develop": "webpack --progress --colors --watch",
     "prebuild": "run-s lint test",
@@ -72,6 +73,9 @@
     "ts-mocha": "6.0.0",
     "tslib": "1.9.3",
     "tslint": "5.16.0",
+    "typedoc": "0.14.2",
+    "typedoc-plugin-internal-external": "2.0.2",
+    "typedoc-plugin-markdown": "1.2.0",
     "typescript": "3.4.4",
     "webpack": "4.30.0",
     "webpack-bundle-analyzer": "3.3.2",
