@@ -1,32 +1,29 @@
+import { FilterOperator } from "./Filter";
+/**
+ * @internal
+ */
+interface IQueryParameters {
+    meta: object;
+    fields: string | string[];
+    limit: number;
+    offset: number;
+    single: number;
+    sort: string | string[];
+    status: string | string[];
+    filter: {
+        [field: string]: {
+            [operator in FilterOperator]: any;
+        };
+    };
+    lang: object;
+    q: string;
+    groups: string | string[];
+    activity_skip: number;
+    comment: string;
+}
 /**
  * @see https://docs.directus.io/api/reference.html#query-parameters
  */
-interface IQueryParameters {
-    meta: {
-        collection?: string;
-        type?: string;
-        result_count?: number;
-        total_count?: number;
-        status_count?: {
-            deleted?: number;
-            draft?: number;
-            coming_soon?: number;
-            published?: number;
-        };
-    };
-    fields: string[];
-    limit: number;
-    offset: number;
-    single: 1;
-    sort: string[];
-    status: string[];
-    filter: any;
-    lang: any;
-    q: any;
-    groups: any;
-    activity_skip: any;
-    comment: any;
-}
-export declare type QueryParameters = Partial<IQueryParameters>;
+export declare type QueryParams = Partial<IQueryParameters>;
 export {};
 //# sourceMappingURL=Query.d.ts.map

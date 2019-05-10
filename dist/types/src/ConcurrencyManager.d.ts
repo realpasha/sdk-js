@@ -3,6 +3,11 @@ export interface IConcurrencyQueueItem {
     request: AxiosRequestConfig;
     resolver: (queuedRequest: AxiosRequestConfig) => any;
 }
+/**
+ * Handling and limiting concurrent requests for the API.
+ * @param {AxiosInstance} axios   Reference to the caller instance
+ * @param {number=10} limit       When to reate-limit outgoing requests
+ */
 export declare const concurrencyManager: (axios: AxiosInstance, limit?: number) => {
     limit: number;
     queue: IConcurrencyQueueItem[];

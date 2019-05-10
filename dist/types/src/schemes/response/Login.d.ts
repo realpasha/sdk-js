@@ -4,4 +4,5 @@ export interface ILoginResponse {
     token: string;
     localExp: number;
 }
+export declare type RefreshIfNeededResponse = [boolean, Error?];
 //# sourceMappingURL=Login.d.ts.map

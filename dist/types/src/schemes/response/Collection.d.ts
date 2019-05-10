@@ -1,48 +1,19 @@
 import { IAPIResponse } from "../APIResponse";
-declare type CollectionFieldDataType = string;
-declare type CollectionFieldWidthType = string;
-declare type CollectionFieldInterfaceType = string;
-interface ICollectionFieldDataSet {
-    auto_increment: boolean;
-    collection: string;
-    datatype: CollectionFieldDataType;
-    default_value: any;
-    field: string;
-    group: any;
-    hidden_browse: boolean;
-    hidden_detail: boolean;
-    id: number;
-    interface: CollectionFieldInterfaceType;
-    length: string;
-    locked: number;
-    note?: string;
-    options: null;
-    primary_key: boolean;
-    readonly: boolean;
-    required: boolean;
-    signed: boolean;
-    sort: any;
-    translation: null;
-    type: string;
-    unique: boolean;
-    validation: null;
-    width: CollectionFieldWidthType;
-}
-export interface ICollectionDataSet {
-    collection: string;
+import { ICollection } from "../directus/Collection";
+import { IField } from "../directus/Field";
+export interface ICollectionDataSet extends ICollection {
     fields: {
-        [field: string]: ICollectionFieldDataSet;
+        [field: string]: IField;
     };
-    hidden: boolean;
-    icon: string;
-    managed: boolean;
-    note?: string;
-    single: boolean;
-    translation: any;
 }
+/**
+ * @see https://docs.directus.io/api/reference.html#collections
+ */
 export interface ICollectionResponse extends IAPIResponse<ICollectionDataSet> {
 }
+/**
+ * @see https://docs.directus.io/api/reference.html#collections
+ */
 export interface ICollectionsResponse extends IAPIResponse<ICollectionDataSet[]> {
 }
-export {};
 //# sourceMappingURL=Collection.d.ts.map

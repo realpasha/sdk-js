@@ -1,28 +1,13 @@
 import { IAPIMetaList, IAPIResponse } from "../APIResponse";
-import { IRoleDataSet } from "./Role";
-export declare type UserStatus = "active" | "inactive";
-export interface IUserDataSet {
-    avatar: any | null;
-    company: string | null;
-    email: string;
-    email_notifications: boolean;
-    external_id: any | null;
-    first_name: string;
-    high_contrast_mode: boolean;
-    id: number;
-    last_access_on: string;
-    last_name: string;
-    last_page: string;
-    locale: string;
-    locale_options: null;
-    roles: IRoleDataSet[];
-    status: UserStatus;
-    timezone: string;
-    title: string | null;
-    token: string;
+import { IUser } from "../directus/User";
+/**
+ * @see https://docs.directus.io/api/reference.html#users
+ */
+export interface IUserResponse<User extends IUser = IUser> extends IAPIResponse<User> {
 }
-export interface IUsersResponse extends IAPIResponse<IUserDataSet[], IAPIMetaList> {
-}
-export interface IUserResponse extends IAPIResponse<IUserDataSet> {
+/**
+ * @see https://docs.directus.io/api/reference.html#users
+ */
+export interface IUsersResponse<Users extends IUser[] = IUser[]> extends IAPIResponse<Users, IAPIMetaList> {
 }
 //# sourceMappingURL=User.d.ts.map

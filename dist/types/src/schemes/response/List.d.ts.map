@@ -1,1 +1,0 @@
-{"version":3,"file":"List.d.ts","sourceRoot":"","sources":["../../../../../src/schemes/response/List.ts"],"names":[],"mappings":"AAAA,MAAM,WAAW,qBAAqB,CAAC,CAAC,SAAS,GAAG;IAClD,IAAI,EAAE;QACJ,YAAY,EAAE,MAAM,CAAC;QACrB,WAAW,EAAE,MAAM,CAAC;KACrB,CAAC;IACF,IAAI,EAAE,CAAC,EAAE,CAAC;CACX"}

@@ -1,13 +1,8 @@
 import { IAPIResponse } from "../APIResponse";
-export interface IRoleDataSet {
-    description: string;
-    external_id: any | null;
-    id: number;
-    ip_whitelist: any | null;
-    name: string;
-    nav_blacklist: any | null;
-    nav_override: any | null;
-}
-export interface IRoleResponse extends IAPIResponse<IRoleDataSet[]> {
+import { IRole } from "../directus/Role";
+/**
+ * @see https://docs.directus.io/api/reference.html#roles
+ */
+export interface IRoleResponse extends IAPIResponse<IRole[]> {
 }
 //# sourceMappingURL=Role.d.ts.map

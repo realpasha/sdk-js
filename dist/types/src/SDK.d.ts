@@ -2,88 +2,32 @@ import { ILoginCredentials, ILoginOptions } from "./schemes/auth/Login";
 import { BodyType } from "./schemes/http/Body";
 import { IActivityResponse } from "./schemes/response/Activity";
 import { ICollectionResponse, ICollectionsResponse } from "./schemes/response/Collection";
-import { IField } from "./schemes/response/Field";
+import { IFieldResponse, IFieldsResponse } from "./schemes/response/Field";
 import { ILoginResponse } from "./schemes/response/Login";
 import { IRevisionResponse } from "./schemes/response/Revision";
 import { IRoleResponse } from "./schemes/response/Role";
 import { IRefreshTokenResponse } from "./schemes/response/Token";
 import { IUserResponse, IUsersResponse } from "./schemes/response/User";
-import { PrimaryKeyType } from "./types";
 import { getPayload } from "./utils/payload";
 import { IAPI } from "./API";
 import { IConfiguration, IConfigurationOptions } from "./Configuration";
-export interface ISDK {
-    loggedIn: boolean;
-    config: IConfiguration;
-    api: IAPI;
-    payload: any;
-    login(credentials: ILoginCredentials, options?: ILoginOptions): Promise<ILoginResponse>;
-    logout(): void;
-    reset(): void;
-    refreshIfNeeded(): Promise<[boolean, Error?]>;
-    refresh(token: string): Promise<IRefreshTokenResponse>;
-    requestPasswordReset<T extends any = any>(email: string): Promise<T>;
-    getActivity(params?: object): Promise<IActivityResponse>;
-    getMyBookmarks<T extends any[] = any[]>(params?: object): Promise<T>;
-    getCollections(params?: object): Promise<ICollectionsResponse[]>;
-    getCollection(collection: string, params?: object): Promise<ICollectionResponse>;
-    createCollection(data: object): Promise<ICollectionResponse>;
-    updateCollection(collection: string, data: object): Promise<ICollectionResponse>;
-    deleteCollection(collection: string): Promise<void>;
-    createCollectionPreset<T extends any = any>(data: object): Promise<T>;
-    updateCollectionPreset<T extends any = any>(primaryKey: PrimaryKeyType, data: object): Promise<T>;
-    deleteCollectionPreset(primaryKey: PrimaryKeyType): Promise<void>;
-    updateDatabase(): Promise<void>;
-    getInterfaces<T extends any = any>(): Promise<T>;
-    getLayouts<T extends any = any>(): Promise<T>;
-    getPages<T extends any = any>(): Promise<T>;
-    getAllFields<T extends any = any>(params?: object): Promise<T>;
-    getFields<T extends any = any>(collection: string, params?: object): Promise<T>;
-    getField<T extends any = any>(collection: string, fieldName: string, params?: object): Promise<T>;
-    createField<T extends any = any>(collection: string, fieldInfo: object): Promise<T>;
-    updateField<T extends any = any>(collection: string, fieldName: string, fieldInfo: object): Promise<T>;
-    updateFields<T extends any[] = any[]>(collection: string, fieldsInfoOrFieldNames: string[] | object[], fieldInfo?: object): Promise<IField<T> | undefined>;
-    deleteField(collection: string, fieldName: string): Promise<void>;
-    uploadFiles<T extends any = any[]>(data: object, onUploadProgress?: () => object): Promise<T>;
-    updateItem<T extends any = any>(collection: string, primaryKey: PrimaryKeyType, body: BodyType, params?: object): Promise<T>;
-    updateItems<T extends any[] = any[]>(collection: string, body: BodyType, params?: object): Promise<T>;
-    createItem<T extends any = any>(collection: string, body: BodyType): Promise<T>;
-    createItems<T extends any[] = any[]>(collection: string, body: BodyType): Promise<IField<T>>;
-    getItems<T extends any[] = any[]>(collection: string, params: object): Promise<IField<T>>;
-    getItem<T extends any = any>(collection: string, primaryKey: PrimaryKeyType, params?: object): Promise<IField<T>>;
-    deleteItem(collection: string, primaryKey: PrimaryKeyType): Promise<void>;
-    deleteItems(collection: string, primaryKeys: PrimaryKeyType[]): Promise<void>;
-    getMyListingPreferences<T extends any[] = any[]>(collection: string, params?: object): Promise<T>;
-    getPermissions<T extends any[] = any[]>(params?: object): Promise<IField<T>>;
-    getMyPermissions<T extends any[] = any[]>(params?: object): Promise<T>;
-    createPermissions<T extends any[] = any[]>(data: any[]): Promise<T>;
-    updatePermissions<T extends any[] = any[]>(data: any[]): Promise<T>;
-    getRelations<T extends any[] = any[]>(params?: object): Promise<T>;
-    createRelation<T extends any = any>(data: object): Promise<T>;
-    updateRelation<T extends any = any>(primaryKey: PrimaryKeyType, data: object): Promise<T>;
-    getCollectionRelations<T extends any = any>(collection: string, params?: object): Promise<T[]>;
-    getItemRevisions<T extends any = any>(collection: string, primaryKey: PrimaryKeyType, params?: object): Promise<IRevisionResponse<T>>;
-    revert(collection: string, primaryKey: PrimaryKeyType, revisionID: number): Promise<void>;
-    getRole(primaryKey: PrimaryKeyType, params?: object): Promise<IRoleResponse>;
-    getRoles(params?: object): Promise<IRoleResponse[]>;
-    updateRole(primaryKey: PrimaryKeyType, body: BodyType): Promise<IRoleResponse>;
-    createRole(body: BodyType): Promise<IRoleResponse>;
-    deleteRole(primaryKey: PrimaryKeyType): Promise<void>;
-    getSettings(params?: object): Promise<any>;
-    getSettingsFields(params?: object): Promise<any>;
-    getUsers(params?: object): Promise<IUsersResponse>;
-    getUser(primaryKey: PrimaryKeyType, params?: object): Promise<IUserResponse>;
-    getMe(params?: object): Promise<IUserResponse>;
-    updateUser(primaryKey: PrimaryKeyType, body: BodyType): Promise<IUserResponse>;
-    ping(): Promise<void>;
-    serverInfo(): Promise<any>;
-    projectInfo(): Promise<any>;
-    getThirdPartyAuthProviders(): Promise<any>;
-}
-export declare class SDK implements ISDK {
-    /**
-     * If the current auth status is logged in
-     */
+import { IField } from "schemes/directus/Field";
+import { IRelation } from "schemes/directus/Relation";
+import { IRole } from "schemes/directus/Role";
+import { IRelationsResponse } from "schemes/response/Relation";
+import { ICollection } from "./schemes/directus/Collection";
+import { ICollectionPreset } from "./schemes/directus/CollectionPreset";
+import { IPermission } from "./schemes/directus/Permission";
+import { IUser } from "./schemes/directus/User";
+import { QueryParams as QueryParamsType } from "./schemes/http/Query";
+import { IUpdateCollectionPresetBody } from "./schemes/request/Collection";
+import { ICollectionPresetResponse } from "./schemes/response/CollectionPreset";
+import { IItemResponse, IItemsResponse } from "./schemes/response/Item";
+import { IRelationResponse } from "./schemes/response/Relation";
+import { IServerInformationResponse } from "./schemes/response/ServerInformation";
+import { ISettingsResponse } from "./schemes/response/Setting";
+declare type PrimaryKeyType = string | number;
+export declare class SDK {
     readonly loggedIn: boolean;
     readonly payload: any;
     static getPayload: typeof getPayload;
@@ -122,29 +66,29 @@ export declare class SDK implements ISDK {
     /**
      * Get activity
      */
-    getActivity(params?: object): Promise<IActivityResponse>;
+    getActivity(params?: QueryParamsType): Promise<IActivityResponse>;
     /**
      * Get the bookmarks of the current user
      * TODO: Add deprecation warning
      * @see https://docs.directus.io/advanced/legacy-upgrades.html#directus-bookmarks
      */
-    getMyBookmarks<T extends any[] = any[]>(params?: object): Promise<T>;
+    getMyBookmarks<T extends any[] = any[]>(params?: QueryParamsType): Promise<T>;
     /**
      * Get all available collections
      */
-    getCollections(params?: object): Promise<ICollectionsResponse[]>;
+    getCollections(params?: QueryParamsType): Promise<ICollectionsResponse[]>;
     /**
      * Get collection info by name
      */
-    getCollection(collection: string, params?: object): Promise<ICollectionResponse>;
+    getCollection(collection: string, params?: QueryParamsType): Promise<ICollectionResponse>;
     /**
      * Create a collection
      */
-    createCollection(data: object): Promise<ICollectionResponse>;
+    createCollection(data: ICollection): Promise<ICollectionResponse>;
     /**
      * Updates a certain collection
      */
-    updateCollection(collection: string, data: object): Promise<ICollectionResponse>;
+    updateCollection(collection: string, data: Partial<ICollection>): Promise<ICollectionResponse>;
     /**
      * Deletes a certain collection
      */
@@ -152,52 +96,47 @@ export declare class SDK implements ISDK {
     /**
      * Create a new collection preset (bookmark / listing preferences)
      */
-    createCollectionPreset<T extends any = any>(data: object): Promise<T>;
+    createCollectionPreset<CollectionPreset extends ICollectionPreset>(data: CollectionPreset): Promise<ICollectionPresetResponse<CollectionPreset>>;
     /**
      * Update collection preset (bookmark / listing preference)
      */
-    updateCollectionPreset<T extends any = any>(primaryKey: PrimaryKeyType, data: object): Promise<T>;
+    updateCollectionPreset<PartialCollectionPreset extends Partial<ICollectionPreset>, ResultCollectionPreset extends ICollectionPreset = ICollectionPreset>(primaryKey: PrimaryKeyType, data: IUpdateCollectionPresetBody): Promise<ICollectionPresetResponse<PartialCollectionPreset & ResultCollectionPreset>>;
     /**
      * Delete collection preset by primarykey
      */
     deleteCollectionPreset(primaryKey: PrimaryKeyType): Promise<void>;
     /**
-     * This will update the database of the API instance to the latest version
-     * using the migrations in the API
-     */
-    updateDatabase(): Promise<void>;
-    /**
      * Get the meta information of all installed interfaces
      */
-    getInterfaces<T extends any = any>(): Promise<T>;
+    getInterfaces<T extends any[] = any[]>(): Promise<T>;
     /**
      * Get the meta information of all installed layouts
      */
-    getLayouts<T extends any = any>(): Promise<T>;
+    getLayouts<T extends any[] = any[]>(): Promise<T>;
     /**
      * Get the meta information of all installed pages
      */
-    getPages<T extends any = any>(): Promise<T>;
+    getPages<T extends any[] = any[]>(): Promise<T>;
     /**
      * Get all fields that are in Directus
      */
-    getAllFields<T extends any = any>(params?: object): Promise<T>;
+    getAllFields<T extends IField[]>(params?: QueryParamsType): Promise<IFieldsResponse<T>>;
     /**
      * Get the fields that have been setup for a given collection
      */
-    getFields<T extends any = any>(collection: string, params?: object): Promise<T>;
+    getFields<T extends IField[]>(collection: string, params?: QueryParamsType): Promise<IFieldsResponse<T>>;
     /**
      * Get the field information for a single given field
      */
-    getField<T extends any = any>(collection: string, fieldName: string, params?: object): Promise<T>;
+    getField<T extends IField>(collection: string, fieldName: string, params?: QueryParamsType): Promise<IFieldResponse<T>>;
     /**
      * Create a field in the given collection
      */
-    createField<T extends any = any>(collection: string, fieldInfo: object): Promise<T>;
+    createField<T extends IField>(collection: string, fieldInfo: T): Promise<IFieldResponse<T>>;
     /**
      * Update a given field in a given collection
      */
-    updateField<T extends any = any>(collection: string, fieldName: string, fieldInfo: object): Promise<T>;
+    updateField<T extends Partial<IField>>(collection: string, fieldName: string, fieldInfo: T): Promise<IFieldResponse<IField & T> | undefined>;
     /**
      * Update multiple fields at once
      *
@@ -224,7 +163,8 @@ export declare class SDK implements ISDK {
      *   }
      * ])
      */
-    updateFields<T extends any[] = any[]>(collection: string, fieldsInfoOrFieldNames: string[] | object[], fieldInfo?: object): Promise<IField<T> | undefined>;
+    updateFields<T extends IField[]>(collection: string, fields: Array<Partial<IField>>): Promise<IFieldsResponse<T & IField[]> | undefined>;
+    updateFields<T extends IField[]>(collection: string, fields: string[], fieldInfo: Partial<IField>): Promise<IFieldsResponse<T & IField[]> | undefined>;
     /**
      * Delete a field from a collection
      */
@@ -235,35 +175,42 @@ export declare class SDK implements ISDK {
     uploadFiles<T extends any = any[]>(data: object, onUploadProgress?: () => object): Promise<T>;
     /**
      * Update an existing item
+     * @typeparam PartialItem    Defining the item type in object schema
+     * @typeparam Result         Extension of [PartialItem] as expected result
+     * @return {Promise<IItemResponse<PartialItem & Result>>}
      */
-    updateItem<T extends any = any>(collection: string, primaryKey: PrimaryKeyType, body: BodyType, params?: object): Promise<T>;
+    updateItem<PartialItem extends object, Result extends object = PartialItem>(collection: string, primaryKey: PrimaryKeyType, body: PartialItem, params?: QueryParamsType): Promise<IItemResponse<PartialItem & Result>>;
     /**
      * Update multiple items
+     * @typeparam PartialItem    Defining an array of items, each in object schema
+     * @typeparam Result         Extension of [PartialItem] as expected result
+     * @return {Promise<IItemsResponse<PartialItem & Result>>}
      */
-    updateItems<T extends any[] = any[]>(collection: string, body: BodyType, params?: object): Promise<T>;
+    updateItems<PartialItem extends object[], Result extends PartialItem = PartialItem>(collection: string, body: PartialItem, params?: QueryParamsType): Promise<IItemsResponse<PartialItem & Result>>;
     /**
      * Create a new item
+     * @typeparam ItemType    Defining an item and its fields in object schema
+     * @return {Promise<IItemsResponse<ItemType>>}
      */
-    createItem<T extends any = any>(collection: string, body: BodyType): Promise<T>;
+    createItem<ItemType extends object>(collection: string, body: ItemType): Promise<IItemResponse<ItemType>>;
     /**
      * Create multiple items
-     * TODO: what should we do:
-     *  a) <T extends any[] = any[]> -> Promise<IField<T>>
-     *  b) <T extends any = any> -> Promise<IField<T[]>>
-     *
-     * which will result in the following
-     *  a) createItems<Person> => Promise<IField<Person[]>>
-     *  b) createItems<Person[]> => Promise<IField<Person[]>>
+     * @typeparam ItemsType    Defining an array of items, each in object schema
+     * @return {Promise<IItemsResponse<ItemsType>>}
      */
-    createItems<T extends any[] = any[]>(collection: string, body: BodyType): Promise<IField<T>>;
+    createItems<ItemsType extends Array<{}>>(collection: string, body: BodyType): Promise<IItemsResponse<ItemsType>>;
     /**
      * Get items from a given collection
+     * @typeparam ItemsType    Defining an array of items, each in object schema
+     * @return {Promise<IItemsResponse<ItemsType>>}
      */
-    getItems<T extends any[] = any[]>(collection: string, params?: object): Promise<IField<T>>;
+    getItems<ItemsType extends Array<{}>>(collection: string, params?: QueryParamsType): Promise<IItemsResponse<ItemsType>>;
     /**
      * Get a single item by primary key
+     * @typeparam ItemType    Defining fields of an item in object schema
+     * @return {Promise<IItemResponse<ItemType>>}
      */
-    getItem<T extends any = any>(collection: string, primaryKey: PrimaryKeyType, params?: object): Promise<IField<T>>;
+    getItem<ItemType extends object = {}>(collection: string, primaryKey: PrimaryKeyType, params?: QueryParamsType): Promise<IItemResponse<ItemType>>;
     /**
      * Delete a single item by primary key
      */
@@ -275,106 +222,166 @@ export declare class SDK implements ISDK {
     /**
      * Get the collection presets of the current user for a single collection
      */
-    getMyListingPreferences<T extends any[] = any[]>(collection: string, params?: object): Promise<T>;
+    getMyListingPreferences<T extends any[] = any[]>(collection: string, params?: QueryParamsType): Promise<T>;
     /**
      * Get permissions
+     * @param {QueryParamsType?} params
+     * @return {Promise<IPermission>}
      */
-    getPermissions<T extends any[] = any[]>(params?: object): Promise<IField<T>>;
+    getPermissions(params?: QueryParamsType): Promise<IItemsResponse<IPermission[]>>;
     /**
+     * TODO: Fix type-def for return
      * Get the currently logged in user's permissions
+     * @param {QueryParamsType?} params
+     * @typeparam T   Permissions type as array extending any[]
+     * @return {Promise<T>}
      */
-    getMyPermissions<T extends any[] = any[]>(params?: object): Promise<T>;
+    getMyPermissions<T extends any[] = any[]>(params?: QueryParamsType): Promise<T>;
     /**
+     * TODO: Fix type-def for param and return
      * Create multiple new permissions
+     * @param {any[]} data
+     * @typeparam T   Permissions type as array extending any[]
+     * @return {Promise<T>}
      */
     createPermissions<T extends any[] = any[]>(data: any[]): Promise<T>;
     /**
+     * TODO: Fix type-def for param and return
      * Update multiple permission records
+     * @param {any[]} data
+     * @typeparam T   Permissions type as array extending any[]
+     * @return {Promise<T>}
      */
     updatePermissions<T extends any[] = any[]>(data: any[]): Promise<T>;
     /**
      * Get all relationships
+     * @param {QueryParamsType?} params
+     * @return {Promise<IRelationsResponse>}
      */
-    getRelations<T extends any[] = any[]>(params?: object): Promise<T>;
+    getRelations(params?: QueryParamsType): Promise<IRelationsResponse>;
     /**
      * Creates new relation
+     * @param {IRelation} data
+     * @return {Promise<IRelationResponse>}
      */
-    createRelation<T extends any = any>(data: object): Promise<T>;
+    createRelation(data: IRelation): Promise<IRelationResponse>;
     /**
      * Updates existing relation
+     * @param {PrimaryKeyType} primaryKey
+     * @param {Partial<IRelation>} data
+     * @return {Promise<IRelationResponse>}
      */
-    updateRelation<T extends any = any>(primaryKey: PrimaryKeyType, data: object): Promise<T>;
+    updateRelation(primaryKey: PrimaryKeyType, data: Partial<IRelation>): Promise<IRelationResponse>;
     /**
+     * TODO: Add type-def for return value(s)
      * Get the relationship information for the given collection
+     * @param {string} collection
+     * @param {QueryParamsType?} params
+     * @return {Promise<any[]>}
      */
-    getCollectionRelations<T extends any = any>(collection: string, params?: object): Promise<T[]>;
+    getCollectionRelations(collection: string, params?: QueryParamsType): Promise<any[]>;
     /**
      * Get a single item's revisions by primary key
+     * @typeparam DataAndDelta  The data including delta type for the revision
+     * @param {string} collection
+     * @param {PrimaryKeyType} primaryKey
+     * @param {QueryParamsType?} params
      */
-    getItemRevisions<T extends any = any>(collection: string, primaryKey: PrimaryKeyType, params?: object): Promise<IRevisionResponse<T>>;
+    getItemRevisions<DataAndDelta extends object = {}>(collection: string, primaryKey: PrimaryKeyType, params?: QueryParamsType): Promise<IRevisionResponse<DataAndDelta>>;
     /**
      * Revert an item to a previous state
+     * @param {string} collection
+     * @param {PrimaryKeyType} primaryKey
+     * @param {number} revisionID
      */
     revert(collection: string, primaryKey: PrimaryKeyType, revisionID: number): Promise<void>;
     /**
      * Get a single user role
+     * @param {PrimaryKeyType} primaryKey
+     * @param {QueryParamsType?} params
      */
-    getRole(primaryKey: PrimaryKeyType, params?: object): Promise<IRoleResponse>;
+    getRole(primaryKey: PrimaryKeyType, params?: QueryParamsType): Promise<IRoleResponse>;
     /**
      * Get the user roles
+     * @param {QueryParamsType?} params
      */
-    getRoles(params?: object): Promise<IRoleResponse[]>;
+    getRoles(params?: QueryParamsType): Promise<IRoleResponse[]>;
     /**
      * Update a user role
+     * @param {PrimaryKeyType} primaryKey
+     * @param {Role} body
      */
-    updateRole(primaryKey: PrimaryKeyType, body: BodyType): Promise<IRoleResponse>;
+    updateRole<Role extends Partial<IRole>>(primaryKey: PrimaryKeyType, body: Role): Promise<IItemResponse<Role & IRole>>;
     /**
      * Create a new user role
+     * @param {Role} body
      */
-    createRole(body: BodyType): Promise<IRoleResponse>;
+    createRole<Role extends IRole>(body: Role): Promise<IItemResponse<Role>>;
     /**
      * Delete a user rol by primary key
+     * @param {PrimaryKeyType} primaryKey
      */
     deleteRole(primaryKey: PrimaryKeyType): Promise<void>;
     /**
      * Get Directus' global settings
+     * @param {QueryParamsType?} params
      */
-    getSettings(params?: object): Promise<any>;
+    getSettings(params?: QueryParamsType): Promise<ISettingsResponse>;
     /**
      * Get the "fields" for directus_settings
+     * @param {QueryParamsType?} params
      */
-    getSettingsFields(params?: object): Promise<any>;
+    getSettingsFields(params?: QueryParamsType): Promise<IFieldsResponse<IField[]>>;
     /**
      * Get a list of available users in Directus
+     * @param {QueryParamsType?} params
      */
-    getUsers(params?: object): Promise<IUsersResponse>;
+    getUsers(params?: QueryParamsType): Promise<IUsersResponse<IUser[]>>;
     /**
      * Get a single Directus user
+     * @param {PrimaryKeyType} primaryKey
+     * @param {QueryParamsType?} params
      */
-    getUser(primaryKey: PrimaryKeyType, params?: object): Promise<IUserResponse>;
+    getUser<User extends IUser = IUser>(primaryKey: PrimaryKeyType, params?: QueryParamsType): Promise<IUserResponse<User>>;
     /**
      * Get the user info of the currently logged in user
+     * @param {QueryParamsType?} params
      */
-    getMe(params?: object): Promise<IUserResponse>;
+    getMe<User extends IUser = IUser>(params?: QueryParamsType): Promise<IUserResponse<User>>;
     /**
      * Update a single user based on primaryKey
+     * @param {PrimaryKeyType} primaryKey
+     * @param {QueryParamsType?} params
      */
-    updateUser(primaryKey: PrimaryKeyType, body: BodyType): Promise<IUserResponse>;
+    updateUser<User extends Partial<IUser>>(primaryKey: PrimaryKeyType, body: User): Promise<IItemResponse<User & IUser>>;
     /**
-     * Ping the API to check if it exists / is up and running
+     * This will update the database of the API instance to the latest version
+     * using the migrations in the API
+     * @return {Promise<void>}
      */
-    ping(): Promise<void>;
+    updateDatabase(): Promise<void>;
+    /**
+     * Ping the API to check if it exists / is up and running, returns "pong"
+     * @return {Promise<string>}
+     */
+    ping(): Promise<string>;
     /**
      * Get the server info from the API
+     * @return {Promise<IServerInformationResponse>}
      */
-    serverInfo(): Promise<any>;
+    serverInfo(): Promise<IServerInformationResponse>;
     /**
+     * TODO: Add response type-def
      * Get the server info from the project
+     * @return {Promise<any>}
      */
     projectInfo(): Promise<any>;
     /**
+     * TODO: Add response type-def
      * Get all the setup third party auth providers
+     * @return {Promise<any>}
      */
     getThirdPartyAuthProviders(): Promise<any>;
 }
+export {};
 //# sourceMappingURL=SDK.d.ts.map
