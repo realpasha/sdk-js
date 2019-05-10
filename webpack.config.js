@@ -1,3 +1,6 @@
+// @ts-check
+
+// @ts-ignore
 const { cyan, magenta } = require('chalk');
 const { ROOT, ENTRY, DIST, LIBRARY_NAME } = require('./config/utils');
 const clientDevelopmentConfig = require('./config/webpack.config.client-development');
