@@ -11,9 +11,9 @@ export interface ICollectionDataSet extends ICollection {
 /**
  * @see https://docs.directus.io/api/reference.html#collections
  */
-export interface ICollectionResponse extends IAPIResponse<ICollectionDataSet> { }
+export interface ICollectionResponse extends IAPIResponse<ICollectionDataSet> {}
 
 /**
  * @see https://docs.directus.io/api/reference.html#collections
  */
-export interface ICollectionsResponse extends IAPIResponse<ICollectionDataSet[]> { }
+export interface ICollectionsResponse extends IAPIResponse<ICollectionDataSet[]> {}

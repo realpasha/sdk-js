@@ -4,4 +4,4 @@ import { IRole } from "../directus/Role";
 /**
  * @see https://docs.directus.io/api/reference.html#roles
  */
-export interface IRoleResponse extends IAPIResponse<IRole[]> { }
+export interface IRoleResponse extends IAPIResponse<IRole[]> {}

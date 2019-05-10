@@ -4,4 +4,4 @@ import { IServerInformation } from "../directus/ServerInformation";
 /**
  * @see https://docs.directus.io/api/reference.html#information
  */
-export interface IServerInformationResponse extends IAPIResponse<IServerInformation> { };
+export interface IServerInformationResponse extends IAPIResponse<IServerInformation> {}

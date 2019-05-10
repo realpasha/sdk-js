@@ -18,7 +18,6 @@ import { getPayload } from "./utils/payload";
 
 // Manager classes
 import { API, IAPI } from "./API";
-import { IAuthentication } from "./Authentication";
 import { Configuration, IConfiguration, IConfigurationOptions } from "./Configuration";
 
 // Invariant violation
@@ -32,100 +31,15 @@ import { ICollection } from "./schemes/directus/Collection";
 import { ICollectionPreset } from "./schemes/directus/CollectionPreset";
 import { IPermission } from "./schemes/directus/Permission";
 import { IUser } from "./schemes/directus/User";
-import { QueryParams, QueryParams as QueryParamsType } from "./schemes/http/Query";
+import { QueryParams as QueryParamsType } from "./schemes/http/Query";
 import { IUpdateCollectionPresetBody } from "./schemes/request/Collection";
 import { ICollectionPresetResponse } from "./schemes/response/CollectionPreset";
 import { IItemResponse, IItemsResponse } from "./schemes/response/Item";
+import { IRelationResponse } from "./schemes/response/Relation";
+import { IServerInformationResponse } from "./schemes/response/ServerInformation";
 import { ISettingsResponse } from "./schemes/response/Setting";
 import { invariant } from "./utils/invariant";
 import { isArray, isNotNull, isNumber, isObject, isObjectOrEmpty, isString } from "./utils/is";
-import { IRelationResponse } from './schemes/response/Relation';
-import { IServerInformationResponse } from './schemes/response/ServerInformation';
-
-// // tslint:disable: max-line-length
-// export interface ISDK {
-//   loggedIn: boolean;
-//   config: IConfiguration;
-//   api: IAPI;
-//   payload: any;
-//   login: IAuthentication["login"];
-//   logout: IAuthentication["logout"];
-//   refreshIfNeeded: IAuthentication["refreshIfNeeded"];
-//   refresh: IAuthentication["refresh"];
-//   reset(): void;
-//   requestPasswordReset<T extends any = any>(email: string): Promise<T>;
-//   getActivity(params?: object): Promise<IActivityResponse>;
-//   getMyBookmarks<T extends any[] = any[]>(params?: object): Promise<T>;
-//   // Collections
-//   getCollections(params?: object): Promise<ICollectionsResponse[]>;
-//   getCollection(collection: string, params?: object): Promise<ICollectionResponse>;
-//   createCollection(data: object): Promise<ICollectionResponse>;
-//   updateCollection(collection: string, data: object): Promise<ICollectionResponse>;
-//   deleteCollection(collection: string): Promise<void>;
-//   // Collection Presets
-//   createCollectionPreset<CollectionPreset extends ICollectionPreset>(data: CollectionPreset): Promise<ICollectionPresetResponse<CollectionPreset>>;
-//   updateCollectionPreset<PartialCollectionPreset extends Partial<ICollectionPreset>, ResultCollectionPreset extends ICollectionPreset = ICollectionPreset>(primaryKey: PrimaryKeyType, data: IUpdateCollectionPresetBody): Promise<ICollectionPresetResponse<PartialCollectionPreset & ResultCollectionPreset>>
-//   deleteCollectionPreset(primaryKey: PrimaryKeyType): Promise<void>;
-//   // Admin
-//   updateDatabase(): Promise<void>;
-//   // Extensions
-//   getInterfaces<T extends any[] = any[]>(): Promise<T>;
-//   getLayouts<T extends any[] = any[]>(): Promise<T>;
-//   getPages<T extends any[] = any[]>(): Promise<T>;
-//   // Fields
-//   getAllFields<T extends IField[] = IField[]>(params?: object): Promise<IFieldsResponse<T>>;
-//   getFields<T extends IField[] = IField[]>(collection: string, params?: object): Promise<IFieldsResponse<T>>;
-//   getField<T extends IField = IField>(collection: string, fieldName: string, params?: object): Promise<IFieldResponse<T>>;
-//   createField<T extends IField = IField>(collection: string, fieldInfo: T): Promise<IFieldResponse<T>>;
-//   updateField<T extends Partial<IField> = Partial<IField>>(collection: string, fieldName: string, fieldInfo: T): Promise<IFieldResponse<T & IField> | undefined>;
-//   updateFields<T extends Array<Partial<IField>>>(collection: string, fieldsInfoOrFieldNames: T, fieldInfo?: T): Promise<IFieldsResponse<T & IField[]> | undefined>;
-//   updateFields<T extends Array<Partial<IField>> | Partial<IField>>(collection: string, fieldsInfoOrFieldNames: string[], fieldInfo?: T): Promise<IFieldsResponse<T & IField[]> | undefined>;
-//   deleteField(collection: string, fieldName: string): Promise<void>;
-//   uploadFiles<T extends any = any[]>(data: object, onUploadProgress?: () => object): Promise<T>;
-//   // Items
-//   updateItem<PartialItem extends object, Result extends object = PartialItem>(collection: string, primaryKey: PrimaryKeyType, body: PartialItem, params?: QueryParamsType): Promise<IItemResponse<PartialItem & Result>>;
-//   updateItems<PartialItem extends object[], Result extends PartialItem = PartialItem>(collection: string, body: PartialItem, params?: QueryParamsType): Promise<IItemsResponse<PartialItem & Result>>;
-//   createItem<ItemType extends object>(collection: string, body: ItemType): Promise<IItemResponse<ItemType>>;
-//   createItems<ItemsType extends Array<{}>>(collection: string, body: BodyType): Promise<IItemsResponse<ItemsType>>;
-//   getItems<ItemsType extends Array<{}>>(collection: string, params?: QueryParamsType): Promise<IItemsResponse<ItemsType>>;
-//   getItem<ItemType extends object = {}>(collection: string, primaryKey: PrimaryKeyType, params?: QueryParamsType): Promise<IItemResponse<ItemType>>;
-//   deleteItem(collection: string, primaryKey: PrimaryKeyType): Promise<void>;
-//   deleteItems(collection: string, primaryKeys: PrimaryKeyType[]): Promise<void>;
-//   // Preferences and Permissions
-//   getMyListingPreferences<T extends any[] = any[]>(collection: string, params?: object): Promise<T>;
-//   getPermissions(params?: object): Promise<IItemsResponse<IPermission[]>>;
-//   getMyPermissions<T extends any[] = any[]>(params?: object): Promise<T>;
-//   createPermissions<T extends any[] = any[]>(data: any[]): Promise<T>;
-//   updatePermissions<T extends any[] = any[]>(data: any[]): Promise<T>;
-//   // Relations
-//   getRelations(params?: QueryParamsType): Promise<IRelationsResponse>;
-//   createRelation(data: IRelation): Promise<IRelationsResponse>;
-//   updateRelation(primaryKey: PrimaryKeyType, data: Partial<IRelation>): Promise<IRelationsResponse>;
-//   getCollectionRelations(collection: string, params?: QueryParamsType): Promise<any[]>;
-//   // Revisions
-//   getItemRevisions<DataAndDelta extends {} = {}>(collection: string, primaryKey: PrimaryKeyType, params?: QueryParams): Promise<IRevisionResponse<DataAndDelta>>;
-//   revert(collection: string, primaryKey: PrimaryKeyType, revisionID: number): Promise<void>;
-//   // Roles
-//   getRole(primaryKey: PrimaryKeyType, params?: object): Promise<IRoleResponse>;
-//   getRoles(params?: object): Promise<IRoleResponse[]>;
-//   updateRole<Role extends Partial<IRole>>(primaryKey: PrimaryKeyType, body: Role): Promise<IItemResponse<Role & IRole>>;
-//   createRole<Role extends IRole>(body: Role): Promise<IItemResponse<Role>>;
-//   deleteRole(primaryKey: PrimaryKeyType): Promise<void>;
-//   // Settings
-//   getSettings(params?: QueryParamsType): Promise<ISettingsResponse>;
-//   getSettingsFields(params?: QueryParamsType): Promise<IFieldsResponse>;
-//   // Users
-//   getUser<User extends IUser = IUser>(primaryKey: PrimaryKeyType, params: QueryParamsType): Promise<IUserResponse<User>>;
-//   getUsers(params: QueryParamsType): Promise<IUsersResponse>;
-//   updateUser<User extends Partial<IUser>>(primaryKey: PrimaryKeyType, body: User): Promise<IItemResponse<User & IUser>>;
-//   // System
-//   ping(): Promise<any>;
-//   serverInfo(): Promise<any>;
-//   projectInfo(): Promise<any>;
-//   getThirdPartyAuthProviders(): Promise<any>;
-// }
-// tslint:enable: max-line-length
-
 export class SDK {
   public get loggedIn(): boolean {
     return this.api.auth.isLoggedIn();

@@ -18,4 +18,4 @@ interface IOptionalCollectionPresetData {
 /**
  * @see https://docs.directus.io/api/reference.html#collection-preset-object
  */
-export interface ICollectionPreset extends IRequiredCollectionPresetData, Partial<IOptionalCollectionPresetData> { }
+export interface ICollectionPreset extends IRequiredCollectionPresetData, Partial<IOptionalCollectionPresetData> {}

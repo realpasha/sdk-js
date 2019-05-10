@@ -21,10 +21,10 @@ export interface IFieldResponseDataInfo {
  * @see https://docs.directus.io/api/reference.html#fields-2
  */
 export interface IFieldResponse<T extends IField = IField>
-  extends IAPIResponse<T & IFieldResponseDataInfo, IFieldResponseMeta> { }
+  extends IAPIResponse<T & IFieldResponseDataInfo, IFieldResponseMeta> {}
 
 /**
  * @see https://docs.directus.io/api/reference.html#fields-2
  */
 export interface IFieldsResponse<T extends IField[] = IField[]>
-  extends IAPIResponse<Array<T & IFieldResponseDataInfo>, IAPIMetaList> { }
+  extends IAPIResponse<Array<T & IFieldResponseDataInfo>, IAPIMetaList> {}

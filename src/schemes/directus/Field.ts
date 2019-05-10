@@ -31,4 +31,4 @@ interface IOptionalFieldData {
 /**
  * @see https://docs.directus.io/api/reference.html#field-object
  */
-export interface IField extends IRequiredFieldData, Partial<IOptionalFieldData> { }
+export interface IField extends IRequiredFieldData, Partial<IOptionalFieldData> {}

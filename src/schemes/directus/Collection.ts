@@ -16,4 +16,4 @@ interface IOptionalCollectionData {
 /**
  * @see https://docs.directus.io/api/reference.html#collection-object
  */
-export interface ICollection extends IRequiredCollectionData, Partial<IOptionalCollectionData> { }
+export interface ICollection extends IRequiredCollectionData, Partial<IOptionalCollectionData> {}
