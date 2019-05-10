@@ -10,7 +10,6 @@ import { IRevisionResponse } from "./schemes/response/Revision";
 import { IRoleResponse } from "./schemes/response/Role";
 import { IRefreshTokenResponse } from "./schemes/response/Token";
 import { IUserResponse, IUsersResponse } from "./schemes/response/User";
-import { PrimaryKeyType } from "./types";
 
 // Utilities
 import { getCollectionItemPath } from "./utils/collection";
@@ -40,6 +39,9 @@ import { IServerInformationResponse } from "./schemes/response/ServerInformation
 import { ISettingsResponse } from "./schemes/response/Setting";
 import { invariant } from "./utils/invariant";
 import { isArray, isNotNull, isNumber, isObject, isObjectOrEmpty, isString } from "./utils/is";
+
+type PrimaryKeyType = string | number;
+
 export class SDK {
   public get loggedIn(): boolean {
     return this.api.auth.isLoggedIn();
