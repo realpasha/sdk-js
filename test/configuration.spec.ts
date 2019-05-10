@@ -1,6 +1,6 @@
 import * as chai from "chai";
-import { Configuration } from '../src/Configuration';
-import { mockStorage } from './mock/storage';
+import { Configuration } from "../src/Configuration";
+import { mockStorage } from "./mock/storage";
 
 const expect = chai.expect;
 
@@ -44,14 +44,14 @@ describe("Configuration", () => {
         beforeEach(() => {
           Configuration.defaults = {
             project: "custom",
-            tokenExpirationTime: 10
+            tokenExpirationTime: 10,
           };
         });
 
         afterEach(() => {
           Configuration.defaults = {
             project: "_",
-            tokenExpirationTime: 5 * 6 * 1000
+            tokenExpirationTime: 5 * 6 * 1000,
           };
         });
 

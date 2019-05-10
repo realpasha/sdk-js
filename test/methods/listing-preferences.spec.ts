@@ -3,7 +3,6 @@ import * as jwt from "jsonwebtoken";
 import * as sinon from "sinon";
 import * as sinonChai from "sinon-chai";
 import SDK from "../../src/";
-import { ISDK } from "../../src/SDK";
 
 const expect = chai.expect;
 chai.use(sinonChai);
@@ -16,7 +15,7 @@ chai.use(sinonChai);
  */
 
 describe("Listing Preferences", () => {
-  let client: ISDK;
+  let client: SDK;
 
   beforeEach(() => {
     client = new SDK({

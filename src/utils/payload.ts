@@ -3,6 +3,7 @@ import { isNumber } from "./is";
 
 /**
  * Retrieves the payload from a JWT
+ * @internal
  * @param  {String} token The JWT to retrieve the payload from
  * @return {Object}       The JWT payload
  */

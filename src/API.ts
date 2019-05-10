@@ -8,7 +8,7 @@ import { IConfiguration } from "./Configuration";
 // Scheme types
 import { BodyType } from "./schemes/http/Body";
 import { RequestMethod } from "./schemes/http/Request";
-import { IError } from "./schemes/response/Error";
+import { IErrorResponse } from "./schemes/response/Error";
 
 // Utilities
 import { invariant } from "./utils/invariant";
@@ -32,7 +32,8 @@ export interface IAPI {
     params?: object,
     data?: object,
     noEnv?: boolean,
-    headers?: { [key: string]: string }
+    headers?: { [key: string]: string },
+    skipParseToJSON?: boolean
   ): Promise<T>;
 }
 
@@ -55,13 +56,15 @@ export class API implements IAPI {
    */
   public reset(): void {
     this.auth.logout();
-    this.config.delete();
+    this.config.deleteHydratedConfig();
   }
 
   /// REQUEST METHODS ----------------------------------------------------------
 
   /**
    * GET convenience method. Calls the request method for you
+   * @typeparam T   response type
+   * @return {Promise<T>}
    */
   public get<T extends any = any>(endpoint: string, params: object = {}): Promise<T> {
     invariant(isString(endpoint), "endpoint must be a string");
@@ -72,6 +75,8 @@ export class API implements IAPI {
 
   /**
    * POST convenience method. Calls the request method for you
+   * @typeparam T   response type
+   * @return {Promise<T>}
    */
   public post<T extends any = any>(endpoint: string, body: BodyType = {}, params: object = {}): Promise<T> {
     invariant(isString(endpoint), "endpoint must be a string");
@@ -82,6 +87,8 @@ export class API implements IAPI {
 
   /**
    * PATCH convenience method. Calls the request method for you
+   * @typeparam T   response type
+   * @return {Promise<T>}
    */
   public patch<T extends any = any>(endpoint: string, body: BodyType = {}, params: object = {}): Promise<T> {
     invariant(isString(endpoint), "endpoint must be a string");
@@ -92,6 +99,8 @@ export class API implements IAPI {
 
   /**
    * PUT convenience method. Calls the request method for you
+   * @typeparam T   response type
+   * @return {Promise<T>}
    */
   public put<T extends any = any>(endpoint: string, body: BodyType = {}, params: object = {}): Promise<T> {
     invariant(isString(endpoint), "endpoint must be a string");
@@ -102,6 +111,8 @@ export class API implements IAPI {
 
   /**
    * DELETE convenience method. Calls the request method for you
+   * @typeparam T   response type
+   * @return {Promise<T>}
    */
   public delete<T extends any = any>(endpoint: string): Promise<T> {
     invariant(isString(endpoint), "endpoint must be a string");
@@ -111,6 +122,8 @@ export class API implements IAPI {
 
   /**
    * Gets the payload of the current token, return type can be generic
+   * @typeparam T   extends object, payload type
+   * @return {Promise<T>}
    */
   public getPayload<T extends object = object>(): T {
     if (!isString(this.config.token)) {
@@ -122,6 +135,15 @@ export class API implements IAPI {
 
   /**
    * Perform an API request to the Directus API
+   * @param {RequestMethod} method    Selected HTTP method
+   * @param {string} endpoint         Endpoint definition as path
+   * @param {object={}} params        Query parameters
+   * @param {object={}} data          Data passed to directus
+   * @param {boolean=false} noEnv     Do not include the `env` in the url (for system calls)
+   * @param {object={}} headers       Optional headers to include
+   * @param {boolean=false} skipParseToJSON  Whether to skip `JSON.parse` or not
+   * @typeparam T                     Response type definition, defaults to `any`
+   * @return {Promise<T>}
    */
   public request<T extends any = any>(
     method: RequestMethod,
@@ -129,7 +151,8 @@ export class API implements IAPI {
     params: object = {},
     data: object = {},
     noEnv: boolean = false,
-    headers: { [key: string]: string } = {}
+    headers: { [key: string]: string } = {},
+    skipParseToJSON: boolean = false
   ): Promise<T> {
     invariant(isString(method), "method must be a string");
     invariant(isString(endpoint), "endpoint must be a string");
@@ -167,7 +190,7 @@ export class API implements IAPI {
 
         if (typeof responseData !== "object") {
           try {
-            return JSON.parse(responseData);
+            return skipParseToJSON ? responseData : JSON.parse(responseData);
           } catch (error) {
             throw {
               data: responseData,
@@ -179,7 +202,7 @@ export class API implements IAPI {
 
         return responseData as T;
       })
-      .catch((error: IError) => {
+      .catch((error: IErrorResponse) => {
         if (error.response) {
           throw error.response.data.error;
         } else if (error.json === true) {

@@ -2,13 +2,12 @@ import * as chai from "chai";
 import * as sinon from "sinon";
 import * as sinonChai from "sinon-chai";
 import SDK from "../../src/";
-import { ISDK } from "../../src/SDK";
 
 const expect = chai.expect;
 chai.use(sinonChai);
 
 describe("Users", () => {
-  let client: ISDK;
+  let client: SDK;
 
   beforeEach(() => {
     client = new SDK({
@@ -26,7 +25,7 @@ describe("Users", () => {
     sinon.stub(client.api, "patch").resolves(responseJSON);
     sinon.stub(client.api, "post").resolves(responseJSON);
     sinon.stub(client.api, "delete").resolves(responseJSON);
-    sinon.stub(client, "updateItem").resolves(responseJSON);
+    sinon.stub(client, "updateItem").resolves(responseJSON as any);
   });
 
   afterEach(() => {

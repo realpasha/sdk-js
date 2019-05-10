@@ -1,23 +1,7 @@
 import { IAPIMetaList, IAPIResponse } from "../APIResponse";
-import { IRoleDataSet } from "./Role";
-import { IUserDataSet } from "./User";
+import { IActivity } from "../directus/Activity";
 
-export type ActivityAction = string; // update ...
-export type ActivityCollection = string; // members ...
-
-export interface IActivityDataSet {
-  action: ActivityAction;
-  action_by: IUserDataSet;
-  roles: IRoleDataSet[];
-  action_on: string;
-  collection: ActivityAction;
-  comment: any | null;
-  comment_deleted_on: string | null;
-  edited_on: string | null;
-  id: number;
-  ip: string;
-  item: string;
-  user_agent: string;
-}
-
-export interface IActivityResponse extends IAPIResponse<IActivityDataSet[], IAPIMetaList> {}
+/**
+ * @see https://docs.directus.io/api/reference.html#activity
+ */
+export interface IActivityResponse extends IAPIResponse<IActivity[], IAPIMetaList> { }

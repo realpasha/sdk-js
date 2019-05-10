@@ -28,7 +28,7 @@ export interface IConfiguration {
   tokenExpirationTime: number;
   persist: boolean;
   dehydrate(): IConfigurationValues;
-  delete();
+  deleteHydratedConfig();
   hydrate(config: IConfigurationValues);
   partialUpdate(config: Partial<IConfigurationValues>): void;
   reset(): void;
@@ -43,21 +43,54 @@ export interface IConfigurationDefaults {
 
 // constructor options
 export interface IConfigurationOptions {
+  /**
+   * The URL of the direcuts CMS
+   */
   url: string;
+  /**
+   * The token to authenticate if preferred
+   */
   token?: string;
+  /**
+   * Project namespace
+   */
   project?: string;
+  /**
+   * Default login expiration as number in ms
+   */
   localExp?: number;
+  /**
+   * If the token should be persitated or rehydrated
+   */
   persist?: boolean;
+  /**
+   * Auto token expiration time
+   */
   tokenExpirationTime?: number;
 }
 
 export class Configuration implements IConfiguration {
+  /**
+   * Defaults for all directus sdk instances, can be modified if preferred
+   * @type {IConfigurationDefaults}
+   */
   public static defaults: IConfigurationDefaults = {
     project: "_",
     tokenExpirationTime: 5 * 6 * 1000,
   };
+
+  /**
+   * Saves the internal configuration values, **DO NOT modify** from the outside
+   * @internal
+   */
   private internalConfiguration: IConfigurationValues;
 
+  /**
+   * Creates a new configuration instance, will be used once for each directus instance (passing refs).
+   * @constructor
+   * @param {IConfigurationOptions} initialConfig   Initial configuration values
+   * @param {IStorageAPI?} storage                  Storage adapter for persistence
+   */
   constructor(initialConfig: IConfigurationOptions = {} as any, private storage?: IStorageAPI) {
     let dehydratedConfig: IConfigurationValues = {} as IConfigurationValues;
 
@@ -139,18 +172,30 @@ export class Configuration implements IConfiguration {
 
   // HELPER METHODS ============================================================
 
+  /**
+   * Validates if the configuration is valid
+   * @throws {Error}
+   */
   public validate() {
     invariant(isString(this.url), "configuration - url must be defined");
     invariant(isString(this.project), "configuration - project must be defined");
     invariant(isString(this.token), "configuration - project must be defined");
   }
 
+  /**
+   * Update the configuration values, will also hydrate them if persistance activated
+   * @param {IConfigurationValues} config
+   */
   public update(config: IConfigurationValues): void {
     this.internalConfiguration = config;
 
     this.hydrate(config);
   }
 
+  /**
+   * Update partials of the configuration, behaves like the [update] method
+   * @param {Partial<IConfigurationValues>} config
+   */
   public partialUpdate(config: Partial<IConfigurationValues>): void {
     this.internalConfiguration = {
       ...this.internalConfiguration,
@@ -160,6 +205,9 @@ export class Configuration implements IConfiguration {
     this.hydrate(this.internalConfiguration);
   }
 
+  /**
+   * Reset the whole confiugration and remove hydrated values from storage as well
+   */
   public reset(): void {
     delete this.internalConfiguration.token;
     delete this.internalConfiguration.url;
@@ -167,7 +215,7 @@ export class Configuration implements IConfiguration {
 
     this.internalConfiguration.project = "_";
 
-    this.delete();
+    this.deleteHydratedConfig();
   }
 
   // STORAGE METHODS ===========================================================
@@ -197,7 +245,7 @@ export class Configuration implements IConfiguration {
     this.storage.setItem(STORAGE_KEY, JSON.stringify(props));
   }
 
-  public delete(): void {
+  public deleteHydratedConfig(): void {
     if (!this.storage || !this.persist) {
       return;
     }

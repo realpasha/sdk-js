@@ -28,30 +28,18 @@ export type PrimaryKeyType = string | number;
  * @see IResponse ./schemes/Response
  *
  * @example
- *
- * type NumberResponse = DirectusResponse<number>;
+ * <br/>
+ * <br/>
+ * <code>type NumberResponse = DirectusResponse&lt;number&gt;;</code><br/>
  * // this would define the response "100" or "-192"
- *
- * type MyResponse = DirectusResponse<IResponse<{ name: string }>>;
- * //  this would define a fully featured directus response
- * //  {
- * //    meta: { ... },
- * //    data: {
- * //       name: "Max Mustermann"
- * //       ...
- * //    }
- * //  }
- *
- *
- * type MyMultiResponse = DirectusResponse<IResponse<{ age: number }[]>>
- * //  this would define a fully featured array directus response
- * //  {
- * //    meta: { ... },
- * //    data: [
- * //       { age: 58 },
- * //       { age: 31 }
- * //    ]
- * //  }
+ * <br/>
+ * <br/>
+ * <code>type MyResponse = DirectusResponse&lt;IResponse&lt;{ name: string }&gt;&gt;;</code><br/>
+ * this would define a fully featured directus response like: { meta: { ... }, data: { name: "Max Mustermann" } ... }
+ * <br/>
+ * <br/>
+ * <code>type MyMultiResponse = DirectusResponse&lt;IResponse&lt;{ age: number }[]&gt;&gt;;</code><br/>
+ * this would define a fully featured array directus response like: { meta: { ... }, data: [{ age: 58 }, { age: 31 }] }
  *
  */
 export type DirectusResponse<T extends any = any> = Promise<T>;

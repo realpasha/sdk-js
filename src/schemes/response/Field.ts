@@ -1,5 +1,7 @@
-import { IAPIResponse } from "../APIResponse";
-export interface IFieldMeta {
+import { IAPIMetaList, IAPIResponse } from "../APIResponse";
+import { IField } from "../directus/Field";
+
+interface IFieldResponseMeta {
   Deleted: number;
   Draft: number;
   Published: number;
@@ -9,10 +11,20 @@ export interface IFieldMeta {
   type: string;
 }
 
-export interface IFieldDataInfo {
+export interface IFieldResponseDataInfo {
   id: string;
   sort: number | null;
   status: number | null;
 }
 
-export interface IField<T> extends IAPIResponse<T & IFieldDataInfo, IFieldMeta> {}
+/**
+ * @see https://docs.directus.io/api/reference.html#fields-2
+ */
+export interface IFieldResponse<T extends IField = IField>
+  extends IAPIResponse<T & IFieldResponseDataInfo, IFieldResponseMeta> { }
+
+/**
+ * @see https://docs.directus.io/api/reference.html#fields-2
+ */
+export interface IFieldsResponse<T extends IField[] = IField[]>
+  extends IAPIResponse<Array<T & IFieldResponseDataInfo>, IAPIMetaList> { }

@@ -3,8 +3,8 @@ import { ILoginCredentials, ILoginOptions } from "./schemes/auth/Login";
 import { BodyType } from "./schemes/http/Body";
 import { IActivityResponse } from "./schemes/response/Activity";
 import { ICollectionResponse, ICollectionsResponse } from "./schemes/response/Collection";
-import { IError } from "./schemes/response/Error";
-import { IField } from "./schemes/response/Field";
+import { IErrorResponse } from "./schemes/response/Error";
+import { IFieldResponse, IFieldsResponse } from "./schemes/response/Field";
 import { ILoginResponse } from "./schemes/response/Login";
 import { IRevisionResponse } from "./schemes/response/Revision";
 import { IRoleResponse } from "./schemes/response/Role";
@@ -22,95 +22,111 @@ import { IAuthentication } from "./Authentication";
 import { Configuration, IConfiguration, IConfigurationOptions } from "./Configuration";
 
 // Invariant violation
+import { IField } from "schemes/directus/Field";
+import { IRelation } from "schemes/directus/Relation";
+import { IRole } from "schemes/directus/Role";
+import { ICreateCollectionPresetBody } from "schemes/request/Collection";
+import { IRelationsResponse } from "schemes/response/Relation";
+import { ISettingResponse } from "schemes/response/Setting";
+import { ICollection } from "./schemes/directus/Collection";
+import { ICollectionPreset } from "./schemes/directus/CollectionPreset";
+import { IPermission } from "./schemes/directus/Permission";
+import { IUser } from "./schemes/directus/User";
+import { QueryParams, QueryParams as QueryParamsType } from "./schemes/http/Query";
+import { IUpdateCollectionPresetBody } from "./schemes/request/Collection";
+import { ICollectionPresetResponse } from "./schemes/response/CollectionPreset";
+import { IItemResponse, IItemsResponse } from "./schemes/response/Item";
+import { ISettingsResponse } from "./schemes/response/Setting";
 import { invariant } from "./utils/invariant";
 import { isArray, isNotNull, isNumber, isObject, isObjectOrEmpty, isString } from "./utils/is";
+import { IRelationResponse } from './schemes/response/Relation';
+import { IServerInformationResponse } from './schemes/response/ServerInformation';
 
-export interface ISDK {
-  loggedIn: boolean;
-  config: IConfiguration;
-  api: IAPI;
-  payload: any;
-  login: IAuthentication["login"];
-  logout: IAuthentication["logout"];
-  refreshIfNeeded: IAuthentication["refreshIfNeeded"];
-  refresh: IAuthentication["refresh"];
-  reset(): void;
-  requestPasswordReset<T extends any = any>(email: string): Promise<T>;
-  getActivity(params?: object): Promise<IActivityResponse>;
-  getMyBookmarks<T extends any[] = any[]>(params?: object): Promise<T>;
-  getCollections(params?: object): Promise<ICollectionsResponse[]>;
-  getCollection(collection: string, params?: object): Promise<ICollectionResponse>;
-  createCollection(data: object): Promise<ICollectionResponse>;
-  updateCollection(collection: string, data: object): Promise<ICollectionResponse>;
-  deleteCollection(collection: string): Promise<void>;
-  createCollectionPreset<T extends any = any>(data: object): Promise<T>;
-  updateCollectionPreset<T extends any = any>(primaryKey: PrimaryKeyType, data: object): Promise<T>;
-  deleteCollectionPreset(primaryKey: PrimaryKeyType): Promise<void>;
-  updateDatabase(): Promise<void>;
-  getInterfaces<T extends any = any>(): Promise<T>;
-  getLayouts<T extends any = any>(): Promise<T>;
-  getPages<T extends any = any>(): Promise<T>;
-  getAllFields<T extends any = any>(params?: object): Promise<T>;
-  getFields<T extends any = any>(collection: string, params?: object): Promise<T>;
-  getField<T extends any = any>(collection: string, fieldName: string, params?: object): Promise<T>;
-  createField<T extends any = any>(collection: string, fieldInfo: object): Promise<T>;
-  updateField<T extends any = any>(collection: string, fieldName: string, fieldInfo: object): Promise<T>;
-  updateFields<T extends any[] = any[]>(
-    collection: string,
-    fieldsInfoOrFieldNames: string[] | object[],
-    fieldInfo?: object
-  ): Promise<IField<T> | undefined>;
-  deleteField(collection: string, fieldName: string): Promise<void>;
-  uploadFiles<T extends any = any[]>(data: object, onUploadProgress?: () => object): Promise<T>;
-  updateItem<T extends any = any>(
-    collection: string,
-    primaryKey: PrimaryKeyType,
-    body: BodyType,
-    params?: object
-  ): Promise<T>;
-  updateItems<T extends any[] = any[]>(collection: string, body: BodyType, params?: object): Promise<T>;
-  createItem<T extends any = any>(collection: string, body: BodyType): Promise<T>;
-  createItems<T extends any[] = any[]>(collection: string, body: BodyType): Promise<IField<T>>;
-  getItems<T extends any[] = any[]>(collection: string, params: object): Promise<IField<T>>;
-  getItem<T extends any = any>(collection: string, primaryKey: PrimaryKeyType, params?: object): Promise<IField<T>>;
-  deleteItem(collection: string, primaryKey: PrimaryKeyType): Promise<void>;
-  deleteItems(collection: string, primaryKeys: PrimaryKeyType[]): Promise<void>;
-  getMyListingPreferences<T extends any[] = any[]>(collection: string, params?: object): Promise<T>;
-  getPermissions<T extends any[] = any[]>(params?: object): Promise<IField<T>>;
-  getMyPermissions<T extends any[] = any[]>(params?: object): Promise<T>;
-  createPermissions<T extends any[] = any[]>(data: any[]): Promise<T>;
-  updatePermissions<T extends any[] = any[]>(data: any[]): Promise<T>;
-  getRelations<T extends any[] = any[]>(params?: object): Promise<T>;
-  createRelation<T extends any = any>(data: object): Promise<T>;
-  updateRelation<T extends any = any>(primaryKey: PrimaryKeyType, data: object): Promise<T>;
-  getCollectionRelations<T extends any = any>(collection: string, params?: object): Promise<T[]>;
-  getItemRevisions<T extends any = any>(
-    collection: string,
-    primaryKey: PrimaryKeyType,
-    params?: object
-  ): Promise<IRevisionResponse<T>>;
-  revert(collection: string, primaryKey: PrimaryKeyType, revisionID: number): Promise<void>;
-  getRole(primaryKey: PrimaryKeyType, params?: object): Promise<IRoleResponse>;
-  getRoles(params?: object): Promise<IRoleResponse[]>;
-  updateRole(primaryKey: PrimaryKeyType, body: BodyType): Promise<IRoleResponse>;
-  createRole(body: BodyType): Promise<IRoleResponse>;
-  deleteRole(primaryKey: PrimaryKeyType): Promise<void>;
-  getSettings(params?: object): Promise<any>;
-  getSettingsFields(params?: object): Promise<any>;
-  getUsers(params?: object): Promise<IUsersResponse>;
-  getUser(primaryKey: PrimaryKeyType, params?: object): Promise<IUserResponse>;
-  getMe(params?: object): Promise<IUserResponse>;
-  updateUser(primaryKey: PrimaryKeyType, body: BodyType): Promise<IUserResponse>;
-  ping(): Promise<void>;
-  serverInfo(): Promise<any>;
-  projectInfo(): Promise<any>;
-  getThirdPartyAuthProviders(): Promise<any>;
-}
+// // tslint:disable: max-line-length
+// export interface ISDK {
+//   loggedIn: boolean;
+//   config: IConfiguration;
+//   api: IAPI;
+//   payload: any;
+//   login: IAuthentication["login"];
+//   logout: IAuthentication["logout"];
+//   refreshIfNeeded: IAuthentication["refreshIfNeeded"];
+//   refresh: IAuthentication["refresh"];
+//   reset(): void;
+//   requestPasswordReset<T extends any = any>(email: string): Promise<T>;
+//   getActivity(params?: object): Promise<IActivityResponse>;
+//   getMyBookmarks<T extends any[] = any[]>(params?: object): Promise<T>;
+//   // Collections
+//   getCollections(params?: object): Promise<ICollectionsResponse[]>;
+//   getCollection(collection: string, params?: object): Promise<ICollectionResponse>;
+//   createCollection(data: object): Promise<ICollectionResponse>;
+//   updateCollection(collection: string, data: object): Promise<ICollectionResponse>;
+//   deleteCollection(collection: string): Promise<void>;
+//   // Collection Presets
+//   createCollectionPreset<CollectionPreset extends ICollectionPreset>(data: CollectionPreset): Promise<ICollectionPresetResponse<CollectionPreset>>;
+//   updateCollectionPreset<PartialCollectionPreset extends Partial<ICollectionPreset>, ResultCollectionPreset extends ICollectionPreset = ICollectionPreset>(primaryKey: PrimaryKeyType, data: IUpdateCollectionPresetBody): Promise<ICollectionPresetResponse<PartialCollectionPreset & ResultCollectionPreset>>
+//   deleteCollectionPreset(primaryKey: PrimaryKeyType): Promise<void>;
+//   // Admin
+//   updateDatabase(): Promise<void>;
+//   // Extensions
+//   getInterfaces<T extends any[] = any[]>(): Promise<T>;
+//   getLayouts<T extends any[] = any[]>(): Promise<T>;
+//   getPages<T extends any[] = any[]>(): Promise<T>;
+//   // Fields
+//   getAllFields<T extends IField[] = IField[]>(params?: object): Promise<IFieldsResponse<T>>;
+//   getFields<T extends IField[] = IField[]>(collection: string, params?: object): Promise<IFieldsResponse<T>>;
+//   getField<T extends IField = IField>(collection: string, fieldName: string, params?: object): Promise<IFieldResponse<T>>;
+//   createField<T extends IField = IField>(collection: string, fieldInfo: T): Promise<IFieldResponse<T>>;
+//   updateField<T extends Partial<IField> = Partial<IField>>(collection: string, fieldName: string, fieldInfo: T): Promise<IFieldResponse<T & IField> | undefined>;
+//   updateFields<T extends Array<Partial<IField>>>(collection: string, fieldsInfoOrFieldNames: T, fieldInfo?: T): Promise<IFieldsResponse<T & IField[]> | undefined>;
+//   updateFields<T extends Array<Partial<IField>> | Partial<IField>>(collection: string, fieldsInfoOrFieldNames: string[], fieldInfo?: T): Promise<IFieldsResponse<T & IField[]> | undefined>;
+//   deleteField(collection: string, fieldName: string): Promise<void>;
+//   uploadFiles<T extends any = any[]>(data: object, onUploadProgress?: () => object): Promise<T>;
+//   // Items
+//   updateItem<PartialItem extends object, Result extends object = PartialItem>(collection: string, primaryKey: PrimaryKeyType, body: PartialItem, params?: QueryParamsType): Promise<IItemResponse<PartialItem & Result>>;
+//   updateItems<PartialItem extends object[], Result extends PartialItem = PartialItem>(collection: string, body: PartialItem, params?: QueryParamsType): Promise<IItemsResponse<PartialItem & Result>>;
+//   createItem<ItemType extends object>(collection: string, body: ItemType): Promise<IItemResponse<ItemType>>;
+//   createItems<ItemsType extends Array<{}>>(collection: string, body: BodyType): Promise<IItemsResponse<ItemsType>>;
+//   getItems<ItemsType extends Array<{}>>(collection: string, params?: QueryParamsType): Promise<IItemsResponse<ItemsType>>;
+//   getItem<ItemType extends object = {}>(collection: string, primaryKey: PrimaryKeyType, params?: QueryParamsType): Promise<IItemResponse<ItemType>>;
+//   deleteItem(collection: string, primaryKey: PrimaryKeyType): Promise<void>;
+//   deleteItems(collection: string, primaryKeys: PrimaryKeyType[]): Promise<void>;
+//   // Preferences and Permissions
+//   getMyListingPreferences<T extends any[] = any[]>(collection: string, params?: object): Promise<T>;
+//   getPermissions(params?: object): Promise<IItemsResponse<IPermission[]>>;
+//   getMyPermissions<T extends any[] = any[]>(params?: object): Promise<T>;
+//   createPermissions<T extends any[] = any[]>(data: any[]): Promise<T>;
+//   updatePermissions<T extends any[] = any[]>(data: any[]): Promise<T>;
+//   // Relations
+//   getRelations(params?: QueryParamsType): Promise<IRelationsResponse>;
+//   createRelation(data: IRelation): Promise<IRelationsResponse>;
+//   updateRelation(primaryKey: PrimaryKeyType, data: Partial<IRelation>): Promise<IRelationsResponse>;
+//   getCollectionRelations(collection: string, params?: QueryParamsType): Promise<any[]>;
+//   // Revisions
+//   getItemRevisions<DataAndDelta extends {} = {}>(collection: string, primaryKey: PrimaryKeyType, params?: QueryParams): Promise<IRevisionResponse<DataAndDelta>>;
+//   revert(collection: string, primaryKey: PrimaryKeyType, revisionID: number): Promise<void>;
+//   // Roles
+//   getRole(primaryKey: PrimaryKeyType, params?: object): Promise<IRoleResponse>;
+//   getRoles(params?: object): Promise<IRoleResponse[]>;
+//   updateRole<Role extends Partial<IRole>>(primaryKey: PrimaryKeyType, body: Role): Promise<IItemResponse<Role & IRole>>;
+//   createRole<Role extends IRole>(body: Role): Promise<IItemResponse<Role>>;
+//   deleteRole(primaryKey: PrimaryKeyType): Promise<void>;
+//   // Settings
+//   getSettings(params?: QueryParamsType): Promise<ISettingsResponse>;
+//   getSettingsFields(params?: QueryParamsType): Promise<IFieldsResponse>;
+//   // Users
+//   getUser<User extends IUser = IUser>(primaryKey: PrimaryKeyType, params: QueryParamsType): Promise<IUserResponse<User>>;
+//   getUsers(params: QueryParamsType): Promise<IUsersResponse>;
+//   updateUser<User extends Partial<IUser>>(primaryKey: PrimaryKeyType, body: User): Promise<IItemResponse<User & IUser>>;
+//   // System
+//   ping(): Promise<any>;
+//   serverInfo(): Promise<any>;
+//   projectInfo(): Promise<any>;
+//   getThirdPartyAuthProviders(): Promise<any>;
+// }
+// tslint:enable: max-line-length
 
-export class SDK implements ISDK {
-  /**
-   * If the current auth status is logged in
-   */
+export class SDK {
   public get loggedIn(): boolean {
     return this.api.auth.isLoggedIn();
   }
@@ -136,7 +152,7 @@ export class SDK implements ISDK {
     this.api = new API(this.config);
   }
 
-  /// AUTHENTICATION -----------------------------------------------------------
+  // #region authentication
 
   /**
    * Login to the API; Gets a new token from the API and stores it in this.api.token.
@@ -189,25 +205,31 @@ export class SDK implements ISDK {
     });
   }
 
-  /// ACTIVITY -----------------------------------------------------------------
+  // #endregion authentication
+
+  // #endregion collection presets
+
+  // #region activity
 
   /**
    * Get activity
    */
-  public getActivity(params: object = {}): Promise<IActivityResponse> {
+  public getActivity(params: QueryParamsType = {}): Promise<IActivityResponse> {
     invariant(isObjectOrEmpty(params), "params must be an object or empty");
 
     return this.api.get<IActivityResponse>("/activity", params);
   }
 
-  /// BOOKMARKS ----------------------------------------------------------------
+  // #endregion activity
+
+  // #region bookmarks
 
   /**
    * Get the bookmarks of the current user
    * TODO: Add deprecation warning
    * @see https://docs.directus.io/advanced/legacy-upgrades.html#directus-bookmarks
    */
-  public getMyBookmarks<T extends any[] = any[]>(params: object = {}): Promise<T> {
+  public getMyBookmarks<T extends any[] = any[]>(params: QueryParamsType = {}): Promise<T> {
     invariant(isString(this.config.token), "defined token is not a string");
     invariant(isObjectOrEmpty(params), "params must be an object or empty");
 
@@ -230,12 +252,14 @@ export class SDK implements ISDK {
     });
   }
 
-  /// COLLECTIONS --------------------------------------------------------------
+  // #endregion bookmarks
+
+  // #region collections
 
   /**
    * Get all available collections
    */
-  public getCollections(params: object = {}): Promise<ICollectionsResponse[]> {
+  public getCollections(params: QueryParamsType = {}): Promise<ICollectionsResponse[]> {
     invariant(isObjectOrEmpty(params), "params must be an object or empty");
 
     return this.api.get<ICollectionsResponse[]>("/collections", params);
@@ -244,7 +268,7 @@ export class SDK implements ISDK {
   /**
    * Get collection info by name
    */
-  public getCollection(collection: string, params: object = {}): Promise<ICollectionResponse> {
+  public getCollection(collection: string, params: QueryParamsType = {}): Promise<ICollectionResponse> {
     invariant(isString(collection), "collection must be a string");
     invariant(isObjectOrEmpty(params), "params must be an object or empty");
 
@@ -254,7 +278,7 @@ export class SDK implements ISDK {
   /**
    * Create a collection
    */
-  public createCollection(data: object): Promise<ICollectionResponse> {
+  public createCollection(data: ICollection): Promise<ICollectionResponse> {
     invariant(isObject(data), "data must be an object");
     return this.api.post<ICollectionResponse>("/collections", data);
   }
@@ -262,7 +286,7 @@ export class SDK implements ISDK {
   /**
    * Updates a certain collection
    */
-  public updateCollection(collection: string, data: object): Promise<ICollectionResponse> {
+  public updateCollection(collection: string, data: Partial<ICollection>): Promise<ICollectionResponse> {
     invariant(isString(collection), "collection must be a string");
     invariant(isObject(data), "data must be an object");
 
@@ -278,25 +302,39 @@ export class SDK implements ISDK {
     return this.api.delete<void>(`/collections/${collection}`);
   }
 
-  /// COLLECTION PRESETS -------------------------------------------------------
+  // #endregion collections
+
+  // #region collection presets
 
   /**
    * Create a new collection preset (bookmark / listing preferences)
    */
-  public createCollectionPreset<T extends any = any>(data: object): Promise<T> {
+  public createCollectionPreset<CollectionPreset extends ICollectionPreset>(
+    data: CollectionPreset
+  ): Promise<ICollectionPresetResponse<CollectionPreset>> {
     invariant(isObject(data), "data must be an object");
 
-    return this.api.post<T>("/collection_presets", data);
+    return this.api.post<ICollectionPresetResponse<CollectionPreset>>("/collection_presets", data);
   }
 
   /**
    * Update collection preset (bookmark / listing preference)
    */
-  public updateCollectionPreset<T extends any = any>(primaryKey: PrimaryKeyType, data: object): Promise<T> {
+  // tslint:disable-next-line: max-line-length
+  public updateCollectionPreset<
+    PartialCollectionPreset extends Partial<ICollectionPreset>,
+    ResultCollectionPreset extends ICollectionPreset = ICollectionPreset
+  >(
+    primaryKey: PrimaryKeyType,
+    data: IUpdateCollectionPresetBody
+  ): Promise<ICollectionPresetResponse<PartialCollectionPreset & ResultCollectionPreset>> {
     invariant(isNotNull(primaryKey), "primaryKey must be defined");
     invariant(isObject(data), "data must be an object");
 
-    return this.api.patch<T>(`/collection_presets/${primaryKey}`, data);
+    return this.api.patch<ICollectionPresetResponse<PartialCollectionPreset & ResultCollectionPreset>>(
+      `/collection_presets/${primaryKey}`,
+      data
+    );
   }
 
   /**
@@ -308,90 +346,92 @@ export class SDK implements ISDK {
     return this.api.delete<void>(`/collection_presets/${primaryKey}`);
   }
 
-  /// DATABASE -----------------------------------------------------------------
+  // #endregion collection presets
 
-  /**
-   * This will update the database of the API instance to the latest version
-   * using the migrations in the API
-   */
-  public updateDatabase(): Promise<void> {
-    return this.api.post("/update");
-  }
-
-  /// EXTENSIONS ---------------------------------------------------------------
+  // #region extensions
 
   /**
    * Get the meta information of all installed interfaces
    */
-  public getInterfaces<T extends any = any>(): Promise<T> {
+  public getInterfaces<T extends any[] = any[]>(): Promise<T> {
     return this.api.request<T>("get", "/interfaces", {}, {}, true);
   }
 
   /**
    * Get the meta information of all installed layouts
    */
-  public getLayouts<T extends any = any>(): Promise<T> {
+  public getLayouts<T extends any[] = any[]>(): Promise<T> {
     return this.api.request<T>("get", "/layouts", {}, {}, true);
   }
 
   /**
    * Get the meta information of all installed pages
    */
-  public getPages<T extends any = any>(): Promise<T> {
+  public getPages<T extends any[] = any[]>(): Promise<T> {
     return this.api.request<T>("get", "/pages", {}, {}, true);
   }
 
-  /// FIELDS -------------------------------------------------------------------
+  // #endregion extensions
+
+  // #region fields
 
   /**
    * Get all fields that are in Directus
    */
-  public getAllFields<T extends any = any>(params: object = {}): Promise<T> {
+  public getAllFields<T extends IField[]>(params: QueryParamsType = {}): Promise<IFieldsResponse<T>> {
     invariant(isObjectOrEmpty(params), "params must be an object or empty");
 
-    return this.api.get<T>("/fields", params);
+    return this.api.get<IFieldsResponse<T>>("/fields", params);
   }
 
   /**
    * Get the fields that have been setup for a given collection
    */
-  public getFields<T extends any = any>(collection: string, params: object = {}): Promise<T> {
+  public getFields<T extends IField[]>(collection: string, params: QueryParamsType = {}): Promise<IFieldsResponse<T>> {
     invariant(isString(collection), "collection must be a string");
     invariant(isObjectOrEmpty(params), "params must be an object or empty");
 
-    return this.api.get<T>(`/fields/${collection}`, params);
+    return this.api.get<IFieldsResponse<T>>(`/fields/${collection}`, params);
   }
 
   /**
    * Get the field information for a single given field
    */
-  public getField<T extends any = any>(collection: string, fieldName: string, params: object = {}): Promise<T> {
+  public getField<T extends IField>(
+    collection: string,
+    fieldName: string,
+    params: QueryParamsType = {}
+  ): Promise<IFieldResponse<T>> {
     invariant(isString(collection), "collection must be a string");
     invariant(isString(fieldName), "fieldName must be a string");
     invariant(isObjectOrEmpty(params), "params must be an object or empty");
 
-    return this.api.get<T>(`/fields/${collection}/${fieldName}`, params);
+    return this.api.get<IFieldResponse<T>>(`/fields/${collection}/${fieldName}`, params);
   }
 
   /**
    * Create a field in the given collection
    */
-  public createField<T extends any = any>(collection: string, fieldInfo: object): Promise<T> {
+  public createField<T extends IField>(collection: string, fieldInfo: T): Promise<IFieldResponse<T>> {
     invariant(isString(collection), "collection must be a string");
     invariant(isObject(fieldInfo), "fieldInfo must be an object");
 
-    return this.api.post<T>(`/fields/${collection}`, fieldInfo);
+    return this.api.post<IFieldResponse<T>>(`/fields/${collection}`, fieldInfo);
   }
 
   /**
    * Update a given field in a given collection
    */
-  public updateField<T extends any = any>(collection: string, fieldName: string, fieldInfo: object): Promise<T> {
+  public updateField<T extends Partial<IField>>(
+    collection: string,
+    fieldName: string,
+    fieldInfo: T
+  ): Promise<IFieldResponse<IField & T> | undefined> {
     invariant(isString(collection), "collection must be a string");
     invariant(isString(fieldName), "fieldName must be a string");
     invariant(isObject(fieldInfo), "fieldInfo must be an object");
 
-    return this.api.patch<T>(`/fields/${collection}/${fieldName}`, fieldInfo);
+    return this.api.patch<IFieldResponse<IField & T>>(`/fields/${collection}/${fieldName}`, fieldInfo);
   }
 
   /**
@@ -420,11 +460,20 @@ export class SDK implements ISDK {
    *   }
    * ])
    */
-  public updateFields<T extends any[] = any[]>(
+  public updateFields<T extends IField[]>(
     collection: string,
-    fieldsInfoOrFieldNames: string[] | object[],
-    fieldInfo: object = null
-  ): Promise<IField<T> | undefined> {
+    fields: Array<Partial<IField>>
+  ): Promise<IFieldsResponse<T & IField[]> | undefined>;
+  public updateFields<T extends IField[]>(
+    collection: string,
+    fields: string[],
+    fieldInfo: Partial<IField>
+  ): Promise<IFieldsResponse<T & IField[]> | undefined>;
+  public updateFields<T extends IField[]>(
+    collection: string,
+    fieldsInfoOrFieldNames: string[] | Array<Partial<IField>>,
+    fieldInfo: Partial<IField> | null = null
+  ): Promise<IFieldsResponse<T & IField[]> | undefined> {
     invariant(isString(collection), "collection must be a string");
     invariant(isArray(fieldsInfoOrFieldNames), "fieldsInfoOrFieldNames must be an array");
 
@@ -449,7 +498,9 @@ export class SDK implements ISDK {
     return this.api.delete(`/fields/${collection}/${fieldName}`);
   }
 
-  /// FILES --------------------------------------------------------------------
+  // #endregion fields
+
+  // #region files
 
   /**
    * Upload multipart files in multipart/form-data
@@ -474,7 +525,7 @@ export class SDK implements ISDK {
 
         return res.data;
       })
-      .catch((error: IError) => {
+      .catch((error: IErrorResponse) => {
         // detach concurrency manager
         this.api.concurrent.detach();
 
@@ -490,102 +541,121 @@ export class SDK implements ISDK {
       });
   }
 
-  /// ITEMS --------------------------------------------------------------------
+  // #endregion files
+
+  // #region items
 
   /**
    * Update an existing item
+   * @typeparam PartialItem    Defining the item type in object schema
+   * @typeparam Result         Extension of [PartialItem] as expected result
+   * @return {Promise<IItemResponse<PartialItem & Result>>}
    */
-  public updateItem<T extends any = any>(
+  public updateItem<PartialItem extends object, Result extends object = PartialItem>(
     collection: string,
     primaryKey: PrimaryKeyType,
-    body: BodyType,
-    params: object = {}
-  ): Promise<T> {
+    body: PartialItem,
+    params: QueryParamsType = {}
+  ): Promise<IItemResponse<PartialItem & Result>> {
     invariant(isString(collection), "collection must be a string");
     invariant(isNotNull(primaryKey), "primaryKey must be defined");
     invariant(isObject(body), "body must be an object");
 
     const collectionBasePath = getCollectionItemPath(collection);
 
-    return this.api.patch<T>(`${collectionBasePath}/${primaryKey}`, body, params);
+    return this.api.patch<IItemResponse<PartialItem & Result>>(`${collectionBasePath}/${primaryKey}`, body, params);
   }
 
   /**
    * Update multiple items
+   * @typeparam PartialItem    Defining an array of items, each in object schema
+   * @typeparam Result         Extension of [PartialItem] as expected result
+   * @return {Promise<IItemsResponse<PartialItem & Result>>}
    */
-  public updateItems<T extends any[] = any[]>(collection: string, body: BodyType, params: object = {}): Promise<T> {
+  public updateItems<PartialItem extends object[], Result extends PartialItem = PartialItem>(
+    collection: string,
+    body: PartialItem,
+    params: QueryParamsType = {}
+  ) {
     invariant(isString(collection), "collection must be a string");
     invariant(isArray(body), "body must be an array");
 
     const collectionBasePath = getCollectionItemPath(collection);
 
-    return this.api.patch<T>(collectionBasePath, body, params);
+    return this.api.patch<IItemsResponse<PartialItem & Result>>(collectionBasePath, body, params);
   }
 
   /**
    * Create a new item
+   * @typeparam ItemType    Defining an item and its fields in object schema
+   * @return {Promise<IItemsResponse<ItemType>>}
    */
-  public createItem<T extends any = any>(collection: string, body: BodyType): Promise<T> {
+  public createItem<ItemType extends object>(collection: string, body: ItemType): Promise<IItemResponse<ItemType>> {
     invariant(isString(collection), "collection must be a string");
     invariant(isObject(body), "body must be an object");
 
     const collectionBasePath = getCollectionItemPath(collection);
 
-    return this.api.post<T>(collectionBasePath, body);
+    return this.api.post<IItemResponse<ItemType>>(collectionBasePath, body);
   }
 
   /**
    * Create multiple items
-   * TODO: what should we do:
-   *  a) <T extends any[] = any[]> -> Promise<IField<T>>
-   *  b) <T extends any = any> -> Promise<IField<T[]>>
-   *
-   * which will result in the following
-   *  a) createItems<Person> => Promise<IField<Person[]>>
-   *  b) createItems<Person[]> => Promise<IField<Person[]>>
+   * @typeparam ItemsType    Defining an array of items, each in object schema
+   * @return {Promise<IItemsResponse<ItemsType>>}
    */
-  public createItems<T extends any[] = any[]>(collection: string, body: BodyType): Promise<IField<T>> {
+  public createItems<ItemsType extends Array<{}>>(
+    collection: string,
+    body: BodyType
+  ): Promise<IItemsResponse<ItemsType>> {
     invariant(isString(collection), "collection must be a string");
     invariant(isArray(body), "body must be an array");
 
     const collectionBasePath = getCollectionItemPath(collection);
 
-    return this.api.post<IField<T>>(collectionBasePath, body);
+    return this.api.post<IItemsResponse<ItemsType>>(collectionBasePath, body);
   }
 
   /**
    * Get items from a given collection
+   * @typeparam ItemsType    Defining an array of items, each in object schema
+   * @return {Promise<IItemsResponse<ItemsType>>}
    */
-  public getItems<T extends any[] = any[]>(collection: string, params: object = {}): Promise<IField<T>> {
+  public getItems<ItemsType extends Array<{}>>(
+    collection: string,
+    params: QueryParamsType = {}
+  ): Promise<IItemsResponse<ItemsType>> {
     invariant(isString(collection), "collection must be a string");
     invariant(isObjectOrEmpty(params), "params must be an object or empty");
 
     const collectionBasePath = getCollectionItemPath(collection);
 
-    return this.api.get<IField<T>>(collectionBasePath, params);
+    return this.api.get<IItemsResponse<ItemsType>>(collectionBasePath, params);
   }
 
   /**
    * Get a single item by primary key
+   * @typeparam ItemType    Defining fields of an item in object schema
+   * @return {Promise<IItemResponse<ItemType>>}
    */
-  public getItem<T extends any = any>(
+  public getItem<ItemType extends object = {}>(
     collection: string,
     primaryKey: PrimaryKeyType,
-    params: object = {}
-  ): Promise<IField<T>> {
+    params: QueryParamsType = {}
+  ): Promise<IItemResponse<ItemType>> {
     invariant(isString(collection), "collection must be a string");
     invariant(isNotNull(primaryKey), "primaryKey must be defined");
     invariant(isObjectOrEmpty(params), "params must be an object or empty");
 
     const collectionBasePath = getCollectionItemPath(collection);
 
-    return this.api.get<IField<T>>(`${collectionBasePath}/${primaryKey}`, params);
+    return this.api.get<IItemResponse<ItemType>>(`${collectionBasePath}/${primaryKey}`, params);
   }
 
   /**
    * Delete a single item by primary key
    */
-  public deleteItem(collection: string, primaryKey: PrimaryKeyType): Promise<void> {
+  public deleteItem(collection: string, primaryKey: PrimaryKeyType) {
     invariant(isString(collection), "collection must be a string");
     invariant(isNotNull(primaryKey), "primaryKey must be defined");
 
@@ -597,28 +667,33 @@ export class SDK implements ISDK {
   /**
    * Delete multiple items by primary key
    */
-  public deleteItems(collection: string, primaryKeys: PrimaryKeyType[]): Promise<void> {
+  public deleteItems(collection: string, primaryKeys: PrimaryKeyType[]) {
     invariant(isString(collection), "collection must be a string");
     invariant(isArray(primaryKeys), "primaryKeys must be an array");
 
     const collectionBasePath = getCollectionItemPath(collection);
 
-    return this.api.delete(`${collectionBasePath}/${primaryKeys.join()}`);
+    return this.api.delete<void>(`${collectionBasePath}/${primaryKeys.join()}`);
   }
 
-  /// LISTING PREFERENCES ------------------------------------------------------
+  // #endregion items
+
+  // #region listing preferences
 
   /**
    * Get the collection presets of the current user for a single collection
    */
-  public getMyListingPreferences<T extends any[] = any[]>(collection: string, params: object = {}): Promise<T> {
+  public getMyListingPreferences<T extends any[] = any[]>(
+    collection: string,
+    params: QueryParamsType = {}
+  ): Promise<T> {
     invariant(isString(this.config.token), "token must be defined");
     invariant(isObjectOrEmpty(params), "params must be an object or empty");
 
     const payload = this.api.getPayload<{ role: string; id: string }>();
 
     return Promise.all([
-      this.api.get<IField<any>>("/collection_presets", {
+      this.api.get<IFieldResponse<any>>("/collection_presets", {
         "filter[collection][eq]": collection,
         "filter[role][null]": 1,
         "filter[title][null]": 1,
@@ -626,7 +701,7 @@ export class SDK implements ISDK {
         limit: 1,
         sort: "-id",
       }),
-      this.api.get<IField<any>>("/collection_presets", {
+      this.api.get<IFieldResponse<any>>("/collection_presets", {
         "filter[collection][eq]": collection,
         "filter[role][eq]": payload.role,
         "filter[title][null]": 1,
@@ -634,7 +709,7 @@ export class SDK implements ISDK {
         limit: 1,
         sort: "-id",
       }),
-      this.api.get<IField<any>>("/collection_presets", {
+      this.api.get<IFieldResponse<any>>("/collection_presets", {
         "filter[collection][eq]": collection,
         "filter[role][eq]": payload.role,
         "filter[title][null]": 1,
@@ -642,7 +717,7 @@ export class SDK implements ISDK {
         limit: 1,
         sort: "-id",
       }),
-    ]).then((values: Array<IField<any>>) => {
+    ]).then((values: Array<IFieldResponse<any>>) => {
       const [col, role, user] = values;
 
       if (user.data && user.data.length > 0) {
@@ -661,106 +736,144 @@ export class SDK implements ISDK {
     });
   }
 
-  /// PERMISSIONS --------------------------------------------------------------
+  // #endregion listing preferences
+
+  // #region permissions
 
   /**
    * Get permissions
+   * @param {QueryParamsType?} params
+   * @return {Promise<IPermission>}
    */
-  public getPermissions<T extends any[] = any[]>(params: object = {}): Promise<IField<T>> {
+  public getPermissions(params: QueryParamsType = {}): Promise<IItemsResponse<IPermission[]>> {
     invariant(isObjectOrEmpty(params), "params must be an object or empty");
 
-    return this.getItems<T>("directus_permissions", params);
+    return this.getItems<IPermission[]>("directus_permissions", params);
   }
 
   /**
+   * TODO: Fix type-def for return
    * Get the currently logged in user's permissions
+   * @param {QueryParamsType?} params
+   * @typeparam T   Permissions type as array extending any[]
+   * @return {Promise<T>}
    */
-  public getMyPermissions<T extends any[] = any[]>(params: object = {}): Promise<T> {
+  public getMyPermissions<T extends any[] = any[]>(params: QueryParamsType = {}): Promise<T> {
     invariant(isObjectOrEmpty(params), "params must be an object or empty");
 
     return this.api.get("/permissions/me", params);
   }
 
   /**
+   * TODO: Fix type-def for param and return
    * Create multiple new permissions
+   * @param {any[]} data
+   * @typeparam T   Permissions type as array extending any[]
+   * @return {Promise<T>}
    */
-  public createPermissions<T extends any[] = any[]>(data: /* TODO: */ any[]): Promise<T> {
+  public createPermissions<T extends any[] = any[]>(data: any[]): Promise<T> {
     invariant(isArray(data), "data must be anarry");
 
     return this.api.post("/permissions", data);
   }
 
   /**
+   * TODO: Fix type-def for param and return
    * Update multiple permission records
+   * @param {any[]} data
+   * @typeparam T   Permissions type as array extending any[]
+   * @return {Promise<T>}
    */
-  public updatePermissions<T extends any[] = any[]>(data: /* TODO: */ any[]): Promise<T> {
+  public updatePermissions<T extends any[] = any[]>(data: any[]): Promise<T> {
     invariant(isArray(data), "data must be anarry");
 
     return this.api.patch<T>("/permissions", data);
   }
 
-  /// RELATIONS ----------------------------------------------------------------
+  // #endregion permissions
+
+  // #region relations
 
   /**
    * Get all relationships
+   * @param {QueryParamsType?} params
+   * @return {Promise<IRelationsResponse>}
    */
-  public getRelations<T extends any[] = any[]>(params: object = {}): Promise<T> {
+  public getRelations(params: QueryParamsType = {}) {
     invariant(isObjectOrEmpty(params), "params must be an object or empty");
-    return this.api.get<T>("/relations", params);
+    return this.api.get<IRelationsResponse>("/relations", params);
   }
 
   /**
    * Creates new relation
+   * @param {IRelation} data
+   * @return {Promise<IRelationResponse>}
    */
-  public createRelation<T extends any = any>(data: /* TODO: */ object): Promise<T> {
-    return this.api.post<T>("/relations", data);
+  public createRelation(data: IRelation) {
+    return this.api.post<IRelationResponse>("/relations", data);
   }
 
   /**
    * Updates existing relation
+   * @param {PrimaryKeyType} primaryKey
+   * @param {Partial<IRelation>} data
+   * @return {Promise<IRelationResponse>}
    */
-  public updateRelation<T extends any = any>(primaryKey: PrimaryKeyType, data: /* TODO: */ object): Promise<T> {
-    return this.api.patch<T>(`/relations/${primaryKey}`, data);
+  public updateRelation(primaryKey: PrimaryKeyType, data: Partial<IRelation>) {
+    return this.api.patch<IRelationResponse>(`/relations/${primaryKey}`, data);
   }
 
   /**
+   * TODO: Add type-def for return value(s)
    * Get the relationship information for the given collection
+   * @param {string} collection
+   * @param {QueryParamsType?} params
+   * @return {Promise<any[]>}
    */
-  public getCollectionRelations<T extends any = any>(collection: string, params: object = {}): Promise<T[]> {
+  public getCollectionRelations(collection: string, params: QueryParamsType = {}): Promise<any[]> {
     invariant(isString(collection), "collection must be a string");
     invariant(isObjectOrEmpty(params), "params must be an object or empty");
 
     return Promise.all([
-      this.api.get<T>("/relations", {
+      this.api.get<any>("/relations", {
         "filter[collection_a][eq]": collection,
       }),
-      this.api.get<T>("/relations", {
+      this.api.get<any>("/relations", {
         "filter[collection_b][eq]": collection,
       }),
     ]);
   }
 
-  /// REVISIONS ----------------------------------------------------------------
+  // #endregion relations
+
+  // #region revisions
 
   /**
    * Get a single item's revisions by primary key
+   * @typeparam DataAndDelta  The data including delta type for the revision
+   * @param {string} collection
+   * @param {PrimaryKeyType} primaryKey
+   * @param {QueryParamsType?} params
    */
-  public getItemRevisions<T extends any = any>(
+  public getItemRevisions<DataAndDelta extends object = {}>(
     collection: string,
     primaryKey: PrimaryKeyType,
-    params: object = {}
-  ): Promise<IRevisionResponse<T>> {
+    params: QueryParamsType = {}
+  ): Promise<IRevisionResponse<DataAndDelta>> {
     invariant(isString(collection), "collection must be a string");
     invariant(isNotNull(primaryKey), "primaryKey must be defined");
     invariant(isObjectOrEmpty(params), "params must be an object or empty");
 
     const collectionBasePath = getCollectionItemPath(collection);
 
-    return this.api.get<IRevisionResponse<T>>(`${collectionBasePath}/${primaryKey}/revisions`, params);
+    return this.api.get<IRevisionResponse<DataAndDelta>>(`${collectionBasePath}/${primaryKey}/revisions`, params);
   }
 
   /**
    * Revert an item to a previous state
+   * @param {string} collection
+   * @param {PrimaryKeyType} primaryKey
+   * @param {number} revisionID
    */
   public revert(collection: string, primaryKey: PrimaryKeyType, revisionID: number): Promise<void> {
     invariant(isString(collection), "collection must be a string");
@@ -772,12 +885,16 @@ export class SDK implements ISDK {
     return this.api.patch(`${collectionBasePath}/${primaryKey}/revert/${revisionID}`);
   }
 
-  /// ROLES --------------------------------------------------------------------
+  // #endregion revisions
+
+  // #region roles
 
   /**
    * Get a single user role
+   * @param {PrimaryKeyType} primaryKey
+   * @param {QueryParamsType?} params
    */
-  public getRole(primaryKey: PrimaryKeyType, params: object = {}): Promise<IRoleResponse> {
+  public getRole(primaryKey: PrimaryKeyType, params: QueryParamsType = {}): Promise<IRoleResponse> {
     invariant(isNumber(primaryKey), "primaryKey must be a number");
     invariant(isObjectOrEmpty(params), "params must be an object or empty");
 
@@ -786,8 +903,9 @@ export class SDK implements ISDK {
 
   /**
    * Get the user roles
+   * @param {QueryParamsType?} params
    */
-  public getRoles(params: object = {}): Promise<IRoleResponse[]> {
+  public getRoles(params: QueryParamsType = {}): Promise<IRoleResponse[]> {
     invariant(isObjectOrEmpty(params), "params must be an object or empty");
 
     return this.api.get<IRoleResponse[]>("/roles", params);
@@ -795,25 +913,29 @@ export class SDK implements ISDK {
 
   /**
    * Update a user role
+   * @param {PrimaryKeyType} primaryKey
+   * @param {Role} body
    */
-  public updateRole(primaryKey: PrimaryKeyType, body: BodyType): Promise<IRoleResponse> {
+  public updateRole<Role extends Partial<IRole>>(primaryKey: PrimaryKeyType, body: Role) {
     invariant(isNotNull(primaryKey), "primaryKey must be defined");
     invariant(isObject(body), "body must be an object");
 
-    return this.updateItem<IRoleResponse>("directus_roles", primaryKey, body);
+    return this.updateItem<Role, IRole>("directus_roles", primaryKey, body);
   }
 
   /**
    * Create a new user role
+   * @param {Role} body
    */
-  public createRole(body: BodyType): Promise<IRoleResponse> {
+  public createRole<Role extends IRole>(body: Role) {
     invariant(isObject(body), "body must be an object");
 
-    return this.createItem<IRoleResponse>("directus_roles", body);
+    return this.createItem("directus_roles", body);
   }
 
   /**
    * Delete a user rol by primary key
+   * @param {PrimaryKeyType} primaryKey
    */
   public deleteRole(primaryKey: PrimaryKeyType): Promise<void> {
     invariant(isNotNull(primaryKey), "primaryKey must be defined");
@@ -821,93 +943,124 @@ export class SDK implements ISDK {
     return this.deleteItem("directus_roles", primaryKey);
   }
 
-  /// SETTINGS -----------------------------------------------------------------
+  // #endregion roles
+
+  // #region settings
 
   /**
    * Get Directus' global settings
+   * @param {QueryParamsType?} params
    */
-  public getSettings(params: object = {}): Promise<any> {
+  public getSettings(params: QueryParamsType = {}) {
     invariant(isObjectOrEmpty(params), "params must be an object or empty");
 
-    return this.api.get("/settings", params);
+    return this.api.get<ISettingsResponse>("/settings", params);
   }
 
   /**
    * Get the "fields" for directus_settings
+   * @param {QueryParamsType?} params
    */
-  public getSettingsFields(params: object = {}): Promise<any> {
+  public getSettingsFields(params: QueryParamsType = {}) {
     invariant(isObjectOrEmpty(params), "params must be an object or empty");
 
-    return this.api.get("/settings/fields", params);
+    return this.api.get<IFieldsResponse>("/settings/fields", params);
   }
 
-  /// USERS ---------------------------------------------------------------------
+  // #endregion settings
+
+  // #region users
 
   /**
    * Get a list of available users in Directus
+   * @param {QueryParamsType?} params
    */
-  public getUsers(params: object = {}): Promise<IUsersResponse> {
+  public getUsers(params: QueryParamsType = {}) {
     invariant(isObjectOrEmpty(params), "params must be an object or empty");
 
-    return this.api.get("/users", params);
+    return this.api.get<IUsersResponse>("/users", params);
   }
 
   /**
    * Get a single Directus user
+   * @param {PrimaryKeyType} primaryKey
+   * @param {QueryParamsType?} params
    */
-  public getUser(primaryKey: PrimaryKeyType, params: object = {}): Promise<IUserResponse> {
+  public getUser<User extends IUser = IUser>(primaryKey: PrimaryKeyType, params: QueryParamsType = {}) {
     invariant(isNotNull(primaryKey), "primaryKey must be defined");
     invariant(isObjectOrEmpty(params), "params must be an object or empty");
 
-    return this.api.get(`/users/${primaryKey}`, params);
+    return this.api.get<IUserResponse<User>>(`/users/${primaryKey}`, params);
   }
 
   /**
    * Get the user info of the currently logged in user
+   * @param {QueryParamsType?} params
    */
-  public getMe(params: object = {}): Promise<IUserResponse> {
+  public getMe<User extends IUser = IUser>(params: QueryParamsType = {}) {
     invariant(isObjectOrEmpty(params), "params must be an object or empty");
 
-    return this.api.get("/users/me", params);
+    return this.api.get<IUserResponse<User>>("/users/me", params);
   }
 
   /**
    * Update a single user based on primaryKey
+   * @param {PrimaryKeyType} primaryKey
+   * @param {QueryParamsType?} params
    */
-  public updateUser(primaryKey: PrimaryKeyType, body: BodyType): Promise<IUserResponse> {
+  public updateUser<User extends Partial<IUser>>(primaryKey: PrimaryKeyType, body: User) {
     invariant(isNotNull(primaryKey), "primaryKey must be defined");
     invariant(isObject(body), "body must be an object");
 
-    return this.updateItem("directus_users", primaryKey, body);
+    return this.updateItem<User, IUser>("directus_users", primaryKey, body);
   }
 
-  /// UTILS --------------------------------------------------------------------
+  // #endregion users
+
+  // #region server admin
 
   /**
-   * Ping the API to check if it exists / is up and running
+   * This will update the database of the API instance to the latest version
+   * using the migrations in the API
+   * @return {Promise<void>}
    */
-  public ping(): Promise<void> {
-    return this.api.request("get", "/server/ping", {}, {}, true);
+  public updateDatabase(): Promise<void> {
+    return this.api.post("/update");
+  }
+
+  /**
+   * Ping the API to check if it exists / is up and running, returns "pong"
+   * @return {Promise<string>}
+   */
+  public ping(): Promise<string> {
+    return this.api.request("get", "/server/ping", {}, {}, true, {}, true);
   }
 
   /**
    * Get the server info from the API
+   * @return {Promise<IServerInformationResponse>}
    */
-  public serverInfo(): Promise<any> {
+  public serverInfo(): Promise<IServerInformationResponse> {
     return this.api.request("get", "/", {}, {}, true);
   }
 
   /**
+   * TODO: Add response type-def
    * Get the server info from the project
+   * @return {Promise<any>}
    */
   public projectInfo(): Promise<any> {
     return this.api.request("get", "/");
   }
 
   /**
+   * TODO: Add response type-def
    * Get all the setup third party auth providers
+   * @return {Promise<any>}
    */
   public getThirdPartyAuthProviders(): Promise<any> {
     return this.api.get("/auth/sso");
   }
+
+  // #endregion server admin
 }

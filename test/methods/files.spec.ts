@@ -2,14 +2,14 @@ import * as chai from "chai";
 import * as sinon from "sinon";
 import * as sinonChai from "sinon-chai";
 import SDK from "../../src/";
-import { ISDK } from "../../src/SDK";
+
 import { mockAxiosResponse } from "../mock/response";
 
 const expect = chai.expect;
 chai.use(sinonChai);
 
 describe("Files", () => {
-  let client: ISDK;
+  let client: SDK;
 
   beforeEach(() => {
     client = new SDK({

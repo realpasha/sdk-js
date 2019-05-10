@@ -32,11 +32,35 @@ export interface IAuthentication {
   refresh(token: string): Promise<IRefreshTokenResponse>;
 }
 
+/**
+ * Handles all authentication related logic, decoupled from the core
+ * @internal
+ */
 export class Authentication implements IAuthentication {
+  /**
+   * Current set auto-refresh interval or undefined
+   * @type {number|undefined}
+   */
   public refreshInterval?: number;
+
+  /**
+   * Optional customized error handler
+   * @internal
+   */
   private onAutoRefreshError?: (msg: IAuthenticationRefreshError) => void;
+
+  /**
+   * Optional customized success handler
+   * @internal
+   */
   private onAutoRefreshSuccess?: (config: IConfigurationValues) => void;
 
+  /**
+   * Creates a new authentication instance
+   * @constructor
+   * @param {IConfiguration} config
+   * @param {IAuthenticationInjectableProps} inject
+   */
   constructor(private config: IConfiguration, private inject: IAuthenticationInjectableProps) {
     // Only start the auto refresh interval if the token exists and it's a JWT
     if (config.token && config.token.includes(".")) {
@@ -46,6 +70,7 @@ export class Authentication implements IAuthentication {
 
   /**
    * If the current auth status is logged in
+   * @return {boolean}
    */
   public isLoggedIn(): boolean {
     if (
@@ -64,6 +89,9 @@ export class Authentication implements IAuthentication {
 
   /**
    * Login to the API; Gets a new token from the API and stores it in this.token.
+   * @param {ILoginCredentials} credentials   User login credentials
+   * @param {ILoginOptions?} options          Additional options regarding persistance and co.
+   * @return {Promise<ILoginResponse>}
    */
   public login(credentials: ILoginCredentials, options?: ILoginOptions): Promise<ILoginResponse> {
     invariant(isObject(credentials), "malformed credentials");
@@ -129,7 +157,7 @@ export class Authentication implements IAuthentication {
    * Refresh the token if it is about to expire (within 30 seconds of expiry date).
    * - Calls onAutoRefreshSuccess with the new token if the refreshing is successful.
    * - Calls onAutoRefreshError if refreshing the token fails for some reason.
-   * @returns {RefreshIfNeededResponse}
+   * @return {RefreshIfNeededResponse}
    */
   public refreshIfNeeded(): Promise<RefreshIfNeededResponse> {
     const payload = this.getPayload<{ exp: any }>();
@@ -184,7 +212,8 @@ export class Authentication implements IAuthentication {
   }
 
   /**
-   * Use the passed token to request a new one
+   * Use the passed token to request a new one.
+   * @param {string} token
    */
   public refresh(token: string): Promise<IRefreshTokenResponse> {
     invariant(isString(token), "token must be a string");
@@ -194,6 +223,7 @@ export class Authentication implements IAuthentication {
 
   /**
    * Starts an interval of 10 seconds that will check if the token needs refreshing
+   * @param {boolean?} fireImmediately    If it should immediately call [refreshIfNeeded]
    */
   private startInterval(fireImmediately?: boolean): void {
     if (fireImmediately) {
@@ -213,6 +243,8 @@ export class Authentication implements IAuthentication {
 
   /**
    * Gets the payload of the current token, return type can be generic
+   * @typeparam T     The payload response type, arbitrary object
+   * @return {T}
    */
   private getPayload<T extends object = object>(): T {
     if (!isString(this.config.token)) {

@@ -8,7 +8,7 @@ const expect = chai.expect;
 chai.use(sinonChai);
 
 describe("Extensions", () => {
-  let client: ISDK;
+  let client: SDK;
 
   beforeEach(() => {
     client = new SDK({

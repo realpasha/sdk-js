@@ -5,14 +5,13 @@ import * as jwt from "jsonwebtoken";
 import * as sinonChai from "sinon-chai";
 
 import SDK from "../src/index";
-import { ISDK } from "../src/SDK";
 
 const expect = chai.expect;
 chai.use(sinonChai);
 chai.use(chaiDateTime);
 
 describe("Payload", () => {
-  let client: ISDK;
+  let client: SDK;
 
   beforeEach(() => {
     client = new SDK(undefined as any);

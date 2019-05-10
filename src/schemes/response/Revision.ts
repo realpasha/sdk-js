@@ -1,16 +1,7 @@
 import { IAPIResponse } from "../APIResponse";
-import { IField } from "./Field";
+import { IRevision } from "../directus/Revision";
 
-interface IRevisionDataSet<T> {
-  activity: number;
-  collection: string;
-  data: IField<T>;
-  delta: Partial<T>;
-  id: number;
-  item: string;
-  parent_changed: boolean;
-  parent_collection: any | null;
-  parent_item: any | null;
-}
-
-export interface IRevisionResponse<T> extends IAPIResponse<Array<IRevisionDataSet<T>>> {}
+/**
+ * @see https://docs.directus.io/api/reference.html#revisions
+ */
+export interface IRevisionResponse<T> extends IAPIResponse<Array<IRevision<T>>> { }

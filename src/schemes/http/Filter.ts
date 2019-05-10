@@ -1,3 +1,7 @@
+/**
+ * Defines all possible operator for filtering by query
+ * @see https://docs.directus.io/api/reference.html#filtering
+ */
 export type FilterOperator =
   | "="
   | "eq"
