@@ -419,6 +419,16 @@ export class SDK {
   // #region files
 
   /**
+   * Get a list of available files in Directus
+   * @param  {QueryParamsType} [params={}] Query parameters
+   * @return {RequestPromise}
+   */
+  public async getFiles(params: QueryParamsType = {}) {
+    invariant(isObjectOrEmpty(params), "Params must be an object");
+    return this.api.get("/files", params);
+  }
+
+  /**
    * Upload multipart files in multipart/form-data
    */
   public uploadFiles<T extends any = any[]>(data: object, onUploadProgress: () => object = () => ({})): Promise<T> {
