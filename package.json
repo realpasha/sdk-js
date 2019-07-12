@@ -28,7 +28,7 @@
   ],
   "main": "dist/directus-sdk.js",
   "browser": "dist/directus-sdk.umd.min.js",
-  "types": "dist/types/src/index.d.ts",
+  "types": "dist/types/index.d.ts",
   "scripts": {
     "prebuild": "npm-run-all prebuild:*",
     "build": "run-p build:*",

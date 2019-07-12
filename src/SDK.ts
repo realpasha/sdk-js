@@ -4,9 +4,9 @@ import { BodyType } from "./schemes/http/Body";
 import { QueryParams as QueryParamsType } from "./schemes/http/Query";
 
 // Directus scheme types
-import { IField } from "schemes/directus/Field";
-import { IRelation } from "schemes/directus/Relation";
-import { IRole } from "schemes/directus/Role";
+import { IField } from "./schemes/directus/Field";
+import { IRelation } from "./schemes/directus/Relation";
+import { IRole } from "./schemes/directus/Role";
 import { ICollection } from "./schemes/directus/Collection";
 import { ICollectionPreset } from "./schemes/directus/CollectionPreset";
 import { IPermission } from "./schemes/directus/Permission";
@@ -16,7 +16,7 @@ import { IUser } from "./schemes/directus/User";
 import { IUpdateCollectionPresetBody } from "./schemes/request/Collection";
 
 // Response schemes
-import { IRelationsResponse } from "schemes/response/Relation";
+import { IRelationsResponse } from "./schemes/response/Relation";
 import { IActivityResponse } from "./schemes/response/Activity";
 import { ICollectionResponse, ICollectionsResponse } from "./schemes/response/Collection";
 import { ICollectionPresetResponse } from "./schemes/response/CollectionPreset";

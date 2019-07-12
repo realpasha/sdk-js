@@ -5,6 +5,8 @@
     "declarationMap": true,
     "emitBOM": false,
     "declarationDir": "dist/types",
+    "rootDir": "./src",
+    "baseUrl": ".",
     "allowJs": false,
     "checkJs": false,
     "emitDeclarationOnly": true
