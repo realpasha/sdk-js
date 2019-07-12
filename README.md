@@ -48,7 +48,7 @@ Or use a service that distributes npm packages like [unpkg](https://unpkg.org):
 ### TypeScript
 
 This package provides full [TypeScript](https://www.typescriptlang.org/) support because it is built with it. No need to install declaration files or typings. For more information about usage and the signatures 
-head over to the [recipes](./tree/master/recipes) or the generated [tsdoc](./tree/master/docs).
+head over to the [recipes](recipes) or the generated [tsdoc](docs).
 
 ### Framework agnostic
 
