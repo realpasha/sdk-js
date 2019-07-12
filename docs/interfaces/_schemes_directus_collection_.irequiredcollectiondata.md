@@ -22,4 +22,4 @@
 
 • **collection**: *string*
 
-*Defined in [schemes/directus/Collection.ts:4](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/schemes/directus/Collection.ts#L4)*
+*Defined in [schemes/directus/Collection.ts:4](https://github.com/direcuts/sdk-js/tree/master/schemes/directus/Collection.ts#L4)*

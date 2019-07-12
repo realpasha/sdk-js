@@ -16,4 +16,4 @@
 
 Ƭ **RequestMethod**: *"get" | "post" | "put" | "patch" | "delete"*
 
-*Defined in [schemes/http/Request.ts:1](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/schemes/http/Request.ts#L1)*
+*Defined in [schemes/http/Request.ts:1](https://github.com/direcuts/sdk-js/tree/master/schemes/http/Request.ts#L1)*

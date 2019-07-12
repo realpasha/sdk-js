@@ -32,7 +32,7 @@
 
 • **activity_skip**: *number*
 
-*Defined in [schemes/http/Query.ts:19](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/schemes/http/Query.ts#L19)*
+*Defined in [schemes/http/Query.ts:19](https://github.com/direcuts/sdk-js/tree/master/schemes/http/Query.ts#L19)*
 
 ___
 
@@ -40,7 +40,7 @@ ___
 
 • **comment**: *string*
 
-*Defined in [schemes/http/Query.ts:20](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/schemes/http/Query.ts#L20)*
+*Defined in [schemes/http/Query.ts:20](https://github.com/direcuts/sdk-js/tree/master/schemes/http/Query.ts#L20)*
 
 ___
 
@@ -48,7 +48,7 @@ ___
 
 • **fields**: *string | string[]*
 
-*Defined in [schemes/http/Query.ts:7](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/schemes/http/Query.ts#L7)*
+*Defined in [schemes/http/Query.ts:7](https://github.com/direcuts/sdk-js/tree/master/schemes/http/Query.ts#L7)*
 
 ___
 
@@ -56,7 +56,7 @@ ___
 
 • **filter**: *object*
 
-*Defined in [schemes/http/Query.ts:13](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/schemes/http/Query.ts#L13)*
+*Defined in [schemes/http/Query.ts:13](https://github.com/direcuts/sdk-js/tree/master/schemes/http/Query.ts#L13)*
 
 #### Type declaration:
 
@@ -68,7 +68,7 @@ ___
 
 • **groups**: *string | string[]*
 
-*Defined in [schemes/http/Query.ts:18](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/schemes/http/Query.ts#L18)*
+*Defined in [schemes/http/Query.ts:18](https://github.com/direcuts/sdk-js/tree/master/schemes/http/Query.ts#L18)*
 
 ___
 
@@ -76,7 +76,7 @@ ___
 
 • **lang**: *object*
 
-*Defined in [schemes/http/Query.ts:16](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/schemes/http/Query.ts#L16)*
+*Defined in [schemes/http/Query.ts:16](https://github.com/direcuts/sdk-js/tree/master/schemes/http/Query.ts#L16)*
 
 ___
 
@@ -84,7 +84,7 @@ ___
 
 • **limit**: *number*
 
-*Defined in [schemes/http/Query.ts:8](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/schemes/http/Query.ts#L8)*
+*Defined in [schemes/http/Query.ts:8](https://github.com/direcuts/sdk-js/tree/master/schemes/http/Query.ts#L8)*
 
 ___
 
@@ -92,7 +92,7 @@ ___
 
 • **meta**: *object*
 
-*Defined in [schemes/http/Query.ts:6](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/schemes/http/Query.ts#L6)*
+*Defined in [schemes/http/Query.ts:6](https://github.com/direcuts/sdk-js/tree/master/schemes/http/Query.ts#L6)*
 
 ___
 
@@ -100,7 +100,7 @@ ___
 
 • **offset**: *number*
 
-*Defined in [schemes/http/Query.ts:9](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/schemes/http/Query.ts#L9)*
+*Defined in [schemes/http/Query.ts:9](https://github.com/direcuts/sdk-js/tree/master/schemes/http/Query.ts#L9)*
 
 ___
 
@@ -108,7 +108,7 @@ ___
 
 • **q**: *string*
 
-*Defined in [schemes/http/Query.ts:17](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/schemes/http/Query.ts#L17)*
+*Defined in [schemes/http/Query.ts:17](https://github.com/direcuts/sdk-js/tree/master/schemes/http/Query.ts#L17)*
 
 ___
 
@@ -116,7 +116,7 @@ ___
 
 • **single**: *number*
 
-*Defined in [schemes/http/Query.ts:10](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/schemes/http/Query.ts#L10)*
+*Defined in [schemes/http/Query.ts:10](https://github.com/direcuts/sdk-js/tree/master/schemes/http/Query.ts#L10)*
 
 ___
 
@@ -124,7 +124,7 @@ ___
 
 • **sort**: *string | string[]*
 
-*Defined in [schemes/http/Query.ts:11](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/schemes/http/Query.ts#L11)*
+*Defined in [schemes/http/Query.ts:11](https://github.com/direcuts/sdk-js/tree/master/schemes/http/Query.ts#L11)*
 
 ___
 
@@ -132,4 +132,4 @@ ___
 
 • **status**: *string | string[]*
 
-*Defined in [schemes/http/Query.ts:12](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/schemes/http/Query.ts#L12)*
+*Defined in [schemes/http/Query.ts:12](https://github.com/direcuts/sdk-js/tree/master/schemes/http/Query.ts#L12)*

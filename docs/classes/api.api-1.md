@@ -1,6 +1,6 @@
 > **[@directus/sdk-js](../README.md)**
 
-[Globals](../README.md) / ["API"](../modules/_api_.md) / [API](_api_.api.md) /
+[Globals](../README.md) / [API](../modules/api.md) / [API](api.api-1.md) /
 
 # Class: API
 
@@ -18,57 +18,57 @@ API definition for HTTP transactions
 
 ## Implements
 
-* [IAPI](../interfaces/_api_.iapi.md)
+* [IAPI](../interfaces/api.iapi.md)
 
 ### Index
 
 #### Constructors
 
-* [constructor](_api_.api.md#constructor)
+* [constructor](api.api-1.md#constructor)
 
 #### Properties
 
-* [auth](_api_.api.md#auth)
-* [concurrent](_api_.api.md#concurrent)
-* [config](_api_.api.md#private-config)
-* [xhr](_api_.api.md#xhr)
+* [auth](api.api-1.md#auth)
+* [concurrent](api.api-1.md#concurrent)
+* [config](api.api-1.md#private-config)
+* [xhr](api.api-1.md#xhr)
 
 #### Methods
 
-* [delete](_api_.api.md#delete)
-* [get](_api_.api.md#get)
-* [getPayload](_api_.api.md#getpayload)
-* [patch](_api_.api.md#patch)
-* [post](_api_.api.md#post)
-* [put](_api_.api.md#put)
-* [request](_api_.api.md#request)
-* [reset](_api_.api.md#reset)
+* [delete](api.api-1.md#delete)
+* [get](api.api-1.md#get)
+* [getPayload](api.api-1.md#getpayload)
+* [patch](api.api-1.md#patch)
+* [post](api.api-1.md#post)
+* [put](api.api-1.md#put)
+* [request](api.api-1.md#request)
+* [reset](api.api-1.md#reset)
 
 ## Constructors
 
 ###  constructor
 
-\+ **new API**(`config`: [IConfiguration](../interfaces/_configuration_.iconfiguration.md)): *[API](_api_.api.md)*
+\+ **new API**(`config`: [IConfiguration](../interfaces/configuration.iconfiguration.md)): *[API](api.api-1.md)*
 
-*Defined in [API.ts:52](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/API.ts#L52)*
+*Defined in [API.ts:54](https://github.com/direcuts/sdk-js/tree/master/API.ts#L54)*
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`config` | [IConfiguration](../interfaces/_configuration_.iconfiguration.md) |
+`config` | [IConfiguration](../interfaces/configuration.iconfiguration.md) |
 
-**Returns:** *[API](_api_.api.md)*
+**Returns:** *[API](api.api-1.md)*
 
 ## Properties
 
 ###  auth
 
-• **auth**: *[IAuthentication](../interfaces/_authentication_.iauthentication.md)*
+• **auth**: *[IAuthentication](../interfaces/authentication.iauthentication.md)*
 
-*Implementation of [IAPI](../interfaces/_api_.iapi.md).[auth](../interfaces/_api_.iapi.md#auth)*
+*Implementation of [IAPI](../interfaces/api.iapi.md).[auth](../interfaces/api.iapi.md#auth)*
 
-*Defined in [API.ts:47](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/API.ts#L47)*
+*Defined in [API.ts:49](https://github.com/direcuts/sdk-js/tree/master/API.ts#L49)*
 
 ___
 
@@ -76,23 +76,23 @@ ___
 
 • **concurrent**: *object* =  concurrencyManager(this.xhr, 10)
 
-*Implementation of [IAPI](../interfaces/_api_.iapi.md).[concurrent](../interfaces/_api_.iapi.md#concurrent)*
+*Implementation of [IAPI](../interfaces/api.iapi.md).[concurrent](../interfaces/api.iapi.md#concurrent)*
 
-*Defined in [API.ts:52](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/API.ts#L52)*
+*Defined in [API.ts:54](https://github.com/direcuts/sdk-js/tree/master/API.ts#L54)*
 
 #### Type declaration:
 
 * **limit**: *number*
 
-* **queue**: *[IConcurrencyQueueItem](../interfaces/_concurrencymanager_.iconcurrencyqueueitem.md)[]* =  [] as IConcurrencyQueueItem[]
+* **queue**: *[IConcurrencyQueueItem](../interfaces/concurrencymanager.iconcurrencyqueueitem.md)[]* =  [] as IConcurrencyQueueItem[]
 
-* **running**: *[IConcurrencyQueueItem](../interfaces/_concurrencymanager_.iconcurrencyqueueitem.md)[]* =  [] as IConcurrencyQueueItem[]
+* **running**: *[IConcurrencyQueueItem](../interfaces/concurrencymanager.iconcurrencyqueueitem.md)[]* =  [] as IConcurrencyQueueItem[]
 
 * **attach**(`limitConcurrentRequestsTo?`: number): *void*
 
 * **detach**(): *void*
 
-* **push**(`reqHandler`: [IConcurrencyQueueItem](../interfaces/_concurrencymanager_.iconcurrencyqueueitem.md)): *void*
+* **push**(`reqHandler`: [IConcurrencyQueueItem](../interfaces/concurrencymanager.iconcurrencyqueueitem.md)): *void*
 
 * **requestHandler**(`req`: `AxiosRequestConfig`): *`Promise<AxiosRequestConfig>`*
 
@@ -112,9 +112,9 @@ ___
 
 ### `Private` config
 
-• **config**: *[IConfiguration](../interfaces/_configuration_.iconfiguration.md)*
+• **config**: *[IConfiguration](../interfaces/configuration.iconfiguration.md)*
 
-*Defined in [API.ts:54](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/API.ts#L54)*
+*Defined in [API.ts:56](https://github.com/direcuts/sdk-js/tree/master/API.ts#L56)*
 
 ___
 
@@ -125,9 +125,9 @@ ___
     timeout: 10 * 60 * 1000, // 10 min
   })
 
-*Implementation of [IAPI](../interfaces/_api_.iapi.md).[xhr](../interfaces/_api_.iapi.md#xhr)*
+*Implementation of [IAPI](../interfaces/api.iapi.md).[xhr](../interfaces/api.iapi.md#xhr)*
 
-*Defined in [API.ts:48](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/API.ts#L48)*
+*Defined in [API.ts:50](https://github.com/direcuts/sdk-js/tree/master/API.ts#L50)*
 
 ## Methods
 
@@ -135,9 +135,9 @@ ___
 
 ▸ **delete**<**T**>(`endpoint`: string): *`Promise<T>`*
 
-*Implementation of [IAPI](../interfaces/_api_.iapi.md)*
+*Implementation of [IAPI](../interfaces/api.iapi.md)*
 
-*Defined in [API.ts:123](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/API.ts#L123)*
+*Defined in [API.ts:125](https://github.com/direcuts/sdk-js/tree/master/API.ts#L125)*
 
 DELETE convenience method. Calls the request method for you
 
@@ -161,9 +161,9 @@ ___
 
 ▸ **get**<**T**>(`endpoint`: string, `params`: object): *`Promise<T>`*
 
-*Implementation of [IAPI](../interfaces/_api_.iapi.md)*
+*Implementation of [IAPI](../interfaces/api.iapi.md)*
 
-*Defined in [API.ts:75](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/API.ts#L75)*
+*Defined in [API.ts:77](https://github.com/direcuts/sdk-js/tree/master/API.ts#L77)*
 
 GET convenience method. Calls the request method for you
 
@@ -188,9 +188,9 @@ ___
 
 ▸ **getPayload**<**T**>(): *`T`*
 
-*Implementation of [IAPI](../interfaces/_api_.iapi.md)*
+*Implementation of [IAPI](../interfaces/api.iapi.md)*
 
-*Defined in [API.ts:134](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/API.ts#L134)*
+*Defined in [API.ts:136](https://github.com/direcuts/sdk-js/tree/master/API.ts#L136)*
 
 Gets the payload of the current token, return type can be generic
 
@@ -208,9 +208,9 @@ ___
 
 ▸ **patch**<**T**>(`endpoint`: string, `body`: [BodyType](../modules/_schemes_http_body_.md#bodytype), `params`: object): *`Promise<T>`*
 
-*Implementation of [IAPI](../interfaces/_api_.iapi.md)*
+*Implementation of [IAPI](../interfaces/api.iapi.md)*
 
-*Defined in [API.ts:99](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/API.ts#L99)*
+*Defined in [API.ts:101](https://github.com/direcuts/sdk-js/tree/master/API.ts#L101)*
 
 PATCH convenience method. Calls the request method for you
 
@@ -236,9 +236,9 @@ ___
 
 ▸ **post**<**T**>(`endpoint`: string, `body`: [BodyType](../modules/_schemes_http_body_.md#bodytype), `params`: object): *`Promise<T>`*
 
-*Implementation of [IAPI](../interfaces/_api_.iapi.md)*
+*Implementation of [IAPI](../interfaces/api.iapi.md)*
 
-*Defined in [API.ts:87](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/API.ts#L87)*
+*Defined in [API.ts:89](https://github.com/direcuts/sdk-js/tree/master/API.ts#L89)*
 
 POST convenience method. Calls the request method for you
 
@@ -264,9 +264,9 @@ ___
 
 ▸ **put**<**T**>(`endpoint`: string, `body`: [BodyType](../modules/_schemes_http_body_.md#bodytype), `params`: object): *`Promise<T>`*
 
-*Implementation of [IAPI](../interfaces/_api_.iapi.md)*
+*Implementation of [IAPI](../interfaces/api.iapi.md)*
 
-*Defined in [API.ts:111](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/API.ts#L111)*
+*Defined in [API.ts:113](https://github.com/direcuts/sdk-js/tree/master/API.ts#L113)*
 
 PUT convenience method. Calls the request method for you
 
@@ -292,7 +292,7 @@ ___
 
 ▸ **request**<**T**>(`method`: [RequestMethod](../modules/_schemes_http_request_.md#requestmethod), `endpoint`: string, `params`: object, `data`: object, `noEnv`: boolean, `headers`: object, `skipParseToJSON`: boolean): *`Promise<T>`*
 
-*Defined in [API.ts:154](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/API.ts#L154)*
+*Defined in [API.ts:156](https://github.com/direcuts/sdk-js/tree/master/API.ts#L156)*
 
 Perform an API request to the Directus API
 
@@ -322,9 +322,9 @@ ___
 
 ▸ **reset**(): *void*
 
-*Implementation of [IAPI](../interfaces/_api_.iapi.md)*
+*Implementation of [IAPI](../interfaces/api.iapi.md)*
 
-*Defined in [API.ts:63](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/API.ts#L63)*
+*Defined in [API.ts:65](https://github.com/direcuts/sdk-js/tree/master/API.ts#L65)*
 
 Resets the client instance by logging out and removing the URL and project
 

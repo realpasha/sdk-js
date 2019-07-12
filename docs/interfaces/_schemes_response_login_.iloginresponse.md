@@ -23,7 +23,7 @@
 
 • **localExp**: *number*
 
-*Defined in [schemes/response/Login.ts:5](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/schemes/response/Login.ts#L5)*
+*Defined in [schemes/response/Login.ts:5](https://github.com/direcuts/sdk-js/tree/master/schemes/response/Login.ts#L5)*
 
 ___
 
@@ -31,7 +31,7 @@ ___
 
 • **project**: *string*
 
-*Defined in [schemes/response/Login.ts:3](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/schemes/response/Login.ts#L3)*
+*Defined in [schemes/response/Login.ts:3](https://github.com/direcuts/sdk-js/tree/master/schemes/response/Login.ts#L3)*
 
 ___
 
@@ -39,7 +39,7 @@ ___
 
 • **token**: *string*
 
-*Defined in [schemes/response/Login.ts:4](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/schemes/response/Login.ts#L4)*
+*Defined in [schemes/response/Login.ts:4](https://github.com/direcuts/sdk-js/tree/master/schemes/response/Login.ts#L4)*
 
 ___
 
@@ -47,4 +47,4 @@ ___
 
 • **url**: *string*
 
-*Defined in [schemes/response/Login.ts:2](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/schemes/response/Login.ts#L2)*
+*Defined in [schemes/response/Login.ts:2](https://github.com/direcuts/sdk-js/tree/master/schemes/response/Login.ts#L2)*

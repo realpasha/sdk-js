@@ -27,7 +27,7 @@
 
 • **description**: *string*
 
-*Defined in [schemes/directus/Role.ts:7](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/schemes/directus/Role.ts#L7)*
+*Defined in [schemes/directus/Role.ts:7](https://github.com/direcuts/sdk-js/tree/master/schemes/directus/Role.ts#L7)*
 
 ___
 
@@ -35,7 +35,7 @@ ___
 
 • **external_id**: *string*
 
-*Defined in [schemes/directus/Role.ts:10](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/schemes/directus/Role.ts#L10)*
+*Defined in [schemes/directus/Role.ts:10](https://github.com/direcuts/sdk-js/tree/master/schemes/directus/Role.ts#L10)*
 
 ___
 
@@ -43,7 +43,7 @@ ___
 
 • **id**: *number*
 
-*Defined in [schemes/directus/Role.ts:5](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/schemes/directus/Role.ts#L5)*
+*Defined in [schemes/directus/Role.ts:5](https://github.com/direcuts/sdk-js/tree/master/schemes/directus/Role.ts#L5)*
 
 ___
 
@@ -51,7 +51,7 @@ ___
 
 • **ip_whitelist**: *string*
 
-*Defined in [schemes/directus/Role.ts:8](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/schemes/directus/Role.ts#L8)*
+*Defined in [schemes/directus/Role.ts:8](https://github.com/direcuts/sdk-js/tree/master/schemes/directus/Role.ts#L8)*
 
 ___
 
@@ -59,7 +59,7 @@ ___
 
 • **name**: *string*
 
-*Defined in [schemes/directus/Role.ts:6](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/schemes/directus/Role.ts#L6)*
+*Defined in [schemes/directus/Role.ts:6](https://github.com/direcuts/sdk-js/tree/master/schemes/directus/Role.ts#L6)*
 
 ___
 
@@ -67,4 +67,4 @@ ___
 
 • **nav_blacklist**: *string*
 
-*Defined in [schemes/directus/Role.ts:9](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/schemes/directus/Role.ts#L9)*
+*Defined in [schemes/directus/Role.ts:9](https://github.com/direcuts/sdk-js/tree/master/schemes/directus/Role.ts#L9)*

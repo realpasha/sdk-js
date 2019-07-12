@@ -27,7 +27,7 @@
 
 • **collection_many**: *string*
 
-*Defined in [schemes/directus/Relation.ts:6](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/schemes/directus/Relation.ts#L6)*
+*Defined in [schemes/directus/Relation.ts:6](https://github.com/direcuts/sdk-js/tree/master/schemes/directus/Relation.ts#L6)*
 
 ___
 
@@ -35,7 +35,7 @@ ___
 
 • **collection_one**: *string*
 
-*Defined in [schemes/directus/Relation.ts:8](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/schemes/directus/Relation.ts#L8)*
+*Defined in [schemes/directus/Relation.ts:8](https://github.com/direcuts/sdk-js/tree/master/schemes/directus/Relation.ts#L8)*
 
 ___
 
@@ -43,7 +43,7 @@ ___
 
 • **field_many**: *string*
 
-*Defined in [schemes/directus/Relation.ts:7](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/schemes/directus/Relation.ts#L7)*
+*Defined in [schemes/directus/Relation.ts:7](https://github.com/direcuts/sdk-js/tree/master/schemes/directus/Relation.ts#L7)*
 
 ___
 
@@ -51,7 +51,7 @@ ___
 
 • **field_one**: *string*
 
-*Defined in [schemes/directus/Relation.ts:9](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/schemes/directus/Relation.ts#L9)*
+*Defined in [schemes/directus/Relation.ts:9](https://github.com/direcuts/sdk-js/tree/master/schemes/directus/Relation.ts#L9)*
 
 ___
 
@@ -59,7 +59,7 @@ ___
 
 • **id**: *number*
 
-*Defined in [schemes/directus/Relation.ts:5](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/schemes/directus/Relation.ts#L5)*
+*Defined in [schemes/directus/Relation.ts:5](https://github.com/direcuts/sdk-js/tree/master/schemes/directus/Relation.ts#L5)*
 
 ___
 
@@ -67,4 +67,4 @@ ___
 
 • **junction_field**: *string*
 
-*Defined in [schemes/directus/Relation.ts:10](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/schemes/directus/Relation.ts#L10)*
+*Defined in [schemes/directus/Relation.ts:10](https://github.com/direcuts/sdk-js/tree/master/schemes/directus/Relation.ts#L10)*

@@ -1,6 +1,6 @@
 > **[@directus/sdk-js](../README.md)**
 
-[Globals](../README.md) / ["SDK"](../modules/_sdk_.md) / [SDK](_sdk_.sdk.md) /
+[Globals](../README.md) / [SDK](../modules/sdk.md) / [SDK](sdk.sdk-1.md) /
 
 # Class: SDK
 
@@ -19,126 +19,126 @@ remote directus instance.
 
 #### Constructors
 
-* [constructor](_sdk_.sdk.md#constructor)
+* [constructor](sdk.sdk-1.md#constructor)
 
 #### Properties
 
-* [api](_sdk_.sdk.md#api)
-* [config](_sdk_.sdk.md#config)
-* [getPayload](_sdk_.sdk.md#static-getpayload)
+* [api](sdk.sdk-1.md#api)
+* [config](sdk.sdk-1.md#config)
+* [getPayload](sdk.sdk-1.md#static-getpayload)
 
 #### Accessors
 
-* [loggedIn](_sdk_.sdk.md#loggedin)
-* [payload](_sdk_.sdk.md#payload)
+* [loggedIn](sdk.sdk-1.md#loggedin)
+* [payload](sdk.sdk-1.md#payload)
 
 #### Methods
 
-* [createCollection](_sdk_.sdk.md#createcollection)
-* [createCollectionPreset](_sdk_.sdk.md#createcollectionpreset)
-* [createField](_sdk_.sdk.md#createfield)
-* [createItem](_sdk_.sdk.md#createitem)
-* [createItems](_sdk_.sdk.md#createitems)
-* [createPermissions](_sdk_.sdk.md#createpermissions)
-* [createRelation](_sdk_.sdk.md#createrelation)
-* [createRole](_sdk_.sdk.md#createrole)
-* [deleteCollection](_sdk_.sdk.md#deletecollection)
-* [deleteCollectionPreset](_sdk_.sdk.md#deletecollectionpreset)
-* [deleteField](_sdk_.sdk.md#deletefield)
-* [deleteItem](_sdk_.sdk.md#deleteitem)
-* [deleteItems](_sdk_.sdk.md#deleteitems)
-* [deleteRole](_sdk_.sdk.md#deleterole)
-* [getActivity](_sdk_.sdk.md#getactivity)
-* [getAllFields](_sdk_.sdk.md#getallfields)
-* [getCollection](_sdk_.sdk.md#getcollection)
-* [getCollectionPresets](_sdk_.sdk.md#getcollectionpresets)
-* [getCollectionRelations](_sdk_.sdk.md#getcollectionrelations)
-* [getCollections](_sdk_.sdk.md#getcollections)
-* [getField](_sdk_.sdk.md#getfield)
-* [getFields](_sdk_.sdk.md#getfields)
-* [getFile](_sdk_.sdk.md#getfile)
-* [getFiles](_sdk_.sdk.md#getfiles)
-* [getInterfaces](_sdk_.sdk.md#getinterfaces)
-* [getItem](_sdk_.sdk.md#getitem)
-* [getItemRevisions](_sdk_.sdk.md#getitemrevisions)
-* [getItems](_sdk_.sdk.md#getitems)
-* [getLayouts](_sdk_.sdk.md#getlayouts)
-* [getMe](_sdk_.sdk.md#getme)
-* [getMyBookmarks](_sdk_.sdk.md#getmybookmarks)
-* [getMyListingPreferences](_sdk_.sdk.md#getmylistingpreferences)
-* [getMyPermissions](_sdk_.sdk.md#getmypermissions)
-* [getPages](_sdk_.sdk.md#getpages)
-* [getPermissions](_sdk_.sdk.md#getpermissions)
-* [getRelations](_sdk_.sdk.md#getrelations)
-* [getRole](_sdk_.sdk.md#getrole)
-* [getRoles](_sdk_.sdk.md#getroles)
-* [getSettings](_sdk_.sdk.md#getsettings)
-* [getSettingsFields](_sdk_.sdk.md#getsettingsfields)
-* [getThirdPartyAuthProviders](_sdk_.sdk.md#getthirdpartyauthproviders)
-* [getUser](_sdk_.sdk.md#getuser)
-* [getUsers](_sdk_.sdk.md#getusers)
-* [login](_sdk_.sdk.md#login)
-* [logout](_sdk_.sdk.md#logout)
-* [ping](_sdk_.sdk.md#ping)
-* [projectInfo](_sdk_.sdk.md#projectinfo)
-* [refresh](_sdk_.sdk.md#refresh)
-* [refreshIfNeeded](_sdk_.sdk.md#refreshifneeded)
-* [requestPasswordReset](_sdk_.sdk.md#requestpasswordreset)
-* [reset](_sdk_.sdk.md#reset)
-* [revert](_sdk_.sdk.md#revert)
-* [serverInfo](_sdk_.sdk.md#serverinfo)
-* [updateCollection](_sdk_.sdk.md#updatecollection)
-* [updateCollectionPreset](_sdk_.sdk.md#updatecollectionpreset)
-* [updateDatabase](_sdk_.sdk.md#updatedatabase)
-* [updateField](_sdk_.sdk.md#updatefield)
-* [updateFields](_sdk_.sdk.md#updatefields)
-* [updateItem](_sdk_.sdk.md#updateitem)
-* [updateItems](_sdk_.sdk.md#updateitems)
-* [updatePermissions](_sdk_.sdk.md#updatepermissions)
-* [updateRelation](_sdk_.sdk.md#updaterelation)
-* [updateRole](_sdk_.sdk.md#updaterole)
-* [updateUser](_sdk_.sdk.md#updateuser)
-* [uploadFiles](_sdk_.sdk.md#uploadfiles)
+* [createCollection](sdk.sdk-1.md#createcollection)
+* [createCollectionPreset](sdk.sdk-1.md#createcollectionpreset)
+* [createField](sdk.sdk-1.md#createfield)
+* [createItem](sdk.sdk-1.md#createitem)
+* [createItems](sdk.sdk-1.md#createitems)
+* [createPermissions](sdk.sdk-1.md#createpermissions)
+* [createRelation](sdk.sdk-1.md#createrelation)
+* [createRole](sdk.sdk-1.md#createrole)
+* [deleteCollection](sdk.sdk-1.md#deletecollection)
+* [deleteCollectionPreset](sdk.sdk-1.md#deletecollectionpreset)
+* [deleteField](sdk.sdk-1.md#deletefield)
+* [deleteItem](sdk.sdk-1.md#deleteitem)
+* [deleteItems](sdk.sdk-1.md#deleteitems)
+* [deleteRole](sdk.sdk-1.md#deleterole)
+* [getActivity](sdk.sdk-1.md#getactivity)
+* [getAllFields](sdk.sdk-1.md#getallfields)
+* [getCollection](sdk.sdk-1.md#getcollection)
+* [getCollectionPresets](sdk.sdk-1.md#getcollectionpresets)
+* [getCollectionRelations](sdk.sdk-1.md#getcollectionrelations)
+* [getCollections](sdk.sdk-1.md#getcollections)
+* [getField](sdk.sdk-1.md#getfield)
+* [getFields](sdk.sdk-1.md#getfields)
+* [getFile](sdk.sdk-1.md#getfile)
+* [getFiles](sdk.sdk-1.md#getfiles)
+* [getInterfaces](sdk.sdk-1.md#getinterfaces)
+* [getItem](sdk.sdk-1.md#getitem)
+* [getItemRevisions](sdk.sdk-1.md#getitemrevisions)
+* [getItems](sdk.sdk-1.md#getitems)
+* [getLayouts](sdk.sdk-1.md#getlayouts)
+* [getMe](sdk.sdk-1.md#getme)
+* [getMyBookmarks](sdk.sdk-1.md#getmybookmarks)
+* [getMyListingPreferences](sdk.sdk-1.md#getmylistingpreferences)
+* [getMyPermissions](sdk.sdk-1.md#getmypermissions)
+* [getPages](sdk.sdk-1.md#getpages)
+* [getPermissions](sdk.sdk-1.md#getpermissions)
+* [getRelations](sdk.sdk-1.md#getrelations)
+* [getRole](sdk.sdk-1.md#getrole)
+* [getRoles](sdk.sdk-1.md#getroles)
+* [getSettings](sdk.sdk-1.md#getsettings)
+* [getSettingsFields](sdk.sdk-1.md#getsettingsfields)
+* [getThirdPartyAuthProviders](sdk.sdk-1.md#getthirdpartyauthproviders)
+* [getUser](sdk.sdk-1.md#getuser)
+* [getUsers](sdk.sdk-1.md#getusers)
+* [login](sdk.sdk-1.md#login)
+* [logout](sdk.sdk-1.md#logout)
+* [ping](sdk.sdk-1.md#ping)
+* [projectInfo](sdk.sdk-1.md#projectinfo)
+* [refresh](sdk.sdk-1.md#refresh)
+* [refreshIfNeeded](sdk.sdk-1.md#refreshifneeded)
+* [requestPasswordReset](sdk.sdk-1.md#requestpasswordreset)
+* [reset](sdk.sdk-1.md#reset)
+* [revert](sdk.sdk-1.md#revert)
+* [serverInfo](sdk.sdk-1.md#serverinfo)
+* [updateCollection](sdk.sdk-1.md#updatecollection)
+* [updateCollectionPreset](sdk.sdk-1.md#updatecollectionpreset)
+* [updateDatabase](sdk.sdk-1.md#updatedatabase)
+* [updateField](sdk.sdk-1.md#updatefield)
+* [updateFields](sdk.sdk-1.md#updatefields)
+* [updateItem](sdk.sdk-1.md#updateitem)
+* [updateItems](sdk.sdk-1.md#updateitems)
+* [updatePermissions](sdk.sdk-1.md#updatepermissions)
+* [updateRelation](sdk.sdk-1.md#updaterelation)
+* [updateRole](sdk.sdk-1.md#updaterole)
+* [updateUser](sdk.sdk-1.md#updateuser)
+* [uploadFiles](sdk.sdk-1.md#uploadfiles)
 
 ## Constructors
 
 ###  constructor
 
-\+ **new SDK**(`options`: [IConfigurationOptions](../interfaces/_configuration_.iconfigurationoptions.md)): *[SDK](_sdk_.sdk.md)*
+\+ **new SDK**(`options`: [IConfigurationOptions](../interfaces/configuration.iconfigurationoptions.md)): *[SDK](sdk.sdk-1.md)*
 
-*Defined in [SDK.ts:75](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/SDK.ts#L75)*
+*Defined in [SDK.ts:78](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L78)*
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`options` | [IConfigurationOptions](../interfaces/_configuration_.iconfigurationoptions.md) |
+`options` | [IConfigurationOptions](../interfaces/configuration.iconfigurationoptions.md) |
 
-**Returns:** *[SDK](_sdk_.sdk.md)*
+**Returns:** *[SDK](sdk.sdk-1.md)*
 
 ## Properties
 
 ###  api
 
-• **api**: *[IAPI](../interfaces/_api_.iapi.md)*
+• **api**: *[IAPI](../interfaces/api.iapi.md)*
 
-*Defined in [SDK.ts:75](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/SDK.ts#L75)*
+*Defined in [SDK.ts:78](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L78)*
 
 ___
 
 ###  config
 
-• **config**: *[IConfiguration](../interfaces/_configuration_.iconfiguration.md)*
+• **config**: *[IConfiguration](../interfaces/configuration.iconfiguration.md)*
 
-*Defined in [SDK.ts:74](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/SDK.ts#L74)*
+*Defined in [SDK.ts:77](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L77)*
 
 ___
 
 ### `Static` getPayload
 
-▪ **getPayload**: *[getPayload](../modules/_utils_payload_.md#getpayload)* =  getPayload
+▪ **getPayload**: *[getPayload](../modules/utils.md#getpayload)* =  getPayload
 
-*Defined in [SDK.ts:71](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/SDK.ts#L71)*
+*Defined in [SDK.ts:74](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L74)*
 
 ## Accessors
 
@@ -146,7 +146,7 @@ ___
 
 • **get loggedIn**(): *boolean*
 
-*Defined in [SDK.ts:58](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/SDK.ts#L58)*
+*Defined in [SDK.ts:61](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L61)*
 
 **Returns:** *boolean*
 
@@ -156,7 +156,7 @@ ___
 
 • **get payload**(): *any*
 
-*Defined in [SDK.ts:62](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/SDK.ts#L62)*
+*Defined in [SDK.ts:65](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L65)*
 
 **Returns:** *any*
 
@@ -166,7 +166,7 @@ ___
 
 ▸ **createCollection**(`data`: [ICollection](../interfaces/_schemes_directus_collection_.icollection.md)): *`Promise<ICollectionResponse>`*
 
-*Defined in [SDK.ts:190](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/SDK.ts#L190)*
+*Defined in [SDK.ts:193](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L193)*
 
 Create a collection
 
@@ -184,7 +184,7 @@ ___
 
 ▸ **createCollectionPreset**<**CollectionPreset**>(`data`: `CollectionPreset`): *`Promise<ICollectionPresetResponse<CollectionPreset>>`*
 
-*Defined in [SDK.ts:249](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/SDK.ts#L249)*
+*Defined in [SDK.ts:252](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L252)*
 
 Create a new collection preset (bookmark / listing preferences)
 
@@ -208,7 +208,7 @@ ___
 
 ▸ **createField**<**TFieldType**>(`collection`: string, `fieldInfo`: `TFieldType`): *`Promise<IFieldResponse<TFieldType>>`*
 
-*Defined in [SDK.ts:366](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/SDK.ts#L366)*
+*Defined in [SDK.ts:369](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L369)*
 
 Create a field in the given collection
 
@@ -233,7 +233,7 @@ ___
 
 ▸ **createItem**<**TItemType**>(`collection`: string, `body`: `TItemType`): *`Promise<IItemResponse<TItemType>>`*
 
-*Defined in [SDK.ts:577](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/SDK.ts#L577)*
+*Defined in [SDK.ts:580](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L580)*
 
 Create a new item
 
@@ -258,7 +258,7 @@ ___
 
 ▸ **createItems**<**TItemsType**>(`collection`: string, `body`: [BodyType](../modules/_schemes_http_body_.md#bodytype)): *`Promise<IItemsResponse<TItemsType>>`*
 
-*Defined in [SDK.ts:591](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/SDK.ts#L591)*
+*Defined in [SDK.ts:594](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L594)*
 
 Create multiple items
 
@@ -285,7 +285,7 @@ ___
 
 ▸ **createPermissions**<**TResponse**>(`data`: any[]): *`Promise<TResponse>`*
 
-*Defined in [SDK.ts:756](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/SDK.ts#L756)*
+*Defined in [SDK.ts:759](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L759)*
 
 TODO: Fix type-def for param and return
 Create multiple new permissions
@@ -310,7 +310,7 @@ ___
 
 ▸ **createRelation**(`data`: [IRelation](../interfaces/_schemes_directus_relation_.irelation.md)): *`Promise<IRelationResponse>`*
 
-*Defined in [SDK.ts:792](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/SDK.ts#L792)*
+*Defined in [SDK.ts:795](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L795)*
 
 Creates new relation
 
@@ -328,7 +328,7 @@ ___
 
 ▸ **createRole**<**TRole**>(`body`: `TRole`): *`Promise<IItemResponse<TRole>>`*
 
-*Defined in [SDK.ts:904](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/SDK.ts#L904)*
+*Defined in [SDK.ts:907](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L907)*
 
 Create a new user role
 
@@ -350,7 +350,7 @@ ___
 
 ▸ **deleteCollection**(`collection`: string): *`Promise<void>`*
 
-*Defined in [SDK.ts:208](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/SDK.ts#L208)*
+*Defined in [SDK.ts:211](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L211)*
 
 Deletes a certain collection
 
@@ -366,9 +366,9 @@ ___
 
 ###  deleteCollectionPreset
 
-▸ **deleteCollectionPreset**(`primaryKey`: [PrimaryKeyType](../modules/_sdk_.md#primarykeytype)): *`Promise<void>`*
+▸ **deleteCollectionPreset**(`primaryKey`: [PrimaryKeyType](../modules/sdk.md#primarykeytype)): *`Promise<void>`*
 
-*Defined in [SDK.ts:282](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/SDK.ts#L282)*
+*Defined in [SDK.ts:285](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L285)*
 
 Delete collection preset by primarykey
 
@@ -378,7 +378,7 @@ Delete collection preset by primarykey
 
 Name | Type |
 ------ | ------ |
-`primaryKey` | [PrimaryKeyType](../modules/_sdk_.md#primarykeytype) |
+`primaryKey` | [PrimaryKeyType](../modules/sdk.md#primarykeytype) |
 
 **Returns:** *`Promise<void>`*
 
@@ -388,7 +388,7 @@ ___
 
 ▸ **deleteField**(`collection`: string, `fieldName`: string): *`Promise<void>`*
 
-*Defined in [SDK.ts:450](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/SDK.ts#L450)*
+*Defined in [SDK.ts:453](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L453)*
 
 Delete a field from a collection
 
@@ -407,9 +407,9 @@ ___
 
 ###  deleteItem
 
-▸ **deleteItem**(`collection`: string, `primaryKey`: [PrimaryKeyType](../modules/_sdk_.md#primarykeytype)): *`Promise<void>`*
+▸ **deleteItem**(`collection`: string, `primaryKey`: [PrimaryKeyType](../modules/sdk.md#primarykeytype)): *`Promise<void>`*
 
-*Defined in [SDK.ts:643](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/SDK.ts#L643)*
+*Defined in [SDK.ts:646](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L646)*
 
 Delete a single item by primary key
 
@@ -420,7 +420,7 @@ Delete a single item by primary key
 Name | Type |
 ------ | ------ |
 `collection` | string |
-`primaryKey` | [PrimaryKeyType](../modules/_sdk_.md#primarykeytype) |
+`primaryKey` | [PrimaryKeyType](../modules/sdk.md#primarykeytype) |
 
 **Returns:** *`Promise<void>`*
 
@@ -428,9 +428,9 @@ ___
 
 ###  deleteItems
 
-▸ **deleteItems**(`collection`: string, `primaryKeys`: [PrimaryKeyType](../modules/_sdk_.md#primarykeytype)[]): *`Promise<void>`*
+▸ **deleteItems**(`collection`: string, `primaryKeys`: [PrimaryKeyType](../modules/sdk.md#primarykeytype)[]): *`Promise<void>`*
 
-*Defined in [SDK.ts:656](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/SDK.ts#L656)*
+*Defined in [SDK.ts:659](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L659)*
 
 Delete multiple items by primary key
 
@@ -441,7 +441,7 @@ Delete multiple items by primary key
 Name | Type |
 ------ | ------ |
 `collection` | string |
-`primaryKeys` | [PrimaryKeyType](../modules/_sdk_.md#primarykeytype)[] |
+`primaryKeys` | [PrimaryKeyType](../modules/sdk.md#primarykeytype)[] |
 
 **Returns:** *`Promise<void>`*
 
@@ -449,9 +449,9 @@ ___
 
 ###  deleteRole
 
-▸ **deleteRole**(`primaryKey`: [PrimaryKeyType](../modules/_sdk_.md#primarykeytype)): *`Promise<void>`*
+▸ **deleteRole**(`primaryKey`: [PrimaryKeyType](../modules/sdk.md#primarykeytype)): *`Promise<void>`*
 
-*Defined in [SDK.ts:914](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/SDK.ts#L914)*
+*Defined in [SDK.ts:917](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L917)*
 
 Delete a user rol by primary key
 
@@ -459,7 +459,7 @@ Delete a user rol by primary key
 
 Name | Type | Description |
 ------ | ------ | ------ |
-`primaryKey` | [PrimaryKeyType](../modules/_sdk_.md#primarykeytype) |   |
+`primaryKey` | [PrimaryKeyType](../modules/sdk.md#primarykeytype) |   |
 
 **Returns:** *`Promise<void>`*
 
@@ -469,7 +469,7 @@ ___
 
 ▸ **getActivity**(`params`: `QueryParamsType`): *`Promise<IActivityResponse>`*
 
-*Defined in [SDK.ts:145](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/SDK.ts#L145)*
+*Defined in [SDK.ts:148](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L148)*
 
 Get activity
 
@@ -487,7 +487,7 @@ ___
 
 ▸ **getAllFields**<**TFieldsType**>(`params`: `QueryParamsType`): *`Promise<IFieldsResponse<TFieldsType>>`*
 
-*Defined in [SDK.ts:324](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/SDK.ts#L324)*
+*Defined in [SDK.ts:327](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L327)*
 
 Get all fields that are in Directus
 
@@ -511,7 +511,7 @@ ___
 
 ▸ **getCollection**(`collection`: string, `params`: `QueryParamsType`): *`Promise<ICollectionResponse>`*
 
-*Defined in [SDK.ts:180](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/SDK.ts#L180)*
+*Defined in [SDK.ts:183](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L183)*
 
 Get collection info by name
 
@@ -530,7 +530,7 @@ ___
 
 ▸ **getCollectionPresets**<**TResponse**>(`params`: `QueryParamsType`): *`Promise<TResponse>`*
 
-*Defined in [SDK.ts:222](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/SDK.ts#L222)*
+*Defined in [SDK.ts:225](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L225)*
 
 Get the collection presets of the current user
 
@@ -554,7 +554,7 @@ ___
 
 ▸ **getCollectionRelations**(`collection`: string, `params`: `QueryParamsType`): *`Promise<any[]>`*
 
-*Defined in [SDK.ts:807](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/SDK.ts#L807)*
+*Defined in [SDK.ts:810](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L810)*
 
 TODO: Add type-def for return value(s)
 Get the relationship information for the given collection
@@ -574,7 +574,7 @@ ___
 
 ▸ **getCollections**(`params`: `QueryParamsType`): *`Promise<ICollectionsResponse[]>`*
 
-*Defined in [SDK.ts:171](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/SDK.ts#L171)*
+*Defined in [SDK.ts:174](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L174)*
 
 Get all available collections
 
@@ -592,7 +592,7 @@ ___
 
 ▸ **getField**<**TFieldType**>(`collection`: string, `fieldName`: string, `params`: `QueryParamsType`): *`Promise<IFieldResponse<TFieldType>>`*
 
-*Defined in [SDK.ts:350](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/SDK.ts#L350)*
+*Defined in [SDK.ts:353](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L353)*
 
 Get the field information for a single given field
 
@@ -618,7 +618,7 @@ ___
 
 ▸ **getFields**<**TFieldsType**>(`collection`: string, `params`: `QueryParamsType`): *`Promise<IFieldsResponse<TFieldsType>>`*
 
-*Defined in [SDK.ts:336](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/SDK.ts#L336)*
+*Defined in [SDK.ts:339](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L339)*
 
 Get the fields that have been setup for a given collection
 
@@ -643,7 +643,7 @@ ___
 
 ▸ **getFile**<**TFile**>(`fileName`: `TFile`, `params`: `QueryParamsType`): *`Promise<TFile extends string ? IFileResponse<IFile> : IFilesResponse<IFile[]>>`*
 
-*Defined in [SDK.ts:474](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/SDK.ts#L474)*
+*Defined in [SDK.ts:477](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L477)*
 
 Get a certain file or certain file list from Directus
 
@@ -668,7 +668,7 @@ ___
 
 ▸ **getFiles**(`params`: `QueryParamsType`): *`Promise<IFilesResponse>`*
 
-*Defined in [SDK.ts:465](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/SDK.ts#L465)*
+*Defined in [SDK.ts:468](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L468)*
 
 Get a list of available files from Directus
 
@@ -688,7 +688,7 @@ ___
 
 ▸ **getInterfaces**<**TResponse**>(): *`Promise<TResponse>`*
 
-*Defined in [SDK.ts:296](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/SDK.ts#L296)*
+*Defined in [SDK.ts:299](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L299)*
 
 Get the information of all installed interfaces
 
@@ -704,9 +704,9 @@ ___
 
 ###  getItem
 
-▸ **getItem**<**TItemType**>(`collection`: string, `primaryKey`: [PrimaryKeyType](../modules/_sdk_.md#primarykeytype), `params`: `QueryParamsType`): *`Promise<IItemResponse<TItemType>>`*
+▸ **getItem**<**TItemType**>(`collection`: string, `primaryKey`: [PrimaryKeyType](../modules/sdk.md#primarykeytype), `params`: `QueryParamsType`): *`Promise<IItemResponse<TItemType>>`*
 
-*Defined in [SDK.ts:625](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/SDK.ts#L625)*
+*Defined in [SDK.ts:628](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L628)*
 
 Get a single item by primary key
 
@@ -723,7 +723,7 @@ Defining fields of an item in object schema
 Name | Type | Default |
 ------ | ------ | ------ |
 `collection` | string | - |
-`primaryKey` | [PrimaryKeyType](../modules/_sdk_.md#primarykeytype) | - |
+`primaryKey` | [PrimaryKeyType](../modules/sdk.md#primarykeytype) | - |
 `params` | `QueryParamsType` |  {} |
 
 **Returns:** *`Promise<IItemResponse<TItemType>>`*
@@ -732,9 +732,9 @@ ___
 
 ###  getItemRevisions
 
-▸ **getItemRevisions**<**TDataAndDelta**>(`collection`: string, `primaryKey`: [PrimaryKeyType](../modules/_sdk_.md#primarykeytype), `params`: `QueryParamsType`): *`Promise<IRevisionResponse<TDataAndDelta>>`*
+▸ **getItemRevisions**<**TDataAndDelta**>(`collection`: string, `primaryKey`: [PrimaryKeyType](../modules/sdk.md#primarykeytype), `params`: `QueryParamsType`): *`Promise<IRevisionResponse<TDataAndDelta>>`*
 
-*Defined in [SDK.ts:832](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/SDK.ts#L832)*
+*Defined in [SDK.ts:835](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L835)*
 
 Get a single item's revisions by primary key
 
@@ -749,7 +749,7 @@ Get a single item's revisions by primary key
 Name | Type | Default | Description |
 ------ | ------ | ------ | ------ |
 `collection` | string | - | - |
-`primaryKey` | [PrimaryKeyType](../modules/_sdk_.md#primarykeytype) | - | - |
+`primaryKey` | [PrimaryKeyType](../modules/sdk.md#primarykeytype) | - | - |
 `params` | `QueryParamsType` |  {} |   |
 
 **Returns:** *`Promise<IRevisionResponse<TDataAndDelta>>`*
@@ -760,7 +760,7 @@ ___
 
 ▸ **getItems**<**TTItemsType**>(`collection`: string, `params`: `QueryParamsType`): *`Promise<IItemsResponse<TTItemsType>>`*
 
-*Defined in [SDK.ts:608](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/SDK.ts#L608)*
+*Defined in [SDK.ts:611](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L611)*
 
 Get items from a given collection
 
@@ -787,7 +787,7 @@ ___
 
 ▸ **getLayouts**<**TResponse**>(): *`Promise<TResponse>`*
 
-*Defined in [SDK.ts:304](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/SDK.ts#L304)*
+*Defined in [SDK.ts:307](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L307)*
 
 Get the information of all installed layouts
 
@@ -805,7 +805,7 @@ ___
 
 ▸ **getMe**<**User**>(`params`: `QueryParamsType`): *`Promise<IUserResponse<User>>`*
 
-*Defined in [SDK.ts:974](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/SDK.ts#L974)*
+*Defined in [SDK.ts:977](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L977)*
 
 Get the user info of the currently logged in user
 
@@ -827,11 +827,11 @@ ___
 
 ▸ **getMyBookmarks**<**TResponse**>(`params`: `QueryParamsType`): *`Promise<TResponse>`*
 
-*Defined in [SDK.ts:160](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/SDK.ts#L160)*
+*Defined in [SDK.ts:163](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L163)*
 
 Get the bookmarks of the current user
 
-**`deprecated`** Will be removed in the next major version, please use [SDK.getCollectionPresets](_sdk_.sdk.md#getcollectionpresets) instead
+**`deprecated`** Will be removed in the next major version, please use [SDK.getCollectionPresets](sdk.sdk-1.md#getcollectionpresets) instead
 
 **`see`** https://docs.directus.io/advanced/legacy-upgrades.html#directus-bookmarks
 
@@ -853,7 +853,7 @@ ___
 
 ▸ **getMyListingPreferences**<**TResponse**>(`collection`: string, `params`: `QueryParamsType`): *`Promise<TResponse>`*
 
-*Defined in [SDK.ts:672](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/SDK.ts#L672)*
+*Defined in [SDK.ts:675](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L675)*
 
 Get the collection presets of the current user for a single collection
 
@@ -876,7 +876,7 @@ ___
 
 ▸ **getMyPermissions**<**TResponse**>(`params`: `QueryParamsType`): *`Promise<TResponse>`*
 
-*Defined in [SDK.ts:745](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/SDK.ts#L745)*
+*Defined in [SDK.ts:748](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L748)*
 
 TODO: Fix type-def for return
 Get the currently logged in user's permissions
@@ -901,7 +901,7 @@ ___
 
 ▸ **getPages**<**TResponse**>(): *`Promise<TResponse>`*
 
-*Defined in [SDK.ts:312](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/SDK.ts#L312)*
+*Defined in [SDK.ts:315](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L315)*
 
 Get the information of all installed pages
 
@@ -919,7 +919,7 @@ ___
 
 ▸ **getPermissions**(`params`: `QueryParamsType`): *`Promise<IItemsResponse<IPermission[]>>`*
 
-*Defined in [SDK.ts:734](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/SDK.ts#L734)*
+*Defined in [SDK.ts:737](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L737)*
 
 Get permissions
 
@@ -937,7 +937,7 @@ ___
 
 ▸ **getRelations**(`params`: `QueryParamsType`): *`Promise<IRelationsResponse>`*
 
-*Defined in [SDK.ts:782](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/SDK.ts#L782)*
+*Defined in [SDK.ts:785](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L785)*
 
 Get all relationships
 
@@ -953,9 +953,9 @@ ___
 
 ###  getRole
 
-▸ **getRole**(`primaryKey`: [PrimaryKeyType](../modules/_sdk_.md#primarykeytype), `params`: `QueryParamsType`): *`Promise<IRoleResponse>`*
+▸ **getRole**(`primaryKey`: [PrimaryKeyType](../modules/sdk.md#primarykeytype), `params`: `QueryParamsType`): *`Promise<IRoleResponse>`*
 
-*Defined in [SDK.ts:871](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/SDK.ts#L871)*
+*Defined in [SDK.ts:874](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L874)*
 
 Get a single user role
 
@@ -963,7 +963,7 @@ Get a single user role
 
 Name | Type | Default | Description |
 ------ | ------ | ------ | ------ |
-`primaryKey` | [PrimaryKeyType](../modules/_sdk_.md#primarykeytype) | - | - |
+`primaryKey` | [PrimaryKeyType](../modules/sdk.md#primarykeytype) | - | - |
 `params` | `QueryParamsType` |  {} |   |
 
 **Returns:** *`Promise<IRoleResponse>`*
@@ -974,7 +974,7 @@ ___
 
 ▸ **getRoles**(`params`: `QueryParamsType`): *`Promise<IRoleResponse[]>`*
 
-*Defined in [SDK.ts:882](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/SDK.ts#L882)*
+*Defined in [SDK.ts:885](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L885)*
 
 Get the user roles
 
@@ -992,7 +992,7 @@ ___
 
 ▸ **getSettings**(`params`: `QueryParamsType`): *`Promise<ISettingsResponse>`*
 
-*Defined in [SDK.ts:928](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/SDK.ts#L928)*
+*Defined in [SDK.ts:931](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L931)*
 
 Get Directus' global settings
 
@@ -1010,7 +1010,7 @@ ___
 
 ▸ **getSettingsFields**(`params`: `QueryParamsType`): *`Promise<IFieldsResponse<IField[]>>`*
 
-*Defined in [SDK.ts:938](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/SDK.ts#L938)*
+*Defined in [SDK.ts:941](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L941)*
 
 Get the "fields" for directus_settings
 
@@ -1028,7 +1028,7 @@ ___
 
 ▸ **getThirdPartyAuthProviders**(): *`Promise<any>`*
 
-*Defined in [SDK.ts:1035](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/SDK.ts#L1035)*
+*Defined in [SDK.ts:1038](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L1038)*
 
 TODO: Add response type-def
 Get all the setup third party auth providers
@@ -1039,9 +1039,9 @@ ___
 
 ###  getUser
 
-▸ **getUser**<**User**>(`primaryKey`: [PrimaryKeyType](../modules/_sdk_.md#primarykeytype), `params`: `QueryParamsType`): *`Promise<IUserResponse<User>>`*
+▸ **getUser**<**User**>(`primaryKey`: [PrimaryKeyType](../modules/sdk.md#primarykeytype), `params`: `QueryParamsType`): *`Promise<IUserResponse<User>>`*
 
-*Defined in [SDK.ts:963](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/SDK.ts#L963)*
+*Defined in [SDK.ts:966](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L966)*
 
 Get a single Directus user
 
@@ -1053,7 +1053,7 @@ Get a single Directus user
 
 Name | Type | Default | Description |
 ------ | ------ | ------ | ------ |
-`primaryKey` | [PrimaryKeyType](../modules/_sdk_.md#primarykeytype) | - | - |
+`primaryKey` | [PrimaryKeyType](../modules/sdk.md#primarykeytype) | - | - |
 `params` | `QueryParamsType` |  {} |   |
 
 **Returns:** *`Promise<IUserResponse<User>>`*
@@ -1064,7 +1064,7 @@ ___
 
 ▸ **getUsers**(`params`: `QueryParamsType`): *`Promise<IUsersResponse<IUser[]>>`*
 
-*Defined in [SDK.ts:952](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/SDK.ts#L952)*
+*Defined in [SDK.ts:955](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L955)*
 
 Get a list of available users in Directus
 
@@ -1082,7 +1082,7 @@ ___
 
 ▸ **login**(`credentials`: [ILoginCredentials](../interfaces/_schemes_auth_login_.ilogincredentials.md), `options?`: [ILoginOptions](../interfaces/_schemes_auth_login_.iloginoptions.md)): *`Promise<ILoginResponse>`*
 
-*Defined in [SDK.ts:88](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/SDK.ts#L88)*
+*Defined in [SDK.ts:91](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L91)*
 
 Login to the API; Gets a new token from the API and stores it in this.api.token.
 
@@ -1101,7 +1101,7 @@ ___
 
 ▸ **logout**(): *void*
 
-*Defined in [SDK.ts:95](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/SDK.ts#L95)*
+*Defined in [SDK.ts:98](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L98)*
 
 Logs the user out by "forgetting" the token, and clearing the refresh interval
 
@@ -1113,7 +1113,7 @@ ___
 
 ▸ **ping**(): *`Promise<string>`*
 
-*Defined in [SDK.ts:1009](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/SDK.ts#L1009)*
+*Defined in [SDK.ts:1012](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L1012)*
 
 Ping the API to check if it exists / is up and running, returns "pong"
 
@@ -1125,7 +1125,7 @@ ___
 
 ▸ **projectInfo**(): *`Promise<any>`*
 
-*Defined in [SDK.ts:1026](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/SDK.ts#L1026)*
+*Defined in [SDK.ts:1029](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L1029)*
 
 TODO: Add response type-def
 Get the server info from the project
@@ -1138,7 +1138,7 @@ ___
 
 ▸ **refresh**(`token`: string): *`Promise<IRefreshTokenResponse>`*
 
-*Defined in [SDK.ts:119](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/SDK.ts#L119)*
+*Defined in [SDK.ts:122](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L122)*
 
 Use the passed token to request a new one
 
@@ -1156,7 +1156,7 @@ ___
 
 ▸ **refreshIfNeeded**(): *`Promise<[boolean, Error]>`*
 
-*Defined in [SDK.ts:112](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/SDK.ts#L112)*
+*Defined in [SDK.ts:115](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L115)*
 
 Refresh the token if it is about to expire (within 30 seconds of expiry date).
 - Calls onAutoRefreshSuccess with the new token if the refreshing is successful.
@@ -1170,7 +1170,7 @@ ___
 
 ▸ **requestPasswordReset**<**TResponse**>(`email`: string): *`Promise<TResponse>`*
 
-*Defined in [SDK.ts:128](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/SDK.ts#L128)*
+*Defined in [SDK.ts:131](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L131)*
 
 Request to reset the password of the user with the given email address.
 The API will send an email to the given email address with a link to generate a new
@@ -1194,7 +1194,7 @@ ___
 
 ▸ **reset**(): *void*
 
-*Defined in [SDK.ts:102](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/SDK.ts#L102)*
+*Defined in [SDK.ts:105](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L105)*
 
 Resets the client instance by logging out and removing the URL and project
 
@@ -1204,9 +1204,9 @@ ___
 
 ###  revert
 
-▸ **revert**(`collection`: string, `primaryKey`: [PrimaryKeyType](../modules/_sdk_.md#primarykeytype), `revisionID`: number): *`Promise<void>`*
+▸ **revert**(`collection`: string, `primaryKey`: [PrimaryKeyType](../modules/sdk.md#primarykeytype), `revisionID`: number): *`Promise<void>`*
 
-*Defined in [SDK.ts:852](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/SDK.ts#L852)*
+*Defined in [SDK.ts:855](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L855)*
 
 Revert an item to a previous state
 
@@ -1215,7 +1215,7 @@ Revert an item to a previous state
 Name | Type | Description |
 ------ | ------ | ------ |
 `collection` | string | - |
-`primaryKey` | [PrimaryKeyType](../modules/_sdk_.md#primarykeytype) | - |
+`primaryKey` | [PrimaryKeyType](../modules/sdk.md#primarykeytype) | - |
 `revisionID` | number |   |
 
 **Returns:** *`Promise<void>`*
@@ -1226,7 +1226,7 @@ ___
 
 ▸ **serverInfo**(): *`Promise<IServerInformationResponse>`*
 
-*Defined in [SDK.ts:1017](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/SDK.ts#L1017)*
+*Defined in [SDK.ts:1020](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L1020)*
 
 Get the server info from the API
 
@@ -1238,7 +1238,7 @@ ___
 
 ▸ **updateCollection**(`collection`: string, `data`: `Partial<ICollection>`): *`Promise<ICollectionResponse>`*
 
-*Defined in [SDK.ts:198](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/SDK.ts#L198)*
+*Defined in [SDK.ts:201](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L201)*
 
 Updates a certain collection
 
@@ -1255,9 +1255,9 @@ ___
 
 ###  updateCollectionPreset
 
-▸ **updateCollectionPreset**<**PartialCollectionPreset**, **TResultCollectionPreset**>(`primaryKey`: [PrimaryKeyType](../modules/_sdk_.md#primarykeytype), `data`: [IUpdateCollectionPresetBody](../interfaces/_schemes_request_collection_.iupdatecollectionpresetbody.md)): *`Promise<ICollectionPresetResponse<PartialCollectionPreset & TResultCollectionPreset>>`*
+▸ **updateCollectionPreset**<**PartialCollectionPreset**, **TResultCollectionPreset**>(`primaryKey`: [PrimaryKeyType](../modules/sdk.md#primarykeytype), `data`: [IUpdateCollectionPresetBody](../interfaces/_schemes_request_collection_.iupdatecollectionpresetbody.md)): *`Promise<ICollectionPresetResponse<PartialCollectionPreset & TResultCollectionPreset>>`*
 
-*Defined in [SDK.ts:262](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/SDK.ts#L262)*
+*Defined in [SDK.ts:265](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L265)*
 
 Update collection preset (bookmark / listing preference)
 
@@ -1273,7 +1273,7 @@ Update collection preset (bookmark / listing preference)
 
 Name | Type |
 ------ | ------ |
-`primaryKey` | [PrimaryKeyType](../modules/_sdk_.md#primarykeytype) |
+`primaryKey` | [PrimaryKeyType](../modules/sdk.md#primarykeytype) |
 `data` | [IUpdateCollectionPresetBody](../interfaces/_schemes_request_collection_.iupdatecollectionpresetbody.md) |
 
 **Returns:** *`Promise<ICollectionPresetResponse<PartialCollectionPreset & TResultCollectionPreset>>`*
@@ -1284,7 +1284,7 @@ ___
 
 ▸ **updateDatabase**(): *`Promise<void>`*
 
-*Defined in [SDK.ts:1001](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/SDK.ts#L1001)*
+*Defined in [SDK.ts:1004](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L1004)*
 
 This will update the database of the API instance to the latest version
 using the migrations in the API
@@ -1297,7 +1297,7 @@ ___
 
 ▸ **updateField**<**TFieldType**>(`collection`: string, `fieldName`: string, `fieldInfo`: `TFieldType`): *`Promise<IFieldResponse<IField & TFieldType> | undefined>`*
 
-*Defined in [SDK.ts:380](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/SDK.ts#L380)*
+*Defined in [SDK.ts:383](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L383)*
 
 Update a given field in a given collection
 
@@ -1323,7 +1323,7 @@ ___
 
 ▸ **updateFields**<**TFieldsType**>(`collection`: string, `fields`: `Array<Partial<IField>>`): *`Promise<IFieldsResponse<TFieldsType & IField[]> | undefined>`*
 
-*Defined in [SDK.ts:418](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/SDK.ts#L418)*
+*Defined in [SDK.ts:421](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L421)*
 
 Update multiple fields at once
 
@@ -1367,7 +1367,7 @@ Name | Type |
 
 ▸ **updateFields**<**TFieldsType**>(`collection`: string, `fields`: string[], `fieldInfo`: `Partial<IField>`): *`Promise<IFieldsResponse<TFieldsType & IField[]> | undefined>`*
 
-*Defined in [SDK.ts:422](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/SDK.ts#L422)*
+*Defined in [SDK.ts:425](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L425)*
 
 **Type parameters:**
 
@@ -1387,9 +1387,9 @@ ___
 
 ###  updateItem
 
-▸ **updateItem**<**TTPartialItem**, **TTResult**>(`collection`: string, `primaryKey`: [PrimaryKeyType](../modules/_sdk_.md#primarykeytype), `body`: `TTPartialItem`, `params`: `QueryParamsType`): *`Promise<IItemResponse<TTPartialItem & TTResult>>`*
+▸ **updateItem**<**TTPartialItem**, **TTResult**>(`collection`: string, `primaryKey`: [PrimaryKeyType](../modules/sdk.md#primarykeytype), `body`: `TTPartialItem`, `params`: `QueryParamsType`): *`Promise<IItemResponse<TTPartialItem & TTResult>>`*
 
-*Defined in [SDK.ts:537](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/SDK.ts#L537)*
+*Defined in [SDK.ts:540](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L540)*
 
 Update an existing item
 
@@ -1410,7 +1410,7 @@ Extension of [TPartialItem] as expected result
 Name | Type | Default |
 ------ | ------ | ------ |
 `collection` | string | - |
-`primaryKey` | [PrimaryKeyType](../modules/_sdk_.md#primarykeytype) | - |
+`primaryKey` | [PrimaryKeyType](../modules/sdk.md#primarykeytype) | - |
 `body` | `TTPartialItem` | - |
 `params` | `QueryParamsType` |  {} |
 
@@ -1422,7 +1422,7 @@ ___
 
 ▸ **updateItems**<**TPartialItem**, **TResult**>(`collection`: string, `body`: `TPartialItem`, `params`: `QueryParamsType`): *`Promise<IItemsResponse<TPartialItem & TResult>>`*
 
-*Defined in [SDK.ts:559](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/SDK.ts#L559)*
+*Defined in [SDK.ts:562](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L562)*
 
 Update multiple items
 
@@ -1454,7 +1454,7 @@ ___
 
 ▸ **updatePermissions**<**TResponse**>(`data`: any[]): *`Promise<TResponse>`*
 
-*Defined in [SDK.ts:767](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/SDK.ts#L767)*
+*Defined in [SDK.ts:770](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L770)*
 
 TODO: Fix type-def for param and return
 Update multiple permission records
@@ -1477,9 +1477,9 @@ ___
 
 ###  updateRelation
 
-▸ **updateRelation**(`primaryKey`: [PrimaryKeyType](../modules/_sdk_.md#primarykeytype), `data`: `Partial<IRelation>`): *`Promise<IRelationResponse>`*
+▸ **updateRelation**(`primaryKey`: [PrimaryKeyType](../modules/sdk.md#primarykeytype), `data`: `Partial<IRelation>`): *`Promise<IRelationResponse>`*
 
-*Defined in [SDK.ts:799](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/SDK.ts#L799)*
+*Defined in [SDK.ts:802](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L802)*
 
 Updates existing relation
 
@@ -1487,7 +1487,7 @@ Updates existing relation
 
 Name | Type |
 ------ | ------ |
-`primaryKey` | [PrimaryKeyType](../modules/_sdk_.md#primarykeytype) |
+`primaryKey` | [PrimaryKeyType](../modules/sdk.md#primarykeytype) |
 `data` | `Partial<IRelation>` |
 
 **Returns:** *`Promise<IRelationResponse>`*
@@ -1496,9 +1496,9 @@ ___
 
 ###  updateRole
 
-▸ **updateRole**<**Role**>(`primaryKey`: [PrimaryKeyType](../modules/_sdk_.md#primarykeytype), `body`: `Role`): *`Promise<IItemResponse<Role & IRole>>`*
+▸ **updateRole**<**Role**>(`primaryKey`: [PrimaryKeyType](../modules/sdk.md#primarykeytype), `body`: `Role`): *`Promise<IItemResponse<Role & IRole>>`*
 
-*Defined in [SDK.ts:893](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/SDK.ts#L893)*
+*Defined in [SDK.ts:896](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L896)*
 
 Update a user role
 
@@ -1510,7 +1510,7 @@ Update a user role
 
 Name | Type | Description |
 ------ | ------ | ------ |
-`primaryKey` | [PrimaryKeyType](../modules/_sdk_.md#primarykeytype) | - |
+`primaryKey` | [PrimaryKeyType](../modules/sdk.md#primarykeytype) | - |
 `body` | `Role` |   |
 
 **Returns:** *`Promise<IItemResponse<Role & IRole>>`*
@@ -1519,9 +1519,9 @@ ___
 
 ###  updateUser
 
-▸ **updateUser**<**User**>(`primaryKey`: [PrimaryKeyType](../modules/_sdk_.md#primarykeytype), `body`: `User`): *`Promise<IItemResponse<User & IUser>>`*
+▸ **updateUser**<**User**>(`primaryKey`: [PrimaryKeyType](../modules/sdk.md#primarykeytype), `body`: `User`): *`Promise<IItemResponse<User & IUser>>`*
 
-*Defined in [SDK.ts:985](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/SDK.ts#L985)*
+*Defined in [SDK.ts:988](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L988)*
 
 Update a single user based on primaryKey
 
@@ -1533,7 +1533,7 @@ Update a single user based on primaryKey
 
 Name | Type |
 ------ | ------ |
-`primaryKey` | [PrimaryKeyType](../modules/_sdk_.md#primarykeytype) |
+`primaryKey` | [PrimaryKeyType](../modules/sdk.md#primarykeytype) |
 `body` | `User` |
 
 **Returns:** *`Promise<IItemResponse<User & IUser>>`*
@@ -1544,7 +1544,7 @@ ___
 
 ▸ **uploadFiles**<**TResponse**>(`data`: object, `onUploadProgress`: function): *`Promise<TResponse>`*
 
-*Defined in [SDK.ts:488](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/SDK.ts#L488)*
+*Defined in [SDK.ts:491](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L491)*
 
 Upload multipart files in multipart/form-data
 

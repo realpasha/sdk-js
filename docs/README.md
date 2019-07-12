@@ -6,12 +6,6 @@
 
 #### External modules
 
-* ["API"](modules/_api_.md)
-* ["Authentication"](modules/_authentication_.md)
-* ["ConcurrencyManager"](modules/_concurrencymanager_.md)
-* ["Configuration"](modules/_configuration_.md)
-* ["SDK"](modules/_sdk_.md)
-* ["index"](modules/_index_.md)
 * ["schemes/APIResponse"](modules/_schemes_apiresponse_.md)
 * ["schemes/auth/Authenticate"](modules/_schemes_auth_authenticate_.md)
 * ["schemes/auth/Login"](modules/_schemes_auth_login_.md)
@@ -53,7 +47,11 @@
 * ["schemes/response/Setting"](modules/_schemes_response_setting_.md)
 * ["schemes/response/Token"](modules/_schemes_response_token_.md)
 * ["schemes/response/User"](modules/_schemes_response_user_.md)
-* ["utils/collection"](modules/_utils_collection_.md)
-* ["utils/invariant"](modules/_utils_invariant_.md)
-* ["utils/is"](modules/_utils_is_.md)
-* ["utils/payload"](modules/_utils_payload_.md)
+* ["utils/index"](modules/_utils_index_.md)
+* [API](modules/api.md)
+* [Authentication](modules/authentication.md)
+* [ConcurrencyManager](modules/concurrencymanager.md)
+* [Configuration](modules/configuration.md)
+* [SDK](modules/sdk.md)
+* [exports](modules/exports.md)
+* [utils](modules/utils.md)

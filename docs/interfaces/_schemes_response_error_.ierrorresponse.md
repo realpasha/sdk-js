@@ -40,7 +40,7 @@
 
 *Inherited from void*
 
-Defined in /Users/janbiasi/github/contrib/sdk-js-fork/node_modules/axios/index.d.ts:81
+*Defined in [/Users/janbiasi/github/contrib/sdk-js-fork/node_modules/axios/index.d.ts:81](https://github.com/direcuts/sdk-js/tree/master//Users/janbiasi/github/contrib/sdk-js-fork/node_modules/axios/index.d.ts#L81)*
 
 ___
 
@@ -50,7 +50,7 @@ ___
 
 *Inherited from void*
 
-Defined in /Users/janbiasi/github/contrib/sdk-js-fork/node_modules/axios/index.d.ts:80
+*Defined in [/Users/janbiasi/github/contrib/sdk-js-fork/node_modules/axios/index.d.ts:80](https://github.com/direcuts/sdk-js/tree/master//Users/janbiasi/github/contrib/sdk-js-fork/node_modules/axios/index.d.ts#L80)*
 
 ___
 
@@ -58,7 +58,7 @@ ___
 
 • **data**: *`T`*
 
-*Defined in [schemes/response/Error.ts:6](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/schemes/response/Error.ts#L6)*
+*Defined in [schemes/response/Error.ts:6](https://github.com/direcuts/sdk-js/tree/master/schemes/response/Error.ts#L6)*
 
 ___
 
@@ -66,7 +66,7 @@ ___
 
 • **error**: *`Error`*
 
-*Defined in [schemes/response/Error.ts:5](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/schemes/response/Error.ts#L5)*
+*Defined in [schemes/response/Error.ts:5](https://github.com/direcuts/sdk-js/tree/master/schemes/response/Error.ts#L5)*
 
 ___
 
@@ -76,7 +76,7 @@ ___
 
 *Inherited from void*
 
-Defined in /Users/janbiasi/github/contrib/sdk-js-fork/node_modules/axios/index.d.ts:84
+*Defined in [/Users/janbiasi/github/contrib/sdk-js-fork/node_modules/axios/index.d.ts:84](https://github.com/direcuts/sdk-js/tree/master//Users/janbiasi/github/contrib/sdk-js-fork/node_modules/axios/index.d.ts#L84)*
 
 ___
 
@@ -84,7 +84,7 @@ ___
 
 • **json**? : *boolean*
 
-*Defined in [schemes/response/Error.ts:4](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/schemes/response/Error.ts#L4)*
+*Defined in [schemes/response/Error.ts:4](https://github.com/direcuts/sdk-js/tree/master/schemes/response/Error.ts#L4)*
 
 ___
 
@@ -94,7 +94,7 @@ ___
 
 *Inherited from void*
 
-Defined in /Users/janbiasi/github/contrib/sdk-js-fork/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:964
+*Defined in [/Users/janbiasi/github/contrib/sdk-js-fork/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:964](https://github.com/direcuts/sdk-js/tree/master//Users/janbiasi/github/contrib/sdk-js-fork/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts#L964)*
 
 ___
 
@@ -104,7 +104,7 @@ ___
 
 *Inherited from void*
 
-Defined in /Users/janbiasi/github/contrib/sdk-js-fork/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:963
+*Defined in [/Users/janbiasi/github/contrib/sdk-js-fork/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:963](https://github.com/direcuts/sdk-js/tree/master//Users/janbiasi/github/contrib/sdk-js-fork/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts#L963)*
 
 ___
 
@@ -114,7 +114,7 @@ ___
 
 *Inherited from void*
 
-Defined in /Users/janbiasi/github/contrib/sdk-js-fork/node_modules/axios/index.d.ts:82
+*Defined in [/Users/janbiasi/github/contrib/sdk-js-fork/node_modules/axios/index.d.ts:82](https://github.com/direcuts/sdk-js/tree/master//Users/janbiasi/github/contrib/sdk-js-fork/node_modules/axios/index.d.ts#L82)*
 
 ___
 
@@ -124,7 +124,7 @@ ___
 
 *Inherited from void*
 
-Defined in /Users/janbiasi/github/contrib/sdk-js-fork/node_modules/axios/index.d.ts:83
+*Defined in [/Users/janbiasi/github/contrib/sdk-js-fork/node_modules/axios/index.d.ts:83](https://github.com/direcuts/sdk-js/tree/master//Users/janbiasi/github/contrib/sdk-js-fork/node_modules/axios/index.d.ts#L83)*
 
 ___
 
@@ -136,4 +136,4 @@ ___
 
 *Overrides void*
 
-Defined in /Users/janbiasi/github/contrib/sdk-js-fork/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:965
+*Defined in [/Users/janbiasi/github/contrib/sdk-js-fork/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:965](https://github.com/direcuts/sdk-js/tree/master//Users/janbiasi/github/contrib/sdk-js-fork/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts#L965)*

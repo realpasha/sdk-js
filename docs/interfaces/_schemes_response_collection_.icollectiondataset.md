@@ -25,7 +25,7 @@
 
 *Inherited from [IRequiredCollectionData](_schemes_directus_collection_.irequiredcollectiondata.md).[collection](_schemes_directus_collection_.irequiredcollectiondata.md#collection)*
 
-*Defined in [schemes/directus/Collection.ts:4](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/schemes/directus/Collection.ts#L4)*
+*Defined in [schemes/directus/Collection.ts:4](https://github.com/direcuts/sdk-js/tree/master/schemes/directus/Collection.ts#L4)*
 
 ___
 
@@ -33,7 +33,7 @@ ___
 
 • **fields**: *object*
 
-*Defined in [schemes/response/Collection.ts:6](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/schemes/response/Collection.ts#L6)*
+*Defined in [schemes/response/Collection.ts:6](https://github.com/direcuts/sdk-js/tree/master/schemes/response/Collection.ts#L6)*
 
 #### Type declaration:
 

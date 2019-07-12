@@ -40,7 +40,7 @@
 
 • **charset**: *string*
 
-*Defined in [schemes/directus/File.ts:12](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/schemes/directus/File.ts#L12)*
+*Defined in [schemes/directus/File.ts:12](https://github.com/direcuts/sdk-js/tree/master/schemes/directus/File.ts#L12)*
 
 ___
 
@@ -48,7 +48,7 @@ ___
 
 • **data**: *object*
 
-*Defined in [schemes/directus/File.ts:23](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/schemes/directus/File.ts#L23)*
+*Defined in [schemes/directus/File.ts:23](https://github.com/direcuts/sdk-js/tree/master/schemes/directus/File.ts#L23)*
 
 ___
 
@@ -56,7 +56,7 @@ ___
 
 • **description**: *string*
 
-*Defined in [schemes/directus/File.ts:19](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/schemes/directus/File.ts#L19)*
+*Defined in [schemes/directus/File.ts:19](https://github.com/direcuts/sdk-js/tree/master/schemes/directus/File.ts#L19)*
 
 ___
 
@@ -64,7 +64,7 @@ ___
 
 • **duration**: *number*
 
-*Defined in [schemes/directus/File.ts:16](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/schemes/directus/File.ts#L16)*
+*Defined in [schemes/directus/File.ts:16](https://github.com/direcuts/sdk-js/tree/master/schemes/directus/File.ts#L16)*
 
 ___
 
@@ -72,7 +72,7 @@ ___
 
 • **embed**: *string*
 
-*Defined in [schemes/directus/File.ts:17](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/schemes/directus/File.ts#L17)*
+*Defined in [schemes/directus/File.ts:17](https://github.com/direcuts/sdk-js/tree/master/schemes/directus/File.ts#L17)*
 
 ___
 
@@ -80,7 +80,7 @@ ___
 
 • **filename**: *string*
 
-*Defined in [schemes/directus/File.ts:7](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/schemes/directus/File.ts#L7)*
+*Defined in [schemes/directus/File.ts:7](https://github.com/direcuts/sdk-js/tree/master/schemes/directus/File.ts#L7)*
 
 ___
 
@@ -88,7 +88,7 @@ ___
 
 • **filesize**: *number*
 
-*Defined in [schemes/directus/File.ts:13](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/schemes/directus/File.ts#L13)*
+*Defined in [schemes/directus/File.ts:13](https://github.com/direcuts/sdk-js/tree/master/schemes/directus/File.ts#L13)*
 
 ___
 
@@ -96,7 +96,7 @@ ___
 
 • **folder**: *string*
 
-*Defined in [schemes/directus/File.ts:18](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/schemes/directus/File.ts#L18)*
+*Defined in [schemes/directus/File.ts:18](https://github.com/direcuts/sdk-js/tree/master/schemes/directus/File.ts#L18)*
 
 ___
 
@@ -104,7 +104,7 @@ ___
 
 • **height**: *number*
 
-*Defined in [schemes/directus/File.ts:15](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/schemes/directus/File.ts#L15)*
+*Defined in [schemes/directus/File.ts:15](https://github.com/direcuts/sdk-js/tree/master/schemes/directus/File.ts#L15)*
 
 ___
 
@@ -112,7 +112,7 @@ ___
 
 • **id**: *number*
 
-*Defined in [schemes/directus/File.ts:5](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/schemes/directus/File.ts#L5)*
+*Defined in [schemes/directus/File.ts:5](https://github.com/direcuts/sdk-js/tree/master/schemes/directus/File.ts#L5)*
 
 ___
 
@@ -120,7 +120,7 @@ ___
 
 • **location**: *string*
 
-*Defined in [schemes/directus/File.ts:20](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/schemes/directus/File.ts#L20)*
+*Defined in [schemes/directus/File.ts:20](https://github.com/direcuts/sdk-js/tree/master/schemes/directus/File.ts#L20)*
 
 ___
 
@@ -128,7 +128,7 @@ ___
 
 • **metadata**: *object*
 
-*Defined in [schemes/directus/File.ts:22](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/schemes/directus/File.ts#L22)*
+*Defined in [schemes/directus/File.ts:22](https://github.com/direcuts/sdk-js/tree/master/schemes/directus/File.ts#L22)*
 
 ___
 
@@ -136,7 +136,7 @@ ___
 
 • **storage**: *string*
 
-*Defined in [schemes/directus/File.ts:6](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/schemes/directus/File.ts#L6)*
+*Defined in [schemes/directus/File.ts:6](https://github.com/direcuts/sdk-js/tree/master/schemes/directus/File.ts#L6)*
 
 ___
 
@@ -144,7 +144,7 @@ ___
 
 • **tags**: *string | string[]*
 
-*Defined in [schemes/directus/File.ts:21](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/schemes/directus/File.ts#L21)*
+*Defined in [schemes/directus/File.ts:21](https://github.com/direcuts/sdk-js/tree/master/schemes/directus/File.ts#L21)*
 
 ___
 
@@ -152,7 +152,7 @@ ___
 
 • **title**: *string*
 
-*Defined in [schemes/directus/File.ts:8](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/schemes/directus/File.ts#L8)*
+*Defined in [schemes/directus/File.ts:8](https://github.com/direcuts/sdk-js/tree/master/schemes/directus/File.ts#L8)*
 
 ___
 
@@ -160,7 +160,7 @@ ___
 
 • **type**: *string*
 
-*Defined in [schemes/directus/File.ts:9](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/schemes/directus/File.ts#L9)*
+*Defined in [schemes/directus/File.ts:9](https://github.com/direcuts/sdk-js/tree/master/schemes/directus/File.ts#L9)*
 
 ___
 
@@ -168,7 +168,7 @@ ___
 
 • **uploaded_by**: *number*
 
-*Defined in [schemes/directus/File.ts:10](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/schemes/directus/File.ts#L10)*
+*Defined in [schemes/directus/File.ts:10](https://github.com/direcuts/sdk-js/tree/master/schemes/directus/File.ts#L10)*
 
 ___
 
@@ -176,7 +176,7 @@ ___
 
 • **uploaded_on**: *`Date`*
 
-*Defined in [schemes/directus/File.ts:11](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/schemes/directus/File.ts#L11)*
+*Defined in [schemes/directus/File.ts:11](https://github.com/direcuts/sdk-js/tree/master/schemes/directus/File.ts#L11)*
 
 ___
 
@@ -184,4 +184,4 @@ ___
 
 • **width**: *number*
 
-*Defined in [schemes/directus/File.ts:14](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/schemes/directus/File.ts#L14)*
+*Defined in [schemes/directus/File.ts:14](https://github.com/direcuts/sdk-js/tree/master/schemes/directus/File.ts#L14)*

@@ -20,6 +20,6 @@
 
 Ƭ **QueryParams**: *`Partial<IQueryParameters>`*
 
-*Defined in [schemes/http/Query.ts:26](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/schemes/http/Query.ts#L26)*
+*Defined in [schemes/http/Query.ts:26](https://github.com/direcuts/sdk-js/tree/master/schemes/http/Query.ts#L26)*
 
 **`see`** https://docs.directus.io/api/reference.html#query-parameters

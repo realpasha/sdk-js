@@ -1,6 +1,6 @@
 > **[@directus/sdk-js](../README.md)**
 
-[Globals](../README.md) / ["API"](../modules/_api_.md) / [IAPI](_api_.iapi.md) /
+[Globals](../README.md) / [API](../modules/api.md) / [IAPI](api.iapi.md) /
 
 # Interface: IAPI
 
@@ -10,34 +10,34 @@
 
 ## Implemented by
 
-* [API](../classes/_api_.api.md)
+* [API](../classes/api.api-1.md)
 
 ### Index
 
 #### Properties
 
-* [auth](_api_.iapi.md#auth)
-* [concurrent](_api_.iapi.md#concurrent)
-* [xhr](_api_.iapi.md#xhr)
+* [auth](api.iapi.md#auth)
+* [concurrent](api.iapi.md#concurrent)
+* [xhr](api.iapi.md#xhr)
 
 #### Methods
 
-* [delete](_api_.iapi.md#delete)
-* [get](_api_.iapi.md#get)
-* [getPayload](_api_.iapi.md#getpayload)
-* [patch](_api_.iapi.md#patch)
-* [post](_api_.iapi.md#post)
-* [put](_api_.iapi.md#put)
-* [request](_api_.iapi.md#request)
-* [reset](_api_.iapi.md#reset)
+* [delete](api.iapi.md#delete)
+* [get](api.iapi.md#get)
+* [getPayload](api.iapi.md#getpayload)
+* [patch](api.iapi.md#patch)
+* [post](api.iapi.md#post)
+* [put](api.iapi.md#put)
+* [request](api.iapi.md#request)
+* [reset](api.iapi.md#reset)
 
 ## Properties
 
 ###  auth
 
-• **auth**: *[IAuthentication](_authentication_.iauthentication.md)*
+• **auth**: *[IAuthentication](authentication.iauthentication.md)*
 
-*Defined in [API.ts:19](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/API.ts#L19)*
+*Defined in [API.ts:21](https://github.com/direcuts/sdk-js/tree/master/API.ts#L21)*
 
 ___
 
@@ -45,7 +45,7 @@ ___
 
 • **concurrent**: *`ReturnType<concurrencyManager>`*
 
-*Defined in [API.ts:21](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/API.ts#L21)*
+*Defined in [API.ts:23](https://github.com/direcuts/sdk-js/tree/master/API.ts#L23)*
 
 ___
 
@@ -53,7 +53,7 @@ ___
 
 • **xhr**: *`AxiosInstance`*
 
-*Defined in [API.ts:20](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/API.ts#L20)*
+*Defined in [API.ts:22](https://github.com/direcuts/sdk-js/tree/master/API.ts#L22)*
 
 ## Methods
 
@@ -61,7 +61,7 @@ ___
 
 ▸ **delete**<**T**>(`endpoint`: string): *`Promise<T>`*
 
-*Defined in [API.ts:27](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/API.ts#L27)*
+*Defined in [API.ts:29](https://github.com/direcuts/sdk-js/tree/master/API.ts#L29)*
 
 **Type parameters:**
 
@@ -81,7 +81,7 @@ ___
 
 ▸ **get**<**T**>(`endpoint`: string, `params?`: object): *`Promise<T>`*
 
-*Defined in [API.ts:23](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/API.ts#L23)*
+*Defined in [API.ts:25](https://github.com/direcuts/sdk-js/tree/master/API.ts#L25)*
 
 **Type parameters:**
 
@@ -102,7 +102,7 @@ ___
 
 ▸ **getPayload**<**T**>(): *`T`*
 
-*Defined in [API.ts:28](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/API.ts#L28)*
+*Defined in [API.ts:30](https://github.com/direcuts/sdk-js/tree/master/API.ts#L30)*
 
 **Type parameters:**
 
@@ -116,7 +116,7 @@ ___
 
 ▸ **patch**<**T**>(`endpoint`: string, `body?`: [BodyType](../modules/_schemes_http_body_.md#bodytype), `params?`: object): *`Promise<T>`*
 
-*Defined in [API.ts:25](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/API.ts#L25)*
+*Defined in [API.ts:27](https://github.com/direcuts/sdk-js/tree/master/API.ts#L27)*
 
 **Type parameters:**
 
@@ -138,7 +138,7 @@ ___
 
 ▸ **post**<**T**>(`endpoint`: string, `body?`: [BodyType](../modules/_schemes_http_body_.md#bodytype), `params?`: object): *`Promise<T>`*
 
-*Defined in [API.ts:24](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/API.ts#L24)*
+*Defined in [API.ts:26](https://github.com/direcuts/sdk-js/tree/master/API.ts#L26)*
 
 **Type parameters:**
 
@@ -160,7 +160,7 @@ ___
 
 ▸ **put**<**T**>(`endpoint`: string, `body?`: [BodyType](../modules/_schemes_http_body_.md#bodytype), `params?`: object): *`Promise<T>`*
 
-*Defined in [API.ts:26](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/API.ts#L26)*
+*Defined in [API.ts:28](https://github.com/direcuts/sdk-js/tree/master/API.ts#L28)*
 
 **Type parameters:**
 
@@ -182,7 +182,7 @@ ___
 
 ▸ **request**<**T**>(`method`: [RequestMethod](../modules/_schemes_http_request_.md#requestmethod), `endpoint`: string, `params?`: object, `data?`: object, `noEnv?`: boolean, `headers?`: object, `skipParseToJSON?`: boolean): *`Promise<T>`*
 
-*Defined in [API.ts:29](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/API.ts#L29)*
+*Defined in [API.ts:31](https://github.com/direcuts/sdk-js/tree/master/API.ts#L31)*
 
 **Type parameters:**
 
@@ -208,6 +208,6 @@ ___
 
 ▸ **reset**(): *void*
 
-*Defined in [API.ts:22](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/API.ts#L22)*
+*Defined in [API.ts:24](https://github.com/direcuts/sdk-js/tree/master/API.ts#L24)*
 
 **Returns:** *void*

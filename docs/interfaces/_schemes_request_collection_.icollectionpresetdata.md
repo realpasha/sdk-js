@@ -31,7 +31,7 @@
 
 *Overrides [IRequiredCollectionPresetData](_schemes_directus_collectionpreset_.irequiredcollectionpresetdata.md).[title](_schemes_directus_collectionpreset_.irequiredcollectionpresetdata.md#title)*
 
-*Defined in [schemes/request/Collection.ts:4](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/schemes/request/Collection.ts#L4)*
+*Defined in [schemes/request/Collection.ts:4](https://github.com/direcuts/sdk-js/tree/master/schemes/request/Collection.ts#L4)*
 
 ___
 
@@ -39,7 +39,7 @@ ___
 
 • **view_query**: *object*
 
-*Defined in [schemes/request/Collection.ts:5](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/schemes/request/Collection.ts#L5)*
+*Defined in [schemes/request/Collection.ts:5](https://github.com/direcuts/sdk-js/tree/master/schemes/request/Collection.ts#L5)*
 
 #### Type declaration:
 

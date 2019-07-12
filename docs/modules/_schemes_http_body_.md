@@ -16,4 +16,4 @@
 
 Ƭ **BodyType**: *object | any[]*
 
-*Defined in [schemes/http/Body.ts:1](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/schemes/http/Body.ts#L1)*
+*Defined in [schemes/http/Body.ts:1](https://github.com/direcuts/sdk-js/tree/master/schemes/http/Body.ts#L1)*

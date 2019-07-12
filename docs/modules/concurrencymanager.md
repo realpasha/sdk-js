@@ -1,18 +1,18 @@
 > **[@directus/sdk-js](../README.md)**
 
-[Globals](../README.md) / ["ConcurrencyManager"](_concurrencymanager_.md) /
+[Globals](../README.md) / [ConcurrencyManager](concurrencymanager.md) /
 
-# External module: "ConcurrencyManager"
+# External module: ConcurrencyManager
 
 ### Index
 
 #### Interfaces
 
-* [IConcurrencyQueueItem](../interfaces/_concurrencymanager_.iconcurrencyqueueitem.md)
+* [IConcurrencyQueueItem](../interfaces/concurrencymanager.iconcurrencyqueueitem.md)
 
 #### Functions
 
-* [concurrencyManager](_concurrencymanager_.md#const-concurrencymanager)
+* [concurrencyManager](concurrencymanager.md#const-concurrencymanager)
 
 ## Functions
 
@@ -20,7 +20,7 @@
 
 ▸ **concurrencyManager**(`axios`: `AxiosInstance`, `limit`: number): *object*
 
-*Defined in [ConcurrencyManager.ts:15](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/ConcurrencyManager.ts#L15)*
+*Defined in [ConcurrencyManager.ts:18](https://github.com/direcuts/sdk-js/tree/master/ConcurrencyManager.ts#L18)*
 
 Handling and limiting concurrent requests for the API.
 
@@ -35,15 +35,15 @@ Name | Type | Default | Description |
 
 * **limit**: *number*
 
-* **queue**: *[IConcurrencyQueueItem](../interfaces/_concurrencymanager_.iconcurrencyqueueitem.md)[]* =  [] as IConcurrencyQueueItem[]
+* **queue**: *[IConcurrencyQueueItem](../interfaces/concurrencymanager.iconcurrencyqueueitem.md)[]* =  [] as IConcurrencyQueueItem[]
 
-* **running**: *[IConcurrencyQueueItem](../interfaces/_concurrencymanager_.iconcurrencyqueueitem.md)[]* =  [] as IConcurrencyQueueItem[]
+* **running**: *[IConcurrencyQueueItem](../interfaces/concurrencymanager.iconcurrencyqueueitem.md)[]* =  [] as IConcurrencyQueueItem[]
 
 * **attach**(`limitConcurrentRequestsTo?`: number): *void*
 
 * **detach**(): *void*
 
-* **push**(`reqHandler`: [IConcurrencyQueueItem](../interfaces/_concurrencymanager_.iconcurrencyqueueitem.md)): *void*
+* **push**(`reqHandler`: [IConcurrencyQueueItem](../interfaces/concurrencymanager.iconcurrencyqueueitem.md)): *void*
 
 * **requestHandler**(`req`: `AxiosRequestConfig`): *`Promise<AxiosRequestConfig>`*
 
