@@ -20,4 +20,4 @@
 
 • **post**: *[post](_api_.iapi.md#post)*
 
-*Defined in [Authentication.ts:23](https://github.com/janbiasi/sdk-js/blob/75383ea/src/Authentication.ts#L23)*
+*Defined in [Authentication.ts:23](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/Authentication.ts#L23)*

@@ -1,3 +1,10 @@
+/**
+ * @module utils
+ */
+
+/**
+ * @internal
+ */
 const isType = (t: string, v: any) => Object.prototype.toString.call(v) === `[object ${t}]`;
 /**
  * @internal

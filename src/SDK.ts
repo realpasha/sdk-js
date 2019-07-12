@@ -1,3 +1,7 @@
+/**
+ * @module SDK
+ */
+
 // General scheme types types
 import { ILoginCredentials, ILoginOptions } from "./schemes/auth/Login";
 import { BodyType } from "./schemes/http/Body";
@@ -43,8 +47,7 @@ import { IServerInformationResponse } from "./schemes/response/ServerInformation
 import { ISettingsResponse } from "./schemes/response/Setting";
 
 // Utilities
-import { invariant } from "./utils/invariant";
-import { isArray, isNotNull, isNumber, isObject, isObjectOrEmpty, isString } from "./utils/is";
+import { invariant, isArray, isNotNull, isNumber, isObject, isObjectOrEmpty, isString } from "./utils";
 
 type PrimaryKeyType = string | number;
 

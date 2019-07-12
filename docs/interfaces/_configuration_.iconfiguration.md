@@ -38,7 +38,7 @@
 
 • **localExp**? : *number*
 
-*Defined in [Configuration.ts:27](https://github.com/janbiasi/sdk-js/blob/75383ea/src/Configuration.ts#L27)*
+*Defined in [Configuration.ts:27](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/Configuration.ts#L27)*
 
 ___
 
@@ -46,7 +46,7 @@ ___
 
 • **persist**: *boolean*
 
-*Defined in [Configuration.ts:29](https://github.com/janbiasi/sdk-js/blob/75383ea/src/Configuration.ts#L29)*
+*Defined in [Configuration.ts:29](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/Configuration.ts#L29)*
 
 ___
 
@@ -54,7 +54,7 @@ ___
 
 • **project**: *string*
 
-*Defined in [Configuration.ts:26](https://github.com/janbiasi/sdk-js/blob/75383ea/src/Configuration.ts#L26)*
+*Defined in [Configuration.ts:26](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/Configuration.ts#L26)*
 
 ___
 
@@ -62,7 +62,7 @@ ___
 
 • **token**: *string*
 
-*Defined in [Configuration.ts:24](https://github.com/janbiasi/sdk-js/blob/75383ea/src/Configuration.ts#L24)*
+*Defined in [Configuration.ts:24](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/Configuration.ts#L24)*
 
 ___
 
@@ -70,7 +70,7 @@ ___
 
 • **tokenExpirationTime**: *number*
 
-*Defined in [Configuration.ts:28](https://github.com/janbiasi/sdk-js/blob/75383ea/src/Configuration.ts#L28)*
+*Defined in [Configuration.ts:28](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/Configuration.ts#L28)*
 
 ___
 
@@ -78,7 +78,7 @@ ___
 
 • **url**: *string*
 
-*Defined in [Configuration.ts:25](https://github.com/janbiasi/sdk-js/blob/75383ea/src/Configuration.ts#L25)*
+*Defined in [Configuration.ts:25](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/Configuration.ts#L25)*
 
 ## Methods
 
@@ -86,7 +86,7 @@ ___
 
 ▸ **dehydrate**(): *[IConfigurationValues](_configuration_.iconfigurationvalues.md)*
 
-*Defined in [Configuration.ts:30](https://github.com/janbiasi/sdk-js/blob/75383ea/src/Configuration.ts#L30)*
+*Defined in [Configuration.ts:30](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/Configuration.ts#L30)*
 
 **Returns:** *[IConfigurationValues](_configuration_.iconfigurationvalues.md)*
 
@@ -96,7 +96,7 @@ ___
 
 ▸ **deleteHydratedConfig**(): *any*
 
-*Defined in [Configuration.ts:31](https://github.com/janbiasi/sdk-js/blob/75383ea/src/Configuration.ts#L31)*
+*Defined in [Configuration.ts:31](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/Configuration.ts#L31)*
 
 **Returns:** *any*
 
@@ -106,7 +106,7 @@ ___
 
 ▸ **hydrate**(`config`: [IConfigurationValues](_configuration_.iconfigurationvalues.md)): *any*
 
-*Defined in [Configuration.ts:32](https://github.com/janbiasi/sdk-js/blob/75383ea/src/Configuration.ts#L32)*
+*Defined in [Configuration.ts:32](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/Configuration.ts#L32)*
 
 **Parameters:**
 
@@ -122,7 +122,7 @@ ___
 
 ▸ **partialUpdate**(`config`: `Partial<IConfigurationValues>`): *void*
 
-*Defined in [Configuration.ts:33](https://github.com/janbiasi/sdk-js/blob/75383ea/src/Configuration.ts#L33)*
+*Defined in [Configuration.ts:33](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/Configuration.ts#L33)*
 
 **Parameters:**
 
@@ -138,7 +138,7 @@ ___
 
 ▸ **reset**(): *void*
 
-*Defined in [Configuration.ts:34](https://github.com/janbiasi/sdk-js/blob/75383ea/src/Configuration.ts#L34)*
+*Defined in [Configuration.ts:34](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/Configuration.ts#L34)*
 
 **Returns:** *void*
 
@@ -148,7 +148,7 @@ ___
 
 ▸ **update**(`config`: [IConfigurationValues](_configuration_.iconfigurationvalues.md)): *any*
 
-*Defined in [Configuration.ts:35](https://github.com/janbiasi/sdk-js/blob/75383ea/src/Configuration.ts#L35)*
+*Defined in [Configuration.ts:35](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/Configuration.ts#L35)*
 
 **Parameters:**
 

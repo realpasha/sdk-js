@@ -25,7 +25,7 @@
 
 • **localExp**? : *number*
 
-*Defined in [Configuration.ts:18](https://github.com/janbiasi/sdk-js/blob/75383ea/src/Configuration.ts#L18)*
+*Defined in [Configuration.ts:18](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/Configuration.ts#L18)*
 
 ___
 
@@ -33,7 +33,7 @@ ___
 
 • **persist**: *boolean*
 
-*Defined in [Configuration.ts:20](https://github.com/janbiasi/sdk-js/blob/75383ea/src/Configuration.ts#L20)*
+*Defined in [Configuration.ts:20](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/Configuration.ts#L20)*
 
 ___
 
@@ -41,7 +41,7 @@ ___
 
 • **project**: *string*
 
-*Defined in [Configuration.ts:16](https://github.com/janbiasi/sdk-js/blob/75383ea/src/Configuration.ts#L16)*
+*Defined in [Configuration.ts:16](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/Configuration.ts#L16)*
 
 ___
 
@@ -49,7 +49,7 @@ ___
 
 • **token**? : *string*
 
-*Defined in [Configuration.ts:17](https://github.com/janbiasi/sdk-js/blob/75383ea/src/Configuration.ts#L17)*
+*Defined in [Configuration.ts:17](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/Configuration.ts#L17)*
 
 ___
 
@@ -57,7 +57,7 @@ ___
 
 • **tokenExpirationTime**? : *number*
 
-*Defined in [Configuration.ts:19](https://github.com/janbiasi/sdk-js/blob/75383ea/src/Configuration.ts#L19)*
+*Defined in [Configuration.ts:19](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/Configuration.ts#L19)*
 
 ___
 
@@ -65,4 +65,4 @@ ___
 
 • **url**: *string*
 
-*Defined in [Configuration.ts:15](https://github.com/janbiasi/sdk-js/blob/75383ea/src/Configuration.ts#L15)*
+*Defined in [Configuration.ts:15](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/Configuration.ts#L15)*

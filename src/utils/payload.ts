@@ -1,3 +1,7 @@
+/**
+ * @module utils
+ */
+
 import * as base64 from "base-64";
 import { isNumber } from "./is";
 

@@ -1,3 +1,7 @@
+/**
+ * @module Authentication
+ */
+
 import { IConfiguration, IConfigurationValues } from "./Configuration";
 
 // Other classes
@@ -10,9 +14,7 @@ import { ILoginResponse, RefreshIfNeededResponse } from "./schemes/response/Logi
 import { IRefreshTokenResponse } from "./schemes/response/Token";
 
 // Utilities
-import { invariant } from "./utils/invariant";
-import { isFunction, isObject, isString } from "./utils/is";
-import { getPayload } from "./utils/payload";
+import { invariant, isFunction, isObject, isString, getPayload } from "./utils";
 
 interface IAuthenticationRefreshError {
   code?: number;

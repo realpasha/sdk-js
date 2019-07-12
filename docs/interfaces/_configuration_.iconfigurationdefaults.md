@@ -21,7 +21,7 @@
 
 • **project**: *string*
 
-*Defined in [Configuration.ts:41](https://github.com/janbiasi/sdk-js/blob/75383ea/src/Configuration.ts#L41)*
+*Defined in [Configuration.ts:41](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/Configuration.ts#L41)*
 
 ___
 
@@ -29,4 +29,4 @@ ___
 
 • **tokenExpirationTime**: *number*
 
-*Defined in [Configuration.ts:40](https://github.com/janbiasi/sdk-js/blob/75383ea/src/Configuration.ts#L40)*
+*Defined in [Configuration.ts:40](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/Configuration.ts#L40)*

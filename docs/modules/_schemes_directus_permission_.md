@@ -25,7 +25,7 @@
 
 Ƭ **CommentPermission**: *"none" | "read" | "update" | "create" | "full" | null*
 
-*Defined in [schemes/directus/Permission.ts:5](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/Permission.ts#L5)*
+*Defined in [schemes/directus/Permission.ts:5](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/schemes/directus/Permission.ts#L5)*
 
 ___
 
@@ -33,7 +33,7 @@ ___
 
 Ƭ **CreatePermission**: *"none" | "full" | null*
 
-*Defined in [schemes/directus/Permission.ts:1](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/Permission.ts#L1)*
+*Defined in [schemes/directus/Permission.ts:1](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/schemes/directus/Permission.ts#L1)*
 
 ___
 
@@ -41,7 +41,7 @@ ___
 
 Ƭ **DeletePermission**: *"none" | "mine" | "role" | "full" | null*
 
-*Defined in [schemes/directus/Permission.ts:4](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/Permission.ts#L4)*
+*Defined in [schemes/directus/Permission.ts:4](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/schemes/directus/Permission.ts#L4)*
 
 ___
 
@@ -49,7 +49,7 @@ ___
 
 Ƭ **ExplainPermission**: *"none" | "update" | "create" | "always" | null*
 
-*Defined in [schemes/directus/Permission.ts:6](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/Permission.ts#L6)*
+*Defined in [schemes/directus/Permission.ts:6](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/schemes/directus/Permission.ts#L6)*
 
 ___
 
@@ -57,7 +57,7 @@ ___
 
 Ƭ **ReadPermission**: *"none" | "mine" | "role" | "full" | null*
 
-*Defined in [schemes/directus/Permission.ts:2](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/Permission.ts#L2)*
+*Defined in [schemes/directus/Permission.ts:2](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/schemes/directus/Permission.ts#L2)*
 
 ___
 
@@ -65,4 +65,4 @@ ___
 
 Ƭ **UpdatePermission**: *"none" | "mine" | "full" | null*
 
-*Defined in [schemes/directus/Permission.ts:3](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/Permission.ts#L3)*
+*Defined in [schemes/directus/Permission.ts:3](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/schemes/directus/Permission.ts#L3)*

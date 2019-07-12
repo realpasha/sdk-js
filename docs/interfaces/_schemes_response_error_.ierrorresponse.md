@@ -58,7 +58,7 @@ ___
 
 • **data**: *`T`*
 
-*Defined in [schemes/response/Error.ts:6](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/response/Error.ts#L6)*
+*Defined in [schemes/response/Error.ts:6](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/schemes/response/Error.ts#L6)*
 
 ___
 
@@ -66,7 +66,7 @@ ___
 
 • **error**: *`Error`*
 
-*Defined in [schemes/response/Error.ts:5](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/response/Error.ts#L5)*
+*Defined in [schemes/response/Error.ts:5](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/schemes/response/Error.ts#L5)*
 
 ___
 
@@ -84,7 +84,7 @@ ___
 
 • **json**? : *boolean*
 
-*Defined in [schemes/response/Error.ts:4](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/response/Error.ts#L4)*
+*Defined in [schemes/response/Error.ts:4](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/schemes/response/Error.ts#L4)*
 
 ___
 

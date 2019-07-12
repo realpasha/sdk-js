@@ -16,7 +16,7 @@
 
 Ƭ **FilterOperator**: *"=" | "eq" | "<>" | "!=" | "neq" | "<" | "lt" | "<=" | "lte" | ">" | "gt" | ">=" | "gte" | "in" | "nin" | "null" | "nnull" | "contains" | "like" | "ncontains" | "nlike" | "rlike" | "nrlike" | "between" | "nbetween" | "empty" | "nempty" | "all" | "has"*
 
-*Defined in [schemes/http/Filter.ts:5](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/http/Filter.ts#L5)*
+*Defined in [schemes/http/Filter.ts:5](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/schemes/http/Filter.ts#L5)*
 
 Defines all possible operator for filtering by query
 

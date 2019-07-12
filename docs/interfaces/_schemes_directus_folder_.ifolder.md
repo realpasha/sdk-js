@@ -24,7 +24,7 @@
 
 • **id**: *number*
 
-*Defined in [schemes/directus/Folder.ts:5](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/Folder.ts#L5)*
+*Defined in [schemes/directus/Folder.ts:5](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/schemes/directus/Folder.ts#L5)*
 
 ___
 
@@ -32,7 +32,7 @@ ___
 
 • **name**: *string*
 
-*Defined in [schemes/directus/Folder.ts:6](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/Folder.ts#L6)*
+*Defined in [schemes/directus/Folder.ts:6](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/schemes/directus/Folder.ts#L6)*
 
 ___
 
@@ -40,4 +40,4 @@ ___
 
 • **parent_folder**? : *string*
 
-*Defined in [schemes/directus/Folder.ts:7](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/Folder.ts#L7)*
+*Defined in [schemes/directus/Folder.ts:7](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/schemes/directus/Folder.ts#L7)*

@@ -30,4 +30,4 @@
 
 *Inherited from [IRequiredCollectionPresetData](_schemes_directus_collectionpreset_.irequiredcollectionpresetdata.md).[title](_schemes_directus_collectionpreset_.irequiredcollectionpresetdata.md#title)*
 
-*Defined in [schemes/directus/CollectionPreset.ts:4](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/CollectionPreset.ts#L4)*
+*Defined in [schemes/directus/CollectionPreset.ts:4](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/schemes/directus/CollectionPreset.ts#L4)*

@@ -21,7 +21,7 @@
 
 • **code**? : *number*
 
-*Defined in [Authentication.ts:18](https://github.com/janbiasi/sdk-js/blob/75383ea/src/Authentication.ts#L18)*
+*Defined in [Authentication.ts:18](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/Authentication.ts#L18)*
 
 ___
 
@@ -29,4 +29,4 @@ ___
 
 • **message**: *string*
 
-*Defined in [Authentication.ts:19](https://github.com/janbiasi/sdk-js/blob/75383ea/src/Authentication.ts#L19)*
+*Defined in [Authentication.ts:19](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/Authentication.ts#L19)*

@@ -1,3 +1,7 @@
+/**
+ * @module API
+ */
+
 import axios, { AxiosInstance } from "axios";
 import * as qsStringify from "qs/lib/stringify";
 
@@ -11,9 +15,7 @@ import { RequestMethod } from "./schemes/http/Request";
 import { IErrorResponse } from "./schemes/response/Error";
 
 // Utilities
-import { invariant } from "./utils/invariant";
-import { isArrayOrEmpty, isObjectOrEmpty, isString } from "./utils/is";
-import { getPayload } from "./utils/payload";
+import { invariant, isArrayOrEmpty, isObjectOrEmpty, isString, getPayload } from "./utils";
 
 export interface IAPI {
   auth: IAuthentication;

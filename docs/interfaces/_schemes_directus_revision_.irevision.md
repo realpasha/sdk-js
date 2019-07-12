@@ -34,7 +34,7 @@
 
 • **activity**: *number*
 
-*Defined in [schemes/directus/Revision.ts:5](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/Revision.ts#L5)*
+*Defined in [schemes/directus/Revision.ts:5](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/schemes/directus/Revision.ts#L5)*
 
 ___
 
@@ -42,7 +42,7 @@ ___
 
 • **collection**: *string*
 
-*Defined in [schemes/directus/Revision.ts:6](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/Revision.ts#L6)*
+*Defined in [schemes/directus/Revision.ts:6](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/schemes/directus/Revision.ts#L6)*
 
 ___
 
@@ -50,7 +50,7 @@ ___
 
 • **data**: *`T`*
 
-*Defined in [schemes/directus/Revision.ts:7](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/Revision.ts#L7)*
+*Defined in [schemes/directus/Revision.ts:7](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/schemes/directus/Revision.ts#L7)*
 
 ___
 
@@ -58,7 +58,7 @@ ___
 
 • **delta**: *`Partial<T>`*
 
-*Defined in [schemes/directus/Revision.ts:8](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/Revision.ts#L8)*
+*Defined in [schemes/directus/Revision.ts:8](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/schemes/directus/Revision.ts#L8)*
 
 ___
 
@@ -66,7 +66,7 @@ ___
 
 • **id**: *number*
 
-*Defined in [schemes/directus/Revision.ts:9](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/Revision.ts#L9)*
+*Defined in [schemes/directus/Revision.ts:9](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/schemes/directus/Revision.ts#L9)*
 
 ___
 
@@ -74,7 +74,7 @@ ___
 
 • **item**: *string*
 
-*Defined in [schemes/directus/Revision.ts:10](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/Revision.ts#L10)*
+*Defined in [schemes/directus/Revision.ts:10](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/schemes/directus/Revision.ts#L10)*
 
 ___
 
@@ -82,7 +82,7 @@ ___
 
 • **parent_changed**: *boolean*
 
-*Defined in [schemes/directus/Revision.ts:11](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/Revision.ts#L11)*
+*Defined in [schemes/directus/Revision.ts:11](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/schemes/directus/Revision.ts#L11)*
 
 ___
 
@@ -90,7 +90,7 @@ ___
 
 • **parent_collection**? : *any*
 
-*Defined in [schemes/directus/Revision.ts:12](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/Revision.ts#L12)*
+*Defined in [schemes/directus/Revision.ts:12](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/schemes/directus/Revision.ts#L12)*
 
 ___
 
@@ -98,4 +98,4 @@ ___
 
 • **parent_item**? : *string*
 
-*Defined in [schemes/directus/Revision.ts:13](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/Revision.ts#L13)*
+*Defined in [schemes/directus/Revision.ts:13](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/schemes/directus/Revision.ts#L13)*

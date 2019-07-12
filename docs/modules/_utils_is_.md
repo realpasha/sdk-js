@@ -24,7 +24,7 @@
 
 ▸ **isArray**(`v`: any): *boolean*
 
-*Defined in [utils/is.ts:29](https://github.com/janbiasi/sdk-js/blob/75383ea/src/utils/is.ts#L29)*
+*Defined in [utils/is.ts:29](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/utils/is.ts#L29)*
 
 **Parameters:**
 
@@ -40,7 +40,7 @@ ___
 
 ▸ **isArrayOrEmpty**(`v`: any): *boolean*
 
-*Defined in [utils/is.ts:25](https://github.com/janbiasi/sdk-js/blob/75383ea/src/utils/is.ts#L25)*
+*Defined in [utils/is.ts:25](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/utils/is.ts#L25)*
 
 **Parameters:**
 
@@ -56,7 +56,7 @@ ___
 
 ▸ **isFunction**(`v`: any): *boolean*
 
-*Defined in [utils/is.ts:17](https://github.com/janbiasi/sdk-js/blob/75383ea/src/utils/is.ts#L17)*
+*Defined in [utils/is.ts:17](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/utils/is.ts#L17)*
 
 **Parameters:**
 
@@ -72,7 +72,7 @@ ___
 
 ▸ **isNotNull**(`v`: any): *boolean*
 
-*Defined in [utils/is.ts:5](https://github.com/janbiasi/sdk-js/blob/75383ea/src/utils/is.ts#L5)*
+*Defined in [utils/is.ts:5](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/utils/is.ts#L5)*
 
 **Parameters:**
 
@@ -88,7 +88,7 @@ ___
 
 ▸ **isNumber**(`v`: any): *boolean*
 
-*Defined in [utils/is.ts:13](https://github.com/janbiasi/sdk-js/blob/75383ea/src/utils/is.ts#L13)*
+*Defined in [utils/is.ts:13](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/utils/is.ts#L13)*
 
 **Parameters:**
 
@@ -104,7 +104,7 @@ ___
 
 ▸ **isObject**(`v`: any): *boolean*
 
-*Defined in [utils/is.ts:33](https://github.com/janbiasi/sdk-js/blob/75383ea/src/utils/is.ts#L33)*
+*Defined in [utils/is.ts:33](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/utils/is.ts#L33)*
 
 **Parameters:**
 
@@ -120,7 +120,7 @@ ___
 
 ▸ **isObjectOrEmpty**(`v`: any): *boolean*
 
-*Defined in [utils/is.ts:21](https://github.com/janbiasi/sdk-js/blob/75383ea/src/utils/is.ts#L21)*
+*Defined in [utils/is.ts:21](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/utils/is.ts#L21)*
 
 **Parameters:**
 
@@ -136,7 +136,7 @@ ___
 
 ▸ **isString**(`v`: any): *boolean*
 
-*Defined in [utils/is.ts:9](https://github.com/janbiasi/sdk-js/blob/75383ea/src/utils/is.ts#L9)*
+*Defined in [utils/is.ts:9](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/utils/is.ts#L9)*
 
 **Parameters:**
 
@@ -152,7 +152,7 @@ ___
 
 ▸ **isType**(`t`: string, `v`: any): *boolean*
 
-*Defined in [utils/is.ts:1](https://github.com/janbiasi/sdk-js/blob/75383ea/src/utils/is.ts#L1)*
+*Defined in [utils/is.ts:1](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/utils/is.ts#L1)*
 
 **Parameters:**
 

@@ -1,4 +1,7 @@
-// tslint:disable: object-literal-sort-keys
+/**
+ * @module ConcurrencyManager
+ */
+
 import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 
 export interface IConcurrencyQueueItem {

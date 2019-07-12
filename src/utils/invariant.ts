@@ -1,4 +1,8 @@
 /**
+ * @module utils
+ */
+
+/**
  * Checks invariant violation against a condition, will throw an error if not fulfilled
  * @internal
  * @param {boolean} condition

@@ -31,7 +31,7 @@
 
 *Inherited from [IRequiredFieldData](_schemes_directus_field_.irequiredfielddata.md).[datatype](_schemes_directus_field_.irequiredfielddata.md#datatype)*
 
-*Defined in [schemes/directus/Field.ts:6](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/Field.ts#L6)*
+*Defined in [schemes/directus/Field.ts:6](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/schemes/directus/Field.ts#L6)*
 
 ___
 
@@ -41,7 +41,7 @@ ___
 
 *Inherited from [IRequiredFieldData](_schemes_directus_field_.irequiredfielddata.md).[field](_schemes_directus_field_.irequiredfielddata.md#field)*
 
-*Defined in [schemes/directus/Field.ts:4](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/Field.ts#L4)*
+*Defined in [schemes/directus/Field.ts:4](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/schemes/directus/Field.ts#L4)*
 
 ___
 
@@ -51,7 +51,7 @@ ___
 
 *Inherited from [IRequiredFieldData](_schemes_directus_field_.irequiredfielddata.md).[interface](_schemes_directus_field_.irequiredfielddata.md#interface)*
 
-*Defined in [schemes/directus/Field.ts:7](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/Field.ts#L7)*
+*Defined in [schemes/directus/Field.ts:7](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/schemes/directus/Field.ts#L7)*
 
 ___
 
@@ -61,4 +61,4 @@ ___
 
 *Inherited from [IRequiredFieldData](_schemes_directus_field_.irequiredfielddata.md).[type](_schemes_directus_field_.irequiredfielddata.md#type)*
 
-*Defined in [schemes/directus/Field.ts:5](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/Field.ts#L5)*
+*Defined in [schemes/directus/Field.ts:5](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/schemes/directus/Field.ts#L5)*

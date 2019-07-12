@@ -20,7 +20,7 @@
 
 • **DIRECTUS_COLLECTION_PREFIX**: *"directus_"* = "directus_"
 
-*Defined in [utils/collection.ts:1](https://github.com/janbiasi/sdk-js/blob/75383ea/src/utils/collection.ts#L1)*
+*Defined in [utils/collection.ts:1](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/utils/collection.ts#L1)*
 
 ## Functions
 
@@ -28,12 +28,12 @@
 
 ▸ **getCollectionItemPath**(`collection`: string): *string*
 
-*Defined in [utils/collection.ts:18](https://github.com/janbiasi/sdk-js/blob/75383ea/src/utils/collection.ts#L18)*
+*Defined in [utils/collection.ts:18](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/utils/collection.ts#L18)*
 
 Returns the correct API path for the collection. It will
-strip the prefix @{DIRECTUS_COLLECTION_PREFIX} or will add the
+strip the prefix {@link DIRECTUS_COLLECTION_PREFIX | collection-prefix} or will add the
 '/items/' path as prefix if not provided. The 'substr(9)' defines
-the length of the defined @{DIRECTUS_COLLECTION_PREFIX}.
+the length of the defined {@link DIRECTUS_COLLECTION_PREFIX | collection-prefix}.
 
 **`example`** 
 getCollectionItemPath('directus_users');

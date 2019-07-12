@@ -32,7 +32,7 @@
 
 • **refreshInterval**? : *number*
 
-*Defined in [Authentication.ts:27](https://github.com/janbiasi/sdk-js/blob/75383ea/src/Authentication.ts#L27)*
+*Defined in [Authentication.ts:27](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/Authentication.ts#L27)*
 
 ## Methods
 
@@ -40,7 +40,7 @@
 
 ▸ **isLoggedIn**(): *boolean*
 
-*Defined in [Authentication.ts:28](https://github.com/janbiasi/sdk-js/blob/75383ea/src/Authentication.ts#L28)*
+*Defined in [Authentication.ts:28](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/Authentication.ts#L28)*
 
 **Returns:** *boolean*
 
@@ -50,7 +50,7 @@ ___
 
 ▸ **login**(`credentials`: [ILoginCredentials](_schemes_auth_login_.ilogincredentials.md), `options?`: [ILoginOptions](_schemes_auth_login_.iloginoptions.md)): *`Promise<ILoginResponse>`*
 
-*Defined in [Authentication.ts:29](https://github.com/janbiasi/sdk-js/blob/75383ea/src/Authentication.ts#L29)*
+*Defined in [Authentication.ts:29](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/Authentication.ts#L29)*
 
 **Parameters:**
 
@@ -67,7 +67,7 @@ ___
 
 ▸ **logout**(): *void*
 
-*Defined in [Authentication.ts:30](https://github.com/janbiasi/sdk-js/blob/75383ea/src/Authentication.ts#L30)*
+*Defined in [Authentication.ts:30](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/Authentication.ts#L30)*
 
 **Returns:** *void*
 
@@ -77,7 +77,7 @@ ___
 
 ▸ **refresh**(`token`: string): *`Promise<IRefreshTokenResponse>`*
 
-*Defined in [Authentication.ts:32](https://github.com/janbiasi/sdk-js/blob/75383ea/src/Authentication.ts#L32)*
+*Defined in [Authentication.ts:32](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/Authentication.ts#L32)*
 
 **Parameters:**
 
@@ -93,6 +93,6 @@ ___
 
 ▸ **refreshIfNeeded**(): *`Promise<[boolean, Error]>`*
 
-*Defined in [Authentication.ts:31](https://github.com/janbiasi/sdk-js/blob/75383ea/src/Authentication.ts#L31)*
+*Defined in [Authentication.ts:31](https://github.com/janbiasi/sdk-js/blob/b445ae7/src/Authentication.ts#L31)*
 
 **Returns:** *`Promise<[boolean, Error]>`*
