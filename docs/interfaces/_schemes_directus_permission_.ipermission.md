@@ -34,7 +34,7 @@
 
 • **collection**: *string*
 
-*Defined in [schemes/directus/Permission.ts:13](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/Permission.ts#L13)*
+*Defined in [schemes/directus/Permission.ts:13](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/Permission.ts#L13)*
 
 ___
 
@@ -42,7 +42,7 @@ ___
 
 • **comment**: *[CommentPermission](../modules/_schemes_directus_permission_.md#commentpermission)*
 
-*Defined in [schemes/directus/Permission.ts:20](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/Permission.ts#L20)*
+*Defined in [schemes/directus/Permission.ts:20](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/Permission.ts#L20)*
 
 ___
 
@@ -50,7 +50,7 @@ ___
 
 • **create**: *[CreatePermission](../modules/_schemes_directus_permission_.md#createpermission)*
 
-*Defined in [schemes/directus/Permission.ts:16](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/Permission.ts#L16)*
+*Defined in [schemes/directus/Permission.ts:16](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/Permission.ts#L16)*
 
 ___
 
@@ -58,7 +58,7 @@ ___
 
 • **delete**: *[DeletePermission](../modules/_schemes_directus_permission_.md#deletepermission)*
 
-*Defined in [schemes/directus/Permission.ts:19](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/Permission.ts#L19)*
+*Defined in [schemes/directus/Permission.ts:19](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/Permission.ts#L19)*
 
 ___
 
@@ -66,7 +66,7 @@ ___
 
 • **explain**: *[ExplainPermission](../modules/_schemes_directus_permission_.md#explainpermission)*
 
-*Defined in [schemes/directus/Permission.ts:21](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/Permission.ts#L21)*
+*Defined in [schemes/directus/Permission.ts:21](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/Permission.ts#L21)*
 
 ___
 
@@ -74,7 +74,7 @@ ___
 
 • **id**: *number*
 
-*Defined in [schemes/directus/Permission.ts:12](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/Permission.ts#L12)*
+*Defined in [schemes/directus/Permission.ts:12](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/Permission.ts#L12)*
 
 ___
 
@@ -82,7 +82,7 @@ ___
 
 • **read**: *[ReadPermission](../modules/_schemes_directus_permission_.md#readpermission)*
 
-*Defined in [schemes/directus/Permission.ts:17](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/Permission.ts#L17)*
+*Defined in [schemes/directus/Permission.ts:17](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/Permission.ts#L17)*
 
 ___
 
@@ -90,7 +90,7 @@ ___
 
 • **read_field_blacklist**: *string[]*
 
-*Defined in [schemes/directus/Permission.ts:22](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/Permission.ts#L22)*
+*Defined in [schemes/directus/Permission.ts:22](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/Permission.ts#L22)*
 
 ___
 
@@ -98,7 +98,7 @@ ___
 
 • **role**: *number*
 
-*Defined in [schemes/directus/Permission.ts:14](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/Permission.ts#L14)*
+*Defined in [schemes/directus/Permission.ts:14](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/Permission.ts#L14)*
 
 ___
 
@@ -106,7 +106,7 @@ ___
 
 • **status**: *string*
 
-*Defined in [schemes/directus/Permission.ts:15](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/Permission.ts#L15)*
+*Defined in [schemes/directus/Permission.ts:15](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/Permission.ts#L15)*
 
 ___
 
@@ -114,7 +114,7 @@ ___
 
 • **status_blacklist**: *string[]*
 
-*Defined in [schemes/directus/Permission.ts:24](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/Permission.ts#L24)*
+*Defined in [schemes/directus/Permission.ts:24](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/Permission.ts#L24)*
 
 ___
 
@@ -122,7 +122,7 @@ ___
 
 • **update**: *[UpdatePermission](../modules/_schemes_directus_permission_.md#updatepermission)*
 
-*Defined in [schemes/directus/Permission.ts:18](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/Permission.ts#L18)*
+*Defined in [schemes/directus/Permission.ts:18](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/Permission.ts#L18)*
 
 ___
 
@@ -130,4 +130,4 @@ ___
 
 • **write_field_blacklist**: *string[]*
 
-*Defined in [schemes/directus/Permission.ts:23](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/Permission.ts#L23)*
+*Defined in [schemes/directus/Permission.ts:23](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/Permission.ts#L23)*

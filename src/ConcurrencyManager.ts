@@ -10,6 +10,7 @@ export interface IConcurrencyQueueItem {
  * Handling and limiting concurrent requests for the API.
  * @param {AxiosInstance} axios   Reference to the caller instance
  * @param {number=10} limit       When to reate-limit outgoing requests
+ * @author Jan Biasi <biasijan@gmail.com>
  */
 export const concurrencyManager = (axios: AxiosInstance, limit: number = 10) => {
   if (limit < 1) {

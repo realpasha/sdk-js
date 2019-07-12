@@ -20,7 +20,7 @@
 
 • **data**: *object*
 
-*Defined in [schemes/auth/Authenticate.ts:2](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/auth/Authenticate.ts#L2)*
+*Defined in [schemes/auth/Authenticate.ts:2](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/auth/Authenticate.ts#L2)*
 
 #### Type declaration:
 

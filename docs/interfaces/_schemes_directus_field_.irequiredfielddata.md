@@ -25,7 +25,7 @@
 
 • **datatype**: *string*
 
-*Defined in [schemes/directus/Field.ts:6](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/Field.ts#L6)*
+*Defined in [schemes/directus/Field.ts:6](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/Field.ts#L6)*
 
 ___
 
@@ -33,7 +33,7 @@ ___
 
 • **field**: *string*
 
-*Defined in [schemes/directus/Field.ts:4](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/Field.ts#L4)*
+*Defined in [schemes/directus/Field.ts:4](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/Field.ts#L4)*
 
 ___
 
@@ -41,7 +41,7 @@ ___
 
 • **interface**: *string*
 
-*Defined in [schemes/directus/Field.ts:7](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/Field.ts#L7)*
+*Defined in [schemes/directus/Field.ts:7](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/Field.ts#L7)*
 
 ___
 
@@ -49,4 +49,4 @@ ___
 
 • **type**: *string*
 
-*Defined in [schemes/directus/Field.ts:5](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/Field.ts#L5)*
+*Defined in [schemes/directus/Field.ts:5](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/Field.ts#L5)*

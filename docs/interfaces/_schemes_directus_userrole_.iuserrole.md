@@ -24,7 +24,7 @@
 
 • **id**: *number*
 
-*Defined in [schemes/directus/UserRole.ts:5](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/UserRole.ts#L5)*
+*Defined in [schemes/directus/UserRole.ts:5](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/UserRole.ts#L5)*
 
 ___
 
@@ -32,7 +32,7 @@ ___
 
 • **role**: *number*
 
-*Defined in [schemes/directus/UserRole.ts:7](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/UserRole.ts#L7)*
+*Defined in [schemes/directus/UserRole.ts:7](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/UserRole.ts#L7)*
 
 ___
 
@@ -40,4 +40,4 @@ ___
 
 • **user**: *number*
 
-*Defined in [schemes/directus/UserRole.ts:6](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/UserRole.ts#L6)*
+*Defined in [schemes/directus/UserRole.ts:6](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/UserRole.ts#L6)*

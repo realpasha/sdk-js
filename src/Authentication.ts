@@ -35,6 +35,7 @@ export interface IAuthentication {
 /**
  * Handles all authentication related logic, decoupled from the core
  * @internal
+ * @author Jan Biasi <biasijan@gmail.com>
  */
 export class Authentication implements IAuthentication {
   /**

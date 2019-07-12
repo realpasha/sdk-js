@@ -71,6 +71,7 @@ export interface IConfigurationOptions {
 
 /**
  * Configuration holder for directus implementations
+ * @author Jan Biasi <biasijan@gmail.com>
  */
 export class Configuration implements IConfiguration {
   /**

@@ -41,6 +41,7 @@ export interface IAPI {
  * API definition for HTTP transactions
  * @uses Authentication
  * @uses axios
+ * @author Jan Biasi <biasijan@gmail.com>
  */
 export class API implements IAPI {
   public auth: IAuthentication;

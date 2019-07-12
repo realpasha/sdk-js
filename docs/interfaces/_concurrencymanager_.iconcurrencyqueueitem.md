@@ -21,7 +21,7 @@
 
 • **request**: *`AxiosRequestConfig`*
 
-*Defined in [ConcurrencyManager.ts:5](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/ConcurrencyManager.ts#L5)*
+*Defined in [ConcurrencyManager.ts:5](https://github.com/janbiasi/sdk-js/blob/75383ea/src/ConcurrencyManager.ts#L5)*
 
 ___
 
@@ -29,7 +29,7 @@ ___
 
 • **resolver**: *function*
 
-*Defined in [ConcurrencyManager.ts:6](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/ConcurrencyManager.ts#L6)*
+*Defined in [ConcurrencyManager.ts:6](https://github.com/janbiasi/sdk-js/blob/75383ea/src/ConcurrencyManager.ts#L6)*
 
 #### Type declaration:
 

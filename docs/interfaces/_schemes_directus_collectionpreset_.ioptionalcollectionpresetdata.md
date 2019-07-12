@@ -27,7 +27,7 @@
 
 • **collection**: *string*
 
-*Defined in [schemes/directus/CollectionPreset.ts:9](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/CollectionPreset.ts#L9)*
+*Defined in [schemes/directus/CollectionPreset.ts:9](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/CollectionPreset.ts#L9)*
 
 ___
 
@@ -35,7 +35,7 @@ ___
 
 • **filters**: *object*
 
-*Defined in [schemes/directus/CollectionPreset.ts:11](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/CollectionPreset.ts#L11)*
+*Defined in [schemes/directus/CollectionPreset.ts:11](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/CollectionPreset.ts#L11)*
 
 ___
 
@@ -43,7 +43,7 @@ ___
 
 • **role**: *number*
 
-*Defined in [schemes/directus/CollectionPreset.ts:8](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/CollectionPreset.ts#L8)*
+*Defined in [schemes/directus/CollectionPreset.ts:8](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/CollectionPreset.ts#L8)*
 
 ___
 
@@ -51,7 +51,7 @@ ___
 
 • **search_query**: *string*
 
-*Defined in [schemes/directus/CollectionPreset.ts:10](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/CollectionPreset.ts#L10)*
+*Defined in [schemes/directus/CollectionPreset.ts:10](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/CollectionPreset.ts#L10)*
 
 ___
 
@@ -59,7 +59,7 @@ ___
 
 • **translation**: *[ITranslation](_schemes_directus_translation_.itranslation.md)*
 
-*Defined in [schemes/directus/CollectionPreset.ts:15](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/CollectionPreset.ts#L15)*
+*Defined in [schemes/directus/CollectionPreset.ts:15](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/CollectionPreset.ts#L15)*
 
 ___
 
@@ -67,7 +67,7 @@ ___
 
 • **view_options**: *object*
 
-*Defined in [schemes/directus/CollectionPreset.ts:14](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/CollectionPreset.ts#L14)*
+*Defined in [schemes/directus/CollectionPreset.ts:14](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/CollectionPreset.ts#L14)*
 
 ___
 
@@ -75,7 +75,7 @@ ___
 
 • **view_query**: *object*
 
-*Defined in [schemes/directus/CollectionPreset.ts:13](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/CollectionPreset.ts#L13)*
+*Defined in [schemes/directus/CollectionPreset.ts:13](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/CollectionPreset.ts#L13)*
 
 ___
 
@@ -83,4 +83,4 @@ ___
 
 • **view_type**: *string*
 
-*Defined in [schemes/directus/CollectionPreset.ts:12](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/CollectionPreset.ts#L12)*
+*Defined in [schemes/directus/CollectionPreset.ts:12](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/CollectionPreset.ts#L12)*

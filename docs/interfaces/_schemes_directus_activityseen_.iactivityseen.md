@@ -26,7 +26,7 @@
 
 • **activity**: *number*
 
-*Defined in [schemes/directus/ActivitySeen.ts:6](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/ActivitySeen.ts#L6)*
+*Defined in [schemes/directus/ActivitySeen.ts:6](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/ActivitySeen.ts#L6)*
 
 ___
 
@@ -34,7 +34,7 @@ ___
 
 • **archived**: *boolean*
 
-*Defined in [schemes/directus/ActivitySeen.ts:9](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/ActivitySeen.ts#L9)*
+*Defined in [schemes/directus/ActivitySeen.ts:9](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/ActivitySeen.ts#L9)*
 
 ___
 
@@ -42,7 +42,7 @@ ___
 
 • **id**: *number*
 
-*Defined in [schemes/directus/ActivitySeen.ts:5](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/ActivitySeen.ts#L5)*
+*Defined in [schemes/directus/ActivitySeen.ts:5](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/ActivitySeen.ts#L5)*
 
 ___
 
@@ -50,7 +50,7 @@ ___
 
 • **seen_on**: *`Date`*
 
-*Defined in [schemes/directus/ActivitySeen.ts:8](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/ActivitySeen.ts#L8)*
+*Defined in [schemes/directus/ActivitySeen.ts:8](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/ActivitySeen.ts#L8)*
 
 ___
 
@@ -58,4 +58,4 @@ ___
 
 • **user**: *number*
 
-*Defined in [schemes/directus/ActivitySeen.ts:7](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/ActivitySeen.ts#L7)*
+*Defined in [schemes/directus/ActivitySeen.ts:7](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/ActivitySeen.ts#L7)*

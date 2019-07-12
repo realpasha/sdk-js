@@ -39,7 +39,7 @@
 
 • **avatar**? : *number*
 
-*Defined in [schemes/directus/User.ts:9](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/User.ts#L9)*
+*Defined in [schemes/directus/User.ts:9](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/User.ts#L9)*
 
 ___
 
@@ -47,7 +47,7 @@ ___
 
 • **company**? : *string*
 
-*Defined in [schemes/directus/User.ts:10](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/User.ts#L10)*
+*Defined in [schemes/directus/User.ts:10](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/User.ts#L10)*
 
 ___
 
@@ -55,7 +55,7 @@ ___
 
 • **email**: *string*
 
-*Defined in [schemes/directus/User.ts:11](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/User.ts#L11)*
+*Defined in [schemes/directus/User.ts:11](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/User.ts#L11)*
 
 ___
 
@@ -63,7 +63,7 @@ ___
 
 • **email_notifications**: *boolean*
 
-*Defined in [schemes/directus/User.ts:12](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/User.ts#L12)*
+*Defined in [schemes/directus/User.ts:12](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/User.ts#L12)*
 
 ___
 
@@ -71,7 +71,7 @@ ___
 
 • **external_id**: *string*
 
-*Defined in [schemes/directus/User.ts:13](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/User.ts#L13)*
+*Defined in [schemes/directus/User.ts:13](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/User.ts#L13)*
 
 ___
 
@@ -79,7 +79,7 @@ ___
 
 • **first_name**: *string*
 
-*Defined in [schemes/directus/User.ts:14](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/User.ts#L14)*
+*Defined in [schemes/directus/User.ts:14](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/User.ts#L14)*
 
 ___
 
@@ -87,7 +87,7 @@ ___
 
 • **high_contrast_mode**? : *boolean*
 
-*Defined in [schemes/directus/User.ts:15](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/User.ts#L15)*
+*Defined in [schemes/directus/User.ts:15](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/User.ts#L15)*
 
 ___
 
@@ -95,7 +95,7 @@ ___
 
 • **id**: *number*
 
-*Defined in [schemes/directus/User.ts:16](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/User.ts#L16)*
+*Defined in [schemes/directus/User.ts:16](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/User.ts#L16)*
 
 ___
 
@@ -103,7 +103,7 @@ ___
 
 • **last_access_on**: *string*
 
-*Defined in [schemes/directus/User.ts:17](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/User.ts#L17)*
+*Defined in [schemes/directus/User.ts:17](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/User.ts#L17)*
 
 ___
 
@@ -111,7 +111,7 @@ ___
 
 • **last_name**: *string*
 
-*Defined in [schemes/directus/User.ts:18](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/User.ts#L18)*
+*Defined in [schemes/directus/User.ts:18](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/User.ts#L18)*
 
 ___
 
@@ -119,7 +119,7 @@ ___
 
 • **last_page**? : *string*
 
-*Defined in [schemes/directus/User.ts:19](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/User.ts#L19)*
+*Defined in [schemes/directus/User.ts:19](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/User.ts#L19)*
 
 ___
 
@@ -127,7 +127,7 @@ ___
 
 • **locale**? : *string*
 
-*Defined in [schemes/directus/User.ts:20](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/User.ts#L20)*
+*Defined in [schemes/directus/User.ts:20](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/User.ts#L20)*
 
 ___
 
@@ -135,7 +135,7 @@ ___
 
 • **locale_options**? : *string*
 
-*Defined in [schemes/directus/User.ts:21](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/User.ts#L21)*
+*Defined in [schemes/directus/User.ts:21](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/User.ts#L21)*
 
 ___
 
@@ -143,7 +143,7 @@ ___
 
 • **roles**: *[IRole](_schemes_directus_role_.irole.md)[]*
 
-*Defined in [schemes/directus/User.ts:22](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/User.ts#L22)*
+*Defined in [schemes/directus/User.ts:22](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/User.ts#L22)*
 
 ___
 
@@ -151,7 +151,7 @@ ___
 
 • **status**: *[UserStatus](../modules/_schemes_directus_user_.md#userstatus)*
 
-*Defined in [schemes/directus/User.ts:23](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/User.ts#L23)*
+*Defined in [schemes/directus/User.ts:23](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/User.ts#L23)*
 
 ___
 
@@ -159,7 +159,7 @@ ___
 
 • **timezone**? : *string*
 
-*Defined in [schemes/directus/User.ts:24](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/User.ts#L24)*
+*Defined in [schemes/directus/User.ts:24](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/User.ts#L24)*
 
 ___
 
@@ -167,7 +167,7 @@ ___
 
 • **title**? : *string*
 
-*Defined in [schemes/directus/User.ts:25](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/User.ts#L25)*
+*Defined in [schemes/directus/User.ts:25](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/User.ts#L25)*
 
 ___
 
@@ -175,4 +175,4 @@ ___
 
 • **token**: *string*
 
-*Defined in [schemes/directus/User.ts:26](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/User.ts#L26)*
+*Defined in [schemes/directus/User.ts:26](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/User.ts#L26)*

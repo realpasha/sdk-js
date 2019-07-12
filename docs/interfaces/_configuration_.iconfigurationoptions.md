@@ -25,7 +25,7 @@
 
 • **localExp**? : *number*
 
-*Defined in [Configuration.ts:61](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/Configuration.ts#L61)*
+*Defined in [Configuration.ts:61](https://github.com/janbiasi/sdk-js/blob/75383ea/src/Configuration.ts#L61)*
 
 Default login expiration as number in ms
 
@@ -35,7 +35,7 @@ ___
 
 • **persist**? : *boolean*
 
-*Defined in [Configuration.ts:65](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/Configuration.ts#L65)*
+*Defined in [Configuration.ts:65](https://github.com/janbiasi/sdk-js/blob/75383ea/src/Configuration.ts#L65)*
 
 If the token should be persitated or rehydrated
 
@@ -45,7 +45,7 @@ ___
 
 • **project**? : *string*
 
-*Defined in [Configuration.ts:57](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/Configuration.ts#L57)*
+*Defined in [Configuration.ts:57](https://github.com/janbiasi/sdk-js/blob/75383ea/src/Configuration.ts#L57)*
 
 Project namespace
 
@@ -55,7 +55,7 @@ ___
 
 • **token**? : *string*
 
-*Defined in [Configuration.ts:53](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/Configuration.ts#L53)*
+*Defined in [Configuration.ts:53](https://github.com/janbiasi/sdk-js/blob/75383ea/src/Configuration.ts#L53)*
 
 The token to authenticate if preferred
 
@@ -65,7 +65,7 @@ ___
 
 • **tokenExpirationTime**? : *number*
 
-*Defined in [Configuration.ts:69](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/Configuration.ts#L69)*
+*Defined in [Configuration.ts:69](https://github.com/janbiasi/sdk-js/blob/75383ea/src/Configuration.ts#L69)*
 
 Auto token expiration time
 
@@ -75,6 +75,6 @@ ___
 
 • **url**: *string*
 
-*Defined in [Configuration.ts:49](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/Configuration.ts#L49)*
+*Defined in [Configuration.ts:49](https://github.com/janbiasi/sdk-js/blob/75383ea/src/Configuration.ts#L49)*
 
 The URL of the direcuts CMS

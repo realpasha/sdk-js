@@ -20,7 +20,7 @@
 
 ▸ **concurrencyManager**(`axios`: `AxiosInstance`, `limit`: number): *object*
 
-*Defined in [ConcurrencyManager.ts:14](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/ConcurrencyManager.ts#L14)*
+*Defined in [ConcurrencyManager.ts:15](https://github.com/janbiasi/sdk-js/blob/75383ea/src/ConcurrencyManager.ts#L15)*
 
 Handling and limiting concurrent requests for the API.
 
@@ -29,7 +29,7 @@ Handling and limiting concurrent requests for the API.
 Name | Type | Default | Description |
 ------ | ------ | ------ | ------ |
 `axios` | `AxiosInstance` | - | Reference to the caller instance |
-`limit` | number | 10 | When to reate-limit outgoing requests  |
+`limit` | number | 10 | When to reate-limit outgoing requests |
 
 **Returns:** *object*
 

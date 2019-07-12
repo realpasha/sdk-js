@@ -32,7 +32,7 @@
 
 • **action**: *string*
 
-*Defined in [schemes/directus/Activity.ts:5](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/Activity.ts#L5)*
+*Defined in [schemes/directus/Activity.ts:5](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/Activity.ts#L5)*
 
 ___
 
@@ -40,7 +40,7 @@ ___
 
 • **action_by**: *number*
 
-*Defined in [schemes/directus/Activity.ts:6](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/Activity.ts#L6)*
+*Defined in [schemes/directus/Activity.ts:6](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/Activity.ts#L6)*
 
 ___
 
@@ -48,7 +48,7 @@ ___
 
 • **action_on**: *`Date`*
 
-*Defined in [schemes/directus/Activity.ts:7](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/Activity.ts#L7)*
+*Defined in [schemes/directus/Activity.ts:7](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/Activity.ts#L7)*
 
 ___
 
@@ -56,7 +56,7 @@ ___
 
 • **collection**: *string*
 
-*Defined in [schemes/directus/Activity.ts:8](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/Activity.ts#L8)*
+*Defined in [schemes/directus/Activity.ts:8](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/Activity.ts#L8)*
 
 ___
 
@@ -64,7 +64,7 @@ ___
 
 • **comment**? : *string*
 
-*Defined in [schemes/directus/Activity.ts:9](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/Activity.ts#L9)*
+*Defined in [schemes/directus/Activity.ts:9](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/Activity.ts#L9)*
 
 ___
 
@@ -72,7 +72,7 @@ ___
 
 • **comment_deleted_on**? : *`Date`*
 
-*Defined in [schemes/directus/Activity.ts:10](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/Activity.ts#L10)*
+*Defined in [schemes/directus/Activity.ts:10](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/Activity.ts#L10)*
 
 ___
 
@@ -80,7 +80,7 @@ ___
 
 • **edited_on**? : *string*
 
-*Defined in [schemes/directus/Activity.ts:11](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/Activity.ts#L11)*
+*Defined in [schemes/directus/Activity.ts:11](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/Activity.ts#L11)*
 
 ___
 
@@ -88,7 +88,7 @@ ___
 
 • **id**: *number*
 
-*Defined in [schemes/directus/Activity.ts:12](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/Activity.ts#L12)*
+*Defined in [schemes/directus/Activity.ts:12](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/Activity.ts#L12)*
 
 ___
 
@@ -96,7 +96,7 @@ ___
 
 • **ip**: *string*
 
-*Defined in [schemes/directus/Activity.ts:13](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/Activity.ts#L13)*
+*Defined in [schemes/directus/Activity.ts:13](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/Activity.ts#L13)*
 
 ___
 
@@ -104,7 +104,7 @@ ___
 
 • **item**: *string*
 
-*Defined in [schemes/directus/Activity.ts:14](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/Activity.ts#L14)*
+*Defined in [schemes/directus/Activity.ts:14](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/Activity.ts#L14)*
 
 ___
 
@@ -112,4 +112,4 @@ ___
 
 • **user_agent**: *string*
 
-*Defined in [schemes/directus/Activity.ts:15](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/Activity.ts#L15)*
+*Defined in [schemes/directus/Activity.ts:15](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/Activity.ts#L15)*

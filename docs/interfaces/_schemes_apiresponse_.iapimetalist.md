@@ -21,7 +21,7 @@
 
 • **result_count**: *number*
 
-*Defined in [schemes/APIResponse.ts:17](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/APIResponse.ts#L17)*
+*Defined in [schemes/APIResponse.ts:17](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/APIResponse.ts#L17)*
 
 ___
 
@@ -29,4 +29,4 @@ ___
 
 • **total_count**: *number*
 
-*Defined in [schemes/APIResponse.ts:18](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/APIResponse.ts#L18)*
+*Defined in [schemes/APIResponse.ts:18](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/APIResponse.ts#L18)*

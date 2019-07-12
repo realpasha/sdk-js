@@ -25,7 +25,7 @@
 
 • **hidden**: *boolean*
 
-*Defined in [schemes/directus/Collection.ts:9](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/Collection.ts#L9)*
+*Defined in [schemes/directus/Collection.ts:9](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/Collection.ts#L9)*
 
 ___
 
@@ -33,7 +33,7 @@ ___
 
 • **icon**: *string*
 
-*Defined in [schemes/directus/Collection.ts:11](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/Collection.ts#L11)*
+*Defined in [schemes/directus/Collection.ts:11](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/Collection.ts#L11)*
 
 ___
 
@@ -41,7 +41,7 @@ ___
 
 • **managed**: *boolean*
 
-*Defined in [schemes/directus/Collection.ts:8](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/Collection.ts#L8)*
+*Defined in [schemes/directus/Collection.ts:8](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/Collection.ts#L8)*
 
 ___
 
@@ -49,7 +49,7 @@ ___
 
 • **note**: *string*
 
-*Defined in [schemes/directus/Collection.ts:12](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/Collection.ts#L12)*
+*Defined in [schemes/directus/Collection.ts:12](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/Collection.ts#L12)*
 
 ___
 
@@ -57,7 +57,7 @@ ___
 
 • **single**: *boolean*
 
-*Defined in [schemes/directus/Collection.ts:10](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/Collection.ts#L10)*
+*Defined in [schemes/directus/Collection.ts:10](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/Collection.ts#L10)*
 
 ___
 
@@ -65,4 +65,4 @@ ___
 
 • **translation**: *[ITranslation](_schemes_directus_translation_.itranslation.md)*
 
-*Defined in [schemes/directus/Collection.ts:13](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/Collection.ts#L13)*
+*Defined in [schemes/directus/Collection.ts:13](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/Collection.ts#L13)*

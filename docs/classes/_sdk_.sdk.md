@@ -106,7 +106,7 @@ remote directus instance.
 
 \+ **new SDK**(`options`: [IConfigurationOptions](../interfaces/_configuration_.iconfigurationoptions.md)): *[SDK](_sdk_.sdk.md)*
 
-*Defined in [SDK.ts:75](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/SDK.ts#L75)*
+*Defined in [SDK.ts:75](https://github.com/janbiasi/sdk-js/blob/75383ea/src/SDK.ts#L75)*
 
 **Parameters:**
 
@@ -122,7 +122,7 @@ Name | Type |
 
 • **api**: *[IAPI](../interfaces/_api_.iapi.md)*
 
-*Defined in [SDK.ts:75](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/SDK.ts#L75)*
+*Defined in [SDK.ts:75](https://github.com/janbiasi/sdk-js/blob/75383ea/src/SDK.ts#L75)*
 
 ___
 
@@ -130,7 +130,7 @@ ___
 
 • **config**: *[IConfiguration](../interfaces/_configuration_.iconfiguration.md)*
 
-*Defined in [SDK.ts:74](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/SDK.ts#L74)*
+*Defined in [SDK.ts:74](https://github.com/janbiasi/sdk-js/blob/75383ea/src/SDK.ts#L74)*
 
 ___
 
@@ -138,7 +138,7 @@ ___
 
 ▪ **getPayload**: *[getPayload](../modules/_utils_payload_.md#getpayload)* =  getPayload
 
-*Defined in [SDK.ts:71](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/SDK.ts#L71)*
+*Defined in [SDK.ts:71](https://github.com/janbiasi/sdk-js/blob/75383ea/src/SDK.ts#L71)*
 
 ## Accessors
 
@@ -146,7 +146,7 @@ ___
 
 • **get loggedIn**(): *boolean*
 
-*Defined in [SDK.ts:58](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/SDK.ts#L58)*
+*Defined in [SDK.ts:58](https://github.com/janbiasi/sdk-js/blob/75383ea/src/SDK.ts#L58)*
 
 **Returns:** *boolean*
 
@@ -156,7 +156,7 @@ ___
 
 • **get payload**(): *any*
 
-*Defined in [SDK.ts:62](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/SDK.ts#L62)*
+*Defined in [SDK.ts:62](https://github.com/janbiasi/sdk-js/blob/75383ea/src/SDK.ts#L62)*
 
 **Returns:** *any*
 
@@ -166,7 +166,7 @@ ___
 
 ▸ **createCollection**(`data`: [ICollection](../interfaces/_schemes_directus_collection_.icollection.md)): *`Promise<ICollectionResponse>`*
 
-*Defined in [SDK.ts:190](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/SDK.ts#L190)*
+*Defined in [SDK.ts:190](https://github.com/janbiasi/sdk-js/blob/75383ea/src/SDK.ts#L190)*
 
 Create a collection
 
@@ -184,7 +184,7 @@ ___
 
 ▸ **createCollectionPreset**<**CollectionPreset**>(`data`: `CollectionPreset`): *`Promise<ICollectionPresetResponse<CollectionPreset>>`*
 
-*Defined in [SDK.ts:249](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/SDK.ts#L249)*
+*Defined in [SDK.ts:249](https://github.com/janbiasi/sdk-js/blob/75383ea/src/SDK.ts#L249)*
 
 Create a new collection preset (bookmark / listing preferences)
 
@@ -208,7 +208,7 @@ ___
 
 ▸ **createField**<**TFieldType**>(`collection`: string, `fieldInfo`: `TFieldType`): *`Promise<IFieldResponse<TFieldType>>`*
 
-*Defined in [SDK.ts:366](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/SDK.ts#L366)*
+*Defined in [SDK.ts:366](https://github.com/janbiasi/sdk-js/blob/75383ea/src/SDK.ts#L366)*
 
 Create a field in the given collection
 
@@ -233,7 +233,7 @@ ___
 
 ▸ **createItem**<**TItemType**>(`collection`: string, `body`: `TItemType`): *`Promise<IItemResponse<TItemType>>`*
 
-*Defined in [SDK.ts:577](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/SDK.ts#L577)*
+*Defined in [SDK.ts:577](https://github.com/janbiasi/sdk-js/blob/75383ea/src/SDK.ts#L577)*
 
 Create a new item
 
@@ -258,7 +258,7 @@ ___
 
 ▸ **createItems**<**TItemsType**>(`collection`: string, `body`: [BodyType](../modules/_schemes_http_body_.md#bodytype)): *`Promise<IItemsResponse<TItemsType>>`*
 
-*Defined in [SDK.ts:591](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/SDK.ts#L591)*
+*Defined in [SDK.ts:591](https://github.com/janbiasi/sdk-js/blob/75383ea/src/SDK.ts#L591)*
 
 Create multiple items
 
@@ -285,7 +285,7 @@ ___
 
 ▸ **createPermissions**<**TResponse**>(`data`: any[]): *`Promise<TResponse>`*
 
-*Defined in [SDK.ts:756](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/SDK.ts#L756)*
+*Defined in [SDK.ts:756](https://github.com/janbiasi/sdk-js/blob/75383ea/src/SDK.ts#L756)*
 
 TODO: Fix type-def for param and return
 Create multiple new permissions
@@ -310,7 +310,7 @@ ___
 
 ▸ **createRelation**(`data`: [IRelation](../interfaces/_schemes_directus_relation_.irelation.md)): *`Promise<IRelationResponse>`*
 
-*Defined in [SDK.ts:792](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/SDK.ts#L792)*
+*Defined in [SDK.ts:792](https://github.com/janbiasi/sdk-js/blob/75383ea/src/SDK.ts#L792)*
 
 Creates new relation
 
@@ -328,7 +328,7 @@ ___
 
 ▸ **createRole**<**TRole**>(`body`: `TRole`): *`Promise<IItemResponse<TRole>>`*
 
-*Defined in [SDK.ts:904](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/SDK.ts#L904)*
+*Defined in [SDK.ts:904](https://github.com/janbiasi/sdk-js/blob/75383ea/src/SDK.ts#L904)*
 
 Create a new user role
 
@@ -350,7 +350,7 @@ ___
 
 ▸ **deleteCollection**(`collection`: string): *`Promise<void>`*
 
-*Defined in [SDK.ts:208](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/SDK.ts#L208)*
+*Defined in [SDK.ts:208](https://github.com/janbiasi/sdk-js/blob/75383ea/src/SDK.ts#L208)*
 
 Deletes a certain collection
 
@@ -368,7 +368,7 @@ ___
 
 ▸ **deleteCollectionPreset**(`primaryKey`: [PrimaryKeyType](../modules/_sdk_.md#primarykeytype)): *`Promise<void>`*
 
-*Defined in [SDK.ts:282](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/SDK.ts#L282)*
+*Defined in [SDK.ts:282](https://github.com/janbiasi/sdk-js/blob/75383ea/src/SDK.ts#L282)*
 
 Delete collection preset by primarykey
 
@@ -388,7 +388,7 @@ ___
 
 ▸ **deleteField**(`collection`: string, `fieldName`: string): *`Promise<void>`*
 
-*Defined in [SDK.ts:450](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/SDK.ts#L450)*
+*Defined in [SDK.ts:450](https://github.com/janbiasi/sdk-js/blob/75383ea/src/SDK.ts#L450)*
 
 Delete a field from a collection
 
@@ -409,7 +409,7 @@ ___
 
 ▸ **deleteItem**(`collection`: string, `primaryKey`: [PrimaryKeyType](../modules/_sdk_.md#primarykeytype)): *`Promise<void>`*
 
-*Defined in [SDK.ts:643](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/SDK.ts#L643)*
+*Defined in [SDK.ts:643](https://github.com/janbiasi/sdk-js/blob/75383ea/src/SDK.ts#L643)*
 
 Delete a single item by primary key
 
@@ -430,7 +430,7 @@ ___
 
 ▸ **deleteItems**(`collection`: string, `primaryKeys`: [PrimaryKeyType](../modules/_sdk_.md#primarykeytype)[]): *`Promise<void>`*
 
-*Defined in [SDK.ts:656](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/SDK.ts#L656)*
+*Defined in [SDK.ts:656](https://github.com/janbiasi/sdk-js/blob/75383ea/src/SDK.ts#L656)*
 
 Delete multiple items by primary key
 
@@ -451,7 +451,7 @@ ___
 
 ▸ **deleteRole**(`primaryKey`: [PrimaryKeyType](../modules/_sdk_.md#primarykeytype)): *`Promise<void>`*
 
-*Defined in [SDK.ts:914](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/SDK.ts#L914)*
+*Defined in [SDK.ts:914](https://github.com/janbiasi/sdk-js/blob/75383ea/src/SDK.ts#L914)*
 
 Delete a user rol by primary key
 
@@ -469,7 +469,7 @@ ___
 
 ▸ **getActivity**(`params`: `QueryParamsType`): *`Promise<IActivityResponse>`*
 
-*Defined in [SDK.ts:145](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/SDK.ts#L145)*
+*Defined in [SDK.ts:145](https://github.com/janbiasi/sdk-js/blob/75383ea/src/SDK.ts#L145)*
 
 Get activity
 
@@ -487,7 +487,7 @@ ___
 
 ▸ **getAllFields**<**TFieldsType**>(`params`: `QueryParamsType`): *`Promise<IFieldsResponse<TFieldsType>>`*
 
-*Defined in [SDK.ts:324](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/SDK.ts#L324)*
+*Defined in [SDK.ts:324](https://github.com/janbiasi/sdk-js/blob/75383ea/src/SDK.ts#L324)*
 
 Get all fields that are in Directus
 
@@ -511,7 +511,7 @@ ___
 
 ▸ **getCollection**(`collection`: string, `params`: `QueryParamsType`): *`Promise<ICollectionResponse>`*
 
-*Defined in [SDK.ts:180](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/SDK.ts#L180)*
+*Defined in [SDK.ts:180](https://github.com/janbiasi/sdk-js/blob/75383ea/src/SDK.ts#L180)*
 
 Get collection info by name
 
@@ -530,7 +530,7 @@ ___
 
 ▸ **getCollectionPresets**<**TResponse**>(`params`: `QueryParamsType`): *`Promise<TResponse>`*
 
-*Defined in [SDK.ts:222](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/SDK.ts#L222)*
+*Defined in [SDK.ts:222](https://github.com/janbiasi/sdk-js/blob/75383ea/src/SDK.ts#L222)*
 
 Get the collection presets of the current user
 
@@ -554,7 +554,7 @@ ___
 
 ▸ **getCollectionRelations**(`collection`: string, `params`: `QueryParamsType`): *`Promise<any[]>`*
 
-*Defined in [SDK.ts:807](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/SDK.ts#L807)*
+*Defined in [SDK.ts:807](https://github.com/janbiasi/sdk-js/blob/75383ea/src/SDK.ts#L807)*
 
 TODO: Add type-def for return value(s)
 Get the relationship information for the given collection
@@ -574,7 +574,7 @@ ___
 
 ▸ **getCollections**(`params`: `QueryParamsType`): *`Promise<ICollectionsResponse[]>`*
 
-*Defined in [SDK.ts:171](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/SDK.ts#L171)*
+*Defined in [SDK.ts:171](https://github.com/janbiasi/sdk-js/blob/75383ea/src/SDK.ts#L171)*
 
 Get all available collections
 
@@ -592,7 +592,7 @@ ___
 
 ▸ **getField**<**TFieldType**>(`collection`: string, `fieldName`: string, `params`: `QueryParamsType`): *`Promise<IFieldResponse<TFieldType>>`*
 
-*Defined in [SDK.ts:350](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/SDK.ts#L350)*
+*Defined in [SDK.ts:350](https://github.com/janbiasi/sdk-js/blob/75383ea/src/SDK.ts#L350)*
 
 Get the field information for a single given field
 
@@ -618,7 +618,7 @@ ___
 
 ▸ **getFields**<**TFieldsType**>(`collection`: string, `params`: `QueryParamsType`): *`Promise<IFieldsResponse<TFieldsType>>`*
 
-*Defined in [SDK.ts:336](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/SDK.ts#L336)*
+*Defined in [SDK.ts:336](https://github.com/janbiasi/sdk-js/blob/75383ea/src/SDK.ts#L336)*
 
 Get the fields that have been setup for a given collection
 
@@ -643,7 +643,7 @@ ___
 
 ▸ **getFile**<**TFile**>(`fileName`: `TFile`, `params`: `QueryParamsType`): *`Promise<TFile extends string ? IFileResponse<IFile> : IFilesResponse<IFile[]>>`*
 
-*Defined in [SDK.ts:474](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/SDK.ts#L474)*
+*Defined in [SDK.ts:474](https://github.com/janbiasi/sdk-js/blob/75383ea/src/SDK.ts#L474)*
 
 Get a certain file or certain file list from Directus
 
@@ -668,7 +668,7 @@ ___
 
 ▸ **getFiles**(`params`: `QueryParamsType`): *`Promise<IFilesResponse>`*
 
-*Defined in [SDK.ts:465](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/SDK.ts#L465)*
+*Defined in [SDK.ts:465](https://github.com/janbiasi/sdk-js/blob/75383ea/src/SDK.ts#L465)*
 
 Get a list of available files from Directus
 
@@ -688,7 +688,7 @@ ___
 
 ▸ **getInterfaces**<**TResponse**>(): *`Promise<TResponse>`*
 
-*Defined in [SDK.ts:296](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/SDK.ts#L296)*
+*Defined in [SDK.ts:296](https://github.com/janbiasi/sdk-js/blob/75383ea/src/SDK.ts#L296)*
 
 Get the information of all installed interfaces
 
@@ -706,7 +706,7 @@ ___
 
 ▸ **getItem**<**TItemType**>(`collection`: string, `primaryKey`: [PrimaryKeyType](../modules/_sdk_.md#primarykeytype), `params`: `QueryParamsType`): *`Promise<IItemResponse<TItemType>>`*
 
-*Defined in [SDK.ts:625](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/SDK.ts#L625)*
+*Defined in [SDK.ts:625](https://github.com/janbiasi/sdk-js/blob/75383ea/src/SDK.ts#L625)*
 
 Get a single item by primary key
 
@@ -734,7 +734,7 @@ ___
 
 ▸ **getItemRevisions**<**TDataAndDelta**>(`collection`: string, `primaryKey`: [PrimaryKeyType](../modules/_sdk_.md#primarykeytype), `params`: `QueryParamsType`): *`Promise<IRevisionResponse<TDataAndDelta>>`*
 
-*Defined in [SDK.ts:832](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/SDK.ts#L832)*
+*Defined in [SDK.ts:832](https://github.com/janbiasi/sdk-js/blob/75383ea/src/SDK.ts#L832)*
 
 Get a single item's revisions by primary key
 
@@ -760,7 +760,7 @@ ___
 
 ▸ **getItems**<**TTItemsType**>(`collection`: string, `params`: `QueryParamsType`): *`Promise<IItemsResponse<TTItemsType>>`*
 
-*Defined in [SDK.ts:608](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/SDK.ts#L608)*
+*Defined in [SDK.ts:608](https://github.com/janbiasi/sdk-js/blob/75383ea/src/SDK.ts#L608)*
 
 Get items from a given collection
 
@@ -787,7 +787,7 @@ ___
 
 ▸ **getLayouts**<**TResponse**>(): *`Promise<TResponse>`*
 
-*Defined in [SDK.ts:304](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/SDK.ts#L304)*
+*Defined in [SDK.ts:304](https://github.com/janbiasi/sdk-js/blob/75383ea/src/SDK.ts#L304)*
 
 Get the information of all installed layouts
 
@@ -805,7 +805,7 @@ ___
 
 ▸ **getMe**<**User**>(`params`: `QueryParamsType`): *`Promise<IUserResponse<User>>`*
 
-*Defined in [SDK.ts:974](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/SDK.ts#L974)*
+*Defined in [SDK.ts:974](https://github.com/janbiasi/sdk-js/blob/75383ea/src/SDK.ts#L974)*
 
 Get the user info of the currently logged in user
 
@@ -827,7 +827,7 @@ ___
 
 ▸ **getMyBookmarks**<**TResponse**>(`params`: `QueryParamsType`): *`Promise<TResponse>`*
 
-*Defined in [SDK.ts:160](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/SDK.ts#L160)*
+*Defined in [SDK.ts:160](https://github.com/janbiasi/sdk-js/blob/75383ea/src/SDK.ts#L160)*
 
 Get the bookmarks of the current user
 
@@ -853,7 +853,7 @@ ___
 
 ▸ **getMyListingPreferences**<**TResponse**>(`collection`: string, `params`: `QueryParamsType`): *`Promise<TResponse>`*
 
-*Defined in [SDK.ts:672](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/SDK.ts#L672)*
+*Defined in [SDK.ts:672](https://github.com/janbiasi/sdk-js/blob/75383ea/src/SDK.ts#L672)*
 
 Get the collection presets of the current user for a single collection
 
@@ -876,7 +876,7 @@ ___
 
 ▸ **getMyPermissions**<**TResponse**>(`params`: `QueryParamsType`): *`Promise<TResponse>`*
 
-*Defined in [SDK.ts:745](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/SDK.ts#L745)*
+*Defined in [SDK.ts:745](https://github.com/janbiasi/sdk-js/blob/75383ea/src/SDK.ts#L745)*
 
 TODO: Fix type-def for return
 Get the currently logged in user's permissions
@@ -901,7 +901,7 @@ ___
 
 ▸ **getPages**<**TResponse**>(): *`Promise<TResponse>`*
 
-*Defined in [SDK.ts:312](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/SDK.ts#L312)*
+*Defined in [SDK.ts:312](https://github.com/janbiasi/sdk-js/blob/75383ea/src/SDK.ts#L312)*
 
 Get the information of all installed pages
 
@@ -919,7 +919,7 @@ ___
 
 ▸ **getPermissions**(`params`: `QueryParamsType`): *`Promise<IItemsResponse<IPermission[]>>`*
 
-*Defined in [SDK.ts:734](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/SDK.ts#L734)*
+*Defined in [SDK.ts:734](https://github.com/janbiasi/sdk-js/blob/75383ea/src/SDK.ts#L734)*
 
 Get permissions
 
@@ -937,7 +937,7 @@ ___
 
 ▸ **getRelations**(`params`: `QueryParamsType`): *`Promise<IRelationsResponse>`*
 
-*Defined in [SDK.ts:782](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/SDK.ts#L782)*
+*Defined in [SDK.ts:782](https://github.com/janbiasi/sdk-js/blob/75383ea/src/SDK.ts#L782)*
 
 Get all relationships
 
@@ -955,7 +955,7 @@ ___
 
 ▸ **getRole**(`primaryKey`: [PrimaryKeyType](../modules/_sdk_.md#primarykeytype), `params`: `QueryParamsType`): *`Promise<IRoleResponse>`*
 
-*Defined in [SDK.ts:871](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/SDK.ts#L871)*
+*Defined in [SDK.ts:871](https://github.com/janbiasi/sdk-js/blob/75383ea/src/SDK.ts#L871)*
 
 Get a single user role
 
@@ -974,7 +974,7 @@ ___
 
 ▸ **getRoles**(`params`: `QueryParamsType`): *`Promise<IRoleResponse[]>`*
 
-*Defined in [SDK.ts:882](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/SDK.ts#L882)*
+*Defined in [SDK.ts:882](https://github.com/janbiasi/sdk-js/blob/75383ea/src/SDK.ts#L882)*
 
 Get the user roles
 
@@ -992,7 +992,7 @@ ___
 
 ▸ **getSettings**(`params`: `QueryParamsType`): *`Promise<ISettingsResponse>`*
 
-*Defined in [SDK.ts:928](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/SDK.ts#L928)*
+*Defined in [SDK.ts:928](https://github.com/janbiasi/sdk-js/blob/75383ea/src/SDK.ts#L928)*
 
 Get Directus' global settings
 
@@ -1010,7 +1010,7 @@ ___
 
 ▸ **getSettingsFields**(`params`: `QueryParamsType`): *`Promise<IFieldsResponse<IField[]>>`*
 
-*Defined in [SDK.ts:938](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/SDK.ts#L938)*
+*Defined in [SDK.ts:938](https://github.com/janbiasi/sdk-js/blob/75383ea/src/SDK.ts#L938)*
 
 Get the "fields" for directus_settings
 
@@ -1028,7 +1028,7 @@ ___
 
 ▸ **getThirdPartyAuthProviders**(): *`Promise<any>`*
 
-*Defined in [SDK.ts:1035](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/SDK.ts#L1035)*
+*Defined in [SDK.ts:1035](https://github.com/janbiasi/sdk-js/blob/75383ea/src/SDK.ts#L1035)*
 
 TODO: Add response type-def
 Get all the setup third party auth providers
@@ -1041,7 +1041,7 @@ ___
 
 ▸ **getUser**<**User**>(`primaryKey`: [PrimaryKeyType](../modules/_sdk_.md#primarykeytype), `params`: `QueryParamsType`): *`Promise<IUserResponse<User>>`*
 
-*Defined in [SDK.ts:963](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/SDK.ts#L963)*
+*Defined in [SDK.ts:963](https://github.com/janbiasi/sdk-js/blob/75383ea/src/SDK.ts#L963)*
 
 Get a single Directus user
 
@@ -1064,7 +1064,7 @@ ___
 
 ▸ **getUsers**(`params`: `QueryParamsType`): *`Promise<IUsersResponse<IUser[]>>`*
 
-*Defined in [SDK.ts:952](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/SDK.ts#L952)*
+*Defined in [SDK.ts:952](https://github.com/janbiasi/sdk-js/blob/75383ea/src/SDK.ts#L952)*
 
 Get a list of available users in Directus
 
@@ -1082,7 +1082,7 @@ ___
 
 ▸ **login**(`credentials`: [ILoginCredentials](../interfaces/_schemes_auth_login_.ilogincredentials.md), `options?`: [ILoginOptions](../interfaces/_schemes_auth_login_.iloginoptions.md)): *`Promise<ILoginResponse>`*
 
-*Defined in [SDK.ts:88](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/SDK.ts#L88)*
+*Defined in [SDK.ts:88](https://github.com/janbiasi/sdk-js/blob/75383ea/src/SDK.ts#L88)*
 
 Login to the API; Gets a new token from the API and stores it in this.api.token.
 
@@ -1101,7 +1101,7 @@ ___
 
 ▸ **logout**(): *void*
 
-*Defined in [SDK.ts:95](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/SDK.ts#L95)*
+*Defined in [SDK.ts:95](https://github.com/janbiasi/sdk-js/blob/75383ea/src/SDK.ts#L95)*
 
 Logs the user out by "forgetting" the token, and clearing the refresh interval
 
@@ -1113,7 +1113,7 @@ ___
 
 ▸ **ping**(): *`Promise<string>`*
 
-*Defined in [SDK.ts:1009](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/SDK.ts#L1009)*
+*Defined in [SDK.ts:1009](https://github.com/janbiasi/sdk-js/blob/75383ea/src/SDK.ts#L1009)*
 
 Ping the API to check if it exists / is up and running, returns "pong"
 
@@ -1125,7 +1125,7 @@ ___
 
 ▸ **projectInfo**(): *`Promise<any>`*
 
-*Defined in [SDK.ts:1026](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/SDK.ts#L1026)*
+*Defined in [SDK.ts:1026](https://github.com/janbiasi/sdk-js/blob/75383ea/src/SDK.ts#L1026)*
 
 TODO: Add response type-def
 Get the server info from the project
@@ -1138,7 +1138,7 @@ ___
 
 ▸ **refresh**(`token`: string): *`Promise<IRefreshTokenResponse>`*
 
-*Defined in [SDK.ts:119](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/SDK.ts#L119)*
+*Defined in [SDK.ts:119](https://github.com/janbiasi/sdk-js/blob/75383ea/src/SDK.ts#L119)*
 
 Use the passed token to request a new one
 
@@ -1156,7 +1156,7 @@ ___
 
 ▸ **refreshIfNeeded**(): *`Promise<[boolean, Error]>`*
 
-*Defined in [SDK.ts:112](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/SDK.ts#L112)*
+*Defined in [SDK.ts:112](https://github.com/janbiasi/sdk-js/blob/75383ea/src/SDK.ts#L112)*
 
 Refresh the token if it is about to expire (within 30 seconds of expiry date).
 - Calls onAutoRefreshSuccess with the new token if the refreshing is successful.
@@ -1170,7 +1170,7 @@ ___
 
 ▸ **requestPasswordReset**<**TResponse**>(`email`: string): *`Promise<TResponse>`*
 
-*Defined in [SDK.ts:128](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/SDK.ts#L128)*
+*Defined in [SDK.ts:128](https://github.com/janbiasi/sdk-js/blob/75383ea/src/SDK.ts#L128)*
 
 Request to reset the password of the user with the given email address.
 The API will send an email to the given email address with a link to generate a new
@@ -1194,7 +1194,7 @@ ___
 
 ▸ **reset**(): *void*
 
-*Defined in [SDK.ts:102](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/SDK.ts#L102)*
+*Defined in [SDK.ts:102](https://github.com/janbiasi/sdk-js/blob/75383ea/src/SDK.ts#L102)*
 
 Resets the client instance by logging out and removing the URL and project
 
@@ -1206,7 +1206,7 @@ ___
 
 ▸ **revert**(`collection`: string, `primaryKey`: [PrimaryKeyType](../modules/_sdk_.md#primarykeytype), `revisionID`: number): *`Promise<void>`*
 
-*Defined in [SDK.ts:852](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/SDK.ts#L852)*
+*Defined in [SDK.ts:852](https://github.com/janbiasi/sdk-js/blob/75383ea/src/SDK.ts#L852)*
 
 Revert an item to a previous state
 
@@ -1226,7 +1226,7 @@ ___
 
 ▸ **serverInfo**(): *`Promise<IServerInformationResponse>`*
 
-*Defined in [SDK.ts:1017](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/SDK.ts#L1017)*
+*Defined in [SDK.ts:1017](https://github.com/janbiasi/sdk-js/blob/75383ea/src/SDK.ts#L1017)*
 
 Get the server info from the API
 
@@ -1238,7 +1238,7 @@ ___
 
 ▸ **updateCollection**(`collection`: string, `data`: `Partial<ICollection>`): *`Promise<ICollectionResponse>`*
 
-*Defined in [SDK.ts:198](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/SDK.ts#L198)*
+*Defined in [SDK.ts:198](https://github.com/janbiasi/sdk-js/blob/75383ea/src/SDK.ts#L198)*
 
 Updates a certain collection
 
@@ -1257,7 +1257,7 @@ ___
 
 ▸ **updateCollectionPreset**<**PartialCollectionPreset**, **TResultCollectionPreset**>(`primaryKey`: [PrimaryKeyType](../modules/_sdk_.md#primarykeytype), `data`: [IUpdateCollectionPresetBody](../interfaces/_schemes_request_collection_.iupdatecollectionpresetbody.md)): *`Promise<ICollectionPresetResponse<PartialCollectionPreset & TResultCollectionPreset>>`*
 
-*Defined in [SDK.ts:262](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/SDK.ts#L262)*
+*Defined in [SDK.ts:262](https://github.com/janbiasi/sdk-js/blob/75383ea/src/SDK.ts#L262)*
 
 Update collection preset (bookmark / listing preference)
 
@@ -1284,7 +1284,7 @@ ___
 
 ▸ **updateDatabase**(): *`Promise<void>`*
 
-*Defined in [SDK.ts:1001](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/SDK.ts#L1001)*
+*Defined in [SDK.ts:1001](https://github.com/janbiasi/sdk-js/blob/75383ea/src/SDK.ts#L1001)*
 
 This will update the database of the API instance to the latest version
 using the migrations in the API
@@ -1297,7 +1297,7 @@ ___
 
 ▸ **updateField**<**TFieldType**>(`collection`: string, `fieldName`: string, `fieldInfo`: `TFieldType`): *`Promise<IFieldResponse<IField & TFieldType> | undefined>`*
 
-*Defined in [SDK.ts:380](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/SDK.ts#L380)*
+*Defined in [SDK.ts:380](https://github.com/janbiasi/sdk-js/blob/75383ea/src/SDK.ts#L380)*
 
 Update a given field in a given collection
 
@@ -1323,7 +1323,7 @@ ___
 
 ▸ **updateFields**<**TFieldsType**>(`collection`: string, `fields`: `Array<Partial<IField>>`): *`Promise<IFieldsResponse<TFieldsType & IField[]> | undefined>`*
 
-*Defined in [SDK.ts:418](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/SDK.ts#L418)*
+*Defined in [SDK.ts:418](https://github.com/janbiasi/sdk-js/blob/75383ea/src/SDK.ts#L418)*
 
 Update multiple fields at once
 
@@ -1367,7 +1367,7 @@ Name | Type |
 
 ▸ **updateFields**<**TFieldsType**>(`collection`: string, `fields`: string[], `fieldInfo`: `Partial<IField>`): *`Promise<IFieldsResponse<TFieldsType & IField[]> | undefined>`*
 
-*Defined in [SDK.ts:422](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/SDK.ts#L422)*
+*Defined in [SDK.ts:422](https://github.com/janbiasi/sdk-js/blob/75383ea/src/SDK.ts#L422)*
 
 **Type parameters:**
 
@@ -1389,7 +1389,7 @@ ___
 
 ▸ **updateItem**<**TTPartialItem**, **TTResult**>(`collection`: string, `primaryKey`: [PrimaryKeyType](../modules/_sdk_.md#primarykeytype), `body`: `TTPartialItem`, `params`: `QueryParamsType`): *`Promise<IItemResponse<TTPartialItem & TTResult>>`*
 
-*Defined in [SDK.ts:537](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/SDK.ts#L537)*
+*Defined in [SDK.ts:537](https://github.com/janbiasi/sdk-js/blob/75383ea/src/SDK.ts#L537)*
 
 Update an existing item
 
@@ -1422,7 +1422,7 @@ ___
 
 ▸ **updateItems**<**TPartialItem**, **TResult**>(`collection`: string, `body`: `TPartialItem`, `params`: `QueryParamsType`): *`Promise<IItemsResponse<TPartialItem & TResult>>`*
 
-*Defined in [SDK.ts:559](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/SDK.ts#L559)*
+*Defined in [SDK.ts:559](https://github.com/janbiasi/sdk-js/blob/75383ea/src/SDK.ts#L559)*
 
 Update multiple items
 
@@ -1454,7 +1454,7 @@ ___
 
 ▸ **updatePermissions**<**TResponse**>(`data`: any[]): *`Promise<TResponse>`*
 
-*Defined in [SDK.ts:767](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/SDK.ts#L767)*
+*Defined in [SDK.ts:767](https://github.com/janbiasi/sdk-js/blob/75383ea/src/SDK.ts#L767)*
 
 TODO: Fix type-def for param and return
 Update multiple permission records
@@ -1479,7 +1479,7 @@ ___
 
 ▸ **updateRelation**(`primaryKey`: [PrimaryKeyType](../modules/_sdk_.md#primarykeytype), `data`: `Partial<IRelation>`): *`Promise<IRelationResponse>`*
 
-*Defined in [SDK.ts:799](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/SDK.ts#L799)*
+*Defined in [SDK.ts:799](https://github.com/janbiasi/sdk-js/blob/75383ea/src/SDK.ts#L799)*
 
 Updates existing relation
 
@@ -1498,7 +1498,7 @@ ___
 
 ▸ **updateRole**<**Role**>(`primaryKey`: [PrimaryKeyType](../modules/_sdk_.md#primarykeytype), `body`: `Role`): *`Promise<IItemResponse<Role & IRole>>`*
 
-*Defined in [SDK.ts:893](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/SDK.ts#L893)*
+*Defined in [SDK.ts:893](https://github.com/janbiasi/sdk-js/blob/75383ea/src/SDK.ts#L893)*
 
 Update a user role
 
@@ -1521,7 +1521,7 @@ ___
 
 ▸ **updateUser**<**User**>(`primaryKey`: [PrimaryKeyType](../modules/_sdk_.md#primarykeytype), `body`: `User`): *`Promise<IItemResponse<User & IUser>>`*
 
-*Defined in [SDK.ts:985](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/SDK.ts#L985)*
+*Defined in [SDK.ts:985](https://github.com/janbiasi/sdk-js/blob/75383ea/src/SDK.ts#L985)*
 
 Update a single user based on primaryKey
 
@@ -1544,7 +1544,7 @@ ___
 
 ▸ **uploadFiles**<**TResponse**>(`data`: object, `onUploadProgress`: function): *`Promise<TResponse>`*
 
-*Defined in [SDK.ts:488](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/SDK.ts#L488)*
+*Defined in [SDK.ts:488](https://github.com/janbiasi/sdk-js/blob/75383ea/src/SDK.ts#L488)*
 
 Upload multipart files in multipart/form-data
 

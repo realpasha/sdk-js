@@ -22,4 +22,4 @@
 
 • **title**: *string*
 
-*Defined in [schemes/directus/CollectionPreset.ts:4](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/CollectionPreset.ts#L4)*
+*Defined in [schemes/directus/CollectionPreset.ts:4](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/CollectionPreset.ts#L4)*

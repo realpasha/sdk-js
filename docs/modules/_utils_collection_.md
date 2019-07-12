@@ -20,7 +20,7 @@
 
 • **DIRECTUS_COLLECTION_PREFIX**: *"directus_"* = "directus_"
 
-*Defined in [utils/collection.ts:1](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/utils/collection.ts#L1)*
+*Defined in [utils/collection.ts:1](https://github.com/janbiasi/sdk-js/blob/75383ea/src/utils/collection.ts#L1)*
 
 ## Functions
 
@@ -28,7 +28,7 @@
 
 ▸ **getCollectionItemPath**(`collection`: string): *string*
 
-*Defined in [utils/collection.ts:18](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/utils/collection.ts#L18)*
+*Defined in [utils/collection.ts:18](https://github.com/janbiasi/sdk-js/blob/75383ea/src/utils/collection.ts#L18)*
 
 Returns the correct API path for the collection. It will
 strip the prefix @{DIRECTUS_COLLECTION_PREFIX} or will add the

@@ -6,6 +6,8 @@
 
 Handles all authentication related logic, decoupled from the core
 
+**`author`** Jan Biasi <biasijan@gmail.com>
+
 ## Hierarchy
 
 * **Authentication**
@@ -45,7 +47,7 @@ Handles all authentication related logic, decoupled from the core
 
 \+ **new Authentication**(`config`: [IConfiguration](../interfaces/_configuration_.iconfiguration.md), `inject`: [IAuthenticationInjectableProps](../interfaces/_authentication_.iauthenticationinjectableprops.md)): *[Authentication](_authentication_.authentication.md)*
 
-*Defined in [Authentication.ts:56](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/Authentication.ts#L56)*
+*Defined in [Authentication.ts:57](https://github.com/janbiasi/sdk-js/blob/75383ea/src/Authentication.ts#L57)*
 
 Creates a new authentication instance
 
@@ -66,7 +68,7 @@ Name | Type | Description |
 
 • **config**: *[IConfiguration](../interfaces/_configuration_.iconfiguration.md)*
 
-*Defined in [Authentication.ts:64](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/Authentication.ts#L64)*
+*Defined in [Authentication.ts:65](https://github.com/janbiasi/sdk-js/blob/75383ea/src/Authentication.ts#L65)*
 
 ___
 
@@ -74,7 +76,7 @@ ___
 
 • **inject**: *[IAuthenticationInjectableProps](../interfaces/_authentication_.iauthenticationinjectableprops.md)*
 
-*Defined in [Authentication.ts:64](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/Authentication.ts#L64)*
+*Defined in [Authentication.ts:65](https://github.com/janbiasi/sdk-js/blob/75383ea/src/Authentication.ts#L65)*
 
 ___
 
@@ -82,7 +84,7 @@ ___
 
 • **onAutoRefreshError**? : *function*
 
-*Defined in [Authentication.ts:50](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/Authentication.ts#L50)*
+*Defined in [Authentication.ts:51](https://github.com/janbiasi/sdk-js/blob/75383ea/src/Authentication.ts#L51)*
 
 Optional customized error handler
 
@@ -102,7 +104,7 @@ ___
 
 • **onAutoRefreshSuccess**? : *function*
 
-*Defined in [Authentication.ts:56](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/Authentication.ts#L56)*
+*Defined in [Authentication.ts:57](https://github.com/janbiasi/sdk-js/blob/75383ea/src/Authentication.ts#L57)*
 
 Optional customized success handler
 
@@ -124,7 +126,7 @@ ___
 
 *Implementation of [IAuthentication](../interfaces/_authentication_.iauthentication.md).[refreshInterval](../interfaces/_authentication_.iauthentication.md#optional-refreshinterval)*
 
-*Defined in [Authentication.ts:44](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/Authentication.ts#L44)*
+*Defined in [Authentication.ts:45](https://github.com/janbiasi/sdk-js/blob/75383ea/src/Authentication.ts#L45)*
 
 Current set auto-refresh interval or undefined
 
@@ -136,7 +138,7 @@ Current set auto-refresh interval or undefined
 
 ▸ **getPayload**<**T**>(): *`T`*
 
-*Defined in [Authentication.ts:249](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/Authentication.ts#L249)*
+*Defined in [Authentication.ts:250](https://github.com/janbiasi/sdk-js/blob/75383ea/src/Authentication.ts#L250)*
 
 Gets the payload of the current token, return type can be generic
 
@@ -156,7 +158,7 @@ ___
 
 *Implementation of [IAuthentication](../interfaces/_authentication_.iauthentication.md)*
 
-*Defined in [Authentication.ts:75](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/Authentication.ts#L75)*
+*Defined in [Authentication.ts:76](https://github.com/janbiasi/sdk-js/blob/75383ea/src/Authentication.ts#L76)*
 
 If the current auth status is logged in
 
@@ -170,7 +172,7 @@ ___
 
 *Implementation of [IAuthentication](../interfaces/_authentication_.iauthentication.md)*
 
-*Defined in [Authentication.ts:96](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/Authentication.ts#L96)*
+*Defined in [Authentication.ts:97](https://github.com/janbiasi/sdk-js/blob/75383ea/src/Authentication.ts#L97)*
 
 Login to the API; Gets a new token from the API and stores it in this.token.
 
@@ -191,7 +193,7 @@ ___
 
 *Implementation of [IAuthentication](../interfaces/_authentication_.iauthentication.md)*
 
-*Defined in [Authentication.ts:146](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/Authentication.ts#L146)*
+*Defined in [Authentication.ts:147](https://github.com/janbiasi/sdk-js/blob/75383ea/src/Authentication.ts#L147)*
 
 Logs the user out by "forgetting" the token, and clearing the refresh interval
 
@@ -205,7 +207,7 @@ ___
 
 *Implementation of [IAuthentication](../interfaces/_authentication_.iauthentication.md)*
 
-*Defined in [Authentication.ts:218](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/Authentication.ts#L218)*
+*Defined in [Authentication.ts:219](https://github.com/janbiasi/sdk-js/blob/75383ea/src/Authentication.ts#L219)*
 
 Use the passed token to request a new one.
 
@@ -225,7 +227,7 @@ ___
 
 *Implementation of [IAuthentication](../interfaces/_authentication_.iauthentication.md)*
 
-*Defined in [Authentication.ts:162](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/Authentication.ts#L162)*
+*Defined in [Authentication.ts:163](https://github.com/janbiasi/sdk-js/blob/75383ea/src/Authentication.ts#L163)*
 
 Refresh the token if it is about to expire (within 30 seconds of expiry date).
 - Calls onAutoRefreshSuccess with the new token if the refreshing is successful.
@@ -239,7 +241,7 @@ ___
 
 ▸ **startInterval**(`fireImmediately?`: boolean): *void*
 
-*Defined in [Authentication.ts:228](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/Authentication.ts#L228)*
+*Defined in [Authentication.ts:229](https://github.com/janbiasi/sdk-js/blob/75383ea/src/Authentication.ts#L229)*
 
 Starts an interval of 10 seconds that will check if the token needs refreshing
 
@@ -257,7 +259,7 @@ ___
 
 ▸ **stopInterval**(): *void*
 
-*Defined in [Authentication.ts:239](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/Authentication.ts#L239)*
+*Defined in [Authentication.ts:240](https://github.com/janbiasi/sdk-js/blob/75383ea/src/Authentication.ts#L240)*
 
 Clears and nullifies the token refreshing interval
 

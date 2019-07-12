@@ -10,6 +10,8 @@ API definition for HTTP transactions
 
 **`uses`** axios
 
+**`author`** Jan Biasi <biasijan@gmail.com>
+
 ## Hierarchy
 
 * **API**
@@ -48,7 +50,7 @@ API definition for HTTP transactions
 
 \+ **new API**(`config`: [IConfiguration](../interfaces/_configuration_.iconfiguration.md)): *[API](_api_.api.md)*
 
-*Defined in [API.ts:51](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/API.ts#L51)*
+*Defined in [API.ts:52](https://github.com/janbiasi/sdk-js/blob/75383ea/src/API.ts#L52)*
 
 **Parameters:**
 
@@ -66,7 +68,7 @@ Name | Type |
 
 *Implementation of [IAPI](../interfaces/_api_.iapi.md).[auth](../interfaces/_api_.iapi.md#auth)*
 
-*Defined in [API.ts:46](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/API.ts#L46)*
+*Defined in [API.ts:47](https://github.com/janbiasi/sdk-js/blob/75383ea/src/API.ts#L47)*
 
 ___
 
@@ -76,7 +78,7 @@ ___
 
 *Implementation of [IAPI](../interfaces/_api_.iapi.md).[concurrent](../interfaces/_api_.iapi.md#concurrent)*
 
-*Defined in [API.ts:51](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/API.ts#L51)*
+*Defined in [API.ts:52](https://github.com/janbiasi/sdk-js/blob/75383ea/src/API.ts#L52)*
 
 #### Type declaration:
 
@@ -112,7 +114,7 @@ ___
 
 • **config**: *[IConfiguration](../interfaces/_configuration_.iconfiguration.md)*
 
-*Defined in [API.ts:53](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/API.ts#L53)*
+*Defined in [API.ts:54](https://github.com/janbiasi/sdk-js/blob/75383ea/src/API.ts#L54)*
 
 ___
 
@@ -125,7 +127,7 @@ ___
 
 *Implementation of [IAPI](../interfaces/_api_.iapi.md).[xhr](../interfaces/_api_.iapi.md#xhr)*
 
-*Defined in [API.ts:47](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/API.ts#L47)*
+*Defined in [API.ts:48](https://github.com/janbiasi/sdk-js/blob/75383ea/src/API.ts#L48)*
 
 ## Methods
 
@@ -135,7 +137,7 @@ ___
 
 *Implementation of [IAPI](../interfaces/_api_.iapi.md)*
 
-*Defined in [API.ts:122](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/API.ts#L122)*
+*Defined in [API.ts:123](https://github.com/janbiasi/sdk-js/blob/75383ea/src/API.ts#L123)*
 
 DELETE convenience method. Calls the request method for you
 
@@ -161,7 +163,7 @@ ___
 
 *Implementation of [IAPI](../interfaces/_api_.iapi.md)*
 
-*Defined in [API.ts:74](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/API.ts#L74)*
+*Defined in [API.ts:75](https://github.com/janbiasi/sdk-js/blob/75383ea/src/API.ts#L75)*
 
 GET convenience method. Calls the request method for you
 
@@ -188,7 +190,7 @@ ___
 
 *Implementation of [IAPI](../interfaces/_api_.iapi.md)*
 
-*Defined in [API.ts:133](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/API.ts#L133)*
+*Defined in [API.ts:134](https://github.com/janbiasi/sdk-js/blob/75383ea/src/API.ts#L134)*
 
 Gets the payload of the current token, return type can be generic
 
@@ -208,7 +210,7 @@ ___
 
 *Implementation of [IAPI](../interfaces/_api_.iapi.md)*
 
-*Defined in [API.ts:98](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/API.ts#L98)*
+*Defined in [API.ts:99](https://github.com/janbiasi/sdk-js/blob/75383ea/src/API.ts#L99)*
 
 PATCH convenience method. Calls the request method for you
 
@@ -236,7 +238,7 @@ ___
 
 *Implementation of [IAPI](../interfaces/_api_.iapi.md)*
 
-*Defined in [API.ts:86](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/API.ts#L86)*
+*Defined in [API.ts:87](https://github.com/janbiasi/sdk-js/blob/75383ea/src/API.ts#L87)*
 
 POST convenience method. Calls the request method for you
 
@@ -264,7 +266,7 @@ ___
 
 *Implementation of [IAPI](../interfaces/_api_.iapi.md)*
 
-*Defined in [API.ts:110](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/API.ts#L110)*
+*Defined in [API.ts:111](https://github.com/janbiasi/sdk-js/blob/75383ea/src/API.ts#L111)*
 
 PUT convenience method. Calls the request method for you
 
@@ -290,7 +292,7 @@ ___
 
 ▸ **request**<**T**>(`method`: [RequestMethod](../modules/_schemes_http_request_.md#requestmethod), `endpoint`: string, `params`: object, `data`: object, `noEnv`: boolean, `headers`: object, `skipParseToJSON`: boolean): *`Promise<T>`*
 
-*Defined in [API.ts:153](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/API.ts#L153)*
+*Defined in [API.ts:154](https://github.com/janbiasi/sdk-js/blob/75383ea/src/API.ts#L154)*
 
 Perform an API request to the Directus API
 
@@ -322,7 +324,7 @@ ___
 
 *Implementation of [IAPI](../interfaces/_api_.iapi.md)*
 
-*Defined in [API.ts:62](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/API.ts#L62)*
+*Defined in [API.ts:63](https://github.com/janbiasi/sdk-js/blob/75383ea/src/API.ts#L63)*
 
 Resets the client instance by logging out and removing the URL and project
 

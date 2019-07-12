@@ -26,7 +26,7 @@
 
 • **Deleted**: *number*
 
-*Defined in [schemes/response/Field.ts:5](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/response/Field.ts#L5)*
+*Defined in [schemes/response/Field.ts:5](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/response/Field.ts#L5)*
 
 ___
 
@@ -34,7 +34,7 @@ ___
 
 • **Draft**: *number*
 
-*Defined in [schemes/response/Field.ts:6](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/response/Field.ts#L6)*
+*Defined in [schemes/response/Field.ts:6](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/response/Field.ts#L6)*
 
 ___
 
@@ -42,7 +42,7 @@ ___
 
 • **Published**: *number*
 
-*Defined in [schemes/response/Field.ts:7](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/response/Field.ts#L7)*
+*Defined in [schemes/response/Field.ts:7](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/response/Field.ts#L7)*
 
 ___
 
@@ -50,7 +50,7 @@ ___
 
 • **table**: *string*
 
-*Defined in [schemes/response/Field.ts:8](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/response/Field.ts#L8)*
+*Defined in [schemes/response/Field.ts:8](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/response/Field.ts#L8)*
 
 ___
 
@@ -58,7 +58,7 @@ ___
 
 • **total**: *number*
 
-*Defined in [schemes/response/Field.ts:9](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/response/Field.ts#L9)*
+*Defined in [schemes/response/Field.ts:9](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/response/Field.ts#L9)*
 
 ___
 
@@ -66,7 +66,7 @@ ___
 
 • **total_entries**: *number*
 
-*Defined in [schemes/response/Field.ts:10](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/response/Field.ts#L10)*
+*Defined in [schemes/response/Field.ts:10](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/response/Field.ts#L10)*
 
 ___
 
@@ -74,4 +74,4 @@ ___
 
 • **type**: *string*
 
-*Defined in [schemes/response/Field.ts:11](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/response/Field.ts#L11)*
+*Defined in [schemes/response/Field.ts:11](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/response/Field.ts#L11)*

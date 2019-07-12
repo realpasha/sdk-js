@@ -16,7 +16,7 @@
 
 ▸ **getPayload**<**T**>(`token`: string): *`T`*
 
-*Defined in [utils/payload.ts:10](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/utils/payload.ts#L10)*
+*Defined in [utils/payload.ts:10](https://github.com/janbiasi/sdk-js/blob/75383ea/src/utils/payload.ts#L10)*
 
 Retrieves the payload from a JWT
 

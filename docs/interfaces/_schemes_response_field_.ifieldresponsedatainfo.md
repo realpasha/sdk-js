@@ -22,7 +22,7 @@
 
 • **id**: *string*
 
-*Defined in [schemes/response/Field.ts:15](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/response/Field.ts#L15)*
+*Defined in [schemes/response/Field.ts:15](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/response/Field.ts#L15)*
 
 ___
 
@@ -30,7 +30,7 @@ ___
 
 • **sort**: *number | null*
 
-*Defined in [schemes/response/Field.ts:16](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/response/Field.ts#L16)*
+*Defined in [schemes/response/Field.ts:16](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/response/Field.ts#L16)*
 
 ___
 
@@ -38,4 +38,4 @@ ___
 
 • **status**: *number | null*
 
-*Defined in [schemes/response/Field.ts:17](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/response/Field.ts#L17)*
+*Defined in [schemes/response/Field.ts:17](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/response/Field.ts#L17)*

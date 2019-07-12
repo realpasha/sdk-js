@@ -24,7 +24,7 @@
 
 • **id**: *number*
 
-*Defined in [schemes/directus/Setting.ts:5](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/Setting.ts#L5)*
+*Defined in [schemes/directus/Setting.ts:5](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/Setting.ts#L5)*
 
 ___
 
@@ -32,7 +32,7 @@ ___
 
 • **key**: *string*
 
-*Defined in [schemes/directus/Setting.ts:6](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/Setting.ts#L6)*
+*Defined in [schemes/directus/Setting.ts:6](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/Setting.ts#L6)*
 
 ___
 
@@ -40,4 +40,4 @@ ___
 
 • **value**: *string*
 
-*Defined in [schemes/directus/Setting.ts:7](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/Setting.ts#L7)*
+*Defined in [schemes/directus/Setting.ts:7](https://github.com/janbiasi/sdk-js/blob/75383ea/src/schemes/directus/Setting.ts#L7)*
