@@ -2,6 +2,9 @@
   "name": "@directus/sdk-js",
   "version": "5.2.1",
   "description": "Directus SDK for JavaScript (Node and Browser)",
+  "engines": {
+    "node": ">=7.0.0 <13"
+  },
   "main": "dist/directus-sdk.js",
   "browser": "dist/directus-sdk.umd.min.js",
   "types": "dist/types/src/index.d.ts",
