@@ -43,5 +43,6 @@ debug
 .DS_Store
 .vscode
 
-# webpack report
+# unneeded compiled files
 dist/*.html
+dist/types
