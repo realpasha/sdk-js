@@ -19,6 +19,11 @@ export interface IAPI {
         [key: string]: string;
     }, skipParseToJSON?: boolean): Promise<T>;
 }
+/**
+ * API definition for HTTP transactions
+ * @uses Authentication
+ * @uses axios
+ */
 export declare class API implements IAPI {
     private config;
     auth: IAuthentication;

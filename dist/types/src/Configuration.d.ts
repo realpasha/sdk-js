@@ -55,6 +55,9 @@ export interface IConfigurationOptions {
      */
     tokenExpirationTime?: number;
 }
+/**
+ * Configuration holder for directus implementations
+ */
 export declare class Configuration implements IConfiguration {
     private storage?;
     /**

@@ -1,9 +1,23 @@
 import { ILoginCredentials, ILoginOptions } from "./schemes/auth/Login";
 import { BodyType } from "./schemes/http/Body";
+import { QueryParams as QueryParamsType } from "./schemes/http/Query";
+import { IField } from "schemes/directus/Field";
+import { IRelation } from "schemes/directus/Relation";
+import { IRole } from "schemes/directus/Role";
+import { ICollection } from "./schemes/directus/Collection";
+import { ICollectionPreset } from "./schemes/directus/CollectionPreset";
+import { IPermission } from "./schemes/directus/Permission";
+import { IUser } from "./schemes/directus/User";
+import { IUpdateCollectionPresetBody } from "./schemes/request/Collection";
+import { IRelationsResponse } from "schemes/response/Relation";
 import { IActivityResponse } from "./schemes/response/Activity";
 import { ICollectionResponse, ICollectionsResponse } from "./schemes/response/Collection";
+import { ICollectionPresetResponse } from "./schemes/response/CollectionPreset";
 import { IFieldResponse, IFieldsResponse } from "./schemes/response/Field";
+import { IFileResponse, IFilesResponse } from "./schemes/response/File";
+import { IItemResponse, IItemsResponse } from "./schemes/response/Item";
 import { ILoginResponse } from "./schemes/response/Login";
+import { IRelationResponse } from "./schemes/response/Relation";
 import { IRevisionResponse } from "./schemes/response/Revision";
 import { IRoleResponse } from "./schemes/response/Role";
 import { IRefreshTokenResponse } from "./schemes/response/Token";
@@ -11,22 +25,15 @@ import { IUserResponse, IUsersResponse } from "./schemes/response/User";
 import { getPayload } from "./utils/payload";
 import { IAPI } from "./API";
 import { IConfiguration, IConfigurationOptions } from "./Configuration";
-import { IField } from "schemes/directus/Field";
-import { IRelation } from "schemes/directus/Relation";
-import { IRole } from "schemes/directus/Role";
-import { IRelationsResponse } from "schemes/response/Relation";
-import { ICollection } from "./schemes/directus/Collection";
-import { ICollectionPreset } from "./schemes/directus/CollectionPreset";
-import { IPermission } from "./schemes/directus/Permission";
-import { IUser } from "./schemes/directus/User";
-import { QueryParams as QueryParamsType } from "./schemes/http/Query";
-import { IUpdateCollectionPresetBody } from "./schemes/request/Collection";
-import { ICollectionPresetResponse } from "./schemes/response/CollectionPreset";
-import { IItemResponse, IItemsResponse } from "./schemes/response/Item";
-import { IRelationResponse } from "./schemes/response/Relation";
 import { IServerInformationResponse } from "./schemes/response/ServerInformation";
 import { ISettingsResponse } from "./schemes/response/Setting";
 declare type PrimaryKeyType = string | number;
+/**
+ * Main SDK implementation provides the public API to interact with a
+ * remote directus instance.
+ * @uses API
+ * @uses Configuration
+ */
 export declare class SDK {
     readonly loggedIn: boolean;
     readonly payload: any;
@@ -62,17 +69,17 @@ export declare class SDK {
      * The API will send an email to the given email address with a link to generate a new
      * temporary password.
      */
-    requestPasswordReset<T extends any = any>(email: string): Promise<T>;
+    requestPasswordReset<TResponse extends any = any>(email: string): Promise<TResponse>;
     /**
      * Get activity
      */
     getActivity(params?: QueryParamsType): Promise<IActivityResponse>;
     /**
      * Get the bookmarks of the current user
-     * TODO: Add deprecation warning
+     * @deprecated Will be removed in the next major version, please use {@link SDK.getCollectionPresets} instead
      * @see https://docs.directus.io/advanced/legacy-upgrades.html#directus-bookmarks
      */
-    getMyBookmarks<T extends any[] = any[]>(params?: QueryParamsType): Promise<T>;
+    getMyBookmarks<TResponse extends any[] = any[]>(params?: QueryParamsType): Promise<TResponse>;
     /**
      * Get all available collections
      */
@@ -94,52 +101,68 @@ export declare class SDK {
      */
     deleteCollection(collection: string): Promise<void>;
     /**
+     * Get the collection presets of the current user
+     * @see https://docs.directus.io/api/reference.html#collection-presets
+     */
+    getCollectionPresets<TResponse extends any[] = any[]>(params?: QueryParamsType): Promise<TResponse>;
+    /**
      * Create a new collection preset (bookmark / listing preferences)
+     * @see https://docs.directus.io/api/reference.html#collection-presets
      */
     createCollectionPreset<CollectionPreset extends ICollectionPreset>(data: CollectionPreset): Promise<ICollectionPresetResponse<CollectionPreset>>;
     /**
      * Update collection preset (bookmark / listing preference)
+     * @see https://docs.directus.io/api/reference.html#collection-presets
      */
-    updateCollectionPreset<PartialCollectionPreset extends Partial<ICollectionPreset>, ResultCollectionPreset extends ICollectionPreset = ICollectionPreset>(primaryKey: PrimaryKeyType, data: IUpdateCollectionPresetBody): Promise<ICollectionPresetResponse<PartialCollectionPreset & ResultCollectionPreset>>;
+    updateCollectionPreset<PartialCollectionPreset extends Partial<ICollectionPreset>, TResultCollectionPreset extends ICollectionPreset = ICollectionPreset>(primaryKey: PrimaryKeyType, data: IUpdateCollectionPresetBody): Promise<ICollectionPresetResponse<PartialCollectionPreset & TResultCollectionPreset>>;
     /**
      * Delete collection preset by primarykey
+     * @see https://docs.directus.io/api/reference.html#collection-presets
      */
     deleteCollectionPreset(primaryKey: PrimaryKeyType): Promise<void>;
     /**
-     * Get the meta information of all installed interfaces
+     * Get the information of all installed interfaces
+     * @see https://docs.directus.io/api/reference.html#get-extensions
      */
-    getInterfaces<T extends any[] = any[]>(): Promise<T>;
+    getInterfaces<TResponse extends any[] = any[]>(): Promise<TResponse>;
     /**
-     * Get the meta information of all installed layouts
+     * Get the information of all installed layouts
+     * @see https://docs.directus.io/api/reference.html#get-extensions
      */
-    getLayouts<T extends any[] = any[]>(): Promise<T>;
+    getLayouts<TResponse extends any[] = any[]>(): Promise<TResponse>;
     /**
-     * Get the meta information of all installed pages
+     * Get the information of all installed pages
+     * @see https://docs.directus.io/api/reference.html#get-extensions
      */
-    getPages<T extends any[] = any[]>(): Promise<T>;
+    getPages<TResponse extends any[] = any[]>(): Promise<TResponse>;
     /**
      * Get all fields that are in Directus
+     * @see https://docs.directus.io/api/reference.html#fields-2
      */
-    getAllFields<T extends IField[]>(params?: QueryParamsType): Promise<IFieldsResponse<T>>;
+    getAllFields<TFieldsType extends IField[]>(params?: QueryParamsType): Promise<IFieldsResponse<TFieldsType>>;
     /**
      * Get the fields that have been setup for a given collection
+     * @see https://docs.directus.io/api/reference.html#fields-2
      */
-    getFields<T extends IField[]>(collection: string, params?: QueryParamsType): Promise<IFieldsResponse<T>>;
+    getFields<TFieldsType extends IField[]>(collection: string, params?: QueryParamsType): Promise<IFieldsResponse<TFieldsType>>;
     /**
      * Get the field information for a single given field
+     * @see https://docs.directus.io/api/reference.html#fields-2
      */
-    getField<T extends IField>(collection: string, fieldName: string, params?: QueryParamsType): Promise<IFieldResponse<T>>;
+    getField<TFieldType extends IField>(collection: string, fieldName: string, params?: QueryParamsType): Promise<IFieldResponse<TFieldType>>;
     /**
      * Create a field in the given collection
+     * @see https://docs.directus.io/api/reference.html#fields-2
      */
-    createField<T extends IField>(collection: string, fieldInfo: T): Promise<IFieldResponse<T>>;
+    createField<TFieldType extends IField>(collection: string, fieldInfo: TFieldType): Promise<IFieldResponse<TFieldType>>;
     /**
      * Update a given field in a given collection
+     * @see https://docs.directus.io/api/reference.html#fields-2
      */
-    updateField<T extends Partial<IField>>(collection: string, fieldName: string, fieldInfo: T): Promise<IFieldResponse<IField & T> | undefined>;
+    updateField<TFieldType extends Partial<IField>>(collection: string, fieldName: string, fieldInfo: TFieldType): Promise<IFieldResponse<IField & TFieldType> | undefined>;
     /**
      * Update multiple fields at once
-     *
+     * @see https://docs.directus.io/api/reference.html#fields-2
      * @example
      *
      * // Set multiple fields to the same value
@@ -163,66 +186,82 @@ export declare class SDK {
      *   }
      * ])
      */
-    updateFields<T extends IField[]>(collection: string, fields: Array<Partial<IField>>): Promise<IFieldsResponse<T & IField[]> | undefined>;
-    updateFields<T extends IField[]>(collection: string, fields: string[], fieldInfo: Partial<IField>): Promise<IFieldsResponse<T & IField[]> | undefined>;
+    updateFields<TFieldsType extends IField[]>(collection: string, fields: Array<Partial<IField>>): Promise<IFieldsResponse<TFieldsType & IField[]> | undefined>;
+    updateFields<TFieldsType extends IField[]>(collection: string, fields: string[], fieldInfo: Partial<IField>): Promise<IFieldsResponse<TFieldsType & IField[]> | undefined>;
     /**
      * Delete a field from a collection
+     * @see @see https://docs.directus.io/api/reference.html#fields-2
      */
     deleteField(collection: string, fieldName: string): Promise<void>;
     /**
-     * Upload multipart files in multipart/form-data
+     * Get a list of available files from Directus
+     * @see https://docs.directus.io/api/reference.html#files
      */
-    uploadFiles<T extends any = any[]>(data: object, onUploadProgress?: () => object): Promise<T>;
+    getFiles(params?: QueryParamsType): Promise<IFilesResponse>;
+    /**
+     * Get a certain file or certain file list from Directus
+     * @see https://docs.directus.io/api/reference.html#files
+     */
+    getFile<TFile extends string | string[]>(fileName: TFile, params?: QueryParamsType): Promise<TFile extends string ? IFileResponse : IFilesResponse>;
+    /**
+     * Upload multipart files in multipart/form-data
+     * @see https://docs.directus.io/api/reference.html#files
+     */
+    uploadFiles<TResponse extends any = any[]>(data: object, // TODO: fix type definition
+    onUploadProgress?: () => object): Promise<TResponse>;
     /**
      * Update an existing item
-     * @typeparam PartialItem    Defining the item type in object schema
-     * @typeparam Result         Extension of [PartialItem] as expected result
-     * @return {Promise<IItemResponse<PartialItem & Result>>}
+     * @see https://docs.directus.io/api/reference.html#update-item
+     * @typeparam TTPartialItem Defining the item type in object schema
+     * @typeparam TTResult Extension of [TPartialItem] as expected result
      */
-    updateItem<PartialItem extends object, Result extends object = PartialItem>(collection: string, primaryKey: PrimaryKeyType, body: PartialItem, params?: QueryParamsType): Promise<IItemResponse<PartialItem & Result>>;
+    updateItem<TTPartialItem extends object, TTResult extends object = TTPartialItem>(collection: string, primaryKey: PrimaryKeyType, body: TTPartialItem, params?: QueryParamsType): Promise<IItemResponse<TTPartialItem & TTResult>>;
     /**
      * Update multiple items
-     * @typeparam PartialItem    Defining an array of items, each in object schema
-     * @typeparam Result         Extension of [PartialItem] as expected result
-     * @return {Promise<IItemsResponse<PartialItem & Result>>}
+     * @see https://docs.directus.io/api/reference.html#update-items
+     * @typeparam TPartialItem Defining an array of items, each in object schema
+     * @typeparam TResult Extension of [TPartialItem] as expected result
+     * @return {Promise<IItemsResponse<TPartialItem & TResult>>}
      */
-    updateItems<PartialItem extends object[], Result extends PartialItem = PartialItem>(collection: string, body: PartialItem, params?: QueryParamsType): Promise<IItemsResponse<PartialItem & Result>>;
+    updateItems<TPartialItem extends object[], TResult extends TPartialItem = TPartialItem>(collection: string, body: TPartialItem, params?: QueryParamsType): Promise<IItemsResponse<TPartialItem & TResult>>;
     /**
      * Create a new item
-     * @typeparam ItemType    Defining an item and its fields in object schema
-     * @return {Promise<IItemsResponse<ItemType>>}
+     * @typeparam TItemType Defining an item and its fields in object schema
+     * @return {Promise<IItemsResponse<TItemType>>}
      */
-    createItem<ItemType extends object>(collection: string, body: ItemType): Promise<IItemResponse<ItemType>>;
+    createItem<TItemType extends object>(collection: string, body: TItemType): Promise<IItemResponse<TItemType>>;
     /**
      * Create multiple items
-     * @typeparam ItemsType    Defining an array of items, each in object schema
-     * @return {Promise<IItemsResponse<ItemsType>>}
+     * @see https://docs.directus.io/api/reference.html#create-items
+     * @typeparam TItemsType Defining an array of items, each in object schema
      */
-    createItems<ItemsType extends Array<{}>>(collection: string, body: BodyType): Promise<IItemsResponse<ItemsType>>;
+    createItems<TItemsType extends Array<{}>>(collection: string, body: BodyType): Promise<IItemsResponse<TItemsType>>;
     /**
      * Get items from a given collection
-     * @typeparam ItemsType    Defining an array of items, each in object schema
-     * @return {Promise<IItemsResponse<ItemsType>>}
+     * @see https://docs.directus.io/api/reference.html#get-multiple-items
+     * @typeparam TItemsType Defining an array of items, each in object schema
      */
-    getItems<ItemsType extends Array<{}>>(collection: string, params?: QueryParamsType): Promise<IItemsResponse<ItemsType>>;
+    getItems<TTItemsType extends Array<{}>>(collection: string, params?: QueryParamsType): Promise<IItemsResponse<TTItemsType>>;
     /**
      * Get a single item by primary key
-     * @typeparam ItemType    Defining fields of an item in object schema
-     * @return {Promise<IItemResponse<ItemType>>}
+     * @see https://docs.directus.io/api/reference.html#get-item
+     * @typeparam TItemType Defining fields of an item in object schema
      */
-    getItem<ItemType extends object = {}>(collection: string, primaryKey: PrimaryKeyType, params?: QueryParamsType): Promise<IItemResponse<ItemType>>;
+    getItem<TItemType extends object = {}>(collection: string, primaryKey: PrimaryKeyType, params?: QueryParamsType): Promise<IItemResponse<TItemType>>;
     /**
      * Delete a single item by primary key
+     * @see https://docs.directus.io/api/reference.html#delete-items
      */
     deleteItem(collection: string, primaryKey: PrimaryKeyType): Promise<void>;
     /**
      * Delete multiple items by primary key
+     * @see https://docs.directus.io/api/reference.html#delete-items
      */
     deleteItems(collection: string, primaryKeys: PrimaryKeyType[]): Promise<void>;
     /**
      * Get the collection presets of the current user for a single collection
      */
-    getMyListingPreferences<T extends any[] = any[]>(collection: string, params?: QueryParamsType): Promise<T>;
+    getMyListingPreferences<TResponse extends any[] = any[]>(collection: string, params?: QueryParamsType): Promise<TResponse>;
     /**
      * Get permissions
      * @param {QueryParamsType?} params
@@ -232,27 +271,21 @@ export declare class SDK {
     /**
      * TODO: Fix type-def for return
      * Get the currently logged in user's permissions
-     * @param {QueryParamsType?} params
-     * @typeparam T   Permissions type as array extending any[]
-     * @return {Promise<T>}
+     * @typeparam TResponse Permissions type as array extending any[]
      */
-    getMyPermissions<T extends any[] = any[]>(params?: QueryParamsType): Promise<T>;
+    getMyPermissions<TResponse extends any[] = any[]>(params?: QueryParamsType): Promise<TResponse>;
     /**
      * TODO: Fix type-def for param and return
      * Create multiple new permissions
-     * @param {any[]} data
-     * @typeparam T   Permissions type as array extending any[]
-     * @return {Promise<T>}
+     * @typeparam TResponse Permissions type as array extending any[]
      */
-    createPermissions<T extends any[] = any[]>(data: any[]): Promise<T>;
+    createPermissions<TResponse extends any[] = any[]>(data: any[]): Promise<TResponse>;
     /**
      * TODO: Fix type-def for param and return
      * Update multiple permission records
-     * @param {any[]} data
-     * @typeparam T   Permissions type as array extending any[]
-     * @return {Promise<T>}
+     * @typeparam TResponse Permissions type as array extending any[]
      */
-    updatePermissions<T extends any[] = any[]>(data: any[]): Promise<T>;
+    updatePermissions<TResponse extends any[] = any[]>(data: any[]): Promise<TResponse>;
     /**
      * Get all relationships
      * @param {QueryParamsType?} params
@@ -267,17 +300,11 @@ export declare class SDK {
     createRelation(data: IRelation): Promise<IRelationResponse>;
     /**
      * Updates existing relation
-     * @param {PrimaryKeyType} primaryKey
-     * @param {Partial<IRelation>} data
-     * @return {Promise<IRelationResponse>}
      */
     updateRelation(primaryKey: PrimaryKeyType, data: Partial<IRelation>): Promise<IRelationResponse>;
     /**
      * TODO: Add type-def for return value(s)
      * Get the relationship information for the given collection
-     * @param {string} collection
-     * @param {QueryParamsType?} params
-     * @return {Promise<any[]>}
      */
     getCollectionRelations(collection: string, params?: QueryParamsType): Promise<any[]>;
     /**
@@ -287,7 +314,7 @@ export declare class SDK {
      * @param {PrimaryKeyType} primaryKey
      * @param {QueryParamsType?} params
      */
-    getItemRevisions<DataAndDelta extends object = {}>(collection: string, primaryKey: PrimaryKeyType, params?: QueryParamsType): Promise<IRevisionResponse<DataAndDelta>>;
+    getItemRevisions<TDataAndDelta extends object = {}>(collection: string, primaryKey: PrimaryKeyType, params?: QueryParamsType): Promise<IRevisionResponse<TDataAndDelta>>;
     /**
      * Revert an item to a previous state
      * @param {string} collection
@@ -316,7 +343,7 @@ export declare class SDK {
      * Create a new user role
      * @param {Role} body
      */
-    createRole<Role extends IRole>(body: Role): Promise<IItemResponse<Role>>;
+    createRole<TRole extends IRole>(body: TRole): Promise<IItemResponse<TRole>>;
     /**
      * Delete a user rol by primary key
      * @param {PrimaryKeyType} primaryKey
