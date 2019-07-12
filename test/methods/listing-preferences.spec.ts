@@ -76,7 +76,7 @@ describe("Listing Preferences", () => {
       });
 
       (client.api.get as any)
-        .withArgs(`/collection_presets`, {
+        .withArgs("/collection_presets", {
           "filter[collection][eq]": "faq",
           "filter[role][null]": 1,
           "filter[title][null]": 1,
@@ -93,7 +93,7 @@ describe("Listing Preferences", () => {
         });
 
       (client.api.get as any)
-        .withArgs(`/collection_presets`, {
+        .withArgs("/collection_presets", {
           "filter[collection][eq]": "faq",
           "filter[role][eq]": 5,
           "filter[title][null]": 1,
@@ -110,7 +110,7 @@ describe("Listing Preferences", () => {
         });
 
       (client.api.get as any)
-        .withArgs(`/collection_presets`, {
+        .withArgs("/collection_presets", {
           "filter[collection][eq]": "faq",
           "filter[role][eq]": 5,
           "filter[title][null]": 1,
@@ -144,7 +144,7 @@ describe("Listing Preferences", () => {
       });
 
       (client.api.get as any)
-        .withArgs(`/collection_presets`, {
+        .withArgs("/collection_presets", {
           "filter[collection][eq]": "faq",
           "filter[role][null]": 1,
           "filter[title][null]": 1,
@@ -161,7 +161,7 @@ describe("Listing Preferences", () => {
         });
 
       (client.api.get as any)
-        .withArgs(`/collection_presets`, {
+        .withArgs("/collection_presets", {
           "filter[collection][eq]": "faq",
           "filter[role][eq]": 5,
           "filter[title][null]": 1,
@@ -178,7 +178,7 @@ describe("Listing Preferences", () => {
         });
 
       (client.api.get as any)
-        .withArgs(`/collection_presets`, {
+        .withArgs("/collection_presets", {
           "filter[collection][eq]": "faq",
           "filter[role][eq]": 5,
           "filter[title][null]": 1,
@@ -207,7 +207,7 @@ describe("Listing Preferences", () => {
       });
 
       (client.api.get as any)
-        .withArgs(`/collection_presets`, {
+        .withArgs("/collection_presets", {
           "filter[collection][eq]": "faq",
           "filter[role][null]": 1,
           "filter[title][null]": 1,
@@ -224,7 +224,7 @@ describe("Listing Preferences", () => {
         });
 
       (client.api.get as any)
-        .withArgs(`/collection_presets`, {
+        .withArgs("/collection_presets", {
           "filter[collection][eq]": "faq",
           "filter[role][eq]": 5,
           "filter[title][null]": 1,
@@ -237,7 +237,7 @@ describe("Listing Preferences", () => {
         });
 
       (client.api.get as any)
-        .withArgs(`/collection_presets`, {
+        .withArgs("/collection_presets", {
           "filter[collection][eq]": "faq",
           "filter[role][eq]": 5,
           "filter[title][null]": 1,
