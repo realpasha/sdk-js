@@ -1,12 +1,11 @@
-[@directus/sdk-js](../README.md) > ["schemes/directus/UserRole"](../modules/_schemes_directus_userrole_.md)
+> **[@directus/sdk-js](../README.md)**
+
+[Globals](../README.md) / ["schemes/directus/UserRole"](_schemes_directus_userrole_.md) /
 
 # External module: "schemes/directus/UserRole"
 
-## Index
+### Index
 
-### Interfaces
+#### Interfaces
 
 * [IUserRole](../interfaces/_schemes_directus_userrole_.iuserrole.md)
-
----
-

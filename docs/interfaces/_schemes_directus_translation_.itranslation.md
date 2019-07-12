@@ -1,15 +1,13 @@
-[@directus/sdk-js](../README.md) > ["schemes/directus/Translation"](../modules/_schemes_directus_translation_.md) > [ITranslation](../interfaces/_schemes_directus_translation_.itranslation.md)
+> **[@directus/sdk-js](../README.md)**
+
+[Globals](../README.md) / ["schemes/directus/Translation"](../modules/_schemes_directus_translation_.md) / [ITranslation](_schemes_directus_translation_.itranslation.md) /
 
 # Interface: ITranslation
 
 ## Hierarchy
 
-**ITranslation**
+* **ITranslation**
 
 ## Indexable
 
-\[key: `string`\]:&nbsp;`any`
-## Index
-
----
-
+● \[▪ **key**: *string*\]: any

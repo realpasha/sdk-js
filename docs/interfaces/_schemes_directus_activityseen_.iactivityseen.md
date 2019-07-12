@@ -1,16 +1,18 @@
-[@directus/sdk-js](../README.md) > ["schemes/directus/ActivitySeen"](../modules/_schemes_directus_activityseen_.md) > [IActivitySeen](../interfaces/_schemes_directus_activityseen_.iactivityseen.md)
+> **[@directus/sdk-js](../README.md)**
+
+[Globals](../README.md) / ["schemes/directus/ActivitySeen"](../modules/_schemes_directus_activityseen_.md) / [IActivitySeen](_schemes_directus_activityseen_.iactivityseen.md) /
 
 # Interface: IActivitySeen
 
-*__see__*: [https://docs.directus.io/api/reference.html#activity-seen-object](https://docs.directus.io/api/reference.html#activity-seen-object)
+**`see`** https://docs.directus.io/api/reference.html#activity-seen-object
 
 ## Hierarchy
 
-**IActivitySeen**
+* **IActivitySeen**
 
-## Index
+### Index
 
-### Properties
+#### Properties
 
 * [activity](_schemes_directus_activityseen_.iactivityseen.md#activity)
 * [archived](_schemes_directus_activityseen_.iactivityseen.md#archived)
@@ -18,53 +20,42 @@
 * [seen_on](_schemes_directus_activityseen_.iactivityseen.md#seen_on)
 * [user](_schemes_directus_activityseen_.iactivityseen.md#user)
 
----
-
 ## Properties
-
-<a id="activity"></a>
 
 ###  activity
 
-**● activity**: *`number`*
+• **activity**: *number*
 
-*Defined in [schemes/directus/ActivitySeen.ts:6](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/ActivitySeen.ts#L6)*
+*Defined in [schemes/directus/ActivitySeen.ts:6](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/ActivitySeen.ts#L6)*
 
 ___
-<a id="archived"></a>
 
 ###  archived
 
-**● archived**: *`boolean`*
+• **archived**: *boolean*
 
-*Defined in [schemes/directus/ActivitySeen.ts:9](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/ActivitySeen.ts#L9)*
+*Defined in [schemes/directus/ActivitySeen.ts:9](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/ActivitySeen.ts#L9)*
 
 ___
-<a id="id"></a>
 
 ###  id
 
-**● id**: *`number`*
+• **id**: *number*
 
-*Defined in [schemes/directus/ActivitySeen.ts:5](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/ActivitySeen.ts#L5)*
+*Defined in [schemes/directus/ActivitySeen.ts:5](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/ActivitySeen.ts#L5)*
 
 ___
-<a id="seen_on"></a>
 
 ###  seen_on
 
-**● seen_on**: *`Date`*
+• **seen_on**: *`Date`*
 
-*Defined in [schemes/directus/ActivitySeen.ts:8](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/ActivitySeen.ts#L8)*
+*Defined in [schemes/directus/ActivitySeen.ts:8](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/ActivitySeen.ts#L8)*
 
 ___
-<a id="user"></a>
 
 ###  user
 
-**● user**: *`number`*
+• **user**: *number*
 
-*Defined in [schemes/directus/ActivitySeen.ts:7](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/ActivitySeen.ts#L7)*
-
-___
-
+*Defined in [schemes/directus/ActivitySeen.ts:7](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/ActivitySeen.ts#L7)*

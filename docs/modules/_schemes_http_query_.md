@@ -1,30 +1,25 @@
-[@directus/sdk-js](../README.md) > ["schemes/http/Query"](../modules/_schemes_http_query_.md)
+> **[@directus/sdk-js](../README.md)**
+
+[Globals](../README.md) / ["schemes/http/Query"](_schemes_http_query_.md) /
 
 # External module: "schemes/http/Query"
 
-## Index
+### Index
 
-### Interfaces
+#### Interfaces
 
 * [IQueryParameters](../interfaces/_schemes_http_query_.iqueryparameters.md)
 
-### Type aliases
+#### Type aliases
 
 * [QueryParams](_schemes_http_query_.md#queryparams)
 
----
-
 ## Type aliases
-
-<a id="queryparams"></a>
 
 ###  QueryParams
 
-**Ƭ QueryParams**: *`Partial`<[IQueryParameters](../interfaces/_schemes_http_query_.iqueryparameters.md)>*
+Ƭ **QueryParams**: *`Partial<IQueryParameters>`*
 
-*Defined in [schemes/http/Query.ts:26](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/http/Query.ts#L26)*
+*Defined in [schemes/http/Query.ts:26](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/http/Query.ts#L26)*
 
-*__see__*: [https://docs.directus.io/api/reference.html#query-parameters](https://docs.directus.io/api/reference.html#query-parameters)
-
-___
-
+**`see`** https://docs.directus.io/api/reference.html#query-parameters

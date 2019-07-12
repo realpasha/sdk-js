@@ -1,30 +1,25 @@
-[@directus/sdk-js](../README.md) > ["schemes/directus/CollectionPreset"](../modules/_schemes_directus_collectionpreset_.md) > [IRequiredCollectionPresetData](../interfaces/_schemes_directus_collectionpreset_.irequiredcollectionpresetdata.md)
+> **[@directus/sdk-js](../README.md)**
+
+[Globals](../README.md) / ["schemes/directus/CollectionPreset"](../modules/_schemes_directus_collectionpreset_.md) / [IRequiredCollectionPresetData](_schemes_directus_collectionpreset_.irequiredcollectionpresetdata.md) /
 
 # Interface: IRequiredCollectionPresetData
 
 ## Hierarchy
 
-**IRequiredCollectionPresetData**
+* **IRequiredCollectionPresetData**
 
-↳  [ICollectionPreset](_schemes_directus_collectionpreset_.icollectionpreset.md)
+  * [ICollectionPreset](_schemes_directus_collectionpreset_.icollectionpreset.md)
 
-## Index
+### Index
 
-### Properties
+#### Properties
 
 * [title](_schemes_directus_collectionpreset_.irequiredcollectionpresetdata.md#title)
 
----
-
 ## Properties
-
-<a id="title"></a>
 
 ###  title
 
-**● title**: *`string`*
+• **title**: *string*
 
-*Defined in [schemes/directus/CollectionPreset.ts:4](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/CollectionPreset.ts#L4)*
-
-___
-
+*Defined in [schemes/directus/CollectionPreset.ts:4](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/CollectionPreset.ts#L4)*

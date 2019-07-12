@@ -1,13 +1,12 @@
-[@directus/sdk-js](../README.md) > ["schemes/response/Item"](../modules/_schemes_response_item_.md)
+> **[@directus/sdk-js](../README.md)**
+
+[Globals](../README.md) / ["schemes/response/Item"](_schemes_response_item_.md) /
 
 # External module: "schemes/response/Item"
 
-## Index
+### Index
 
-### Interfaces
+#### Interfaces
 
 * [IItemResponse](../interfaces/_schemes_response_item_.iitemresponse.md)
 * [IItemsResponse](../interfaces/_schemes_response_item_.iitemsresponse.md)
-
----
-

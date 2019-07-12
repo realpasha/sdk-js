@@ -1,12 +1,11 @@
-[@directus/sdk-js](../README.md) > ["schemes/response/Error"](../modules/_schemes_response_error_.md)
+> **[@directus/sdk-js](../README.md)**
+
+[Globals](../README.md) / ["schemes/response/Error"](_schemes_response_error_.md) /
 
 # External module: "schemes/response/Error"
 
-## Index
+### Index
 
-### Interfaces
+#### Interfaces
 
 * [IErrorResponse](../interfaces/_schemes_response_error_.ierrorresponse.md)
-
----
-

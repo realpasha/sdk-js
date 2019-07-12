@@ -1,70 +1,63 @@
-[@directus/sdk-js](../README.md) > ["schemes/response/Token"](../modules/_schemes_response_token_.md) > [IRefreshTokenResponse](../interfaces/_schemes_response_token_.irefreshtokenresponse.md)
+> **[@directus/sdk-js](../README.md)**
 
-# Interface: IRefreshTokenResponse
+[Globals](../README.md) / ["schemes/response/Token"](../modules/_schemes_response_token_.md) / [IRefreshTokenResponse](_schemes_response_token_.irefreshtokenresponse.md) /
+
+# Interface: IRefreshTokenResponse <**MetaDataType**>
 
 ## Type parameters
-#### MetaDataType :  `object`
+
+▪ **MetaDataType**: *object*
+
 ## Hierarchy
 
-↳  [IAPIResponse](_schemes_apiresponse_.iapiresponse.md)<`object`>
+  * [IAPIResponse](_schemes_apiresponse_.iapiresponse.md)‹*object*›
 
-**↳ IRefreshTokenResponse**
+  * **IRefreshTokenResponse**
 
-## Index
+### Index
 
-### Properties
+#### Properties
 
 * [data](_schemes_response_token_.irefreshtokenresponse.md#data)
-* [error](_schemes_response_token_.irefreshtokenresponse.md#error)
+* [error](_schemes_response_token_.irefreshtokenresponse.md#optional-error)
 * [meta](_schemes_response_token_.irefreshtokenresponse.md#meta)
-
----
 
 ## Properties
 
-<a id="data"></a>
-
 ###  data
 
-**● data**: *`object`*
+• **data**: *object*
 
 *Inherited from [IAPIResponse](_schemes_apiresponse_.iapiresponse.md).[data](_schemes_apiresponse_.iapiresponse.md#data)*
 
-*Defined in [schemes/APIResponse.ts:13](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/APIResponse.ts#L13)*
+*Defined in [schemes/APIResponse.ts:13](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/APIResponse.ts#L13)*
 
-#### Type declaration
+#### Type declaration:
 
- token: `string`
-
-___
-<a id="error"></a>
-
-### `<Optional>` error
-
-**● error**: *`object`*
-
-*Inherited from [IAbstractAPIResponse](_schemes_apiresponse_.iabstractapiresponse.md).[error](_schemes_apiresponse_.iabstractapiresponse.md#error)*
-
-*Defined in [schemes/APIResponse.ts:2](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/APIResponse.ts#L2)*
-
-#### Type declaration
-
- code: `number`
-
-*__see__*: [https://docs.directus.io/api/reference.html#error-codes](https://docs.directus.io/api/reference.html#error-codes)
-
- message: `string`
+* **token**: *string*
 
 ___
-<a id="meta"></a>
+
+### `Optional` error
+
+• **error**? : *object*
+
+*Inherited from [IAbstractAPIResponse](_schemes_apiresponse_.iabstractapiresponse.md).[error](_schemes_apiresponse_.iabstractapiresponse.md#optional-error)*
+
+*Defined in [schemes/APIResponse.ts:2](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/APIResponse.ts#L2)*
+
+#### Type declaration:
+
+* **code**: *number*
+
+* **message**: *string*
+
+___
 
 ###  meta
 
-**● meta**: *`MetaDataType`*
+• **meta**: *`MetaDataType`*
 
 *Inherited from [IAPIResponse](_schemes_apiresponse_.iapiresponse.md).[meta](_schemes_apiresponse_.iapiresponse.md#meta)*
 
-*Defined in [schemes/APIResponse.ts:12](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/APIResponse.ts#L12)*
-
-___
-
+*Defined in [schemes/APIResponse.ts:12](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/APIResponse.ts#L12)*

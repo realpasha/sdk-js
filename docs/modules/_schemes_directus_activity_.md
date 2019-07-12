@@ -1,12 +1,11 @@
-[@directus/sdk-js](../README.md) > ["schemes/directus/Activity"](../modules/_schemes_directus_activity_.md)
+> **[@directus/sdk-js](../README.md)**
+
+[Globals](../README.md) / ["schemes/directus/Activity"](_schemes_directus_activity_.md) /
 
 # External module: "schemes/directus/Activity"
 
-## Index
+### Index
 
-### Interfaces
+#### Interfaces
 
 * [IActivity](../interfaces/_schemes_directus_activity_.iactivity.md)
-
----
-

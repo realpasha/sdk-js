@@ -1,12 +1,11 @@
-[@directus/sdk-js](../README.md) > ["schemes/directus/Translation"](../modules/_schemes_directus_translation_.md)
+> **[@directus/sdk-js](../README.md)**
+
+[Globals](../README.md) / ["schemes/directus/Translation"](_schemes_directus_translation_.md) /
 
 # External module: "schemes/directus/Translation"
 
-## Index
+### Index
 
-### Interfaces
+#### Interfaces
 
 * [ITranslation](../interfaces/_schemes_directus_translation_.itranslation.md)
-
----
-

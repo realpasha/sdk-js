@@ -1,16 +1,18 @@
-[@directus/sdk-js](../README.md) > ["schemes/directus/Role"](../modules/_schemes_directus_role_.md) > [IRole](../interfaces/_schemes_directus_role_.irole.md)
+> **[@directus/sdk-js](../README.md)**
+
+[Globals](../README.md) / ["schemes/directus/Role"](../modules/_schemes_directus_role_.md) / [IRole](_schemes_directus_role_.irole.md) /
 
 # Interface: IRole
 
-*__see__*: [https://docs.directus.io/api/reference.html#role-object](https://docs.directus.io/api/reference.html#role-object)
+**`see`** https://docs.directus.io/api/reference.html#role-object
 
 ## Hierarchy
 
-**IRole**
+* **IRole**
 
-## Index
+### Index
 
-### Properties
+#### Properties
 
 * [description](_schemes_directus_role_.irole.md#description)
 * [external_id](_schemes_directus_role_.irole.md#external_id)
@@ -19,62 +21,50 @@
 * [name](_schemes_directus_role_.irole.md#name)
 * [nav_blacklist](_schemes_directus_role_.irole.md#nav_blacklist)
 
----
-
 ## Properties
-
-<a id="description"></a>
 
 ###  description
 
-**● description**: *`string`*
+• **description**: *string*
 
-*Defined in [schemes/directus/Role.ts:7](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Role.ts#L7)*
+*Defined in [schemes/directus/Role.ts:7](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/Role.ts#L7)*
 
 ___
-<a id="external_id"></a>
 
 ###  external_id
 
-**● external_id**: *`string`*
+• **external_id**: *string*
 
-*Defined in [schemes/directus/Role.ts:10](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Role.ts#L10)*
+*Defined in [schemes/directus/Role.ts:10](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/Role.ts#L10)*
 
 ___
-<a id="id"></a>
 
 ###  id
 
-**● id**: *`number`*
+• **id**: *number*
 
-*Defined in [schemes/directus/Role.ts:5](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Role.ts#L5)*
+*Defined in [schemes/directus/Role.ts:5](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/Role.ts#L5)*
 
 ___
-<a id="ip_whitelist"></a>
 
 ###  ip_whitelist
 
-**● ip_whitelist**: *`string`*
+• **ip_whitelist**: *string*
 
-*Defined in [schemes/directus/Role.ts:8](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Role.ts#L8)*
+*Defined in [schemes/directus/Role.ts:8](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/Role.ts#L8)*
 
 ___
-<a id="name"></a>
 
 ###  name
 
-**● name**: *`string`*
+• **name**: *string*
 
-*Defined in [schemes/directus/Role.ts:6](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Role.ts#L6)*
+*Defined in [schemes/directus/Role.ts:6](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/Role.ts#L6)*
 
 ___
-<a id="nav_blacklist"></a>
 
 ###  nav_blacklist
 
-**● nav_blacklist**: *`string`*
+• **nav_blacklist**: *string*
 
-*Defined in [schemes/directus/Role.ts:9](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Role.ts#L9)*
-
-___
-
+*Defined in [schemes/directus/Role.ts:9](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/Role.ts#L9)*

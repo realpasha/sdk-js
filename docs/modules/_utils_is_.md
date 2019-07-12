@@ -1,177 +1,164 @@
-[@directus/sdk-js](../README.md) > ["utils/is"](../modules/_utils_is_.md)
+> **[@directus/sdk-js](../README.md)**
+
+[Globals](../README.md) / ["utils/is"](_utils_is_.md) /
 
 # External module: "utils/is"
 
-## Index
+### Index
 
-### Functions
+#### Functions
 
-* [isArray](_utils_is_.md#isarray)
-* [isArrayOrEmpty](_utils_is_.md#isarrayorempty)
-* [isFunction](_utils_is_.md#isfunction)
-* [isNotNull](_utils_is_.md#isnotnull)
-* [isNumber](_utils_is_.md#isnumber)
-* [isObject](_utils_is_.md#isobject)
-* [isObjectOrEmpty](_utils_is_.md#isobjectorempty)
-* [isString](_utils_is_.md#isstring)
-* [isType](_utils_is_.md#istype)
-
----
+* [isArray](_utils_is_.md#const-isarray)
+* [isArrayOrEmpty](_utils_is_.md#const-isarrayorempty)
+* [isFunction](_utils_is_.md#const-isfunction)
+* [isNotNull](_utils_is_.md#const-isnotnull)
+* [isNumber](_utils_is_.md#const-isnumber)
+* [isObject](_utils_is_.md#const-isobject)
+* [isObjectOrEmpty](_utils_is_.md#const-isobjectorempty)
+* [isString](_utils_is_.md#const-isstring)
+* [isType](_utils_is_.md#const-istype)
 
 ## Functions
 
-<a id="isarray"></a>
+### `Const` isArray
 
-### `<Const>` isArray
+▸ **isArray**(`v`: any): *boolean*
 
-▸ **isArray**(v: *`any`*): `boolean`
-
-*Defined in [utils/is.ts:29](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/utils/is.ts#L29)*
+*Defined in [utils/is.ts:29](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/utils/is.ts#L29)*
 
 **Parameters:**
 
-| Name | Type |
-| ------ | ------ |
-| v | `any` |
+Name | Type |
+------ | ------ |
+`v` | any |
 
-**Returns:** `boolean`
+**Returns:** *boolean*
 
 ___
-<a id="isarrayorempty"></a>
 
-### `<Const>` isArrayOrEmpty
+### `Const` isArrayOrEmpty
 
-▸ **isArrayOrEmpty**(v: *`any`*): `boolean`
+▸ **isArrayOrEmpty**(`v`: any): *boolean*
 
-*Defined in [utils/is.ts:25](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/utils/is.ts#L25)*
+*Defined in [utils/is.ts:25](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/utils/is.ts#L25)*
 
 **Parameters:**
 
-| Name | Type |
-| ------ | ------ |
-| v | `any` |
+Name | Type |
+------ | ------ |
+`v` | any |
 
-**Returns:** `boolean`
+**Returns:** *boolean*
 
 ___
-<a id="isfunction"></a>
 
-### `<Const>` isFunction
+### `Const` isFunction
 
-▸ **isFunction**(v: *`any`*): `boolean`
+▸ **isFunction**(`v`: any): *boolean*
 
-*Defined in [utils/is.ts:17](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/utils/is.ts#L17)*
+*Defined in [utils/is.ts:17](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/utils/is.ts#L17)*
 
 **Parameters:**
 
-| Name | Type |
-| ------ | ------ |
-| v | `any` |
+Name | Type |
+------ | ------ |
+`v` | any |
 
-**Returns:** `boolean`
+**Returns:** *boolean*
 
 ___
-<a id="isnotnull"></a>
 
-### `<Const>` isNotNull
+### `Const` isNotNull
 
-▸ **isNotNull**(v: *`any`*): `boolean`
+▸ **isNotNull**(`v`: any): *boolean*
 
-*Defined in [utils/is.ts:5](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/utils/is.ts#L5)*
+*Defined in [utils/is.ts:5](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/utils/is.ts#L5)*
 
 **Parameters:**
 
-| Name | Type |
-| ------ | ------ |
-| v | `any` |
+Name | Type |
+------ | ------ |
+`v` | any |
 
-**Returns:** `boolean`
+**Returns:** *boolean*
 
 ___
-<a id="isnumber"></a>
 
-### `<Const>` isNumber
+### `Const` isNumber
 
-▸ **isNumber**(v: *`any`*): `boolean`
+▸ **isNumber**(`v`: any): *boolean*
 
-*Defined in [utils/is.ts:13](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/utils/is.ts#L13)*
+*Defined in [utils/is.ts:13](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/utils/is.ts#L13)*
 
 **Parameters:**
 
-| Name | Type |
-| ------ | ------ |
-| v | `any` |
+Name | Type |
+------ | ------ |
+`v` | any |
 
-**Returns:** `boolean`
+**Returns:** *boolean*
 
 ___
-<a id="isobject"></a>
 
-### `<Const>` isObject
+### `Const` isObject
 
-▸ **isObject**(v: *`any`*): `boolean`
+▸ **isObject**(`v`: any): *boolean*
 
-*Defined in [utils/is.ts:33](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/utils/is.ts#L33)*
+*Defined in [utils/is.ts:33](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/utils/is.ts#L33)*
 
 **Parameters:**
 
-| Name | Type |
-| ------ | ------ |
-| v | `any` |
+Name | Type |
+------ | ------ |
+`v` | any |
 
-**Returns:** `boolean`
+**Returns:** *boolean*
 
 ___
-<a id="isobjectorempty"></a>
 
-### `<Const>` isObjectOrEmpty
+### `Const` isObjectOrEmpty
 
-▸ **isObjectOrEmpty**(v: *`any`*): `boolean`
+▸ **isObjectOrEmpty**(`v`: any): *boolean*
 
-*Defined in [utils/is.ts:21](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/utils/is.ts#L21)*
+*Defined in [utils/is.ts:21](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/utils/is.ts#L21)*
 
 **Parameters:**
 
-| Name | Type |
-| ------ | ------ |
-| v | `any` |
+Name | Type |
+------ | ------ |
+`v` | any |
 
-**Returns:** `boolean`
+**Returns:** *boolean*
 
 ___
-<a id="isstring"></a>
 
-### `<Const>` isString
+### `Const` isString
 
-▸ **isString**(v: *`any`*): `boolean`
+▸ **isString**(`v`: any): *boolean*
 
-*Defined in [utils/is.ts:9](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/utils/is.ts#L9)*
+*Defined in [utils/is.ts:9](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/utils/is.ts#L9)*
 
 **Parameters:**
 
-| Name | Type |
-| ------ | ------ |
-| v | `any` |
+Name | Type |
+------ | ------ |
+`v` | any |
 
-**Returns:** `boolean`
+**Returns:** *boolean*
 
 ___
-<a id="istype"></a>
 
-### `<Const>` isType
+### `Const` isType
 
-▸ **isType**(t: *`string`*, v: *`any`*): `boolean`
+▸ **isType**(`t`: string, `v`: any): *boolean*
 
-*Defined in [utils/is.ts:1](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/utils/is.ts#L1)*
+*Defined in [utils/is.ts:1](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/utils/is.ts#L1)*
 
 **Parameters:**
 
-| Name | Type |
-| ------ | ------ |
-| t | `string` |
-| v | `any` |
+Name | Type |
+------ | ------ |
+`t` | string |
+`v` | any |
 
-**Returns:** `boolean`
-
-___
-
+**Returns:** *boolean*

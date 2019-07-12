@@ -1,90 +1,80 @@
-[@directus/sdk-js](../README.md) > ["Configuration"](../modules/_configuration_.md) > [IConfigurationOptions](../interfaces/_configuration_.iconfigurationoptions.md)
+> **[@directus/sdk-js](../README.md)**
+
+[Globals](../README.md) / ["Configuration"](../modules/_configuration_.md) / [IConfigurationOptions](_configuration_.iconfigurationoptions.md) /
 
 # Interface: IConfigurationOptions
 
 ## Hierarchy
 
-**IConfigurationOptions**
+* **IConfigurationOptions**
 
-## Index
+### Index
 
-### Properties
+#### Properties
 
-* [localExp](_configuration_.iconfigurationoptions.md#localexp)
-* [persist](_configuration_.iconfigurationoptions.md#persist)
-* [project](_configuration_.iconfigurationoptions.md#project)
-* [token](_configuration_.iconfigurationoptions.md#token)
-* [tokenExpirationTime](_configuration_.iconfigurationoptions.md#tokenexpirationtime)
+* [localExp](_configuration_.iconfigurationoptions.md#optional-localexp)
+* [persist](_configuration_.iconfigurationoptions.md#optional-persist)
+* [project](_configuration_.iconfigurationoptions.md#optional-project)
+* [token](_configuration_.iconfigurationoptions.md#optional-token)
+* [tokenExpirationTime](_configuration_.iconfigurationoptions.md#optional-tokenexpirationtime)
 * [url](_configuration_.iconfigurationoptions.md#url)
-
----
 
 ## Properties
 
-<a id="localexp"></a>
+### `Optional` localExp
 
-### `<Optional>` localExp
+• **localExp**? : *number*
 
-**● localExp**: *`number`*
-
-*Defined in [Configuration.ts:61](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/Configuration.ts#L61)*
+*Defined in [Configuration.ts:61](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/Configuration.ts#L61)*
 
 Default login expiration as number in ms
 
 ___
-<a id="persist"></a>
 
-### `<Optional>` persist
+### `Optional` persist
 
-**● persist**: *`boolean`*
+• **persist**? : *boolean*
 
-*Defined in [Configuration.ts:65](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/Configuration.ts#L65)*
+*Defined in [Configuration.ts:65](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/Configuration.ts#L65)*
 
 If the token should be persitated or rehydrated
 
 ___
-<a id="project"></a>
 
-### `<Optional>` project
+### `Optional` project
 
-**● project**: *`string`*
+• **project**? : *string*
 
-*Defined in [Configuration.ts:57](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/Configuration.ts#L57)*
+*Defined in [Configuration.ts:57](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/Configuration.ts#L57)*
 
 Project namespace
 
 ___
-<a id="token"></a>
 
-### `<Optional>` token
+### `Optional` token
 
-**● token**: *`string`*
+• **token**? : *string*
 
-*Defined in [Configuration.ts:53](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/Configuration.ts#L53)*
+*Defined in [Configuration.ts:53](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/Configuration.ts#L53)*
 
 The token to authenticate if preferred
 
 ___
-<a id="tokenexpirationtime"></a>
 
-### `<Optional>` tokenExpirationTime
+### `Optional` tokenExpirationTime
 
-**● tokenExpirationTime**: *`number`*
+• **tokenExpirationTime**? : *number*
 
-*Defined in [Configuration.ts:69](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/Configuration.ts#L69)*
+*Defined in [Configuration.ts:69](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/Configuration.ts#L69)*
 
 Auto token expiration time
 
 ___
-<a id="url"></a>
 
 ###  url
 
-**● url**: *`string`*
+• **url**: *string*
 
-*Defined in [Configuration.ts:49](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/Configuration.ts#L49)*
+*Defined in [Configuration.ts:49](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/Configuration.ts#L49)*
 
 The URL of the direcuts CMS
-
-___
-

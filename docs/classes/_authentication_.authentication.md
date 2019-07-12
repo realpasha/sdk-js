@@ -1,4 +1,6 @@
-[@directus/sdk-js](../README.md) > ["Authentication"](../modules/_authentication_.md) > [Authentication](../classes/_authentication_.authentication.md)
+> **[@directus/sdk-js](../README.md)**
+
+[Globals](../README.md) / ["Authentication"](../modules/_authentication_.md) / [Authentication](_authentication_.authentication.md) /
 
 # Class: Authentication
 
@@ -6,286 +8,257 @@ Handles all authentication related logic, decoupled from the core
 
 ## Hierarchy
 
-**Authentication**
+* **Authentication**
 
 ## Implements
 
 * [IAuthentication](../interfaces/_authentication_.iauthentication.md)
 
-## Index
+### Index
 
-### Constructors
+#### Constructors
 
 * [constructor](_authentication_.authentication.md#constructor)
 
-### Properties
+#### Properties
 
-* [config](_authentication_.authentication.md#config)
-* [inject](_authentication_.authentication.md#inject)
-* [onAutoRefreshError](_authentication_.authentication.md#onautorefresherror)
-* [onAutoRefreshSuccess](_authentication_.authentication.md#onautorefreshsuccess)
-* [refreshInterval](_authentication_.authentication.md#refreshinterval)
+* [config](_authentication_.authentication.md#private-config)
+* [inject](_authentication_.authentication.md#private-inject)
+* [onAutoRefreshError](_authentication_.authentication.md#private-optional-onautorefresherror)
+* [onAutoRefreshSuccess](_authentication_.authentication.md#private-optional-onautorefreshsuccess)
+* [refreshInterval](_authentication_.authentication.md#optional-refreshinterval)
 
-### Methods
+#### Methods
 
-* [getPayload](_authentication_.authentication.md#getpayload)
+* [getPayload](_authentication_.authentication.md#private-getpayload)
 * [isLoggedIn](_authentication_.authentication.md#isloggedin)
 * [login](_authentication_.authentication.md#login)
 * [logout](_authentication_.authentication.md#logout)
 * [refresh](_authentication_.authentication.md#refresh)
 * [refreshIfNeeded](_authentication_.authentication.md#refreshifneeded)
-* [startInterval](_authentication_.authentication.md#startinterval)
-* [stopInterval](_authentication_.authentication.md#stopinterval)
-
----
+* [startInterval](_authentication_.authentication.md#private-startinterval)
+* [stopInterval](_authentication_.authentication.md#private-stopinterval)
 
 ## Constructors
 
-<a id="constructor"></a>
-
 ###  constructor
 
-⊕ **new Authentication**(config: *[IConfiguration](../interfaces/_configuration_.iconfiguration.md)*, inject: *[IAuthenticationInjectableProps](../interfaces/_authentication_.iauthenticationinjectableprops.md)*): [Authentication](_authentication_.authentication.md)
+\+ **new Authentication**(`config`: [IConfiguration](../interfaces/_configuration_.iconfiguration.md), `inject`: [IAuthenticationInjectableProps](../interfaces/_authentication_.iauthenticationinjectableprops.md)): *[Authentication](_authentication_.authentication.md)*
 
-*Defined in [Authentication.ts:56](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/Authentication.ts#L56)*
+*Defined in [Authentication.ts:56](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/Authentication.ts#L56)*
 
 Creates a new authentication instance
 
-*__constructor__*: 
+**`constructor`** 
 
 **Parameters:**
 
-| Name | Type | Description |
-| ------ | ------ | ------ |
-| config | [IConfiguration](../interfaces/_configuration_.iconfiguration.md) |  \- |
-| inject | [IAuthenticationInjectableProps](../interfaces/_authentication_.iauthenticationinjectableprops.md) |   |
+Name | Type | Description |
+------ | ------ | ------ |
+`config` | [IConfiguration](../interfaces/_configuration_.iconfiguration.md) | - |
+`inject` | [IAuthenticationInjectableProps](../interfaces/_authentication_.iauthenticationinjectableprops.md) |   |
 
-**Returns:** [Authentication](_authentication_.authentication.md)
-
-___
+**Returns:** *[Authentication](_authentication_.authentication.md)*
 
 ## Properties
 
-<a id="config"></a>
+### `Private` config
 
-### `<Private>` config
+• **config**: *[IConfiguration](../interfaces/_configuration_.iconfiguration.md)*
 
-**● config**: *[IConfiguration](../interfaces/_configuration_.iconfiguration.md)*
-
-*Defined in [Authentication.ts:64](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/Authentication.ts#L64)*
+*Defined in [Authentication.ts:64](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/Authentication.ts#L64)*
 
 ___
-<a id="inject"></a>
 
-### `<Private>` inject
+### `Private` inject
 
-**● inject**: *[IAuthenticationInjectableProps](../interfaces/_authentication_.iauthenticationinjectableprops.md)*
+• **inject**: *[IAuthenticationInjectableProps](../interfaces/_authentication_.iauthenticationinjectableprops.md)*
 
-*Defined in [Authentication.ts:64](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/Authentication.ts#L64)*
+*Defined in [Authentication.ts:64](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/Authentication.ts#L64)*
 
 ___
-<a id="onautorefresherror"></a>
 
-### `<Private>``<Optional>` onAutoRefreshError
+### `Private` `Optional` onAutoRefreshError
 
-**● onAutoRefreshError**: *`function`*
+• **onAutoRefreshError**? : *function*
 
-*Defined in [Authentication.ts:50](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/Authentication.ts#L50)*
+*Defined in [Authentication.ts:50](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/Authentication.ts#L50)*
 
 Optional customized error handler
 
-#### Type declaration
-▸(msg: *[IAuthenticationRefreshError](../interfaces/_authentication_.iauthenticationrefresherror.md)*): `void`
+#### Type declaration:
+
+▸ (`msg`: [IAuthenticationRefreshError](../interfaces/_authentication_.iauthenticationrefresherror.md)): *void*
 
 **Parameters:**
 
-| Name | Type |
-| ------ | ------ |
-| msg | [IAuthenticationRefreshError](../interfaces/_authentication_.iauthenticationrefresherror.md) |
-
-**Returns:** `void`
+Name | Type |
+------ | ------ |
+`msg` | [IAuthenticationRefreshError](../interfaces/_authentication_.iauthenticationrefresherror.md) |
 
 ___
-<a id="onautorefreshsuccess"></a>
 
-### `<Private>``<Optional>` onAutoRefreshSuccess
+### `Private` `Optional` onAutoRefreshSuccess
 
-**● onAutoRefreshSuccess**: *`function`*
+• **onAutoRefreshSuccess**? : *function*
 
-*Defined in [Authentication.ts:56](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/Authentication.ts#L56)*
+*Defined in [Authentication.ts:56](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/Authentication.ts#L56)*
 
 Optional customized success handler
 
-#### Type declaration
-▸(config: *[IConfigurationValues](../interfaces/_configuration_.iconfigurationvalues.md)*): `void`
+#### Type declaration:
+
+▸ (`config`: [IConfigurationValues](../interfaces/_configuration_.iconfigurationvalues.md)): *void*
 
 **Parameters:**
 
-| Name | Type |
-| ------ | ------ |
-| config | [IConfigurationValues](../interfaces/_configuration_.iconfigurationvalues.md) |
-
-**Returns:** `void`
+Name | Type |
+------ | ------ |
+`config` | [IConfigurationValues](../interfaces/_configuration_.iconfigurationvalues.md) |
 
 ___
-<a id="refreshinterval"></a>
 
-### `<Optional>` refreshInterval
+### `Optional` refreshInterval
 
-**● refreshInterval**: *`number`*
+• **refreshInterval**? : *number*
 
-*Implementation of [IAuthentication](../interfaces/_authentication_.iauthentication.md).[refreshInterval](../interfaces/_authentication_.iauthentication.md#refreshinterval)*
+*Implementation of [IAuthentication](../interfaces/_authentication_.iauthentication.md).[refreshInterval](../interfaces/_authentication_.iauthentication.md#optional-refreshinterval)*
 
-*Defined in [Authentication.ts:44](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/Authentication.ts#L44)*
+*Defined in [Authentication.ts:44](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/Authentication.ts#L44)*
 
 Current set auto-refresh interval or undefined
 
-*__type__*: {number\|undefined}
-
-___
+**`type`** {number|undefined}
 
 ## Methods
 
-<a id="getpayload"></a>
+### `Private` getPayload
 
-### `<Private>` getPayload
+▸ **getPayload**<**T**>(): *`T`*
 
-▸ **getPayload**<`T`>(): `T`
-
-*Defined in [Authentication.ts:249](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/Authentication.ts#L249)*
+*Defined in [Authentication.ts:249](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/Authentication.ts#L249)*
 
 Gets the payload of the current token, return type can be generic
 
 **Type parameters:**
 
-#### T :  `object`
+▪ **T**: *object*
 
 The payload response type, arbitrary object
 
-**Returns:** `T`
+**Returns:** *`T`*
 
 ___
-<a id="isloggedin"></a>
 
 ###  isLoggedIn
 
-▸ **isLoggedIn**(): `boolean`
+▸ **isLoggedIn**(): *boolean*
 
-*Implementation of [IAuthentication](../interfaces/_authentication_.iauthentication.md).[isLoggedIn](../interfaces/_authentication_.iauthentication.md#isloggedin)*
+*Implementation of [IAuthentication](../interfaces/_authentication_.iauthentication.md)*
 
-*Defined in [Authentication.ts:75](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/Authentication.ts#L75)*
+*Defined in [Authentication.ts:75](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/Authentication.ts#L75)*
 
 If the current auth status is logged in
 
-**Returns:** `boolean`
+**Returns:** *boolean*
 
 ___
-<a id="login"></a>
 
 ###  login
 
-▸ **login**(credentials: *[ILoginCredentials](../interfaces/_schemes_auth_login_.ilogincredentials.md)*, options?: *[ILoginOptions](../interfaces/_schemes_auth_login_.iloginoptions.md)*): `Promise`<[ILoginResponse](../interfaces/_schemes_response_login_.iloginresponse.md)>
+▸ **login**(`credentials`: [ILoginCredentials](../interfaces/_schemes_auth_login_.ilogincredentials.md), `options?`: [ILoginOptions](../interfaces/_schemes_auth_login_.iloginoptions.md)): *`Promise<ILoginResponse>`*
 
-*Implementation of [IAuthentication](../interfaces/_authentication_.iauthentication.md).[login](../interfaces/_authentication_.iauthentication.md#login)*
+*Implementation of [IAuthentication](../interfaces/_authentication_.iauthentication.md)*
 
-*Defined in [Authentication.ts:96](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/Authentication.ts#L96)*
+*Defined in [Authentication.ts:96](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/Authentication.ts#L96)*
 
 Login to the API; Gets a new token from the API and stores it in this.token.
 
 **Parameters:**
 
-| Name | Type | Description |
-| ------ | ------ | ------ |
-| credentials | [ILoginCredentials](../interfaces/_schemes_auth_login_.ilogincredentials.md) |  User login credentials |
-| `Optional` options | [ILoginOptions](../interfaces/_schemes_auth_login_.iloginoptions.md) |  Additional options regarding persistance and co. |
+Name | Type | Description |
+------ | ------ | ------ |
+`credentials` | [ILoginCredentials](../interfaces/_schemes_auth_login_.ilogincredentials.md) | User login credentials |
+`options?` | [ILoginOptions](../interfaces/_schemes_auth_login_.iloginoptions.md) | Additional options regarding persistance and co. |
 
-**Returns:** `Promise`<[ILoginResponse](../interfaces/_schemes_response_login_.iloginresponse.md)>
+**Returns:** *`Promise<ILoginResponse>`*
 
 ___
-<a id="logout"></a>
 
 ###  logout
 
-▸ **logout**(): `void`
+▸ **logout**(): *void*
 
-*Implementation of [IAuthentication](../interfaces/_authentication_.iauthentication.md).[logout](../interfaces/_authentication_.iauthentication.md#logout)*
+*Implementation of [IAuthentication](../interfaces/_authentication_.iauthentication.md)*
 
-*Defined in [Authentication.ts:146](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/Authentication.ts#L146)*
+*Defined in [Authentication.ts:146](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/Authentication.ts#L146)*
 
 Logs the user out by "forgetting" the token, and clearing the refresh interval
 
-**Returns:** `void`
+**Returns:** *void*
 
 ___
-<a id="refresh"></a>
 
 ###  refresh
 
-▸ **refresh**(token: *`string`*): `Promise`<[IRefreshTokenResponse](../interfaces/_schemes_response_token_.irefreshtokenresponse.md)>
+▸ **refresh**(`token`: string): *`Promise<IRefreshTokenResponse>`*
 
-*Implementation of [IAuthentication](../interfaces/_authentication_.iauthentication.md).[refresh](../interfaces/_authentication_.iauthentication.md#refresh)*
+*Implementation of [IAuthentication](../interfaces/_authentication_.iauthentication.md)*
 
-*Defined in [Authentication.ts:218](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/Authentication.ts#L218)*
+*Defined in [Authentication.ts:218](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/Authentication.ts#L218)*
 
 Use the passed token to request a new one.
 
 **Parameters:**
 
-| Name | Type | Description |
-| ------ | ------ | ------ |
-| token | `string` |   |
+Name | Type | Description |
+------ | ------ | ------ |
+`token` | string |   |
 
-**Returns:** `Promise`<[IRefreshTokenResponse](../interfaces/_schemes_response_token_.irefreshtokenresponse.md)>
+**Returns:** *`Promise<IRefreshTokenResponse>`*
 
 ___
-<a id="refreshifneeded"></a>
 
 ###  refreshIfNeeded
 
-▸ **refreshIfNeeded**(): `Promise`<[RefreshIfNeededResponse](../modules/_schemes_response_login_.md#refreshifneededresponse)>
+▸ **refreshIfNeeded**(): *`Promise<RefreshIfNeededResponse>`*
 
-*Implementation of [IAuthentication](../interfaces/_authentication_.iauthentication.md).[refreshIfNeeded](../interfaces/_authentication_.iauthentication.md#refreshifneeded)*
+*Implementation of [IAuthentication](../interfaces/_authentication_.iauthentication.md)*
 
-*Defined in [Authentication.ts:162](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/Authentication.ts#L162)*
+*Defined in [Authentication.ts:162](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/Authentication.ts#L162)*
 
 Refresh the token if it is about to expire (within 30 seconds of expiry date).
+- Calls onAutoRefreshSuccess with the new token if the refreshing is successful.
+- Calls onAutoRefreshError if refreshing the token fails for some reason.
 
-*   Calls onAutoRefreshSuccess with the new token if the refreshing is successful.
-*   Calls onAutoRefreshError if refreshing the token fails for some reason.
-
-**Returns:** `Promise`<[RefreshIfNeededResponse](../modules/_schemes_response_login_.md#refreshifneededresponse)>
+**Returns:** *`Promise<RefreshIfNeededResponse>`*
 
 ___
-<a id="startinterval"></a>
 
-### `<Private>` startInterval
+### `Private` startInterval
 
-▸ **startInterval**(fireImmediately?: *`boolean`*): `void`
+▸ **startInterval**(`fireImmediately?`: boolean): *void*
 
-*Defined in [Authentication.ts:228](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/Authentication.ts#L228)*
+*Defined in [Authentication.ts:228](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/Authentication.ts#L228)*
 
 Starts an interval of 10 seconds that will check if the token needs refreshing
 
 **Parameters:**
 
-| Name | Type | Description |
-| ------ | ------ | ------ |
-| `Optional` fireImmediately | `boolean` |  If it should immediately call \[refreshIfNeeded\] |
+Name | Type | Description |
+------ | ------ | ------ |
+`fireImmediately?` | boolean | If it should immediately call [refreshIfNeeded]  |
 
-**Returns:** `void`
+**Returns:** *void*
 
 ___
-<a id="stopinterval"></a>
 
-### `<Private>` stopInterval
+### `Private` stopInterval
 
-▸ **stopInterval**(): `void`
+▸ **stopInterval**(): *void*
 
-*Defined in [Authentication.ts:239](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/Authentication.ts#L239)*
+*Defined in [Authentication.ts:239](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/Authentication.ts#L239)*
 
 Clears and nullifies the token refreshing interval
 
-**Returns:** `void`
-
-___
-
+**Returns:** *void*

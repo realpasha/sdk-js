@@ -1,38 +1,31 @@
-[@directus/sdk-js](../README.md) > ["schemes/APIResponse"](../modules/_schemes_apiresponse_.md) > [IAbstractAPIResponse](../interfaces/_schemes_apiresponse_.iabstractapiresponse.md)
+> **[@directus/sdk-js](../README.md)**
+
+[Globals](../README.md) / ["schemes/APIResponse"](../modules/_schemes_apiresponse_.md) / [IAbstractAPIResponse](_schemes_apiresponse_.iabstractapiresponse.md) /
 
 # Interface: IAbstractAPIResponse
 
 ## Hierarchy
 
-**IAbstractAPIResponse**
+* **IAbstractAPIResponse**
 
-↳  [IAPIResponse](_schemes_apiresponse_.iapiresponse.md)
+  * [IAPIResponse](_schemes_apiresponse_.iapiresponse.md)
 
-## Index
+### Index
 
-### Properties
+#### Properties
 
-* [error](_schemes_apiresponse_.iabstractapiresponse.md#error)
-
----
+* [error](_schemes_apiresponse_.iabstractapiresponse.md#optional-error)
 
 ## Properties
 
-<a id="error"></a>
+### `Optional` error
 
-### `<Optional>` error
+• **error**? : *object*
 
-**● error**: *`object`*
+*Defined in [schemes/APIResponse.ts:2](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/APIResponse.ts#L2)*
 
-*Defined in [schemes/APIResponse.ts:2](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/APIResponse.ts#L2)*
+#### Type declaration:
 
-#### Type declaration
+* **code**: *number*
 
- code: `number`
-
-*__see__*: [https://docs.directus.io/api/reference.html#error-codes](https://docs.directus.io/api/reference.html#error-codes)
-
- message: `string`
-
-___
-
+* **message**: *string*

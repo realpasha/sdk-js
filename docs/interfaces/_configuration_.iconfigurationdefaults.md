@@ -1,38 +1,32 @@
-[@directus/sdk-js](../README.md) > ["Configuration"](../modules/_configuration_.md) > [IConfigurationDefaults](../interfaces/_configuration_.iconfigurationdefaults.md)
+> **[@directus/sdk-js](../README.md)**
+
+[Globals](../README.md) / ["Configuration"](../modules/_configuration_.md) / [IConfigurationDefaults](_configuration_.iconfigurationdefaults.md) /
 
 # Interface: IConfigurationDefaults
 
 ## Hierarchy
 
-**IConfigurationDefaults**
+* **IConfigurationDefaults**
 
-## Index
+### Index
 
-### Properties
+#### Properties
 
 * [project](_configuration_.iconfigurationdefaults.md#project)
 * [tokenExpirationTime](_configuration_.iconfigurationdefaults.md#tokenexpirationtime)
 
----
-
 ## Properties
-
-<a id="project"></a>
 
 ###  project
 
-**● project**: *`string`*
+• **project**: *string*
 
-*Defined in [Configuration.ts:41](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/Configuration.ts#L41)*
+*Defined in [Configuration.ts:41](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/Configuration.ts#L41)*
 
 ___
-<a id="tokenexpirationtime"></a>
 
 ###  tokenExpirationTime
 
-**● tokenExpirationTime**: *`number`*
+• **tokenExpirationTime**: *number*
 
-*Defined in [Configuration.ts:40](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/Configuration.ts#L40)*
-
-___
-
+*Defined in [Configuration.ts:40](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/Configuration.ts#L40)*

@@ -1,50 +1,43 @@
-[@directus/sdk-js](../README.md) > ["schemes/directus/Setting"](../modules/_schemes_directus_setting_.md) > [ISetting](../interfaces/_schemes_directus_setting_.isetting.md)
+> **[@directus/sdk-js](../README.md)**
+
+[Globals](../README.md) / ["schemes/directus/Setting"](../modules/_schemes_directus_setting_.md) / [ISetting](_schemes_directus_setting_.isetting.md) /
 
 # Interface: ISetting
 
-*__see__*: [https://docs.directus.io/api/reference.html#setting-object](https://docs.directus.io/api/reference.html#setting-object)
+**`see`** https://docs.directus.io/api/reference.html#setting-object
 
 ## Hierarchy
 
-**ISetting**
+* **ISetting**
 
-## Index
+### Index
 
-### Properties
+#### Properties
 
 * [id](_schemes_directus_setting_.isetting.md#id)
 * [key](_schemes_directus_setting_.isetting.md#key)
 * [value](_schemes_directus_setting_.isetting.md#value)
 
----
-
 ## Properties
-
-<a id="id"></a>
 
 ###  id
 
-**● id**: *`number`*
+• **id**: *number*
 
-*Defined in [schemes/directus/Setting.ts:5](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Setting.ts#L5)*
+*Defined in [schemes/directus/Setting.ts:5](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/Setting.ts#L5)*
 
 ___
-<a id="key"></a>
 
 ###  key
 
-**● key**: *`string`*
+• **key**: *string*
 
-*Defined in [schemes/directus/Setting.ts:6](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Setting.ts#L6)*
+*Defined in [schemes/directus/Setting.ts:6](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/Setting.ts#L6)*
 
 ___
-<a id="value"></a>
 
 ###  value
 
-**● value**: *`string`*
+• **value**: *string*
 
-*Defined in [schemes/directus/Setting.ts:7](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Setting.ts#L7)*
-
-___
-
+*Defined in [schemes/directus/Setting.ts:7](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/Setting.ts#L7)*

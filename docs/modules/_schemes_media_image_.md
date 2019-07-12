@@ -1,12 +1,11 @@
-[@directus/sdk-js](../README.md) > ["schemes/media/Image"](../modules/_schemes_media_image_.md)
+> **[@directus/sdk-js](../README.md)**
+
+[Globals](../README.md) / ["schemes/media/Image"](_schemes_media_image_.md) /
 
 # External module: "schemes/media/Image"
 
-## Index
+### Index
 
-### Interfaces
+#### Interfaces
 
 * [IImageScheme](../interfaces/_schemes_media_image_.iimagescheme.md)
-
----
-

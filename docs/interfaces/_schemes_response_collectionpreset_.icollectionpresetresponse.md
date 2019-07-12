@@ -1,69 +1,63 @@
-[@directus/sdk-js](../README.md) > ["schemes/response/CollectionPreset"](../modules/_schemes_response_collectionpreset_.md) > [ICollectionPresetResponse](../interfaces/_schemes_response_collectionpreset_.icollectionpresetresponse.md)
+> **[@directus/sdk-js](../README.md)**
 
-# Interface: ICollectionPresetResponse
+[Globals](../README.md) / ["schemes/response/CollectionPreset"](../modules/_schemes_response_collectionpreset_.md) / [ICollectionPresetResponse](_schemes_response_collectionpreset_.icollectionpresetresponse.md) /
 
-*__see__*: [https://docs.directus.io/api/reference.html#collection-presets](https://docs.directus.io/api/reference.html#collection-presets)
+# Interface: ICollectionPresetResponse <**CollectionPreset, MetaDataType**>
+
+**`see`** https://docs.directus.io/api/reference.html#collection-presets
 
 ## Type parameters
-#### CollectionPreset :  [ICollectionPreset](_schemes_directus_collectionpreset_.icollectionpreset.md)
-#### MetaDataType :  `object`
+
+▪ **CollectionPreset**: *[ICollectionPreset](_schemes_directus_collectionpreset_.icollectionpreset.md)*
+
+▪ **MetaDataType**: *object*
+
 ## Hierarchy
 
-↳  [IAPIResponse](_schemes_apiresponse_.iapiresponse.md)<`CollectionPreset`>
+  * [IAPIResponse](_schemes_apiresponse_.iapiresponse.md)‹*`CollectionPreset`*›
 
-**↳ ICollectionPresetResponse**
+  * **ICollectionPresetResponse**
 
-## Index
+### Index
 
-### Properties
+#### Properties
 
 * [data](_schemes_response_collectionpreset_.icollectionpresetresponse.md#data)
-* [error](_schemes_response_collectionpreset_.icollectionpresetresponse.md#error)
+* [error](_schemes_response_collectionpreset_.icollectionpresetresponse.md#optional-error)
 * [meta](_schemes_response_collectionpreset_.icollectionpresetresponse.md#meta)
-
----
 
 ## Properties
 
-<a id="data"></a>
-
 ###  data
 
-**● data**: *`CollectionPreset`*
+• **data**: *`CollectionPreset`*
 
 *Inherited from [IAPIResponse](_schemes_apiresponse_.iapiresponse.md).[data](_schemes_apiresponse_.iapiresponse.md#data)*
 
-*Defined in [schemes/APIResponse.ts:13](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/APIResponse.ts#L13)*
+*Defined in [schemes/APIResponse.ts:13](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/APIResponse.ts#L13)*
 
 ___
-<a id="error"></a>
 
-### `<Optional>` error
+### `Optional` error
 
-**● error**: *`object`*
+• **error**? : *object*
 
-*Inherited from [IAbstractAPIResponse](_schemes_apiresponse_.iabstractapiresponse.md).[error](_schemes_apiresponse_.iabstractapiresponse.md#error)*
+*Inherited from [IAbstractAPIResponse](_schemes_apiresponse_.iabstractapiresponse.md).[error](_schemes_apiresponse_.iabstractapiresponse.md#optional-error)*
 
-*Defined in [schemes/APIResponse.ts:2](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/APIResponse.ts#L2)*
+*Defined in [schemes/APIResponse.ts:2](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/APIResponse.ts#L2)*
 
-#### Type declaration
+#### Type declaration:
 
- code: `number`
+* **code**: *number*
 
-*__see__*: [https://docs.directus.io/api/reference.html#error-codes](https://docs.directus.io/api/reference.html#error-codes)
-
- message: `string`
+* **message**: *string*
 
 ___
-<a id="meta"></a>
 
 ###  meta
 
-**● meta**: *`MetaDataType`*
+• **meta**: *`MetaDataType`*
 
 *Inherited from [IAPIResponse](_schemes_apiresponse_.iapiresponse.md).[meta](_schemes_apiresponse_.iapiresponse.md#meta)*
 
-*Defined in [schemes/APIResponse.ts:12](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/APIResponse.ts#L12)*
-
-___
-
+*Defined in [schemes/APIResponse.ts:12](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/APIResponse.ts#L12)*

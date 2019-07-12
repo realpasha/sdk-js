@@ -1,68 +1,61 @@
-[@directus/sdk-js](../README.md) > ["schemes/response/Item"](../modules/_schemes_response_item_.md) > [IItemsResponse](../interfaces/_schemes_response_item_.iitemsresponse.md)
+> **[@directus/sdk-js](../README.md)**
 
-# Interface: IItemsResponse
+[Globals](../README.md) / ["schemes/response/Item"](../modules/_schemes_response_item_.md) / [IItemsResponse](_schemes_response_item_.iitemsresponse.md) /
 
-*__see__*: [https://docs.directus.io/api/reference.html#items](https://docs.directus.io/api/reference.html#items)
+# Interface: IItemsResponse <**ItemsType**>
+
+**`see`** https://docs.directus.io/api/reference.html#items
 
 ## Type parameters
-#### ItemsType :  `Array`<`__type`>
+
+▪ **ItemsType**: *`Array<__type>`*
+
 ## Hierarchy
 
-↳  [IAPIResponse](_schemes_apiresponse_.iapiresponse.md)<`ItemsType`, [IAPIMetaList](_schemes_apiresponse_.iapimetalist.md)>
+  * [IAPIResponse](_schemes_apiresponse_.iapiresponse.md)‹*`ItemsType`*, *[IAPIMetaList](_schemes_apiresponse_.iapimetalist.md)*›
 
-**↳ IItemsResponse**
+  * **IItemsResponse**
 
-## Index
+### Index
 
-### Properties
+#### Properties
 
 * [data](_schemes_response_item_.iitemsresponse.md#data)
-* [error](_schemes_response_item_.iitemsresponse.md#error)
+* [error](_schemes_response_item_.iitemsresponse.md#optional-error)
 * [meta](_schemes_response_item_.iitemsresponse.md#meta)
-
----
 
 ## Properties
 
-<a id="data"></a>
-
 ###  data
 
-**● data**: *`ItemsType`*
+• **data**: *`ItemsType`*
 
 *Inherited from [IAPIResponse](_schemes_apiresponse_.iapiresponse.md).[data](_schemes_apiresponse_.iapiresponse.md#data)*
 
-*Defined in [schemes/APIResponse.ts:13](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/APIResponse.ts#L13)*
+*Defined in [schemes/APIResponse.ts:13](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/APIResponse.ts#L13)*
 
 ___
-<a id="error"></a>
 
-### `<Optional>` error
+### `Optional` error
 
-**● error**: *`object`*
+• **error**? : *object*
 
-*Inherited from [IAbstractAPIResponse](_schemes_apiresponse_.iabstractapiresponse.md).[error](_schemes_apiresponse_.iabstractapiresponse.md#error)*
+*Inherited from [IAbstractAPIResponse](_schemes_apiresponse_.iabstractapiresponse.md).[error](_schemes_apiresponse_.iabstractapiresponse.md#optional-error)*
 
-*Defined in [schemes/APIResponse.ts:2](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/APIResponse.ts#L2)*
+*Defined in [schemes/APIResponse.ts:2](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/APIResponse.ts#L2)*
 
-#### Type declaration
+#### Type declaration:
 
- code: `number`
+* **code**: *number*
 
-*__see__*: [https://docs.directus.io/api/reference.html#error-codes](https://docs.directus.io/api/reference.html#error-codes)
-
- message: `string`
+* **message**: *string*
 
 ___
-<a id="meta"></a>
 
 ###  meta
 
-**● meta**: *[IAPIMetaList](_schemes_apiresponse_.iapimetalist.md)*
+• **meta**: *[IAPIMetaList](_schemes_apiresponse_.iapimetalist.md)*
 
 *Inherited from [IAPIResponse](_schemes_apiresponse_.iapiresponse.md).[meta](_schemes_apiresponse_.iapiresponse.md#meta)*
 
-*Defined in [schemes/APIResponse.ts:12](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/APIResponse.ts#L12)*
-
-___
-
+*Defined in [schemes/APIResponse.ts:12](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/APIResponse.ts#L12)*

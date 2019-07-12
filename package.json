@@ -12,7 +12,7 @@
     "dist"
   ],
   "scripts": {
-    "documentation": "typedoc --theme markdown --out docs --mdEngine github --mdSourceRepo https://github.com/directus/directus-sdk-js",
+    "documentation": "typedoc --theme markdown --out docs --mdEngine github --readme none",
     "prettier": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\" \"**/*.json\"",
     "develop": "webpack --progress --colors --watch",
     "prebuild": "npm-run-all prebuild:*",

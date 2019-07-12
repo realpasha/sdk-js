@@ -1,62 +1,56 @@
-[@directus/sdk-js](../README.md) > ["schemes/directus/ServerInformation"](../modules/_schemes_directus_serverinformation_.md) > [IServerInformation](../interfaces/_schemes_directus_serverinformation_.iserverinformation.md)
+> **[@directus/sdk-js](../README.md)**
+
+[Globals](../README.md) / ["schemes/directus/ServerInformation"](../modules/_schemes_directus_serverinformation_.md) / [IServerInformation](_schemes_directus_serverinformation_.iserverinformation.md) /
 
 # Interface: IServerInformation
 
 ## Hierarchy
 
-**IServerInformation**
+* **IServerInformation**
 
-## Index
+### Index
 
-### Properties
+#### Properties
 
 * [api](_schemes_directus_serverinformation_.iserverinformation.md#api)
 * [server](_schemes_directus_serverinformation_.iserverinformation.md#server)
 
----
-
 ## Properties
-
-<a id="api"></a>
 
 ###  api
 
-**● api**: *`object`*
+• **api**: *object*
 
-*Defined in [schemes/directus/ServerInformation.ts:2](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/ServerInformation.ts#L2)*
+*Defined in [schemes/directus/ServerInformation.ts:2](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/ServerInformation.ts#L2)*
 
-#### Type declaration
+#### Type declaration:
 
- database: `string`
+* **database**: *string*
 
- project_logo: `object`
+* **project_logo**(): *object*
 
- full_url: `string`
+  * **full_url**: *string*
 
- url: `string`
+  * **url**: *string*
 
- project_name: `string`
+* **project_name**: *string*
 
- version: `string`
+* **version**: *string*
 
 ___
-<a id="server"></a>
 
 ###  server
 
-**● server**: *`object`*
+• **server**: *object*
 
-*Defined in [schemes/directus/ServerInformation.ts:11](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/ServerInformation.ts#L11)*
+*Defined in [schemes/directus/ServerInformation.ts:11](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/ServerInformation.ts#L11)*
 
-#### Type declaration
+#### Type declaration:
 
- general: `object`
+* **general**(): *object*
 
- php_api: `string`
+  * **php_api**: *string*
 
- php_version: `string`
+  * **php_version**: *string*
 
- max_upload_size: `8388608`
-
-___
-
+* **max_upload_size**: *`8388608`*

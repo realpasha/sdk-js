@@ -1,14 +1,16 @@
-[@directus/sdk-js](../README.md) > ["Configuration"](../modules/_configuration_.md)
+> **[@directus/sdk-js](../README.md)**
+
+[Globals](../README.md) / ["Configuration"](_configuration_.md) /
 
 # External module: "Configuration"
 
-## Index
+### Index
 
-### Classes
+#### Classes
 
 * [Configuration](../classes/_configuration_.configuration.md)
 
-### Interfaces
+#### Interfaces
 
 * [IConfiguration](../interfaces/_configuration_.iconfiguration.md)
 * [IConfigurationDefaults](../interfaces/_configuration_.iconfigurationdefaults.md)
@@ -16,21 +18,14 @@
 * [IConfigurationValues](../interfaces/_configuration_.iconfigurationvalues.md)
 * [IStorageAPI](../interfaces/_configuration_.istorageapi.md)
 
-### Variables
+#### Variables
 
-* [STORAGE_KEY](_configuration_.md#storage_key)
-
----
+* [STORAGE_KEY](_configuration_.md#const-storage_key)
 
 ## Variables
 
-<a id="storage_key"></a>
+### `Const` STORAGE_KEY
 
-### `<Const>` STORAGE_KEY
+• **STORAGE_KEY**: *"directus-sdk-js"* = "directus-sdk-js"
 
-**● STORAGE_KEY**: *"directus-sdk-js"* = "directus-sdk-js"
-
-*Defined in [Configuration.ts:4](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/Configuration.ts#L4)*
-
-___
-
+*Defined in [Configuration.ts:4](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/Configuration.ts#L4)*

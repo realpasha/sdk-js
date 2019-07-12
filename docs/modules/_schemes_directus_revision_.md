@@ -1,12 +1,11 @@
-[@directus/sdk-js](../README.md) > ["schemes/directus/Revision"](../modules/_schemes_directus_revision_.md)
+> **[@directus/sdk-js](../README.md)**
+
+[Globals](../README.md) / ["schemes/directus/Revision"](_schemes_directus_revision_.md) /
 
 # External module: "schemes/directus/Revision"
 
-## Index
+### Index
 
-### Interfaces
+#### Interfaces
 
 * [IRevision](../interfaces/_schemes_directus_revision_.irevision.md)
-
----
-

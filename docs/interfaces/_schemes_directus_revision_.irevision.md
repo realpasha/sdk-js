@@ -1,18 +1,22 @@
-[@directus/sdk-js](../README.md) > ["schemes/directus/Revision"](../modules/_schemes_directus_revision_.md) > [IRevision](../interfaces/_schemes_directus_revision_.irevision.md)
+> **[@directus/sdk-js](../README.md)**
 
-# Interface: IRevision
+[Globals](../README.md) / ["schemes/directus/Revision"](../modules/_schemes_directus_revision_.md) / [IRevision](_schemes_directus_revision_.irevision.md) /
 
-*__see__*: [https://docs.directus.io/api/reference.html#revision-object](https://docs.directus.io/api/reference.html#revision-object)
+# Interface: IRevision <**T**>
+
+**`see`** https://docs.directus.io/api/reference.html#revision-object
 
 ## Type parameters
-#### T 
+
+▪ **T**
+
 ## Hierarchy
 
-**IRevision**
+* **IRevision**
 
-## Index
+### Index
 
-### Properties
+#### Properties
 
 * [activity](_schemes_directus_revision_.irevision.md#activity)
 * [collection](_schemes_directus_revision_.irevision.md#collection)
@@ -21,92 +25,77 @@
 * [id](_schemes_directus_revision_.irevision.md#id)
 * [item](_schemes_directus_revision_.irevision.md#item)
 * [parent_changed](_schemes_directus_revision_.irevision.md#parent_changed)
-* [parent_collection](_schemes_directus_revision_.irevision.md#parent_collection)
-* [parent_item](_schemes_directus_revision_.irevision.md#parent_item)
-
----
+* [parent_collection](_schemes_directus_revision_.irevision.md#optional-parent_collection)
+* [parent_item](_schemes_directus_revision_.irevision.md#optional-parent_item)
 
 ## Properties
 
-<a id="activity"></a>
-
 ###  activity
 
-**● activity**: *`number`*
+• **activity**: *number*
 
-*Defined in [schemes/directus/Revision.ts:5](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Revision.ts#L5)*
+*Defined in [schemes/directus/Revision.ts:5](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/Revision.ts#L5)*
 
 ___
-<a id="collection"></a>
 
 ###  collection
 
-**● collection**: *`string`*
+• **collection**: *string*
 
-*Defined in [schemes/directus/Revision.ts:6](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Revision.ts#L6)*
+*Defined in [schemes/directus/Revision.ts:6](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/Revision.ts#L6)*
 
 ___
-<a id="data"></a>
 
 ###  data
 
-**● data**: *`T`*
+• **data**: *`T`*
 
-*Defined in [schemes/directus/Revision.ts:7](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Revision.ts#L7)*
+*Defined in [schemes/directus/Revision.ts:7](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/Revision.ts#L7)*
 
 ___
-<a id="delta"></a>
 
 ###  delta
 
-**● delta**: *`Partial`<`T`>*
+• **delta**: *`Partial<T>`*
 
-*Defined in [schemes/directus/Revision.ts:8](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Revision.ts#L8)*
+*Defined in [schemes/directus/Revision.ts:8](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/Revision.ts#L8)*
 
 ___
-<a id="id"></a>
 
 ###  id
 
-**● id**: *`number`*
+• **id**: *number*
 
-*Defined in [schemes/directus/Revision.ts:9](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Revision.ts#L9)*
+*Defined in [schemes/directus/Revision.ts:9](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/Revision.ts#L9)*
 
 ___
-<a id="item"></a>
 
 ###  item
 
-**● item**: *`string`*
+• **item**: *string*
 
-*Defined in [schemes/directus/Revision.ts:10](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Revision.ts#L10)*
+*Defined in [schemes/directus/Revision.ts:10](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/Revision.ts#L10)*
 
 ___
-<a id="parent_changed"></a>
 
 ###  parent_changed
 
-**● parent_changed**: *`boolean`*
+• **parent_changed**: *boolean*
 
-*Defined in [schemes/directus/Revision.ts:11](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Revision.ts#L11)*
-
-___
-<a id="parent_collection"></a>
-
-### `<Optional>` parent_collection
-
-**● parent_collection**: *`any`*
-
-*Defined in [schemes/directus/Revision.ts:12](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Revision.ts#L12)*
-
-___
-<a id="parent_item"></a>
-
-### `<Optional>` parent_item
-
-**● parent_item**: *`string`*
-
-*Defined in [schemes/directus/Revision.ts:13](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Revision.ts#L13)*
+*Defined in [schemes/directus/Revision.ts:11](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/Revision.ts#L11)*
 
 ___
 
+### `Optional` parent_collection
+
+• **parent_collection**? : *any*
+
+*Defined in [schemes/directus/Revision.ts:12](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/Revision.ts#L12)*
+
+___
+
+### `Optional` parent_item
+
+• **parent_item**? : *string*
+
+*Defined in [schemes/directus/Revision.ts:13](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/Revision.ts#L13)*

@@ -1,14 +1,16 @@
-[@directus/sdk-js](../README.md) > ["schemes/http/Query"](../modules/_schemes_http_query_.md) > [IQueryParameters](../interfaces/_schemes_http_query_.iqueryparameters.md)
+> **[@directus/sdk-js](../README.md)**
+
+[Globals](../README.md) / ["schemes/http/Query"](../modules/_schemes_http_query_.md) / [IQueryParameters](_schemes_http_query_.iqueryparameters.md) /
 
 # Interface: IQueryParameters
 
 ## Hierarchy
 
-**IQueryParameters**
+* **IQueryParameters**
 
-## Index
+### Index
 
-### Properties
+#### Properties
 
 * [activity_skip](_schemes_http_query_.iqueryparameters.md#activity_skip)
 * [comment](_schemes_http_query_.iqueryparameters.md#comment)
@@ -24,129 +26,110 @@
 * [sort](_schemes_http_query_.iqueryparameters.md#sort)
 * [status](_schemes_http_query_.iqueryparameters.md#status)
 
----
-
 ## Properties
-
-<a id="activity_skip"></a>
 
 ###  activity_skip
 
-**● activity_skip**: *`number`*
+• **activity_skip**: *number*
 
-*Defined in [schemes/http/Query.ts:19](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/http/Query.ts#L19)*
+*Defined in [schemes/http/Query.ts:19](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/http/Query.ts#L19)*
 
 ___
-<a id="comment"></a>
 
 ###  comment
 
-**● comment**: *`string`*
+• **comment**: *string*
 
-*Defined in [schemes/http/Query.ts:20](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/http/Query.ts#L20)*
+*Defined in [schemes/http/Query.ts:20](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/http/Query.ts#L20)*
 
 ___
-<a id="fields"></a>
 
 ###  fields
 
-**● fields**: *`string` \| `string`[]*
+• **fields**: *string | string[]*
 
-*Defined in [schemes/http/Query.ts:7](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/http/Query.ts#L7)*
+*Defined in [schemes/http/Query.ts:7](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/http/Query.ts#L7)*
 
 ___
-<a id="filter"></a>
 
 ###  filter
 
-**● filter**: *`object`*
+• **filter**: *object*
 
-*Defined in [schemes/http/Query.ts:13](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/http/Query.ts#L13)*
+*Defined in [schemes/http/Query.ts:13](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/http/Query.ts#L13)*
 
-#### Type declaration
+#### Type declaration:
 
-[field: `string`]: `object`
+● \[▪ **field**: *string*\]: object
 
 ___
-<a id="groups"></a>
 
 ###  groups
 
-**● groups**: *`string` \| `string`[]*
+• **groups**: *string | string[]*
 
-*Defined in [schemes/http/Query.ts:18](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/http/Query.ts#L18)*
+*Defined in [schemes/http/Query.ts:18](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/http/Query.ts#L18)*
 
 ___
-<a id="lang"></a>
 
 ###  lang
 
-**● lang**: *`object`*
+• **lang**: *object*
 
-*Defined in [schemes/http/Query.ts:16](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/http/Query.ts#L16)*
+*Defined in [schemes/http/Query.ts:16](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/http/Query.ts#L16)*
 
 ___
-<a id="limit"></a>
 
 ###  limit
 
-**● limit**: *`number`*
+• **limit**: *number*
 
-*Defined in [schemes/http/Query.ts:8](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/http/Query.ts#L8)*
+*Defined in [schemes/http/Query.ts:8](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/http/Query.ts#L8)*
 
 ___
-<a id="meta"></a>
 
 ###  meta
 
-**● meta**: *`object`*
+• **meta**: *object*
 
-*Defined in [schemes/http/Query.ts:6](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/http/Query.ts#L6)*
+*Defined in [schemes/http/Query.ts:6](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/http/Query.ts#L6)*
 
 ___
-<a id="offset"></a>
 
 ###  offset
 
-**● offset**: *`number`*
+• **offset**: *number*
 
-*Defined in [schemes/http/Query.ts:9](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/http/Query.ts#L9)*
+*Defined in [schemes/http/Query.ts:9](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/http/Query.ts#L9)*
 
 ___
-<a id="q"></a>
 
 ###  q
 
-**● q**: *`string`*
+• **q**: *string*
 
-*Defined in [schemes/http/Query.ts:17](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/http/Query.ts#L17)*
+*Defined in [schemes/http/Query.ts:17](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/http/Query.ts#L17)*
 
 ___
-<a id="single"></a>
 
 ###  single
 
-**● single**: *`number`*
+• **single**: *number*
 
-*Defined in [schemes/http/Query.ts:10](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/http/Query.ts#L10)*
+*Defined in [schemes/http/Query.ts:10](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/http/Query.ts#L10)*
 
 ___
-<a id="sort"></a>
 
 ###  sort
 
-**● sort**: *`string` \| `string`[]*
+• **sort**: *string | string[]*
 
-*Defined in [schemes/http/Query.ts:11](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/http/Query.ts#L11)*
+*Defined in [schemes/http/Query.ts:11](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/http/Query.ts#L11)*
 
 ___
-<a id="status"></a>
 
 ###  status
 
-**● status**: *`string` \| `string`[]*
+• **status**: *string | string[]*
 
-*Defined in [schemes/http/Query.ts:12](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/http/Query.ts#L12)*
-
-___
-
+*Defined in [schemes/http/Query.ts:12](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/http/Query.ts#L12)*

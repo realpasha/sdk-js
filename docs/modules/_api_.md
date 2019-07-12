@@ -1,16 +1,15 @@
-[@directus/sdk-js](../README.md) > ["API"](../modules/_api_.md)
+> **[@directus/sdk-js](../README.md)**
+
+[Globals](../README.md) / ["API"](_api_.md) /
 
 # External module: "API"
 
-## Index
+### Index
 
-### Classes
+#### Classes
 
 * [API](../classes/_api_.api.md)
 
-### Interfaces
+#### Interfaces
 
 * [IAPI](../interfaces/_api_.iapi.md)
-
----
-

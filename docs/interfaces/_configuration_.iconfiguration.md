@@ -1,27 +1,29 @@
-[@directus/sdk-js](../README.md) > ["Configuration"](../modules/_configuration_.md) > [IConfiguration](../interfaces/_configuration_.iconfiguration.md)
+> **[@directus/sdk-js](../README.md)**
+
+[Globals](../README.md) / ["Configuration"](../modules/_configuration_.md) / [IConfiguration](_configuration_.iconfiguration.md) /
 
 # Interface: IConfiguration
 
 ## Hierarchy
 
-**IConfiguration**
+* **IConfiguration**
 
 ## Implemented by
 
 * [Configuration](../classes/_configuration_.configuration.md)
 
-## Index
+### Index
 
-### Properties
+#### Properties
 
-* [localExp](_configuration_.iconfiguration.md#localexp)
+* [localExp](_configuration_.iconfiguration.md#optional-localexp)
 * [persist](_configuration_.iconfiguration.md#persist)
 * [project](_configuration_.iconfiguration.md#project)
 * [token](_configuration_.iconfiguration.md#token)
 * [tokenExpirationTime](_configuration_.iconfiguration.md#tokenexpirationtime)
 * [url](_configuration_.iconfiguration.md#url)
 
-### Methods
+#### Methods
 
 * [dehydrate](_configuration_.iconfiguration.md#dehydrate)
 * [deleteHydratedConfig](_configuration_.iconfiguration.md#deletehydratedconfig)
@@ -30,149 +32,128 @@
 * [reset](_configuration_.iconfiguration.md#reset)
 * [update](_configuration_.iconfiguration.md#update)
 
----
-
 ## Properties
 
-<a id="localexp"></a>
+### `Optional` localExp
 
-### `<Optional>` localExp
+• **localExp**? : *number*
 
-**● localExp**: *`number`*
-
-*Defined in [Configuration.ts:27](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/Configuration.ts#L27)*
+*Defined in [Configuration.ts:27](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/Configuration.ts#L27)*
 
 ___
-<a id="persist"></a>
 
 ###  persist
 
-**● persist**: *`boolean`*
+• **persist**: *boolean*
 
-*Defined in [Configuration.ts:29](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/Configuration.ts#L29)*
+*Defined in [Configuration.ts:29](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/Configuration.ts#L29)*
 
 ___
-<a id="project"></a>
 
 ###  project
 
-**● project**: *`string`*
+• **project**: *string*
 
-*Defined in [Configuration.ts:26](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/Configuration.ts#L26)*
+*Defined in [Configuration.ts:26](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/Configuration.ts#L26)*
 
 ___
-<a id="token"></a>
 
 ###  token
 
-**● token**: *`string`*
+• **token**: *string*
 
-*Defined in [Configuration.ts:24](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/Configuration.ts#L24)*
+*Defined in [Configuration.ts:24](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/Configuration.ts#L24)*
 
 ___
-<a id="tokenexpirationtime"></a>
 
 ###  tokenExpirationTime
 
-**● tokenExpirationTime**: *`number`*
+• **tokenExpirationTime**: *number*
 
-*Defined in [Configuration.ts:28](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/Configuration.ts#L28)*
+*Defined in [Configuration.ts:28](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/Configuration.ts#L28)*
 
 ___
-<a id="url"></a>
 
 ###  url
 
-**● url**: *`string`*
+• **url**: *string*
 
-*Defined in [Configuration.ts:25](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/Configuration.ts#L25)*
-
-___
+*Defined in [Configuration.ts:25](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/Configuration.ts#L25)*
 
 ## Methods
 
-<a id="dehydrate"></a>
-
 ###  dehydrate
 
-▸ **dehydrate**(): [IConfigurationValues](_configuration_.iconfigurationvalues.md)
+▸ **dehydrate**(): *[IConfigurationValues](_configuration_.iconfigurationvalues.md)*
 
-*Defined in [Configuration.ts:30](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/Configuration.ts#L30)*
+*Defined in [Configuration.ts:30](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/Configuration.ts#L30)*
 
-**Returns:** [IConfigurationValues](_configuration_.iconfigurationvalues.md)
+**Returns:** *[IConfigurationValues](_configuration_.iconfigurationvalues.md)*
 
 ___
-<a id="deletehydratedconfig"></a>
 
 ###  deleteHydratedConfig
 
-▸ **deleteHydratedConfig**(): `any`
+▸ **deleteHydratedConfig**(): *any*
 
-*Defined in [Configuration.ts:31](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/Configuration.ts#L31)*
+*Defined in [Configuration.ts:31](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/Configuration.ts#L31)*
 
-**Returns:** `any`
+**Returns:** *any*
 
 ___
-<a id="hydrate"></a>
 
 ###  hydrate
 
-▸ **hydrate**(config: *[IConfigurationValues](_configuration_.iconfigurationvalues.md)*): `any`
+▸ **hydrate**(`config`: [IConfigurationValues](_configuration_.iconfigurationvalues.md)): *any*
 
-*Defined in [Configuration.ts:32](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/Configuration.ts#L32)*
+*Defined in [Configuration.ts:32](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/Configuration.ts#L32)*
 
 **Parameters:**
 
-| Name | Type |
-| ------ | ------ |
-| config | [IConfigurationValues](_configuration_.iconfigurationvalues.md) |
+Name | Type |
+------ | ------ |
+`config` | [IConfigurationValues](_configuration_.iconfigurationvalues.md) |
 
-**Returns:** `any`
+**Returns:** *any*
 
 ___
-<a id="partialupdate"></a>
 
 ###  partialUpdate
 
-▸ **partialUpdate**(config: *`Partial`<[IConfigurationValues](_configuration_.iconfigurationvalues.md)>*): `void`
+▸ **partialUpdate**(`config`: `Partial<IConfigurationValues>`): *void*
 
-*Defined in [Configuration.ts:33](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/Configuration.ts#L33)*
+*Defined in [Configuration.ts:33](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/Configuration.ts#L33)*
 
 **Parameters:**
 
-| Name | Type |
-| ------ | ------ |
-| config | `Partial`<[IConfigurationValues](_configuration_.iconfigurationvalues.md)> |
+Name | Type |
+------ | ------ |
+`config` | `Partial<IConfigurationValues>` |
 
-**Returns:** `void`
+**Returns:** *void*
 
 ___
-<a id="reset"></a>
 
 ###  reset
 
-▸ **reset**(): `void`
+▸ **reset**(): *void*
 
-*Defined in [Configuration.ts:34](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/Configuration.ts#L34)*
+*Defined in [Configuration.ts:34](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/Configuration.ts#L34)*
 
-**Returns:** `void`
+**Returns:** *void*
 
 ___
-<a id="update"></a>
 
 ###  update
 
-▸ **update**(config: *[IConfigurationValues](_configuration_.iconfigurationvalues.md)*): `any`
+▸ **update**(`config`: [IConfigurationValues](_configuration_.iconfigurationvalues.md)): *any*
 
-*Defined in [Configuration.ts:35](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/Configuration.ts#L35)*
+*Defined in [Configuration.ts:35](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/Configuration.ts#L35)*
 
 **Parameters:**
 
-| Name | Type |
-| ------ | ------ |
-| config | [IConfigurationValues](_configuration_.iconfigurationvalues.md) |
+Name | Type |
+------ | ------ |
+`config` | [IConfigurationValues](_configuration_.iconfigurationvalues.md) |
 
-**Returns:** `any`
-
-___
-
+**Returns:** *any*

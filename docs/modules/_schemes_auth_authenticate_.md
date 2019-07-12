@@ -1,12 +1,11 @@
-[@directus/sdk-js](../README.md) > ["schemes/auth/Authenticate"](../modules/_schemes_auth_authenticate_.md)
+> **[@directus/sdk-js](../README.md)**
+
+[Globals](../README.md) / ["schemes/auth/Authenticate"](_schemes_auth_authenticate_.md) /
 
 # External module: "schemes/auth/Authenticate"
 
-## Index
+### Index
 
-### Interfaces
+#### Interfaces
 
 * [IAuthenticateResponse](../interfaces/_schemes_auth_authenticate_.iauthenticateresponse.md)
-
----
-

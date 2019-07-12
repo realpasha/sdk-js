@@ -1,35 +1,37 @@
-[@directus/sdk-js](../README.md) > ["API"](../modules/_api_.md) > [API](../classes/_api_.api.md)
+> **[@directus/sdk-js](../README.md)**
+
+[Globals](../README.md) / ["API"](../modules/_api_.md) / [API](_api_.api.md) /
 
 # Class: API
 
 API definition for HTTP transactions
 
-*__uses__*: Authentication
+**`uses`** Authentication
 
-*__uses__*: axios
+**`uses`** axios
 
 ## Hierarchy
 
-**API**
+* **API**
 
 ## Implements
 
 * [IAPI](../interfaces/_api_.iapi.md)
 
-## Index
+### Index
 
-### Constructors
+#### Constructors
 
 * [constructor](_api_.api.md#constructor)
 
-### Properties
+#### Properties
 
 * [auth](_api_.api.md#auth)
 * [concurrent](_api_.api.md#concurrent)
-* [config](_api_.api.md#config)
+* [config](_api_.api.md#private-config)
 * [xhr](_api_.api.md#xhr)
 
-### Methods
+#### Methods
 
 * [delete](_api_.api.md#delete)
 * [get](_api_.api.md#get)
@@ -37,375 +39,291 @@ API definition for HTTP transactions
 * [patch](_api_.api.md#patch)
 * [post](_api_.api.md#post)
 * [put](_api_.api.md#put)
-* [request](_api_.api.md#request-1)
+* [request](_api_.api.md#request)
 * [reset](_api_.api.md#reset)
-
----
 
 ## Constructors
 
-<a id="constructor"></a>
-
 ###  constructor
 
-⊕ **new API**(config: *[IConfiguration](../interfaces/_configuration_.iconfiguration.md)*): [API](_api_.api.md)
+\+ **new API**(`config`: [IConfiguration](../interfaces/_configuration_.iconfiguration.md)): *[API](_api_.api.md)*
 
-*Defined in [API.ts:51](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/API.ts#L51)*
+*Defined in [API.ts:51](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/API.ts#L51)*
 
 **Parameters:**
 
-| Name | Type |
-| ------ | ------ |
-| config | [IConfiguration](../interfaces/_configuration_.iconfiguration.md) |
+Name | Type |
+------ | ------ |
+`config` | [IConfiguration](../interfaces/_configuration_.iconfiguration.md) |
 
-**Returns:** [API](_api_.api.md)
-
-___
+**Returns:** *[API](_api_.api.md)*
 
 ## Properties
 
-<a id="auth"></a>
-
 ###  auth
 
-**● auth**: *[IAuthentication](../interfaces/_authentication_.iauthentication.md)*
+• **auth**: *[IAuthentication](../interfaces/_authentication_.iauthentication.md)*
 
 *Implementation of [IAPI](../interfaces/_api_.iapi.md).[auth](../interfaces/_api_.iapi.md#auth)*
 
-*Defined in [API.ts:46](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/API.ts#L46)*
+*Defined in [API.ts:46](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/API.ts#L46)*
 
 ___
-<a id="concurrent"></a>
 
 ###  concurrent
 
-**● concurrent**: *`object`* =  concurrencyManager(this.xhr, 10)
+• **concurrent**: *object* =  concurrencyManager(this.xhr, 10)
 
 *Implementation of [IAPI](../interfaces/_api_.iapi.md).[concurrent](../interfaces/_api_.iapi.md#concurrent)*
 
-*Defined in [API.ts:51](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/API.ts#L51)*
+*Defined in [API.ts:51](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/API.ts#L51)*
 
-#### Type declaration
+#### Type declaration:
 
- limit: `number`
+* **limit**: *number*
 
- queue: [IConcurrencyQueueItem](../interfaces/_concurrencymanager_.iconcurrencyqueueitem.md)[]
+* **queue**: *[IConcurrencyQueueItem](../interfaces/_concurrencymanager_.iconcurrencyqueueitem.md)[]* =  [] as IConcurrencyQueueItem[]
 
- running: [IConcurrencyQueueItem](../interfaces/_concurrencymanager_.iconcurrencyqueueitem.md)[]
+* **running**: *[IConcurrencyQueueItem](../interfaces/_concurrencymanager_.iconcurrencyqueueitem.md)[]* =  [] as IConcurrencyQueueItem[]
 
- attach : function
-▸ **attach**(limitConcurrentRequestsTo?: *`number`*): `void`
+* **attach**(`limitConcurrentRequestsTo?`: number): *void*
 
-*Defined in [ConcurrencyManager.ts:66](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/ConcurrencyManager.ts#L66)*
+* **detach**(): *void*
 
-**Parameters:**
+* **push**(`reqHandler`: [IConcurrencyQueueItem](../interfaces/_concurrencymanager_.iconcurrencyqueueitem.md)): *void*
 
-| Name | Type |
-| ------ | ------ |
-| `Optional` limitConcurrentRequestsTo | `number` |
+* **requestHandler**(`req`: `AxiosRequestConfig`): *`Promise<AxiosRequestConfig>`*
 
-**Returns:** `void`
+* **responseHandler**(`res`: `AxiosResponse<any>`): *`AxiosResponse<any>`*
 
- detach : function
-▸ **detach**(): `void`
+* **shift**(): *void*
 
-*Defined in [ConcurrencyManager.ts:62](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/ConcurrencyManager.ts#L62)*
+* **shiftInitial**(): *void*
 
-**Returns:** `void`
+* ### **interceptors**: *object*
 
- push : function
-▸ **push**(reqHandler: *[IConcurrencyQueueItem](../interfaces/_concurrencymanager_.iconcurrencyqueueitem.md)*): `void`
+  * **request**: *null* =  null
 
-*Defined in [ConcurrencyManager.ts:27](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/ConcurrencyManager.ts#L27)*
-
-**Parameters:**
-
-| Name | Type |
-| ------ | ------ |
-| reqHandler | [IConcurrencyQueueItem](../interfaces/_concurrencymanager_.iconcurrencyqueueitem.md) |
-
-**Returns:** `void`
-
- requestHandler : function
-▸ **requestHandler**(req: *`AxiosRequestConfig`*): `Promise`<`AxiosRequestConfig`>
-
-*Defined in [ConcurrencyManager.ts:47](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/ConcurrencyManager.ts#L47)*
-
-**Parameters:**
-
-| Name | Type |
-| ------ | ------ |
-| req | `AxiosRequestConfig` |
-
-**Returns:** `Promise`<`AxiosRequestConfig`>
-
- responseHandler : function
-▸ **responseHandler**(res: *`AxiosResponse`<`any`>*): `AxiosResponse`<`any`>
-
-*Defined in [ConcurrencyManager.ts:56](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/ConcurrencyManager.ts#L56)*
-
-**Parameters:**
-
-| Name | Type |
-| ------ | ------ |
-| res | `AxiosResponse`<`any`> |
-
-**Returns:** `AxiosResponse`<`any`>
-
- shift : function
-▸ **shift**(): `void`
-
-*Defined in [ConcurrencyManager.ts:38](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/ConcurrencyManager.ts#L38)*
-
-**Returns:** `void`
-
- shiftInitial : function
-▸ **shiftInitial**(): `void`
-
-*Defined in [ConcurrencyManager.ts:31](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/ConcurrencyManager.ts#L31)*
-
-**Returns:** `void`
-
- interceptors: `object`
-
- request: `null`
-
- response: `null`
+  * **response**: *null* =  null
 
 ___
-<a id="config"></a>
 
-### `<Private>` config
+### `Private` config
 
-**● config**: *[IConfiguration](../interfaces/_configuration_.iconfiguration.md)*
+• **config**: *[IConfiguration](../interfaces/_configuration_.iconfiguration.md)*
 
-*Defined in [API.ts:53](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/API.ts#L53)*
+*Defined in [API.ts:53](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/API.ts#L53)*
 
 ___
-<a id="xhr"></a>
 
 ###  xhr
 
-**● xhr**: *`AxiosInstance`* =  axios.create({
+• **xhr**: *`AxiosInstance`* =  axios.create({
     paramsSerializer: qsStringify,
     timeout: 10 * 60 * 1000, // 10 min
   })
 
 *Implementation of [IAPI](../interfaces/_api_.iapi.md).[xhr](../interfaces/_api_.iapi.md#xhr)*
 
-*Defined in [API.ts:47](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/API.ts#L47)*
-
-___
+*Defined in [API.ts:47](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/API.ts#L47)*
 
 ## Methods
 
-<a id="delete"></a>
-
 ###  delete
 
-▸ **delete**<`T`>(endpoint: *`string`*): `Promise`<`T`>
+▸ **delete**<**T**>(`endpoint`: string): *`Promise<T>`*
 
-*Implementation of [IAPI](../interfaces/_api_.iapi.md).[delete](../interfaces/_api_.iapi.md#delete)*
+*Implementation of [IAPI](../interfaces/_api_.iapi.md)*
 
-*Defined in [API.ts:122](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/API.ts#L122)*
+*Defined in [API.ts:122](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/API.ts#L122)*
 
 DELETE convenience method. Calls the request method for you
 
 **Type parameters:**
 
-#### T :  `any`
+▪ **T**: *any*
 
 response type
 
 **Parameters:**
 
-| Name | Type |
-| ------ | ------ |
-| endpoint | `string` |
+Name | Type |
+------ | ------ |
+`endpoint` | string |
 
-**Returns:** `Promise`<`T`>
+**Returns:** *`Promise<T>`*
 
 ___
-<a id="get"></a>
 
 ###  get
 
-▸ **get**<`T`>(endpoint: *`string`*, params?: *`object`*): `Promise`<`T`>
+▸ **get**<**T**>(`endpoint`: string, `params`: object): *`Promise<T>`*
 
-*Implementation of [IAPI](../interfaces/_api_.iapi.md).[get](../interfaces/_api_.iapi.md#get)*
+*Implementation of [IAPI](../interfaces/_api_.iapi.md)*
 
-*Defined in [API.ts:74](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/API.ts#L74)*
+*Defined in [API.ts:74](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/API.ts#L74)*
 
 GET convenience method. Calls the request method for you
 
 **Type parameters:**
 
-#### T :  `any`
+▪ **T**: *any*
 
 response type
 
 **Parameters:**
 
-| Name | Type | Default value |
-| ------ | ------ | ------ |
-| endpoint | `string` | - |
-| `Default value` params | `object` |  {} |
+Name | Type | Default |
+------ | ------ | ------ |
+`endpoint` | string | - |
+`params` | object |  {} |
 
-**Returns:** `Promise`<`T`>
+**Returns:** *`Promise<T>`*
 
 ___
-<a id="getpayload"></a>
 
 ###  getPayload
 
-▸ **getPayload**<`T`>(): `T`
+▸ **getPayload**<**T**>(): *`T`*
 
-*Implementation of [IAPI](../interfaces/_api_.iapi.md).[getPayload](../interfaces/_api_.iapi.md#getpayload)*
+*Implementation of [IAPI](../interfaces/_api_.iapi.md)*
 
-*Defined in [API.ts:133](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/API.ts#L133)*
+*Defined in [API.ts:133](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/API.ts#L133)*
 
 Gets the payload of the current token, return type can be generic
 
 **Type parameters:**
 
-#### T :  `object`
+▪ **T**: *object*
 
 extends object, payload type
 
-**Returns:** `T`
+**Returns:** *`T`*
 
 ___
-<a id="patch"></a>
 
 ###  patch
 
-▸ **patch**<`T`>(endpoint: *`string`*, body?: *[BodyType](../modules/_schemes_http_body_.md#bodytype)*, params?: *`object`*): `Promise`<`T`>
+▸ **patch**<**T**>(`endpoint`: string, `body`: [BodyType](../modules/_schemes_http_body_.md#bodytype), `params`: object): *`Promise<T>`*
 
-*Implementation of [IAPI](../interfaces/_api_.iapi.md).[patch](../interfaces/_api_.iapi.md#patch)*
+*Implementation of [IAPI](../interfaces/_api_.iapi.md)*
 
-*Defined in [API.ts:98](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/API.ts#L98)*
+*Defined in [API.ts:98](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/API.ts#L98)*
 
 PATCH convenience method. Calls the request method for you
 
 **Type parameters:**
 
-#### T :  `any`
+▪ **T**: *any*
 
 response type
 
 **Parameters:**
 
-| Name | Type | Default value |
-| ------ | ------ | ------ |
-| endpoint | `string` | - |
-| `Default value` body | [BodyType](../modules/_schemes_http_body_.md#bodytype) |  {} |
-| `Default value` params | `object` |  {} |
+Name | Type | Default |
+------ | ------ | ------ |
+`endpoint` | string | - |
+`body` | [BodyType](../modules/_schemes_http_body_.md#bodytype) |  {} |
+`params` | object |  {} |
 
-**Returns:** `Promise`<`T`>
+**Returns:** *`Promise<T>`*
 
 ___
-<a id="post"></a>
 
 ###  post
 
-▸ **post**<`T`>(endpoint: *`string`*, body?: *[BodyType](../modules/_schemes_http_body_.md#bodytype)*, params?: *`object`*): `Promise`<`T`>
+▸ **post**<**T**>(`endpoint`: string, `body`: [BodyType](../modules/_schemes_http_body_.md#bodytype), `params`: object): *`Promise<T>`*
 
-*Implementation of [IAPI](../interfaces/_api_.iapi.md).[post](../interfaces/_api_.iapi.md#post)*
+*Implementation of [IAPI](../interfaces/_api_.iapi.md)*
 
-*Defined in [API.ts:86](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/API.ts#L86)*
+*Defined in [API.ts:86](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/API.ts#L86)*
 
 POST convenience method. Calls the request method for you
 
 **Type parameters:**
 
-#### T :  `any`
+▪ **T**: *any*
 
 response type
 
 **Parameters:**
 
-| Name | Type | Default value |
-| ------ | ------ | ------ |
-| endpoint | `string` | - |
-| `Default value` body | [BodyType](../modules/_schemes_http_body_.md#bodytype) |  {} |
-| `Default value` params | `object` |  {} |
+Name | Type | Default |
+------ | ------ | ------ |
+`endpoint` | string | - |
+`body` | [BodyType](../modules/_schemes_http_body_.md#bodytype) |  {} |
+`params` | object |  {} |
 
-**Returns:** `Promise`<`T`>
+**Returns:** *`Promise<T>`*
 
 ___
-<a id="put"></a>
 
 ###  put
 
-▸ **put**<`T`>(endpoint: *`string`*, body?: *[BodyType](../modules/_schemes_http_body_.md#bodytype)*, params?: *`object`*): `Promise`<`T`>
+▸ **put**<**T**>(`endpoint`: string, `body`: [BodyType](../modules/_schemes_http_body_.md#bodytype), `params`: object): *`Promise<T>`*
 
-*Implementation of [IAPI](../interfaces/_api_.iapi.md).[put](../interfaces/_api_.iapi.md#put)*
+*Implementation of [IAPI](../interfaces/_api_.iapi.md)*
 
-*Defined in [API.ts:110](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/API.ts#L110)*
+*Defined in [API.ts:110](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/API.ts#L110)*
 
 PUT convenience method. Calls the request method for you
 
 **Type parameters:**
 
-#### T :  `any`
+▪ **T**: *any*
 
 response type
 
 **Parameters:**
 
-| Name | Type | Default value |
-| ------ | ------ | ------ |
-| endpoint | `string` | - |
-| `Default value` body | [BodyType](../modules/_schemes_http_body_.md#bodytype) |  {} |
-| `Default value` params | `object` |  {} |
+Name | Type | Default |
+------ | ------ | ------ |
+`endpoint` | string | - |
+`body` | [BodyType](../modules/_schemes_http_body_.md#bodytype) |  {} |
+`params` | object |  {} |
 
-**Returns:** `Promise`<`T`>
+**Returns:** *`Promise<T>`*
 
 ___
-<a id="request-1"></a>
 
 ###  request
 
-▸ **request**<`T`>(method: *[RequestMethod](../modules/_schemes_http_request_.md#requestmethod)*, endpoint: *`string`*, params?: *`object`*, data?: *`object`*, noEnv?: *`boolean`*, headers?: *`object`*, skipParseToJSON?: *`boolean`*): `Promise`<`T`>
+▸ **request**<**T**>(`method`: [RequestMethod](../modules/_schemes_http_request_.md#requestmethod), `endpoint`: string, `params`: object, `data`: object, `noEnv`: boolean, `headers`: object, `skipParseToJSON`: boolean): *`Promise<T>`*
 
-*Defined in [API.ts:153](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/API.ts#L153)*
+*Defined in [API.ts:153](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/API.ts#L153)*
 
 Perform an API request to the Directus API
 
 **Type parameters:**
 
-#### T :  `any`
+▪ **T**: *any*
 
 Response type definition, defaults to `any`
 
 **Parameters:**
 
-| Name | Type | Default value | Description |
-| ------ | ------ | ------ | ------ |
-| method | [RequestMethod](../modules/_schemes_http_request_.md#requestmethod) | - |  Selected HTTP method |
-| endpoint | `string` | - |  Endpoint definition as path |
-| `Default value` params | `object` |  {} |  Query parameters |
-| `Default value` data | `object` |  {} |  Data passed to directus |
-| `Default value` noEnv | `boolean` | false |  Do not include the \`env\` in the url (for system calls) |
-| `Default value` headers | `object` |  {} |  Optional headers to include |
-| `Default value` skipParseToJSON | `boolean` | false |  Whether to skip \`JSON.parse\` or not |
+Name | Type | Default | Description |
+------ | ------ | ------ | ------ |
+`method` | [RequestMethod](../modules/_schemes_http_request_.md#requestmethod) | - | Selected HTTP method |
+`endpoint` | string | - | Endpoint definition as path |
+`params` | object |  {} | Query parameters |
+`data` | object |  {} | Data passed to directus |
+`noEnv` | boolean | false | Do not include the `env` in the url (for system calls) |
+`headers` | object |  {} | Optional headers to include |
+`skipParseToJSON` | boolean | false | Whether to skip `JSON.parse` or not |
 
-**Returns:** `Promise`<`T`>
+**Returns:** *`Promise<T>`*
 
 ___
-<a id="reset"></a>
 
 ###  reset
 
-▸ **reset**(): `void`
+▸ **reset**(): *void*
 
-*Implementation of [IAPI](../interfaces/_api_.iapi.md).[reset](../interfaces/_api_.iapi.md#reset)*
+*Implementation of [IAPI](../interfaces/_api_.iapi.md)*
 
-*Defined in [API.ts:62](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/API.ts#L62)*
+*Defined in [API.ts:62](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/API.ts#L62)*
 
 Resets the client instance by logging out and removing the URL and project
 
-**Returns:** `void`
-
-___
-
+**Returns:** *void*

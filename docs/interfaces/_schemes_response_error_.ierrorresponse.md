@@ -1,138 +1,139 @@
-[@directus/sdk-js](../README.md) > ["schemes/response/Error"](../modules/_schemes_response_error_.md) > [IErrorResponse](../interfaces/_schemes_response_error_.ierrorresponse.md)
+> **[@directus/sdk-js](../README.md)**
 
-# Interface: IErrorResponse
+[Globals](../README.md) / ["schemes/response/Error"](../modules/_schemes_response_error_.md) / [IErrorResponse](_schemes_response_error_.ierrorresponse.md) /
+
+# Interface: IErrorResponse <**T, T**>
 
 ## Type parameters
-#### T :  `any`
+
+▪ **T**: *any*
+
+▪ **T**
+
 ## Hierarchy
 
- `AxiosError`
+* `AxiosError`
 
-**↳ IErrorResponse**
+  * **IErrorResponse**
 
-## Index
+### Index
 
-### Properties
+#### Properties
 
-* [code](_schemes_response_error_.ierrorresponse.md#code)
+* [code](_schemes_response_error_.ierrorresponse.md#optional-code)
 * [config](_schemes_response_error_.ierrorresponse.md#config)
 * [data](_schemes_response_error_.ierrorresponse.md#data)
 * [error](_schemes_response_error_.ierrorresponse.md#error)
-* [json](_schemes_response_error_.ierrorresponse.md#json)
+* [isAxiosError](_schemes_response_error_.ierrorresponse.md#isaxioserror)
+* [json](_schemes_response_error_.ierrorresponse.md#optional-json)
 * [message](_schemes_response_error_.ierrorresponse.md#message)
 * [name](_schemes_response_error_.ierrorresponse.md#name)
-* [request](_schemes_response_error_.ierrorresponse.md#request)
-* [response](_schemes_response_error_.ierrorresponse.md#response)
-* [stack](_schemes_response_error_.ierrorresponse.md#stack)
-
----
+* [request](_schemes_response_error_.ierrorresponse.md#optional-request)
+* [response](_schemes_response_error_.ierrorresponse.md#optional-response)
+* [stack](_schemes_response_error_.ierrorresponse.md#optional-stack)
 
 ## Properties
 
-<a id="code"></a>
+### `Optional` code
 
-### `<Optional>` code
+• **code**? : *string*
 
-**● code**: *`string`*
+*Inherited from void*
 
-*Inherited from AxiosError.code*
-
-*Defined in /Users/janbiasi/github/contrib/sdk-js-fork/node_modules/axios/index.d.ts:62*
+Defined in /Users/janbiasi/github/contrib/sdk-js-fork/node_modules/axios/index.d.ts:81
 
 ___
-<a id="config"></a>
 
 ###  config
 
-**● config**: *`AxiosRequestConfig`*
+• **config**: *`AxiosRequestConfig`*
 
-*Inherited from AxiosError.config*
+*Inherited from void*
 
-*Defined in /Users/janbiasi/github/contrib/sdk-js-fork/node_modules/axios/index.d.ts:61*
+Defined in /Users/janbiasi/github/contrib/sdk-js-fork/node_modules/axios/index.d.ts:80
 
 ___
-<a id="data"></a>
 
 ###  data
 
-**● data**: *`T`*
+• **data**: *`T`*
 
-*Defined in [schemes/response/Error.ts:6](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/response/Error.ts#L6)*
+*Defined in [schemes/response/Error.ts:6](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/response/Error.ts#L6)*
 
 ___
-<a id="error"></a>
 
 ###  error
 
-**● error**: *`Error`*
+• **error**: *`Error`*
 
-*Defined in [schemes/response/Error.ts:5](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/response/Error.ts#L5)*
-
-___
-<a id="json"></a>
-
-### `<Optional>` json
-
-**● json**: *`boolean`*
-
-*Defined in [schemes/response/Error.ts:4](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/response/Error.ts#L4)*
+*Defined in [schemes/response/Error.ts:5](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/response/Error.ts#L5)*
 
 ___
-<a id="message"></a>
+
+###  isAxiosError
+
+• **isAxiosError**: *boolean*
+
+*Inherited from void*
+
+Defined in /Users/janbiasi/github/contrib/sdk-js-fork/node_modules/axios/index.d.ts:84
+
+___
+
+### `Optional` json
+
+• **json**? : *boolean*
+
+*Defined in [schemes/response/Error.ts:4](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/response/Error.ts#L4)*
+
+___
 
 ###  message
 
-**● message**: *`string`*
+• **message**: *string*
 
-*Inherited from Error.message*
+*Inherited from void*
 
-*Defined in /Users/janbiasi/github/contrib/sdk-js-fork/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:964*
+Defined in /Users/janbiasi/github/contrib/sdk-js-fork/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:964
 
 ___
-<a id="name"></a>
 
 ###  name
 
-**● name**: *`string`*
+• **name**: *string*
 
-*Inherited from Error.name*
+*Inherited from void*
 
-*Defined in /Users/janbiasi/github/contrib/sdk-js-fork/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:963*
-
-___
-<a id="request"></a>
-
-### `<Optional>` request
-
-**● request**: *`any`*
-
-*Inherited from AxiosError.request*
-
-*Defined in /Users/janbiasi/github/contrib/sdk-js-fork/node_modules/axios/index.d.ts:63*
-
-___
-<a id="response"></a>
-
-### `<Optional>` response
-
-**● response**: *`AxiosResponse`*
-
-*Inherited from AxiosError.response*
-
-*Defined in /Users/janbiasi/github/contrib/sdk-js-fork/node_modules/axios/index.d.ts:64*
-
-___
-<a id="stack"></a>
-
-### `<Optional>` stack
-
-**● stack**: *`string`*
-
-*Inherited from Error.stack*
-
-*Overrides Error.stack*
-
-*Defined in /Users/janbiasi/github/contrib/sdk-js-fork/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:965*
+Defined in /Users/janbiasi/github/contrib/sdk-js-fork/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:963
 
 ___
 
+### `Optional` request
+
+• **request**? : *any*
+
+*Inherited from void*
+
+Defined in /Users/janbiasi/github/contrib/sdk-js-fork/node_modules/axios/index.d.ts:82
+
+___
+
+### `Optional` response
+
+• **response**? : *`AxiosResponse<T>`*
+
+*Inherited from void*
+
+Defined in /Users/janbiasi/github/contrib/sdk-js-fork/node_modules/axios/index.d.ts:83
+
+___
+
+### `Optional` stack
+
+• **stack**? : *string*
+
+*Inherited from void*
+
+*Overrides void*
+
+Defined in /Users/janbiasi/github/contrib/sdk-js-fork/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:965

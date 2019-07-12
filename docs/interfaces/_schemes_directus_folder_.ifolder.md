@@ -1,50 +1,43 @@
-[@directus/sdk-js](../README.md) > ["schemes/directus/Folder"](../modules/_schemes_directus_folder_.md) > [IFolder](../interfaces/_schemes_directus_folder_.ifolder.md)
+> **[@directus/sdk-js](../README.md)**
+
+[Globals](../README.md) / ["schemes/directus/Folder"](../modules/_schemes_directus_folder_.md) / [IFolder](_schemes_directus_folder_.ifolder.md) /
 
 # Interface: IFolder
 
-*__see__*: [https://docs.directus.io/api/reference.html#folder-object](https://docs.directus.io/api/reference.html#folder-object)
+**`see`** https://docs.directus.io/api/reference.html#folder-object
 
 ## Hierarchy
 
-**IFolder**
+* **IFolder**
 
-## Index
+### Index
 
-### Properties
+#### Properties
 
 * [id](_schemes_directus_folder_.ifolder.md#id)
 * [name](_schemes_directus_folder_.ifolder.md#name)
-* [parent_folder](_schemes_directus_folder_.ifolder.md#parent_folder)
-
----
+* [parent_folder](_schemes_directus_folder_.ifolder.md#optional-parent_folder)
 
 ## Properties
 
-<a id="id"></a>
-
 ###  id
 
-**● id**: *`number`*
+• **id**: *number*
 
-*Defined in [schemes/directus/Folder.ts:5](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Folder.ts#L5)*
+*Defined in [schemes/directus/Folder.ts:5](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/Folder.ts#L5)*
 
 ___
-<a id="name"></a>
 
 ###  name
 
-**● name**: *`string`*
+• **name**: *string*
 
-*Defined in [schemes/directus/Folder.ts:6](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Folder.ts#L6)*
-
-___
-<a id="parent_folder"></a>
-
-### `<Optional>` parent_folder
-
-**● parent_folder**: *`string`*
-
-*Defined in [schemes/directus/Folder.ts:7](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Folder.ts#L7)*
+*Defined in [schemes/directus/Folder.ts:6](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/Folder.ts#L6)*
 
 ___
 
+### `Optional` parent_folder
+
+• **parent_folder**? : *string*
+
+*Defined in [schemes/directus/Folder.ts:7](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/Folder.ts#L7)*

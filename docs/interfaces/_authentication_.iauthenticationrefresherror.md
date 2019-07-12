@@ -1,38 +1,32 @@
-[@directus/sdk-js](../README.md) > ["Authentication"](../modules/_authentication_.md) > [IAuthenticationRefreshError](../interfaces/_authentication_.iauthenticationrefresherror.md)
+> **[@directus/sdk-js](../README.md)**
+
+[Globals](../README.md) / ["Authentication"](../modules/_authentication_.md) / [IAuthenticationRefreshError](_authentication_.iauthenticationrefresherror.md) /
 
 # Interface: IAuthenticationRefreshError
 
 ## Hierarchy
 
-**IAuthenticationRefreshError**
+* **IAuthenticationRefreshError**
 
-## Index
+### Index
 
-### Properties
+#### Properties
 
-* [code](_authentication_.iauthenticationrefresherror.md#code)
+* [code](_authentication_.iauthenticationrefresherror.md#optional-code)
 * [message](_authentication_.iauthenticationrefresherror.md#message)
-
----
 
 ## Properties
 
-<a id="code"></a>
+### `Optional` code
 
-### `<Optional>` code
+• **code**? : *number*
 
-**● code**: *`number`*
-
-*Defined in [Authentication.ts:18](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/Authentication.ts#L18)*
+*Defined in [Authentication.ts:18](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/Authentication.ts#L18)*
 
 ___
-<a id="message"></a>
 
 ###  message
 
-**● message**: *`string`*
+• **message**: *string*
 
-*Defined in [Authentication.ts:19](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/Authentication.ts#L19)*
-
-___
-
+*Defined in [Authentication.ts:19](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/Authentication.ts#L19)*

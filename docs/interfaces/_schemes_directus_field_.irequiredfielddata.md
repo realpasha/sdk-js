@@ -1,60 +1,52 @@
-[@directus/sdk-js](../README.md) > ["schemes/directus/Field"](../modules/_schemes_directus_field_.md) > [IRequiredFieldData](../interfaces/_schemes_directus_field_.irequiredfielddata.md)
+> **[@directus/sdk-js](../README.md)**
+
+[Globals](../README.md) / ["schemes/directus/Field"](../modules/_schemes_directus_field_.md) / [IRequiredFieldData](_schemes_directus_field_.irequiredfielddata.md) /
 
 # Interface: IRequiredFieldData
 
 ## Hierarchy
 
-**IRequiredFieldData**
+* **IRequiredFieldData**
 
-↳  [IField](_schemes_directus_field_.ifield.md)
+  * [IField](_schemes_directus_field_.ifield.md)
 
-## Index
+### Index
 
-### Properties
+#### Properties
 
 * [datatype](_schemes_directus_field_.irequiredfielddata.md#datatype)
 * [field](_schemes_directus_field_.irequiredfielddata.md#field)
 * [interface](_schemes_directus_field_.irequiredfielddata.md#interface)
 * [type](_schemes_directus_field_.irequiredfielddata.md#type)
 
----
-
 ## Properties
-
-<a id="datatype"></a>
 
 ###  datatype
 
-**● datatype**: *`string`*
+• **datatype**: *string*
 
-*Defined in [schemes/directus/Field.ts:6](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Field.ts#L6)*
+*Defined in [schemes/directus/Field.ts:6](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/Field.ts#L6)*
 
 ___
-<a id="field"></a>
 
 ###  field
 
-**● field**: *`string`*
+• **field**: *string*
 
-*Defined in [schemes/directus/Field.ts:4](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Field.ts#L4)*
+*Defined in [schemes/directus/Field.ts:4](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/Field.ts#L4)*
 
 ___
-<a id="interface"></a>
 
 ###  interface
 
-**● interface**: *`string`*
+• **interface**: *string*
 
-*Defined in [schemes/directus/Field.ts:7](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Field.ts#L7)*
+*Defined in [schemes/directus/Field.ts:7](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/Field.ts#L7)*
 
 ___
-<a id="type"></a>
 
 ###  type
 
-**● type**: *`string`*
+• **type**: *string*
 
-*Defined in [schemes/directus/Field.ts:5](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Field.ts#L5)*
-
-___
-
+*Defined in [schemes/directus/Field.ts:5](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/Field.ts#L5)*

@@ -1,24 +1,19 @@
-[@directus/sdk-js](../README.md) > ["schemes/http/Request"](../modules/_schemes_http_request_.md)
+> **[@directus/sdk-js](../README.md)**
+
+[Globals](../README.md) / ["schemes/http/Request"](_schemes_http_request_.md) /
 
 # External module: "schemes/http/Request"
 
-## Index
+### Index
 
-### Type aliases
+#### Type aliases
 
 * [RequestMethod](_schemes_http_request_.md#requestmethod)
 
----
-
 ## Type aliases
-
-<a id="requestmethod"></a>
 
 ###  RequestMethod
 
-**Ƭ RequestMethod**: *"get" \| "post" \| "put" \| "patch" \| "delete"*
+Ƭ **RequestMethod**: *"get" | "post" | "put" | "patch" | "delete"*
 
-*Defined in [schemes/http/Request.ts:1](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/http/Request.ts#L1)*
-
-___
-
+*Defined in [schemes/http/Request.ts:1](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/http/Request.ts#L1)*

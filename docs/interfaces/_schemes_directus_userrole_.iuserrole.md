@@ -1,50 +1,43 @@
-[@directus/sdk-js](../README.md) > ["schemes/directus/UserRole"](../modules/_schemes_directus_userrole_.md) > [IUserRole](../interfaces/_schemes_directus_userrole_.iuserrole.md)
+> **[@directus/sdk-js](../README.md)**
+
+[Globals](../README.md) / ["schemes/directus/UserRole"](../modules/_schemes_directus_userrole_.md) / [IUserRole](_schemes_directus_userrole_.iuserrole.md) /
 
 # Interface: IUserRole
 
-*__see__*: [https://docs.directus.io/api/reference.html#user-role-object](https://docs.directus.io/api/reference.html#user-role-object)
+**`see`** https://docs.directus.io/api/reference.html#user-role-object
 
 ## Hierarchy
 
-**IUserRole**
+* **IUserRole**
 
-## Index
+### Index
 
-### Properties
+#### Properties
 
 * [id](_schemes_directus_userrole_.iuserrole.md#id)
 * [role](_schemes_directus_userrole_.iuserrole.md#role)
 * [user](_schemes_directus_userrole_.iuserrole.md#user)
 
----
-
 ## Properties
-
-<a id="id"></a>
 
 ###  id
 
-**● id**: *`number`*
+• **id**: *number*
 
-*Defined in [schemes/directus/UserRole.ts:5](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/UserRole.ts#L5)*
+*Defined in [schemes/directus/UserRole.ts:5](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/UserRole.ts#L5)*
 
 ___
-<a id="role"></a>
 
 ###  role
 
-**● role**: *`number`*
+• **role**: *number*
 
-*Defined in [schemes/directus/UserRole.ts:7](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/UserRole.ts#L7)*
+*Defined in [schemes/directus/UserRole.ts:7](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/UserRole.ts#L7)*
 
 ___
-<a id="user"></a>
 
 ###  user
 
-**● user**: *`number`*
+• **user**: *number*
 
-*Defined in [schemes/directus/UserRole.ts:6](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/UserRole.ts#L6)*
-
-___
-
+*Defined in [schemes/directus/UserRole.ts:6](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/UserRole.ts#L6)*

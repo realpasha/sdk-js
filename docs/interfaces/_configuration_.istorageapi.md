@@ -1,76 +1,70 @@
-[@directus/sdk-js](../README.md) > ["Configuration"](../modules/_configuration_.md) > [IStorageAPI](../interfaces/_configuration_.istorageapi.md)
+> **[@directus/sdk-js](../README.md)**
+
+[Globals](../README.md) / ["Configuration"](../modules/_configuration_.md) / [IStorageAPI](_configuration_.istorageapi.md) /
 
 # Interface: IStorageAPI
 
 ## Hierarchy
 
-**IStorageAPI**
+* **IStorageAPI**
 
-## Index
+### Index
 
-### Methods
+#### Methods
 
 * [getItem](_configuration_.istorageapi.md#getitem)
 * [removeItem](_configuration_.istorageapi.md#removeitem)
 * [setItem](_configuration_.istorageapi.md#setitem)
 
----
-
 ## Methods
-
-<a id="getitem"></a>
 
 ###  getItem
 
-▸ **getItem**<`T`>(key: *`string`*): `T`
+▸ **getItem**<**T**>(`key`: string): *`T`*
 
-*Defined in [Configuration.ts:8](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/Configuration.ts#L8)*
+*Defined in [Configuration.ts:8](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/Configuration.ts#L8)*
 
 **Type parameters:**
 
-#### T :  `any`
+▪ **T**: *any*
+
 **Parameters:**
 
-| Name | Type |
-| ------ | ------ |
-| key | `string` |
+Name | Type |
+------ | ------ |
+`key` | string |
 
-**Returns:** `T`
+**Returns:** *`T`*
 
 ___
-<a id="removeitem"></a>
 
 ###  removeItem
 
-▸ **removeItem**(key: *`string`*): `void`
+▸ **removeItem**(`key`: string): *void*
 
-*Defined in [Configuration.ts:10](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/Configuration.ts#L10)*
+*Defined in [Configuration.ts:10](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/Configuration.ts#L10)*
 
 **Parameters:**
 
-| Name | Type |
-| ------ | ------ |
-| key | `string` |
+Name | Type |
+------ | ------ |
+`key` | string |
 
-**Returns:** `void`
+**Returns:** *void*
 
 ___
-<a id="setitem"></a>
 
 ###  setItem
 
-▸ **setItem**(key: *`string`*, value: *`any`*): `void`
+▸ **setItem**(`key`: string, `value`: any): *void*
 
-*Defined in [Configuration.ts:9](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/Configuration.ts#L9)*
+*Defined in [Configuration.ts:9](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/Configuration.ts#L9)*
 
 **Parameters:**
 
-| Name | Type |
-| ------ | ------ |
-| key | `string` |
-| value | `any` |
+Name | Type |
+------ | ------ |
+`key` | string |
+`value` | any |
 
-**Returns:** `void`
-
-___
-
+**Returns:** *void*

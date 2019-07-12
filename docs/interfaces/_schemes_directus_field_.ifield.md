@@ -1,72 +1,64 @@
-[@directus/sdk-js](../README.md) > ["schemes/directus/Field"](../modules/_schemes_directus_field_.md) > [IField](../interfaces/_schemes_directus_field_.ifield.md)
+> **[@directus/sdk-js](../README.md)**
+
+[Globals](../README.md) / ["schemes/directus/Field"](../modules/_schemes_directus_field_.md) / [IField](_schemes_directus_field_.ifield.md) /
 
 # Interface: IField
 
-*__see__*: [https://docs.directus.io/api/reference.html#field-object](https://docs.directus.io/api/reference.html#field-object)
+**`see`** https://docs.directus.io/api/reference.html#field-object
 
 ## Hierarchy
 
- [IRequiredFieldData](_schemes_directus_field_.irequiredfielddata.md)
+* [IRequiredFieldData](_schemes_directus_field_.irequiredfielddata.md)
 
- `object`
+* object
 
-**↳ IField**
+  * **IField**
 
-## Index
+### Index
 
-### Properties
+#### Properties
 
 * [datatype](_schemes_directus_field_.ifield.md#datatype)
 * [field](_schemes_directus_field_.ifield.md#field)
 * [interface](_schemes_directus_field_.ifield.md#interface)
 * [type](_schemes_directus_field_.ifield.md#type)
 
----
-
 ## Properties
-
-<a id="datatype"></a>
 
 ###  datatype
 
-**● datatype**: *`string`*
+• **datatype**: *string*
 
 *Inherited from [IRequiredFieldData](_schemes_directus_field_.irequiredfielddata.md).[datatype](_schemes_directus_field_.irequiredfielddata.md#datatype)*
 
-*Defined in [schemes/directus/Field.ts:6](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Field.ts#L6)*
+*Defined in [schemes/directus/Field.ts:6](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/Field.ts#L6)*
 
 ___
-<a id="field"></a>
 
 ###  field
 
-**● field**: *`string`*
+• **field**: *string*
 
 *Inherited from [IRequiredFieldData](_schemes_directus_field_.irequiredfielddata.md).[field](_schemes_directus_field_.irequiredfielddata.md#field)*
 
-*Defined in [schemes/directus/Field.ts:4](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Field.ts#L4)*
+*Defined in [schemes/directus/Field.ts:4](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/Field.ts#L4)*
 
 ___
-<a id="interface"></a>
 
 ###  interface
 
-**● interface**: *`string`*
+• **interface**: *string*
 
 *Inherited from [IRequiredFieldData](_schemes_directus_field_.irequiredfielddata.md).[interface](_schemes_directus_field_.irequiredfielddata.md#interface)*
 
-*Defined in [schemes/directus/Field.ts:7](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Field.ts#L7)*
+*Defined in [schemes/directus/Field.ts:7](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/Field.ts#L7)*
 
 ___
-<a id="type"></a>
 
 ###  type
 
-**● type**: *`string`*
+• **type**: *string*
 
 *Inherited from [IRequiredFieldData](_schemes_directus_field_.irequiredfielddata.md).[type](_schemes_directus_field_.irequiredfielddata.md#type)*
 
-*Defined in [schemes/directus/Field.ts:5](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Field.ts#L5)*
-
-___
-
+*Defined in [schemes/directus/Field.ts:5](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/Field.ts#L5)*

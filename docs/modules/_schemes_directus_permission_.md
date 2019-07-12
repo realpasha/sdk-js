@@ -1,14 +1,16 @@
-[@directus/sdk-js](../README.md) > ["schemes/directus/Permission"](../modules/_schemes_directus_permission_.md)
+> **[@directus/sdk-js](../README.md)**
+
+[Globals](../README.md) / ["schemes/directus/Permission"](_schemes_directus_permission_.md) /
 
 # External module: "schemes/directus/Permission"
 
-## Index
+### Index
 
-### Interfaces
+#### Interfaces
 
 * [IPermission](../interfaces/_schemes_directus_permission_.ipermission.md)
 
-### Type aliases
+#### Type aliases
 
 * [CommentPermission](_schemes_directus_permission_.md#commentpermission)
 * [CreatePermission](_schemes_directus_permission_.md#createpermission)
@@ -17,62 +19,50 @@
 * [ReadPermission](_schemes_directus_permission_.md#readpermission)
 * [UpdatePermission](_schemes_directus_permission_.md#updatepermission)
 
----
-
 ## Type aliases
-
-<a id="commentpermission"></a>
 
 ###  CommentPermission
 
-**Ƭ CommentPermission**: *"none" \| "read" \| "update" \| "create" \| "full" \| `null`*
+Ƭ **CommentPermission**: *"none" | "read" | "update" | "create" | "full" | null*
 
-*Defined in [schemes/directus/Permission.ts:5](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Permission.ts#L5)*
+*Defined in [schemes/directus/Permission.ts:5](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/Permission.ts#L5)*
 
 ___
-<a id="createpermission"></a>
 
 ###  CreatePermission
 
-**Ƭ CreatePermission**: *"none" \| "full" \| `null`*
+Ƭ **CreatePermission**: *"none" | "full" | null*
 
-*Defined in [schemes/directus/Permission.ts:1](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Permission.ts#L1)*
+*Defined in [schemes/directus/Permission.ts:1](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/Permission.ts#L1)*
 
 ___
-<a id="deletepermission"></a>
 
 ###  DeletePermission
 
-**Ƭ DeletePermission**: *"none" \| "mine" \| "role" \| "full" \| `null`*
+Ƭ **DeletePermission**: *"none" | "mine" | "role" | "full" | null*
 
-*Defined in [schemes/directus/Permission.ts:4](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Permission.ts#L4)*
+*Defined in [schemes/directus/Permission.ts:4](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/Permission.ts#L4)*
 
 ___
-<a id="explainpermission"></a>
 
 ###  ExplainPermission
 
-**Ƭ ExplainPermission**: *"none" \| "update" \| "create" \| "always" \| `null`*
+Ƭ **ExplainPermission**: *"none" | "update" | "create" | "always" | null*
 
-*Defined in [schemes/directus/Permission.ts:6](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Permission.ts#L6)*
+*Defined in [schemes/directus/Permission.ts:6](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/Permission.ts#L6)*
 
 ___
-<a id="readpermission"></a>
 
 ###  ReadPermission
 
-**Ƭ ReadPermission**: *"none" \| "mine" \| "role" \| "full" \| `null`*
+Ƭ **ReadPermission**: *"none" | "mine" | "role" | "full" | null*
 
-*Defined in [schemes/directus/Permission.ts:2](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Permission.ts#L2)*
+*Defined in [schemes/directus/Permission.ts:2](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/Permission.ts#L2)*
 
 ___
-<a id="updatepermission"></a>
 
 ###  UpdatePermission
 
-**Ƭ UpdatePermission**: *"none" \| "mine" \| "full" \| `null`*
+Ƭ **UpdatePermission**: *"none" | "mine" | "full" | null*
 
-*Defined in [schemes/directus/Permission.ts:3](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Permission.ts#L3)*
-
-___
-
+*Defined in [schemes/directus/Permission.ts:3](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/Permission.ts#L3)*

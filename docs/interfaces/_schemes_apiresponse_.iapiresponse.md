@@ -1,105 +1,99 @@
-[@directus/sdk-js](../README.md) > ["schemes/APIResponse"](../modules/_schemes_apiresponse_.md) > [IAPIResponse](../interfaces/_schemes_apiresponse_.iapiresponse.md)
+> **[@directus/sdk-js](../README.md)**
 
-# Interface: IAPIResponse
+[Globals](../README.md) / ["schemes/APIResponse"](../modules/_schemes_apiresponse_.md) / [IAPIResponse](_schemes_apiresponse_.iapiresponse.md) /
+
+# Interface: IAPIResponse <**DataType, MetaDataType**>
 
 ## Type parameters
-#### DataType 
-#### MetaDataType :  `object`
+
+▪ **DataType**
+
+▪ **MetaDataType**: *object*
+
 ## Hierarchy
 
- [IAbstractAPIResponse](_schemes_apiresponse_.iabstractapiresponse.md)
+* [IAbstractAPIResponse](_schemes_apiresponse_.iabstractapiresponse.md)
 
-**↳ IAPIResponse**
+  * **IAPIResponse**
 
-↳  [IRefreshTokenResponse](_schemes_response_token_.irefreshtokenresponse.md)
+  * [IRefreshTokenResponse](_schemes_response_token_.irefreshtokenresponse.md)
 
-↳  [IRelationResponse](_schemes_response_relation_.irelationresponse.md)
+  * [IRelationResponse](_schemes_response_relation_.irelationresponse.md)
 
-↳  [IRelationsResponse](_schemes_response_relation_.irelationsresponse.md)
+  * [IRelationsResponse](_schemes_response_relation_.irelationsresponse.md)
 
-↳  [IActivityResponse](_schemes_response_activity_.iactivityresponse.md)
+  * [IActivityResponse](_schemes_response_activity_.iactivityresponse.md)
 
-↳  [ICollectionResponse](_schemes_response_collection_.icollectionresponse.md)
+  * [ICollectionResponse](_schemes_response_collection_.icollectionresponse.md)
 
-↳  [ICollectionsResponse](_schemes_response_collection_.icollectionsresponse.md)
+  * [ICollectionsResponse](_schemes_response_collection_.icollectionsresponse.md)
 
-↳  [ICollectionPresetResponse](_schemes_response_collectionpreset_.icollectionpresetresponse.md)
+  * [ICollectionPresetResponse](_schemes_response_collectionpreset_.icollectionpresetresponse.md)
 
-↳  [ICollectionPresetsResponse](_schemes_response_collectionpreset_.icollectionpresetsresponse.md)
+  * [ICollectionPresetsResponse](_schemes_response_collectionpreset_.icollectionpresetsresponse.md)
 
-↳  [IFieldResponse](_schemes_response_field_.ifieldresponse.md)
+  * [IFieldResponse](_schemes_response_field_.ifieldresponse.md)
 
-↳  [IFieldsResponse](_schemes_response_field_.ifieldsresponse.md)
+  * [IFieldsResponse](_schemes_response_field_.ifieldsresponse.md)
 
-↳  [IFileResponse](_schemes_response_file_.ifileresponse.md)
+  * [IFileResponse](_schemes_response_file_.ifileresponse.md)
 
-↳  [IFilesResponse](_schemes_response_file_.ifilesresponse.md)
+  * [IFilesResponse](_schemes_response_file_.ifilesresponse.md)
 
-↳  [IItemResponse](_schemes_response_item_.iitemresponse.md)
+  * [IItemResponse](_schemes_response_item_.iitemresponse.md)
 
-↳  [IItemsResponse](_schemes_response_item_.iitemsresponse.md)
+  * [IItemsResponse](_schemes_response_item_.iitemsresponse.md)
 
-↳  [IRevisionResponse](_schemes_response_revision_.irevisionresponse.md)
+  * [IRevisionResponse](_schemes_response_revision_.irevisionresponse.md)
 
-↳  [IRoleResponse](_schemes_response_role_.iroleresponse.md)
+  * [IRoleResponse](_schemes_response_role_.iroleresponse.md)
 
-↳  [IUserResponse](_schemes_response_user_.iuserresponse.md)
+  * [IUserResponse](_schemes_response_user_.iuserresponse.md)
 
-↳  [IUsersResponse](_schemes_response_user_.iusersresponse.md)
+  * [IUsersResponse](_schemes_response_user_.iusersresponse.md)
 
-↳  [IServerInformationResponse](_schemes_response_serverinformation_.iserverinformationresponse.md)
+  * [IServerInformationResponse](_schemes_response_serverinformation_.iserverinformationresponse.md)
 
-↳  [ISettingResponse](_schemes_response_setting_.isettingresponse.md)
+  * [ISettingResponse](_schemes_response_setting_.isettingresponse.md)
 
-↳  [ISettingsResponse](_schemes_response_setting_.isettingsresponse.md)
+  * [ISettingsResponse](_schemes_response_setting_.isettingsresponse.md)
 
-## Index
+### Index
 
-### Properties
+#### Properties
 
 * [data](_schemes_apiresponse_.iapiresponse.md#data)
-* [error](_schemes_apiresponse_.iapiresponse.md#error)
+* [error](_schemes_apiresponse_.iapiresponse.md#optional-error)
 * [meta](_schemes_apiresponse_.iapiresponse.md#meta)
-
----
 
 ## Properties
 
-<a id="data"></a>
-
 ###  data
 
-**● data**: *`DataType`*
+• **data**: *`DataType`*
 
-*Defined in [schemes/APIResponse.ts:13](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/APIResponse.ts#L13)*
-
-___
-<a id="error"></a>
-
-### `<Optional>` error
-
-**● error**: *`object`*
-
-*Inherited from [IAbstractAPIResponse](_schemes_apiresponse_.iabstractapiresponse.md).[error](_schemes_apiresponse_.iabstractapiresponse.md#error)*
-
-*Defined in [schemes/APIResponse.ts:2](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/APIResponse.ts#L2)*
-
-#### Type declaration
-
- code: `number`
-
-*__see__*: [https://docs.directus.io/api/reference.html#error-codes](https://docs.directus.io/api/reference.html#error-codes)
-
- message: `string`
+*Defined in [schemes/APIResponse.ts:13](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/APIResponse.ts#L13)*
 
 ___
-<a id="meta"></a>
+
+### `Optional` error
+
+• **error**? : *object*
+
+*Inherited from [IAbstractAPIResponse](_schemes_apiresponse_.iabstractapiresponse.md).[error](_schemes_apiresponse_.iabstractapiresponse.md#optional-error)*
+
+*Defined in [schemes/APIResponse.ts:2](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/APIResponse.ts#L2)*
+
+#### Type declaration:
+
+* **code**: *number*
+
+* **message**: *string*
+
+___
 
 ###  meta
 
-**● meta**: *`MetaDataType`*
+• **meta**: *`MetaDataType`*
 
-*Defined in [schemes/APIResponse.ts:12](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/APIResponse.ts#L12)*
-
-___
-
+*Defined in [schemes/APIResponse.ts:12](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/APIResponse.ts#L12)*

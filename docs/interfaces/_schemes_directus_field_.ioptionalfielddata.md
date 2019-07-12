@@ -1,14 +1,16 @@
-[@directus/sdk-js](../README.md) > ["schemes/directus/Field"](../modules/_schemes_directus_field_.md) > [IOptionalFieldData](../interfaces/_schemes_directus_field_.ioptionalfielddata.md)
+> **[@directus/sdk-js](../README.md)**
+
+[Globals](../README.md) / ["schemes/directus/Field"](../modules/_schemes_directus_field_.md) / [IOptionalFieldData](_schemes_directus_field_.ioptionalfielddata.md) /
 
 # Interface: IOptionalFieldData
 
 ## Hierarchy
 
-**IOptionalFieldData**
+* **IOptionalFieldData**
 
-## Index
+### Index
 
-### Properties
+#### Properties
 
 * [auto_increment](_schemes_directus_field_.ioptionalfielddata.md#auto_increment)
 * [default_value](_schemes_directus_field_.ioptionalfielddata.md#default_value)
@@ -29,170 +31,146 @@
 * [validation](_schemes_directus_field_.ioptionalfielddata.md#validation)
 * [width](_schemes_directus_field_.ioptionalfielddata.md#width)
 
----
-
 ## Properties
-
-<a id="auto_increment"></a>
 
 ###  auto_increment
 
-**● auto_increment**: *`boolean`*
+• **auto_increment**: *boolean*
 
-*Defined in [schemes/directus/Field.ts:13](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Field.ts#L13)*
+*Defined in [schemes/directus/Field.ts:13](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/Field.ts#L13)*
 
 ___
-<a id="default_value"></a>
 
 ###  default_value
 
-**● default_value**: *`any`*
+• **default_value**: *any*
 
-*Defined in [schemes/directus/Field.ts:14](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Field.ts#L14)*
+*Defined in [schemes/directus/Field.ts:14](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/Field.ts#L14)*
 
 ___
-<a id="group"></a>
 
 ###  group
 
-**● group**: *`number`*
+• **group**: *number*
 
-*Defined in [schemes/directus/Field.ts:27](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Field.ts#L27)*
+*Defined in [schemes/directus/Field.ts:27](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/Field.ts#L27)*
 
 ___
-<a id="hidden_browse"></a>
 
 ###  hidden_browse
 
-**● hidden_browse**: *`boolean`*
+• **hidden_browse**: *boolean*
 
-*Defined in [schemes/directus/Field.ts:19](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Field.ts#L19)*
+*Defined in [schemes/directus/Field.ts:19](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/Field.ts#L19)*
 
 ___
-<a id="hidden_detail"></a>
 
 ###  hidden_detail
 
-**● hidden_detail**: *`boolean`*
+• **hidden_detail**: *boolean*
 
-*Defined in [schemes/directus/Field.ts:18](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Field.ts#L18)*
+*Defined in [schemes/directus/Field.ts:18](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/Field.ts#L18)*
 
 ___
-<a id="length"></a>
 
 ###  length
 
-**● length**: *`number`*
+• **length**: *number*
 
-*Defined in [schemes/directus/Field.ts:28](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Field.ts#L28)*
+*Defined in [schemes/directus/Field.ts:28](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/Field.ts#L28)*
 
 ___
-<a id="locked"></a>
 
 ###  locked
 
-**● locked**: *`boolean`*
+• **locked**: *boolean*
 
-*Defined in [schemes/directus/Field.ts:22](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Field.ts#L22)*
+*Defined in [schemes/directus/Field.ts:22](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/Field.ts#L22)*
 
 ___
-<a id="note"></a>
 
 ###  note
 
-**● note**: *`string`*
+• **note**: *string*
 
-*Defined in [schemes/directus/Field.ts:15](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Field.ts#L15)*
+*Defined in [schemes/directus/Field.ts:15](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/Field.ts#L15)*
 
 ___
-<a id="options"></a>
 
 ###  options
 
-**● options**: *`object`*
+• **options**: *object*
 
-*Defined in [schemes/directus/Field.ts:21](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Field.ts#L21)*
+*Defined in [schemes/directus/Field.ts:21](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/Field.ts#L21)*
 
 ___
-<a id="primary_key"></a>
 
 ###  primary_key
 
-**● primary_key**: *`boolean`*
+• **primary_key**: *boolean*
 
-*Defined in [schemes/directus/Field.ts:12](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Field.ts#L12)*
+*Defined in [schemes/directus/Field.ts:12](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/Field.ts#L12)*
 
 ___
-<a id="readonly"></a>
 
 ###  readonly
 
-**● readonly**: *`boolean`*
+• **readonly**: *boolean*
 
-*Defined in [schemes/directus/Field.ts:24](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Field.ts#L24)*
+*Defined in [schemes/directus/Field.ts:24](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/Field.ts#L24)*
 
 ___
-<a id="required"></a>
 
 ###  required
 
-**● required**: *`boolean`*
+• **required**: *boolean*
 
-*Defined in [schemes/directus/Field.ts:20](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Field.ts#L20)*
+*Defined in [schemes/directus/Field.ts:20](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/Field.ts#L20)*
 
 ___
-<a id="signed"></a>
 
 ###  signed
 
-**● signed**: *`boolean`*
+• **signed**: *boolean*
 
-*Defined in [schemes/directus/Field.ts:16](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Field.ts#L16)*
+*Defined in [schemes/directus/Field.ts:16](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/Field.ts#L16)*
 
 ___
-<a id="sort"></a>
 
 ###  sort
 
-**● sort**: *`number`*
+• **sort**: *number*
 
-*Defined in [schemes/directus/Field.ts:17](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Field.ts#L17)*
+*Defined in [schemes/directus/Field.ts:17](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/Field.ts#L17)*
 
 ___
-<a id="translation"></a>
 
 ###  translation
 
-**● translation**: *[ITranslation](_schemes_directus_translation_.itranslation.md)*
+• **translation**: *[ITranslation](_schemes_directus_translation_.itranslation.md)*
 
-*Defined in [schemes/directus/Field.ts:23](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Field.ts#L23)*
+*Defined in [schemes/directus/Field.ts:23](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/Field.ts#L23)*
 
 ___
-<a id="unique"></a>
 
 ###  unique
 
-**● unique**: *`boolean`*
+• **unique**: *boolean*
 
-*Defined in [schemes/directus/Field.ts:11](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Field.ts#L11)*
+*Defined in [schemes/directus/Field.ts:11](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/Field.ts#L11)*
 
 ___
-<a id="validation"></a>
 
 ###  validation
 
-**● validation**: *`string`*
+• **validation**: *string*
 
-*Defined in [schemes/directus/Field.ts:26](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Field.ts#L26)*
+*Defined in [schemes/directus/Field.ts:26](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/Field.ts#L26)*
 
 ___
-<a id="width"></a>
 
 ###  width
 
-**● width**: *`number`*
+• **width**: *number*
 
-*Defined in [schemes/directus/Field.ts:25](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Field.ts#L25)*
-
-___
-
+*Defined in [schemes/directus/Field.ts:25](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/Field.ts#L25)*

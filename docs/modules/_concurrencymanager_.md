@@ -1,39 +1,60 @@
-[@directus/sdk-js](../README.md) > ["ConcurrencyManager"](../modules/_concurrencymanager_.md)
+> **[@directus/sdk-js](../README.md)**
+
+[Globals](../README.md) / ["ConcurrencyManager"](_concurrencymanager_.md) /
 
 # External module: "ConcurrencyManager"
 
-## Index
+### Index
 
-### Interfaces
+#### Interfaces
 
 * [IConcurrencyQueueItem](../interfaces/_concurrencymanager_.iconcurrencyqueueitem.md)
 
-### Functions
+#### Functions
 
-* [concurrencyManager](_concurrencymanager_.md#concurrencymanager)
-
----
+* [concurrencyManager](_concurrencymanager_.md#const-concurrencymanager)
 
 ## Functions
 
-<a id="concurrencymanager"></a>
+### `Const` concurrencyManager
 
-### `<Const>` concurrencyManager
+▸ **concurrencyManager**(`axios`: `AxiosInstance`, `limit`: number): *object*
 
-▸ **concurrencyManager**(axios: *`AxiosInstance`*, limit?: *`number`*): `object`
-
-*Defined in [ConcurrencyManager.ts:14](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/ConcurrencyManager.ts#L14)*
+*Defined in [ConcurrencyManager.ts:14](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/ConcurrencyManager.ts#L14)*
 
 Handling and limiting concurrent requests for the API.
 
 **Parameters:**
 
-| Name | Type | Default value | Description |
-| ------ | ------ | ------ | ------ |
-| axios | `AxiosInstance` | - |  Reference to the caller instance |
-| `Default value` limit | `number` | 10 |  When to reate-limit outgoing requests |
+Name | Type | Default | Description |
+------ | ------ | ------ | ------ |
+`axios` | `AxiosInstance` | - | Reference to the caller instance |
+`limit` | number | 10 | When to reate-limit outgoing requests  |
 
-**Returns:** `object`
+**Returns:** *object*
 
-___
+* **limit**: *number*
 
+* **queue**: *[IConcurrencyQueueItem](../interfaces/_concurrencymanager_.iconcurrencyqueueitem.md)[]* =  [] as IConcurrencyQueueItem[]
+
+* **running**: *[IConcurrencyQueueItem](../interfaces/_concurrencymanager_.iconcurrencyqueueitem.md)[]* =  [] as IConcurrencyQueueItem[]
+
+* **attach**(`limitConcurrentRequestsTo?`: number): *void*
+
+* **detach**(): *void*
+
+* **push**(`reqHandler`: [IConcurrencyQueueItem](../interfaces/_concurrencymanager_.iconcurrencyqueueitem.md)): *void*
+
+* **requestHandler**(`req`: `AxiosRequestConfig`): *`Promise<AxiosRequestConfig>`*
+
+* **responseHandler**(`res`: `AxiosResponse<any>`): *`AxiosResponse<any>`*
+
+* **shift**(): *void*
+
+* **shiftInitial**(): *void*
+
+* ### **interceptors**: *object*
+
+  * **request**: *null* =  null
+
+  * **response**: *null* =  null

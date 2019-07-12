@@ -1,12 +1,11 @@
-[@directus/sdk-js](../README.md) > ["schemes/response/Token"](../modules/_schemes_response_token_.md)
+> **[@directus/sdk-js](../README.md)**
+
+[Globals](../README.md) / ["schemes/response/Token"](_schemes_response_token_.md) /
 
 # External module: "schemes/response/Token"
 
-## Index
+### Index
 
-### Interfaces
+#### Interfaces
 
 * [IRefreshTokenResponse](../interfaces/_schemes_response_token_.irefreshtokenresponse.md)
-
----
-

@@ -1,32 +1,27 @@
-[@directus/sdk-js](../README.md) > ["schemes/auth/Authenticate"](../modules/_schemes_auth_authenticate_.md) > [IAuthenticateResponse](../interfaces/_schemes_auth_authenticate_.iauthenticateresponse.md)
+> **[@directus/sdk-js](../README.md)**
+
+[Globals](../README.md) / ["schemes/auth/Authenticate"](../modules/_schemes_auth_authenticate_.md) / [IAuthenticateResponse](_schemes_auth_authenticate_.iauthenticateresponse.md) /
 
 # Interface: IAuthenticateResponse
 
 ## Hierarchy
 
-**IAuthenticateResponse**
+* **IAuthenticateResponse**
 
-## Index
+### Index
 
-### Properties
+#### Properties
 
 * [data](_schemes_auth_authenticate_.iauthenticateresponse.md#data)
 
----
-
 ## Properties
-
-<a id="data"></a>
 
 ###  data
 
-**● data**: *`object`*
+• **data**: *object*
 
-*Defined in [schemes/auth/Authenticate.ts:2](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/auth/Authenticate.ts#L2)*
+*Defined in [schemes/auth/Authenticate.ts:2](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/auth/Authenticate.ts#L2)*
 
-#### Type declaration
+#### Type declaration:
 
- token: `string`
-
-___
-
+* **token**: *string*

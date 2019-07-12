@@ -1,16 +1,18 @@
-[@directus/sdk-js](../README.md) > ["schemes/directus/File"](../modules/_schemes_directus_file_.md) > [IFile](../interfaces/_schemes_directus_file_.ifile.md)
+> **[@directus/sdk-js](../README.md)**
+
+[Globals](../README.md) / ["schemes/directus/File"](../modules/_schemes_directus_file_.md) / [IFile](_schemes_directus_file_.ifile.md) /
 
 # Interface: IFile
 
-*__see__*: [https://docs.directus.io/api/reference.html#file-object](https://docs.directus.io/api/reference.html#file-object)
+**`see`** https://docs.directus.io/api/reference.html#file-object
 
 ## Hierarchy
 
-**IFile**
+* **IFile**
 
-## Index
+### Index
 
-### Properties
+#### Properties
 
 * [charset](_schemes_directus_file_.ifile.md#charset)
 * [data](_schemes_directus_file_.ifile.md#data)
@@ -32,179 +34,154 @@
 * [uploaded_on](_schemes_directus_file_.ifile.md#uploaded_on)
 * [width](_schemes_directus_file_.ifile.md#width)
 
----
-
 ## Properties
-
-<a id="charset"></a>
 
 ###  charset
 
-**● charset**: *`string`*
+• **charset**: *string*
 
-*Defined in [schemes/directus/File.ts:12](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/File.ts#L12)*
+*Defined in [schemes/directus/File.ts:12](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/File.ts#L12)*
 
 ___
-<a id="data"></a>
 
 ###  data
 
-**● data**: *`object`*
+• **data**: *object*
 
-*Defined in [schemes/directus/File.ts:23](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/File.ts#L23)*
+*Defined in [schemes/directus/File.ts:23](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/File.ts#L23)*
 
 ___
-<a id="description"></a>
 
 ###  description
 
-**● description**: *`string`*
+• **description**: *string*
 
-*Defined in [schemes/directus/File.ts:19](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/File.ts#L19)*
+*Defined in [schemes/directus/File.ts:19](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/File.ts#L19)*
 
 ___
-<a id="duration"></a>
 
 ###  duration
 
-**● duration**: *`number`*
+• **duration**: *number*
 
-*Defined in [schemes/directus/File.ts:16](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/File.ts#L16)*
+*Defined in [schemes/directus/File.ts:16](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/File.ts#L16)*
 
 ___
-<a id="embed"></a>
 
 ###  embed
 
-**● embed**: *`string`*
+• **embed**: *string*
 
-*Defined in [schemes/directus/File.ts:17](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/File.ts#L17)*
+*Defined in [schemes/directus/File.ts:17](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/File.ts#L17)*
 
 ___
-<a id="filename"></a>
 
 ###  filename
 
-**● filename**: *`string`*
+• **filename**: *string*
 
-*Defined in [schemes/directus/File.ts:7](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/File.ts#L7)*
+*Defined in [schemes/directus/File.ts:7](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/File.ts#L7)*
 
 ___
-<a id="filesize"></a>
 
 ###  filesize
 
-**● filesize**: *`number`*
+• **filesize**: *number*
 
-*Defined in [schemes/directus/File.ts:13](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/File.ts#L13)*
+*Defined in [schemes/directus/File.ts:13](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/File.ts#L13)*
 
 ___
-<a id="folder"></a>
 
 ###  folder
 
-**● folder**: *`string`*
+• **folder**: *string*
 
-*Defined in [schemes/directus/File.ts:18](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/File.ts#L18)*
+*Defined in [schemes/directus/File.ts:18](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/File.ts#L18)*
 
 ___
-<a id="height"></a>
 
 ###  height
 
-**● height**: *`number`*
+• **height**: *number*
 
-*Defined in [schemes/directus/File.ts:15](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/File.ts#L15)*
+*Defined in [schemes/directus/File.ts:15](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/File.ts#L15)*
 
 ___
-<a id="id"></a>
 
 ###  id
 
-**● id**: *`number`*
+• **id**: *number*
 
-*Defined in [schemes/directus/File.ts:5](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/File.ts#L5)*
+*Defined in [schemes/directus/File.ts:5](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/File.ts#L5)*
 
 ___
-<a id="location"></a>
 
 ###  location
 
-**● location**: *`string`*
+• **location**: *string*
 
-*Defined in [schemes/directus/File.ts:20](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/File.ts#L20)*
+*Defined in [schemes/directus/File.ts:20](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/File.ts#L20)*
 
 ___
-<a id="metadata"></a>
 
 ###  metadata
 
-**● metadata**: *`object`*
+• **metadata**: *object*
 
-*Defined in [schemes/directus/File.ts:22](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/File.ts#L22)*
+*Defined in [schemes/directus/File.ts:22](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/File.ts#L22)*
 
 ___
-<a id="storage"></a>
 
 ###  storage
 
-**● storage**: *`string`*
+• **storage**: *string*
 
-*Defined in [schemes/directus/File.ts:6](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/File.ts#L6)*
+*Defined in [schemes/directus/File.ts:6](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/File.ts#L6)*
 
 ___
-<a id="tags"></a>
 
 ###  tags
 
-**● tags**: *`string` \| `string`[]*
+• **tags**: *string | string[]*
 
-*Defined in [schemes/directus/File.ts:21](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/File.ts#L21)*
+*Defined in [schemes/directus/File.ts:21](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/File.ts#L21)*
 
 ___
-<a id="title"></a>
 
 ###  title
 
-**● title**: *`string`*
+• **title**: *string*
 
-*Defined in [schemes/directus/File.ts:8](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/File.ts#L8)*
+*Defined in [schemes/directus/File.ts:8](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/File.ts#L8)*
 
 ___
-<a id="type"></a>
 
 ###  type
 
-**● type**: *`string`*
+• **type**: *string*
 
-*Defined in [schemes/directus/File.ts:9](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/File.ts#L9)*
+*Defined in [schemes/directus/File.ts:9](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/File.ts#L9)*
 
 ___
-<a id="uploaded_by"></a>
 
 ###  uploaded_by
 
-**● uploaded_by**: *`number`*
+• **uploaded_by**: *number*
 
-*Defined in [schemes/directus/File.ts:10](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/File.ts#L10)*
+*Defined in [schemes/directus/File.ts:10](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/File.ts#L10)*
 
 ___
-<a id="uploaded_on"></a>
 
 ###  uploaded_on
 
-**● uploaded_on**: *`Date`*
+• **uploaded_on**: *`Date`*
 
-*Defined in [schemes/directus/File.ts:11](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/File.ts#L11)*
+*Defined in [schemes/directus/File.ts:11](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/File.ts#L11)*
 
 ___
-<a id="width"></a>
 
 ###  width
 
-**● width**: *`number`*
+• **width**: *number*
 
-*Defined in [schemes/directus/File.ts:14](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/File.ts#L14)*
-
-___
-
+*Defined in [schemes/directus/File.ts:14](https://github.com/janbiasi/sdk-js/blob/6d04a0b/src/schemes/directus/File.ts#L14)*

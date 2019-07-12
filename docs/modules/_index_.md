@@ -1,8 +1,5 @@
-[@directus/sdk-js](../README.md) > ["index"](../modules/_index_.md)
+> **[@directus/sdk-js](../README.md)**
+
+[Globals](../README.md) / ["index"](_index_.md) /
 
 # External module: "index"
-
-## Index
-
----
-
