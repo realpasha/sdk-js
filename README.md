@@ -12,8 +12,8 @@
   <a href="https://directus.io">Website</a> •
   <a href="https://docs.directus.io/sdk/js.html">Docs</a> •
   <a href="https://docs.directus.io/api/reference.html">API Reference</a> •
-  <a href="./tree/master/recipes">Recipes</a> •
-  <a href="./tree/master/docs">TSDoc</a> •
+  <a href="recipes">Recipes</a> •
+  <a href="docs">TSDoc</a> •
   <a href="https://docs.directus.io/app/user-guide.html">User Guide</a> •
   <a href="https://directus.app">Demo</a> •
   <a href="https://docs.directus.io/supporting-directus.html">Contribute</a>
