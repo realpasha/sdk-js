@@ -29,7 +29,7 @@
 
 **● collection**: *`string`*
 
-*Defined in schemes/directus/CollectionPreset.ts:9*
+*Defined in [schemes/directus/CollectionPreset.ts:9](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/CollectionPreset.ts#L9)*
 
 ___
 <a id="filters"></a>
@@ -38,7 +38,7 @@ ___
 
 **● filters**: *`object`*
 
-*Defined in schemes/directus/CollectionPreset.ts:11*
+*Defined in [schemes/directus/CollectionPreset.ts:11](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/CollectionPreset.ts#L11)*
 
 ___
 <a id="role"></a>
@@ -47,7 +47,7 @@ ___
 
 **● role**: *`number`*
 
-*Defined in schemes/directus/CollectionPreset.ts:8*
+*Defined in [schemes/directus/CollectionPreset.ts:8](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/CollectionPreset.ts#L8)*
 
 ___
 <a id="search_query"></a>
@@ -56,7 +56,7 @@ ___
 
 **● search_query**: *`string`*
 
-*Defined in schemes/directus/CollectionPreset.ts:10*
+*Defined in [schemes/directus/CollectionPreset.ts:10](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/CollectionPreset.ts#L10)*
 
 ___
 <a id="translation"></a>
@@ -65,7 +65,7 @@ ___
 
 **● translation**: *[ITranslation](_schemes_directus_translation_.itranslation.md)*
 
-*Defined in schemes/directus/CollectionPreset.ts:15*
+*Defined in [schemes/directus/CollectionPreset.ts:15](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/CollectionPreset.ts#L15)*
 
 ___
 <a id="view_options"></a>
@@ -74,7 +74,7 @@ ___
 
 **● view_options**: *`object`*
 
-*Defined in schemes/directus/CollectionPreset.ts:14*
+*Defined in [schemes/directus/CollectionPreset.ts:14](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/CollectionPreset.ts#L14)*
 
 ___
 <a id="view_query"></a>
@@ -83,7 +83,7 @@ ___
 
 **● view_query**: *`object`*
 
-*Defined in schemes/directus/CollectionPreset.ts:13*
+*Defined in [schemes/directus/CollectionPreset.ts:13](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/CollectionPreset.ts#L13)*
 
 ___
 <a id="view_type"></a>
@@ -92,7 +92,7 @@ ___
 
 **● view_type**: *`string`*
 
-*Defined in schemes/directus/CollectionPreset.ts:12*
+*Defined in [schemes/directus/CollectionPreset.ts:12](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/CollectionPreset.ts#L12)*
 
 ___
 

@@ -1,24 +1,24 @@
-[@directus/sdk-js](../README.md) > ["schemes/response/User"](../modules/_schemes_response_user_.md) > [IUsersResponse](../interfaces/_schemes_response_user_.iusersresponse.md)
+[@directus/sdk-js](../README.md) > ["schemes/response/File"](../modules/_schemes_response_file_.md) > [IFilesResponse](../interfaces/_schemes_response_file_.ifilesresponse.md)
 
-# Interface: IUsersResponse
+# Interface: IFilesResponse
 
-*__see__*: [https://docs.directus.io/api/reference.html#users](https://docs.directus.io/api/reference.html#users)
+*__see__*: [https://docs.directus.io/api/reference.html#file-object](https://docs.directus.io/api/reference.html#file-object)
 
 ## Type parameters
-#### Users :  [IUser](_schemes_directus_user_.iuser.md)[]
+#### T :  [IFile](_schemes_directus_file_.ifile.md)[]
 ## Hierarchy
 
-↳  [IAPIResponse](_schemes_apiresponse_.iapiresponse.md)<`Users`, [IAPIMetaList](_schemes_apiresponse_.iapimetalist.md)>
+↳  [IAPIResponse](_schemes_apiresponse_.iapiresponse.md)<`T`[], [IAPIMetaList](_schemes_apiresponse_.iapimetalist.md)>
 
-**↳ IUsersResponse**
+**↳ IFilesResponse**
 
 ## Index
 
 ### Properties
 
-* [data](_schemes_response_user_.iusersresponse.md#data)
-* [error](_schemes_response_user_.iusersresponse.md#error)
-* [meta](_schemes_response_user_.iusersresponse.md#meta)
+* [data](_schemes_response_file_.ifilesresponse.md#data)
+* [error](_schemes_response_file_.ifilesresponse.md#error)
+* [meta](_schemes_response_file_.ifilesresponse.md#meta)
 
 ---
 
@@ -28,7 +28,7 @@
 
 ###  data
 
-**● data**: *`Users`*
+**● data**: *`T`[]*
 
 *Inherited from [IAPIResponse](_schemes_apiresponse_.iapiresponse.md).[data](_schemes_apiresponse_.iapiresponse.md#data)*
 

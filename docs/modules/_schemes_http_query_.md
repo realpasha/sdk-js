@@ -22,7 +22,7 @@
 
 **Ƭ QueryParams**: *`Partial`<[IQueryParameters](../interfaces/_schemes_http_query_.iqueryparameters.md)>*
 
-*Defined in [schemes/http/Query.ts:26](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/schemes/http/Query.ts#L26)*
+*Defined in [schemes/http/Query.ts:26](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/http/Query.ts#L26)*
 
 *__see__*: [https://docs.directus.io/api/reference.html#query-parameters](https://docs.directus.io/api/reference.html#query-parameters)
 

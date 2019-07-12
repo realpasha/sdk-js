@@ -18,7 +18,7 @@
 
 ▸ **invariant**(condition: *`boolean` \| `null` \| `undefined`*, message: *`string`*): `void`
 
-*Defined in [utils/invariant.ts:7](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/utils/invariant.ts#L7)*
+*Defined in [utils/invariant.ts:7](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/utils/invariant.ts#L7)*
 
 Checks invariant violation against a condition, will throw an error if not fulfilled
 

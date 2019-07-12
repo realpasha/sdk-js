@@ -22,7 +22,7 @@
 
 **Ƭ UserStatus**: *"active" \| "inactive"*
 
-*Defined in schemes/directus/User.ts:3*
+*Defined in [schemes/directus/User.ts:3](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/User.ts#L3)*
 
 ___
 

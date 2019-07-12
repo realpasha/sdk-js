@@ -34,7 +34,7 @@
 
 **● refreshInterval**: *`number`*
 
-*Defined in [Authentication.ts:27](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/Authentication.ts#L27)*
+*Defined in [Authentication.ts:27](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/Authentication.ts#L27)*
 
 ___
 
@@ -46,7 +46,7 @@ ___
 
 ▸ **isLoggedIn**(): `boolean`
 
-*Defined in [Authentication.ts:28](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/Authentication.ts#L28)*
+*Defined in [Authentication.ts:28](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/Authentication.ts#L28)*
 
 **Returns:** `boolean`
 
@@ -57,7 +57,7 @@ ___
 
 ▸ **login**(credentials: *[ILoginCredentials](_schemes_auth_login_.ilogincredentials.md)*, options?: *[ILoginOptions](_schemes_auth_login_.iloginoptions.md)*): `Promise`<[ILoginResponse](_schemes_response_login_.iloginresponse.md)>
 
-*Defined in [Authentication.ts:29](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/Authentication.ts#L29)*
+*Defined in [Authentication.ts:29](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/Authentication.ts#L29)*
 
 **Parameters:**
 
@@ -75,7 +75,7 @@ ___
 
 ▸ **logout**(): `void`
 
-*Defined in [Authentication.ts:30](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/Authentication.ts#L30)*
+*Defined in [Authentication.ts:30](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/Authentication.ts#L30)*
 
 **Returns:** `void`
 
@@ -86,7 +86,7 @@ ___
 
 ▸ **refresh**(token: *`string`*): `Promise`<[IRefreshTokenResponse](_schemes_response_token_.irefreshtokenresponse.md)>
 
-*Defined in [Authentication.ts:32](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/Authentication.ts#L32)*
+*Defined in [Authentication.ts:32](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/Authentication.ts#L32)*
 
 **Parameters:**
 
@@ -103,7 +103,7 @@ ___
 
 ▸ **refreshIfNeeded**(): `Promise`<[`boolean`, `Error`]>
 
-*Defined in [Authentication.ts:31](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/Authentication.ts#L31)*
+*Defined in [Authentication.ts:31](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/Authentication.ts#L31)*
 
 **Returns:** `Promise`<[`boolean`, `Error`]>
 

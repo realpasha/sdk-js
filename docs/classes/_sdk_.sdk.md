@@ -2,6 +2,12 @@
 
 # Class: SDK
 
+Main SDK implementation provides the public API to interact with a remote directus instance.
+
+*__uses__*: API
+
+*__uses__*: Configuration
+
 ## Hierarchy
 
 **SDK**
@@ -42,10 +48,13 @@
 * [getActivity](_sdk_.sdk.md#getactivity)
 * [getAllFields](_sdk_.sdk.md#getallfields)
 * [getCollection](_sdk_.sdk.md#getcollection)
+* [getCollectionPresets](_sdk_.sdk.md#getcollectionpresets)
 * [getCollectionRelations](_sdk_.sdk.md#getcollectionrelations)
 * [getCollections](_sdk_.sdk.md#getcollections)
 * [getField](_sdk_.sdk.md#getfield)
 * [getFields](_sdk_.sdk.md#getfields)
+* [getFile](_sdk_.sdk.md#getfile)
+* [getFiles](_sdk_.sdk.md#getfiles)
 * [getInterfaces](_sdk_.sdk.md#getinterfaces)
 * [getItem](_sdk_.sdk.md#getitem)
 * [getItemRevisions](_sdk_.sdk.md#getitemrevisions)
@@ -98,7 +107,7 @@
 
 ⊕ **new SDK**(options: *[IConfigurationOptions](../interfaces/_configuration_.iconfigurationoptions.md)*): [SDK](_sdk_.sdk.md)
 
-*Defined in [SDK.ts:147](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/SDK.ts#L147)*
+*Defined in [SDK.ts:75](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/SDK.ts#L75)*
 
 **Parameters:**
 
@@ -118,7 +127,7 @@ ___
 
 **● api**: *[IAPI](../interfaces/_api_.iapi.md)*
 
-*Defined in [SDK.ts:147](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/SDK.ts#L147)*
+*Defined in [SDK.ts:75](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/SDK.ts#L75)*
 
 ___
 <a id="config"></a>
@@ -127,7 +136,7 @@ ___
 
 **● config**: *[IConfiguration](../interfaces/_configuration_.iconfiguration.md)*
 
-*Defined in [SDK.ts:146](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/SDK.ts#L146)*
+*Defined in [SDK.ts:74](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/SDK.ts#L74)*
 
 ___
 <a id="getpayload"></a>
@@ -136,7 +145,7 @@ ___
 
 **● getPayload**: *[getPayload](../modules/_utils_payload_.md#getpayload)* =  getPayload
 
-*Defined in [SDK.ts:143](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/SDK.ts#L143)*
+*Defined in [SDK.ts:71](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/SDK.ts#L71)*
 
 ___
 
@@ -148,7 +157,7 @@ ___
 
 **get loggedIn**(): `boolean`
 
-*Defined in [SDK.ts:130](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/SDK.ts#L130)*
+*Defined in [SDK.ts:58](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/SDK.ts#L58)*
 
 **Returns:** `boolean`
 
@@ -159,7 +168,7 @@ ___
 
 **get payload**(): `any`
 
-*Defined in [SDK.ts:134](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/SDK.ts#L134)*
+*Defined in [SDK.ts:62](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/SDK.ts#L62)*
 
 **Returns:** `any`
 
@@ -173,7 +182,7 @@ ___
 
 ▸ **createCollection**(data: *[ICollection](../interfaces/_schemes_directus_collection_.icollection.md)*): `Promise`<[ICollectionResponse](../interfaces/_schemes_response_collection_.icollectionresponse.md)>
 
-*Defined in [SDK.ts:281](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/SDK.ts#L281)*
+*Defined in [SDK.ts:190](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/SDK.ts#L190)*
 
 Create a collection
 
@@ -192,9 +201,11 @@ ___
 
 ▸ **createCollectionPreset**<`CollectionPreset`>(data: *`CollectionPreset`*): `Promise`<[ICollectionPresetResponse](../interfaces/_schemes_response_collectionpreset_.icollectionpresetresponse.md)<`CollectionPreset`>>
 
-*Defined in [SDK.ts:312](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/SDK.ts#L312)*
+*Defined in [SDK.ts:249](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/SDK.ts#L249)*
 
 Create a new collection preset (bookmark / listing preferences)
+
+*__see__*: [https://docs.directus.io/api/reference.html#collection-presets](https://docs.directus.io/api/reference.html#collection-presets)
 
 **Type parameters:**
 
@@ -212,38 +223,40 @@ ___
 
 ###  createField
 
-▸ **createField**<`T`>(collection: *`string`*, fieldInfo: *`T`*): `Promise`<[IFieldResponse](../interfaces/_schemes_response_field_.ifieldresponse.md)<`T`>>
+▸ **createField**<`TFieldType`>(collection: *`string`*, fieldInfo: *`TFieldType`*): `Promise`<[IFieldResponse](../interfaces/_schemes_response_field_.ifieldresponse.md)<`TFieldType`>>
 
-*Defined in [SDK.ts:415](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/SDK.ts#L415)*
+*Defined in [SDK.ts:366](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/SDK.ts#L366)*
 
 Create a field in the given collection
 
+*__see__*: [https://docs.directus.io/api/reference.html#fields-2](https://docs.directus.io/api/reference.html#fields-2)
+
 **Type parameters:**
 
-#### T :  [IField](../interfaces/_schemes_directus_field_.ifield.md)
+#### TFieldType :  [IField](../interfaces/_schemes_directus_field_.ifield.md)
 **Parameters:**
 
 | Name | Type |
 | ------ | ------ |
 | collection | `string` |
-| fieldInfo | `T` |
+| fieldInfo | `TFieldType` |
 
-**Returns:** `Promise`<[IFieldResponse](../interfaces/_schemes_response_field_.ifieldresponse.md)<`T`>>
+**Returns:** `Promise`<[IFieldResponse](../interfaces/_schemes_response_field_.ifieldresponse.md)<`TFieldType`>>
 
 ___
 <a id="createitem"></a>
 
 ###  createItem
 
-▸ **createItem**<`ItemType`>(collection: *`string`*, body: *`ItemType`*): `Promise`<[IItemResponse](../interfaces/_schemes_response_item_.iitemresponse.md)<`ItemType`>>
+▸ **createItem**<`TItemType`>(collection: *`string`*, body: *`TItemType`*): `Promise`<[IItemResponse](../interfaces/_schemes_response_item_.iitemresponse.md)<`TItemType`>>
 
-*Defined in [SDK.ts:593](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/SDK.ts#L593)*
+*Defined in [SDK.ts:577](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/SDK.ts#L577)*
 
 Create a new item
 
 **Type parameters:**
 
-#### ItemType :  `object`
+#### TItemType :  `object`
 
 Defining an item and its fields in object schema
 
@@ -252,24 +265,26 @@ Defining an item and its fields in object schema
 | Name | Type |
 | ------ | ------ |
 | collection | `string` |
-| body | `ItemType` |
+| body | `TItemType` |
 
-**Returns:** `Promise`<[IItemResponse](../interfaces/_schemes_response_item_.iitemresponse.md)<`ItemType`>>
+**Returns:** `Promise`<[IItemResponse](../interfaces/_schemes_response_item_.iitemresponse.md)<`TItemType`>>
 
 ___
 <a id="createitems"></a>
 
 ###  createItems
 
-▸ **createItems**<`ItemsType`>(collection: *`string`*, body: *[BodyType](../modules/_schemes_http_body_.md#bodytype)*): `Promise`<[IItemsResponse](../interfaces/_schemes_response_item_.iitemsresponse.md)<`ItemsType`>>
+▸ **createItems**<`TItemsType`>(collection: *`string`*, body: *[BodyType](../modules/_schemes_http_body_.md#bodytype)*): `Promise`<[IItemsResponse](../interfaces/_schemes_response_item_.iitemsresponse.md)<`TItemsType`>>
 
-*Defined in [SDK.ts:607](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/SDK.ts#L607)*
+*Defined in [SDK.ts:591](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/SDK.ts#L591)*
 
 Create multiple items
 
+*__see__*: [https://docs.directus.io/api/reference.html#create-items](https://docs.directus.io/api/reference.html#create-items)
+
 **Type parameters:**
 
-#### ItemsType :  `Array`<`__type`>
+#### TItemsType :  `Array`<`__type`>
 
 Defining an array of items, each in object schema
 
@@ -280,32 +295,32 @@ Defining an array of items, each in object schema
 | collection | `string` |
 | body | [BodyType](../modules/_schemes_http_body_.md#bodytype) |
 
-**Returns:** `Promise`<[IItemsResponse](../interfaces/_schemes_response_item_.iitemsresponse.md)<`ItemsType`>>
+**Returns:** `Promise`<[IItemsResponse](../interfaces/_schemes_response_item_.iitemsresponse.md)<`TItemsType`>>
 
 ___
 <a id="createpermissions"></a>
 
 ###  createPermissions
 
-▸ **createPermissions**<`T`>(data: *`any`[]*): `Promise`<`T`>
+▸ **createPermissions**<`TResponse`>(data: *`any`[]*): `Promise`<`TResponse`>
 
-*Defined in [SDK.ts:774](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/SDK.ts#L774)*
+*Defined in [SDK.ts:756](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/SDK.ts#L756)*
 
 TODO: Fix type-def for param and return Create multiple new permissions
 
 **Type parameters:**
 
-#### T :  `any`[]
+#### TResponse :  `any`[]
 
 Permissions type as array extending any\[\]
 
 **Parameters:**
 
-| Name | Type | Description |
-| ------ | ------ | ------ |
-| data | `any`[] |  \- |
+| Name | Type |
+| ------ | ------ |
+| data | `any`[] |
 
-**Returns:** `Promise`<`T`>
+**Returns:** `Promise`<`TResponse`>
 
 ___
 <a id="createrelation"></a>
@@ -314,7 +329,7 @@ ___
 
 ▸ **createRelation**(data: *[IRelation](../interfaces/_schemes_directus_relation_.irelation.md)*): `Promise`<[IRelationResponse](../interfaces/_schemes_response_relation_.irelationresponse.md)>
 
-*Defined in [SDK.ts:812](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/SDK.ts#L812)*
+*Defined in [SDK.ts:792](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/SDK.ts#L792)*
 
 Creates new relation
 
@@ -331,22 +346,22 @@ ___
 
 ###  createRole
 
-▸ **createRole**<`Role`>(body: *`Role`*): `Promise`<[IItemResponse](../interfaces/_schemes_response_item_.iitemresponse.md)<`Role`>>
+▸ **createRole**<`TRole`>(body: *`TRole`*): `Promise`<[IItemResponse](../interfaces/_schemes_response_item_.iitemresponse.md)<`TRole`>>
 
-*Defined in [SDK.ts:930](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/SDK.ts#L930)*
+*Defined in [SDK.ts:904](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/SDK.ts#L904)*
 
 Create a new user role
 
 **Type parameters:**
 
-#### Role :  [IRole](../interfaces/_schemes_directus_role_.irole.md)
+#### TRole :  [IRole](../interfaces/_schemes_directus_role_.irole.md)
 **Parameters:**
 
 | Name | Type | Description |
 | ------ | ------ | ------ |
-| body | `Role` |   |
+| body | `TRole` |   |
 
-**Returns:** `Promise`<[IItemResponse](../interfaces/_schemes_response_item_.iitemresponse.md)<`Role`>>
+**Returns:** `Promise`<[IItemResponse](../interfaces/_schemes_response_item_.iitemresponse.md)<`TRole`>>
 
 ___
 <a id="deletecollection"></a>
@@ -355,7 +370,7 @@ ___
 
 ▸ **deleteCollection**(collection: *`string`*): `Promise`<`void`>
 
-*Defined in [SDK.ts:299](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/SDK.ts#L299)*
+*Defined in [SDK.ts:208](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/SDK.ts#L208)*
 
 Deletes a certain collection
 
@@ -372,17 +387,19 @@ ___
 
 ###  deleteCollectionPreset
 
-▸ **deleteCollectionPreset**(primaryKey: *[PrimaryKeyType](../modules/_types_.md#primarykeytype)*): `Promise`<`void`>
+▸ **deleteCollectionPreset**(primaryKey: *[PrimaryKeyType](../modules/_sdk_.md#primarykeytype)*): `Promise`<`void`>
 
-*Defined in [SDK.ts:343](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/SDK.ts#L343)*
+*Defined in [SDK.ts:282](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/SDK.ts#L282)*
 
 Delete collection preset by primarykey
+
+*__see__*: [https://docs.directus.io/api/reference.html#collection-presets](https://docs.directus.io/api/reference.html#collection-presets)
 
 **Parameters:**
 
 | Name | Type |
 | ------ | ------ |
-| primaryKey | [PrimaryKeyType](../modules/_types_.md#primarykeytype) |
+| primaryKey | [PrimaryKeyType](../modules/_sdk_.md#primarykeytype) |
 
 **Returns:** `Promise`<`void`>
 
@@ -393,9 +410,11 @@ ___
 
 ▸ **deleteField**(collection: *`string`*, fieldName: *`string`*): `Promise`<`void`>
 
-*Defined in [SDK.ts:494](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/SDK.ts#L494)*
+*Defined in [SDK.ts:450](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/SDK.ts#L450)*
 
 Delete a field from a collection
+
+*__see__*: @see [https://docs.directus.io/api/reference.html#fields-2](https://docs.directus.io/api/reference.html#fields-2)
 
 **Parameters:**
 
@@ -411,18 +430,20 @@ ___
 
 ###  deleteItem
 
-▸ **deleteItem**(collection: *`string`*, primaryKey: *[PrimaryKeyType](../modules/_types_.md#primarykeytype)*): `Promise`<`void`>
+▸ **deleteItem**(collection: *`string`*, primaryKey: *[PrimaryKeyType](../modules/_sdk_.md#primarykeytype)*): `Promise`<`void`>
 
-*Defined in [SDK.ts:658](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/SDK.ts#L658)*
+*Defined in [SDK.ts:643](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/SDK.ts#L643)*
 
 Delete a single item by primary key
+
+*__see__*: [https://docs.directus.io/api/reference.html#delete-items](https://docs.directus.io/api/reference.html#delete-items)
 
 **Parameters:**
 
 | Name | Type |
 | ------ | ------ |
 | collection | `string` |
-| primaryKey | [PrimaryKeyType](../modules/_types_.md#primarykeytype) |
+| primaryKey | [PrimaryKeyType](../modules/_sdk_.md#primarykeytype) |
 
 **Returns:** `Promise`<`void`>
 
@@ -431,18 +452,20 @@ ___
 
 ###  deleteItems
 
-▸ **deleteItems**(collection: *`string`*, primaryKeys: *[PrimaryKeyType](../modules/_types_.md#primarykeytype)[]*): `Promise`<`void`>
+▸ **deleteItems**(collection: *`string`*, primaryKeys: *[PrimaryKeyType](../modules/_sdk_.md#primarykeytype)[]*): `Promise`<`void`>
 
-*Defined in [SDK.ts:670](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/SDK.ts#L670)*
+*Defined in [SDK.ts:656](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/SDK.ts#L656)*
 
 Delete multiple items by primary key
+
+*__see__*: [https://docs.directus.io/api/reference.html#delete-items](https://docs.directus.io/api/reference.html#delete-items)
 
 **Parameters:**
 
 | Name | Type |
 | ------ | ------ |
 | collection | `string` |
-| primaryKeys | [PrimaryKeyType](../modules/_types_.md#primarykeytype)[] |
+| primaryKeys | [PrimaryKeyType](../modules/_sdk_.md#primarykeytype)[] |
 
 **Returns:** `Promise`<`void`>
 
@@ -451,9 +474,9 @@ ___
 
 ###  deleteRole
 
-▸ **deleteRole**(primaryKey: *[PrimaryKeyType](../modules/_types_.md#primarykeytype)*): `Promise`<`void`>
+▸ **deleteRole**(primaryKey: *[PrimaryKeyType](../modules/_sdk_.md#primarykeytype)*): `Promise`<`void`>
 
-*Defined in [SDK.ts:940](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/SDK.ts#L940)*
+*Defined in [SDK.ts:914](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/SDK.ts#L914)*
 
 Delete a user rol by primary key
 
@@ -461,7 +484,7 @@ Delete a user rol by primary key
 
 | Name | Type | Description |
 | ------ | ------ | ------ |
-| primaryKey | [PrimaryKeyType](../modules/_types_.md#primarykeytype) |   |
+| primaryKey | [PrimaryKeyType](../modules/_sdk_.md#primarykeytype) |   |
 
 **Returns:** `Promise`<`void`>
 
@@ -472,7 +495,7 @@ ___
 
 ▸ **getActivity**(params?: *`QueryParamsType`*): `Promise`<[IActivityResponse](../interfaces/_schemes_response_activity_.iactivityresponse.md)>
 
-*Defined in [SDK.ts:217](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/SDK.ts#L217)*
+*Defined in [SDK.ts:145](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/SDK.ts#L145)*
 
 Get activity
 
@@ -489,22 +512,24 @@ ___
 
 ###  getAllFields
 
-▸ **getAllFields**<`T`>(params?: *`QueryParamsType`*): `Promise`<[IFieldsResponse](../interfaces/_schemes_response_field_.ifieldsresponse.md)<`T`>>
+▸ **getAllFields**<`TFieldsType`>(params?: *`QueryParamsType`*): `Promise`<[IFieldsResponse](../interfaces/_schemes_response_field_.ifieldsresponse.md)<`TFieldsType`>>
 
-*Defined in [SDK.ts:381](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/SDK.ts#L381)*
+*Defined in [SDK.ts:324](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/SDK.ts#L324)*
 
 Get all fields that are in Directus
 
+*__see__*: [https://docs.directus.io/api/reference.html#fields-2](https://docs.directus.io/api/reference.html#fields-2)
+
 **Type parameters:**
 
-#### T :  [IField](../interfaces/_schemes_directus_field_.ifield.md)[]
+#### TFieldsType :  [IField](../interfaces/_schemes_directus_field_.ifield.md)[]
 **Parameters:**
 
 | Name | Type | Default value |
 | ------ | ------ | ------ |
 | `Default value` params | `QueryParamsType` |  {} |
 
-**Returns:** `Promise`<[IFieldsResponse](../interfaces/_schemes_response_field_.ifieldsresponse.md)<`T`>>
+**Returns:** `Promise`<[IFieldsResponse](../interfaces/_schemes_response_field_.ifieldsresponse.md)<`TFieldsType`>>
 
 ___
 <a id="getcollection"></a>
@@ -513,7 +538,7 @@ ___
 
 ▸ **getCollection**(collection: *`string`*, params?: *`QueryParamsType`*): `Promise`<[ICollectionResponse](../interfaces/_schemes_response_collection_.icollectionresponse.md)>
 
-*Defined in [SDK.ts:271](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/SDK.ts#L271)*
+*Defined in [SDK.ts:180](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/SDK.ts#L180)*
 
 Get collection info by name
 
@@ -527,22 +552,46 @@ Get collection info by name
 **Returns:** `Promise`<[ICollectionResponse](../interfaces/_schemes_response_collection_.icollectionresponse.md)>
 
 ___
+<a id="getcollectionpresets"></a>
+
+###  getCollectionPresets
+
+▸ **getCollectionPresets**<`TResponse`>(params?: *`QueryParamsType`*): `Promise`<`TResponse`>
+
+*Defined in [SDK.ts:222](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/SDK.ts#L222)*
+
+Get the collection presets of the current user
+
+*__see__*: [https://docs.directus.io/api/reference.html#collection-presets](https://docs.directus.io/api/reference.html#collection-presets)
+
+**Type parameters:**
+
+#### TResponse :  `any`[]
+**Parameters:**
+
+| Name | Type | Default value |
+| ------ | ------ | ------ |
+| `Default value` params | `QueryParamsType` |  {} |
+
+**Returns:** `Promise`<`TResponse`>
+
+___
 <a id="getcollectionrelations"></a>
 
 ###  getCollectionRelations
 
 ▸ **getCollectionRelations**(collection: *`string`*, params?: *`QueryParamsType`*): `Promise`<`any`[]>
 
-*Defined in [SDK.ts:833](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/SDK.ts#L833)*
+*Defined in [SDK.ts:807](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/SDK.ts#L807)*
 
 TODO: Add type-def for return value(s) Get the relationship information for the given collection
 
 **Parameters:**
 
-| Name | Type | Default value | Description |
-| ------ | ------ | ------ | ------ |
-| collection | `string` | - |  \- |
-| `Default value` params | `QueryParamsType` |  {} |  \- |
+| Name | Type | Default value |
+| ------ | ------ | ------ |
+| collection | `string` | - |
+| `Default value` params | `QueryParamsType` |  {} |
 
 **Returns:** `Promise`<`any`[]>
 
@@ -553,7 +602,7 @@ ___
 
 ▸ **getCollections**(params?: *`QueryParamsType`*): `Promise`<[ICollectionsResponse](../interfaces/_schemes_response_collection_.icollectionsresponse.md)[]>
 
-*Defined in [SDK.ts:262](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/SDK.ts#L262)*
+*Defined in [SDK.ts:171](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/SDK.ts#L171)*
 
 Get all available collections
 
@@ -570,15 +619,17 @@ ___
 
 ###  getField
 
-▸ **getField**<`T`>(collection: *`string`*, fieldName: *`string`*, params?: *`QueryParamsType`*): `Promise`<[IFieldResponse](../interfaces/_schemes_response_field_.ifieldresponse.md)<`T`>>
+▸ **getField**<`TFieldType`>(collection: *`string`*, fieldName: *`string`*, params?: *`QueryParamsType`*): `Promise`<[IFieldResponse](../interfaces/_schemes_response_field_.ifieldresponse.md)<`TFieldType`>>
 
-*Defined in [SDK.ts:400](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/SDK.ts#L400)*
+*Defined in [SDK.ts:350](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/SDK.ts#L350)*
 
 Get the field information for a single given field
 
+*__see__*: [https://docs.directus.io/api/reference.html#fields-2](https://docs.directus.io/api/reference.html#fields-2)
+
 **Type parameters:**
 
-#### T :  [IField](../interfaces/_schemes_directus_field_.ifield.md)
+#### TFieldType :  [IField](../interfaces/_schemes_directus_field_.ifield.md)
 **Parameters:**
 
 | Name | Type | Default value |
@@ -587,22 +638,24 @@ Get the field information for a single given field
 | fieldName | `string` | - |
 | `Default value` params | `QueryParamsType` |  {} |
 
-**Returns:** `Promise`<[IFieldResponse](../interfaces/_schemes_response_field_.ifieldresponse.md)<`T`>>
+**Returns:** `Promise`<[IFieldResponse](../interfaces/_schemes_response_field_.ifieldresponse.md)<`TFieldType`>>
 
 ___
 <a id="getfields"></a>
 
 ###  getFields
 
-▸ **getFields**<`T`>(collection: *`string`*, params?: *`QueryParamsType`*): `Promise`<[IFieldsResponse](../interfaces/_schemes_response_field_.ifieldsresponse.md)<`T`>>
+▸ **getFields**<`TFieldsType`>(collection: *`string`*, params?: *`QueryParamsType`*): `Promise`<[IFieldsResponse](../interfaces/_schemes_response_field_.ifieldsresponse.md)<`TFieldsType`>>
 
-*Defined in [SDK.ts:390](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/SDK.ts#L390)*
+*Defined in [SDK.ts:336](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/SDK.ts#L336)*
 
 Get the fields that have been setup for a given collection
 
+*__see__*: [https://docs.directus.io/api/reference.html#fields-2](https://docs.directus.io/api/reference.html#fields-2)
+
 **Type parameters:**
 
-#### T :  [IField](../interfaces/_schemes_directus_field_.ifield.md)[]
+#### TFieldsType :  [IField](../interfaces/_schemes_directus_field_.ifield.md)[]
 **Parameters:**
 
 | Name | Type | Default value |
@@ -610,39 +663,89 @@ Get the fields that have been setup for a given collection
 | collection | `string` | - |
 | `Default value` params | `QueryParamsType` |  {} |
 
-**Returns:** `Promise`<[IFieldsResponse](../interfaces/_schemes_response_field_.ifieldsresponse.md)<`T`>>
+**Returns:** `Promise`<[IFieldsResponse](../interfaces/_schemes_response_field_.ifieldsresponse.md)<`TFieldsType`>>
+
+___
+<a id="getfile"></a>
+
+###  getFile
+
+▸ **getFile**<`TFile`>(fileName: *`TFile`*, params?: *`QueryParamsType`*): `Promise`<`TFile extends string ? IFileResponse<IFile> : IFilesResponse<IFile[]>`>
+
+*Defined in [SDK.ts:474](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/SDK.ts#L474)*
+
+Get a certain file or certain file list from Directus
+
+*__see__*: [https://docs.directus.io/api/reference.html#files](https://docs.directus.io/api/reference.html#files)
+
+**Type parameters:**
+
+#### TFile :  `string` \| `string`[]
+**Parameters:**
+
+| Name | Type | Default value |
+| ------ | ------ | ------ |
+| fileName | `TFile` | - |
+| `Default value` params | `QueryParamsType` |  {} |
+
+**Returns:** `Promise`<`TFile extends string ? IFileResponse<IFile> : IFilesResponse<IFile[]>`>
+
+___
+<a id="getfiles"></a>
+
+###  getFiles
+
+▸ **getFiles**(params?: *`QueryParamsType`*): `Promise`<[IFilesResponse](../interfaces/_schemes_response_file_.ifilesresponse.md)>
+
+*Defined in [SDK.ts:465](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/SDK.ts#L465)*
+
+Get a list of available files from Directus
+
+*__see__*: [https://docs.directus.io/api/reference.html#files](https://docs.directus.io/api/reference.html#files)
+
+**Parameters:**
+
+| Name | Type | Default value |
+| ------ | ------ | ------ |
+| `Default value` params | `QueryParamsType` |  {} |
+
+**Returns:** `Promise`<[IFilesResponse](../interfaces/_schemes_response_file_.ifilesresponse.md)>
 
 ___
 <a id="getinterfaces"></a>
 
 ###  getInterfaces
 
-▸ **getInterfaces**<`T`>(): `Promise`<`T`>
+▸ **getInterfaces**<`TResponse`>(): `Promise`<`TResponse`>
 
-*Defined in [SDK.ts:356](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/SDK.ts#L356)*
+*Defined in [SDK.ts:296](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/SDK.ts#L296)*
 
-Get the meta information of all installed interfaces
+Get the information of all installed interfaces
+
+*__see__*: [https://docs.directus.io/api/reference.html#get-extensions](https://docs.directus.io/api/reference.html#get-extensions)
 
 **Type parameters:**
 
-#### T :  `any`[]
+#### TResponse :  `any`[]
 
-**Returns:** `Promise`<`T`>
+**Returns:** `Promise`<`TResponse`>
 
 ___
 <a id="getitem"></a>
 
 ###  getItem
 
-▸ **getItem**<`ItemType`>(collection: *`string`*, primaryKey: *[PrimaryKeyType](../modules/_types_.md#primarykeytype)*, params?: *`QueryParamsType`*): `Promise`<[IItemResponse](../interfaces/_schemes_response_item_.iitemresponse.md)<`ItemType`>>
+▸ **getItem**<`TItemType`>(collection: *`string`*, primaryKey: *[PrimaryKeyType](../modules/_sdk_.md#primarykeytype)*, params?: *`QueryParamsType`*): `Promise`<[IItemResponse](../interfaces/_schemes_response_item_.iitemresponse.md)<`TItemType`>>
 
-*Defined in [SDK.ts:641](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/SDK.ts#L641)*
+*Defined in [SDK.ts:625](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/SDK.ts#L625)*
 
 Get a single item by primary key
 
+*__see__*: [https://docs.directus.io/api/reference.html#get-item](https://docs.directus.io/api/reference.html#get-item)
+
 **Type parameters:**
 
-#### ItemType :  `object`
+#### TItemType :  `object`
 
 Defining fields of an item in object schema
 
@@ -651,55 +754,55 @@ Defining fields of an item in object schema
 | Name | Type | Default value |
 | ------ | ------ | ------ |
 | collection | `string` | - |
-| primaryKey | [PrimaryKeyType](../modules/_types_.md#primarykeytype) | - |
+| primaryKey | [PrimaryKeyType](../modules/_sdk_.md#primarykeytype) | - |
 | `Default value` params | `QueryParamsType` |  {} |
 
-**Returns:** `Promise`<[IItemResponse](../interfaces/_schemes_response_item_.iitemresponse.md)<`ItemType`>>
+**Returns:** `Promise`<[IItemResponse](../interfaces/_schemes_response_item_.iitemresponse.md)<`TItemType`>>
 
 ___
 <a id="getitemrevisions"></a>
 
 ###  getItemRevisions
 
-▸ **getItemRevisions**<`DataAndDelta`>(collection: *`string`*, primaryKey: *[PrimaryKeyType](../modules/_types_.md#primarykeytype)*, params?: *`QueryParamsType`*): `Promise`<[IRevisionResponse](../interfaces/_schemes_response_revision_.irevisionresponse.md)<`DataAndDelta`>>
+▸ **getItemRevisions**<`TDataAndDelta`>(collection: *`string`*, primaryKey: *[PrimaryKeyType](../modules/_sdk_.md#primarykeytype)*, params?: *`QueryParamsType`*): `Promise`<[IRevisionResponse](../interfaces/_schemes_response_revision_.irevisionresponse.md)<`TDataAndDelta`>>
 
-*Defined in [SDK.ts:858](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/SDK.ts#L858)*
+*Defined in [SDK.ts:832](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/SDK.ts#L832)*
 
 Get a single item's revisions by primary key
 
+*__typeparam__*: The data including delta type for the revision
+
 **Type parameters:**
 
-#### DataAndDelta :  `object`
-
-The data including delta type for the revision
-
+#### TDataAndDelta :  `object`
 **Parameters:**
 
 | Name | Type | Default value | Description |
 | ------ | ------ | ------ | ------ |
 | collection | `string` | - |  \- |
-| primaryKey | [PrimaryKeyType](../modules/_types_.md#primarykeytype) | - |  \- |
+| primaryKey | [PrimaryKeyType](../modules/_sdk_.md#primarykeytype) | - |  \- |
 | `Default value` params | `QueryParamsType` |  {} |   |
 
-**Returns:** `Promise`<[IRevisionResponse](../interfaces/_schemes_response_revision_.irevisionresponse.md)<`DataAndDelta`>>
+**Returns:** `Promise`<[IRevisionResponse](../interfaces/_schemes_response_revision_.irevisionresponse.md)<`TDataAndDelta`>>
 
 ___
 <a id="getitems"></a>
 
 ###  getItems
 
-▸ **getItems**<`ItemsType`>(collection: *`string`*, params?: *`QueryParamsType`*): `Promise`<[IItemsResponse](../interfaces/_schemes_response_item_.iitemsresponse.md)<`ItemsType`>>
+▸ **getItems**<`TTItemsType`>(collection: *`string`*, params?: *`QueryParamsType`*): `Promise`<[IItemsResponse](../interfaces/_schemes_response_item_.iitemsresponse.md)<`TTItemsType`>>
 
-*Defined in [SDK.ts:624](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/SDK.ts#L624)*
+*Defined in [SDK.ts:608](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/SDK.ts#L608)*
 
 Get items from a given collection
 
+*__see__*: [https://docs.directus.io/api/reference.html#get-multiple-items](https://docs.directus.io/api/reference.html#get-multiple-items)
+
+*__typeparam__*: Defining an array of items, each in object schema
+
 **Type parameters:**
 
-#### ItemsType :  `Array`<`__type`>
-
-Defining an array of items, each in object schema
-
+#### TTItemsType :  `Array`<`__type`>
 **Parameters:**
 
 | Name | Type | Default value |
@@ -707,24 +810,26 @@ Defining an array of items, each in object schema
 | collection | `string` | - |
 | `Default value` params | `QueryParamsType` |  {} |
 
-**Returns:** `Promise`<[IItemsResponse](../interfaces/_schemes_response_item_.iitemsresponse.md)<`ItemsType`>>
+**Returns:** `Promise`<[IItemsResponse](../interfaces/_schemes_response_item_.iitemsresponse.md)<`TTItemsType`>>
 
 ___
 <a id="getlayouts"></a>
 
 ###  getLayouts
 
-▸ **getLayouts**<`T`>(): `Promise`<`T`>
+▸ **getLayouts**<`TResponse`>(): `Promise`<`TResponse`>
 
-*Defined in [SDK.ts:363](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/SDK.ts#L363)*
+*Defined in [SDK.ts:304](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/SDK.ts#L304)*
 
-Get the meta information of all installed layouts
+Get the information of all installed layouts
+
+*__see__*: [https://docs.directus.io/api/reference.html#get-extensions](https://docs.directus.io/api/reference.html#get-extensions)
 
 **Type parameters:**
 
-#### T :  `any`[]
+#### TResponse :  `any`[]
 
-**Returns:** `Promise`<`T`>
+**Returns:** `Promise`<`TResponse`>
 
 ___
 <a id="getme"></a>
@@ -733,7 +838,7 @@ ___
 
 ▸ **getMe**<`User`>(params?: *`QueryParamsType`*): `Promise`<[IUserResponse](../interfaces/_schemes_response_user_.iuserresponse.md)<`User`>>
 
-*Defined in [SDK.ts:1000](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/SDK.ts#L1000)*
+*Defined in [SDK.ts:974](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/SDK.ts#L974)*
 
 Get the user info of the currently logged in user
 
@@ -753,39 +858,41 @@ ___
 
 ###  getMyBookmarks
 
-▸ **getMyBookmarks**<`T`>(params?: *`QueryParamsType`*): `Promise`<`T`>
+▸ **getMyBookmarks**<`TResponse`>(params?: *`QueryParamsType`*): `Promise`<`TResponse`>
 
-*Defined in [SDK.ts:232](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/SDK.ts#L232)*
+*Defined in [SDK.ts:160](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/SDK.ts#L160)*
 
-Get the bookmarks of the current user TODO: Add deprecation warning
+Get the bookmarks of the current user
+
+*__deprecated__*: Will be removed in the next major version, please use [SDK.getCollectionPresets](_sdk_.sdk.md#getcollectionpresets) instead
 
 *__see__*: [https://docs.directus.io/advanced/legacy-upgrades.html#directus-bookmarks](https://docs.directus.io/advanced/legacy-upgrades.html#directus-bookmarks)
 
 **Type parameters:**
 
-#### T :  `any`[]
+#### TResponse :  `any`[]
 **Parameters:**
 
 | Name | Type | Default value |
 | ------ | ------ | ------ |
 | `Default value` params | `QueryParamsType` |  {} |
 
-**Returns:** `Promise`<`T`>
+**Returns:** `Promise`<`TResponse`>
 
 ___
 <a id="getmylistingpreferences"></a>
 
 ###  getMyListingPreferences
 
-▸ **getMyListingPreferences**<`T`>(collection: *`string`*, params?: *`QueryParamsType`*): `Promise`<`T`>
+▸ **getMyListingPreferences**<`TResponse`>(collection: *`string`*, params?: *`QueryParamsType`*): `Promise`<`TResponse`>
 
-*Defined in [SDK.ts:686](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/SDK.ts#L686)*
+*Defined in [SDK.ts:672](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/SDK.ts#L672)*
 
 Get the collection presets of the current user for a single collection
 
 **Type parameters:**
 
-#### T :  `any`[]
+#### TResponse :  `any`[]
 **Parameters:**
 
 | Name | Type | Default value |
@@ -793,49 +900,51 @@ Get the collection presets of the current user for a single collection
 | collection | `string` | - |
 | `Default value` params | `QueryParamsType` |  {} |
 
-**Returns:** `Promise`<`T`>
+**Returns:** `Promise`<`TResponse`>
 
 ___
 <a id="getmypermissions"></a>
 
 ###  getMyPermissions
 
-▸ **getMyPermissions**<`T`>(params?: *`QueryParamsType`*): `Promise`<`T`>
+▸ **getMyPermissions**<`TResponse`>(params?: *`QueryParamsType`*): `Promise`<`TResponse`>
 
-*Defined in [SDK.ts:761](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/SDK.ts#L761)*
+*Defined in [SDK.ts:745](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/SDK.ts#L745)*
 
 TODO: Fix type-def for return Get the currently logged in user's permissions
 
 **Type parameters:**
 
-#### T :  `any`[]
+#### TResponse :  `any`[]
 
 Permissions type as array extending any\[\]
 
 **Parameters:**
 
-| Name | Type | Default value | Description |
-| ------ | ------ | ------ | ------ |
-| `Default value` params | `QueryParamsType` |  {} |  \- |
+| Name | Type | Default value |
+| ------ | ------ | ------ |
+| `Default value` params | `QueryParamsType` |  {} |
 
-**Returns:** `Promise`<`T`>
+**Returns:** `Promise`<`TResponse`>
 
 ___
 <a id="getpages"></a>
 
 ###  getPages
 
-▸ **getPages**<`T`>(): `Promise`<`T`>
+▸ **getPages**<`TResponse`>(): `Promise`<`TResponse`>
 
-*Defined in [SDK.ts:370](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/SDK.ts#L370)*
+*Defined in [SDK.ts:312](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/SDK.ts#L312)*
 
-Get the meta information of all installed pages
+Get the information of all installed pages
+
+*__see__*: [https://docs.directus.io/api/reference.html#get-extensions](https://docs.directus.io/api/reference.html#get-extensions)
 
 **Type parameters:**
 
-#### T :  `any`[]
+#### TResponse :  `any`[]
 
-**Returns:** `Promise`<`T`>
+**Returns:** `Promise`<`TResponse`>
 
 ___
 <a id="getpermissions"></a>
@@ -844,7 +953,7 @@ ___
 
 ▸ **getPermissions**(params?: *`QueryParamsType`*): `Promise`<[IItemsResponse](../interfaces/_schemes_response_item_.iitemsresponse.md)<[IPermission](../interfaces/_schemes_directus_permission_.ipermission.md)[]>>
 
-*Defined in [SDK.ts:748](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/SDK.ts#L748)*
+*Defined in [SDK.ts:734](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/SDK.ts#L734)*
 
 Get permissions
 
@@ -863,7 +972,7 @@ ___
 
 ▸ **getRelations**(params?: *`QueryParamsType`*): `Promise`<[IRelationsResponse](../interfaces/_schemes_response_relation_.irelationsresponse.md)>
 
-*Defined in [SDK.ts:802](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/SDK.ts#L802)*
+*Defined in [SDK.ts:782](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/SDK.ts#L782)*
 
 Get all relationships
 
@@ -880,9 +989,9 @@ ___
 
 ###  getRole
 
-▸ **getRole**(primaryKey: *[PrimaryKeyType](../modules/_types_.md#primarykeytype)*, params?: *`QueryParamsType`*): `Promise`<[IRoleResponse](../interfaces/_schemes_response_role_.iroleresponse.md)>
+▸ **getRole**(primaryKey: *[PrimaryKeyType](../modules/_sdk_.md#primarykeytype)*, params?: *`QueryParamsType`*): `Promise`<[IRoleResponse](../interfaces/_schemes_response_role_.iroleresponse.md)>
 
-*Defined in [SDK.ts:897](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/SDK.ts#L897)*
+*Defined in [SDK.ts:871](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/SDK.ts#L871)*
 
 Get a single user role
 
@@ -890,7 +999,7 @@ Get a single user role
 
 | Name | Type | Default value | Description |
 | ------ | ------ | ------ | ------ |
-| primaryKey | [PrimaryKeyType](../modules/_types_.md#primarykeytype) | - |  \- |
+| primaryKey | [PrimaryKeyType](../modules/_sdk_.md#primarykeytype) | - |  \- |
 | `Default value` params | `QueryParamsType` |  {} |   |
 
 **Returns:** `Promise`<[IRoleResponse](../interfaces/_schemes_response_role_.iroleresponse.md)>
@@ -902,7 +1011,7 @@ ___
 
 ▸ **getRoles**(params?: *`QueryParamsType`*): `Promise`<[IRoleResponse](../interfaces/_schemes_response_role_.iroleresponse.md)[]>
 
-*Defined in [SDK.ts:908](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/SDK.ts#L908)*
+*Defined in [SDK.ts:882](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/SDK.ts#L882)*
 
 Get the user roles
 
@@ -921,7 +1030,7 @@ ___
 
 ▸ **getSettings**(params?: *`QueryParamsType`*): `Promise`<[ISettingsResponse](../interfaces/_schemes_response_setting_.isettingsresponse.md)>
 
-*Defined in [SDK.ts:954](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/SDK.ts#L954)*
+*Defined in [SDK.ts:928](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/SDK.ts#L928)*
 
 Get Directus' global settings
 
@@ -940,7 +1049,7 @@ ___
 
 ▸ **getSettingsFields**(params?: *`QueryParamsType`*): `Promise`<[IFieldsResponse](../interfaces/_schemes_response_field_.ifieldsresponse.md)<[IField](../interfaces/_schemes_directus_field_.ifield.md)[]>>
 
-*Defined in [SDK.ts:964](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/SDK.ts#L964)*
+*Defined in [SDK.ts:938](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/SDK.ts#L938)*
 
 Get the "fields" for directus\_settings
 
@@ -959,7 +1068,7 @@ ___
 
 ▸ **getThirdPartyAuthProviders**(): `Promise`<`any`>
 
-*Defined in [SDK.ts:1061](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/SDK.ts#L1061)*
+*Defined in [SDK.ts:1035](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/SDK.ts#L1035)*
 
 TODO: Add response type-def Get all the setup third party auth providers
 
@@ -970,9 +1079,9 @@ ___
 
 ###  getUser
 
-▸ **getUser**<`User`>(primaryKey: *[PrimaryKeyType](../modules/_types_.md#primarykeytype)*, params?: *`QueryParamsType`*): `Promise`<[IUserResponse](../interfaces/_schemes_response_user_.iuserresponse.md)<`User`>>
+▸ **getUser**<`User`>(primaryKey: *[PrimaryKeyType](../modules/_sdk_.md#primarykeytype)*, params?: *`QueryParamsType`*): `Promise`<[IUserResponse](../interfaces/_schemes_response_user_.iuserresponse.md)<`User`>>
 
-*Defined in [SDK.ts:989](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/SDK.ts#L989)*
+*Defined in [SDK.ts:963](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/SDK.ts#L963)*
 
 Get a single Directus user
 
@@ -983,7 +1092,7 @@ Get a single Directus user
 
 | Name | Type | Default value | Description |
 | ------ | ------ | ------ | ------ |
-| primaryKey | [PrimaryKeyType](../modules/_types_.md#primarykeytype) | - |  \- |
+| primaryKey | [PrimaryKeyType](../modules/_sdk_.md#primarykeytype) | - |  \- |
 | `Default value` params | `QueryParamsType` |  {} |   |
 
 **Returns:** `Promise`<[IUserResponse](../interfaces/_schemes_response_user_.iuserresponse.md)<`User`>>
@@ -995,7 +1104,7 @@ ___
 
 ▸ **getUsers**(params?: *`QueryParamsType`*): `Promise`<[IUsersResponse](../interfaces/_schemes_response_user_.iusersresponse.md)<[IUser](../interfaces/_schemes_directus_user_.iuser.md)[]>>
 
-*Defined in [SDK.ts:978](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/SDK.ts#L978)*
+*Defined in [SDK.ts:952](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/SDK.ts#L952)*
 
 Get a list of available users in Directus
 
@@ -1014,7 +1123,7 @@ ___
 
 ▸ **login**(credentials: *[ILoginCredentials](../interfaces/_schemes_auth_login_.ilogincredentials.md)*, options?: *[ILoginOptions](../interfaces/_schemes_auth_login_.iloginoptions.md)*): `Promise`<[ILoginResponse](../interfaces/_schemes_response_login_.iloginresponse.md)>
 
-*Defined in [SDK.ts:160](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/SDK.ts#L160)*
+*Defined in [SDK.ts:88](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/SDK.ts#L88)*
 
 Login to the API; Gets a new token from the API and stores it in this.api.token.
 
@@ -1034,7 +1143,7 @@ ___
 
 ▸ **logout**(): `void`
 
-*Defined in [SDK.ts:167](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/SDK.ts#L167)*
+*Defined in [SDK.ts:95](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/SDK.ts#L95)*
 
 Logs the user out by "forgetting" the token, and clearing the refresh interval
 
@@ -1047,7 +1156,7 @@ ___
 
 ▸ **ping**(): `Promise`<`string`>
 
-*Defined in [SDK.ts:1035](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/SDK.ts#L1035)*
+*Defined in [SDK.ts:1009](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/SDK.ts#L1009)*
 
 Ping the API to check if it exists / is up and running, returns "pong"
 
@@ -1060,7 +1169,7 @@ ___
 
 ▸ **projectInfo**(): `Promise`<`any`>
 
-*Defined in [SDK.ts:1052](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/SDK.ts#L1052)*
+*Defined in [SDK.ts:1026](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/SDK.ts#L1026)*
 
 TODO: Add response type-def Get the server info from the project
 
@@ -1073,7 +1182,7 @@ ___
 
 ▸ **refresh**(token: *`string`*): `Promise`<[IRefreshTokenResponse](../interfaces/_schemes_response_token_.irefreshtokenresponse.md)>
 
-*Defined in [SDK.ts:191](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/SDK.ts#L191)*
+*Defined in [SDK.ts:119](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/SDK.ts#L119)*
 
 Use the passed token to request a new one
 
@@ -1092,7 +1201,7 @@ ___
 
 ▸ **refreshIfNeeded**(): `Promise`<[`boolean`, `Error`]>
 
-*Defined in [SDK.ts:184](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/SDK.ts#L184)*
+*Defined in [SDK.ts:112](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/SDK.ts#L112)*
 
 Refresh the token if it is about to expire (within 30 seconds of expiry date).
 
@@ -1106,22 +1215,22 @@ ___
 
 ###  requestPasswordReset
 
-▸ **requestPasswordReset**<`T`>(email: *`string`*): `Promise`<`T`>
+▸ **requestPasswordReset**<`TResponse`>(email: *`string`*): `Promise`<`TResponse`>
 
-*Defined in [SDK.ts:200](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/SDK.ts#L200)*
+*Defined in [SDK.ts:128](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/SDK.ts#L128)*
 
 Request to reset the password of the user with the given email address. The API will send an email to the given email address with a link to generate a new temporary password.
 
 **Type parameters:**
 
-#### T :  `any`
+#### TResponse :  `any`
 **Parameters:**
 
 | Name | Type |
 | ------ | ------ |
 | email | `string` |
 
-**Returns:** `Promise`<`T`>
+**Returns:** `Promise`<`TResponse`>
 
 ___
 <a id="reset"></a>
@@ -1130,7 +1239,7 @@ ___
 
 ▸ **reset**(): `void`
 
-*Defined in [SDK.ts:174](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/SDK.ts#L174)*
+*Defined in [SDK.ts:102](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/SDK.ts#L102)*
 
 Resets the client instance by logging out and removing the URL and project
 
@@ -1141,9 +1250,9 @@ ___
 
 ###  revert
 
-▸ **revert**(collection: *`string`*, primaryKey: *[PrimaryKeyType](../modules/_types_.md#primarykeytype)*, revisionID: *`number`*): `Promise`<`void`>
+▸ **revert**(collection: *`string`*, primaryKey: *[PrimaryKeyType](../modules/_sdk_.md#primarykeytype)*, revisionID: *`number`*): `Promise`<`void`>
 
-*Defined in [SDK.ts:878](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/SDK.ts#L878)*
+*Defined in [SDK.ts:852](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/SDK.ts#L852)*
 
 Revert an item to a previous state
 
@@ -1152,7 +1261,7 @@ Revert an item to a previous state
 | Name | Type | Description |
 | ------ | ------ | ------ |
 | collection | `string` |  \- |
-| primaryKey | [PrimaryKeyType](../modules/_types_.md#primarykeytype) |  \- |
+| primaryKey | [PrimaryKeyType](../modules/_sdk_.md#primarykeytype) |  \- |
 | revisionID | `number` |   |
 
 **Returns:** `Promise`<`void`>
@@ -1164,7 +1273,7 @@ ___
 
 ▸ **serverInfo**(): `Promise`<[IServerInformationResponse](../interfaces/_schemes_response_serverinformation_.iserverinformationresponse.md)>
 
-*Defined in [SDK.ts:1043](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/SDK.ts#L1043)*
+*Defined in [SDK.ts:1017](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/SDK.ts#L1017)*
 
 Get the server info from the API
 
@@ -1177,7 +1286,7 @@ ___
 
 ▸ **updateCollection**(collection: *`string`*, data: *`Partial`<[ICollection](../interfaces/_schemes_directus_collection_.icollection.md)>*): `Promise`<[ICollectionResponse](../interfaces/_schemes_response_collection_.icollectionresponse.md)>
 
-*Defined in [SDK.ts:289](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/SDK.ts#L289)*
+*Defined in [SDK.ts:198](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/SDK.ts#L198)*
 
 Updates a certain collection
 
@@ -1195,24 +1304,26 @@ ___
 
 ###  updateCollectionPreset
 
-▸ **updateCollectionPreset**<`PartialCollectionPreset`,`ResultCollectionPreset`>(primaryKey: *[PrimaryKeyType](../modules/_types_.md#primarykeytype)*, data: *[IUpdateCollectionPresetBody](../interfaces/_schemes_request_collection_.iupdatecollectionpresetbody.md)*): `Promise`<[ICollectionPresetResponse](../interfaces/_schemes_response_collectionpreset_.icollectionpresetresponse.md)<`PartialCollectionPreset` & `ResultCollectionPreset`>>
+▸ **updateCollectionPreset**<`PartialCollectionPreset`,`TResultCollectionPreset`>(primaryKey: *[PrimaryKeyType](../modules/_sdk_.md#primarykeytype)*, data: *[IUpdateCollectionPresetBody](../interfaces/_schemes_request_collection_.iupdatecollectionpresetbody.md)*): `Promise`<[ICollectionPresetResponse](../interfaces/_schemes_response_collectionpreset_.icollectionpresetresponse.md)<`PartialCollectionPreset` & `TResultCollectionPreset`>>
 
-*Defined in [SDK.ts:324](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/SDK.ts#L324)*
+*Defined in [SDK.ts:262](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/SDK.ts#L262)*
 
 Update collection preset (bookmark / listing preference)
+
+*__see__*: [https://docs.directus.io/api/reference.html#collection-presets](https://docs.directus.io/api/reference.html#collection-presets)
 
 **Type parameters:**
 
 #### PartialCollectionPreset :  `Partial`<[ICollectionPreset](../interfaces/_schemes_directus_collectionpreset_.icollectionpreset.md)>
-#### ResultCollectionPreset :  [ICollectionPreset](../interfaces/_schemes_directus_collectionpreset_.icollectionpreset.md)
+#### TResultCollectionPreset :  [ICollectionPreset](../interfaces/_schemes_directus_collectionpreset_.icollectionpreset.md)
 **Parameters:**
 
 | Name | Type |
 | ------ | ------ |
-| primaryKey | [PrimaryKeyType](../modules/_types_.md#primarykeytype) |
+| primaryKey | [PrimaryKeyType](../modules/_sdk_.md#primarykeytype) |
 | data | [IUpdateCollectionPresetBody](../interfaces/_schemes_request_collection_.iupdatecollectionpresetbody.md) |
 
-**Returns:** `Promise`<[ICollectionPresetResponse](../interfaces/_schemes_response_collectionpreset_.icollectionpresetresponse.md)<`PartialCollectionPreset` & `ResultCollectionPreset`>>
+**Returns:** `Promise`<[ICollectionPresetResponse](../interfaces/_schemes_response_collectionpreset_.icollectionpresetresponse.md)<`PartialCollectionPreset` & `TResultCollectionPreset`>>
 
 ___
 <a id="updatedatabase"></a>
@@ -1221,7 +1332,7 @@ ___
 
 ▸ **updateDatabase**(): `Promise`<`void`>
 
-*Defined in [SDK.ts:1027](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/SDK.ts#L1027)*
+*Defined in [SDK.ts:1001](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/SDK.ts#L1001)*
 
 This will update the database of the API instance to the latest version using the migrations in the API
 
@@ -1232,37 +1343,41 @@ ___
 
 ###  updateField
 
-▸ **updateField**<`T`>(collection: *`string`*, fieldName: *`string`*, fieldInfo: *`T`*): `Promise`<[IFieldResponse](../interfaces/_schemes_response_field_.ifieldresponse.md)<[IField](../interfaces/_schemes_directus_field_.ifield.md) & `T`> \| `undefined`>
+▸ **updateField**<`TFieldType`>(collection: *`string`*, fieldName: *`string`*, fieldInfo: *`TFieldType`*): `Promise`<[IFieldResponse](../interfaces/_schemes_response_field_.ifieldresponse.md)<[IField](../interfaces/_schemes_directus_field_.ifield.md) & `TFieldType`> \| `undefined`>
 
-*Defined in [SDK.ts:425](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/SDK.ts#L425)*
+*Defined in [SDK.ts:380](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/SDK.ts#L380)*
 
 Update a given field in a given collection
 
+*__see__*: [https://docs.directus.io/api/reference.html#fields-2](https://docs.directus.io/api/reference.html#fields-2)
+
 **Type parameters:**
 
-#### T :  `Partial`<[IField](../interfaces/_schemes_directus_field_.ifield.md)>
+#### TFieldType :  `Partial`<[IField](../interfaces/_schemes_directus_field_.ifield.md)>
 **Parameters:**
 
 | Name | Type |
 | ------ | ------ |
 | collection | `string` |
 | fieldName | `string` |
-| fieldInfo | `T` |
+| fieldInfo | `TFieldType` |
 
-**Returns:** `Promise`<[IFieldResponse](../interfaces/_schemes_response_field_.ifieldresponse.md)<[IField](../interfaces/_schemes_directus_field_.ifield.md) & `T`> \| `undefined`>
+**Returns:** `Promise`<[IFieldResponse](../interfaces/_schemes_response_field_.ifieldresponse.md)<[IField](../interfaces/_schemes_directus_field_.ifield.md) & `TFieldType`> \| `undefined`>
 
 ___
 <a id="updatefields"></a>
 
 ###  updateFields
 
-▸ **updateFields**<`T`>(collection: *`string`*, fields: *`Array`<`Partial`<[IField](../interfaces/_schemes_directus_field_.ifield.md)>>*): `Promise`<[IFieldsResponse](../interfaces/_schemes_response_field_.ifieldsresponse.md)<`T` & [IField](../interfaces/_schemes_directus_field_.ifield.md)[]> \| `undefined`>
+▸ **updateFields**<`TFieldsType`>(collection: *`string`*, fields: *`Array`<`Partial`<[IField](../interfaces/_schemes_directus_field_.ifield.md)>>*): `Promise`<[IFieldsResponse](../interfaces/_schemes_response_field_.ifieldsresponse.md)<`TFieldsType` & [IField](../interfaces/_schemes_directus_field_.ifield.md)[]> \| `undefined`>
 
-▸ **updateFields**<`T`>(collection: *`string`*, fields: *`string`[]*, fieldInfo: *`Partial`<[IField](../interfaces/_schemes_directus_field_.ifield.md)>*): `Promise`<[IFieldsResponse](../interfaces/_schemes_response_field_.ifieldsresponse.md)<`T` & [IField](../interfaces/_schemes_directus_field_.ifield.md)[]> \| `undefined`>
+▸ **updateFields**<`TFieldsType`>(collection: *`string`*, fields: *`string`[]*, fieldInfo: *`Partial`<[IField](../interfaces/_schemes_directus_field_.ifield.md)>*): `Promise`<[IFieldsResponse](../interfaces/_schemes_response_field_.ifieldsresponse.md)<`TFieldsType` & [IField](../interfaces/_schemes_directus_field_.ifield.md)[]> \| `undefined`>
 
-*Defined in [SDK.ts:463](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/SDK.ts#L463)*
+*Defined in [SDK.ts:418](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/SDK.ts#L418)*
 
 Update multiple fields at once
+
+*__see__*: [https://docs.directus.io/api/reference.html#fields-2](https://docs.directus.io/api/reference.html#fields-2)
 
 *__example__*: // Set multiple fields to the same value updateFields("projects", \["first\_name", "last\_name", "email"\], { default\_value: "" })
 
@@ -1270,7 +1385,7 @@ Update multiple fields at once
 
 **Type parameters:**
 
-#### T :  [IField](../interfaces/_schemes_directus_field_.ifield.md)[]
+#### TFieldsType :  [IField](../interfaces/_schemes_directus_field_.ifield.md)[]
 **Parameters:**
 
 | Name | Type |
@@ -1278,13 +1393,13 @@ Update multiple fields at once
 | collection | `string` |
 | fields | `Array`<`Partial`<[IField](../interfaces/_schemes_directus_field_.ifield.md)>> |
 
-**Returns:** `Promise`<[IFieldsResponse](../interfaces/_schemes_response_field_.ifieldsresponse.md)<`T` & [IField](../interfaces/_schemes_directus_field_.ifield.md)[]> \| `undefined`>
+**Returns:** `Promise`<[IFieldsResponse](../interfaces/_schemes_response_field_.ifieldsresponse.md)<`TFieldsType` & [IField](../interfaces/_schemes_directus_field_.ifield.md)[]> \| `undefined`>
 
-*Defined in [SDK.ts:467](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/SDK.ts#L467)*
+*Defined in [SDK.ts:422](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/SDK.ts#L422)*
 
 **Type parameters:**
 
-#### T :  [IField](../interfaces/_schemes_directus_field_.ifield.md)[]
+#### TFieldsType :  [IField](../interfaces/_schemes_directus_field_.ifield.md)[]
 **Parameters:**
 
 | Name | Type |
@@ -1293,113 +1408,117 @@ Update multiple fields at once
 | fields | `string`[] |
 | fieldInfo | `Partial`<[IField](../interfaces/_schemes_directus_field_.ifield.md)> |
 
-**Returns:** `Promise`<[IFieldsResponse](../interfaces/_schemes_response_field_.ifieldsresponse.md)<`T` & [IField](../interfaces/_schemes_directus_field_.ifield.md)[]> \| `undefined`>
+**Returns:** `Promise`<[IFieldsResponse](../interfaces/_schemes_response_field_.ifieldsresponse.md)<`TFieldsType` & [IField](../interfaces/_schemes_directus_field_.ifield.md)[]> \| `undefined`>
 
 ___
 <a id="updateitem"></a>
 
 ###  updateItem
 
-▸ **updateItem**<`PartialItem`,`Result`>(collection: *`string`*, primaryKey: *[PrimaryKeyType](../modules/_types_.md#primarykeytype)*, body: *`PartialItem`*, params?: *`QueryParamsType`*): `Promise`<[IItemResponse](../interfaces/_schemes_response_item_.iitemresponse.md)<`PartialItem` & `Result`>>
+▸ **updateItem**<`TTPartialItem`,`TTResult`>(collection: *`string`*, primaryKey: *[PrimaryKeyType](../modules/_sdk_.md#primarykeytype)*, body: *`TTPartialItem`*, params?: *`QueryParamsType`*): `Promise`<[IItemResponse](../interfaces/_schemes_response_item_.iitemresponse.md)<`TTPartialItem` & `TTResult`>>
 
-*Defined in [SDK.ts:554](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/SDK.ts#L554)*
+*Defined in [SDK.ts:537](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/SDK.ts#L537)*
 
 Update an existing item
 
+*__see__*: [https://docs.directus.io/api/reference.html#update-item](https://docs.directus.io/api/reference.html#update-item)
+
 **Type parameters:**
 
-#### PartialItem :  `object`
+#### TTPartialItem :  `object`
 
 Defining the item type in object schema
 
-#### Result :  `object`
+#### TTResult :  `object`
 
-Extension of \[PartialItem\] as expected result
+Extension of \[TPartialItem\] as expected result
 
 **Parameters:**
 
 | Name | Type | Default value |
 | ------ | ------ | ------ |
 | collection | `string` | - |
-| primaryKey | [PrimaryKeyType](../modules/_types_.md#primarykeytype) | - |
-| body | `PartialItem` | - |
+| primaryKey | [PrimaryKeyType](../modules/_sdk_.md#primarykeytype) | - |
+| body | `TTPartialItem` | - |
 | `Default value` params | `QueryParamsType` |  {} |
 
-**Returns:** `Promise`<[IItemResponse](../interfaces/_schemes_response_item_.iitemresponse.md)<`PartialItem` & `Result`>>
+**Returns:** `Promise`<[IItemResponse](../interfaces/_schemes_response_item_.iitemresponse.md)<`TTPartialItem` & `TTResult`>>
 
 ___
 <a id="updateitems"></a>
 
 ###  updateItems
 
-▸ **updateItems**<`PartialItem`,`Result`>(collection: *`string`*, body: *`PartialItem`*, params?: *`QueryParamsType`*): `Promise`<[IItemsResponse](../interfaces/_schemes_response_item_.iitemsresponse.md)<`PartialItem` & `Result`>>
+▸ **updateItems**<`TPartialItem`,`TResult`>(collection: *`string`*, body: *`TPartialItem`*, params?: *`QueryParamsType`*): `Promise`<[IItemsResponse](../interfaces/_schemes_response_item_.iitemsresponse.md)<`TPartialItem` & `TResult`>>
 
-*Defined in [SDK.ts:575](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/SDK.ts#L575)*
+*Defined in [SDK.ts:559](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/SDK.ts#L559)*
 
 Update multiple items
 
+*__see__*: [https://docs.directus.io/api/reference.html#update-items](https://docs.directus.io/api/reference.html#update-items)
+
 **Type parameters:**
 
-#### PartialItem :  `object`[]
+#### TPartialItem :  `object`[]
 
 Defining an array of items, each in object schema
 
-#### Result :  `PartialItem`
+#### TResult :  `TPartialItem`
 
-Extension of \[PartialItem\] as expected result
+Extension of \[TPartialItem\] as expected result
 
 **Parameters:**
 
 | Name | Type | Default value |
 | ------ | ------ | ------ |
 | collection | `string` | - |
-| body | `PartialItem` | - |
+| body | `TPartialItem` | - |
 | `Default value` params | `QueryParamsType` |  {} |
 
-**Returns:** `Promise`<[IItemsResponse](../interfaces/_schemes_response_item_.iitemsresponse.md)<`PartialItem` & `Result`>>
+**Returns:** `Promise`<[IItemsResponse](../interfaces/_schemes_response_item_.iitemsresponse.md)<`TPartialItem` & `TResult`>>
 
 ___
 <a id="updatepermissions"></a>
 
 ###  updatePermissions
 
-▸ **updatePermissions**<`T`>(data: *`any`[]*): `Promise`<`T`>
+▸ **updatePermissions**<`TResponse`>(data: *`any`[]*): `Promise`<`TResponse`>
 
-*Defined in [SDK.ts:787](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/SDK.ts#L787)*
+*Defined in [SDK.ts:767](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/SDK.ts#L767)*
 
 TODO: Fix type-def for param and return Update multiple permission records
 
 **Type parameters:**
 
-#### T :  `any`[]
+#### TResponse :  `any`[]
 
 Permissions type as array extending any\[\]
 
 **Parameters:**
 
-| Name | Type | Description |
-| ------ | ------ | ------ |
-| data | `any`[] |  \- |
+| Name | Type |
+| ------ | ------ |
+| data | `any`[] |
 
-**Returns:** `Promise`<`T`>
+**Returns:** `Promise`<`TResponse`>
 
 ___
 <a id="updaterelation"></a>
 
 ###  updateRelation
 
-▸ **updateRelation**(primaryKey: *[PrimaryKeyType](../modules/_types_.md#primarykeytype)*, data: *`Partial`<[IRelation](../interfaces/_schemes_directus_relation_.irelation.md)>*): `Promise`<[IRelationResponse](../interfaces/_schemes_response_relation_.irelationresponse.md)>
+▸ **updateRelation**(primaryKey: *[PrimaryKeyType](../modules/_sdk_.md#primarykeytype)*, data: *`Partial`<[IRelation](../interfaces/_schemes_directus_relation_.irelation.md)>*): `Promise`<[IRelationResponse](../interfaces/_schemes_response_relation_.irelationresponse.md)>
 
-*Defined in [SDK.ts:822](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/SDK.ts#L822)*
+*Defined in [SDK.ts:799](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/SDK.ts#L799)*
 
 Updates existing relation
 
 **Parameters:**
 
-| Name | Type | Description |
-| ------ | ------ | ------ |
-| primaryKey | [PrimaryKeyType](../modules/_types_.md#primarykeytype) |  \- |
-| data | `Partial`<[IRelation](../interfaces/_schemes_directus_relation_.irelation.md)> |  \- |
+| Name | Type |
+| ------ | ------ |
+| primaryKey | [PrimaryKeyType](../modules/_sdk_.md#primarykeytype) |
+| data | `Partial`<[IRelation](../interfaces/_schemes_directus_relation_.irelation.md)> |
 
 **Returns:** `Promise`<[IRelationResponse](../interfaces/_schemes_response_relation_.irelationresponse.md)>
 
@@ -1408,9 +1527,9 @@ ___
 
 ###  updateRole
 
-▸ **updateRole**<`Role`>(primaryKey: *[PrimaryKeyType](../modules/_types_.md#primarykeytype)*, body: *`Role`*): `Promise`<[IItemResponse](../interfaces/_schemes_response_item_.iitemresponse.md)<`Role` & [IRole](../interfaces/_schemes_directus_role_.irole.md)>>
+▸ **updateRole**<`Role`>(primaryKey: *[PrimaryKeyType](../modules/_sdk_.md#primarykeytype)*, body: *`Role`*): `Promise`<[IItemResponse](../interfaces/_schemes_response_item_.iitemresponse.md)<`Role` & [IRole](../interfaces/_schemes_directus_role_.irole.md)>>
 
-*Defined in [SDK.ts:919](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/SDK.ts#L919)*
+*Defined in [SDK.ts:893](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/SDK.ts#L893)*
 
 Update a user role
 
@@ -1421,7 +1540,7 @@ Update a user role
 
 | Name | Type | Description |
 | ------ | ------ | ------ |
-| primaryKey | [PrimaryKeyType](../modules/_types_.md#primarykeytype) |  \- |
+| primaryKey | [PrimaryKeyType](../modules/_sdk_.md#primarykeytype) |  \- |
 | body | `Role` |   |
 
 **Returns:** `Promise`<[IItemResponse](../interfaces/_schemes_response_item_.iitemresponse.md)<`Role` & [IRole](../interfaces/_schemes_directus_role_.irole.md)>>
@@ -1431,9 +1550,9 @@ ___
 
 ###  updateUser
 
-▸ **updateUser**<`User`>(primaryKey: *[PrimaryKeyType](../modules/_types_.md#primarykeytype)*, body: *`User`*): `Promise`<[IItemResponse](../interfaces/_schemes_response_item_.iitemresponse.md)<`User` & [IUser](../interfaces/_schemes_directus_user_.iuser.md)>>
+▸ **updateUser**<`User`>(primaryKey: *[PrimaryKeyType](../modules/_sdk_.md#primarykeytype)*, body: *`User`*): `Promise`<[IItemResponse](../interfaces/_schemes_response_item_.iitemresponse.md)<`User` & [IUser](../interfaces/_schemes_directus_user_.iuser.md)>>
 
-*Defined in [SDK.ts:1011](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/SDK.ts#L1011)*
+*Defined in [SDK.ts:985](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/SDK.ts#L985)*
 
 Update a single user based on primaryKey
 
@@ -1444,7 +1563,7 @@ Update a single user based on primaryKey
 
 | Name | Type | Description |
 | ------ | ------ | ------ |
-| primaryKey | [PrimaryKeyType](../modules/_types_.md#primarykeytype) |  \- |
+| primaryKey | [PrimaryKeyType](../modules/_sdk_.md#primarykeytype) |  \- |
 | body | `User` |
 
 **Returns:** `Promise`<[IItemResponse](../interfaces/_schemes_response_item_.iitemresponse.md)<`User` & [IUser](../interfaces/_schemes_directus_user_.iuser.md)>>
@@ -1454,15 +1573,17 @@ ___
 
 ###  uploadFiles
 
-▸ **uploadFiles**<`T`>(data: *`object`*, onUploadProgress?: *`function`*): `Promise`<`T`>
+▸ **uploadFiles**<`TResponse`>(data: *`object`*, onUploadProgress?: *`function`*): `Promise`<`TResponse`>
 
-*Defined in [SDK.ts:508](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/SDK.ts#L508)*
+*Defined in [SDK.ts:488](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/SDK.ts#L488)*
 
 Upload multipart files in multipart/form-data
 
+*__see__*: [https://docs.directus.io/api/reference.html#files](https://docs.directus.io/api/reference.html#files)
+
 **Type parameters:**
 
-#### T :  `any`
+#### TResponse :  `any`
 **Parameters:**
 
 | Name | Type | Default value |
@@ -1470,7 +1591,7 @@ Upload multipart files in multipart/form-data
 | data | `object` | - |
 | `Default value` onUploadProgress | `function` |  () &#x3D;&gt; ({}) |
 
-**Returns:** `Promise`<`T`>
+**Returns:** `Promise`<`TResponse`>
 
 ___
 

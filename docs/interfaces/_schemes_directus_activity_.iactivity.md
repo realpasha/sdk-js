@@ -34,7 +34,7 @@
 
 **● action**: *`string`*
 
-*Defined in schemes/directus/Activity.ts:5*
+*Defined in [schemes/directus/Activity.ts:5](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Activity.ts#L5)*
 
 ___
 <a id="action_by"></a>
@@ -43,7 +43,7 @@ ___
 
 **● action_by**: *`number`*
 
-*Defined in schemes/directus/Activity.ts:6*
+*Defined in [schemes/directus/Activity.ts:6](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Activity.ts#L6)*
 
 ___
 <a id="action_on"></a>
@@ -52,7 +52,7 @@ ___
 
 **● action_on**: *`Date`*
 
-*Defined in schemes/directus/Activity.ts:7*
+*Defined in [schemes/directus/Activity.ts:7](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Activity.ts#L7)*
 
 ___
 <a id="collection"></a>
@@ -61,7 +61,7 @@ ___
 
 **● collection**: *`string`*
 
-*Defined in schemes/directus/Activity.ts:8*
+*Defined in [schemes/directus/Activity.ts:8](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Activity.ts#L8)*
 
 ___
 <a id="comment"></a>
@@ -70,7 +70,7 @@ ___
 
 **● comment**: *`string`*
 
-*Defined in schemes/directus/Activity.ts:9*
+*Defined in [schemes/directus/Activity.ts:9](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Activity.ts#L9)*
 
 ___
 <a id="comment_deleted_on"></a>
@@ -79,7 +79,7 @@ ___
 
 **● comment_deleted_on**: *`Date`*
 
-*Defined in schemes/directus/Activity.ts:10*
+*Defined in [schemes/directus/Activity.ts:10](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Activity.ts#L10)*
 
 ___
 <a id="edited_on"></a>
@@ -88,7 +88,7 @@ ___
 
 **● edited_on**: *`string`*
 
-*Defined in schemes/directus/Activity.ts:11*
+*Defined in [schemes/directus/Activity.ts:11](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Activity.ts#L11)*
 
 ___
 <a id="id"></a>
@@ -97,7 +97,7 @@ ___
 
 **● id**: *`number`*
 
-*Defined in schemes/directus/Activity.ts:12*
+*Defined in [schemes/directus/Activity.ts:12](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Activity.ts#L12)*
 
 ___
 <a id="ip"></a>
@@ -106,7 +106,7 @@ ___
 
 **● ip**: *`string`*
 
-*Defined in schemes/directus/Activity.ts:13*
+*Defined in [schemes/directus/Activity.ts:13](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Activity.ts#L13)*
 
 ___
 <a id="item"></a>
@@ -115,7 +115,7 @@ ___
 
 **● item**: *`string`*
 
-*Defined in schemes/directus/Activity.ts:14*
+*Defined in [schemes/directus/Activity.ts:14](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Activity.ts#L14)*
 
 ___
 <a id="user_agent"></a>
@@ -124,7 +124,7 @@ ___
 
 **● user_agent**: *`string`*
 
-*Defined in schemes/directus/Activity.ts:15*
+*Defined in [schemes/directus/Activity.ts:15](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Activity.ts#L15)*
 
 ___
 

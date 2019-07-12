@@ -39,7 +39,7 @@
 
 **● auto_increment**: *`boolean`*
 
-*Defined in schemes/directus/Field.ts:13*
+*Defined in [schemes/directus/Field.ts:13](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Field.ts#L13)*
 
 ___
 <a id="default_value"></a>
@@ -48,7 +48,7 @@ ___
 
 **● default_value**: *`any`*
 
-*Defined in schemes/directus/Field.ts:14*
+*Defined in [schemes/directus/Field.ts:14](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Field.ts#L14)*
 
 ___
 <a id="group"></a>
@@ -57,7 +57,7 @@ ___
 
 **● group**: *`number`*
 
-*Defined in schemes/directus/Field.ts:27*
+*Defined in [schemes/directus/Field.ts:27](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Field.ts#L27)*
 
 ___
 <a id="hidden_browse"></a>
@@ -66,7 +66,7 @@ ___
 
 **● hidden_browse**: *`boolean`*
 
-*Defined in schemes/directus/Field.ts:19*
+*Defined in [schemes/directus/Field.ts:19](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Field.ts#L19)*
 
 ___
 <a id="hidden_detail"></a>
@@ -75,7 +75,7 @@ ___
 
 **● hidden_detail**: *`boolean`*
 
-*Defined in schemes/directus/Field.ts:18*
+*Defined in [schemes/directus/Field.ts:18](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Field.ts#L18)*
 
 ___
 <a id="length"></a>
@@ -84,7 +84,7 @@ ___
 
 **● length**: *`number`*
 
-*Defined in schemes/directus/Field.ts:28*
+*Defined in [schemes/directus/Field.ts:28](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Field.ts#L28)*
 
 ___
 <a id="locked"></a>
@@ -93,7 +93,7 @@ ___
 
 **● locked**: *`boolean`*
 
-*Defined in schemes/directus/Field.ts:22*
+*Defined in [schemes/directus/Field.ts:22](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Field.ts#L22)*
 
 ___
 <a id="note"></a>
@@ -102,7 +102,7 @@ ___
 
 **● note**: *`string`*
 
-*Defined in schemes/directus/Field.ts:15*
+*Defined in [schemes/directus/Field.ts:15](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Field.ts#L15)*
 
 ___
 <a id="options"></a>
@@ -111,7 +111,7 @@ ___
 
 **● options**: *`object`*
 
-*Defined in schemes/directus/Field.ts:21*
+*Defined in [schemes/directus/Field.ts:21](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Field.ts#L21)*
 
 ___
 <a id="primary_key"></a>
@@ -120,7 +120,7 @@ ___
 
 **● primary_key**: *`boolean`*
 
-*Defined in schemes/directus/Field.ts:12*
+*Defined in [schemes/directus/Field.ts:12](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Field.ts#L12)*
 
 ___
 <a id="readonly"></a>
@@ -129,7 +129,7 @@ ___
 
 **● readonly**: *`boolean`*
 
-*Defined in schemes/directus/Field.ts:24*
+*Defined in [schemes/directus/Field.ts:24](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Field.ts#L24)*
 
 ___
 <a id="required"></a>
@@ -138,7 +138,7 @@ ___
 
 **● required**: *`boolean`*
 
-*Defined in schemes/directus/Field.ts:20*
+*Defined in [schemes/directus/Field.ts:20](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Field.ts#L20)*
 
 ___
 <a id="signed"></a>
@@ -147,7 +147,7 @@ ___
 
 **● signed**: *`boolean`*
 
-*Defined in schemes/directus/Field.ts:16*
+*Defined in [schemes/directus/Field.ts:16](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Field.ts#L16)*
 
 ___
 <a id="sort"></a>
@@ -156,7 +156,7 @@ ___
 
 **● sort**: *`number`*
 
-*Defined in schemes/directus/Field.ts:17*
+*Defined in [schemes/directus/Field.ts:17](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Field.ts#L17)*
 
 ___
 <a id="translation"></a>
@@ -165,7 +165,7 @@ ___
 
 **● translation**: *[ITranslation](_schemes_directus_translation_.itranslation.md)*
 
-*Defined in schemes/directus/Field.ts:23*
+*Defined in [schemes/directus/Field.ts:23](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Field.ts#L23)*
 
 ___
 <a id="unique"></a>
@@ -174,7 +174,7 @@ ___
 
 **● unique**: *`boolean`*
 
-*Defined in schemes/directus/Field.ts:11*
+*Defined in [schemes/directus/Field.ts:11](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Field.ts#L11)*
 
 ___
 <a id="validation"></a>
@@ -183,7 +183,7 @@ ___
 
 **● validation**: *`string`*
 
-*Defined in schemes/directus/Field.ts:26*
+*Defined in [schemes/directus/Field.ts:26](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Field.ts#L26)*
 
 ___
 <a id="width"></a>
@@ -192,7 +192,7 @@ ___
 
 **● width**: *`number`*
 
-*Defined in schemes/directus/Field.ts:25*
+*Defined in [schemes/directus/Field.ts:25](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Field.ts#L25)*
 
 ___
 

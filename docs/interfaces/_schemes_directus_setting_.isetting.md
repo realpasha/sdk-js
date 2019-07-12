@@ -26,7 +26,7 @@
 
 **● id**: *`number`*
 
-*Defined in schemes/directus/Setting.ts:5*
+*Defined in [schemes/directus/Setting.ts:5](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Setting.ts#L5)*
 
 ___
 <a id="key"></a>
@@ -35,7 +35,7 @@ ___
 
 **● key**: *`string`*
 
-*Defined in schemes/directus/Setting.ts:6*
+*Defined in [schemes/directus/Setting.ts:6](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Setting.ts#L6)*
 
 ___
 <a id="value"></a>
@@ -44,7 +44,7 @@ ___
 
 **● value**: *`string`*
 
-*Defined in schemes/directus/Setting.ts:7*
+*Defined in [schemes/directus/Setting.ts:7](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Setting.ts#L7)*
 
 ___
 

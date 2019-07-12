@@ -22,7 +22,7 @@
 
 **Ƭ RefreshIfNeededResponse**: *[`boolean`, `Error`]*
 
-*Defined in [schemes/response/Login.ts:8](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/schemes/response/Login.ts#L8)*
+*Defined in [schemes/response/Login.ts:8](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/response/Login.ts#L8)*
 
 ___
 

@@ -24,7 +24,7 @@
 
 **● id**: *`string`*
 
-*Defined in [schemes/response/Field.ts:15](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/schemes/response/Field.ts#L15)*
+*Defined in [schemes/response/Field.ts:15](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/response/Field.ts#L15)*
 
 ___
 <a id="sort"></a>
@@ -33,7 +33,7 @@ ___
 
 **● sort**: *`number` \| `null`*
 
-*Defined in [schemes/response/Field.ts:16](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/schemes/response/Field.ts#L16)*
+*Defined in [schemes/response/Field.ts:16](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/response/Field.ts#L16)*
 
 ___
 <a id="status"></a>
@@ -42,7 +42,7 @@ ___
 
 **● status**: *`number` \| `null`*
 
-*Defined in [schemes/response/Field.ts:17](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/schemes/response/Field.ts#L17)*
+*Defined in [schemes/response/Field.ts:17](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/response/Field.ts#L17)*
 
 ___
 

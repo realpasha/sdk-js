@@ -39,7 +39,7 @@
 
 **● auth**: *[IAuthentication](_authentication_.iauthentication.md)*
 
-*Defined in [API.ts:19](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/API.ts#L19)*
+*Defined in [API.ts:19](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/API.ts#L19)*
 
 ___
 <a id="concurrent"></a>
@@ -48,7 +48,7 @@ ___
 
 **● concurrent**: *`ReturnType`<[concurrencyManager]()>*
 
-*Defined in [API.ts:21](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/API.ts#L21)*
+*Defined in [API.ts:21](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/API.ts#L21)*
 
 ___
 <a id="xhr"></a>
@@ -57,7 +57,7 @@ ___
 
 **● xhr**: *`AxiosInstance`*
 
-*Defined in [API.ts:20](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/API.ts#L20)*
+*Defined in [API.ts:20](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/API.ts#L20)*
 
 ___
 
@@ -69,7 +69,7 @@ ___
 
 ▸ **delete**<`T`>(endpoint: *`string`*): `Promise`<`T`>
 
-*Defined in [API.ts:27](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/API.ts#L27)*
+*Defined in [API.ts:27](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/API.ts#L27)*
 
 **Type parameters:**
 
@@ -89,7 +89,7 @@ ___
 
 ▸ **get**<`T`>(endpoint: *`string`*, params?: *`object`*): `Promise`<`T`>
 
-*Defined in [API.ts:23](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/API.ts#L23)*
+*Defined in [API.ts:23](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/API.ts#L23)*
 
 **Type parameters:**
 
@@ -110,7 +110,7 @@ ___
 
 ▸ **getPayload**<`T`>(): `T`
 
-*Defined in [API.ts:28](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/API.ts#L28)*
+*Defined in [API.ts:28](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/API.ts#L28)*
 
 **Type parameters:**
 
@@ -125,7 +125,7 @@ ___
 
 ▸ **patch**<`T`>(endpoint: *`string`*, body?: *[BodyType](../modules/_schemes_http_body_.md#bodytype)*, params?: *`object`*): `Promise`<`T`>
 
-*Defined in [API.ts:25](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/API.ts#L25)*
+*Defined in [API.ts:25](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/API.ts#L25)*
 
 **Type parameters:**
 
@@ -147,7 +147,7 @@ ___
 
 ▸ **post**<`T`>(endpoint: *`string`*, body?: *[BodyType](../modules/_schemes_http_body_.md#bodytype)*, params?: *`object`*): `Promise`<`T`>
 
-*Defined in [API.ts:24](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/API.ts#L24)*
+*Defined in [API.ts:24](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/API.ts#L24)*
 
 **Type parameters:**
 
@@ -169,7 +169,7 @@ ___
 
 ▸ **put**<`T`>(endpoint: *`string`*, body?: *[BodyType](../modules/_schemes_http_body_.md#bodytype)*, params?: *`object`*): `Promise`<`T`>
 
-*Defined in [API.ts:26](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/API.ts#L26)*
+*Defined in [API.ts:26](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/API.ts#L26)*
 
 **Type parameters:**
 
@@ -191,7 +191,7 @@ ___
 
 ▸ **request**<`T`>(method: *[RequestMethod](../modules/_schemes_http_request_.md#requestmethod)*, endpoint: *`string`*, params?: *`object`*, data?: *`object`*, noEnv?: *`boolean`*, headers?: *`object`*, skipParseToJSON?: *`boolean`*): `Promise`<`T`>
 
-*Defined in [API.ts:29](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/API.ts#L29)*
+*Defined in [API.ts:29](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/API.ts#L29)*
 
 **Type parameters:**
 
@@ -217,7 +217,7 @@ ___
 
 ▸ **reset**(): `void`
 
-*Defined in [API.ts:22](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/API.ts#L22)*
+*Defined in [API.ts:22](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/API.ts#L22)*
 
 **Returns:** `void`
 

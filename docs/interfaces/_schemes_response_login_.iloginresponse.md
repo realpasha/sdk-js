@@ -25,7 +25,7 @@
 
 **● localExp**: *`number`*
 
-*Defined in [schemes/response/Login.ts:5](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/schemes/response/Login.ts#L5)*
+*Defined in [schemes/response/Login.ts:5](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/response/Login.ts#L5)*
 
 ___
 <a id="project"></a>
@@ -34,7 +34,7 @@ ___
 
 **● project**: *`string`*
 
-*Defined in [schemes/response/Login.ts:3](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/schemes/response/Login.ts#L3)*
+*Defined in [schemes/response/Login.ts:3](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/response/Login.ts#L3)*
 
 ___
 <a id="token"></a>
@@ -43,7 +43,7 @@ ___
 
 **● token**: *`string`*
 
-*Defined in [schemes/response/Login.ts:4](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/schemes/response/Login.ts#L4)*
+*Defined in [schemes/response/Login.ts:4](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/response/Login.ts#L4)*
 
 ___
 <a id="url"></a>
@@ -52,7 +52,7 @@ ___
 
 **● url**: *`string`*
 
-*Defined in [schemes/response/Login.ts:2](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/schemes/response/Login.ts#L2)*
+*Defined in [schemes/response/Login.ts:2](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/response/Login.ts#L2)*
 
 ___
 

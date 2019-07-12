@@ -23,7 +23,7 @@
 
 **● project**: *`string`*
 
-*Defined in [Configuration.ts:41](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/Configuration.ts#L41)*
+*Defined in [Configuration.ts:41](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/Configuration.ts#L41)*
 
 ___
 <a id="tokenexpirationtime"></a>
@@ -32,7 +32,7 @@ ___
 
 **● tokenExpirationTime**: *`number`*
 
-*Defined in [Configuration.ts:40](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/Configuration.ts#L40)*
+*Defined in [Configuration.ts:40](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/Configuration.ts#L40)*
 
 ___
 

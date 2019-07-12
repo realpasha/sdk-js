@@ -26,7 +26,7 @@
 
 **● id**: *`number`*
 
-*Defined in schemes/directus/UserRole.ts:5*
+*Defined in [schemes/directus/UserRole.ts:5](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/UserRole.ts#L5)*
 
 ___
 <a id="role"></a>
@@ -35,7 +35,7 @@ ___
 
 **● role**: *`number`*
 
-*Defined in schemes/directus/UserRole.ts:7*
+*Defined in [schemes/directus/UserRole.ts:7](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/UserRole.ts#L7)*
 
 ___
 <a id="user"></a>
@@ -44,7 +44,7 @@ ___
 
 **● user**: *`number`*
 
-*Defined in schemes/directus/UserRole.ts:6*
+*Defined in [schemes/directus/UserRole.ts:6](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/UserRole.ts#L6)*
 
 ___
 

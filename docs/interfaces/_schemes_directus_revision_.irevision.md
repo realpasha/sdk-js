@@ -34,7 +34,7 @@
 
 **● activity**: *`number`*
 
-*Defined in schemes/directus/Revision.ts:5*
+*Defined in [schemes/directus/Revision.ts:5](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Revision.ts#L5)*
 
 ___
 <a id="collection"></a>
@@ -43,7 +43,7 @@ ___
 
 **● collection**: *`string`*
 
-*Defined in schemes/directus/Revision.ts:6*
+*Defined in [schemes/directus/Revision.ts:6](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Revision.ts#L6)*
 
 ___
 <a id="data"></a>
@@ -52,7 +52,7 @@ ___
 
 **● data**: *`T`*
 
-*Defined in schemes/directus/Revision.ts:7*
+*Defined in [schemes/directus/Revision.ts:7](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Revision.ts#L7)*
 
 ___
 <a id="delta"></a>
@@ -61,7 +61,7 @@ ___
 
 **● delta**: *`Partial`<`T`>*
 
-*Defined in schemes/directus/Revision.ts:8*
+*Defined in [schemes/directus/Revision.ts:8](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Revision.ts#L8)*
 
 ___
 <a id="id"></a>
@@ -70,7 +70,7 @@ ___
 
 **● id**: *`number`*
 
-*Defined in schemes/directus/Revision.ts:9*
+*Defined in [schemes/directus/Revision.ts:9](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Revision.ts#L9)*
 
 ___
 <a id="item"></a>
@@ -79,7 +79,7 @@ ___
 
 **● item**: *`string`*
 
-*Defined in schemes/directus/Revision.ts:10*
+*Defined in [schemes/directus/Revision.ts:10](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Revision.ts#L10)*
 
 ___
 <a id="parent_changed"></a>
@@ -88,7 +88,7 @@ ___
 
 **● parent_changed**: *`boolean`*
 
-*Defined in schemes/directus/Revision.ts:11*
+*Defined in [schemes/directus/Revision.ts:11](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Revision.ts#L11)*
 
 ___
 <a id="parent_collection"></a>
@@ -97,7 +97,7 @@ ___
 
 **● parent_collection**: *`any`*
 
-*Defined in schemes/directus/Revision.ts:12*
+*Defined in [schemes/directus/Revision.ts:12](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Revision.ts#L12)*
 
 ___
 <a id="parent_item"></a>
@@ -106,7 +106,7 @@ ___
 
 **● parent_item**: *`string`*
 
-*Defined in schemes/directus/Revision.ts:13*
+*Defined in [schemes/directus/Revision.ts:13](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Revision.ts#L13)*
 
 ___
 

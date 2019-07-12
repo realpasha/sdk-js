@@ -27,7 +27,7 @@
 
 **● datatype**: *`string`*
 
-*Defined in schemes/directus/Field.ts:6*
+*Defined in [schemes/directus/Field.ts:6](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Field.ts#L6)*
 
 ___
 <a id="field"></a>
@@ -36,7 +36,7 @@ ___
 
 **● field**: *`string`*
 
-*Defined in schemes/directus/Field.ts:4*
+*Defined in [schemes/directus/Field.ts:4](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Field.ts#L4)*
 
 ___
 <a id="interface"></a>
@@ -45,7 +45,7 @@ ___
 
 **● interface**: *`string`*
 
-*Defined in schemes/directus/Field.ts:7*
+*Defined in [schemes/directus/Field.ts:7](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Field.ts#L7)*
 
 ___
 <a id="type"></a>
@@ -54,7 +54,7 @@ ___
 
 **● type**: *`string`*
 
-*Defined in schemes/directus/Field.ts:5*
+*Defined in [schemes/directus/Field.ts:5](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Field.ts#L5)*
 
 ___
 

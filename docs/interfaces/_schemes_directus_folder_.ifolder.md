@@ -26,7 +26,7 @@
 
 **● id**: *`number`*
 
-*Defined in schemes/directus/Folder.ts:5*
+*Defined in [schemes/directus/Folder.ts:5](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Folder.ts#L5)*
 
 ___
 <a id="name"></a>
@@ -35,7 +35,7 @@ ___
 
 **● name**: *`string`*
 
-*Defined in schemes/directus/Folder.ts:6*
+*Defined in [schemes/directus/Folder.ts:6](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Folder.ts#L6)*
 
 ___
 <a id="parent_folder"></a>
@@ -44,7 +44,7 @@ ___
 
 **● parent_folder**: *`string`*
 
-*Defined in schemes/directus/Folder.ts:7*
+*Defined in [schemes/directus/Folder.ts:7](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Folder.ts#L7)*
 
 ___
 

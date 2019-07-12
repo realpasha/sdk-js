@@ -27,7 +27,7 @@
 
 **● hidden**: *`boolean`*
 
-*Defined in schemes/directus/Collection.ts:9*
+*Defined in [schemes/directus/Collection.ts:9](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Collection.ts#L9)*
 
 ___
 <a id="icon"></a>
@@ -36,7 +36,7 @@ ___
 
 **● icon**: *`string`*
 
-*Defined in schemes/directus/Collection.ts:11*
+*Defined in [schemes/directus/Collection.ts:11](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Collection.ts#L11)*
 
 ___
 <a id="managed"></a>
@@ -45,7 +45,7 @@ ___
 
 **● managed**: *`boolean`*
 
-*Defined in schemes/directus/Collection.ts:8*
+*Defined in [schemes/directus/Collection.ts:8](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Collection.ts#L8)*
 
 ___
 <a id="note"></a>
@@ -54,7 +54,7 @@ ___
 
 **● note**: *`string`*
 
-*Defined in schemes/directus/Collection.ts:12*
+*Defined in [schemes/directus/Collection.ts:12](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Collection.ts#L12)*
 
 ___
 <a id="single"></a>
@@ -63,7 +63,7 @@ ___
 
 **● single**: *`boolean`*
 
-*Defined in schemes/directus/Collection.ts:10*
+*Defined in [schemes/directus/Collection.ts:10](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Collection.ts#L10)*
 
 ___
 <a id="translation"></a>
@@ -72,7 +72,7 @@ ___
 
 **● translation**: *[ITranslation](_schemes_directus_translation_.itranslation.md)*
 
-*Defined in schemes/directus/Collection.ts:13*
+*Defined in [schemes/directus/Collection.ts:13](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Collection.ts#L13)*
 
 ___
 

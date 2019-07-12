@@ -57,7 +57,7 @@ ___
 
 **● data**: *`T`*
 
-*Defined in [schemes/response/Error.ts:6](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/schemes/response/Error.ts#L6)*
+*Defined in [schemes/response/Error.ts:6](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/response/Error.ts#L6)*
 
 ___
 <a id="error"></a>
@@ -66,7 +66,7 @@ ___
 
 **● error**: *`Error`*
 
-*Defined in [schemes/response/Error.ts:5](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/schemes/response/Error.ts#L5)*
+*Defined in [schemes/response/Error.ts:5](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/response/Error.ts#L5)*
 
 ___
 <a id="json"></a>
@@ -75,7 +75,7 @@ ___
 
 **● json**: *`boolean`*
 
-*Defined in [schemes/response/Error.ts:4](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/schemes/response/Error.ts#L4)*
+*Defined in [schemes/response/Error.ts:4](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/response/Error.ts#L4)*
 
 ___
 <a id="message"></a>

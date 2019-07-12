@@ -22,7 +22,7 @@
 
 ▸ **concurrencyManager**(axios: *`AxiosInstance`*, limit?: *`number`*): `object`
 
-*Defined in [ConcurrencyManager.ts:14](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/ConcurrencyManager.ts#L14)*
+*Defined in [ConcurrencyManager.ts:14](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/ConcurrencyManager.ts#L14)*
 
 Handling and limiting concurrent requests for the API.
 

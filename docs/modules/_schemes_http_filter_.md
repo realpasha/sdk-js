@@ -18,7 +18,7 @@
 
 **Ƭ FilterOperator**: *"&#x3D;" \| "eq" \| "&lt;&gt;" \| "!&#x3D;" \| "neq" \| "&lt;" \| "lt" \| "&lt;&#x3D;" \| "lte" \| "&gt;" \| "gt" \| "&gt;&#x3D;" \| "gte" \| "in" \| "nin" \| "null" \| "nnull" \| "contains" \| "like" \| "ncontains" \| "nlike" \| "rlike" \| "nrlike" \| "between" \| "nbetween" \| "empty" \| "nempty" \| "all" \| "has"*
 
-*Defined in [schemes/http/Filter.ts:5](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/schemes/http/Filter.ts#L5)*
+*Defined in [schemes/http/Filter.ts:5](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/http/Filter.ts#L5)*
 
 Defines all possible operator for filtering by query
 

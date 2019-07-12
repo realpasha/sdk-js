@@ -24,7 +24,7 @@
 
 **● title**: *`string`*
 
-*Defined in schemes/directus/CollectionPreset.ts:4*
+*Defined in [schemes/directus/CollectionPreset.ts:4](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/CollectionPreset.ts#L4)*
 
 ___
 

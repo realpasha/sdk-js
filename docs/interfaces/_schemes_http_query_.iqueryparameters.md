@@ -34,7 +34,7 @@
 
 **● activity_skip**: *`number`*
 
-*Defined in [schemes/http/Query.ts:19](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/schemes/http/Query.ts#L19)*
+*Defined in [schemes/http/Query.ts:19](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/http/Query.ts#L19)*
 
 ___
 <a id="comment"></a>
@@ -43,7 +43,7 @@ ___
 
 **● comment**: *`string`*
 
-*Defined in [schemes/http/Query.ts:20](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/schemes/http/Query.ts#L20)*
+*Defined in [schemes/http/Query.ts:20](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/http/Query.ts#L20)*
 
 ___
 <a id="fields"></a>
@@ -52,7 +52,7 @@ ___
 
 **● fields**: *`string` \| `string`[]*
 
-*Defined in [schemes/http/Query.ts:7](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/schemes/http/Query.ts#L7)*
+*Defined in [schemes/http/Query.ts:7](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/http/Query.ts#L7)*
 
 ___
 <a id="filter"></a>
@@ -61,7 +61,7 @@ ___
 
 **● filter**: *`object`*
 
-*Defined in [schemes/http/Query.ts:13](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/schemes/http/Query.ts#L13)*
+*Defined in [schemes/http/Query.ts:13](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/http/Query.ts#L13)*
 
 #### Type declaration
 
@@ -74,7 +74,7 @@ ___
 
 **● groups**: *`string` \| `string`[]*
 
-*Defined in [schemes/http/Query.ts:18](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/schemes/http/Query.ts#L18)*
+*Defined in [schemes/http/Query.ts:18](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/http/Query.ts#L18)*
 
 ___
 <a id="lang"></a>
@@ -83,7 +83,7 @@ ___
 
 **● lang**: *`object`*
 
-*Defined in [schemes/http/Query.ts:16](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/schemes/http/Query.ts#L16)*
+*Defined in [schemes/http/Query.ts:16](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/http/Query.ts#L16)*
 
 ___
 <a id="limit"></a>
@@ -92,7 +92,7 @@ ___
 
 **● limit**: *`number`*
 
-*Defined in [schemes/http/Query.ts:8](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/schemes/http/Query.ts#L8)*
+*Defined in [schemes/http/Query.ts:8](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/http/Query.ts#L8)*
 
 ___
 <a id="meta"></a>
@@ -101,7 +101,7 @@ ___
 
 **● meta**: *`object`*
 
-*Defined in [schemes/http/Query.ts:6](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/schemes/http/Query.ts#L6)*
+*Defined in [schemes/http/Query.ts:6](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/http/Query.ts#L6)*
 
 ___
 <a id="offset"></a>
@@ -110,7 +110,7 @@ ___
 
 **● offset**: *`number`*
 
-*Defined in [schemes/http/Query.ts:9](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/schemes/http/Query.ts#L9)*
+*Defined in [schemes/http/Query.ts:9](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/http/Query.ts#L9)*
 
 ___
 <a id="q"></a>
@@ -119,7 +119,7 @@ ___
 
 **● q**: *`string`*
 
-*Defined in [schemes/http/Query.ts:17](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/schemes/http/Query.ts#L17)*
+*Defined in [schemes/http/Query.ts:17](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/http/Query.ts#L17)*
 
 ___
 <a id="single"></a>
@@ -128,7 +128,7 @@ ___
 
 **● single**: *`number`*
 
-*Defined in [schemes/http/Query.ts:10](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/schemes/http/Query.ts#L10)*
+*Defined in [schemes/http/Query.ts:10](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/http/Query.ts#L10)*
 
 ___
 <a id="sort"></a>
@@ -137,7 +137,7 @@ ___
 
 **● sort**: *`string` \| `string`[]*
 
-*Defined in [schemes/http/Query.ts:11](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/schemes/http/Query.ts#L11)*
+*Defined in [schemes/http/Query.ts:11](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/http/Query.ts#L11)*
 
 ___
 <a id="status"></a>
@@ -146,7 +146,7 @@ ___
 
 **● status**: *`string` \| `string`[]*
 
-*Defined in [schemes/http/Query.ts:12](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/schemes/http/Query.ts#L12)*
+*Defined in [schemes/http/Query.ts:12](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/http/Query.ts#L12)*
 
 ___
 

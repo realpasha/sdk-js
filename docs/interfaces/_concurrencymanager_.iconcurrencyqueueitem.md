@@ -23,7 +23,7 @@
 
 **● request**: *`AxiosRequestConfig`*
 
-*Defined in [ConcurrencyManager.ts:5](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/ConcurrencyManager.ts#L5)*
+*Defined in [ConcurrencyManager.ts:5](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/ConcurrencyManager.ts#L5)*
 
 ___
 <a id="resolver"></a>
@@ -32,7 +32,7 @@ ___
 
 **● resolver**: *`function`*
 
-*Defined in [ConcurrencyManager.ts:6](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/ConcurrencyManager.ts#L6)*
+*Defined in [ConcurrencyManager.ts:6](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/ConcurrencyManager.ts#L6)*
 
 #### Type declaration
 ▸(queuedRequest: *`AxiosRequestConfig`*): `any`

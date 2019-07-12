@@ -23,7 +23,7 @@
 
 **● result_count**: *`number`*
 
-*Defined in [schemes/APIResponse.ts:17](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/schemes/APIResponse.ts#L17)*
+*Defined in [schemes/APIResponse.ts:17](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/APIResponse.ts#L17)*
 
 ___
 <a id="total_count"></a>
@@ -32,7 +32,7 @@ ___
 
 **● total_count**: *`number`*
 
-*Defined in [schemes/APIResponse.ts:18](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/schemes/APIResponse.ts#L18)*
+*Defined in [schemes/APIResponse.ts:18](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/APIResponse.ts#L18)*
 
 ___
 

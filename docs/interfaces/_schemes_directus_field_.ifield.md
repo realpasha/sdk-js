@@ -33,7 +33,7 @@
 
 *Inherited from [IRequiredFieldData](_schemes_directus_field_.irequiredfielddata.md).[datatype](_schemes_directus_field_.irequiredfielddata.md#datatype)*
 
-*Defined in schemes/directus/Field.ts:6*
+*Defined in [schemes/directus/Field.ts:6](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Field.ts#L6)*
 
 ___
 <a id="field"></a>
@@ -44,7 +44,7 @@ ___
 
 *Inherited from [IRequiredFieldData](_schemes_directus_field_.irequiredfielddata.md).[field](_schemes_directus_field_.irequiredfielddata.md#field)*
 
-*Defined in schemes/directus/Field.ts:4*
+*Defined in [schemes/directus/Field.ts:4](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Field.ts#L4)*
 
 ___
 <a id="interface"></a>
@@ -55,7 +55,7 @@ ___
 
 *Inherited from [IRequiredFieldData](_schemes_directus_field_.irequiredfielddata.md).[interface](_schemes_directus_field_.irequiredfielddata.md#interface)*
 
-*Defined in schemes/directus/Field.ts:7*
+*Defined in [schemes/directus/Field.ts:7](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Field.ts#L7)*
 
 ___
 <a id="type"></a>
@@ -66,7 +66,7 @@ ___
 
 *Inherited from [IRequiredFieldData](_schemes_directus_field_.irequiredfielddata.md).[type](_schemes_directus_field_.irequiredfielddata.md#type)*
 
-*Defined in schemes/directus/Field.ts:5*
+*Defined in [schemes/directus/Field.ts:5](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Field.ts#L5)*
 
 ___
 

@@ -23,7 +23,7 @@
 
 **● code**: *`number`*
 
-*Defined in [Authentication.ts:18](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/Authentication.ts#L18)*
+*Defined in [Authentication.ts:18](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/Authentication.ts#L18)*
 
 ___
 <a id="message"></a>
@@ -32,7 +32,7 @@ ___
 
 **● message**: *`string`*
 
-*Defined in [Authentication.ts:19](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/Authentication.ts#L19)*
+*Defined in [Authentication.ts:19](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/Authentication.ts#L19)*
 
 ___
 

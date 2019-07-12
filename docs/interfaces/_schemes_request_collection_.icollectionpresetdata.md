@@ -32,7 +32,7 @@
 
 *Overrides [IRequiredCollectionPresetData](_schemes_directus_collectionpreset_.irequiredcollectionpresetdata.md).[title](_schemes_directus_collectionpreset_.irequiredcollectionpresetdata.md#title)*
 
-*Defined in schemes/request/Collection.ts:4*
+*Defined in [schemes/request/Collection.ts:4](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/request/Collection.ts#L4)*
 
 ___
 <a id="view_query"></a>
@@ -41,7 +41,7 @@ ___
 
 **● view_query**: *`object`*
 
-*Defined in schemes/request/Collection.ts:5*
+*Defined in [schemes/request/Collection.ts:5](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/request/Collection.ts#L5)*
 
 #### Type declaration
 

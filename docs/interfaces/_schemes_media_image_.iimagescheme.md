@@ -41,7 +41,7 @@
 
 **● caption**: *`string`*
 
-*Defined in [schemes/media/Image.ts:2](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/schemes/media/Image.ts#L2)*
+*Defined in [schemes/media/Image.ts:2](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/media/Image.ts#L2)*
 
 ___
 <a id="charset"></a>
@@ -50,7 +50,7 @@ ___
 
 **● charset**: *`string`*
 
-*Defined in [schemes/media/Image.ts:3](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/schemes/media/Image.ts#L3)*
+*Defined in [schemes/media/Image.ts:3](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/media/Image.ts#L3)*
 
 ___
 <a id="date_uploaded"></a>
@@ -59,7 +59,7 @@ ___
 
 **● date_uploaded**: *`string`*
 
-*Defined in [schemes/media/Image.ts:4](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/schemes/media/Image.ts#L4)*
+*Defined in [schemes/media/Image.ts:4](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/media/Image.ts#L4)*
 
 ___
 <a id="embed_id"></a>
@@ -68,7 +68,7 @@ ___
 
 **● embed_id**: *`string`*
 
-*Defined in [schemes/media/Image.ts:5](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/schemes/media/Image.ts#L5)*
+*Defined in [schemes/media/Image.ts:5](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/media/Image.ts#L5)*
 
 ___
 <a id="height"></a>
@@ -77,7 +77,7 @@ ___
 
 **● height**: *`number` \| `null`*
 
-*Defined in [schemes/media/Image.ts:6](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/schemes/media/Image.ts#L6)*
+*Defined in [schemes/media/Image.ts:6](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/media/Image.ts#L6)*
 
 ___
 <a id="html"></a>
@@ -86,7 +86,7 @@ ___
 
 **● html**: *`string` \| `null`*
 
-*Defined in [schemes/media/Image.ts:7](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/schemes/media/Image.ts#L7)*
+*Defined in [schemes/media/Image.ts:7](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/media/Image.ts#L7)*
 
 ___
 <a id="id"></a>
@@ -95,7 +95,7 @@ ___
 
 **● id**: *`number`*
 
-*Defined in [schemes/media/Image.ts:8](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/schemes/media/Image.ts#L8)*
+*Defined in [schemes/media/Image.ts:8](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/media/Image.ts#L8)*
 
 ___
 <a id="location"></a>
@@ -104,7 +104,7 @@ ___
 
 **● location**: *`string`*
 
-*Defined in [schemes/media/Image.ts:9](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/schemes/media/Image.ts#L9)*
+*Defined in [schemes/media/Image.ts:9](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/media/Image.ts#L9)*
 
 ___
 <a id="name"></a>
@@ -113,7 +113,7 @@ ___
 
 **● name**: *`string`*
 
-*Defined in [schemes/media/Image.ts:10](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/schemes/media/Image.ts#L10)*
+*Defined in [schemes/media/Image.ts:10](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/media/Image.ts#L10)*
 
 ___
 <a id="old_thumbnail_url"></a>
@@ -122,7 +122,7 @@ ___
 
 **● old_thumbnail_url**: *`string`*
 
-*Defined in [schemes/media/Image.ts:11](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/schemes/media/Image.ts#L11)*
+*Defined in [schemes/media/Image.ts:11](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/media/Image.ts#L11)*
 
 ___
 <a id="size"></a>
@@ -131,7 +131,7 @@ ___
 
 **● size**: *`number`*
 
-*Defined in [schemes/media/Image.ts:12](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/schemes/media/Image.ts#L12)*
+*Defined in [schemes/media/Image.ts:12](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/media/Image.ts#L12)*
 
 ___
 <a id="status"></a>
@@ -140,7 +140,7 @@ ___
 
 **● status**: *`number`*
 
-*Defined in [schemes/media/Image.ts:13](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/schemes/media/Image.ts#L13)*
+*Defined in [schemes/media/Image.ts:13](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/media/Image.ts#L13)*
 
 ___
 <a id="storage_adapter"></a>
@@ -149,7 +149,7 @@ ___
 
 **● storage_adapter**: *`string`*
 
-*Defined in [schemes/media/Image.ts:14](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/schemes/media/Image.ts#L14)*
+*Defined in [schemes/media/Image.ts:14](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/media/Image.ts#L14)*
 
 ___
 <a id="tags"></a>
@@ -158,7 +158,7 @@ ___
 
 **● tags**: *`string`*
 
-*Defined in [schemes/media/Image.ts:15](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/schemes/media/Image.ts#L15)*
+*Defined in [schemes/media/Image.ts:15](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/media/Image.ts#L15)*
 
 ___
 <a id="thumbnail_url"></a>
@@ -167,7 +167,7 @@ ___
 
 **● thumbnail_url**: *`string`*
 
-*Defined in [schemes/media/Image.ts:16](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/schemes/media/Image.ts#L16)*
+*Defined in [schemes/media/Image.ts:16](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/media/Image.ts#L16)*
 
 ___
 <a id="title"></a>
@@ -176,7 +176,7 @@ ___
 
 **● title**: *`string`*
 
-*Defined in [schemes/media/Image.ts:17](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/schemes/media/Image.ts#L17)*
+*Defined in [schemes/media/Image.ts:17](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/media/Image.ts#L17)*
 
 ___
 <a id="type"></a>
@@ -185,7 +185,7 @@ ___
 
 **● type**: *`string`*
 
-*Defined in [schemes/media/Image.ts:18](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/schemes/media/Image.ts#L18)*
+*Defined in [schemes/media/Image.ts:18](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/media/Image.ts#L18)*
 
 ___
 <a id="url"></a>
@@ -194,7 +194,7 @@ ___
 
 **● url**: *`string`*
 
-*Defined in [schemes/media/Image.ts:19](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/schemes/media/Image.ts#L19)*
+*Defined in [schemes/media/Image.ts:19](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/media/Image.ts#L19)*
 
 ___
 <a id="user"></a>
@@ -203,7 +203,7 @@ ___
 
 **● user**: *`number`*
 
-*Defined in [schemes/media/Image.ts:20](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/schemes/media/Image.ts#L20)*
+*Defined in [schemes/media/Image.ts:20](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/media/Image.ts#L20)*
 
 ___
 <a id="width"></a>
@@ -212,7 +212,7 @@ ___
 
 **● width**: *`number` \| `null`*
 
-*Defined in [schemes/media/Image.ts:21](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/schemes/media/Image.ts#L21)*
+*Defined in [schemes/media/Image.ts:21](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/media/Image.ts#L21)*
 
 ___
 

@@ -2,6 +2,12 @@
 
 # Class: API
 
+API definition for HTTP transactions
+
+*__uses__*: Authentication
+
+*__uses__*: axios
+
 ## Hierarchy
 
 **API**
@@ -44,7 +50,7 @@
 
 ⊕ **new API**(config: *[IConfiguration](../interfaces/_configuration_.iconfiguration.md)*): [API](_api_.api.md)
 
-*Defined in [API.ts:46](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/API.ts#L46)*
+*Defined in [API.ts:51](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/API.ts#L51)*
 
 **Parameters:**
 
@@ -66,7 +72,7 @@ ___
 
 *Implementation of [IAPI](../interfaces/_api_.iapi.md).[auth](../interfaces/_api_.iapi.md#auth)*
 
-*Defined in [API.ts:41](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/API.ts#L41)*
+*Defined in [API.ts:46](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/API.ts#L46)*
 
 ___
 <a id="concurrent"></a>
@@ -77,7 +83,7 @@ ___
 
 *Implementation of [IAPI](../interfaces/_api_.iapi.md).[concurrent](../interfaces/_api_.iapi.md#concurrent)*
 
-*Defined in [API.ts:46](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/API.ts#L46)*
+*Defined in [API.ts:51](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/API.ts#L51)*
 
 #### Type declaration
 
@@ -90,7 +96,7 @@ ___
  attach : function
 ▸ **attach**(limitConcurrentRequestsTo?: *`number`*): `void`
 
-*Defined in [ConcurrencyManager.ts:66](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/ConcurrencyManager.ts#L66)*
+*Defined in [ConcurrencyManager.ts:66](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/ConcurrencyManager.ts#L66)*
 
 **Parameters:**
 
@@ -103,14 +109,14 @@ ___
  detach : function
 ▸ **detach**(): `void`
 
-*Defined in [ConcurrencyManager.ts:62](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/ConcurrencyManager.ts#L62)*
+*Defined in [ConcurrencyManager.ts:62](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/ConcurrencyManager.ts#L62)*
 
 **Returns:** `void`
 
  push : function
 ▸ **push**(reqHandler: *[IConcurrencyQueueItem](../interfaces/_concurrencymanager_.iconcurrencyqueueitem.md)*): `void`
 
-*Defined in [ConcurrencyManager.ts:27](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/ConcurrencyManager.ts#L27)*
+*Defined in [ConcurrencyManager.ts:27](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/ConcurrencyManager.ts#L27)*
 
 **Parameters:**
 
@@ -123,7 +129,7 @@ ___
  requestHandler : function
 ▸ **requestHandler**(req: *`AxiosRequestConfig`*): `Promise`<`AxiosRequestConfig`>
 
-*Defined in [ConcurrencyManager.ts:47](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/ConcurrencyManager.ts#L47)*
+*Defined in [ConcurrencyManager.ts:47](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/ConcurrencyManager.ts#L47)*
 
 **Parameters:**
 
@@ -136,7 +142,7 @@ ___
  responseHandler : function
 ▸ **responseHandler**(res: *`AxiosResponse`<`any`>*): `AxiosResponse`<`any`>
 
-*Defined in [ConcurrencyManager.ts:56](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/ConcurrencyManager.ts#L56)*
+*Defined in [ConcurrencyManager.ts:56](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/ConcurrencyManager.ts#L56)*
 
 **Parameters:**
 
@@ -149,14 +155,14 @@ ___
  shift : function
 ▸ **shift**(): `void`
 
-*Defined in [ConcurrencyManager.ts:38](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/ConcurrencyManager.ts#L38)*
+*Defined in [ConcurrencyManager.ts:38](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/ConcurrencyManager.ts#L38)*
 
 **Returns:** `void`
 
  shiftInitial : function
 ▸ **shiftInitial**(): `void`
 
-*Defined in [ConcurrencyManager.ts:31](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/ConcurrencyManager.ts#L31)*
+*Defined in [ConcurrencyManager.ts:31](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/ConcurrencyManager.ts#L31)*
 
 **Returns:** `void`
 
@@ -173,7 +179,7 @@ ___
 
 **● config**: *[IConfiguration](../interfaces/_configuration_.iconfiguration.md)*
 
-*Defined in [API.ts:48](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/API.ts#L48)*
+*Defined in [API.ts:53](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/API.ts#L53)*
 
 ___
 <a id="xhr"></a>
@@ -187,7 +193,7 @@ ___
 
 *Implementation of [IAPI](../interfaces/_api_.iapi.md).[xhr](../interfaces/_api_.iapi.md#xhr)*
 
-*Defined in [API.ts:42](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/API.ts#L42)*
+*Defined in [API.ts:47](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/API.ts#L47)*
 
 ___
 
@@ -201,7 +207,7 @@ ___
 
 *Implementation of [IAPI](../interfaces/_api_.iapi.md).[delete](../interfaces/_api_.iapi.md#delete)*
 
-*Defined in [API.ts:117](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/API.ts#L117)*
+*Defined in [API.ts:122](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/API.ts#L122)*
 
 DELETE convenience method. Calls the request method for you
 
@@ -228,7 +234,7 @@ ___
 
 *Implementation of [IAPI](../interfaces/_api_.iapi.md).[get](../interfaces/_api_.iapi.md#get)*
 
-*Defined in [API.ts:69](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/API.ts#L69)*
+*Defined in [API.ts:74](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/API.ts#L74)*
 
 GET convenience method. Calls the request method for you
 
@@ -256,7 +262,7 @@ ___
 
 *Implementation of [IAPI](../interfaces/_api_.iapi.md).[getPayload](../interfaces/_api_.iapi.md#getpayload)*
 
-*Defined in [API.ts:128](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/API.ts#L128)*
+*Defined in [API.ts:133](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/API.ts#L133)*
 
 Gets the payload of the current token, return type can be generic
 
@@ -277,7 +283,7 @@ ___
 
 *Implementation of [IAPI](../interfaces/_api_.iapi.md).[patch](../interfaces/_api_.iapi.md#patch)*
 
-*Defined in [API.ts:93](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/API.ts#L93)*
+*Defined in [API.ts:98](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/API.ts#L98)*
 
 PATCH convenience method. Calls the request method for you
 
@@ -306,7 +312,7 @@ ___
 
 *Implementation of [IAPI](../interfaces/_api_.iapi.md).[post](../interfaces/_api_.iapi.md#post)*
 
-*Defined in [API.ts:81](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/API.ts#L81)*
+*Defined in [API.ts:86](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/API.ts#L86)*
 
 POST convenience method. Calls the request method for you
 
@@ -335,7 +341,7 @@ ___
 
 *Implementation of [IAPI](../interfaces/_api_.iapi.md).[put](../interfaces/_api_.iapi.md#put)*
 
-*Defined in [API.ts:105](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/API.ts#L105)*
+*Defined in [API.ts:110](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/API.ts#L110)*
 
 PUT convenience method. Calls the request method for you
 
@@ -362,7 +368,7 @@ ___
 
 ▸ **request**<`T`>(method: *[RequestMethod](../modules/_schemes_http_request_.md#requestmethod)*, endpoint: *`string`*, params?: *`object`*, data?: *`object`*, noEnv?: *`boolean`*, headers?: *`object`*, skipParseToJSON?: *`boolean`*): `Promise`<`T`>
 
-*Defined in [API.ts:148](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/API.ts#L148)*
+*Defined in [API.ts:153](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/API.ts#L153)*
 
 Perform an API request to the Directus API
 
@@ -395,7 +401,7 @@ ___
 
 *Implementation of [IAPI](../interfaces/_api_.iapi.md).[reset](../interfaces/_api_.iapi.md#reset)*
 
-*Defined in [API.ts:57](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/API.ts#L57)*
+*Defined in [API.ts:62](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/API.ts#L62)*
 
 Resets the client instance by logging out and removing the URL and project
 

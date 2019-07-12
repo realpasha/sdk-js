@@ -18,7 +18,7 @@
 
 **Ƭ BodyType**: *`object` \| `any`[]*
 
-*Defined in [schemes/http/Body.ts:1](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/schemes/http/Body.ts#L1)*
+*Defined in [schemes/http/Body.ts:1](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/http/Body.ts#L1)*
 
 ___
 

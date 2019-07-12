@@ -23,7 +23,7 @@
 
 **● api**: *`object`*
 
-*Defined in schemes/directus/ServerInformation.ts:2*
+*Defined in [schemes/directus/ServerInformation.ts:2](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/ServerInformation.ts#L2)*
 
 #### Type declaration
 
@@ -46,7 +46,7 @@ ___
 
 **● server**: *`object`*
 
-*Defined in schemes/directus/ServerInformation.ts:11*
+*Defined in [schemes/directus/ServerInformation.ts:11](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/ServerInformation.ts#L11)*
 
 #### Type declaration
 

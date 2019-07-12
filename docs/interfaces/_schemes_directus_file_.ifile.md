@@ -42,7 +42,7 @@
 
 **● charset**: *`string`*
 
-*Defined in schemes/directus/File.ts:12*
+*Defined in [schemes/directus/File.ts:12](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/File.ts#L12)*
 
 ___
 <a id="data"></a>
@@ -51,7 +51,7 @@ ___
 
 **● data**: *`object`*
 
-*Defined in schemes/directus/File.ts:23*
+*Defined in [schemes/directus/File.ts:23](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/File.ts#L23)*
 
 ___
 <a id="description"></a>
@@ -60,7 +60,7 @@ ___
 
 **● description**: *`string`*
 
-*Defined in schemes/directus/File.ts:19*
+*Defined in [schemes/directus/File.ts:19](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/File.ts#L19)*
 
 ___
 <a id="duration"></a>
@@ -69,7 +69,7 @@ ___
 
 **● duration**: *`number`*
 
-*Defined in schemes/directus/File.ts:16*
+*Defined in [schemes/directus/File.ts:16](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/File.ts#L16)*
 
 ___
 <a id="embed"></a>
@@ -78,7 +78,7 @@ ___
 
 **● embed**: *`string`*
 
-*Defined in schemes/directus/File.ts:17*
+*Defined in [schemes/directus/File.ts:17](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/File.ts#L17)*
 
 ___
 <a id="filename"></a>
@@ -87,7 +87,7 @@ ___
 
 **● filename**: *`string`*
 
-*Defined in schemes/directus/File.ts:7*
+*Defined in [schemes/directus/File.ts:7](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/File.ts#L7)*
 
 ___
 <a id="filesize"></a>
@@ -96,7 +96,7 @@ ___
 
 **● filesize**: *`number`*
 
-*Defined in schemes/directus/File.ts:13*
+*Defined in [schemes/directus/File.ts:13](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/File.ts#L13)*
 
 ___
 <a id="folder"></a>
@@ -105,7 +105,7 @@ ___
 
 **● folder**: *`string`*
 
-*Defined in schemes/directus/File.ts:18*
+*Defined in [schemes/directus/File.ts:18](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/File.ts#L18)*
 
 ___
 <a id="height"></a>
@@ -114,7 +114,7 @@ ___
 
 **● height**: *`number`*
 
-*Defined in schemes/directus/File.ts:15*
+*Defined in [schemes/directus/File.ts:15](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/File.ts#L15)*
 
 ___
 <a id="id"></a>
@@ -123,7 +123,7 @@ ___
 
 **● id**: *`number`*
 
-*Defined in schemes/directus/File.ts:5*
+*Defined in [schemes/directus/File.ts:5](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/File.ts#L5)*
 
 ___
 <a id="location"></a>
@@ -132,7 +132,7 @@ ___
 
 **● location**: *`string`*
 
-*Defined in schemes/directus/File.ts:20*
+*Defined in [schemes/directus/File.ts:20](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/File.ts#L20)*
 
 ___
 <a id="metadata"></a>
@@ -141,7 +141,7 @@ ___
 
 **● metadata**: *`object`*
 
-*Defined in schemes/directus/File.ts:22*
+*Defined in [schemes/directus/File.ts:22](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/File.ts#L22)*
 
 ___
 <a id="storage"></a>
@@ -150,7 +150,7 @@ ___
 
 **● storage**: *`string`*
 
-*Defined in schemes/directus/File.ts:6*
+*Defined in [schemes/directus/File.ts:6](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/File.ts#L6)*
 
 ___
 <a id="tags"></a>
@@ -159,7 +159,7 @@ ___
 
 **● tags**: *`string` \| `string`[]*
 
-*Defined in schemes/directus/File.ts:21*
+*Defined in [schemes/directus/File.ts:21](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/File.ts#L21)*
 
 ___
 <a id="title"></a>
@@ -168,7 +168,7 @@ ___
 
 **● title**: *`string`*
 
-*Defined in schemes/directus/File.ts:8*
+*Defined in [schemes/directus/File.ts:8](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/File.ts#L8)*
 
 ___
 <a id="type"></a>
@@ -177,7 +177,7 @@ ___
 
 **● type**: *`string`*
 
-*Defined in schemes/directus/File.ts:9*
+*Defined in [schemes/directus/File.ts:9](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/File.ts#L9)*
 
 ___
 <a id="uploaded_by"></a>
@@ -186,7 +186,7 @@ ___
 
 **● uploaded_by**: *`number`*
 
-*Defined in schemes/directus/File.ts:10*
+*Defined in [schemes/directus/File.ts:10](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/File.ts#L10)*
 
 ___
 <a id="uploaded_on"></a>
@@ -195,7 +195,7 @@ ___
 
 **● uploaded_on**: *`Date`*
 
-*Defined in schemes/directus/File.ts:11*
+*Defined in [schemes/directus/File.ts:11](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/File.ts#L11)*
 
 ___
 <a id="width"></a>
@@ -204,7 +204,7 @@ ___
 
 **● width**: *`number`*
 
-*Defined in schemes/directus/File.ts:14*
+*Defined in [schemes/directus/File.ts:14](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/File.ts#L14)*
 
 ___
 

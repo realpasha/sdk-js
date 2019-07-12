@@ -28,7 +28,7 @@
 
 **● activity**: *`number`*
 
-*Defined in schemes/directus/ActivitySeen.ts:6*
+*Defined in [schemes/directus/ActivitySeen.ts:6](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/ActivitySeen.ts#L6)*
 
 ___
 <a id="archived"></a>
@@ -37,7 +37,7 @@ ___
 
 **● archived**: *`boolean`*
 
-*Defined in schemes/directus/ActivitySeen.ts:9*
+*Defined in [schemes/directus/ActivitySeen.ts:9](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/ActivitySeen.ts#L9)*
 
 ___
 <a id="id"></a>
@@ -46,7 +46,7 @@ ___
 
 **● id**: *`number`*
 
-*Defined in schemes/directus/ActivitySeen.ts:5*
+*Defined in [schemes/directus/ActivitySeen.ts:5](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/ActivitySeen.ts#L5)*
 
 ___
 <a id="seen_on"></a>
@@ -55,7 +55,7 @@ ___
 
 **● seen_on**: *`Date`*
 
-*Defined in schemes/directus/ActivitySeen.ts:8*
+*Defined in [schemes/directus/ActivitySeen.ts:8](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/ActivitySeen.ts#L8)*
 
 ___
 <a id="user"></a>
@@ -64,7 +64,7 @@ ___
 
 **● user**: *`number`*
 
-*Defined in schemes/directus/ActivitySeen.ts:7*
+*Defined in [schemes/directus/ActivitySeen.ts:7](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/ActivitySeen.ts#L7)*
 
 ___
 

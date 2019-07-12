@@ -27,7 +27,7 @@
 
 *Inherited from [IRequiredCollectionData](_schemes_directus_collection_.irequiredcollectiondata.md).[collection](_schemes_directus_collection_.irequiredcollectiondata.md#collection)*
 
-*Defined in schemes/directus/Collection.ts:4*
+*Defined in [schemes/directus/Collection.ts:4](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Collection.ts#L4)*
 
 ___
 <a id="fields"></a>
@@ -36,7 +36,7 @@ ___
 
 **● fields**: *`object`*
 
-*Defined in [schemes/response/Collection.ts:6](https://github.com/janbiasi/sdk-js/blob/0ae3664/src/schemes/response/Collection.ts#L6)*
+*Defined in [schemes/response/Collection.ts:6](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/response/Collection.ts#L6)*
 
 #### Type declaration
 

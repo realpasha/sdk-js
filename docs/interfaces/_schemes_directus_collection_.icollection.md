@@ -32,7 +32,7 @@
 
 *Inherited from [IRequiredCollectionData](_schemes_directus_collection_.irequiredcollectiondata.md).[collection](_schemes_directus_collection_.irequiredcollectiondata.md#collection)*
 
-*Defined in schemes/directus/Collection.ts:4*
+*Defined in [schemes/directus/Collection.ts:4](https://github.com/janbiasi/sdk-js/blob/a08c70e/src/schemes/directus/Collection.ts#L4)*
 
 ___
 
