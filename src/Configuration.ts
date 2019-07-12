@@ -69,6 +69,9 @@ export interface IConfigurationOptions {
   tokenExpirationTime?: number;
 }
 
+/**
+ * Configuration holder for directus implementations
+ */
 export class Configuration implements IConfiguration {
   /**
    * Defaults for all directus sdk instances, can be modified if preferred

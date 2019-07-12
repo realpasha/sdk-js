@@ -37,6 +37,11 @@ export interface IAPI {
   ): Promise<T>;
 }
 
+/**
+ * API definition for HTTP transactions
+ * @uses Authentication
+ * @uses axios
+ */
 export class API implements IAPI {
   public auth: IAuthentication;
   public xhr = axios.create({

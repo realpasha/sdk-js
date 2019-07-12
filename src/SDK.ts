@@ -1,11 +1,31 @@
-// Schemes types
+// General scheme types types
 import { ILoginCredentials, ILoginOptions } from "./schemes/auth/Login";
 import { BodyType } from "./schemes/http/Body";
+import { QueryParams as QueryParamsType } from "./schemes/http/Query";
+
+// Directus scheme types
+import { IField } from "schemes/directus/Field";
+import { IRelation } from "schemes/directus/Relation";
+import { IRole } from "schemes/directus/Role";
+import { ICollection } from "./schemes/directus/Collection";
+import { ICollectionPreset } from "./schemes/directus/CollectionPreset";
+import { IPermission } from "./schemes/directus/Permission";
+import { IUser } from "./schemes/directus/User";
+
+// Request schemes
+import { IUpdateCollectionPresetBody } from "./schemes/request/Collection";
+
+// Response schemes
+import { IRelationsResponse } from "schemes/response/Relation";
 import { IActivityResponse } from "./schemes/response/Activity";
 import { ICollectionResponse, ICollectionsResponse } from "./schemes/response/Collection";
+import { ICollectionPresetResponse } from "./schemes/response/CollectionPreset";
 import { IErrorResponse } from "./schemes/response/Error";
 import { IFieldResponse, IFieldsResponse } from "./schemes/response/Field";
+import { IFileResponse, IFilesResponse } from "./schemes/response/File";
+import { IItemResponse, IItemsResponse } from "./schemes/response/Item";
 import { ILoginResponse } from "./schemes/response/Login";
+import { IRelationResponse } from "./schemes/response/Relation";
 import { IRevisionResponse } from "./schemes/response/Revision";
 import { IRoleResponse } from "./schemes/response/Role";
 import { IRefreshTokenResponse } from "./schemes/response/Token";
@@ -19,29 +39,21 @@ import { getPayload } from "./utils/payload";
 import { API, IAPI } from "./API";
 import { Configuration, IConfiguration, IConfigurationOptions } from "./Configuration";
 
-// Invariant violation
-import { IField } from "schemes/directus/Field";
-import { IRelation } from "schemes/directus/Relation";
-import { IRole } from "schemes/directus/Role";
-import { ICreateCollectionPresetBody } from "schemes/request/Collection";
-import { IRelationsResponse } from "schemes/response/Relation";
-import { ISettingResponse } from "schemes/response/Setting";
-import { ICollection } from "./schemes/directus/Collection";
-import { ICollectionPreset } from "./schemes/directus/CollectionPreset";
-import { IPermission } from "./schemes/directus/Permission";
-import { IUser } from "./schemes/directus/User";
-import { QueryParams as QueryParamsType } from "./schemes/http/Query";
-import { IUpdateCollectionPresetBody } from "./schemes/request/Collection";
-import { ICollectionPresetResponse } from "./schemes/response/CollectionPreset";
-import { IItemResponse, IItemsResponse } from "./schemes/response/Item";
-import { IRelationResponse } from "./schemes/response/Relation";
 import { IServerInformationResponse } from "./schemes/response/ServerInformation";
 import { ISettingsResponse } from "./schemes/response/Setting";
+
+// Utilities
 import { invariant } from "./utils/invariant";
 import { isArray, isNotNull, isNumber, isObject, isObjectOrEmpty, isString } from "./utils/is";
 
 type PrimaryKeyType = string | number;
 
+/**
+ * Main SDK implementation provides the public API to interact with a
+ * remote directus instance.
+ * @uses API
+ * @uses Configuration
+ */
 export class SDK {
   public get loggedIn(): boolean {
     return this.api.auth.isLoggedIn();
@@ -113,10 +125,10 @@ export class SDK {
    * The API will send an email to the given email address with a link to generate a new
    * temporary password.
    */
-  public requestPasswordReset<T extends any = any>(email: string): Promise<T> {
+  public requestPasswordReset<TResponse extends any = any>(email: string): Promise<TResponse> {
     invariant(isString(email), "email must be a string");
 
-    return this.api.post<T>("/auth/password/request", {
+    return this.api.post<TResponse>("/auth/password/request", {
       email,
     });
   }
@@ -142,30 +154,11 @@ export class SDK {
 
   /**
    * Get the bookmarks of the current user
-   * TODO: Add deprecation warning
+   * @deprecated Will be removed in the next major version, please use {@link SDK.getCollectionPresets} instead
    * @see https://docs.directus.io/advanced/legacy-upgrades.html#directus-bookmarks
    */
-  public getMyBookmarks<T extends any[] = any[]>(params: QueryParamsType = {}): Promise<T> {
-    invariant(isString(this.config.token), "defined token is not a string");
-    invariant(isObjectOrEmpty(params), "params must be an object or empty");
-
-    const payload = this.api.getPayload<{ id: string; role: string }>();
-
-    return Promise.all([
-      this.api.get("/collection_presets", {
-        "filter[title][nnull]": 1,
-        "filter[user][eq]": payload.id,
-      }),
-      this.api.get("/collection_presets", {
-        "filter[role][eq]": payload.role,
-        "filter[title][nnull]": 1,
-        "filter[user][null]": 1,
-      }),
-    ]).then((values: Array<{ data: any }>) => {
-      const [user, role] = values;
-
-      return [...(user.data || []), ...(role.data || [])] as T;
-    });
+  public getMyBookmarks<TResponse extends any[] = any[]>(params: QueryParamsType = {}): Promise<TResponse> {
+    return this.getCollectionPresets<TResponse>(params);
   }
 
   // #endregion bookmarks
@@ -223,7 +216,35 @@ export class SDK {
   // #region collection presets
 
   /**
+   * Get the collection presets of the current user
+   * @see https://docs.directus.io/api/reference.html#collection-presets
+   */
+  public getCollectionPresets<TResponse extends any[] = any[]>(params: QueryParamsType = {}): Promise<TResponse> {
+    invariant(isString(this.config.token), "defined token is not a string");
+    invariant(isObjectOrEmpty(params), "params must be an object or empty");
+
+    const payload = this.api.getPayload<{ id: string; role: string }>();
+
+    return Promise.all([
+      this.api.get("/collection_presets", {
+        "filter[title][nnull]": 1,
+        "filter[user][eq]": payload.id,
+      }),
+      this.api.get("/collection_presets", {
+        "filter[role][eq]": payload.role,
+        "filter[title][nnull]": 1,
+        "filter[user][null]": 1,
+      }),
+    ]).then((values: Array<{ data: any }>) => {
+      const [user, role] = values;
+
+      return [...(user.data || []), ...(role.data || [])] as TResponse;
+    });
+  }
+
+  /**
    * Create a new collection preset (bookmark / listing preferences)
+   * @see https://docs.directus.io/api/reference.html#collection-presets
    */
   public createCollectionPreset<CollectionPreset extends ICollectionPreset>(
     data: CollectionPreset
@@ -235,19 +256,20 @@ export class SDK {
 
   /**
    * Update collection preset (bookmark / listing preference)
+   * @see https://docs.directus.io/api/reference.html#collection-presets
    */
   // tslint:disable-next-line: max-line-length
   public updateCollectionPreset<
     PartialCollectionPreset extends Partial<ICollectionPreset>,
-    ResultCollectionPreset extends ICollectionPreset = ICollectionPreset
+    TResultCollectionPreset extends ICollectionPreset = ICollectionPreset
   >(
     primaryKey: PrimaryKeyType,
     data: IUpdateCollectionPresetBody
-  ): Promise<ICollectionPresetResponse<PartialCollectionPreset & ResultCollectionPreset>> {
+  ): Promise<ICollectionPresetResponse<PartialCollectionPreset & TResultCollectionPreset>> {
     invariant(isNotNull(primaryKey), "primaryKey must be defined");
     invariant(isObject(data), "data must be an object");
 
-    return this.api.patch<ICollectionPresetResponse<PartialCollectionPreset & ResultCollectionPreset>>(
+    return this.api.patch<ICollectionPresetResponse<PartialCollectionPreset & TResultCollectionPreset>>(
       `/collection_presets/${primaryKey}`,
       data
     );
@@ -255,6 +277,7 @@ export class SDK {
 
   /**
    * Delete collection preset by primarykey
+   * @see https://docs.directus.io/api/reference.html#collection-presets
    */
   public deleteCollectionPreset(primaryKey: PrimaryKeyType): Promise<void> {
     invariant(isNotNull(primaryKey), "primaryKey must be defined");
@@ -267,24 +290,27 @@ export class SDK {
   // #region extensions
 
   /**
-   * Get the meta information of all installed interfaces
+   * Get the information of all installed interfaces
+   * @see https://docs.directus.io/api/reference.html#get-extensions
    */
-  public getInterfaces<T extends any[] = any[]>(): Promise<T> {
-    return this.api.request<T>("get", "/interfaces", {}, {}, true);
+  public getInterfaces<TResponse extends any[] = any[]>(): Promise<TResponse> {
+    return this.api.request<TResponse>("get", "/interfaces", {}, {}, true);
   }
 
   /**
-   * Get the meta information of all installed layouts
+   * Get the information of all installed layouts
+   * @see https://docs.directus.io/api/reference.html#get-extensions
    */
-  public getLayouts<T extends any[] = any[]>(): Promise<T> {
-    return this.api.request<T>("get", "/layouts", {}, {}, true);
+  public getLayouts<TResponse extends any[] = any[]>(): Promise<TResponse> {
+    return this.api.request<TResponse>("get", "/layouts", {}, {}, true);
   }
 
   /**
-   * Get the meta information of all installed pages
+   * Get the information of all installed pages
+   * @see https://docs.directus.io/api/reference.html#get-extensions
    */
-  public getPages<T extends any[] = any[]>(): Promise<T> {
-    return this.api.request<T>("get", "/pages", {}, {}, true);
+  public getPages<TResponse extends any[] = any[]>(): Promise<TResponse> {
+    return this.api.request<TResponse>("get", "/pages", {}, {}, true);
   }
 
   // #endregion extensions
@@ -293,66 +319,79 @@ export class SDK {
 
   /**
    * Get all fields that are in Directus
+   * @see https://docs.directus.io/api/reference.html#fields-2
    */
-  public getAllFields<T extends IField[]>(params: QueryParamsType = {}): Promise<IFieldsResponse<T>> {
+  public getAllFields<TFieldsType extends IField[]>(
+    params: QueryParamsType = {}
+  ): Promise<IFieldsResponse<TFieldsType>> {
     invariant(isObjectOrEmpty(params), "params must be an object or empty");
 
-    return this.api.get<IFieldsResponse<T>>("/fields", params);
+    return this.api.get<IFieldsResponse<TFieldsType>>("/fields", params);
   }
 
   /**
    * Get the fields that have been setup for a given collection
+   * @see https://docs.directus.io/api/reference.html#fields-2
    */
-  public getFields<T extends IField[]>(collection: string, params: QueryParamsType = {}): Promise<IFieldsResponse<T>> {
+  public getFields<TFieldsType extends IField[]>(
+    collection: string,
+    params: QueryParamsType = {}
+  ): Promise<IFieldsResponse<TFieldsType>> {
     invariant(isString(collection), "collection must be a string");
     invariant(isObjectOrEmpty(params), "params must be an object or empty");
 
-    return this.api.get<IFieldsResponse<T>>(`/fields/${collection}`, params);
+    return this.api.get<IFieldsResponse<TFieldsType>>(`/fields/${collection}`, params);
   }
 
   /**
    * Get the field information for a single given field
+   * @see https://docs.directus.io/api/reference.html#fields-2
    */
-  public getField<T extends IField>(
+  public getField<TFieldType extends IField>(
     collection: string,
     fieldName: string,
     params: QueryParamsType = {}
-  ): Promise<IFieldResponse<T>> {
+  ): Promise<IFieldResponse<TFieldType>> {
     invariant(isString(collection), "collection must be a string");
     invariant(isString(fieldName), "fieldName must be a string");
     invariant(isObjectOrEmpty(params), "params must be an object or empty");
 
-    return this.api.get<IFieldResponse<T>>(`/fields/${collection}/${fieldName}`, params);
+    return this.api.get<IFieldResponse<TFieldType>>(`/fields/${collection}/${fieldName}`, params);
   }
 
   /**
    * Create a field in the given collection
+   * @see https://docs.directus.io/api/reference.html#fields-2
    */
-  public createField<T extends IField>(collection: string, fieldInfo: T): Promise<IFieldResponse<T>> {
+  public createField<TFieldType extends IField>(
+    collection: string,
+    fieldInfo: TFieldType
+  ): Promise<IFieldResponse<TFieldType>> {
     invariant(isString(collection), "collection must be a string");
     invariant(isObject(fieldInfo), "fieldInfo must be an object");
 
-    return this.api.post<IFieldResponse<T>>(`/fields/${collection}`, fieldInfo);
+    return this.api.post<IFieldResponse<TFieldType>>(`/fields/${collection}`, fieldInfo);
   }
 
   /**
    * Update a given field in a given collection
+   * @see https://docs.directus.io/api/reference.html#fields-2
    */
-  public updateField<T extends Partial<IField>>(
+  public updateField<TFieldType extends Partial<IField>>(
     collection: string,
     fieldName: string,
-    fieldInfo: T
-  ): Promise<IFieldResponse<IField & T> | undefined> {
+    fieldInfo: TFieldType
+  ): Promise<IFieldResponse<IField & TFieldType> | undefined> {
     invariant(isString(collection), "collection must be a string");
     invariant(isString(fieldName), "fieldName must be a string");
     invariant(isObject(fieldInfo), "fieldInfo must be an object");
 
-    return this.api.patch<IFieldResponse<IField & T>>(`/fields/${collection}/${fieldName}`, fieldInfo);
+    return this.api.patch<IFieldResponse<IField & TFieldType>>(`/fields/${collection}/${fieldName}`, fieldInfo);
   }
 
   /**
    * Update multiple fields at once
-   *
+   * @see https://docs.directus.io/api/reference.html#fields-2
    * @example
    *
    * // Set multiple fields to the same value
@@ -376,20 +415,20 @@ export class SDK {
    *   }
    * ])
    */
-  public updateFields<T extends IField[]>(
+  public updateFields<TFieldsType extends IField[]>(
     collection: string,
     fields: Array<Partial<IField>>
-  ): Promise<IFieldsResponse<T & IField[]> | undefined>;
-  public updateFields<T extends IField[]>(
+  ): Promise<IFieldsResponse<TFieldsType & IField[]> | undefined>;
+  public updateFields<TFieldsType extends IField[]>(
     collection: string,
     fields: string[],
     fieldInfo: Partial<IField>
-  ): Promise<IFieldsResponse<T & IField[]> | undefined>;
-  public updateFields<T extends IField[]>(
+  ): Promise<IFieldsResponse<TFieldsType & IField[]> | undefined>;
+  public updateFields<TFieldsType extends IField[]>(
     collection: string,
     fieldsInfoOrFieldNames: string[] | Array<Partial<IField>>,
     fieldInfo: Partial<IField> | null = null
-  ): Promise<IFieldsResponse<T & IField[]> | undefined> {
+  ): Promise<IFieldsResponse<TFieldsType & IField[]> | undefined> {
     invariant(isString(collection), "collection must be a string");
     invariant(isArray(fieldsInfoOrFieldNames), "fieldsInfoOrFieldNames must be an array");
 
@@ -406,6 +445,7 @@ export class SDK {
 
   /**
    * Delete a field from a collection
+   * @see @see https://docs.directus.io/api/reference.html#fields-2
    */
   public deleteField(collection: string, fieldName: string): Promise<void> {
     invariant(isString(collection), "collection must be a string");
@@ -419,19 +459,36 @@ export class SDK {
   // #region files
 
   /**
-   * Get a list of available files in Directus
-   * @param  {QueryParamsType} [params={}] Query parameters
-   * @return {RequestPromise}
+   * Get a list of available files from Directus
+   * @see https://docs.directus.io/api/reference.html#files
    */
-  public async getFiles(params: QueryParamsType = {}) {
+  public async getFiles(params: QueryParamsType = {}): Promise<IFilesResponse> {
     invariant(isObjectOrEmpty(params), "Params must be an object");
     return this.api.get("/files", params);
   }
 
   /**
-   * Upload multipart files in multipart/form-data
+   * Get a certain file or certain file list from Directus
+   * @see https://docs.directus.io/api/reference.html#files
    */
-  public uploadFiles<T extends any = any[]>(data: object, onUploadProgress: () => object = () => ({})): Promise<T> {
+  public async getFile<TFile extends string | string[]>(
+    fileName: TFile,
+    params: QueryParamsType = {}
+  ): Promise<TFile extends string ? IFileResponse : IFilesResponse> {
+    invariant(isString(fileName), "FileName must be string");
+    invariant(isObjectOrEmpty(params), "Params must be an object");
+    const files = typeof fileName === "string" ? fileName : (fileName as string[]).join(",");
+    return this.api.get(`/files/${files}`, params);
+  }
+
+  /**
+   * Upload multipart files in multipart/form-data
+   * @see https://docs.directus.io/api/reference.html#files
+   */
+  public uploadFiles<TResponse extends any = any[]>(
+    data: object, // TODO: fix type definition
+    onUploadProgress: () => object = () => ({})
+  ): Promise<TResponse> {
     const headers = {
       Authorization: `Bearer ${this.config.token}`,
       "Content-Type": "multipart/form-data",
@@ -473,34 +530,35 @@ export class SDK {
 
   /**
    * Update an existing item
-   * @typeparam PartialItem    Defining the item type in object schema
-   * @typeparam Result         Extension of [PartialItem] as expected result
-   * @return {Promise<IItemResponse<PartialItem & Result>>}
+   * @see https://docs.directus.io/api/reference.html#update-item
+   * @typeparam TTPartialItem Defining the item type in object schema
+   * @typeparam TTResult Extension of [TPartialItem] as expected result
    */
-  public updateItem<PartialItem extends object, Result extends object = PartialItem>(
+  public updateItem<TTPartialItem extends object, TTResult extends object = TTPartialItem>(
     collection: string,
     primaryKey: PrimaryKeyType,
-    body: PartialItem,
+    body: TTPartialItem,
     params: QueryParamsType = {}
-  ): Promise<IItemResponse<PartialItem & Result>> {
+  ): Promise<IItemResponse<TTPartialItem & TTResult>> {
     invariant(isString(collection), "collection must be a string");
     invariant(isNotNull(primaryKey), "primaryKey must be defined");
     invariant(isObject(body), "body must be an object");
 
     const collectionBasePath = getCollectionItemPath(collection);
 
-    return this.api.patch<IItemResponse<PartialItem & Result>>(`${collectionBasePath}/${primaryKey}`, body, params);
+    return this.api.patch<IItemResponse<TTPartialItem & TTResult>>(`${collectionBasePath}/${primaryKey}`, body, params);
   }
 
   /**
    * Update multiple items
-   * @typeparam PartialItem    Defining an array of items, each in object schema
-   * @typeparam Result         Extension of [PartialItem] as expected result
-   * @return {Promise<IItemsResponse<PartialItem & Result>>}
+   * @see https://docs.directus.io/api/reference.html#update-items
+   * @typeparam TPartialItem Defining an array of items, each in object schema
+   * @typeparam TResult Extension of [TPartialItem] as expected result
+   * @return {Promise<IItemsResponse<TPartialItem & TResult>>}
    */
-  public updateItems<PartialItem extends object[], Result extends PartialItem = PartialItem>(
+  public updateItems<TPartialItem extends object[], TResult extends TPartialItem = TPartialItem>(
     collection: string,
-    body: PartialItem,
+    body: TPartialItem,
     params: QueryParamsType = {}
   ) {
     invariant(isString(collection), "collection must be a string");
@@ -508,78 +566,79 @@ export class SDK {
 
     const collectionBasePath = getCollectionItemPath(collection);
 
-    return this.api.patch<IItemsResponse<PartialItem & Result>>(collectionBasePath, body, params);
+    return this.api.patch<IItemsResponse<TPartialItem & TResult>>(collectionBasePath, body, params);
   }
 
   /**
    * Create a new item
-   * @typeparam ItemType    Defining an item and its fields in object schema
-   * @return {Promise<IItemsResponse<ItemType>>}
+   * @typeparam TItemType Defining an item and its fields in object schema
+   * @return {Promise<IItemsResponse<TItemType>>}
    */
-  public createItem<ItemType extends object>(collection: string, body: ItemType): Promise<IItemResponse<ItemType>> {
+  public createItem<TItemType extends object>(collection: string, body: TItemType): Promise<IItemResponse<TItemType>> {
     invariant(isString(collection), "collection must be a string");
     invariant(isObject(body), "body must be an object");
 
     const collectionBasePath = getCollectionItemPath(collection);
 
-    return this.api.post<IItemResponse<ItemType>>(collectionBasePath, body);
+    return this.api.post<IItemResponse<TItemType>>(collectionBasePath, body);
   }
 
   /**
    * Create multiple items
-   * @typeparam ItemsType    Defining an array of items, each in object schema
-   * @return {Promise<IItemsResponse<ItemsType>>}
+   * @see https://docs.directus.io/api/reference.html#create-items
+   * @typeparam TItemsType Defining an array of items, each in object schema
    */
-  public createItems<ItemsType extends Array<{}>>(
+  public createItems<TItemsType extends Array<{}>>(
     collection: string,
     body: BodyType
-  ): Promise<IItemsResponse<ItemsType>> {
+  ): Promise<IItemsResponse<TItemsType>> {
     invariant(isString(collection), "collection must be a string");
     invariant(isArray(body), "body must be an array");
 
     const collectionBasePath = getCollectionItemPath(collection);
 
-    return this.api.post<IItemsResponse<ItemsType>>(collectionBasePath, body);
+    return this.api.post<IItemsResponse<TItemsType>>(collectionBasePath, body);
   }
 
   /**
    * Get items from a given collection
-   * @typeparam ItemsType    Defining an array of items, each in object schema
-   * @return {Promise<IItemsResponse<ItemsType>>}
+   * @see https://docs.directus.io/api/reference.html#get-multiple-items
+   * @typeparam TItemsType Defining an array of items, each in object schema
    */
-  public getItems<ItemsType extends Array<{}>>(
+  public getItems<TTItemsType extends Array<{}>>(
     collection: string,
     params: QueryParamsType = {}
-  ): Promise<IItemsResponse<ItemsType>> {
+  ): Promise<IItemsResponse<TTItemsType>> {
     invariant(isString(collection), "collection must be a string");
     invariant(isObjectOrEmpty(params), "params must be an object or empty");
 
     const collectionBasePath = getCollectionItemPath(collection);
 
-    return this.api.get<IItemsResponse<ItemsType>>(collectionBasePath, params);
+    return this.api.get<IItemsResponse<TTItemsType>>(collectionBasePath, params);
   }
 
   /**
    * Get a single item by primary key
-   * @typeparam ItemType    Defining fields of an item in object schema
-   * @return {Promise<IItemResponse<ItemType>>}
+   * @see https://docs.directus.io/api/reference.html#get-item
+   * @typeparam TItemType Defining fields of an item in object schema
    */
-  public getItem<ItemType extends object = {}>(
+  public getItem<TItemType extends object = {}>(
     collection: string,
     primaryKey: PrimaryKeyType,
     params: QueryParamsType = {}
-  ): Promise<IItemResponse<ItemType>> {
+  ): Promise<IItemResponse<TItemType>> {
     invariant(isString(collection), "collection must be a string");
     invariant(isNotNull(primaryKey), "primaryKey must be defined");
     invariant(isObjectOrEmpty(params), "params must be an object or empty");
 
     const collectionBasePath = getCollectionItemPath(collection);
 
-    return this.api.get<IItemResponse<ItemType>>(`${collectionBasePath}/${primaryKey}`, params);
+    return this.api.get<IItemResponse<TItemType>>(`${collectionBasePath}/${primaryKey}`, params);
   }
 
   /**
    * Delete a single item by primary key
+   * @see https://docs.directus.io/api/reference.html#delete-items
    */
   public deleteItem(collection: string, primaryKey: PrimaryKeyType) {
     invariant(isString(collection), "collection must be a string");
@@ -592,6 +651,7 @@ export class SDK {
 
   /**
    * Delete multiple items by primary key
+   * @see https://docs.directus.io/api/reference.html#delete-items
    */
   public deleteItems(collection: string, primaryKeys: PrimaryKeyType[]) {
     invariant(isString(collection), "collection must be a string");
@@ -609,10 +669,10 @@ export class SDK {
   /**
    * Get the collection presets of the current user for a single collection
    */
-  public getMyListingPreferences<T extends any[] = any[]>(
+  public getMyListingPreferences<TResponse extends any[] = any[]>(
     collection: string,
     params: QueryParamsType = {}
-  ): Promise<T> {
+  ): Promise<TResponse> {
     invariant(isString(this.config.token), "token must be defined");
     invariant(isObjectOrEmpty(params), "params must be an object or empty");
 
@@ -647,18 +707,18 @@ export class SDK {
       const [col, role, user] = values;
 
       if (user.data && user.data.length > 0) {
-        return user.data[0] as T;
+        return user.data[0] as TResponse;
       }
 
       if (role.data && role.data.length > 0) {
-        return role.data[0] as T;
+        return role.data[0] as TResponse;
       }
 
       if (col.data && col.data.length > 0) {
-        return col.data[0] as T;
+        return col.data[0] as TResponse;
       }
 
-      return {} as T;
+      return {} as TResponse;
     });
   }
 
@@ -680,11 +740,9 @@ export class SDK {
   /**
    * TODO: Fix type-def for return
    * Get the currently logged in user's permissions
-   * @param {QueryParamsType?} params
-   * @typeparam T   Permissions type as array extending any[]
-   * @return {Promise<T>}
+   * @typeparam TResponse Permissions type as array extending any[]
    */
-  public getMyPermissions<T extends any[] = any[]>(params: QueryParamsType = {}): Promise<T> {
+  public getMyPermissions<TResponse extends any[] = any[]>(params: QueryParamsType = {}): Promise<TResponse> {
     invariant(isObjectOrEmpty(params), "params must be an object or empty");
 
     return this.api.get("/permissions/me", params);
@@ -693,11 +751,9 @@ export class SDK {
   /**
    * TODO: Fix type-def for param and return
    * Create multiple new permissions
-   * @param {any[]} data
-   * @typeparam T   Permissions type as array extending any[]
-   * @return {Promise<T>}
+   * @typeparam TResponse Permissions type as array extending any[]
    */
-  public createPermissions<T extends any[] = any[]>(data: any[]): Promise<T> {
+  public createPermissions<TResponse extends any[] = any[]>(data: any[]): Promise<TResponse> {
     invariant(isArray(data), "data must be anarry");
 
     return this.api.post("/permissions", data);
@@ -706,14 +762,12 @@ export class SDK {
   /**
    * TODO: Fix type-def for param and return
    * Update multiple permission records
-   * @param {any[]} data
-   * @typeparam T   Permissions type as array extending any[]
-   * @return {Promise<T>}
+   * @typeparam TResponse Permissions type as array extending any[]
    */
-  public updatePermissions<T extends any[] = any[]>(data: any[]): Promise<T> {
+  public updatePermissions<TResponse extends any[] = any[]>(data: any[]): Promise<TResponse> {
     invariant(isArray(data), "data must be anarry");
 
-    return this.api.patch<T>("/permissions", data);
+    return this.api.patch<TResponse>("/permissions", data);
   }
 
   // #endregion permissions
@@ -741,9 +795,6 @@ export class SDK {
 
   /**
    * Updates existing relation
-   * @param {PrimaryKeyType} primaryKey
-   * @param {Partial<IRelation>} data
-   * @return {Promise<IRelationResponse>}
    */
   public updateRelation(primaryKey: PrimaryKeyType, data: Partial<IRelation>) {
     return this.api.patch<IRelationResponse>(`/relations/${primaryKey}`, data);
@@ -752,9 +803,6 @@ export class SDK {
   /**
    * TODO: Add type-def for return value(s)
    * Get the relationship information for the given collection
-   * @param {string} collection
-   * @param {QueryParamsType?} params
-   * @return {Promise<any[]>}
    */
   public getCollectionRelations(collection: string, params: QueryParamsType = {}): Promise<any[]> {
     invariant(isString(collection), "collection must be a string");
@@ -781,18 +829,18 @@ export class SDK {
    * @param {PrimaryKeyType} primaryKey
    * @param {QueryParamsType?} params
    */
-  public getItemRevisions<DataAndDelta extends object = {}>(
+  public getItemRevisions<TDataAndDelta extends object = {}>(
     collection: string,
     primaryKey: PrimaryKeyType,
     params: QueryParamsType = {}
-  ): Promise<IRevisionResponse<DataAndDelta>> {
+  ): Promise<IRevisionResponse<TDataAndDelta>> {
     invariant(isString(collection), "collection must be a string");
     invariant(isNotNull(primaryKey), "primaryKey must be defined");
     invariant(isObjectOrEmpty(params), "params must be an object or empty");
 
     const collectionBasePath = getCollectionItemPath(collection);
 
-    return this.api.get<IRevisionResponse<DataAndDelta>>(`${collectionBasePath}/${primaryKey}/revisions`, params);
+    return this.api.get<IRevisionResponse<TDataAndDelta>>(`${collectionBasePath}/${primaryKey}/revisions`, params);
   }
 
   /**
@@ -853,7 +901,7 @@ export class SDK {
    * Create a new user role
    * @param {Role} body
    */
-  public createRole<Role extends IRole>(body: Role) {
+  public createRole<TRole extends IRole>(body: TRole) {
     invariant(isObject(body), "body must be an object");
 
     return this.createItem("directus_roles", body);

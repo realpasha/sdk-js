@@ -2,7 +2,6 @@ import * as chai from "chai";
 import * as sinon from "sinon";
 import * as sinonChai from "sinon-chai";
 import SDK from "../../src/";
-import { ISDK } from "../../dist/types/src/SDK";
 
 const expect = chai.expect;
 chai.use(sinonChai);
