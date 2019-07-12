@@ -97,6 +97,7 @@ describe("Fields", () => {
     });
 
     it("Calls post() for the right endpoint", () => {
+      // @ts-ignore
       client.createField("members", {
         field: "first_name",
         interface: "text-input",

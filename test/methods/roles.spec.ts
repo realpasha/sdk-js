@@ -101,6 +101,7 @@ describe("Roles", () => {
     });
 
     it("Calls post() for the right endpoint", () => {
+      // @ts-ignore
       client.createRole({ name: "Intern" });
       expect(client.api.post).to.have.been.calledWith("/roles", {
         name: "Intern",
