@@ -18,11 +18,6 @@
   <a href="https://directus.app">Demo</a> •
   <a href="https://docs.directus.io/supporting-directus.html">Contribute</a>
 </h3>
-<h3 align="center">
-  <a href="https://travis-ci.org/janbiasi/sdk-js" target="_blank" rel="noopener noreferrer">
-    <img src="https://travis-ci.org/janbiasi/sdk-js.svg?branch=master" alt="Build status" />
-  </a>
-</h3>
 
 <p>&nbsp;</p>
 
