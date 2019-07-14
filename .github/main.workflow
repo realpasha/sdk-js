@@ -1,15 +1,38 @@
-workflow "Publish to NPM" {
-  on = "release"
-  resolves = ["publish"]
+workflow "Test, Build and Publish to NPM" {
+  on = "push"
+  resolves = ["Publish"]
 }
 
-action "build" {
-  uses = "actions/npm@59b64a598378f31e49cb76f27d6f3312b582f680"
+# Install
+action "Install" {
+  uses = "actions/npm@master"
+  args = "install"
+}
+
+# Run tests
+action "Test" {
+  uses = "actions/npm@master"
+  needs = ["Install"]
+  args = "test"
+}
+
+# Run build
+action "Build" {
+  uses = "actions/npm@master"
+  needs = ["Install","Test"]
   runs = "build"
 }
 
-action "publish" {
-  uses = "actions/npm@59b64a598378f31e49cb76f27d6f3312b582f680"
-  needs = ["build"]
+# Filter for master branch
+action "Master" {
+  needs = ["Build"]
+  uses = "actions/bin/filter@master"
+  args = "branch master"
+}
+
+action "Publish" {
+  uses = "actions/npm@master"
+  needs = ["Master"]
+  args = "publish --access public"
   secrets = ["NPM_AUTH_TOKEN"]
 }
