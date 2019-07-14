@@ -20,7 +20,7 @@ action "Test" {
 action "Build" {
   uses = "actions/npm@master"
   needs = ["Install","Test"]
-  runs = "build"
+  args = "run build"
 }
 
 # Filter for master branch
