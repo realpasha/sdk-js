@@ -161,6 +161,9 @@ export class SDK {
    * @see https://docs.directus.io/advanced/legacy-upgrades.html#directus-bookmarks
    */
   public getMyBookmarks<TResponse extends any[] = any[]>(params: QueryParamsType = {}): Promise<TResponse> {
+    // prettier-ignore
+    // eslint-disable-next-line max-len
+    console.log(`Warning: getMyBookmarks has been deprecated, please use getCollectionPresets instead (see https://docs.directus.io/advanced/legacy-upgrades.html#directus-bookmarks)`);
     return this.getCollectionPresets<TResponse>(params);
   }
 
@@ -261,7 +264,6 @@ export class SDK {
    * Update collection preset (bookmark / listing preference)
    * @see https://docs.directus.io/api/reference.html#collection-presets
    */
-  // tslint:disable-next-line: max-line-length
   public updateCollectionPreset<
     PartialCollectionPreset extends Partial<ICollectionPreset>,
     TResultCollectionPreset extends ICollectionPreset = ICollectionPreset
