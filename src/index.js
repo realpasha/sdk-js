@@ -789,7 +789,7 @@ function SDK(options = {}) {
 
     // FILES
     // ------------------------------------------------------------------------
-    
+
     /**
      * Get a list of available files in Directus
      * @param  {Object} [params={}] Query parameters
@@ -799,17 +799,25 @@ function SDK(options = {}) {
       AV.objectOrEmpty(params, "params");
       return this.get("/files", params);
     },
-    
+
     /**
      * Upload multipart files in multipart/form-data
      * @param  {Object} data FormData object containing files
+     * @param  {Function} [onUploadProgress=()=>{}] Progress callback
+     * @param  {Object} [overrideHeaders={}] Override headers, for example when using `form-data`
      * @return {RequestPromise}
      */
-    uploadFiles(data, onUploadProgress = () => {}) {
+    uploadFiles(data, onUploadProgress = () => { }, overrideHeaders = {}) {
       const headers = {
         "Content-Type": "multipart/form-data",
-        Authorization: `Bearer ${this.token}`
+        Authorization: `Bearer ${this.token}`,
       };
+
+      if (overrideHeaders) {
+        Object.keys(overrideHeaders).forEach(headerKey => {
+          headers[headerKey] = overrideHeaders[headerKey];
+        });
+      }
 
       return this.axios
         .post(`${this.url}/${this.project}/files`, data, {

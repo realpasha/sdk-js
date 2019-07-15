@@ -5,10 +5,10 @@ chai.use(require('sinon-chai'));
 
 const SDK = require('../../src/index');
 
-describe('Items', function() {
+describe('Items', function () {
   let client;
 
-  beforeEach(function() {
+  beforeEach(function () {
     client = new SDK({
       url: 'https://demo-api.getdirectus.com'
     });
@@ -27,7 +27,7 @@ describe('Items', function() {
     sinon.stub(client, 'delete').resolves(responseJSON);
   });
 
-  afterEach(function() {
+  afterEach(function () {
     client.request.restore();
     client.get.restore();
     client.put.restore();
@@ -36,15 +36,24 @@ describe('Items', function() {
     client.delete.restore();
   });
 
-  describe('#uploadFiles()', function() {
-    it('Errors on missing `fileslist` parameter', function() {
+  describe('#uploadFiles()', function () {
+    it('Errors on missing `fileslist` parameter', function () {
       expect(client.uploadFiles).to.throw();
     });
 
-    it('Calls post() for the right endpoint', function() {
+    it('Calls post() for the right endpoint', function () {
       client.uploadFiles(["fileA", "fileB"]);
       expect(client.request).to.have.been.calledWith('POST', '/files', {}, ["fileA", "fileB"], false, {
         "Content-Type": "multipart/form-data"
+      });
+    });
+
+    it('Calls post() with overwritten headers', function () {
+      client.uploadFiles(["fileA", "fileB"], () => { }, {
+        "Content-Type": "multipart/form-data; boundary=--------------------------693343438674222528347432"
+      });
+      expect(client.request).to.have.been.calledWith('POST', '/files', {}, ["fileA", "fileB"], false, {
+        "Content-Type": "multipart/form-data; boundary=--------------------------693343438674222528347432"
       });
     });
   });
