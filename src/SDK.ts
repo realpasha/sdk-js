@@ -487,8 +487,19 @@ export class SDK {
   }
 
   /**
-   * Upload multipart files in multipart/form-data
+   * Upload multipart files in multipart/form-data.
+   * Important: if you're using the `form-data` module, make sure that you pass
+   * the generated headers as overrideHeaders option!
    * @see https://docs.directus.io/api/reference.html#files
+   * @example
+   * // with browser
+   * const formData = new FormData();
+   * client.uploadFiles(formData);
+   *
+   * // with Node.js
+   * const FormData = require('form-data')
+   * const formData = new FormData();
+   * client.uploadFiles(formData, () => {}, formData.getHeaders());
    */
   public uploadFiles<TResponse extends any = any[]>(
     data: object, // TODO: fix type definition
@@ -497,7 +508,7 @@ export class SDK {
   ): Promise<TResponse> {
     const headers = {
       Authorization: `Bearer ${this.config.token}`,
-      "Content-Type": "multipart/form-data",,
+      "Content-Type": "multipart/form-data",
       ...overrideHeaders
     };
 
@@ -595,7 +606,7 @@ export class SDK {
    * @see https://docs.directus.io/api/reference.html#create-items
    * @typeparam TItemsType Defining an array of items, each in object schema
    */
-  public createItems<TItemsType extends Array<{}>>(
+  public createItems<TItemsType extends Array<any>>(
     collection: string,
     body: BodyType
   ): Promise<IItemsResponse<TItemsType>> {
@@ -612,7 +623,7 @@ export class SDK {
    * @see https://docs.directus.io/api/reference.html#get-multiple-items
    * @typeparam TItemsType Defining an array of items, each in object schema
    */
-  public getItems<TTItemsType extends Array<{}>>(
+  public getItems<TTItemsType extends Array<any>>(
     collection: string,
     params: QueryParamsType = {}
   ): Promise<IItemsResponse<TTItemsType>> {
