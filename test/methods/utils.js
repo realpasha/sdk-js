@@ -5,10 +5,10 @@ chai.use(require('sinon-chai'));
 
 const SDK = require('../../src/index');
 
-describe('Utils', function() {
+describe('Utils', function () {
   let client;
 
-  beforeEach(function() {
+  beforeEach(function () {
     client = new SDK({
       url: 'https://demo-api.getdirectus.com'
     });
@@ -27,7 +27,7 @@ describe('Utils', function() {
     sinon.stub(client, 'delete').resolves(responseJSON);
   });
 
-  afterEach(function() {
+  afterEach(function () {
     client.request.restore();
     client.get.restore();
     client.put.restore();
@@ -36,15 +36,15 @@ describe('Utils', function() {
     client.delete.restore();
   });
 
-  describe('#ping()', function() {
-    it('It calls get for the ping endpoint', function() {
+  describe('#ping()', function () {
+    it('It calls get for the ping endpoint', function () {
       client.ping();
-      expect(client.request).to.have.been.calledWith('get', '/server/ping', {}, {}, true, true);
+      expect(client.request).to.have.been.calledWith('get', '/server/ping', {}, {}, true, {}, true);
     });
   });
 
-  describe('#getThirdPartyAuthProviders()', function() {
-    it('It calls get for the sso endpoint', function() {
+  describe('#getThirdPartyAuthProviders()', function () {
+    it('It calls get for the sso endpoint', function () {
       client.getThirdPartyAuthProviders();
       expect(client.get).to.have.been.calledWith('/auth/sso');
     });
