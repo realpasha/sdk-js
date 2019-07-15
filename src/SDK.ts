@@ -492,11 +492,13 @@ export class SDK {
    */
   public uploadFiles<TResponse extends any = any[]>(
     data: object, // TODO: fix type definition
-    onUploadProgress: () => object = () => ({})
+    onUploadProgress: () => object = () => ({}),
+    overrideHeaders: Record<string, string | number> = {}
   ): Promise<TResponse> {
     const headers = {
       Authorization: `Bearer ${this.config.token}`,
-      "Content-Type": "multipart/form-data",
+      "Content-Type": "multipart/form-data",,
+      ...overrideHeaders
     };
 
     // limit concurrent requests to 5
