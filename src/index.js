@@ -1303,7 +1303,7 @@ function SDK(options = {}) {
      * @return {RequestPromise}
      */
     ping() {
-      return this.request("get", "/server/ping", {}, {}, true, true);
+      return this.request("get", "/server/ping", {}, {}, true, {}, true);
     },
 
     /**
