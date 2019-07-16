@@ -7,6 +7,75 @@
     axios = axios && axios.hasOwnProperty('default') ? axios['default'] : axios;
 
     /**
+<<<<<<< HEAD
+=======
+     * @module utils
+     */
+    /**
+     * Checks invariant violation against a condition, will throw an error if not fulfilled
+     * @internal
+     * @param {boolean} condition
+     * @param {string} message
+     */
+    var invariant = function (condition, message) {
+        if (!!condition === true) {
+            return;
+        }
+        throw new Error("Invariant violation: " + message);
+    };
+
+    /**
+     * @module utils
+     */
+    /**
+     * @internal
+     */
+    var isType = function (t, v) { return Object.prototype.toString.call(v) === "[object " + t + "]"; };
+    /**
+     * @internal
+     */
+    var isNotNull = function (v) { return v !== null && v !== undefined; };
+    /**
+     * @internal
+     */
+    var isString = function (v) { return v && typeof v === "string" && /\S/.test(v); };
+    /**
+     * @internal
+     */
+    var isNumber = function (v) { return isType("Number", v) && isFinite(v) && !isNaN(parseFloat(v)); };
+    /**
+     * @internal
+     */
+    var isFunction = function (v) { return v instanceof Function; };
+    /**
+     * @internal
+     */
+    var isObjectOrEmpty = function (v) { return isType("Object", v); };
+    /**
+     * @internal
+     */
+    var isArrayOrEmpty = function (v) { return isType("Array", v); };
+    /**
+     * @internal
+     */
+    var isArray = function (v) { return (!isArrayOrEmpty(v) ? false : v.length > 0); };
+    /**
+     * @internal
+     */
+    var isObject = function (v) {
+        if (!isObjectOrEmpty(v)) {
+            return false;
+        }
+        for (var key in v) {
+            if (Object.prototype.hasOwnProperty.call(v, key)) {
+                return true;
+            }
+        }
+        return false;
+    };
+
+    /**
+>>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
      * @module Configuration
      */
     var __assign = (undefined && undefined.__assign) || function () {
@@ -117,6 +186,18 @@
         });
         // HELPER METHODS ============================================================
         /**
+<<<<<<< HEAD
+=======
+         * Validates if the configuration is valid
+         * @throws {Error}
+         */
+        Configuration.prototype.validate = function () {
+            invariant(isString(this.url), "configuration - url must be defined");
+            invariant(isString(this.project), "configuration - project must be defined");
+            invariant(isString(this.token), "configuration - project must be defined");
+        };
+        /**
+>>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
          * Update the configuration values, will also hydrate them if persistance activated
          * @param {IConfigurationValues} config
          */
@@ -223,6 +304,7 @@
      * @module utils
      */
     /**
+<<<<<<< HEAD
      * @internal
      */
     var isType = function (t, v) { return Object.prototype.toString.call(v) === "[object " + t + "]"; };
@@ -261,6 +343,8 @@
      * @module utils
      */
     /**
+=======
+>>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
      * Retrieves the payload from a JWT
      * @internal
      * @param  {String} token The JWT to retrieve the payload from
@@ -336,6 +420,11 @@
          */
         Authentication.prototype.login = function (credentials, options) {
             var _this = this;
+<<<<<<< HEAD
+=======
+            invariant(isObject(credentials), "malformed credentials");
+            invariant(isString(credentials.email) && isString(credentials.password), "email & password are required in credentials");
+>>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
             this.config.token = null;
             if (isString(credentials.url)) {
                 this.config.url = credentials.url;
@@ -433,6 +522,10 @@
          * @param {string} token
          */
         Authentication.prototype.refresh = function (token) {
+<<<<<<< HEAD
+=======
+            invariant(isString(token), "token must be a string");
+>>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
             return this.inject.post("/auth/refresh", { token: token });
         };
         /**
@@ -537,6 +630,7 @@
         return instance;
     };
 
+<<<<<<< HEAD
     var defaultSerializeTransform = function (key, value) { return key + "=" + value; };
     function querify(obj, prefix, serializer) {
         if (serializer === void 0) { serializer = defaultSerializeTransform; }
@@ -628,6 +722,11 @@
         };
         return APIError;
     }(Error));
+=======
+    /**
+     * @module API
+     */
+>>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
     /**
      * API definition for HTTP transactions
      * @uses Authentication
@@ -638,7 +737,11 @@
         function API(config) {
             this.config = config;
             this.xhr = axios.create({
+<<<<<<< HEAD
                 paramsSerializer: querify,
+=======
+                paramsSerializer: qsStringify,
+>>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
                 timeout: 10 * 60 * 1000,
             });
             this.concurrent = concurrencyManager(this.xhr, 10);
@@ -661,6 +764,11 @@
          */
         API.prototype.get = function (endpoint, params) {
             if (params === void 0) { params = {}; }
+<<<<<<< HEAD
+=======
+            invariant(isString(endpoint), "endpoint must be a string");
+            invariant(isObjectOrEmpty(params), "params must be an object or empty");
+>>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
             return this.request("get", endpoint, params);
         };
         /**
@@ -671,6 +779,11 @@
         API.prototype.post = function (endpoint, body, params) {
             if (body === void 0) { body = {}; }
             if (params === void 0) { params = {}; }
+<<<<<<< HEAD
+=======
+            invariant(isString(endpoint), "endpoint must be a string");
+            invariant(Array.isArray(body) ? isArrayOrEmpty(body) : isObjectOrEmpty(body), "body must be an array or object");
+>>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
             return this.request("post", endpoint, params, body);
         };
         /**
@@ -681,6 +794,11 @@
         API.prototype.patch = function (endpoint, body, params) {
             if (body === void 0) { body = {}; }
             if (params === void 0) { params = {}; }
+<<<<<<< HEAD
+=======
+            invariant(isString(endpoint), "endpoint must be a string");
+            invariant(Array.isArray(body) ? isArrayOrEmpty(body) : isObjectOrEmpty(body), "body must be an array or object");
+>>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
             return this.request("patch", endpoint, params, body);
         };
         /**
@@ -691,6 +809,11 @@
         API.prototype.put = function (endpoint, body, params) {
             if (body === void 0) { body = {}; }
             if (params === void 0) { params = {}; }
+<<<<<<< HEAD
+=======
+            invariant(isString(endpoint), "endpoint must be a string");
+            invariant(Array.isArray(body) ? isArrayOrEmpty(body) : isObjectOrEmpty(body), "body must be an array or object");
+>>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
             return this.request("put", endpoint, params, body);
         };
         /**
@@ -699,6 +822,10 @@
          * @return {Promise<T>}
          */
         API.prototype.delete = function (endpoint) {
+<<<<<<< HEAD
+=======
+            invariant(isString(endpoint), "endpoint must be a string");
+>>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
             return this.request("delete", endpoint);
         };
         /**
@@ -730,9 +857,17 @@
             if (noEnv === void 0) { noEnv = false; }
             if (headers === void 0) { headers = {}; }
             if (skipParseToJSON === void 0) { skipParseToJSON = false; }
+<<<<<<< HEAD
             if (!this.config.url) {
                 throw new Error('API has no URL configured to send requests to, please check the docs.');
             }
+=======
+            invariant(isString(method), "method must be a string");
+            invariant(isString(endpoint), "endpoint must be a string");
+            invariant(isObjectOrEmpty(params), "params must be an object or empty");
+            invariant(isString(this.config.url), "main url must be defined (see constructor)");
+            invariant(Array.isArray(data) ? isArrayOrEmpty(data) : isObjectOrEmpty(data), "data must be an array or object");
+>>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
             var baseURL = this.config.url + "/";
             if (noEnv === false) {
                 baseURL += this.config.project + "/";
@@ -771,6 +906,7 @@
                 return responseData;
             })
                 .catch(function (error) {
+<<<<<<< HEAD
                 var errorResponse = error
                     ? error.response || {}
                     : {};
@@ -790,6 +926,25 @@
                 }
                 else {
                     throw new APIError("Network error", __assign$1({}, baseErrorInfo, { code: -1 }));
+=======
+                if (error.response) {
+                    throw error.response.data.error;
+                }
+                else if (error.json === true) {
+                    throw {
+                        code: -2,
+                        data: error.data,
+                        error: error.error,
+                        message: "API returned invalid JSON",
+                    };
+                }
+                else {
+                    throw {
+                        code: -1,
+                        error: error,
+                        message: "Network Error",
+                    };
+>>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
                 }
             });
         };
@@ -903,6 +1058,10 @@
          * temporary password.
          */
         SDK.prototype.requestPasswordReset = function (email) {
+<<<<<<< HEAD
+=======
+            invariant(isString(email), "email must be a string");
+>>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
             return this.api.post("/auth/password/request", {
                 email: email,
             });
@@ -915,6 +1074,10 @@
          */
         SDK.prototype.getActivity = function (params) {
             if (params === void 0) { params = {}; }
+<<<<<<< HEAD
+=======
+            invariant(isObjectOrEmpty(params), "params must be an object or empty");
+>>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
             return this.api.get("/activity", params);
         };
         // #endregion activity
@@ -935,6 +1098,10 @@
          */
         SDK.prototype.getCollections = function (params) {
             if (params === void 0) { params = {}; }
+<<<<<<< HEAD
+=======
+            invariant(isObjectOrEmpty(params), "params must be an object or empty");
+>>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
             return this.api.get("/collections", params);
         };
         /**
@@ -942,24 +1109,42 @@
          */
         SDK.prototype.getCollection = function (collection, params) {
             if (params === void 0) { params = {}; }
+<<<<<<< HEAD
+=======
+            invariant(isString(collection), "collection must be a string");
+            invariant(isObjectOrEmpty(params), "params must be an object or empty");
+>>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
             return this.api.get("/collections/" + collection, params);
         };
         /**
          * Create a collection
          */
         SDK.prototype.createCollection = function (data) {
+<<<<<<< HEAD
+=======
+            invariant(isObject(data), "data must be an object");
+>>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
             return this.api.post("/collections", data);
         };
         /**
          * Updates a certain collection
          */
         SDK.prototype.updateCollection = function (collection, data) {
+<<<<<<< HEAD
+=======
+            invariant(isString(collection), "collection must be a string");
+            invariant(isObject(data), "data must be an object");
+>>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
             return this.api.patch("/collections/" + collection, data);
         };
         /**
          * Deletes a certain collection
          */
         SDK.prototype.deleteCollection = function (collection) {
+<<<<<<< HEAD
+=======
+            invariant(isString(collection), "collection must be a string");
+>>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
             return this.api.delete("/collections/" + collection);
         };
         // #endregion collections
@@ -969,6 +1154,12 @@
          * @see https://docs.directus.io/api/reference.html#collection-presets
          */
         SDK.prototype.getCollectionPresets = function (params) {
+<<<<<<< HEAD
+=======
+            if (params === void 0) { params = {}; }
+            invariant(isString(this.config.token), "defined token is not a string");
+            invariant(isObjectOrEmpty(params), "params must be an object or empty");
+>>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
             var payload = this.api.getPayload();
             return Promise.all([
                 this.api.get("/collection_presets", {
@@ -990,6 +1181,10 @@
          * @see https://docs.directus.io/api/reference.html#collection-presets
          */
         SDK.prototype.createCollectionPreset = function (data) {
+<<<<<<< HEAD
+=======
+            invariant(isObject(data), "data must be an object");
+>>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
             return this.api.post("/collection_presets", data);
         };
         /**
@@ -998,6 +1193,11 @@
          */
         // tslint:disable-next-line: max-line-length
         SDK.prototype.updateCollectionPreset = function (primaryKey, data) {
+<<<<<<< HEAD
+=======
+            invariant(isNotNull(primaryKey), "primaryKey must be defined");
+            invariant(isObject(data), "data must be an object");
+>>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
             return this.api.patch("/collection_presets/" + primaryKey, data);
         };
         /**
@@ -1005,6 +1205,10 @@
          * @see https://docs.directus.io/api/reference.html#collection-presets
          */
         SDK.prototype.deleteCollectionPreset = function (primaryKey) {
+<<<<<<< HEAD
+=======
+            invariant(isNotNull(primaryKey), "primaryKey must be defined");
+>>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
             return this.api.delete("/collection_presets/" + primaryKey);
         };
         // #endregion collection presets
@@ -1038,6 +1242,10 @@
          */
         SDK.prototype.getAllFields = function (params) {
             if (params === void 0) { params = {}; }
+<<<<<<< HEAD
+=======
+            invariant(isObjectOrEmpty(params), "params must be an object or empty");
+>>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
             return this.api.get("/fields", params);
         };
         /**
@@ -1046,6 +1254,11 @@
          */
         SDK.prototype.getFields = function (collection, params) {
             if (params === void 0) { params = {}; }
+<<<<<<< HEAD
+=======
+            invariant(isString(collection), "collection must be a string");
+            invariant(isObjectOrEmpty(params), "params must be an object or empty");
+>>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
             return this.api.get("/fields/" + collection, params);
         };
         /**
@@ -1054,6 +1267,12 @@
          */
         SDK.prototype.getField = function (collection, fieldName, params) {
             if (params === void 0) { params = {}; }
+<<<<<<< HEAD
+=======
+            invariant(isString(collection), "collection must be a string");
+            invariant(isString(fieldName), "fieldName must be a string");
+            invariant(isObjectOrEmpty(params), "params must be an object or empty");
+>>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
             return this.api.get("/fields/" + collection + "/" + fieldName, params);
         };
         /**
@@ -1061,6 +1280,11 @@
          * @see https://docs.directus.io/api/reference.html#fields-2
          */
         SDK.prototype.createField = function (collection, fieldInfo) {
+<<<<<<< HEAD
+=======
+            invariant(isString(collection), "collection must be a string");
+            invariant(isObject(fieldInfo), "fieldInfo must be an object");
+>>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
             return this.api.post("/fields/" + collection, fieldInfo);
         };
         /**
@@ -1068,10 +1292,24 @@
          * @see https://docs.directus.io/api/reference.html#fields-2
          */
         SDK.prototype.updateField = function (collection, fieldName, fieldInfo) {
+<<<<<<< HEAD
+=======
+            invariant(isString(collection), "collection must be a string");
+            invariant(isString(fieldName), "fieldName must be a string");
+            invariant(isObject(fieldInfo), "fieldInfo must be an object");
+>>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
             return this.api.patch("/fields/" + collection + "/" + fieldName, fieldInfo);
         };
         SDK.prototype.updateFields = function (collection, fieldsInfoOrFieldNames, fieldInfo) {
             if (fieldInfo === void 0) { fieldInfo = null; }
+<<<<<<< HEAD
+=======
+            invariant(isString(collection), "collection must be a string");
+            invariant(isArray(fieldsInfoOrFieldNames), "fieldsInfoOrFieldNames must be an array");
+            if (fieldInfo) {
+                invariant(isObject(fieldInfo), "fieldInfo must be an object");
+            }
+>>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
             if (fieldInfo) {
                 return this.api.patch("/fields/" + collection + "/" + fieldsInfoOrFieldNames.join(","), fieldInfo);
             }
@@ -1082,6 +1320,11 @@
          * @see @see https://docs.directus.io/api/reference.html#fields-2
          */
         SDK.prototype.deleteField = function (collection, fieldName) {
+<<<<<<< HEAD
+=======
+            invariant(isString(collection), "collection must be a string");
+            invariant(isString(fieldName), "fieldName must be a string");
+>>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
             return this.api.delete("/fields/" + collection + "/" + fieldName);
         };
         // #endregion fields
@@ -1094,6 +1337,10 @@
             if (params === void 0) { params = {}; }
             return __awaiter(this, void 0, void 0, function () {
                 return __generator(this, function (_a) {
+<<<<<<< HEAD
+=======
+                    invariant(isObjectOrEmpty(params), "Params must be an object");
+>>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
                     return [2 /*return*/, this.api.get("/files", params)];
                 });
             });
@@ -1107,6 +1354,11 @@
             return __awaiter(this, void 0, void 0, function () {
                 var files;
                 return __generator(this, function (_a) {
+<<<<<<< HEAD
+=======
+                    invariant(isString(fileName), "FileName must be string");
+                    invariant(isObjectOrEmpty(params), "Params must be an object");
+>>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
                     files = typeof fileName === "string" ? fileName : fileName.join(",");
                     return [2 /*return*/, this.api.get("/files/" + files, params)];
                 });
@@ -1161,6 +1413,12 @@
          */
         SDK.prototype.updateItem = function (collection, primaryKey, body, params) {
             if (params === void 0) { params = {}; }
+<<<<<<< HEAD
+=======
+            invariant(isString(collection), "collection must be a string");
+            invariant(isNotNull(primaryKey), "primaryKey must be defined");
+            invariant(isObject(body), "body must be an object");
+>>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
             var collectionBasePath = getCollectionItemPath(collection);
             return this.api.patch(collectionBasePath + "/" + primaryKey, body, params);
         };
@@ -1173,6 +1431,11 @@
          */
         SDK.prototype.updateItems = function (collection, body, params) {
             if (params === void 0) { params = {}; }
+<<<<<<< HEAD
+=======
+            invariant(isString(collection), "collection must be a string");
+            invariant(isArray(body), "body must be an array");
+>>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
             var collectionBasePath = getCollectionItemPath(collection);
             return this.api.patch(collectionBasePath, body, params);
         };
@@ -1182,6 +1445,11 @@
          * @return {Promise<IItemsResponse<TItemType>>}
          */
         SDK.prototype.createItem = function (collection, body) {
+<<<<<<< HEAD
+=======
+            invariant(isString(collection), "collection must be a string");
+            invariant(isObject(body), "body must be an object");
+>>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
             var collectionBasePath = getCollectionItemPath(collection);
             return this.api.post(collectionBasePath, body);
         };
@@ -1191,6 +1459,11 @@
          * @typeparam TItemsType Defining an array of items, each in object schema
          */
         SDK.prototype.createItems = function (collection, body) {
+<<<<<<< HEAD
+=======
+            invariant(isString(collection), "collection must be a string");
+            invariant(isArray(body), "body must be an array");
+>>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
             var collectionBasePath = getCollectionItemPath(collection);
             return this.api.post(collectionBasePath, body);
         };
@@ -1201,6 +1474,11 @@
          */
         SDK.prototype.getItems = function (collection, params) {
             if (params === void 0) { params = {}; }
+<<<<<<< HEAD
+=======
+            invariant(isString(collection), "collection must be a string");
+            invariant(isObjectOrEmpty(params), "params must be an object or empty");
+>>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
             var collectionBasePath = getCollectionItemPath(collection);
             return this.api.get(collectionBasePath, params);
         };
@@ -1211,6 +1489,12 @@
          */
         SDK.prototype.getItem = function (collection, primaryKey, params) {
             if (params === void 0) { params = {}; }
+<<<<<<< HEAD
+=======
+            invariant(isString(collection), "collection must be a string");
+            invariant(isNotNull(primaryKey), "primaryKey must be defined");
+            invariant(isObjectOrEmpty(params), "params must be an object or empty");
+>>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
             var collectionBasePath = getCollectionItemPath(collection);
             return this.api.get(collectionBasePath + "/" + primaryKey, params);
         };
@@ -1219,6 +1503,11 @@
          * @see https://docs.directus.io/api/reference.html#delete-items
          */
         SDK.prototype.deleteItem = function (collection, primaryKey) {
+<<<<<<< HEAD
+=======
+            invariant(isString(collection), "collection must be a string");
+            invariant(isNotNull(primaryKey), "primaryKey must be defined");
+>>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
             var collectionBasePath = getCollectionItemPath(collection);
             return this.api.delete(collectionBasePath + "/" + primaryKey);
         };
@@ -1227,6 +1516,11 @@
          * @see https://docs.directus.io/api/reference.html#delete-items
          */
         SDK.prototype.deleteItems = function (collection, primaryKeys) {
+<<<<<<< HEAD
+=======
+            invariant(isString(collection), "collection must be a string");
+            invariant(isArray(primaryKeys), "primaryKeys must be an array");
+>>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
             var collectionBasePath = getCollectionItemPath(collection);
             return this.api.delete(collectionBasePath + "/" + primaryKeys.join());
         };
@@ -1236,6 +1530,12 @@
          * Get the collection presets of the current user for a single collection
          */
         SDK.prototype.getMyListingPreferences = function (collection, params) {
+<<<<<<< HEAD
+=======
+            if (params === void 0) { params = {}; }
+            invariant(isString(this.config.token), "token must be defined");
+            invariant(isObjectOrEmpty(params), "params must be an object or empty");
+>>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
             var payload = this.api.getPayload();
             return Promise.all([
                 this.api.get("/collection_presets", {
@@ -1285,6 +1585,10 @@
          */
         SDK.prototype.getPermissions = function (params) {
             if (params === void 0) { params = {}; }
+<<<<<<< HEAD
+=======
+            invariant(isObjectOrEmpty(params), "params must be an object or empty");
+>>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
             return this.getItems("directus_permissions", params);
         };
         /**
@@ -1294,6 +1598,10 @@
          */
         SDK.prototype.getMyPermissions = function (params) {
             if (params === void 0) { params = {}; }
+<<<<<<< HEAD
+=======
+            invariant(isObjectOrEmpty(params), "params must be an object or empty");
+>>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
             return this.api.get("/permissions/me", params);
         };
         /**
@@ -1302,6 +1610,10 @@
          * @typeparam TResponse Permissions type as array extending any[]
          */
         SDK.prototype.createPermissions = function (data) {
+<<<<<<< HEAD
+=======
+            invariant(isArray(data), "data must be anarry");
+>>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
             return this.api.post("/permissions", data);
         };
         /**
@@ -1310,6 +1622,10 @@
          * @typeparam TResponse Permissions type as array extending any[]
          */
         SDK.prototype.updatePermissions = function (data) {
+<<<<<<< HEAD
+=======
+            invariant(isArray(data), "data must be anarry");
+>>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
             return this.api.patch("/permissions", data);
         };
         // #endregion permissions
@@ -1321,6 +1637,10 @@
          */
         SDK.prototype.getRelations = function (params) {
             if (params === void 0) { params = {}; }
+<<<<<<< HEAD
+=======
+            invariant(isObjectOrEmpty(params), "params must be an object or empty");
+>>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
             return this.api.get("/relations", params);
         };
         /**
@@ -1342,6 +1662,12 @@
          * Get the relationship information for the given collection
          */
         SDK.prototype.getCollectionRelations = function (collection, params) {
+<<<<<<< HEAD
+=======
+            if (params === void 0) { params = {}; }
+            invariant(isString(collection), "collection must be a string");
+            invariant(isObjectOrEmpty(params), "params must be an object or empty");
+>>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
             return Promise.all([
                 this.api.get("/relations", {
                     "filter[collection_a][eq]": collection,
@@ -1362,6 +1688,12 @@
          */
         SDK.prototype.getItemRevisions = function (collection, primaryKey, params) {
             if (params === void 0) { params = {}; }
+<<<<<<< HEAD
+=======
+            invariant(isString(collection), "collection must be a string");
+            invariant(isNotNull(primaryKey), "primaryKey must be defined");
+            invariant(isObjectOrEmpty(params), "params must be an object or empty");
+>>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
             var collectionBasePath = getCollectionItemPath(collection);
             return this.api.get(collectionBasePath + "/" + primaryKey + "/revisions", params);
         };
@@ -1372,6 +1704,12 @@
          * @param {number} revisionID
          */
         SDK.prototype.revert = function (collection, primaryKey, revisionID) {
+<<<<<<< HEAD
+=======
+            invariant(isString(collection), "collection must be a string");
+            invariant(isNotNull(primaryKey), "primaryKey must be defined");
+            invariant(isNumber(revisionID), "revisionID must be a number");
+>>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
             var collectionBasePath = getCollectionItemPath(collection);
             return this.api.patch(collectionBasePath + "/" + primaryKey + "/revert/" + revisionID);
         };
@@ -1384,6 +1722,11 @@
          */
         SDK.prototype.getRole = function (primaryKey, params) {
             if (params === void 0) { params = {}; }
+<<<<<<< HEAD
+=======
+            invariant(isNumber(primaryKey), "primaryKey must be a number");
+            invariant(isObjectOrEmpty(params), "params must be an object or empty");
+>>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
             return this.api.get("/roles/" + primaryKey, params);
         };
         /**
@@ -1392,6 +1735,10 @@
          */
         SDK.prototype.getRoles = function (params) {
             if (params === void 0) { params = {}; }
+<<<<<<< HEAD
+=======
+            invariant(isObjectOrEmpty(params), "params must be an object or empty");
+>>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
             return this.api.get("/roles", params);
         };
         /**
@@ -1400,6 +1747,11 @@
          * @param {Role} body
          */
         SDK.prototype.updateRole = function (primaryKey, body) {
+<<<<<<< HEAD
+=======
+            invariant(isNotNull(primaryKey), "primaryKey must be defined");
+            invariant(isObject(body), "body must be an object");
+>>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
             return this.updateItem("directus_roles", primaryKey, body);
         };
         /**
@@ -1407,6 +1759,10 @@
          * @param {Role} body
          */
         SDK.prototype.createRole = function (body) {
+<<<<<<< HEAD
+=======
+            invariant(isObject(body), "body must be an object");
+>>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
             return this.createItem("directus_roles", body);
         };
         /**
@@ -1414,6 +1770,10 @@
          * @param {PrimaryKeyType} primaryKey
          */
         SDK.prototype.deleteRole = function (primaryKey) {
+<<<<<<< HEAD
+=======
+            invariant(isNotNull(primaryKey), "primaryKey must be defined");
+>>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
             return this.deleteItem("directus_roles", primaryKey);
         };
         // #endregion roles
@@ -1424,6 +1784,10 @@
          */
         SDK.prototype.getSettings = function (params) {
             if (params === void 0) { params = {}; }
+<<<<<<< HEAD
+=======
+            invariant(isObjectOrEmpty(params), "params must be an object or empty");
+>>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
             return this.api.get("/settings", params);
         };
         /**
@@ -1432,6 +1796,10 @@
          */
         SDK.prototype.getSettingsFields = function (params) {
             if (params === void 0) { params = {}; }
+<<<<<<< HEAD
+=======
+            invariant(isObjectOrEmpty(params), "params must be an object or empty");
+>>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
             return this.api.get("/settings/fields", params);
         };
         // #endregion settings
@@ -1442,6 +1810,10 @@
          */
         SDK.prototype.getUsers = function (params) {
             if (params === void 0) { params = {}; }
+<<<<<<< HEAD
+=======
+            invariant(isObjectOrEmpty(params), "params must be an object or empty");
+>>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
             return this.api.get("/users", params);
         };
         /**
@@ -1451,6 +1823,11 @@
          */
         SDK.prototype.getUser = function (primaryKey, params) {
             if (params === void 0) { params = {}; }
+<<<<<<< HEAD
+=======
+            invariant(isNotNull(primaryKey), "primaryKey must be defined");
+            invariant(isObjectOrEmpty(params), "params must be an object or empty");
+>>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
             return this.api.get("/users/" + primaryKey, params);
         };
         /**
@@ -1459,6 +1836,10 @@
          */
         SDK.prototype.getMe = function (params) {
             if (params === void 0) { params = {}; }
+<<<<<<< HEAD
+=======
+            invariant(isObjectOrEmpty(params), "params must be an object or empty");
+>>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
             return this.api.get("/users/me", params);
         };
         /**
@@ -1467,6 +1848,11 @@
          * @param {QueryParamsType?} params
          */
         SDK.prototype.updateUser = function (primaryKey, body) {
+<<<<<<< HEAD
+=======
+            invariant(isNotNull(primaryKey), "primaryKey must be defined");
+            invariant(isObject(body), "body must be an object");
+>>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
             return this.updateItem("directus_users", primaryKey, body);
         };
         // #endregion users
