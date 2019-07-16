@@ -15,7 +15,9 @@ import { RequestMethod } from "./schemes/http/Request";
 import { IErrorResponse } from "./schemes/response/Error";
 
 // Utilities
-import { invariant, isArrayOrEmpty, isObjectOrEmpty, isString, getPayload } from "./utils";
+import { isArrayOrEmpty, isObjectOrEmpty, isString } from "./utils/is";
+import { invariant } from "./utils/invariant";
+import { getPayload } from "./utils/payload";
 
 export interface IAPI {
   auth: IAuthentication;

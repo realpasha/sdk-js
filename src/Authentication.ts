@@ -14,7 +14,9 @@ import { ILoginResponse, RefreshIfNeededResponse } from "./schemes/response/Logi
 import { IRefreshTokenResponse } from "./schemes/response/Token";
 
 // Utilities
-import { invariant, isFunction, isObject, isString, getPayload } from "./utils";
+import { isFunction, isObject, isString } from "./utils/is";
+import { invariant } from "./utils/invariant";
+import { getPayload } from "./utils/payload";
 
 interface IAuthenticationRefreshError {
   code?: number;
