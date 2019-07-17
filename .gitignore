@@ -45,4 +45,7 @@ debug
 
 # unneeded compiled files
 dist/*.html
+dist/cjs
+dist/es2015
+dist/esm
 dist/types

@@ -47,7 +47,8 @@ import { IServerInformationResponse } from "./schemes/response/ServerInformation
 import { ISettingsResponse } from "./schemes/response/Setting";
 
 // Utilities
-import { invariant, isArray, isNotNull, isNumber, isObject, isObjectOrEmpty, isString } from "./utils";
+import { invariant } from "./utils/invariant";
+import { isArray, isNotNull, isNumber, isObject, isObjectOrEmpty, isString } from "./utils/is";
 
 type PrimaryKeyType = string | number;
 

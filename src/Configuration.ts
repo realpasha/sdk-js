@@ -2,7 +2,8 @@
  * @module Configuration
  */
 
-import { invariant, isString } from "./utils";
+import { invariant } from "./utils/invariant";
+import { isString } from "./utils/is";
 
 const STORAGE_KEY = "directus-sdk-js";
 
