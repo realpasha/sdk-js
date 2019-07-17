@@ -7,72 +7,6 @@
     axios = axios && axios.hasOwnProperty('default') ? axios['default'] : axios;
 
     /**
-     * @module utils
-     */
-    /**
-     * Checks invariant violation against a condition, will throw an error if not fulfilled
-     * @internal
-     * @param {boolean} condition
-     * @param {string} message
-     */
-    var invariant = function (condition, message) {
-        if (!!condition === true) {
-            return;
-        }
-        throw new Error("Invariant violation: " + message);
-    };
-
-    /**
-     * @module utils
-     */
-    /**
-     * @internal
-     */
-    var isType = function (t, v) { return Object.prototype.toString.call(v) === "[object " + t + "]"; };
-    /**
-     * @internal
-     */
-    var isNotNull = function (v) { return v !== null && v !== undefined; };
-    /**
-     * @internal
-     */
-    var isString = function (v) { return v && typeof v === "string" && /\S/.test(v); };
-    /**
-     * @internal
-     */
-    var isNumber = function (v) { return isType("Number", v) && isFinite(v) && !isNaN(parseFloat(v)); };
-    /**
-     * @internal
-     */
-    var isFunction = function (v) { return v instanceof Function; };
-    /**
-     * @internal
-     */
-    var isObjectOrEmpty = function (v) { return isType("Object", v); };
-    /**
-     * @internal
-     */
-    var isArrayOrEmpty = function (v) { return isType("Array", v); };
-    /**
-     * @internal
-     */
-    var isArray = function (v) { return (!isArrayOrEmpty(v) ? false : v.length > 0); };
-    /**
-     * @internal
-     */
-    var isObject = function (v) {
-        if (!isObjectOrEmpty(v)) {
-            return false;
-        }
-        for (var key in v) {
-            if (Object.prototype.hasOwnProperty.call(v, key)) {
-                return true;
-            }
-        }
-        return false;
-    };
-
-    /**
      * @module Configuration
      */
     var __assign = (undefined && undefined.__assign) || function () {
@@ -183,15 +117,6 @@
         });
         // HELPER METHODS ============================================================
         /**
-         * Validates if the configuration is valid
-         * @throws {Error}
-         */
-        Configuration.prototype.validate = function () {
-            invariant(isString(this.url), "configuration - url must be defined");
-            invariant(isString(this.project), "configuration - project must be defined");
-            invariant(isString(this.token), "configuration - project must be defined");
-        };
-        /**
          * Update the configuration values, will also hydrate them if persistance activated
          * @param {IConfigurationValues} config
          */
@@ -298,6 +223,44 @@
      * @module utils
      */
     /**
+     * @internal
+     */
+    var isType = function (t, v) { return Object.prototype.toString.call(v) === "[object " + t + "]"; };
+    /**
+     * @internal
+     */
+    var isString = function (v) { return v && typeof v === "string" && /\S/.test(v); };
+    /**
+     * @internal
+     */
+    var isNumber = function (v) { return isType("Number", v) && isFinite(v) && !isNaN(parseFloat(v)); };
+    /**
+     * @internal
+     */
+    var isFunction = function (v) { return v instanceof Function; };
+    /**
+     * @internal
+     */
+    var isObjectOrEmpty = function (v) { return isType("Object", v); };
+    /**
+     * @internal
+     */
+    var isObject = function (v) {
+        if (!isObjectOrEmpty(v)) {
+            return false;
+        }
+        for (var key in v) {
+            if (Object.prototype.hasOwnProperty.call(v, key)) {
+                return true;
+            }
+        }
+        return false;
+    };
+
+    /**
+     * @module utils
+     */
+    /**
      * Retrieves the payload from a JWT
      * @internal
      * @param  {String} token The JWT to retrieve the payload from
@@ -373,8 +336,6 @@
          */
         Authentication.prototype.login = function (credentials, options) {
             var _this = this;
-            invariant(isObject(credentials), "malformed credentials");
-            invariant(isString(credentials.email) && isString(credentials.password), "email & password are required in credentials");
             this.config.token = null;
             if (isString(credentials.url)) {
                 this.config.url = credentials.url;
@@ -472,7 +433,6 @@
          * @param {string} token
          */
         Authentication.prototype.refresh = function (token) {
-            invariant(isString(token), "token must be a string");
             return this.inject.post("/auth/refresh", { token: token });
         };
         /**
@@ -580,6 +540,78 @@
     /**
      * @module API
      */
+    var __extends = (undefined && undefined.__extends) || (function () {
+        var extendStatics = function (d, b) {
+            extendStatics = Object.setPrototypeOf ||
+                ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+                function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            return extendStatics(d, b);
+        };
+        return function (d, b) {
+            extendStatics(d, b);
+            function __() { this.constructor = d; }
+            d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+        };
+    })();
+    var __assign$1 = (undefined && undefined.__assign) || function () {
+        __assign$1 = Object.assign || function(t) {
+            for (var s, i = 1, n = arguments.length; i < n; i++) {
+                s = arguments[i];
+                for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                    t[p] = s[p];
+            }
+            return t;
+        };
+        return __assign$1.apply(this, arguments);
+    };
+    var APIError = /** @class */ (function (_super) {
+        __extends(APIError, _super);
+        function APIError(message, info) {
+            var _newTarget = this.constructor;
+            var _this = _super.call(this, message) || this;
+            _this.message = message;
+            _this.info = info;
+            Object.setPrototypeOf(_this, _newTarget.prototype); // restore prototype chain
+            return _this;
+        }
+        Object.defineProperty(APIError.prototype, "url", {
+            get: function () {
+                return this.info.url;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(APIError.prototype, "method", {
+            get: function () {
+                return this.info.method.toUpperCase();
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(APIError.prototype, "code", {
+            get: function () {
+                return "" + (this.info.code || -1);
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(APIError.prototype, "params", {
+            get: function () {
+                return this.info.params || {};
+            },
+            enumerable: true,
+            configurable: true
+        });
+        APIError.prototype.toString = function () {
+            return [
+                'Directus call failed:',
+                this.method + " " + this.url + " " + JSON.stringify(this.params) + " -",
+                this.message,
+                "(code " + this.code + ")"
+            ].join(' ');
+        };
+        return APIError;
+    }(Error));
     /**
      * API definition for HTTP transactions
      * @uses Authentication
@@ -613,8 +645,6 @@
          */
         API.prototype.get = function (endpoint, params) {
             if (params === void 0) { params = {}; }
-            invariant(isString(endpoint), "endpoint must be a string");
-            invariant(isObjectOrEmpty(params), "params must be an object or empty");
             return this.request("get", endpoint, params);
         };
         /**
@@ -625,8 +655,6 @@
         API.prototype.post = function (endpoint, body, params) {
             if (body === void 0) { body = {}; }
             if (params === void 0) { params = {}; }
-            invariant(isString(endpoint), "endpoint must be a string");
-            invariant(Array.isArray(body) ? isArrayOrEmpty(body) : isObjectOrEmpty(body), "body must be an array or object");
             return this.request("post", endpoint, params, body);
         };
         /**
@@ -637,8 +665,6 @@
         API.prototype.patch = function (endpoint, body, params) {
             if (body === void 0) { body = {}; }
             if (params === void 0) { params = {}; }
-            invariant(isString(endpoint), "endpoint must be a string");
-            invariant(Array.isArray(body) ? isArrayOrEmpty(body) : isObjectOrEmpty(body), "body must be an array or object");
             return this.request("patch", endpoint, params, body);
         };
         /**
@@ -649,8 +675,6 @@
         API.prototype.put = function (endpoint, body, params) {
             if (body === void 0) { body = {}; }
             if (params === void 0) { params = {}; }
-            invariant(isString(endpoint), "endpoint must be a string");
-            invariant(Array.isArray(body) ? isArrayOrEmpty(body) : isObjectOrEmpty(body), "body must be an array or object");
             return this.request("put", endpoint, params, body);
         };
         /**
@@ -659,7 +683,6 @@
          * @return {Promise<T>}
          */
         API.prototype.delete = function (endpoint) {
-            invariant(isString(endpoint), "endpoint must be a string");
             return this.request("delete", endpoint);
         };
         /**
@@ -691,11 +714,9 @@
             if (noEnv === void 0) { noEnv = false; }
             if (headers === void 0) { headers = {}; }
             if (skipParseToJSON === void 0) { skipParseToJSON = false; }
-            invariant(isString(method), "method must be a string");
-            invariant(isString(endpoint), "endpoint must be a string");
-            invariant(isObjectOrEmpty(params), "params must be an object or empty");
-            invariant(isString(this.config.url), "main url must be defined (see constructor)");
-            invariant(Array.isArray(data) ? isArrayOrEmpty(data) : isObjectOrEmpty(data), "data must be an array or object");
+            if (!this.config.url) {
+                throw new Error('API has no URL configured to send requests to, please check the docs.');
+            }
             var baseURL = this.config.url + "/";
             if (noEnv === false) {
                 baseURL += this.config.project + "/";
@@ -734,23 +755,25 @@
                 return responseData;
             })
                 .catch(function (error) {
+                var errorResponse = error
+                    ? error.response || {}
+                    : {};
+                var errorResponseData = errorResponse.data || {};
+                var baseErrorInfo = {
+                    error: error,
+                    url: requestOptions.url,
+                    method: requestOptions.method,
+                    params: requestOptions.params,
+                    code: errorResponseData.error ? errorResponseData.error.code || error.code : -1
+                };
                 if (error.response) {
-                    throw error.response.data.error;
+                    throw new APIError(errorResponseData.error.message || 'Unknown error occured', baseErrorInfo);
                 }
-                else if (error.json === true) {
-                    throw {
-                        code: -2,
-                        data: error.data,
-                        error: error.error,
-                        message: "API returned invalid JSON",
-                    };
+                else if (error.response && error.response.json === true) {
+                    throw new APIError("API returned invalid JSON", __assign$1({}, baseErrorInfo, { code: 422 }));
                 }
                 else {
-                    throw {
-                        code: -1,
-                        error: error,
-                        message: "Network Error",
-                    };
+                    throw new APIError("Network error", __assign$1({}, baseErrorInfo, { code: -1 }));
                 }
             });
         };
@@ -864,7 +887,6 @@
          * temporary password.
          */
         SDK.prototype.requestPasswordReset = function (email) {
-            invariant(isString(email), "email must be a string");
             return this.api.post("/auth/password/request", {
                 email: email,
             });
@@ -877,7 +899,6 @@
          */
         SDK.prototype.getActivity = function (params) {
             if (params === void 0) { params = {}; }
-            invariant(isObjectOrEmpty(params), "params must be an object or empty");
             return this.api.get("/activity", params);
         };
         // #endregion activity
@@ -898,7 +919,6 @@
          */
         SDK.prototype.getCollections = function (params) {
             if (params === void 0) { params = {}; }
-            invariant(isObjectOrEmpty(params), "params must be an object or empty");
             return this.api.get("/collections", params);
         };
         /**
@@ -906,30 +926,24 @@
          */
         SDK.prototype.getCollection = function (collection, params) {
             if (params === void 0) { params = {}; }
-            invariant(isString(collection), "collection must be a string");
-            invariant(isObjectOrEmpty(params), "params must be an object or empty");
             return this.api.get("/collections/" + collection, params);
         };
         /**
          * Create a collection
          */
         SDK.prototype.createCollection = function (data) {
-            invariant(isObject(data), "data must be an object");
             return this.api.post("/collections", data);
         };
         /**
          * Updates a certain collection
          */
         SDK.prototype.updateCollection = function (collection, data) {
-            invariant(isString(collection), "collection must be a string");
-            invariant(isObject(data), "data must be an object");
             return this.api.patch("/collections/" + collection, data);
         };
         /**
          * Deletes a certain collection
          */
         SDK.prototype.deleteCollection = function (collection) {
-            invariant(isString(collection), "collection must be a string");
             return this.api.delete("/collections/" + collection);
         };
         // #endregion collections
@@ -939,9 +953,6 @@
          * @see https://docs.directus.io/api/reference.html#collection-presets
          */
         SDK.prototype.getCollectionPresets = function (params) {
-            if (params === void 0) { params = {}; }
-            invariant(isString(this.config.token), "defined token is not a string");
-            invariant(isObjectOrEmpty(params), "params must be an object or empty");
             var payload = this.api.getPayload();
             return Promise.all([
                 this.api.get("/collection_presets", {
@@ -963,7 +974,6 @@
          * @see https://docs.directus.io/api/reference.html#collection-presets
          */
         SDK.prototype.createCollectionPreset = function (data) {
-            invariant(isObject(data), "data must be an object");
             return this.api.post("/collection_presets", data);
         };
         /**
@@ -972,8 +982,6 @@
          */
         // tslint:disable-next-line: max-line-length
         SDK.prototype.updateCollectionPreset = function (primaryKey, data) {
-            invariant(isNotNull(primaryKey), "primaryKey must be defined");
-            invariant(isObject(data), "data must be an object");
             return this.api.patch("/collection_presets/" + primaryKey, data);
         };
         /**
@@ -981,7 +989,6 @@
          * @see https://docs.directus.io/api/reference.html#collection-presets
          */
         SDK.prototype.deleteCollectionPreset = function (primaryKey) {
-            invariant(isNotNull(primaryKey), "primaryKey must be defined");
             return this.api.delete("/collection_presets/" + primaryKey);
         };
         // #endregion collection presets
@@ -1015,7 +1022,6 @@
          */
         SDK.prototype.getAllFields = function (params) {
             if (params === void 0) { params = {}; }
-            invariant(isObjectOrEmpty(params), "params must be an object or empty");
             return this.api.get("/fields", params);
         };
         /**
@@ -1024,8 +1030,6 @@
          */
         SDK.prototype.getFields = function (collection, params) {
             if (params === void 0) { params = {}; }
-            invariant(isString(collection), "collection must be a string");
-            invariant(isObjectOrEmpty(params), "params must be an object or empty");
             return this.api.get("/fields/" + collection, params);
         };
         /**
@@ -1034,9 +1038,6 @@
          */
         SDK.prototype.getField = function (collection, fieldName, params) {
             if (params === void 0) { params = {}; }
-            invariant(isString(collection), "collection must be a string");
-            invariant(isString(fieldName), "fieldName must be a string");
-            invariant(isObjectOrEmpty(params), "params must be an object or empty");
             return this.api.get("/fields/" + collection + "/" + fieldName, params);
         };
         /**
@@ -1044,8 +1045,6 @@
          * @see https://docs.directus.io/api/reference.html#fields-2
          */
         SDK.prototype.createField = function (collection, fieldInfo) {
-            invariant(isString(collection), "collection must be a string");
-            invariant(isObject(fieldInfo), "fieldInfo must be an object");
             return this.api.post("/fields/" + collection, fieldInfo);
         };
         /**
@@ -1053,18 +1052,10 @@
          * @see https://docs.directus.io/api/reference.html#fields-2
          */
         SDK.prototype.updateField = function (collection, fieldName, fieldInfo) {
-            invariant(isString(collection), "collection must be a string");
-            invariant(isString(fieldName), "fieldName must be a string");
-            invariant(isObject(fieldInfo), "fieldInfo must be an object");
             return this.api.patch("/fields/" + collection + "/" + fieldName, fieldInfo);
         };
         SDK.prototype.updateFields = function (collection, fieldsInfoOrFieldNames, fieldInfo) {
             if (fieldInfo === void 0) { fieldInfo = null; }
-            invariant(isString(collection), "collection must be a string");
-            invariant(isArray(fieldsInfoOrFieldNames), "fieldsInfoOrFieldNames must be an array");
-            if (fieldInfo) {
-                invariant(isObject(fieldInfo), "fieldInfo must be an object");
-            }
             if (fieldInfo) {
                 return this.api.patch("/fields/" + collection + "/" + fieldsInfoOrFieldNames.join(","), fieldInfo);
             }
@@ -1075,8 +1066,6 @@
          * @see @see https://docs.directus.io/api/reference.html#fields-2
          */
         SDK.prototype.deleteField = function (collection, fieldName) {
-            invariant(isString(collection), "collection must be a string");
-            invariant(isString(fieldName), "fieldName must be a string");
             return this.api.delete("/fields/" + collection + "/" + fieldName);
         };
         // #endregion fields
@@ -1089,7 +1078,6 @@
             if (params === void 0) { params = {}; }
             return __awaiter(this, void 0, void 0, function () {
                 return __generator(this, function (_a) {
-                    invariant(isObjectOrEmpty(params), "Params must be an object");
                     return [2 /*return*/, this.api.get("/files", params)];
                 });
             });
@@ -1103,8 +1091,6 @@
             return __awaiter(this, void 0, void 0, function () {
                 var files;
                 return __generator(this, function (_a) {
-                    invariant(isString(fileName), "FileName must be string");
-                    invariant(isObjectOrEmpty(params), "Params must be an object");
                     files = typeof fileName === "string" ? fileName : fileName.join(",");
                     return [2 /*return*/, this.api.get("/files/" + files, params)];
                 });
@@ -1159,9 +1145,6 @@
          */
         SDK.prototype.updateItem = function (collection, primaryKey, body, params) {
             if (params === void 0) { params = {}; }
-            invariant(isString(collection), "collection must be a string");
-            invariant(isNotNull(primaryKey), "primaryKey must be defined");
-            invariant(isObject(body), "body must be an object");
             var collectionBasePath = getCollectionItemPath(collection);
             return this.api.patch(collectionBasePath + "/" + primaryKey, body, params);
         };
@@ -1174,8 +1157,6 @@
          */
         SDK.prototype.updateItems = function (collection, body, params) {
             if (params === void 0) { params = {}; }
-            invariant(isString(collection), "collection must be a string");
-            invariant(isArray(body), "body must be an array");
             var collectionBasePath = getCollectionItemPath(collection);
             return this.api.patch(collectionBasePath, body, params);
         };
@@ -1185,8 +1166,6 @@
          * @return {Promise<IItemsResponse<TItemType>>}
          */
         SDK.prototype.createItem = function (collection, body) {
-            invariant(isString(collection), "collection must be a string");
-            invariant(isObject(body), "body must be an object");
             var collectionBasePath = getCollectionItemPath(collection);
             return this.api.post(collectionBasePath, body);
         };
@@ -1196,8 +1175,6 @@
          * @typeparam TItemsType Defining an array of items, each in object schema
          */
         SDK.prototype.createItems = function (collection, body) {
-            invariant(isString(collection), "collection must be a string");
-            invariant(isArray(body), "body must be an array");
             var collectionBasePath = getCollectionItemPath(collection);
             return this.api.post(collectionBasePath, body);
         };
@@ -1208,8 +1185,6 @@
          */
         SDK.prototype.getItems = function (collection, params) {
             if (params === void 0) { params = {}; }
-            invariant(isString(collection), "collection must be a string");
-            invariant(isObjectOrEmpty(params), "params must be an object or empty");
             var collectionBasePath = getCollectionItemPath(collection);
             return this.api.get(collectionBasePath, params);
         };
@@ -1220,9 +1195,6 @@
          */
         SDK.prototype.getItem = function (collection, primaryKey, params) {
             if (params === void 0) { params = {}; }
-            invariant(isString(collection), "collection must be a string");
-            invariant(isNotNull(primaryKey), "primaryKey must be defined");
-            invariant(isObjectOrEmpty(params), "params must be an object or empty");
             var collectionBasePath = getCollectionItemPath(collection);
             return this.api.get(collectionBasePath + "/" + primaryKey, params);
         };
@@ -1231,8 +1203,6 @@
          * @see https://docs.directus.io/api/reference.html#delete-items
          */
         SDK.prototype.deleteItem = function (collection, primaryKey) {
-            invariant(isString(collection), "collection must be a string");
-            invariant(isNotNull(primaryKey), "primaryKey must be defined");
             var collectionBasePath = getCollectionItemPath(collection);
             return this.api.delete(collectionBasePath + "/" + primaryKey);
         };
@@ -1241,8 +1211,6 @@
          * @see https://docs.directus.io/api/reference.html#delete-items
          */
         SDK.prototype.deleteItems = function (collection, primaryKeys) {
-            invariant(isString(collection), "collection must be a string");
-            invariant(isArray(primaryKeys), "primaryKeys must be an array");
             var collectionBasePath = getCollectionItemPath(collection);
             return this.api.delete(collectionBasePath + "/" + primaryKeys.join());
         };
@@ -1252,9 +1220,6 @@
          * Get the collection presets of the current user for a single collection
          */
         SDK.prototype.getMyListingPreferences = function (collection, params) {
-            if (params === void 0) { params = {}; }
-            invariant(isString(this.config.token), "token must be defined");
-            invariant(isObjectOrEmpty(params), "params must be an object or empty");
             var payload = this.api.getPayload();
             return Promise.all([
                 this.api.get("/collection_presets", {
@@ -1304,7 +1269,6 @@
          */
         SDK.prototype.getPermissions = function (params) {
             if (params === void 0) { params = {}; }
-            invariant(isObjectOrEmpty(params), "params must be an object or empty");
             return this.getItems("directus_permissions", params);
         };
         /**
@@ -1314,7 +1278,6 @@
          */
         SDK.prototype.getMyPermissions = function (params) {
             if (params === void 0) { params = {}; }
-            invariant(isObjectOrEmpty(params), "params must be an object or empty");
             return this.api.get("/permissions/me", params);
         };
         /**
@@ -1323,7 +1286,6 @@
          * @typeparam TResponse Permissions type as array extending any[]
          */
         SDK.prototype.createPermissions = function (data) {
-            invariant(isArray(data), "data must be anarry");
             return this.api.post("/permissions", data);
         };
         /**
@@ -1332,7 +1294,6 @@
          * @typeparam TResponse Permissions type as array extending any[]
          */
         SDK.prototype.updatePermissions = function (data) {
-            invariant(isArray(data), "data must be anarry");
             return this.api.patch("/permissions", data);
         };
         // #endregion permissions
@@ -1344,7 +1305,6 @@
          */
         SDK.prototype.getRelations = function (params) {
             if (params === void 0) { params = {}; }
-            invariant(isObjectOrEmpty(params), "params must be an object or empty");
             return this.api.get("/relations", params);
         };
         /**
@@ -1366,9 +1326,6 @@
          * Get the relationship information for the given collection
          */
         SDK.prototype.getCollectionRelations = function (collection, params) {
-            if (params === void 0) { params = {}; }
-            invariant(isString(collection), "collection must be a string");
-            invariant(isObjectOrEmpty(params), "params must be an object or empty");
             return Promise.all([
                 this.api.get("/relations", {
                     "filter[collection_a][eq]": collection,
@@ -1389,9 +1346,6 @@
          */
         SDK.prototype.getItemRevisions = function (collection, primaryKey, params) {
             if (params === void 0) { params = {}; }
-            invariant(isString(collection), "collection must be a string");
-            invariant(isNotNull(primaryKey), "primaryKey must be defined");
-            invariant(isObjectOrEmpty(params), "params must be an object or empty");
             var collectionBasePath = getCollectionItemPath(collection);
             return this.api.get(collectionBasePath + "/" + primaryKey + "/revisions", params);
         };
@@ -1402,9 +1356,6 @@
          * @param {number} revisionID
          */
         SDK.prototype.revert = function (collection, primaryKey, revisionID) {
-            invariant(isString(collection), "collection must be a string");
-            invariant(isNotNull(primaryKey), "primaryKey must be defined");
-            invariant(isNumber(revisionID), "revisionID must be a number");
             var collectionBasePath = getCollectionItemPath(collection);
             return this.api.patch(collectionBasePath + "/" + primaryKey + "/revert/" + revisionID);
         };
@@ -1417,8 +1368,6 @@
          */
         SDK.prototype.getRole = function (primaryKey, params) {
             if (params === void 0) { params = {}; }
-            invariant(isNumber(primaryKey), "primaryKey must be a number");
-            invariant(isObjectOrEmpty(params), "params must be an object or empty");
             return this.api.get("/roles/" + primaryKey, params);
         };
         /**
@@ -1427,7 +1376,6 @@
          */
         SDK.prototype.getRoles = function (params) {
             if (params === void 0) { params = {}; }
-            invariant(isObjectOrEmpty(params), "params must be an object or empty");
             return this.api.get("/roles", params);
         };
         /**
@@ -1436,8 +1384,6 @@
          * @param {Role} body
          */
         SDK.prototype.updateRole = function (primaryKey, body) {
-            invariant(isNotNull(primaryKey), "primaryKey must be defined");
-            invariant(isObject(body), "body must be an object");
             return this.updateItem("directus_roles", primaryKey, body);
         };
         /**
@@ -1445,7 +1391,6 @@
          * @param {Role} body
          */
         SDK.prototype.createRole = function (body) {
-            invariant(isObject(body), "body must be an object");
             return this.createItem("directus_roles", body);
         };
         /**
@@ -1453,7 +1398,6 @@
          * @param {PrimaryKeyType} primaryKey
          */
         SDK.prototype.deleteRole = function (primaryKey) {
-            invariant(isNotNull(primaryKey), "primaryKey must be defined");
             return this.deleteItem("directus_roles", primaryKey);
         };
         // #endregion roles
@@ -1464,7 +1408,6 @@
          */
         SDK.prototype.getSettings = function (params) {
             if (params === void 0) { params = {}; }
-            invariant(isObjectOrEmpty(params), "params must be an object or empty");
             return this.api.get("/settings", params);
         };
         /**
@@ -1473,7 +1416,6 @@
          */
         SDK.prototype.getSettingsFields = function (params) {
             if (params === void 0) { params = {}; }
-            invariant(isObjectOrEmpty(params), "params must be an object or empty");
             return this.api.get("/settings/fields", params);
         };
         // #endregion settings
@@ -1484,7 +1426,6 @@
          */
         SDK.prototype.getUsers = function (params) {
             if (params === void 0) { params = {}; }
-            invariant(isObjectOrEmpty(params), "params must be an object or empty");
             return this.api.get("/users", params);
         };
         /**
@@ -1494,8 +1435,6 @@
          */
         SDK.prototype.getUser = function (primaryKey, params) {
             if (params === void 0) { params = {}; }
-            invariant(isNotNull(primaryKey), "primaryKey must be defined");
-            invariant(isObjectOrEmpty(params), "params must be an object or empty");
             return this.api.get("/users/" + primaryKey, params);
         };
         /**
@@ -1504,7 +1443,6 @@
          */
         SDK.prototype.getMe = function (params) {
             if (params === void 0) { params = {}; }
-            invariant(isObjectOrEmpty(params), "params must be an object or empty");
             return this.api.get("/users/me", params);
         };
         /**
@@ -1513,8 +1451,6 @@
          * @param {QueryParamsType?} params
          */
         SDK.prototype.updateUser = function (primaryKey, body) {
-            invariant(isNotNull(primaryKey), "primaryKey must be defined");
-            invariant(isObject(body), "body must be an object");
             return this.updateItem("directus_users", primaryKey, body);
         };
         // #endregion users
