@@ -12,7 +12,7 @@
     "node",
     "sdk"
   ],
-  "homepage": "https://docs.directus-sdk.io/sdk/js.html",
+  "homepage": "https://docs.directus.io/sdk/js.html",
   "bugs": {
     "url": "https://github.com/directus/directus-sdk-js/issues"
   },
