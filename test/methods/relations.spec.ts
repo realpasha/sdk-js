@@ -37,14 +37,6 @@ describe("Relations", () => {
   });
 
   describe("#getCollectionRelations()", () => {
-    it("Errors on missing `collection` parameter", () => {
-      expect(client.getCollectionRelations).to.throw();
-    });
-
-    it("Errors if parameter `params` is of a wrong type", () => {
-      expect(() => client.getCollectionRelations("projects", "params" as any)).to.throw();
-    });
-
     it("Calls get() twice", async () => {
       client.getCollectionRelations("projects", { limit: 50 });
       // tslint:disable-next-line: no-unused-expression

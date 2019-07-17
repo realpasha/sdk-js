@@ -36,10 +36,6 @@ describe("Bookmarks", () => {
   });
 
   describe("#getMyBookmarks()", () => {
-    it("Errors if parameter `params` is of a wrong type", () => {
-      expect(() => client.getMyListingPreferences("params", "invalid type" as any)).to.throw();
-    });
-
     it("Calls get() two times", () => {
       try {
         client.config.token = jwt.sign({ foo: "bar" }, "secret-string", {

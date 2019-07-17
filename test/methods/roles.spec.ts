@@ -42,10 +42,6 @@ describe("Roles", () => {
       expect(client.api.get).to.have.been.calledWith("/roles", {});
     });
 
-    it("Errors if parameter `params` is of a wrong type", () => {
-      expect(() => client.getRoles("params" as any)).to.throw();
-    });
-
     it("Calls get() for the right endpoint", async () => {
       client.getRoles({ limit: 50 });
       expect(client.api.get).to.have.been.calledWith("/roles", { limit: 50 });
@@ -53,19 +49,6 @@ describe("Roles", () => {
   });
 
   describe("#getRole()", () => {
-    it("Errors if parameter `primaryKey` does not exist", () => {
-      expect(client.getRole).to.throw();
-    });
-
-    it("Errors if parameter `primaryKey` is of a wrong type", () => {
-      // TODO: PrimaryKey = object should be an error, maybe wrong impl.?
-      expect(() => client.getRole({} as any, undefined as any)).to.throw();
-    });
-
-    it("Errors if parameter `params` is of a wrong type", () => {
-      expect(() => client.getRole(4, "params" as any)).to.throw();
-    });
-
     it("Calls get() for the right endpoint", async () => {
       client.getRole(4, { fields: "name,id" });
       expect(client.api.get).to.have.been.calledWith("/roles/4", {
@@ -75,14 +58,6 @@ describe("Roles", () => {
   });
 
   describe("#updateRole()", () => {
-    it("Errors on missing `primaryKey` parameter", () => {
-      expect(client.updateRole).to.throw();
-    });
-
-    it("Errors on missing `body` parameter", () => {
-      expect(() => client.updateRole(15, undefined as any)).to.throw();
-    });
-
     it("Calls patch() for the right endpoint", () => {
       client.updateRole(15, { name: "Intern" });
       expect(client.api.patch).to.have.been.calledWith("/roles/15", {
@@ -92,14 +67,6 @@ describe("Roles", () => {
   });
 
   describe("#createRole()", () => {
-    it("Errors on missing `body` parameter", () => {
-      expect(client.createRole).to.throw();
-    });
-
-    it("Errors on wrong `body` parameter type", () => {
-      expect(() => client.createRole(15 as any)).to.throw();
-    });
-
     it("Calls post() for the right endpoint", () => {
       // @ts-ignore
       client.createRole({ name: "Intern" });
@@ -110,10 +77,6 @@ describe("Roles", () => {
   });
 
   describe("#deleteRole()", () => {
-    it("Errors on missing `primaryKey` parameter", () => {
-      expect(client.deleteRole).to.throw();
-    });
-
     it("Calls delete() for the right endpoint", () => {
       client.deleteRole(15);
       expect(client.api.delete).to.have.been.calledWith("/roles/15");

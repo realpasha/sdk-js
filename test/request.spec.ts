@@ -3,6 +3,7 @@ import * as jwt from "jsonwebtoken";
 import * as sinon from "sinon";
 import * as sinonChai from "sinon-chai";
 import SDK from "../src/index";
+import { APIError } from "../src/API";
 
 const expect = chai.expect;
 chai.use(sinonChai);
@@ -29,25 +30,7 @@ describe("Request", () => {
       }
     });
 
-    it("Errors on missing parameter method", () => {
-      expect(client.api.request).to.throw();
-    });
-
-    it("Errors on missing parameter endpoint", () => {
-      expect(() => client.api.request("get", undefined as any)).to.throw();
-    });
-
-    it("Errors if params is not of the right type", () => {
-      expect(() => client.api.request("get", "/items", "wrong-params" as any)).to.throw();
-    });
-
     describe("Allows arrays and objects for data", () => {
-      it("Errors on a non-array/non-object type", () => {
-        (client.api.xhr.request as any).restore();
-        expect(() => client.api.request("post", "/items", {}, "data" as any)).to.throw();
-        sinon.stub(client.api, "request").resolves();
-      });
-
       it("Does not error when body is an array or object", () => {
         expect(async () => {
           try {
@@ -202,7 +185,7 @@ describe("Request", () => {
         })
       );
 
-      let error;
+      let error: APIError;
 
       try {
         await client.api.request("get", "/ping");
@@ -210,13 +193,11 @@ describe("Request", () => {
         error = err;
       }
 
-      expect(error).to.deep.include({
-        code: -1,
-        error: {
-          request: {},
-        },
-        message: "Network Error",
-      });
+      expect(error.code).to.equal("-1");
+      expect(error.method).to.equal("GET");
+      expect(error.url).to.equal("/ping");
+      expect(Object.keys(error.params).length).to.equal(0);
+      expect(`${error}`).to.be.equal("Directus call failed: GET /ping {} - Network error (code -1)");
     });
 
     it("Returns API error if available", async () => {
@@ -233,7 +214,7 @@ describe("Request", () => {
         })
       );
 
-      let error;
+      let error: APIError;
 
       try {
         await client.api.request("get", "/ping");
@@ -241,8 +222,12 @@ describe("Request", () => {
         error = err;
       }
 
-      expect(error.code).to.equal(1);
+      expect(error.code).to.equal("1");
       expect(error.message).to.equal("Not Found");
+      expect(error.method).to.equal("GET");
+      expect(error.url).to.equal("/ping");
+      expect(Object.keys(error.params).length).to.equal(0);
+      expect(`${error}`).to.equal("Directus call failed: GET /ping {} - Not Found (code 1)");
     });
 
     it("Strips out Axios metadata from response", async () => {
@@ -308,10 +293,6 @@ describe("Request", () => {
       (client.api.request as any).restore();
     });
 
-    it("Errors on missing parameter method", () => {
-      expect(client.api.get).to.throw();
-    });
-
     it("Calls request() with the right parameters", () => {
       client.api.get("/items/projects", {
         limit: 20,
@@ -332,15 +313,7 @@ describe("Request", () => {
       (client.api.request as any).restore();
     });
 
-    it("Errors on missing parameter method", () => {
-      expect(client.api.post).to.throw();
-    });
-
     describe("Allows arrays and objects for body", () => {
-      it("Errors on a non-array/non-object type", () => {
-        expect(() => client.api.post("projects", "body" as any)).to.throw();
-      });
-
       it("Does not error when body is an array or object", () => {
         expect(() => client.api.post("projects", [])).to.not.throw();
         expect(() => client.api.post("projects", {})).to.not.throw();
@@ -372,15 +345,7 @@ describe("Request", () => {
       (client.api.request as any).restore();
     });
 
-    it("Errors on missing parameter method", () => {
-      expect(client.api.patch).to.throw();
-    });
-
     describe("Allows arrays and objects for body", () => {
-      it("Errors on a non-array/non-object type", () => {
-        expect(() => client.api.patch("projects", "body" as any)).to.throw();
-      });
-
       it("Does not error when body is an array or object", () => {
         expect(() => client.api.patch("projects", [])).to.not.throw();
         expect(() => client.api.patch("projects", {})).to.not.throw();
@@ -412,15 +377,7 @@ describe("Request", () => {
       (client.api.request as any).restore();
     });
 
-    it("Errors on missing parameter method", () => {
-      expect(client.api.put).to.throw();
-    });
-
     describe("Allows arrays and objects for body", () => {
-      it("Errors on a non-array/non-object type", () => {
-        expect(() => client.api.put("projects", "body" as any)).to.throw();
-      });
-
       it("Does not error when body is an array or object", () => {
         expect(() => client.api.put("projects", [])).to.not.throw();
         expect(() => client.api.put("projects", {})).to.not.throw();
@@ -450,10 +407,6 @@ describe("Request", () => {
 
     afterEach(() => {
       (client.api.request as any).restore();
-    });
-
-    it("Errors on missing parameter method", () => {
-      expect(client.api.delete).to.throw();
     });
 
     it("Calls request() with the right parameters", () => {

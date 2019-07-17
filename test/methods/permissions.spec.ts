@@ -41,10 +41,6 @@ describe("Permissions", () => {
       expect(client.api.get).to.have.been.calledWith("/permissions", {});
     });
 
-    it("Errors if parameter `params` is of a wrong type", () => {
-      expect(() => client.getPermissions("params" as any)).to.throw();
-    });
-
     it("Calls get() for the right endpoint", () => {
       client.getPermissions({ limit: 50 });
       expect(client.api.get).to.have.been.calledWith("/permissions", {
@@ -54,14 +50,6 @@ describe("Permissions", () => {
   });
 
   describe("#updatePermissions()", () => {
-    it("Errors on missing `data` parameter", () => {
-      expect(client.updatePermissions).to.throw();
-    });
-
-    it("Errors on wrong `data` parameter", () => {
-      expect(() => client.createPermissions("projects" as any)).to.throw();
-    });
-
     it("Calls post() for the right endpoint", () => {
       client.createPermissions([{ read: "none", collection: "projects" }]);
       expect(client.api.post).to.have.been.calledWith("/permissions", [{ read: "none", collection: "projects" }]);
@@ -69,14 +57,6 @@ describe("Permissions", () => {
   });
 
   describe("#updatePermissions()", () => {
-    it("Errors on missing `data` parameter", () => {
-      expect(client.updatePermissions).to.throw();
-    });
-
-    it("Errors on wrong `data` parameter", () => {
-      expect(() => client.updatePermissions("projects" as any)).to.throw();
-    });
-
     it("Calls post() for the right endpoint", () => {
       client.updatePermissions([{ read: "none", collection: "projects" }]);
       expect(client.api.patch).to.have.been.calledWith("/permissions", [{ read: "none", collection: "projects" }]);

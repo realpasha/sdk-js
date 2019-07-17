@@ -36,18 +36,6 @@ describe("Authentication", () => {
   });
 
   describe("#login()", () => {
-    it("Errors on missing parameter credentials", () => {
-      expect(client.login).to.throw();
-    });
-
-    it("Errors on missing parameter credentials.email", () => {
-      expect(() => client.login({} as any)).to.throw();
-    });
-
-    it("Errors on missing parameter credentials.password", () => {
-      expect(() => client.login({ email: "test@example.com" } as any)).to.throw();
-    });
-
     it("Sets the url in use when passed in credentials", async () => {
       await client.login({
         email: "test@example.com",
@@ -125,10 +113,6 @@ describe("Authentication", () => {
   });
 
   describe("#refresh()", () => {
-    it("Errors on missing parameter token", () => {
-      expect(client.refresh).to.throw();
-    });
-
     it("Resolves with the new token", async () => {
       const result = await client.refresh("oldToken");
       expect(result).to.deep.include({

@@ -31,10 +31,6 @@ describe("Files", () => {
   });
 
   describe("#uploadFiles()", () => {
-    it("Errors on missing `fileslist` parameter", () => {
-      expect(client.uploadFiles).to.throw();
-    });
-
     it("Calls post() for the right endpoint", async () => {
       await client.uploadFiles(["fileA", "fileB"]);
 

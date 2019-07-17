@@ -57,10 +57,6 @@ describe("Collection Presets", () => {
       expect(client.updateCollectionPreset).to.throw();
     });
 
-    it("Errors when the data parameter is missing", () => {
-      expect(() => client.updateCollectionPreset(15, undefined as any)).to.throw();
-    });
-
     it("Calls patch with the right parameters", async () => {
       await client.updateCollectionPreset<any>(15, {
         title: "tiles preset",

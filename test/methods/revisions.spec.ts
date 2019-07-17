@@ -36,18 +36,6 @@ describe("Revisions", () => {
   });
 
   describe("#getItemRevisions()", () => {
-    it("Errors on missing `collection` parameter", () => {
-      expect(client.getItemRevisions).to.throw();
-    });
-
-    it("Errors on missing `primaryKey` parameter", () => {
-      expect(() => client.getItemRevisions("projects", undefined as any)).to.throw();
-    });
-
-    it("Errors if parameter `params` is of a wrong type", () => {
-      expect(() => client.getItemRevisions("projects", 15, 140 as any)).to.throw();
-    });
-
     it("Calls get() for the right endpoint", () => {
       client.getItemRevisions("projects", 15, {
         fields: ["title", "author"],
@@ -66,18 +54,6 @@ describe("Revisions", () => {
   });
 
   describe("#revert()", () => {
-    it("Errors on missing `collection` parameter", () => {
-      expect(client.revert).to.throw();
-    });
-
-    it("Errors on missing `primaryKey` parameter", () => {
-      expect(() => client.revert("projects", undefined as any, undefined as any)).to.throw();
-    });
-
-    it("Errors on missing `revisionID` parameter", () => {
-      expect(() => client.revert("projects", 15, undefined as any)).to.throw();
-    });
-
     it("Calls patch() for the right endpoint", () => {
       client.revert("projects", 15, 130);
       expect(client.api.patch).to.have.been.calledWith("/items/projects/15/revert/130");
