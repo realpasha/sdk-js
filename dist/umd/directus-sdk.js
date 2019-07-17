@@ -9,73 +9,7 @@
     /**
 <<<<<<< HEAD
 =======
-     * @module utils
-     */
-    /**
-     * Checks invariant violation against a condition, will throw an error if not fulfilled
-     * @internal
-     * @param {boolean} condition
-     * @param {string} message
-     */
-    var invariant = function (condition, message) {
-        if (!!condition === true) {
-            return;
-        }
-        throw new Error("Invariant violation: " + message);
-    };
-
-    /**
-     * @module utils
-     */
-    /**
-     * @internal
-     */
-    var isType = function (t, v) { return Object.prototype.toString.call(v) === "[object " + t + "]"; };
-    /**
-     * @internal
-     */
-    var isNotNull = function (v) { return v !== null && v !== undefined; };
-    /**
-     * @internal
-     */
-    var isString = function (v) { return v && typeof v === "string" && /\S/.test(v); };
-    /**
-     * @internal
-     */
-    var isNumber = function (v) { return isType("Number", v) && isFinite(v) && !isNaN(parseFloat(v)); };
-    /**
-     * @internal
-     */
-    var isFunction = function (v) { return v instanceof Function; };
-    /**
-     * @internal
-     */
-    var isObjectOrEmpty = function (v) { return isType("Object", v); };
-    /**
-     * @internal
-     */
-    var isArrayOrEmpty = function (v) { return isType("Array", v); };
-    /**
-     * @internal
-     */
-    var isArray = function (v) { return (!isArrayOrEmpty(v) ? false : v.length > 0); };
-    /**
-     * @internal
-     */
-    var isObject = function (v) {
-        if (!isObjectOrEmpty(v)) {
-            return false;
-        }
-        for (var key in v) {
-            if (Object.prototype.hasOwnProperty.call(v, key)) {
-                return true;
-            }
-        }
-        return false;
-    };
-
-    /**
->>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
+>>>>>>> fix: remove argument validation, closes #92
      * @module Configuration
      */
     var __assign = (undefined && undefined.__assign) || function () {
@@ -187,6 +121,7 @@
         // HELPER METHODS ============================================================
         /**
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
          * Validates if the configuration is valid
          * @throws {Error}
@@ -198,6 +133,8 @@
         };
         /**
 >>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
+=======
+>>>>>>> fix: remove argument validation, closes #92
          * Update the configuration values, will also hydrate them if persistance activated
          * @param {IConfigurationValues} config
          */
@@ -305,6 +242,9 @@
      */
     /**
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> fix: remove argument validation, closes #92
      * @internal
      */
     var isType = function (t, v) { return Object.prototype.toString.call(v) === "[object " + t + "]"; };
@@ -343,8 +283,11 @@
      * @module utils
      */
     /**
+<<<<<<< HEAD
 =======
 >>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
+=======
+>>>>>>> fix: remove argument validation, closes #92
      * Retrieves the payload from a JWT
      * @internal
      * @param  {String} token The JWT to retrieve the payload from
@@ -421,10 +364,13 @@
         Authentication.prototype.login = function (credentials, options) {
             var _this = this;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             invariant(isObject(credentials), "malformed credentials");
             invariant(isString(credentials.email) && isString(credentials.password), "email & password are required in credentials");
 >>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
+=======
+>>>>>>> fix: remove argument validation, closes #92
             this.config.token = null;
             if (isString(credentials.url)) {
                 this.config.url = credentials.url;
@@ -523,9 +469,12 @@
          */
         Authentication.prototype.refresh = function (token) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             invariant(isString(token), "token must be a string");
 >>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
+=======
+>>>>>>> fix: remove argument validation, closes #92
             return this.inject.post("/auth/refresh", { token: token });
         };
         /**
@@ -722,11 +671,14 @@
         };
         return APIError;
     }(Error));
+<<<<<<< HEAD
 =======
     /**
      * @module API
      */
 >>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
+=======
+>>>>>>> fix: remove argument validation, closes #92
     /**
      * API definition for HTTP transactions
      * @uses Authentication
@@ -765,10 +717,13 @@
         API.prototype.get = function (endpoint, params) {
             if (params === void 0) { params = {}; }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             invariant(isString(endpoint), "endpoint must be a string");
             invariant(isObjectOrEmpty(params), "params must be an object or empty");
 >>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
+=======
+>>>>>>> fix: remove argument validation, closes #92
             return this.request("get", endpoint, params);
         };
         /**
@@ -780,10 +735,13 @@
             if (body === void 0) { body = {}; }
             if (params === void 0) { params = {}; }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             invariant(isString(endpoint), "endpoint must be a string");
             invariant(Array.isArray(body) ? isArrayOrEmpty(body) : isObjectOrEmpty(body), "body must be an array or object");
 >>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
+=======
+>>>>>>> fix: remove argument validation, closes #92
             return this.request("post", endpoint, params, body);
         };
         /**
@@ -795,10 +753,13 @@
             if (body === void 0) { body = {}; }
             if (params === void 0) { params = {}; }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             invariant(isString(endpoint), "endpoint must be a string");
             invariant(Array.isArray(body) ? isArrayOrEmpty(body) : isObjectOrEmpty(body), "body must be an array or object");
 >>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
+=======
+>>>>>>> fix: remove argument validation, closes #92
             return this.request("patch", endpoint, params, body);
         };
         /**
@@ -810,10 +771,13 @@
             if (body === void 0) { body = {}; }
             if (params === void 0) { params = {}; }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             invariant(isString(endpoint), "endpoint must be a string");
             invariant(Array.isArray(body) ? isArrayOrEmpty(body) : isObjectOrEmpty(body), "body must be an array or object");
 >>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
+=======
+>>>>>>> fix: remove argument validation, closes #92
             return this.request("put", endpoint, params, body);
         };
         /**
@@ -823,9 +787,12 @@
          */
         API.prototype.delete = function (endpoint) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             invariant(isString(endpoint), "endpoint must be a string");
 >>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
+=======
+>>>>>>> fix: remove argument validation, closes #92
             return this.request("delete", endpoint);
         };
         /**
@@ -858,6 +825,7 @@
             if (headers === void 0) { headers = {}; }
             if (skipParseToJSON === void 0) { skipParseToJSON = false; }
 <<<<<<< HEAD
+<<<<<<< HEAD
             if (!this.config.url) {
                 throw new Error('API has no URL configured to send requests to, please check the docs.');
             }
@@ -868,6 +836,11 @@
             invariant(isString(this.config.url), "main url must be defined (see constructor)");
             invariant(Array.isArray(data) ? isArrayOrEmpty(data) : isObjectOrEmpty(data), "data must be an array or object");
 >>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
+=======
+            if (!this.config.url) {
+                throw new Error('API has no URL configured to send requests to, please check the docs.');
+            }
+>>>>>>> fix: remove argument validation, closes #92
             var baseURL = this.config.url + "/";
             if (noEnv === false) {
                 baseURL += this.config.project + "/";
@@ -907,6 +880,9 @@
             })
                 .catch(function (error) {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> fix: remove argument validation, closes #92
                 var errorResponse = error
                     ? error.response || {}
                     : {};
@@ -918,6 +894,7 @@
                     params: requestOptions.params,
                     code: errorResponseData.error ? errorResponseData.error.code || error.code : -1
                 };
+<<<<<<< HEAD
                 if (error.response) {
                     throw new APIError(errorResponseData.error.message || 'Unknown error occured', baseErrorInfo);
                 }
@@ -927,24 +904,25 @@
                 else {
                     throw new APIError("Network error", __assign$1({}, baseErrorInfo, { code: -1 }));
 =======
+=======
+>>>>>>> fix: remove argument validation, closes #92
                 if (error.response) {
-                    throw error.response.data.error;
+                    throw new APIError(errorResponseData.error.message || 'Unknown error occured', baseErrorInfo);
                 }
-                else if (error.json === true) {
-                    throw {
-                        code: -2,
-                        data: error.data,
-                        error: error.error,
-                        message: "API returned invalid JSON",
-                    };
+                else if (error.response && error.response.json === true) {
+                    throw new APIError("API returned invalid JSON", __assign$1({}, baseErrorInfo, { code: 422 }));
                 }
                 else {
+<<<<<<< HEAD
                     throw {
                         code: -1,
                         error: error,
                         message: "Network Error",
                     };
 >>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
+=======
+                    throw new APIError("Network error", __assign$1({}, baseErrorInfo, { code: -1 }));
+>>>>>>> fix: remove argument validation, closes #92
                 }
             });
         };
@@ -1059,9 +1037,12 @@
          */
         SDK.prototype.requestPasswordReset = function (email) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             invariant(isString(email), "email must be a string");
 >>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
+=======
+>>>>>>> fix: remove argument validation, closes #92
             return this.api.post("/auth/password/request", {
                 email: email,
             });
@@ -1075,9 +1056,12 @@
         SDK.prototype.getActivity = function (params) {
             if (params === void 0) { params = {}; }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             invariant(isObjectOrEmpty(params), "params must be an object or empty");
 >>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
+=======
+>>>>>>> fix: remove argument validation, closes #92
             return this.api.get("/activity", params);
         };
         // #endregion activity
@@ -1099,9 +1083,12 @@
         SDK.prototype.getCollections = function (params) {
             if (params === void 0) { params = {}; }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             invariant(isObjectOrEmpty(params), "params must be an object or empty");
 >>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
+=======
+>>>>>>> fix: remove argument validation, closes #92
             return this.api.get("/collections", params);
         };
         /**
@@ -1110,10 +1097,13 @@
         SDK.prototype.getCollection = function (collection, params) {
             if (params === void 0) { params = {}; }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             invariant(isString(collection), "collection must be a string");
             invariant(isObjectOrEmpty(params), "params must be an object or empty");
 >>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
+=======
+>>>>>>> fix: remove argument validation, closes #92
             return this.api.get("/collections/" + collection, params);
         };
         /**
@@ -1121,9 +1111,12 @@
          */
         SDK.prototype.createCollection = function (data) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             invariant(isObject(data), "data must be an object");
 >>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
+=======
+>>>>>>> fix: remove argument validation, closes #92
             return this.api.post("/collections", data);
         };
         /**
@@ -1131,10 +1124,13 @@
          */
         SDK.prototype.updateCollection = function (collection, data) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             invariant(isString(collection), "collection must be a string");
             invariant(isObject(data), "data must be an object");
 >>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
+=======
+>>>>>>> fix: remove argument validation, closes #92
             return this.api.patch("/collections/" + collection, data);
         };
         /**
@@ -1142,9 +1138,12 @@
          */
         SDK.prototype.deleteCollection = function (collection) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             invariant(isString(collection), "collection must be a string");
 >>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
+=======
+>>>>>>> fix: remove argument validation, closes #92
             return this.api.delete("/collections/" + collection);
         };
         // #endregion collections
@@ -1155,11 +1154,14 @@
          */
         SDK.prototype.getCollectionPresets = function (params) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             if (params === void 0) { params = {}; }
             invariant(isString(this.config.token), "defined token is not a string");
             invariant(isObjectOrEmpty(params), "params must be an object or empty");
 >>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
+=======
+>>>>>>> fix: remove argument validation, closes #92
             var payload = this.api.getPayload();
             return Promise.all([
                 this.api.get("/collection_presets", {
@@ -1182,9 +1184,12 @@
          */
         SDK.prototype.createCollectionPreset = function (data) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             invariant(isObject(data), "data must be an object");
 >>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
+=======
+>>>>>>> fix: remove argument validation, closes #92
             return this.api.post("/collection_presets", data);
         };
         /**
@@ -1194,10 +1199,13 @@
         // tslint:disable-next-line: max-line-length
         SDK.prototype.updateCollectionPreset = function (primaryKey, data) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             invariant(isNotNull(primaryKey), "primaryKey must be defined");
             invariant(isObject(data), "data must be an object");
 >>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
+=======
+>>>>>>> fix: remove argument validation, closes #92
             return this.api.patch("/collection_presets/" + primaryKey, data);
         };
         /**
@@ -1206,9 +1214,12 @@
          */
         SDK.prototype.deleteCollectionPreset = function (primaryKey) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             invariant(isNotNull(primaryKey), "primaryKey must be defined");
 >>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
+=======
+>>>>>>> fix: remove argument validation, closes #92
             return this.api.delete("/collection_presets/" + primaryKey);
         };
         // #endregion collection presets
@@ -1243,9 +1254,12 @@
         SDK.prototype.getAllFields = function (params) {
             if (params === void 0) { params = {}; }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             invariant(isObjectOrEmpty(params), "params must be an object or empty");
 >>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
+=======
+>>>>>>> fix: remove argument validation, closes #92
             return this.api.get("/fields", params);
         };
         /**
@@ -1255,10 +1269,13 @@
         SDK.prototype.getFields = function (collection, params) {
             if (params === void 0) { params = {}; }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             invariant(isString(collection), "collection must be a string");
             invariant(isObjectOrEmpty(params), "params must be an object or empty");
 >>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
+=======
+>>>>>>> fix: remove argument validation, closes #92
             return this.api.get("/fields/" + collection, params);
         };
         /**
@@ -1268,11 +1285,14 @@
         SDK.prototype.getField = function (collection, fieldName, params) {
             if (params === void 0) { params = {}; }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             invariant(isString(collection), "collection must be a string");
             invariant(isString(fieldName), "fieldName must be a string");
             invariant(isObjectOrEmpty(params), "params must be an object or empty");
 >>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
+=======
+>>>>>>> fix: remove argument validation, closes #92
             return this.api.get("/fields/" + collection + "/" + fieldName, params);
         };
         /**
@@ -1281,10 +1301,13 @@
          */
         SDK.prototype.createField = function (collection, fieldInfo) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             invariant(isString(collection), "collection must be a string");
             invariant(isObject(fieldInfo), "fieldInfo must be an object");
 >>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
+=======
+>>>>>>> fix: remove argument validation, closes #92
             return this.api.post("/fields/" + collection, fieldInfo);
         };
         /**
@@ -1293,15 +1316,19 @@
          */
         SDK.prototype.updateField = function (collection, fieldName, fieldInfo) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             invariant(isString(collection), "collection must be a string");
             invariant(isString(fieldName), "fieldName must be a string");
             invariant(isObject(fieldInfo), "fieldInfo must be an object");
 >>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
+=======
+>>>>>>> fix: remove argument validation, closes #92
             return this.api.patch("/fields/" + collection + "/" + fieldName, fieldInfo);
         };
         SDK.prototype.updateFields = function (collection, fieldsInfoOrFieldNames, fieldInfo) {
             if (fieldInfo === void 0) { fieldInfo = null; }
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
             invariant(isString(collection), "collection must be a string");
@@ -1310,6 +1337,8 @@
                 invariant(isObject(fieldInfo), "fieldInfo must be an object");
             }
 >>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
+=======
+>>>>>>> fix: remove argument validation, closes #92
             if (fieldInfo) {
                 return this.api.patch("/fields/" + collection + "/" + fieldsInfoOrFieldNames.join(","), fieldInfo);
             }
@@ -1321,10 +1350,13 @@
          */
         SDK.prototype.deleteField = function (collection, fieldName) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             invariant(isString(collection), "collection must be a string");
             invariant(isString(fieldName), "fieldName must be a string");
 >>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
+=======
+>>>>>>> fix: remove argument validation, closes #92
             return this.api.delete("/fields/" + collection + "/" + fieldName);
         };
         // #endregion fields
@@ -1338,9 +1370,12 @@
             return __awaiter(this, void 0, void 0, function () {
                 return __generator(this, function (_a) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
                     invariant(isObjectOrEmpty(params), "Params must be an object");
 >>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
+=======
+>>>>>>> fix: remove argument validation, closes #92
                     return [2 /*return*/, this.api.get("/files", params)];
                 });
             });
@@ -1355,10 +1390,13 @@
                 var files;
                 return __generator(this, function (_a) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
                     invariant(isString(fileName), "FileName must be string");
                     invariant(isObjectOrEmpty(params), "Params must be an object");
 >>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
+=======
+>>>>>>> fix: remove argument validation, closes #92
                     files = typeof fileName === "string" ? fileName : fileName.join(",");
                     return [2 /*return*/, this.api.get("/files/" + files, params)];
                 });
@@ -1414,11 +1452,14 @@
         SDK.prototype.updateItem = function (collection, primaryKey, body, params) {
             if (params === void 0) { params = {}; }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             invariant(isString(collection), "collection must be a string");
             invariant(isNotNull(primaryKey), "primaryKey must be defined");
             invariant(isObject(body), "body must be an object");
 >>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
+=======
+>>>>>>> fix: remove argument validation, closes #92
             var collectionBasePath = getCollectionItemPath(collection);
             return this.api.patch(collectionBasePath + "/" + primaryKey, body, params);
         };
@@ -1432,10 +1473,13 @@
         SDK.prototype.updateItems = function (collection, body, params) {
             if (params === void 0) { params = {}; }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             invariant(isString(collection), "collection must be a string");
             invariant(isArray(body), "body must be an array");
 >>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
+=======
+>>>>>>> fix: remove argument validation, closes #92
             var collectionBasePath = getCollectionItemPath(collection);
             return this.api.patch(collectionBasePath, body, params);
         };
@@ -1446,10 +1490,13 @@
          */
         SDK.prototype.createItem = function (collection, body) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             invariant(isString(collection), "collection must be a string");
             invariant(isObject(body), "body must be an object");
 >>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
+=======
+>>>>>>> fix: remove argument validation, closes #92
             var collectionBasePath = getCollectionItemPath(collection);
             return this.api.post(collectionBasePath, body);
         };
@@ -1460,10 +1507,13 @@
          */
         SDK.prototype.createItems = function (collection, body) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             invariant(isString(collection), "collection must be a string");
             invariant(isArray(body), "body must be an array");
 >>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
+=======
+>>>>>>> fix: remove argument validation, closes #92
             var collectionBasePath = getCollectionItemPath(collection);
             return this.api.post(collectionBasePath, body);
         };
@@ -1475,10 +1525,13 @@
         SDK.prototype.getItems = function (collection, params) {
             if (params === void 0) { params = {}; }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             invariant(isString(collection), "collection must be a string");
             invariant(isObjectOrEmpty(params), "params must be an object or empty");
 >>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
+=======
+>>>>>>> fix: remove argument validation, closes #92
             var collectionBasePath = getCollectionItemPath(collection);
             return this.api.get(collectionBasePath, params);
         };
@@ -1490,11 +1543,14 @@
         SDK.prototype.getItem = function (collection, primaryKey, params) {
             if (params === void 0) { params = {}; }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             invariant(isString(collection), "collection must be a string");
             invariant(isNotNull(primaryKey), "primaryKey must be defined");
             invariant(isObjectOrEmpty(params), "params must be an object or empty");
 >>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
+=======
+>>>>>>> fix: remove argument validation, closes #92
             var collectionBasePath = getCollectionItemPath(collection);
             return this.api.get(collectionBasePath + "/" + primaryKey, params);
         };
@@ -1504,10 +1560,13 @@
          */
         SDK.prototype.deleteItem = function (collection, primaryKey) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             invariant(isString(collection), "collection must be a string");
             invariant(isNotNull(primaryKey), "primaryKey must be defined");
 >>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
+=======
+>>>>>>> fix: remove argument validation, closes #92
             var collectionBasePath = getCollectionItemPath(collection);
             return this.api.delete(collectionBasePath + "/" + primaryKey);
         };
@@ -1517,10 +1576,13 @@
          */
         SDK.prototype.deleteItems = function (collection, primaryKeys) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             invariant(isString(collection), "collection must be a string");
             invariant(isArray(primaryKeys), "primaryKeys must be an array");
 >>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
+=======
+>>>>>>> fix: remove argument validation, closes #92
             var collectionBasePath = getCollectionItemPath(collection);
             return this.api.delete(collectionBasePath + "/" + primaryKeys.join());
         };
@@ -1531,11 +1593,14 @@
          */
         SDK.prototype.getMyListingPreferences = function (collection, params) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             if (params === void 0) { params = {}; }
             invariant(isString(this.config.token), "token must be defined");
             invariant(isObjectOrEmpty(params), "params must be an object or empty");
 >>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
+=======
+>>>>>>> fix: remove argument validation, closes #92
             var payload = this.api.getPayload();
             return Promise.all([
                 this.api.get("/collection_presets", {
@@ -1586,9 +1651,12 @@
         SDK.prototype.getPermissions = function (params) {
             if (params === void 0) { params = {}; }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             invariant(isObjectOrEmpty(params), "params must be an object or empty");
 >>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
+=======
+>>>>>>> fix: remove argument validation, closes #92
             return this.getItems("directus_permissions", params);
         };
         /**
@@ -1599,9 +1667,12 @@
         SDK.prototype.getMyPermissions = function (params) {
             if (params === void 0) { params = {}; }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             invariant(isObjectOrEmpty(params), "params must be an object or empty");
 >>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
+=======
+>>>>>>> fix: remove argument validation, closes #92
             return this.api.get("/permissions/me", params);
         };
         /**
@@ -1611,9 +1682,12 @@
          */
         SDK.prototype.createPermissions = function (data) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             invariant(isArray(data), "data must be anarry");
 >>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
+=======
+>>>>>>> fix: remove argument validation, closes #92
             return this.api.post("/permissions", data);
         };
         /**
@@ -1623,9 +1697,12 @@
          */
         SDK.prototype.updatePermissions = function (data) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             invariant(isArray(data), "data must be anarry");
 >>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
+=======
+>>>>>>> fix: remove argument validation, closes #92
             return this.api.patch("/permissions", data);
         };
         // #endregion permissions
@@ -1638,9 +1715,12 @@
         SDK.prototype.getRelations = function (params) {
             if (params === void 0) { params = {}; }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             invariant(isObjectOrEmpty(params), "params must be an object or empty");
 >>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
+=======
+>>>>>>> fix: remove argument validation, closes #92
             return this.api.get("/relations", params);
         };
         /**
@@ -1663,11 +1743,14 @@
          */
         SDK.prototype.getCollectionRelations = function (collection, params) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             if (params === void 0) { params = {}; }
             invariant(isString(collection), "collection must be a string");
             invariant(isObjectOrEmpty(params), "params must be an object or empty");
 >>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
+=======
+>>>>>>> fix: remove argument validation, closes #92
             return Promise.all([
                 this.api.get("/relations", {
                     "filter[collection_a][eq]": collection,
@@ -1689,11 +1772,14 @@
         SDK.prototype.getItemRevisions = function (collection, primaryKey, params) {
             if (params === void 0) { params = {}; }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             invariant(isString(collection), "collection must be a string");
             invariant(isNotNull(primaryKey), "primaryKey must be defined");
             invariant(isObjectOrEmpty(params), "params must be an object or empty");
 >>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
+=======
+>>>>>>> fix: remove argument validation, closes #92
             var collectionBasePath = getCollectionItemPath(collection);
             return this.api.get(collectionBasePath + "/" + primaryKey + "/revisions", params);
         };
@@ -1705,11 +1791,14 @@
          */
         SDK.prototype.revert = function (collection, primaryKey, revisionID) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             invariant(isString(collection), "collection must be a string");
             invariant(isNotNull(primaryKey), "primaryKey must be defined");
             invariant(isNumber(revisionID), "revisionID must be a number");
 >>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
+=======
+>>>>>>> fix: remove argument validation, closes #92
             var collectionBasePath = getCollectionItemPath(collection);
             return this.api.patch(collectionBasePath + "/" + primaryKey + "/revert/" + revisionID);
         };
@@ -1723,10 +1812,13 @@
         SDK.prototype.getRole = function (primaryKey, params) {
             if (params === void 0) { params = {}; }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             invariant(isNumber(primaryKey), "primaryKey must be a number");
             invariant(isObjectOrEmpty(params), "params must be an object or empty");
 >>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
+=======
+>>>>>>> fix: remove argument validation, closes #92
             return this.api.get("/roles/" + primaryKey, params);
         };
         /**
@@ -1736,9 +1828,12 @@
         SDK.prototype.getRoles = function (params) {
             if (params === void 0) { params = {}; }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             invariant(isObjectOrEmpty(params), "params must be an object or empty");
 >>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
+=======
+>>>>>>> fix: remove argument validation, closes #92
             return this.api.get("/roles", params);
         };
         /**
@@ -1748,10 +1843,13 @@
          */
         SDK.prototype.updateRole = function (primaryKey, body) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             invariant(isNotNull(primaryKey), "primaryKey must be defined");
             invariant(isObject(body), "body must be an object");
 >>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
+=======
+>>>>>>> fix: remove argument validation, closes #92
             return this.updateItem("directus_roles", primaryKey, body);
         };
         /**
@@ -1760,9 +1858,12 @@
          */
         SDK.prototype.createRole = function (body) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             invariant(isObject(body), "body must be an object");
 >>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
+=======
+>>>>>>> fix: remove argument validation, closes #92
             return this.createItem("directus_roles", body);
         };
         /**
@@ -1771,9 +1872,12 @@
          */
         SDK.prototype.deleteRole = function (primaryKey) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             invariant(isNotNull(primaryKey), "primaryKey must be defined");
 >>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
+=======
+>>>>>>> fix: remove argument validation, closes #92
             return this.deleteItem("directus_roles", primaryKey);
         };
         // #endregion roles
@@ -1785,9 +1889,12 @@
         SDK.prototype.getSettings = function (params) {
             if (params === void 0) { params = {}; }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             invariant(isObjectOrEmpty(params), "params must be an object or empty");
 >>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
+=======
+>>>>>>> fix: remove argument validation, closes #92
             return this.api.get("/settings", params);
         };
         /**
@@ -1797,9 +1904,12 @@
         SDK.prototype.getSettingsFields = function (params) {
             if (params === void 0) { params = {}; }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             invariant(isObjectOrEmpty(params), "params must be an object or empty");
 >>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
+=======
+>>>>>>> fix: remove argument validation, closes #92
             return this.api.get("/settings/fields", params);
         };
         // #endregion settings
@@ -1811,9 +1921,12 @@
         SDK.prototype.getUsers = function (params) {
             if (params === void 0) { params = {}; }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             invariant(isObjectOrEmpty(params), "params must be an object or empty");
 >>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
+=======
+>>>>>>> fix: remove argument validation, closes #92
             return this.api.get("/users", params);
         };
         /**
@@ -1824,10 +1937,13 @@
         SDK.prototype.getUser = function (primaryKey, params) {
             if (params === void 0) { params = {}; }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             invariant(isNotNull(primaryKey), "primaryKey must be defined");
             invariant(isObjectOrEmpty(params), "params must be an object or empty");
 >>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
+=======
+>>>>>>> fix: remove argument validation, closes #92
             return this.api.get("/users/" + primaryKey, params);
         };
         /**
@@ -1837,9 +1953,12 @@
         SDK.prototype.getMe = function (params) {
             if (params === void 0) { params = {}; }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             invariant(isObjectOrEmpty(params), "params must be an object or empty");
 >>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
+=======
+>>>>>>> fix: remove argument validation, closes #92
             return this.api.get("/users/me", params);
         };
         /**
@@ -1849,10 +1968,13 @@
          */
         SDK.prototype.updateUser = function (primaryKey, body) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             invariant(isNotNull(primaryKey), "primaryKey must be defined");
             invariant(isObject(body), "body must be an object");
 >>>>>>> refactor: whole buildchain, drop unneeded deps and scripts
+=======
+>>>>>>> fix: remove argument validation, closes #92
             return this.updateItem("directus_users", primaryKey, body);
         };
         // #endregion users
