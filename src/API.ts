@@ -3,7 +3,6 @@
  */
 
 import axios, { AxiosInstance } from "axios";
-import * as qsStringify from "qs/lib/stringify";
 
 import { Authentication, IAuthentication } from "./Authentication";
 import { concurrencyManager } from "./ConcurrencyManager";
@@ -15,8 +14,9 @@ import { RequestMethod } from "./schemes/http/Request";
 import { IErrorResponse, IErrorResponseData } from "./schemes/response/Error";
 
 // Utilities
-import { isArrayOrEmpty, isObjectOrEmpty, isString } from "./utils/is";
+import { isString } from "./utils/is";
 import { getPayload } from "./utils/payload";
+import { querify } from "./utils/qs";
 
 export interface IAPI {
   auth: IAuthentication;
@@ -88,7 +88,7 @@ export class APIError extends Error {
 export class API implements IAPI {
   public auth: IAuthentication;
   public xhr = axios.create({
-    paramsSerializer: qsStringify,
+    paramsSerializer: querify,
     timeout: 10 * 60 * 1000, // 10 min
   });
   public concurrent = concurrencyManager(this.xhr, 10);

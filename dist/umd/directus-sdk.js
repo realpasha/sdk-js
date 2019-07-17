@@ -1,8 +1,8 @@
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('base-64'), require('axios'), require('qs/lib/stringify')) :
-    typeof define === 'function' && define.amd ? define(['exports', 'base-64', 'axios', 'qs/lib/stringify'], factory) :
-    (global = global || self, factory(global.Directus = {}, global.base64, global.axios, global.qsStringify));
-}(this, function (exports, base64, axios, qsStringify) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('base-64'), require('axios')) :
+    typeof define === 'function' && define.amd ? define(['exports', 'base-64', 'axios'], factory) :
+    (global = global || self, factory(global.Directus = {}, global.base64, global.axios));
+}(this, function (exports, base64, axios) { 'use strict';
 
     axios = axios && axios.hasOwnProperty('default') ? axios['default'] : axios;
 
@@ -537,6 +537,22 @@
         return instance;
     };
 
+    var defaultSerializeTransform = function (key, value) { return key + "=" + value; };
+    function querify(obj, prefix, serializer) {
+        if (serializer === void 0) { serializer = defaultSerializeTransform; }
+        var qs = [], prop;
+        for (prop in obj) {
+            if (obj.hasOwnProperty(prop)) {
+                var key = prefix ? prefix + "[" + prop + "]" : prop;
+                var val = obj[prop];
+                qs.push((val !== null && typeof val === "object")
+                    ? querify(val, key)
+                    : serializer(key, val));
+            }
+        }
+        return qs.join('');
+    }
+
     /**
      * @module API
      */
@@ -622,7 +638,7 @@
         function API(config) {
             this.config = config;
             this.xhr = axios.create({
-                paramsSerializer: qsStringify,
+                paramsSerializer: querify,
                 timeout: 10 * 60 * 1000,
             });
             this.concurrent = concurrencyManager(this.xhr, 10);
