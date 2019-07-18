@@ -13,15 +13,15 @@ describe("General", () => {
 
   it("Allows you to set and retrieve the api url", () => {
     const client = new SDK(undefined as any);
-    client.config.url = "https://demo-api.getdirectus.com/";
-    expect(client.config.url).to.equal("https://demo-api.getdirectus.com/");
+    client.config.url = "https://directus.app/";
+    expect(client.config.url).to.equal("https://directus.app/");
   });
 
   it("Allows you to set the url on creation", () => {
     const client = new SDK({
-      url: "https://demo-api.getdirectus.com/",
+      url: "https://directus.app/",
     }) as any;
-    expect(client.config.url).to.equal("https://demo-api.getdirectus.com/");
+    expect(client.config.url).to.equal("https://directus.app/");
   });
 
   it("Allows you to set and retrieve the access token", () => {

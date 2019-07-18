@@ -20,7 +20,7 @@ function withTimeout<T>(fn: () => Promise<T>, timeout: number): Promise<T> {
   return Promise.race<Promise<T>>([
     fn(),
     new Promise((_resolve, reject) => {
-      setTimeout(() => reject(new Error(`Timeout of ${timeout} reached`)), timeout);
+      setTimeout(() => reject(`Timeout of ${timeout} reached`), timeout);
     })
   ]);
 }
@@ -41,21 +41,30 @@ async function request<T extends any>(opts: RequestOptions): Promise<T> {
     opts.body = JSON.stringify(opts.body);
   }
 
-  const response = await withTimeout(
-    () => fetch(url, {
-      method: opts.method,
-      body: opts.body,
-      headers: opts.headers,
-      credentials: opts.credentials || 'omit'
-    }), opts.timeout || 2000);
+  try {
+    const response = await withTimeout(
+      () => fetch(url, {
+        method: opts.method,
+        body: opts.body,
+        headers: opts.headers,
+        credentials: opts.credentials || 'omit'
+      }), opts.timeout || 2000);
 
-  // skip if skipToJSON was set to true
-  if (opts && opts.skipToJSON) {
-    return await response.text() as any as T;
+    // skip if skipToJSON was set to true
+    if (opts && opts.skipToJSON) {
+      return await response.text() as any as T;
+    }
+
+    // return parsed values
+    try {
+      return await response.json() as T;
+    } catch (err) {
+      throw 'Failed parsing JSON';
+    }
+  } catch (err) {
+    console.log(err)
+    throw err;
   }
-
-  // return parsed values
-  return await response.json() as T;
 }
 
 export { request };

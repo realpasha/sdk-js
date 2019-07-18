@@ -12,11 +12,11 @@ describe("Authentication", () => {
 
   beforeEach(() => {
     client = new SDK({
-      url: "https://demo-api.getdirectus.com",
+      url: "https://directus.app",
     });
 
     client.config.reset();
-    client.config.url = "https://demo-api.getdirectus.com";
+    client.config.url = "https://directus.app";
 
     sinon.stub(client.api, "fetch").resolves({
       config: {},
@@ -40,10 +40,10 @@ describe("Authentication", () => {
       await client.login({
         email: "test@example.com",
         password: "testPassword",
-        url: "https://demo-api.getdirectus.com",
+        url: "https://directus.app",
       });
 
-      expect(client.config.url).to.equal("https://demo-api.getdirectus.com");
+      expect(client.config.url).to.equal("https://directus.app");
     });
 
     it("Calls Axios with the right parameters", async () => {
@@ -53,7 +53,7 @@ describe("Authentication", () => {
       });
 
       expect(client.api.fetch).to.have.been.calledWith({
-        baseURL: "https://demo-api.getdirectus.com/_/",
+        baseURL: "https://directus.app/_/",
         body: {
           email: "test@example.com",
           password: "testPassword",
@@ -130,7 +130,7 @@ describe("Authentication", () => {
       client.config.project = null;
       expect(client.refreshIfNeeded()).to.be.undefined;
       // URL
-      client.config.url = "https://demo-api.getdirectus.com";
+      client.config.url = "https://directus.app";
       expect(client.refreshIfNeeded()).to.be.undefined;
       // URL + ENV
       client.config.project = "_";
@@ -193,7 +193,7 @@ describe("Authentication", () => {
         expect(info).to.deep.include({
           project: "_",
           token: "abcdef",
-          url: "https://demo-api.getdirectus.com",
+          url: "https://directus.app",
         });
         (client.api.auth.refresh as any).restore();
         done();
@@ -298,7 +298,7 @@ describe("Authentication", () => {
           email: "testing@example.com",
           password: "testPassword",
           persist: true,
-          url: "https://demo-api.getdirectus.com",
+          url: "https://directus.app",
         });
 
         expect(client.api.auth.refreshInterval).to.be.not.null;
@@ -314,7 +314,7 @@ describe("Authentication", () => {
         await client.login({
           email: "testing@example.com",
           password: "testPassword",
-          url: "https://demo-api.getdirectus.com",
+          url: "https://directus.app",
         });
 
         expect(client.api.auth.refreshInterval).to.be.undefined;
@@ -327,7 +327,7 @@ describe("Authentication", () => {
           email: "testing@example.com",
           password: "testPassword",
           persist: true,
-          url: "https://demo-api.getdirectus.com",
+          url: "https://directus.app",
         });
 
         client.logout();
@@ -363,7 +363,7 @@ describe("Authentication", () => {
         email: "testing@example.com",
         password: "testPassword",
         persist: true,
-        url: "https://demo-api.getdirectus.com",
+        url: "https://directus.app",
       });
       expect(client.api.auth.refreshIfNeeded).to.have.not.been.called;
 
@@ -401,7 +401,7 @@ describe("Authentication", () => {
       });
       expect(client.loggedIn).to.equal(false);
 
-      client.config.url = "https://demo-api.getdirectus.com";
+      client.config.url = "https://directus.app";
       client.config.localExp = Date.now() + 10e3; // set expiration time in future
       expect(client.loggedIn).to.equal(true);
     });

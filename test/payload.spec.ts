@@ -46,7 +46,7 @@ describe("Payload", () => {
       expiresIn: "-1h",
       noTimestamp: true,
     });
-    client.config.url = "https://demo-api.getdirectus.com";
+    client.config.url = "https://directus.app";
     expect(client.loggedIn).to.equal(false);
 
     client.config.token = jwt.sign({ foo: "bar" }, "secret-string", {

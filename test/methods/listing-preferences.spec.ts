@@ -20,7 +20,7 @@ describe("Listing Preferences", () => {
   beforeEach(() => {
     client = new SDK({
       token: "xxxxx.yyyyy.zzzzz", // FIXME: [ERR_STABLE] this was missing!
-      url: "https://demo-api.getdirectus.com",
+      url: "https://directus.app",
     });
 
     const responseJSON = {

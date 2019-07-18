@@ -13,7 +13,7 @@ describe("Bookmarks", () => {
   beforeEach(() => {
     client = new SDK({
       token: "token",
-      url: "https://demo-api.getdirectus.com",
+      url: "https://directus.app",
     });
 
     const responseJSON = {

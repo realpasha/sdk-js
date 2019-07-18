@@ -6,7 +6,6 @@
     "moduleResolution": "node",
     "outDir": "dist",
     "sourceMap": true,
-    "noEmitHelpers": true,
     "lib": [
       "dom",
       "es2015"

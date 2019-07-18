@@ -174,7 +174,7 @@ export class API implements IAPI {
    * @typeparam T                     Response type definition, defaults to `any`
    * @return {Promise<T>}
    */
-  public request<T extends any = any>(
+  public async request<T extends any = any>(
     method: RequestMethod,
     endpoint: string,
     params: object = {},
@@ -197,15 +197,25 @@ export class API implements IAPI {
       headers.Authorization = `Bearer ${this.config.token}`;
     }
 
-    return this.fetch({
-      method,
-      url: endpoint,
-      body: data,
-      baseURL,
-      headers,
-      params,
-      skipToJSON
-    });
+    try {
+      const result = await this.fetch({
+        method,
+        url: endpoint,
+        body: data,
+        baseURL,
+        headers,
+        params,
+        skipToJSON
+      });
+      return result;
+    } catch (err) {
+      throw new APIError(`${err}`, {
+        method,
+        url: endpoint,
+        params,
+        code: -1
+      });
+    }
 
     // return this.xhr
     //   .request(requestOptions)

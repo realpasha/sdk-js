@@ -13,7 +13,7 @@ describe("Request", () => {
 
   beforeEach(() => {
     client = new SDK({
-      url: "https://demo-api.getdirectus.com",
+      url: "https://directus.app",
     });
   });
 
@@ -49,9 +49,14 @@ describe("Request", () => {
       });
     });
 
-    it("Errors when there is no API URL set", () => {
+    it("Errors when there is no API URL set", async fail => {
       (client.config as any).internalConfiguration.url = undefined;
-      expect(() => client.api.request("get", "/items")).to.throw();
+      try {
+        await client.api.request("get", "/items")
+        fail('Did not fail!');
+      } catch (err) {
+        expect(err).to.equal('');
+      }
     });
 
     it("Calls Axios with the right config", () => {
@@ -70,7 +75,10 @@ describe("Request", () => {
 
       client.api.request("get", "/ping");
 
-      expect(client.api.fetch).to.have.been.calledWith('get', "https://demo-api.getdirectus.com/_/ping", {
+      expect(client.api.fetch).to.have.been.calledWith({
+        method: "get",
+        baseURL: "https://directus.app",
+        url: "/ping",
         body: {},
         headers: {},
         params: {}
@@ -100,12 +108,14 @@ describe("Request", () => {
         }
       );
 
-      expect(client.api.fetch).to.have.been.calledWith('post', "https://demo-api.getdirectus.com/_/utils/random_string", {
+      expect(client.api.fetch).to.have.been.calledWith({
+        method: "post",
+        url: "/utils/random_string",
+        baseURL: "https://directus.app",
         body: {
           testing: true,
         },
         headers: {},
-        method: "post",
         params: {}
       });
     });
@@ -126,8 +136,10 @@ describe("Request", () => {
 
       client.api.request("get", "/utils/random_string", { queryParam: true });
 
-      expect(client.api.fetch).to.have.been.calledWith('get', "https://demo-api.getdirectus.com/_/utils/random_string", {
-        baseURL: "https://demo-api.getdirectus.com/_/",
+      expect(client.api.fetch).to.have.been.calledWith({
+        method: "get",
+        url: "/utils/random_string",
+        baseURL: "https://directus.app",
         body: {},
         headers: {},
         params: {
@@ -158,7 +170,7 @@ describe("Request", () => {
       client.api.request("get", "/utils/random_string", { queryParam: true });
 
       expect(client.api.fetch).to.have.been.calledWith({
-        baseURL: "https://demo-api.getdirectus.com/_/",
+        baseURL: "https://directus.app/_/",
         body: {},
         headers: {
           Authorization: `Bearer ${client.config.token}`,
@@ -256,8 +268,8 @@ describe("Request", () => {
       await client.api.request("get", "/interfaces", {}, {});
 
       expect(client.api.fetch).to.have.been.calledWith({
-        baseURL: "https://demo-api.getdirectus.com/_/",
-        data: {},
+        baseURL: "https://directus.app/_/",
+        body: {},
         headers: {},
         method: "get",
         params: {},
@@ -267,8 +279,8 @@ describe("Request", () => {
       await client.api.request("get", "/interfaces", {}, {}, true);
 
       expect(client.api.fetch).to.have.been.calledWith({
-        baseURL: "https://demo-api.getdirectus.com/",
-        data: {},
+        baseURL: "https://directus.app/",
+        body: {},
         headers: {},
         method: "get",
         params: {},

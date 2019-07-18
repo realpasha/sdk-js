@@ -12,7 +12,7 @@ describe("Relations", () => {
 
   beforeEach(() => {
     client = new SDK({
-      url: "https://demo-api.getdirectus.com",
+      url: "https://directus.app",
     });
 
     const responseJSON = {

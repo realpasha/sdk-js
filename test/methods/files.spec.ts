@@ -14,7 +14,7 @@ describe("Files", () => {
   beforeEach(() => {
     client = new SDK({
       token: "abcdef",
-      url: "https://demo-api.getdirectus.com",
+      url: "https://directus.app",
     });
 
     const responseJSON = mockAxiosResponse({
@@ -36,7 +36,7 @@ describe("Files", () => {
 
       // Validate against upload post parameters
       expect(client.api.xhr.post).to.have.been.calledWith(
-        "https://demo-api.getdirectus.com/_/files",
+        "https://directus.app/_/files",
         ["fileA", "fileB"]
         // {
         //   headers: { Authorization: "Bearer abcdef", "Content-Type": "multipart/form-data" },

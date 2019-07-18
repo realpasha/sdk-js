@@ -9,19 +9,19 @@ describe("Configuration", () => {
     describe("initial", () => {
       it("url", () => {
         const config = new Configuration({
-          url: "https://demo-api.getdirectus.com",
+          url: "https://directus.app",
         });
 
-        expect(config.url).to.equal("https://demo-api.getdirectus.com");
+        expect(config.url).to.equal("https://directus.app");
       });
 
       it("token", () => {
         const config = new Configuration({
           token: "abc",
-          url: "https://demo-api.getdirectus.com",
+          url: "https://directus.app",
         });
 
-        expect(config.url).to.equal("https://demo-api.getdirectus.com");
+        expect(config.url).to.equal("https://directus.app");
         expect(config.token).to.equal("abc");
       });
     });
@@ -29,13 +29,13 @@ describe("Configuration", () => {
     describe("defaults", () => {
       it("project", () => {
         const config = new Configuration({
-          url: "https://demo-api.getdirectus.com",
+          url: "https://directus.app",
         });
         expect(config.project).to.equal("_");
       });
       it("tokenExpirationTime", () => {
         const config = new Configuration({
-          url: "https://demo-api.getdirectus.com",
+          url: "https://directus.app",
         });
         expect(config.tokenExpirationTime).to.equal(5 * 6 * 1000);
       });
@@ -57,14 +57,14 @@ describe("Configuration", () => {
 
         it("project", () => {
           const config = new Configuration({
-            url: "https://demo-api.getdirectus.com",
+            url: "https://directus.app",
           });
           expect(config.project).to.equal("custom");
         });
 
         it("tokenExpirationTime", () => {
           const config = new Configuration({
-            url: "https://demo-api.getdirectus.com",
+            url: "https://directus.app",
           });
           expect(config.tokenExpirationTime).to.equal(10);
         });
@@ -74,7 +74,7 @@ describe("Configuration", () => {
     describe("override", () => {
       it("url", () => {
         const config = new Configuration({
-          url: "https://demo-api.getdirectus.com",
+          url: "https://directus.app",
         });
 
         config.url = "https://new-demo-api.getdirectus.com";
@@ -85,12 +85,12 @@ describe("Configuration", () => {
       it("token", () => {
         const config = new Configuration({
           token: "abc",
-          url: "https://demo-api.getdirectus.com",
+          url: "https://directus.app",
         });
 
         config.token = "def";
 
-        expect(config.url).to.equal("https://demo-api.getdirectus.com");
+        expect(config.url).to.equal("https://directus.app");
         expect(config.token).to.equal("def");
       });
     });
@@ -99,10 +99,10 @@ describe("Configuration", () => {
   describe("#constructor", () => {
     it("should construct correctly", () => {
       const config = new Configuration({
-        url: "https://demo-api.getdirectus.com",
+        url: "https://directus.app",
       });
 
-      expect(config.url).to.equal("https://demo-api.getdirectus.com");
+      expect(config.url).to.equal("https://directus.app");
       expect(config.project).to.equal("_");
       expect(config.token).to.equal(undefined);
       expect(config.localExp).to.equal(undefined);
@@ -113,7 +113,7 @@ describe("Configuration", () => {
   describe("#computed", () => {
     it("should calculate the tokenExpirationTime correctly", () => {
       const config = new Configuration({
-        url: "https://demo-api.getdirectus.com",
+        url: "https://directus.app",
       });
 
       config.tokenExpirationTime = 14; // 10s equals 840k ms
@@ -134,13 +134,13 @@ describe("Configuration", () => {
 
         const config = new Configuration(
           {
-            url: "https://demo-api.getdirectus.com",
+            url: "https://directus.app",
             persist: undefined,
           },
           fakeStorage
         );
 
-        expect(config.url).to.equal("https://demo-api.getdirectus.com");
+        expect(config.url).to.equal("https://directus.app");
         expect(config.project).to.equal("_"); // default value
         expect(config.token).to.be.undefined;
         expect(config.localExp).to.be.undefined;
@@ -153,18 +153,18 @@ describe("Configuration", () => {
           project: "rehydration",
           token: "abcdef",
           tokenExpirationTime: 10 * 6 * 1000,
-          url: "https://demo-api.getdirectus.com",
+          url: "https://directus.app",
         });
 
         const config = new Configuration(
           {
-            url: "https://demo-api.getdirectus.com",
+            url: "https://directus.app",
             persist: true,
           },
           fakeStorage
         );
 
-        expect(config.url).to.equal("https://demo-api.getdirectus.com");
+        expect(config.url).to.equal("https://directus.app");
         expect(config.project).to.equal(fakeStorage.values.project);
         expect(config.token).to.equal(fakeStorage.values.token);
         expect(config.localExp).to.equal(fakeStorage.values.localExp);
@@ -178,12 +178,12 @@ describe("Configuration", () => {
           token: "abcdef",
           persist: true,
           tokenExpirationTime: 10 * 6 * 1000,
-          url: "https://demo-api.getdirectus.com",
+          url: "https://directus.app",
         });
 
         const config = new Configuration(
           {
-            url: "https://demo-api.getdirectus.com",
+            url: "https://directus.app",
             persist: true,
           },
           fakeStorage
@@ -204,18 +204,18 @@ describe("Configuration", () => {
           project: "rehydration",
           token: "abcdef",
           tokenExpirationTime: 10 * 6 * 1000,
-          url: "https://demo-api.getdirectus.com",
+          url: "https://directus.app",
         });
 
         const config = new Configuration(
           {
-            url: "https://demo-api.getdirectus.com",
+            url: "https://directus.app",
             persist: true,
           },
           fakeStorage
         );
 
-        expect(config.url).to.equal("https://demo-api.getdirectus.com");
+        expect(config.url).to.equal("https://directus.app");
         expect(config.project).to.equal(fakeStorage.values.project);
         expect(config.token).to.equal(fakeStorage.values.token);
         expect(config.localExp).to.equal(fakeStorage.values.localExp);
