@@ -37,7 +37,7 @@
     "build:es2015": "tsc --project tsconfig.json --module es2015 --target es2015 --outDir dist/es2015",
     "build:esm": "tsc --project tsconfig.json --module es2015 --target es5 --outDir dist/esm",
     "build:cjs": "tsc --project tsconfig.json --module commonjs --target es5 --outDir dist/cjs",
-    "build:umd": "rollup dist/esm/index.js --format umd --name Directus --sourcemap --file dist/umd/directus-sdk.js --globals window --exports named --external axios,base-64,qs/lib/stringify",
+    "build:umd": "rollup dist/esm/index.js --format umd --name DirectusSDK --sourcemap --file dist/umd/directus-sdk.js --globals window --exports named --external axios,base-64,qs/lib/stringify",
     "build:umd-min": "uglifyjs --output dist/umd/directus-sdk.min.js --mangle --compress --source-map --source-map-url -- dist/umd/directus-sdk.js",
     "size-limit": "size-limit",
     "size-limit:stats": "size-limit --why",
