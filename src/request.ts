@@ -1,22 +1,6 @@
 import { querify } from "./utils/qs";
 import { RequestMethod } from "./schemes/http/Request";
 
-/* nodeonlyblock:start */
-if (typeof module !== 'undefined' && module.exports) {
-  // include external polyfills for NodeJS (must be installed by the user)
-  try {
-    require('es6-promise').polyfill();
-    require('isomorphic-fetch');
-  } catch (err) {
-    throw new Error(`If you're running the SDK under node make sure you install isomorphic-fetch and es6-promise first`);
-  }
-}
-/* nodeonlyblock:end */
-if (typeof module === 'undefined' || !module.exports) {
-  // include polyfills for browser only
-  require('whatwg-fetch');
-}
-
 export type RequestBody = any;
 
 export interface RequestOptions {

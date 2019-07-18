@@ -8,12 +8,11 @@ import { IConfiguration } from "./Configuration";
 // Scheme types
 import { BodyType } from "./schemes/http/Body";
 import { RequestMethod } from "./schemes/http/Request";
-import { IErrorResponse, IErrorResponseData } from "./schemes/response/Error";
+import { IErrorResponse } from "./schemes/response/Error";
 
 // Utilities
 import { isString } from "./utils/is";
 import { getPayload } from "./utils/payload";
-import { querify } from "./utils/qs";
 import { request } from "./request";
 
 export interface IAPI {

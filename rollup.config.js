@@ -1,6 +1,10 @@
 // @ts-check
 import resolve from "rollup-plugin-node-resolve";
+import commonjs from "rollup-plugin-commonjs";
 import stripblocks from "rollup-plugin-strip-blocks";
+import cleanup from "rollup-plugin-cleanup";
+import strip from "rollup-plugin-strip";
+
 
 // @ts-ignore
 import pkg from "./package.json";
@@ -17,14 +21,13 @@ export default {
     banner: `/**! ${pkg.name} v${pkg.version} */`
   },
   plugins: [
+    resolve(),
+    commonjs(),
+    strip(),
+    cleanup(),
     stripblocks({
       start: "nodeonlyblock:start",
       end: "nodeonlyblock:end"
-    }),
-    resolve({
-      customResolveOptions: {
-        moduleDirectory: "node_modules"
-      }
     })
   ],
   moduleContext: {

@@ -2,6 +2,8 @@
  * @module exports
  */
 
+import "./polyfills";
+
 import { Configuration } from "./Configuration";
 import { SDK } from "./SDK";
 import { getCollectionItemPath } from "./utils/collection";
@@ -15,7 +17,6 @@ export {
   // helper functions which can be used standalone
   getCollectionItemPath,
   getPayload
-
 };
 
 /**
