@@ -2,10 +2,7 @@
  * @module API
  */
 
-import axios, { AxiosInstance } from "axios";
-
 import { Authentication, IAuthentication } from "./Authentication";
-import { concurrencyManager } from "./ConcurrencyManager";
 import { IConfiguration } from "./Configuration";
 
 // Scheme types
@@ -17,11 +14,10 @@ import { IErrorResponse, IErrorResponseData } from "./schemes/response/Error";
 import { isString } from "./utils/is";
 import { getPayload } from "./utils/payload";
 import { querify } from "./utils/qs";
+import { request } from "./request";
 
 export interface IAPI {
   auth: IAuthentication;
-  xhr: AxiosInstance;
-  concurrent: ReturnType<typeof concurrencyManager>;
   reset(): void;
   get<T extends any = any>(endpoint: string, params?: object): Promise<T>;
   post<T extends any = any>(endpoint: string, body?: BodyType, params?: object): Promise<T>;
@@ -87,11 +83,6 @@ export class APIError extends Error {
  */
 export class API implements IAPI {
   public auth: IAuthentication;
-  public xhr = axios.create({
-    paramsSerializer: querify,
-    timeout: 10 * 60 * 1000, // 10 min
-  });
-  public concurrent = concurrencyManager(this.xhr, 10);
 
   constructor(private config: IConfiguration) {
     this.auth = new Authentication(config, {
@@ -186,7 +177,7 @@ export class API implements IAPI {
     data: object = {},
     noEnv: boolean = false,
     headers: { [key: string]: string } = {},
-    skipParseToJSON: boolean = false
+    skipToJSON: boolean = false
   ): Promise<T> {
     if (!this.config.url) {
       throw new Error('API has no URL configured to send requests to, please check the docs.');
@@ -198,69 +189,65 @@ export class API implements IAPI {
       baseURL += `${this.config.project}/`;
     }
 
-    const requestOptions = {
-      baseURL,
-      data,
-      headers,
-      method,
-      params,
-      url: endpoint,
-    };
-
     if (this.config.token && isString(this.config.token) && this.config.token.length > 0) {
-      requestOptions.headers = headers;
-      requestOptions.headers.Authorization = `Bearer ${this.config.token}`;
+      headers.Authorization = `Bearer ${this.config.token}`;
     }
 
-    return this.xhr
-      .request(requestOptions)
-      .then((res: { data: any }) => res.data)
-      .then((responseData: any) => {
-        if (!responseData || responseData.length === 0) {
-          return responseData;
-        }
+    return request(method, `${baseURL}${endpoint}`, data, {
+      headers,
+      params,
+      skipToJSON
+    });
 
-        if (typeof responseData !== "object") {
-          try {
-            return skipParseToJSON ? responseData : JSON.parse(responseData);
-          } catch (error) {
-            throw {
-              data: responseData,
-              error,
-              json: true,
-            };
-          }
-        }
+    // return this.xhr
+    //   .request(requestOptions)
+    //   .then((res: { data: any }) => res.data)
+    //   .then((responseData: any) => {
+    //     if (!responseData || responseData.length === 0) {
+    //       return responseData;
+    //     }
 
-        return responseData as T;
-      })
-      .catch((error?: IErrorResponse) => {
-        const errorResponse: IErrorResponse['response'] = error
-          ? error.response || {} as IErrorResponse['response']
-          : {} as IErrorResponse['response'];
-        const errorResponseData: IErrorResponseData =
-          errorResponse.data || {} as IErrorResponseData;
-        const baseErrorInfo = {
-          error,
-          url: requestOptions.url,
-          method: requestOptions.method,
-          params: requestOptions.params,
-          code: errorResponseData.error ? errorResponseData.error.code || error.code : -1
-        }
+    //     if (typeof responseData !== "object") {
+    //       try {
+    //         return skipParseToJSON ? responseData : JSON.parse(responseData);
+    //       } catch (error) {
+    //         throw {
+    //           data: responseData,
+    //           error,
+    //           json: true,
+    //         };
+    //       }
+    //     }
 
-        if (error.response) {
-          throw new APIError(errorResponseData.error.message || 'Unknown error occured', baseErrorInfo);
-        } else if (error.response && error.response.json === true) {
-          throw new APIError("API returned invalid JSON", {
-            ...baseErrorInfo,
-            code: 422
-          });
-        } else {
-          throw new APIError("Network error", {
-            ...baseErrorInfo,
-            code: -1
-          });
-        }
-      });
+    //     return responseData as T;
+    //   })
+    //   .catch((error?: IErrorResponse) => {
+    //     const errorResponse: IErrorResponse['response'] = error
+    //       ? error.response || {} as IErrorResponse['response']
+    //       : {} as IErrorResponse['response'];
+    //     const errorResponseData: IErrorResponseData =
+    //       errorResponse.data || {} as IErrorResponseData;
+    //     const baseErrorInfo = {
+    //       error,
+    //       url: requestOptions.url,
+    //       method: requestOptions.method,
+    //       params: requestOptions.params,
+    //       code: errorResponseData.error ? errorResponseData.error.code || error.code : -1
+    //     }
+
+    //     if (error.response) {
+    //       throw new APIError(errorResponseData.error.message || 'Unknown error occured', baseErrorInfo);
+    //     } else if (error.response && error.response.json === true) {
+    //       throw new APIError("API returned invalid JSON", {
+    //         ...baseErrorInfo,
+    //         code: 422
+    //       });
+    //     } else {
+    //       throw new APIError("Network error", {
+    //         ...baseErrorInfo,
+    //         code: -1
+    //       });
+    //     }
+    //   });
   }
 }

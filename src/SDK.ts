@@ -45,6 +45,7 @@ import { Configuration, IConfiguration, IConfigurationOptions } from "./Configur
 
 import { IServerInformationResponse } from "./schemes/response/ServerInformation";
 import { ISettingsResponse } from "./schemes/response/Setting";
+import { request } from "./request";
 
 // TODO: Move to shared types, SDK is the wrong place for that
 type PrimaryKeyType = string | number;
@@ -434,41 +435,42 @@ export class SDK {
    */
   public uploadFiles<TResponse extends any = any[]>(
     data: object, // TODO: fix type definition
-    onUploadProgress: () => object = () => ({})
+    _onUploadProgress: () => object = () => ({}) // TODO: deprecate with fetch as streams are experimental (see W3C)
   ): Promise<TResponse> {
     const headers = {
       Authorization: `Bearer ${this.config.token}`,
       "Content-Type": "multipart/form-data",
     };
+    const filesURL = `${this.config.url}/${this.config.project}/files`;
+    return request<TResponse>('post', filesURL, data, {
+      headers
+    })
 
-    // limit concurrent requests to 5
-    this.api.concurrent.attach(5);
+    // return this.api.xhr
+    //   .post(`${this.config.url}/${this.config.project}/files`, data, {
+    //     headers,
+    //     onUploadProgress,
+    //   })
+    //   .then((res: { data: any }) => {
+    //     // detach concurrency manager
+    //     this.api.concurrent.detach();
 
-    return this.api.xhr
-      .post(`${this.config.url}/${this.config.project}/files`, data, {
-        headers,
-        onUploadProgress,
-      })
-      .then((res: { data: any }) => {
-        // detach concurrency manager
-        this.api.concurrent.detach();
+    //     return res.data;
+    //   })
+    //   .catch((error: IErrorResponse) => {
+    //     // detach concurrency manager
+    //     this.api.concurrent.detach();
 
-        return res.data;
-      })
-      .catch((error: IErrorResponse) => {
-        // detach concurrency manager
-        this.api.concurrent.detach();
-
-        if (error.response) {
-          throw error.response.data.error;
-        } else {
-          throw {
-            code: -1,
-            error,
-            message: "Network Error",
-          };
-        }
-      });
+    //     if (error.response) {
+    //       throw error.response.data.error;
+    //     } else {
+    //       throw {
+    //         code: -1,
+    //         error,
+    //         message: "Network Error",
+    //       };
+    //     }
+    //   });
   }
 
   // #endregion files
