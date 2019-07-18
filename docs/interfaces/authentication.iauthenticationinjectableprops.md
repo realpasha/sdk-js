@@ -20,4 +20,4 @@
 
 • **post**: *[post](api.iapi.md#post)*
 
-*Defined in [Authentication.ts:25](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L25)*
+*Defined in [Authentication.ts:27](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L27)*

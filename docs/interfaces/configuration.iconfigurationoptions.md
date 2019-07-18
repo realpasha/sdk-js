@@ -25,7 +25,7 @@
 
 • **localExp**? : *number*
 
-*Defined in [Configuration.ts:64](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L64)*
+*Defined in [Configuration.ts:65](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L65)*
 
 Default login expiration as number in ms
 
@@ -35,7 +35,7 @@ ___
 
 • **persist**? : *boolean*
 
-*Defined in [Configuration.ts:68](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L68)*
+*Defined in [Configuration.ts:69](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L69)*
 
 If the token should be persitated or rehydrated
 
@@ -45,7 +45,7 @@ ___
 
 • **project**? : *string*
 
-*Defined in [Configuration.ts:60](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L60)*
+*Defined in [Configuration.ts:61](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L61)*
 
 Project namespace
 
@@ -55,7 +55,7 @@ ___
 
 • **token**? : *string*
 
-*Defined in [Configuration.ts:56](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L56)*
+*Defined in [Configuration.ts:57](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L57)*
 
 The token to authenticate if preferred
 
@@ -65,7 +65,7 @@ ___
 
 • **tokenExpirationTime**? : *number*
 
-*Defined in [Configuration.ts:72](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L72)*
+*Defined in [Configuration.ts:73](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L73)*
 
 Auto token expiration time
 
@@ -75,6 +75,6 @@ ___
 
 • **url**: *string*
 
-*Defined in [Configuration.ts:52](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L52)*
+*Defined in [Configuration.ts:53](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L53)*
 
 The URL of the direcuts CMS

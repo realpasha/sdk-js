@@ -57,7 +57,7 @@ Configuration holder for directus implementations
 
 \+ **new Configuration**(`initialConfig`: [IConfigurationOptions](../interfaces/configuration.iconfigurationoptions.md), `storage?`: [IStorageAPI](../interfaces/configuration.istorageapi.md)): *[Configuration](configuration.configuration-1.md)*
 
-*Defined in [Configuration.ts:93](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L93)*
+*Defined in [Configuration.ts:94](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L94)*
 
 Creates a new configuration instance, will be used once for each directus instance (passing refs).
 
@@ -78,7 +78,7 @@ Name | Type | Default | Description |
 
 • **internalConfiguration**: *[IConfigurationValues](../interfaces/configuration.iconfigurationvalues.md)*
 
-*Defined in [Configuration.ts:93](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L93)*
+*Defined in [Configuration.ts:94](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L94)*
 
 Saves the internal configuration values, **DO NOT modify** from the outside
 
@@ -88,7 +88,7 @@ ___
 
 • **storage**? : *[IStorageAPI](../interfaces/configuration.istorageapi.md)*
 
-*Defined in [Configuration.ts:101](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L101)*
+*Defined in [Configuration.ts:102](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L102)*
 
 Storage adapter for persistence
 
@@ -98,13 +98,13 @@ Storage adapter for persistence
 
 • **get localExp**(): *number | undefined*
 
-*Defined in [Configuration.ts:164](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L164)*
+*Defined in [Configuration.ts:165](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L165)*
 
 **Returns:** *number | undefined*
 
 • **set localExp**(`localExp`: number | undefined): *void*
 
-*Defined in [Configuration.ts:168](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L168)*
+*Defined in [Configuration.ts:169](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L169)*
 
 **Parameters:**
 
@@ -120,13 +120,13 @@ ___
 
 • **get persist**(): *boolean*
 
-*Defined in [Configuration.ts:172](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L172)*
+*Defined in [Configuration.ts:173](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L173)*
 
 **Returns:** *boolean*
 
 • **set persist**(`persist`: boolean): *void*
 
-*Defined in [Configuration.ts:176](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L176)*
+*Defined in [Configuration.ts:177](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L177)*
 
 **Parameters:**
 
@@ -142,13 +142,13 @@ ___
 
 • **get project**(): *string*
 
-*Defined in [Configuration.ts:154](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L154)*
+*Defined in [Configuration.ts:155](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L155)*
 
 **Returns:** *string*
 
 • **set project**(`project`: string): *void*
 
-*Defined in [Configuration.ts:158](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L158)*
+*Defined in [Configuration.ts:159](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L159)*
 
 **Parameters:**
 
@@ -164,13 +164,13 @@ ___
 
 • **get token**(): *string | undefined*
 
-*Defined in [Configuration.ts:127](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L127)*
+*Defined in [Configuration.ts:128](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L128)*
 
 **Returns:** *string | undefined*
 
 • **set token**(`token`: string): *void*
 
-*Defined in [Configuration.ts:131](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L131)*
+*Defined in [Configuration.ts:132](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L132)*
 
 **Parameters:**
 
@@ -186,13 +186,13 @@ ___
 
 • **get tokenExpirationTime**(): *number | undefined*
 
-*Defined in [Configuration.ts:135](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L135)*
+*Defined in [Configuration.ts:136](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L136)*
 
 **Returns:** *number | undefined*
 
 • **set tokenExpirationTime**(`tokenExpirationTime`: number): *void*
 
-*Defined in [Configuration.ts:139](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L139)*
+*Defined in [Configuration.ts:140](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L140)*
 
 **Parameters:**
 
@@ -208,13 +208,13 @@ ___
 
 • **get url**(): *string*
 
-*Defined in [Configuration.ts:146](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L146)*
+*Defined in [Configuration.ts:147](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L147)*
 
 **Returns:** *string*
 
 • **set url**(`url`: string): *void*
 
-*Defined in [Configuration.ts:150](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L150)*
+*Defined in [Configuration.ts:151](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L151)*
 
 **Parameters:**
 
@@ -232,7 +232,7 @@ Name | Type |
 
 *Implementation of [IConfiguration](../interfaces/configuration.iconfiguration.md)*
 
-*Defined in [Configuration.ts:230](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L230)*
+*Defined in [Configuration.ts:231](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L231)*
 
 **Returns:** *[IConfigurationValues](../interfaces/configuration.iconfigurationvalues.md) | undefined*
 
@@ -242,7 +242,7 @@ ___
 
 ▸ **dehydratedInitialConfiguration**(`storage`: [IStorageAPI](../interfaces/configuration.istorageapi.md)): *[IConfigurationValues](../interfaces/configuration.iconfigurationvalues.md)*
 
-*Defined in [Configuration.ts:263](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L263)*
+*Defined in [Configuration.ts:264](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L264)*
 
 **Parameters:**
 
@@ -260,7 +260,7 @@ ___
 
 *Implementation of [IConfiguration](../interfaces/configuration.iconfiguration.md)*
 
-*Defined in [Configuration.ts:255](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L255)*
+*Defined in [Configuration.ts:256](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L256)*
 
 **Returns:** *void*
 
@@ -272,7 +272,7 @@ ___
 
 *Implementation of [IConfiguration](../interfaces/configuration.iconfiguration.md)*
 
-*Defined in [Configuration.ts:247](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L247)*
+*Defined in [Configuration.ts:248](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L248)*
 
 **Parameters:**
 
@@ -290,7 +290,7 @@ ___
 
 *Implementation of [IConfiguration](../interfaces/configuration.iconfiguration.md)*
 
-*Defined in [Configuration.ts:206](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L206)*
+*Defined in [Configuration.ts:207](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L207)*
 
 Update partials of the configuration, behaves like the [update] method
 
@@ -310,7 +310,7 @@ ___
 
 *Implementation of [IConfiguration](../interfaces/configuration.iconfiguration.md)*
 
-*Defined in [Configuration.ts:218](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L218)*
+*Defined in [Configuration.ts:219](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L219)*
 
 Reset the whole confiugration and remove hydrated values from storage as well
 
@@ -324,7 +324,7 @@ ___
 
 *Implementation of [IConfiguration](../interfaces/configuration.iconfiguration.md)*
 
-*Defined in [Configuration.ts:196](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L196)*
+*Defined in [Configuration.ts:197](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L197)*
 
 Update the configuration values, will also hydrate them if persistance activated
 
@@ -342,7 +342,7 @@ ___
 
 ▸ **validate**(): *void*
 
-*Defined in [Configuration.ts:186](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L186)*
+*Defined in [Configuration.ts:187](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L187)*
 
 Validates if the configuration is valid
 
@@ -356,7 +356,7 @@ Validates if the configuration is valid
 
 ### ▪ **defaults**: *object*
 
-*Defined in [Configuration.ts:84](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L84)*
+*Defined in [Configuration.ts:85](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L85)*
 
 Defaults for all directus sdk instances, can be modified if preferred
 
@@ -366,10 +366,10 @@ Defaults for all directus sdk instances, can be modified if preferred
 
 • **project**: *string* = "_"
 
-*Defined in [Configuration.ts:85](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L85)*
+*Defined in [Configuration.ts:86](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L86)*
 
 ###  tokenExpirationTime
 
 • **tokenExpirationTime**: *number* =  5 * 6 * 1000
 
-*Defined in [Configuration.ts:86](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L86)*
+*Defined in [Configuration.ts:87](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L87)*

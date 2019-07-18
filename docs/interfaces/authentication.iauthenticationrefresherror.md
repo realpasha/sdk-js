@@ -21,7 +21,7 @@
 
 • **code**? : *number*
 
-*Defined in [Authentication.ts:20](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L20)*
+*Defined in [Authentication.ts:22](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L22)*
 
 ___
 
@@ -29,4 +29,4 @@ ___
 
 • **message**: *string*
 
-*Defined in [Authentication.ts:21](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L21)*
+*Defined in [Authentication.ts:23](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L23)*

@@ -47,7 +47,7 @@ Handles all authentication related logic, decoupled from the core
 
 \+ **new Authentication**(`config`: [IConfiguration](../interfaces/configuration.iconfiguration.md), `inject`: [IAuthenticationInjectableProps](../interfaces/authentication.iauthenticationinjectableprops.md)): *[Authentication](authentication.authentication-1.md)*
 
-*Defined in [Authentication.ts:59](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L59)*
+*Defined in [Authentication.ts:61](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L61)*
 
 Creates a new authentication instance
 
@@ -68,7 +68,7 @@ Name | Type | Description |
 
 • **config**: *[IConfiguration](../interfaces/configuration.iconfiguration.md)*
 
-*Defined in [Authentication.ts:67](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L67)*
+*Defined in [Authentication.ts:69](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L69)*
 
 ___
 
@@ -76,7 +76,7 @@ ___
 
 • **inject**: *[IAuthenticationInjectableProps](../interfaces/authentication.iauthenticationinjectableprops.md)*
 
-*Defined in [Authentication.ts:67](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L67)*
+*Defined in [Authentication.ts:69](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L69)*
 
 ___
 
@@ -84,7 +84,7 @@ ___
 
 • **onAutoRefreshError**? : *function*
 
-*Defined in [Authentication.ts:53](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L53)*
+*Defined in [Authentication.ts:55](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L55)*
 
 Optional customized error handler
 
@@ -104,7 +104,7 @@ ___
 
 • **onAutoRefreshSuccess**? : *function*
 
-*Defined in [Authentication.ts:59](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L59)*
+*Defined in [Authentication.ts:61](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L61)*
 
 Optional customized success handler
 
@@ -126,7 +126,7 @@ ___
 
 *Implementation of [IAuthentication](../interfaces/authentication.iauthentication.md).[refreshInterval](../interfaces/authentication.iauthentication.md#optional-refreshinterval)*
 
-*Defined in [Authentication.ts:47](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L47)*
+*Defined in [Authentication.ts:49](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L49)*
 
 Current set auto-refresh interval or undefined
 
@@ -138,7 +138,7 @@ Current set auto-refresh interval or undefined
 
 ▸ **getPayload**<**T**>(): *`T`*
 
-*Defined in [Authentication.ts:252](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L252)*
+*Defined in [Authentication.ts:254](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L254)*
 
 Gets the payload of the current token, return type can be generic
 
@@ -158,7 +158,7 @@ ___
 
 *Implementation of [IAuthentication](../interfaces/authentication.iauthentication.md)*
 
-*Defined in [Authentication.ts:78](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L78)*
+*Defined in [Authentication.ts:80](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L80)*
 
 If the current auth status is logged in
 
@@ -172,7 +172,7 @@ ___
 
 *Implementation of [IAuthentication](../interfaces/authentication.iauthentication.md)*
 
-*Defined in [Authentication.ts:99](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L99)*
+*Defined in [Authentication.ts:101](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L101)*
 
 Login to the API; Gets a new token from the API and stores it in this.token.
 
@@ -193,7 +193,7 @@ ___
 
 *Implementation of [IAuthentication](../interfaces/authentication.iauthentication.md)*
 
-*Defined in [Authentication.ts:149](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L149)*
+*Defined in [Authentication.ts:151](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L151)*
 
 Logs the user out by "forgetting" the token, and clearing the refresh interval
 
@@ -207,7 +207,7 @@ ___
 
 *Implementation of [IAuthentication](../interfaces/authentication.iauthentication.md)*
 
-*Defined in [Authentication.ts:221](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L221)*
+*Defined in [Authentication.ts:223](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L223)*
 
 Use the passed token to request a new one.
 
@@ -227,7 +227,7 @@ ___
 
 *Implementation of [IAuthentication](../interfaces/authentication.iauthentication.md)*
 
-*Defined in [Authentication.ts:165](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L165)*
+*Defined in [Authentication.ts:167](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L167)*
 
 Refresh the token if it is about to expire (within 30 seconds of expiry date).
 - Calls onAutoRefreshSuccess with the new token if the refreshing is successful.
@@ -241,7 +241,7 @@ ___
 
 ▸ **startInterval**(`fireImmediately?`: boolean): *void*
 
-*Defined in [Authentication.ts:231](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L231)*
+*Defined in [Authentication.ts:233](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L233)*
 
 Starts an interval of 10 seconds that will check if the token needs refreshing
 
@@ -259,7 +259,7 @@ ___
 
 ▸ **stopInterval**(): *void*
 
-*Defined in [Authentication.ts:242](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L242)*
+*Defined in [Authentication.ts:244](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L244)*
 
 Clears and nullifies the token refreshing interval
 

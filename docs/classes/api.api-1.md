@@ -50,7 +50,7 @@ API definition for HTTP transactions
 
 \+ **new API**(`config`: [IConfiguration](../interfaces/configuration.iconfiguration.md)): *[API](api.api-1.md)*
 
-*Defined in [API.ts:54](https://github.com/direcuts/sdk-js/tree/master/API.ts#L54)*
+*Defined in [API.ts:56](https://github.com/direcuts/sdk-js/tree/master/API.ts#L56)*
 
 **Parameters:**
 
@@ -68,7 +68,7 @@ Name | Type |
 
 *Implementation of [IAPI](../interfaces/api.iapi.md).[auth](../interfaces/api.iapi.md#auth)*
 
-*Defined in [API.ts:49](https://github.com/direcuts/sdk-js/tree/master/API.ts#L49)*
+*Defined in [API.ts:51](https://github.com/direcuts/sdk-js/tree/master/API.ts#L51)*
 
 ___
 
@@ -78,7 +78,7 @@ ___
 
 *Implementation of [IAPI](../interfaces/api.iapi.md).[concurrent](../interfaces/api.iapi.md#concurrent)*
 
-*Defined in [API.ts:54](https://github.com/direcuts/sdk-js/tree/master/API.ts#L54)*
+*Defined in [API.ts:56](https://github.com/direcuts/sdk-js/tree/master/API.ts#L56)*
 
 #### Type declaration:
 
@@ -114,7 +114,7 @@ ___
 
 • **config**: *[IConfiguration](../interfaces/configuration.iconfiguration.md)*
 
-*Defined in [API.ts:56](https://github.com/direcuts/sdk-js/tree/master/API.ts#L56)*
+*Defined in [API.ts:58](https://github.com/direcuts/sdk-js/tree/master/API.ts#L58)*
 
 ___
 
@@ -127,7 +127,7 @@ ___
 
 *Implementation of [IAPI](../interfaces/api.iapi.md).[xhr](../interfaces/api.iapi.md#xhr)*
 
-*Defined in [API.ts:50](https://github.com/direcuts/sdk-js/tree/master/API.ts#L50)*
+*Defined in [API.ts:52](https://github.com/direcuts/sdk-js/tree/master/API.ts#L52)*
 
 ## Methods
 
@@ -137,7 +137,7 @@ ___
 
 *Implementation of [IAPI](../interfaces/api.iapi.md)*
 
-*Defined in [API.ts:125](https://github.com/direcuts/sdk-js/tree/master/API.ts#L125)*
+*Defined in [API.ts:127](https://github.com/direcuts/sdk-js/tree/master/API.ts#L127)*
 
 DELETE convenience method. Calls the request method for you
 
@@ -163,7 +163,7 @@ ___
 
 *Implementation of [IAPI](../interfaces/api.iapi.md)*
 
-*Defined in [API.ts:77](https://github.com/direcuts/sdk-js/tree/master/API.ts#L77)*
+*Defined in [API.ts:79](https://github.com/direcuts/sdk-js/tree/master/API.ts#L79)*
 
 GET convenience method. Calls the request method for you
 
@@ -190,7 +190,7 @@ ___
 
 *Implementation of [IAPI](../interfaces/api.iapi.md)*
 
-*Defined in [API.ts:136](https://github.com/direcuts/sdk-js/tree/master/API.ts#L136)*
+*Defined in [API.ts:138](https://github.com/direcuts/sdk-js/tree/master/API.ts#L138)*
 
 Gets the payload of the current token, return type can be generic
 
@@ -210,7 +210,7 @@ ___
 
 *Implementation of [IAPI](../interfaces/api.iapi.md)*
 
-*Defined in [API.ts:101](https://github.com/direcuts/sdk-js/tree/master/API.ts#L101)*
+*Defined in [API.ts:103](https://github.com/direcuts/sdk-js/tree/master/API.ts#L103)*
 
 PATCH convenience method. Calls the request method for you
 
@@ -238,7 +238,7 @@ ___
 
 *Implementation of [IAPI](../interfaces/api.iapi.md)*
 
-*Defined in [API.ts:89](https://github.com/direcuts/sdk-js/tree/master/API.ts#L89)*
+*Defined in [API.ts:91](https://github.com/direcuts/sdk-js/tree/master/API.ts#L91)*
 
 POST convenience method. Calls the request method for you
 
@@ -266,7 +266,7 @@ ___
 
 *Implementation of [IAPI](../interfaces/api.iapi.md)*
 
-*Defined in [API.ts:113](https://github.com/direcuts/sdk-js/tree/master/API.ts#L113)*
+*Defined in [API.ts:115](https://github.com/direcuts/sdk-js/tree/master/API.ts#L115)*
 
 PUT convenience method. Calls the request method for you
 
@@ -292,7 +292,7 @@ ___
 
 ▸ **request**<**T**>(`method`: [RequestMethod](../modules/_schemes_http_request_.md#requestmethod), `endpoint`: string, `params`: object, `data`: object, `noEnv`: boolean, `headers`: object, `skipParseToJSON`: boolean): *`Promise<T>`*
 
-*Defined in [API.ts:156](https://github.com/direcuts/sdk-js/tree/master/API.ts#L156)*
+*Defined in [API.ts:158](https://github.com/direcuts/sdk-js/tree/master/API.ts#L158)*
 
 Perform an API request to the Directus API
 
@@ -324,7 +324,7 @@ ___
 
 *Implementation of [IAPI](../interfaces/api.iapi.md)*
 
-*Defined in [API.ts:65](https://github.com/direcuts/sdk-js/tree/master/API.ts#L65)*
+*Defined in [API.ts:67](https://github.com/direcuts/sdk-js/tree/master/API.ts#L67)*
 
 Resets the client instance by logging out and removing the URL and project
 

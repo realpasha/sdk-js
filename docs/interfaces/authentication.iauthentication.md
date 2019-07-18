@@ -32,7 +32,7 @@
 
 • **refreshInterval**? : *number*
 
-*Defined in [Authentication.ts:29](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L29)*
+*Defined in [Authentication.ts:31](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L31)*
 
 ## Methods
 
@@ -40,7 +40,7 @@
 
 ▸ **isLoggedIn**(): *boolean*
 
-*Defined in [Authentication.ts:30](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L30)*
+*Defined in [Authentication.ts:32](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L32)*
 
 **Returns:** *boolean*
 
@@ -50,7 +50,7 @@ ___
 
 ▸ **login**(`credentials`: [ILoginCredentials](_schemes_auth_login_.ilogincredentials.md), `options?`: [ILoginOptions](_schemes_auth_login_.iloginoptions.md)): *`Promise<ILoginResponse>`*
 
-*Defined in [Authentication.ts:31](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L31)*
+*Defined in [Authentication.ts:33](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L33)*
 
 **Parameters:**
 
@@ -67,7 +67,7 @@ ___
 
 ▸ **logout**(): *void*
 
-*Defined in [Authentication.ts:32](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L32)*
+*Defined in [Authentication.ts:34](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L34)*
 
 **Returns:** *void*
 
@@ -77,7 +77,7 @@ ___
 
 ▸ **refresh**(`token`: string): *`Promise<IRefreshTokenResponse>`*
 
-*Defined in [Authentication.ts:34](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L34)*
+*Defined in [Authentication.ts:36](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L36)*
 
 **Parameters:**
 
@@ -93,6 +93,6 @@ ___
 
 ▸ **refreshIfNeeded**(): *`Promise<[boolean, Error]>`*
 
-*Defined in [Authentication.ts:33](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L33)*
+*Defined in [Authentication.ts:35](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L35)*
 
 **Returns:** *`Promise<[boolean, Error]>`*
