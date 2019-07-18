@@ -18,6 +18,7 @@ import { request } from "./request";
 
 export interface IAPI {
   auth: IAuthentication;
+  fetch: typeof request;
   reset(): void;
   get<T extends any = any>(endpoint: string, params?: object): Promise<T>;
   post<T extends any = any>(endpoint: string, body?: BodyType, params?: object): Promise<T>;
@@ -82,7 +83,11 @@ export class APIError extends Error {
  * @author Jan Biasi <biasijan@gmail.com>
  */
 export class API implements IAPI {
+  // make authentication public
   public auth: IAuthentication;
+
+  // make request function public
+  public fetch = request;
 
   constructor(private config: IConfiguration) {
     this.auth = new Authentication(config, {
@@ -193,7 +198,11 @@ export class API implements IAPI {
       headers.Authorization = `Bearer ${this.config.token}`;
     }
 
-    return request(method, `${baseURL}${endpoint}`, data, {
+    return this.fetch({
+      method,
+      url: endpoint,
+      body: data,
+      baseURL,
       headers,
       params,
       skipToJSON

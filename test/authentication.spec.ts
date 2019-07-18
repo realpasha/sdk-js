@@ -18,7 +18,7 @@ describe("Authentication", () => {
     client.config.reset();
     client.config.url = "https://demo-api.getdirectus.com";
 
-    sinon.stub(client.api.xhr, "request").resolves({
+    sinon.stub(client.api, "fetch").resolves({
       config: {},
       data: {
         data: {
@@ -32,7 +32,7 @@ describe("Authentication", () => {
   });
 
   afterEach(() => {
-    (client.api.xhr.request as any).restore();
+    (client.api.fetch as any).restore();
   });
 
   describe("#login()", () => {
@@ -52,9 +52,9 @@ describe("Authentication", () => {
         password: "testPassword",
       });
 
-      expect(client.api.xhr.request).to.have.been.calledWith({
+      expect(client.api.fetch).to.have.been.calledWith({
         baseURL: "https://demo-api.getdirectus.com/_/",
-        data: {
+        body: {
           email: "test@example.com",
           password: "testPassword",
         },

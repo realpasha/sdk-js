@@ -442,7 +442,9 @@ export class SDK {
       "Content-Type": "multipart/form-data",
     };
     const filesURL = `${this.config.url}/${this.config.project}/files`;
-    return request<TResponse>('post', filesURL, data, {
+    return request<TResponse>({
+      method: 'post',
+      url: filesURL, body: data,
       headers
     })
 

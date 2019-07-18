@@ -19,12 +19,12 @@ describe("Request", () => {
 
   describe("#request()", () => {
     beforeEach(() => {
-      sinon.stub(client.api.xhr, "request").resolves();
+      sinon.stub(client.api, "fetch").resolves();
     });
 
     afterEach(() => {
       try {
-        (client.api.xhr.request as any).restore();
+        (client.api.fetch as any).restore();
       } catch (err) {
         // do nothing ...
       }
@@ -55,7 +55,7 @@ describe("Request", () => {
     });
 
     it("Calls Axios with the right config", () => {
-      (client.api.xhr.request as any).returns(
+      (client.api.fetch as any).returns(
         Promise.resolve({
           response: {
             data: {
@@ -70,18 +70,15 @@ describe("Request", () => {
 
       client.api.request("get", "/ping");
 
-      expect(client.api.xhr.request).to.have.been.calledWith({
-        baseURL: "https://demo-api.getdirectus.com/_/",
-        data: {},
+      expect(client.api.fetch).to.have.been.calledWith('get', "https://demo-api.getdirectus.com/_/ping", {
+        body: {},
         headers: {},
-        method: "get",
-        params: {},
-        url: "/ping",
+        params: {}
       });
     });
 
     it("Calls Axios with the right config (body)", () => {
-      (client.api.xhr.request as any).returns(
+      (client.api.fetch as any).returns(
         Promise.resolve({
           response: {
             data: {
@@ -103,20 +100,18 @@ describe("Request", () => {
         }
       );
 
-      expect(client.api.xhr.request).to.have.been.calledWith({
-        baseURL: "https://demo-api.getdirectus.com/_/",
-        data: {
+      expect(client.api.fetch).to.have.been.calledWith('post', "https://demo-api.getdirectus.com/_/utils/random_string", {
+        body: {
           testing: true,
         },
         headers: {},
         method: "post",
-        params: {},
-        url: "/utils/random_string",
+        params: {}
       });
     });
 
     it("Calls Axios with the right config (params)", () => {
-      (client.api.xhr.request as any).returns(
+      (client.api.fetch as any).returns(
         Promise.resolve({
           response: {
             data: {
@@ -131,20 +126,18 @@ describe("Request", () => {
 
       client.api.request("get", "/utils/random_string", { queryParam: true });
 
-      expect(client.api.xhr.request).to.have.been.calledWith({
+      expect(client.api.fetch).to.have.been.calledWith('get', "https://demo-api.getdirectus.com/_/utils/random_string", {
         baseURL: "https://demo-api.getdirectus.com/_/",
-        data: {},
+        body: {},
         headers: {},
-        method: "get",
         params: {
           queryParam: true,
-        },
-        url: "/utils/random_string",
+        }
       });
     });
 
     it("Adds Bearer header if access token is set", () => {
-      (client.api.xhr.request as any).returns(
+      (client.api.fetch as any).returns(
         Promise.resolve({
           response: {
             data: {
@@ -164,9 +157,9 @@ describe("Request", () => {
 
       client.api.request("get", "/utils/random_string", { queryParam: true });
 
-      expect(client.api.xhr.request).to.have.been.calledWith({
+      expect(client.api.fetch).to.have.been.calledWith({
         baseURL: "https://demo-api.getdirectus.com/_/",
-        data: {},
+        body: {},
         headers: {
           Authorization: `Bearer ${client.config.token}`,
         },
@@ -179,7 +172,7 @@ describe("Request", () => {
     });
 
     it("Returns network error if the API did not respond", async () => {
-      (client.api.xhr.request as any).returns(
+      (client.api.fetch as any).returns(
         Promise.reject({
           request: {},
         })
@@ -201,7 +194,7 @@ describe("Request", () => {
     });
 
     it("Returns API error if available", async () => {
-      (client.api.xhr.request as any).returns(
+      (client.api.fetch as any).returns(
         Promise.reject({
           response: {
             data: {
@@ -231,7 +224,7 @@ describe("Request", () => {
     });
 
     it("Strips out Axios metadata from response", async () => {
-      (client.api.xhr.request as any).resolves({
+      (client.api.fetch as any).resolves({
         data: {
           data: {},
           meta: {},
@@ -249,7 +242,7 @@ describe("Request", () => {
     });
 
     it("Supports an optional fifth parameter to make the request without the env", async () => {
-      (client.api.xhr.request as any).resolves({
+      (client.api.fetch as any).resolves({
         response: {
           data: {
             error: {
@@ -262,7 +255,7 @@ describe("Request", () => {
 
       await client.api.request("get", "/interfaces", {}, {});
 
-      expect(client.api.xhr.request).to.have.been.calledWith({
+      expect(client.api.fetch).to.have.been.calledWith({
         baseURL: "https://demo-api.getdirectus.com/_/",
         data: {},
         headers: {},
@@ -273,7 +266,7 @@ describe("Request", () => {
 
       await client.api.request("get", "/interfaces", {}, {}, true);
 
-      expect(client.api.xhr.request).to.have.been.calledWith({
+      expect(client.api.fetch).to.have.been.calledWith({
         baseURL: "https://demo-api.getdirectus.com/",
         data: {},
         headers: {},

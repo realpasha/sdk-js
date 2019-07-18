@@ -1,25 +1,90 @@
+/**! @directus/sdk-js v5.4.0-rc.0 */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('base-64'), require('axios')) :
-    typeof define === 'function' && define.amd ? define(['exports', 'base-64', 'axios'], factory) :
-    (global = global || self, factory(global.Directus = {}, global.base64, global.axios));
-}(this, function (exports, base64, axios) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
+    typeof define === 'function' && define.amd ? define(['exports'], factory) :
+    (global = global || self, factory(global.Directus = {}));
+}(this, function (exports) { 'use strict';
 
-    axios = axios && axios.hasOwnProperty('default') ? axios['default'] : axios;
+    /*! *****************************************************************************
+    Copyright (c) Microsoft Corporation. All rights reserved.
+    Licensed under the Apache License, Version 2.0 (the "License"); you may not use
+    this file except in compliance with the License. You may obtain a copy of the
+    License at http://www.apache.org/licenses/LICENSE-2.0
 
-    /**
-     * @module Configuration
-     */
-    var __assign = (undefined && undefined.__assign) || function () {
-        __assign = Object.assign || function(t) {
+    THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+    KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
+    WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
+    MERCHANTABLITY OR NON-INFRINGEMENT.
+
+    See the Apache Version 2.0 License for specific language governing permissions
+    and limitations under the License.
+    ***************************************************************************** */
+    /* global Reflect, Promise */
+
+    var extendStatics = function(d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+
+    function __extends(d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    }
+
+    var __assign = function() {
+        __assign = Object.assign || function __assign(t) {
             for (var s, i = 1, n = arguments.length; i < n; i++) {
                 s = arguments[i];
-                for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                    t[p] = s[p];
+                for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
             }
             return t;
         };
         return __assign.apply(this, arguments);
     };
+
+    function __awaiter(thisArg, _arguments, P, generator) {
+        return new (P || (P = Promise))(function (resolve, reject) {
+            function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+            function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+            function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+            step((generator = generator.apply(thisArg, _arguments || [])).next());
+        });
+    }
+
+    function __generator(thisArg, body) {
+        var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+        return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+        function verb(n) { return function (v) { return step([n, v]); }; }
+        function step(op) {
+            if (f) throw new TypeError("Generator is already executing.");
+            while (_) try {
+                if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+                if (y = 0, t) op = [op[0] & 2, t.value];
+                switch (op[0]) {
+                    case 0: case 1: t = op; break;
+                    case 4: _.label++; return { value: op[1], done: false };
+                    case 5: _.label++; y = op[1]; op = [0]; continue;
+                    case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                    default:
+                        if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                        if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                        if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                        if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                        if (t[2]) _.ops.pop();
+                        _.trys.pop(); continue;
+                }
+                op = body.call(thisArg, _);
+            } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+            if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+        }
+    }
+
+    /**
+     * @module Configuration
+     */
     var STORAGE_KEY = "directus-sdk-js";
     /**
      * Configuration holder for directus implementations
@@ -219,6 +284,175 @@
         return "/items/" + collection;
     }
 
+    /*! http://mths.be/base64 v0.1.0 by @mathias | MIT license */
+    (function(root) {
+
+    	// Detect free variables `exports`.
+    	var freeExports = typeof exports == 'object' && exports;
+
+    	// Detect free variable `module`.
+    	var freeModule = typeof module == 'object' && module &&
+    		module.exports == freeExports && module;
+
+    	// Detect free variable `global`, from Node.js or Browserified code, and use
+    	// it as `root`.
+    	var freeGlobal = typeof global == 'object' && global;
+    	if (freeGlobal.global === freeGlobal || freeGlobal.window === freeGlobal) {
+    		root = freeGlobal;
+    	}
+
+    	/*--------------------------------------------------------------------------*/
+
+    	var InvalidCharacterError = function(message) {
+    		this.message = message;
+    	};
+    	InvalidCharacterError.prototype = new Error;
+    	InvalidCharacterError.prototype.name = 'InvalidCharacterError';
+
+    	var error = function(message) {
+    		// Note: the error messages used throughout this file match those used by
+    		// the native `atob`/`btoa` implementation in Chromium.
+    		throw new InvalidCharacterError(message);
+    	};
+
+    	var TABLE = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
+    	// http://whatwg.org/html/common-microsyntaxes.html#space-character
+    	var REGEX_SPACE_CHARACTERS = /[\t\n\f\r ]/g;
+
+    	// `decode` is designed to be fully compatible with `atob` as described in the
+    	// HTML Standard. http://whatwg.org/html/webappapis.html#dom-windowbase64-atob
+    	// The optimized base64-decoding algorithm used is based on @atk’s excellent
+    	// implementation. https://gist.github.com/atk/1020396
+    	var decode = function(input) {
+    		input = String(input)
+    			.replace(REGEX_SPACE_CHARACTERS, '');
+    		var length = input.length;
+    		if (length % 4 == 0) {
+    			input = input.replace(/==?$/, '');
+    			length = input.length;
+    		}
+    		if (
+    			length % 4 == 1 ||
+    			// http://whatwg.org/C#alphanumeric-ascii-characters
+    			/[^+a-zA-Z0-9/]/.test(input)
+    		) {
+    			error(
+    				'Invalid character: the string to be decoded is not correctly encoded.'
+    			);
+    		}
+    		var bitCounter = 0;
+    		var bitStorage;
+    		var buffer;
+    		var output = '';
+    		var position = -1;
+    		while (++position < length) {
+    			buffer = TABLE.indexOf(input.charAt(position));
+    			bitStorage = bitCounter % 4 ? bitStorage * 64 + buffer : buffer;
+    			// Unless this is the first of a group of 4 characters…
+    			if (bitCounter++ % 4) {
+    				// …convert the first 8 bits to a single ASCII character.
+    				output += String.fromCharCode(
+    					0xFF & bitStorage >> (-2 * bitCounter & 6)
+    				);
+    			}
+    		}
+    		return output;
+    	};
+
+    	// `encode` is designed to be fully compatible with `btoa` as described in the
+    	// HTML Standard: http://whatwg.org/html/webappapis.html#dom-windowbase64-btoa
+    	var encode = function(input) {
+    		input = String(input);
+    		if (/[^\0-\xFF]/.test(input)) {
+    			// Note: no need to special-case astral symbols here, as surrogates are
+    			// matched, and the input is supposed to only contain ASCII anyway.
+    			error(
+    				'The string to be encoded contains characters outside of the ' +
+    				'Latin1 range.'
+    			);
+    		}
+    		var padding = input.length % 3;
+    		var output = '';
+    		var position = -1;
+    		var a;
+    		var b;
+    		var c;
+    		var buffer;
+    		// Make sure any padding is handled outside of the loop.
+    		var length = input.length - padding;
+
+    		while (++position < length) {
+    			// Read three bytes, i.e. 24 bits.
+    			a = input.charCodeAt(position) << 16;
+    			b = input.charCodeAt(++position) << 8;
+    			c = input.charCodeAt(++position);
+    			buffer = a + b + c;
+    			// Turn the 24 bits into four chunks of 6 bits each, and append the
+    			// matching character for each of them to the output.
+    			output += (
+    				TABLE.charAt(buffer >> 18 & 0x3F) +
+    				TABLE.charAt(buffer >> 12 & 0x3F) +
+    				TABLE.charAt(buffer >> 6 & 0x3F) +
+    				TABLE.charAt(buffer & 0x3F)
+    			);
+    		}
+
+    		if (padding == 2) {
+    			a = input.charCodeAt(position) << 8;
+    			b = input.charCodeAt(++position);
+    			buffer = a + b;
+    			output += (
+    				TABLE.charAt(buffer >> 10) +
+    				TABLE.charAt((buffer >> 4) & 0x3F) +
+    				TABLE.charAt((buffer << 2) & 0x3F) +
+    				'='
+    			);
+    		} else if (padding == 1) {
+    			buffer = input.charCodeAt(position);
+    			output += (
+    				TABLE.charAt(buffer >> 2) +
+    				TABLE.charAt((buffer << 4) & 0x3F) +
+    				'=='
+    			);
+    		}
+
+    		return output;
+    	};
+
+    	var base64 = {
+    		'encode': encode,
+    		'decode': decode,
+    		'version': '0.1.0'
+    	};
+
+    	// Some AMD build optimizers, like r.js, check for specific condition patterns
+    	// like the following:
+    	if (
+    		typeof define == 'function' &&
+    		typeof define.amd == 'object' &&
+    		define.amd
+    	) {
+    		define(function() {
+    			return base64;
+    		});
+    	}	else if (freeExports && !freeExports.nodeType) {
+    		if (freeModule) { // in Node.js or RingoJS v0.8.0+
+    			freeModule.exports = base64;
+    		} else { // in Narwhal or RingoJS v0.7.0-
+    			for (var key in base64) {
+    				base64.hasOwnProperty(key) && (freeExports[key] = base64[key]);
+    			}
+    		}
+    	} else { // in Rhino or a web browser
+    		root.base64 = base64;
+    	}
+
+    }(undefined));
+
+    var base64 = /*#__PURE__*/Object.freeze({
+
+    });
+
     /**
      * @module utils
      */
@@ -276,7 +510,7 @@
                 .split(".")[1]
                 .replace("-", "+")
                 .replace("_", "/");
-            var payloadDecoded = base64.decode(payloadBase64);
+            var payloadDecoded = undefined(payloadBase64);
             var payloadObject = JSON.parse(payloadDecoded);
             if (isNumber(payloadObject.exp)) {
                 payloadObject.exp = new Date(payloadObject.exp * 1000);
@@ -466,77 +700,6 @@
         return Authentication;
     }());
 
-    /**
-     * @module ConcurrencyManager
-     */
-    /**
-     * Handling and limiting concurrent requests for the API.
-     * @param {AxiosInstance} axios   Reference to the caller instance
-     * @param {number=10} limit       When to reate-limit outgoing requests
-     * @author Jan Biasi <biasijan@gmail.com>
-     */
-    var concurrencyManager = function (axios, limit) {
-        if (limit === void 0) { limit = 10; }
-        if (limit < 1) {
-            throw new Error("ConcurrencyManager Error: minimun concurrent requests is 1");
-        }
-        var instance = {
-            limit: limit,
-            queue: [],
-            running: [],
-            interceptors: {
-                request: null,
-                response: null,
-            },
-            push: function (reqHandler) {
-                instance.queue.push(reqHandler);
-                instance.shiftInitial();
-            },
-            shiftInitial: function () {
-                setTimeout(function () {
-                    if (instance.running.length < instance.limit) {
-                        instance.shift();
-                    }
-                }, 0);
-            },
-            shift: function () {
-                if (instance.queue.length) {
-                    var queued = instance.queue.shift();
-                    queued.resolver(queued.request);
-                    instance.running.push(queued);
-                }
-            },
-            // use as interceptor. Queue outgoing requests
-            requestHandler: function (req) {
-                return new Promise(function (resolve) {
-                    instance.push({
-                        request: req,
-                        resolver: resolve,
-                    });
-                });
-            },
-            // use as interceptor. Execute queued request upon receiving a response
-            responseHandler: function (res) {
-                instance.running.shift();
-                instance.shift();
-                return res;
-            },
-            detach: function () {
-                axios.interceptors.request.eject(instance.interceptors.request);
-                axios.interceptors.response.eject(instance.interceptors.response);
-            },
-            attach: function (limitConcurrentRequestsTo) {
-                if (limitConcurrentRequestsTo) {
-                    instance.limit = limitConcurrentRequestsTo;
-                }
-                // queue concurrent requests
-                instance.interceptors.request = axios.interceptors.request.use(instance.requestHandler);
-                instance.interceptors.response = axios.interceptors.response.use(instance.responseHandler, instance.responseHandler);
-            },
-        };
-        return instance;
-    };
-
     var defaultSerializeTransform = function (key, value) { return key + "=" + value; };
     function querify(obj, prefix, serializer) {
         if (serializer === void 0) { serializer = defaultSerializeTransform; }
@@ -553,33 +716,60 @@
         return qs.join('');
     }
 
+    if (typeof module === 'undefined' || !module.exports) {
+        // include polyfills for browser only
+        require('whatwg-fetch');
+    }
+    function withTimeout(fn, timeout) {
+        return Promise.race([
+            fn(),
+            new Promise(function (_resolve, reject) {
+                setTimeout(function () { return reject(new Error("Timeout of " + timeout + " reached")); }, timeout);
+            })
+        ]);
+    }
+    function request(opts) {
+        return __awaiter(this, void 0, void 0, function () {
+            var url, response;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (!opts) {
+                            throw new Error("Invalid request options: " + opts);
+                        }
+                        url = opts.url;
+                        if (opts.baseURL) {
+                            url = opts.baseURL + "/" + url;
+                        }
+                        if (opts.params) {
+                            url = url + "?" + querify(opts.params);
+                        }
+                        if (opts.body && typeof opts.body !== 'string') {
+                            opts.body = JSON.stringify(opts.body);
+                        }
+                        return [4 /*yield*/, withTimeout(function () { return fetch(url, {
+                                method: opts.method,
+                                body: opts.body,
+                                headers: opts.headers,
+                                credentials: opts.credentials || 'omit'
+                            }); }, opts.timeout || 2000)];
+                    case 1:
+                        response = _a.sent();
+                        if (!(opts && opts.skipToJSON)) return [3 /*break*/, 3];
+                        return [4 /*yield*/, response.text()];
+                    case 2: return [2 /*return*/, _a.sent()];
+                    case 3: return [4 /*yield*/, response.json()];
+                    case 4: 
+                    // return parsed values
+                    return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    }
+
     /**
      * @module API
      */
-    var __extends = (undefined && undefined.__extends) || (function () {
-        var extendStatics = function (d, b) {
-            extendStatics = Object.setPrototypeOf ||
-                ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-                function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-            return extendStatics(d, b);
-        };
-        return function (d, b) {
-            extendStatics(d, b);
-            function __() { this.constructor = d; }
-            d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-        };
-    })();
-    var __assign$1 = (undefined && undefined.__assign) || function () {
-        __assign$1 = Object.assign || function(t) {
-            for (var s, i = 1, n = arguments.length; i < n; i++) {
-                s = arguments[i];
-                for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                    t[p] = s[p];
-            }
-            return t;
-        };
-        return __assign$1.apply(this, arguments);
-    };
     var APIError = /** @class */ (function (_super) {
         __extends(APIError, _super);
         function APIError(message, info) {
@@ -637,11 +827,8 @@
     var API = /** @class */ (function () {
         function API(config) {
             this.config = config;
-            this.xhr = axios.create({
-                paramsSerializer: querify,
-                timeout: 10 * 60 * 1000,
-            });
-            this.concurrent = concurrencyManager(this.xhr, 10);
+            // make request function public
+            this.fetch = request;
             this.auth = new Authentication(config, {
                 post: this.post.bind(this),
             });
@@ -724,12 +911,12 @@
          * @typeparam T                     Response type definition, defaults to `any`
          * @return {Promise<T>}
          */
-        API.prototype.request = function (method, endpoint, params, data, noEnv, headers, skipParseToJSON) {
+        API.prototype.request = function (method, endpoint, params, data, noEnv, headers, skipToJSON) {
             if (params === void 0) { params = {}; }
             if (data === void 0) { data = {}; }
             if (noEnv === void 0) { noEnv = false; }
             if (headers === void 0) { headers = {}; }
-            if (skipParseToJSON === void 0) { skipParseToJSON = false; }
+            if (skipToJSON === void 0) { skipToJSON = false; }
             if (!this.config.url) {
                 throw new Error('API has no URL configured to send requests to, please check the docs.');
             }
@@ -737,61 +924,65 @@
             if (noEnv === false) {
                 baseURL += this.config.project + "/";
             }
-            var requestOptions = {
-                baseURL: baseURL,
-                data: data,
-                headers: headers,
-                method: method,
-                params: params,
-                url: endpoint,
-            };
             if (this.config.token && isString(this.config.token) && this.config.token.length > 0) {
-                requestOptions.headers = headers;
-                requestOptions.headers.Authorization = "Bearer " + this.config.token;
+                headers.Authorization = "Bearer " + this.config.token;
             }
-            return this.xhr
-                .request(requestOptions)
-                .then(function (res) { return res.data; })
-                .then(function (responseData) {
-                if (!responseData || responseData.length === 0) {
-                    return responseData;
-                }
-                if (typeof responseData !== "object") {
-                    try {
-                        return skipParseToJSON ? responseData : JSON.parse(responseData);
-                    }
-                    catch (error) {
-                        throw {
-                            data: responseData,
-                            error: error,
-                            json: true,
-                        };
-                    }
-                }
-                return responseData;
-            })
-                .catch(function (error) {
-                var errorResponse = error
-                    ? error.response || {}
-                    : {};
-                var errorResponseData = errorResponse.data || {};
-                var baseErrorInfo = {
-                    error: error,
-                    url: requestOptions.url,
-                    method: requestOptions.method,
-                    params: requestOptions.params,
-                    code: errorResponseData.error ? errorResponseData.error.code || error.code : -1
-                };
-                if (error.response) {
-                    throw new APIError(errorResponseData.error.message || 'Unknown error occured', baseErrorInfo);
-                }
-                else if (error.response && error.response.json === true) {
-                    throw new APIError("API returned invalid JSON", __assign$1({}, baseErrorInfo, { code: 422 }));
-                }
-                else {
-                    throw new APIError("Network error", __assign$1({}, baseErrorInfo, { code: -1 }));
-                }
+            return this.fetch({
+                method: method,
+                url: endpoint,
+                body: data,
+                baseURL: baseURL,
+                headers: headers,
+                params: params,
+                skipToJSON: skipToJSON
             });
+            // return this.xhr
+            //   .request(requestOptions)
+            //   .then((res: { data: any }) => res.data)
+            //   .then((responseData: any) => {
+            //     if (!responseData || responseData.length === 0) {
+            //       return responseData;
+            //     }
+            //     if (typeof responseData !== "object") {
+            //       try {
+            //         return skipParseToJSON ? responseData : JSON.parse(responseData);
+            //       } catch (error) {
+            //         throw {
+            //           data: responseData,
+            //           error,
+            //           json: true,
+            //         };
+            //       }
+            //     }
+            //     return responseData as T;
+            //   })
+            //   .catch((error?: IErrorResponse) => {
+            //     const errorResponse: IErrorResponse['response'] = error
+            //       ? error.response || {} as IErrorResponse['response']
+            //       : {} as IErrorResponse['response'];
+            //     const errorResponseData: IErrorResponseData =
+            //       errorResponse.data || {} as IErrorResponseData;
+            //     const baseErrorInfo = {
+            //       error,
+            //       url: requestOptions.url,
+            //       method: requestOptions.method,
+            //       params: requestOptions.params,
+            //       code: errorResponseData.error ? errorResponseData.error.code || error.code : -1
+            //     }
+            //     if (error.response) {
+            //       throw new APIError(errorResponseData.error.message || 'Unknown error occured', baseErrorInfo);
+            //     } else if (error.response && error.response.json === true) {
+            //       throw new APIError("API returned invalid JSON", {
+            //         ...baseErrorInfo,
+            //         code: 422
+            //       });
+            //     } else {
+            //       throw new APIError("Network error", {
+            //         ...baseErrorInfo,
+            //         code: -1
+            //       });
+            //     }
+            //   });
         };
         return API;
     }());
@@ -799,41 +990,6 @@
     /**
      * @module SDK
      */
-    var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
-        return new (P || (P = Promise))(function (resolve, reject) {
-            function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-            function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-            function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-            step((generator = generator.apply(thisArg, _arguments || [])).next());
-        });
-    };
-    var __generator = (undefined && undefined.__generator) || function (thisArg, body) {
-        var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-        return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-        function verb(n) { return function (v) { return step([n, v]); }; }
-        function step(op) {
-            if (f) throw new TypeError("Generator is already executing.");
-            while (_) try {
-                if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-                if (y = 0, t) op = [op[0] & 2, t.value];
-                switch (op[0]) {
-                    case 0: case 1: t = op; break;
-                    case 4: _.label++; return { value: op[1], done: false };
-                    case 5: _.label++; y = op[1]; op = [0]; continue;
-                    case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                    default:
-                        if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                        if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                        if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                        if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                        if (t[2]) _.ops.pop();
-                        _.trys.pop(); continue;
-                }
-                op = body.call(thisArg, _);
-            } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-            if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-        }
-    };
     /**
      * Main SDK implementation provides the public API to interact with a
      * remote directus instance.
@@ -1117,39 +1273,41 @@
          * @see https://docs.directus.io/api/reference.html#files
          */
         SDK.prototype.uploadFiles = function (data, // TODO: fix type definition
-        onUploadProgress) {
-            var _this = this;
-            if (onUploadProgress === void 0) { onUploadProgress = function () { return ({}); }; }
+        _onUploadProgress // TODO: deprecate with fetch as streams are experimental (see W3C)
+        ) {
             var headers = {
                 Authorization: "Bearer " + this.config.token,
                 "Content-Type": "multipart/form-data",
             };
-            // limit concurrent requests to 5
-            this.api.concurrent.attach(5);
-            return this.api.xhr
-                .post(this.config.url + "/" + this.config.project + "/files", data, {
-                headers: headers,
-                onUploadProgress: onUploadProgress,
-            })
-                .then(function (res) {
-                // detach concurrency manager
-                _this.api.concurrent.detach();
-                return res.data;
-            })
-                .catch(function (error) {
-                // detach concurrency manager
-                _this.api.concurrent.detach();
-                if (error.response) {
-                    throw error.response.data.error;
-                }
-                else {
-                    throw {
-                        code: -1,
-                        error: error,
-                        message: "Network Error",
-                    };
-                }
+            var filesURL = this.config.url + "/" + this.config.project + "/files";
+            return request({
+                method: 'post',
+                url: filesURL, body: data,
+                headers: headers
             });
+            // return this.api.xhr
+            //   .post(`${this.config.url}/${this.config.project}/files`, data, {
+            //     headers,
+            //     onUploadProgress,
+            //   })
+            //   .then((res: { data: any }) => {
+            //     // detach concurrency manager
+            //     this.api.concurrent.detach();
+            //     return res.data;
+            //   })
+            //   .catch((error: IErrorResponse) => {
+            //     // detach concurrency manager
+            //     this.api.concurrent.detach();
+            //     if (error.response) {
+            //       throw error.response.data.error;
+            //     } else {
+            //       throw {
+            //         code: -1,
+            //         error,
+            //         message: "Network Error",
+            //       };
+            //     }
+            //   });
         };
         // #endregion files
         // #region items
@@ -1520,7 +1678,6 @@
 
     exports.Configuration = Configuration;
     exports.SDK = SDK;
-    exports.concurrencyManager = concurrencyManager;
     exports.default = SDK;
     exports.getCollectionItemPath = getCollectionItemPath;
     exports.getPayload = getPayload;
