@@ -7,10 +7,8 @@ API schema is pre-defined:
 
 ```ts
 // client.ts
-export const client = new DirectusSDK();
-client.login({
+export const client = new DirectusSDK({
   url: "https://demo-api.directus.app/",
-  project: "_",
   email: "admin@example.com",
   password: "password"
 });

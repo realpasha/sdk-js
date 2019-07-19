@@ -23,7 +23,7 @@ export class LoadMoviesSuccess implements Action {
     constructor(public payload: Movies[]) {}
 }
 ```
-> We're going to re-use our `movie.service.ts` created in [this recipe](./Angular.md).
+> We're going to re-use our `movie.service.ts` created as described in [this recipe](./Angular.md).
 
 ###### `movies.effects.ts`
 ```ts

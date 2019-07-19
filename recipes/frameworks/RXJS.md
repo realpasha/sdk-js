@@ -7,10 +7,8 @@ it's straight forward to use it like this;
 import { from } from 'rxjs';
 import SDK from '@directus/sdk-js';
 
-const client = new DirectusSDK();
-client.login({
+const client = new DirectusSDK({
     url: "https://demo-api.directus.app/",
-    project: "_",
     email: "admin@example.com",
     password: "password"
 });

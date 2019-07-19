@@ -18,11 +18,6 @@
   <a href="https://directus.app">Demo</a> •
   <a href="https://docs.directus.io/supporting-directus.html">Contribute</a>
 </h3>
-<h3 align="center">
-  <a href="https://travis-ci.org/janbiasi/sdk-js" target="_blank" rel="noopener noreferrer">
-    <img src="https://travis-ci.org/janbiasi/sdk-js.svg?branch=master" alt="Build status" />
-  </a>
-</h3>
 
 <p>&nbsp;</p>
 
@@ -53,7 +48,7 @@ head over to the [recipes](recipes) or the generated [tsdoc](docs).
 ### Framework agnostic
 
 The SDK can be integrated in all modern frameworks with ease. More information about 
-your dedicated framework can be found in the [recipes](./tree/master/recipes). If your 
+your dedicated framework can be found in the [recipes](recipes). If your 
 favorite framework is missing feel free to create a PR and/or issue on [GitHub](https://github.com/directus/sdk-js).
 
 ---
