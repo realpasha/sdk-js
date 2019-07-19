@@ -1,7 +1,6 @@
 ## `@directus/sdk-js` with RXJS
 
-Using the SDK with RXJS is quite simple as the SDK is built on promises. Thus 
-it's straight forward to use it like this;
+The SDK uses Promises across the board, making integration with RXJS painless:
 
 ```ts
 import { from } from 'rxjs';

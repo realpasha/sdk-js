@@ -2,7 +2,7 @@
 
 We want to take a look on how to provide the API layer as a generic service.
 This service provides the main access to the SDK. It will be used in other
-services as reference to the API, which is the classic angular approach.
+services as reference to the API, which is the classic Angular approach.
 
 > Important: do not forget to add injectable services to the providers list of your application module! A fully working and editable example can be found on [stackblitz](https://stackblitz.com/edit/directus-angular-service?file=src/app/app.component.ts).
 

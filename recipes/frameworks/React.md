@@ -1,12 +1,11 @@
 ## `@directus/sdk-js` with React
 
-### With hooks (the awesome way)
+### With hooks (recommended)
 
 > Live demo available via [stackblitz](https://stackblitz.com/edit/directus-react-hooks?file=index.tsx)
 
-Imagine that you would just need to import a function which manages your response,
-state, errors and loading-state handling. All this within one line. With the React hooks
-strategy this is so simple:
+By relying on hooks, you're able to import a function which manages your response,
+state, errors and loading-state handling, all in one line:
 
 ```tsx
 import React from 'react';
@@ -33,9 +32,7 @@ const App: React.FC<{}> = () => {
 }
 ```
 
-How easy is that huh? Doesn't take 10s to write the whole call! But how do we write 
-the `useDirectus` hook - that's quite simple. The snippet below is everything you need.
-Make sure that you add your own CMS authentication configuration to it.
+In order to make this happen, we'll have to setup the useDirectus hook function separately. The snippet below should be all you need to get started:
 
 ```tsx
 import { useState, useEffect, useDebugValue } from 'react';
@@ -43,7 +40,7 @@ import DirectusSDK from '@directus/sdk-js';
 
 // main client instance
 const client = new DirectusSDK({
-  // ... auth here
+  url: 'https://demo-api.directus.app/'
 });
 
 // define the loading states
@@ -92,14 +89,7 @@ export function useDirectus<
 
 ### With higher order components (HoC)
 
-There's this straight forward concept in react to use higher order components (short: hoc) 
-to provide functionality which can be re-used for multiple components. We don't 
-recommend to use this strategy for larger apps, instead use a state paradigm like
-[Redux](./Redux) or similar. However we'd wanted to show you a variant how to 
-directly bind API states to a component.
-
-> Keep in mind that we didn't care about caching etc. This is just an entry example
-for how to work with hoc's and APIs
+Alternatively, the SDK can also be used as a higher-order component (HoC). This allows you to directly bind API states to a component. While this is a clean way to inject data from Directus into a component, it doesn't scale very well into large applications. For larger applications, we recommend to use a state paradimg like [Redux](./Redux) or similar.
 
 ```tsx
 import React, { Component } from 'react';
@@ -154,7 +144,7 @@ export function withItems<T, P extends object = {}>(
 };
 ```
 
-Then we could use it like this:
+Then we can use it like this:
 
 ```tsx
 import * as React from 'react';
