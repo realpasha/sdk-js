@@ -1,8 +1,7 @@
 ## `@directus/sdk-js` with NGRX
 
 This guide should showcase how you can use the SDK together with the NGRX framework.
-If you're not familiar with NGRX (includes Redux and RXJS), please make sure that you'll 
-understand those frameworks first!
+If you're not familiar with NGRX (includes Redux and RXJS), we highly recommend checking out [their docs](https://ngrx.io/docs) first.
 
 ###### `movies.store.ts`
 ```ts
