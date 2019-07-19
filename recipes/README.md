@@ -11,4 +11,4 @@
 * Using the SDK with [NGRX](./frameworks/NGRX.md) (with `@ngrx/effects`)
 * Using the SDK with [Redux](./frameworks/Redux.md) (using `redux-saga` or `redux-thunk`)
 * Using the SDK with [RXJS](./frameworks/RXJS.md) (observables)
-* Using the SDK with [Vue](./frameworks/Vue.md) _(coming soon)_
+* Using the SDK with [Vue](./frameworks/Vue.md)
