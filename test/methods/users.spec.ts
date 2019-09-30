@@ -43,10 +43,6 @@ describe("Users", () => {
       expect(client.api.get).to.have.been.calledWith("/users", {});
     });
 
-    it("Errors if parameter `params` is of a wrong type", () => {
-      expect(() => client.getUsers("params" as any)).to.throw();
-    });
-
     it("Calls get() for the right endpoint", () => {
       client.getUsers({ limit: 50 });
       expect(client.api.get).to.have.been.calledWith("/users", { limit: 50 });
@@ -54,14 +50,6 @@ describe("Users", () => {
   });
 
   describe("#getUser()", () => {
-    it("Errors on missing `primaryKey` parameter", () => {
-      expect(client.getUser).to.throw();
-    });
-
-    it("Errors if parameter `params` is of a wrong type", () => {
-      expect(() => client.getUser("projects", 140 as any)).to.throw();
-    });
-
     it("Calls get() for the right endpoint", () => {
       client.getUser(15, { fields: "first_name" });
       expect(client.api.get).to.have.been.calledWith("/users/15", {
@@ -76,10 +64,6 @@ describe("Users", () => {
       expect(client.api.get).to.have.been.calledWith("/users/me", {});
     });
 
-    it("Errors if parameter `params` is of a wrong type", () => {
-      expect(() => client.getMe(140 as any)).to.throw();
-    });
-
     it("Calls get() for the right endpoint", () => {
       client.getMe({ fields: "first_name" });
       expect(client.api.get).to.have.been.calledWith("/users/me", {
@@ -89,14 +73,6 @@ describe("Users", () => {
   });
 
   describe("#updateUser()", () => {
-    it("Errors on missing `primaryKey` parameter", () => {
-      expect(client.updateUser).to.throw();
-    });
-
-    it("Errors on missing `body` parameter", () => {
-      expect(() => client.updateUser(15, undefined as any)).to.throw();
-    });
-
     it("Calls #updateItem()", () => {
       client.updateUser(15, { last_page: "/activity" });
       expect(client.updateItem).to.have.been.calledWith("directus_users", 15, {

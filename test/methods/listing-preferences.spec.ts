@@ -47,14 +47,6 @@ describe("Listing Preferences", () => {
   });
 
   describe("#getMyListingPreferences()", () => {
-    it("Errors on missing `collection` parameter", () => {
-      expect(client.getMyListingPreferences).to.throw();
-    });
-
-    it("Errors if parameter `params` is of a wrong type", () => {
-      expect(() => client.getMyListingPreferences("projects", "params" as any)).to.throw();
-    });
-
     it("Calls get() three times", () => {
       client.config.token = jwt.sign({ foo: "bar" }, "secret-string", {
         expiresIn: "1h",

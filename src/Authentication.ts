@@ -15,7 +15,6 @@ import { IRefreshTokenResponse } from "./schemes/response/Token";
 
 // Utilities
 import { isFunction, isObject, isString } from "./utils/is";
-import { invariant } from "./utils/invariant";
 import { getPayload } from "./utils/payload";
 
 interface IAuthenticationRefreshError {
@@ -99,12 +98,6 @@ export class Authentication implements IAuthentication {
    * @return {Promise<ILoginResponse>}
    */
   public login(credentials: ILoginCredentials, options?: ILoginOptions): Promise<ILoginResponse> {
-    invariant(isObject(credentials), "malformed credentials");
-    invariant(
-      isString(credentials.email) && isString(credentials.password),
-      "email & password are required in credentials"
-    );
-
     this.config.token = null;
 
     if (isString(credentials.url)) {
@@ -221,8 +214,6 @@ export class Authentication implements IAuthentication {
    * @param {string} token
    */
   public refresh(token: string): Promise<IRefreshTokenResponse> {
-    invariant(isString(token), "token must be a string");
-
     return this.inject.post<IRefreshTokenResponse>("/auth/refresh", { token });
   }
 

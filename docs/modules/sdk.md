@@ -20,4 +20,4 @@
 
 Ƭ **PrimaryKeyType**: *string | number*
 
-*Defined in [SDK.ts:53](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L53)*
+*Defined in [SDK.ts:52](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L52)*

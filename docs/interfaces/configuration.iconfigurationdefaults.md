@@ -21,7 +21,7 @@
 
 • **project**: *string*
 
-*Defined in [Configuration.ts:45](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L45)*
+*Defined in [Configuration.ts:44](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L44)*
 
 ___
 
@@ -29,4 +29,4 @@ ___
 
 • **tokenExpirationTime**: *number*
 
-*Defined in [Configuration.ts:44](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L44)*
+*Defined in [Configuration.ts:43](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L43)*

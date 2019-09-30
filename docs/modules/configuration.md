@@ -28,4 +28,4 @@
 
 • **STORAGE_KEY**: *"directus-sdk-js"* = "directus-sdk-js"
 
-*Defined in [Configuration.ts:8](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L8)*
+*Defined in [Configuration.ts:7](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L7)*

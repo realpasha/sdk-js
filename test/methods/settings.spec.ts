@@ -41,10 +41,6 @@ describe("Settings", () => {
       expect(client.api.get).to.have.been.calledWith("/settings", {});
     });
 
-    it("Errors if parameter `params` is of a wrong type", () => {
-      expect(() => client.getSettings("params" as any)).to.throw();
-    });
-
     it("Calls get() for the right endpoint", () => {
       client.getSettings({ limit: 50 });
       expect(client.api.get).to.have.been.calledWith("/settings", {

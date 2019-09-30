@@ -40,7 +40,7 @@
 
 *Inherited from void*
 
-*Defined in [/Users/janbiasi/github/contrib/sdk-js/node_modules/axios/index.d.ts:81](https://github.com/direcuts/sdk-js/tree/master//Users/janbiasi/github/contrib/sdk-js/node_modules/axios/index.d.ts#L81)*
+*Defined in [/Users/janbiasi/github/contrib/sdk-js-fork/node_modules/axios/index.d.ts:81](https://github.com/direcuts/sdk-js/tree/master//Users/janbiasi/github/contrib/sdk-js-fork/node_modules/axios/index.d.ts#L81)*
 
 ___
 
@@ -50,7 +50,7 @@ ___
 
 *Inherited from void*
 
-*Defined in [/Users/janbiasi/github/contrib/sdk-js/node_modules/axios/index.d.ts:80](https://github.com/direcuts/sdk-js/tree/master//Users/janbiasi/github/contrib/sdk-js/node_modules/axios/index.d.ts#L80)*
+*Defined in [/Users/janbiasi/github/contrib/sdk-js-fork/node_modules/axios/index.d.ts:80](https://github.com/direcuts/sdk-js/tree/master//Users/janbiasi/github/contrib/sdk-js-fork/node_modules/axios/index.d.ts#L80)*
 
 ___
 
@@ -76,7 +76,7 @@ ___
 
 *Inherited from void*
 
-*Defined in [/Users/janbiasi/github/contrib/sdk-js/node_modules/axios/index.d.ts:84](https://github.com/direcuts/sdk-js/tree/master//Users/janbiasi/github/contrib/sdk-js/node_modules/axios/index.d.ts#L84)*
+*Defined in [/Users/janbiasi/github/contrib/sdk-js-fork/node_modules/axios/index.d.ts:84](https://github.com/direcuts/sdk-js/tree/master//Users/janbiasi/github/contrib/sdk-js-fork/node_modules/axios/index.d.ts#L84)*
 
 ___
 
@@ -94,7 +94,7 @@ ___
 
 *Inherited from void*
 
-*Defined in [/Users/janbiasi/github/contrib/sdk-js/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:964](https://github.com/direcuts/sdk-js/tree/master//Users/janbiasi/github/contrib/sdk-js/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts#L964)*
+*Defined in [/Users/janbiasi/github/contrib/sdk-js-fork/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:964](https://github.com/direcuts/sdk-js/tree/master//Users/janbiasi/github/contrib/sdk-js-fork/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts#L964)*
 
 ___
 
@@ -104,7 +104,7 @@ ___
 
 *Inherited from void*
 
-*Defined in [/Users/janbiasi/github/contrib/sdk-js/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:963](https://github.com/direcuts/sdk-js/tree/master//Users/janbiasi/github/contrib/sdk-js/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts#L963)*
+*Defined in [/Users/janbiasi/github/contrib/sdk-js-fork/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:963](https://github.com/direcuts/sdk-js/tree/master//Users/janbiasi/github/contrib/sdk-js-fork/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts#L963)*
 
 ___
 
@@ -114,7 +114,7 @@ ___
 
 *Inherited from void*
 
-*Defined in [/Users/janbiasi/github/contrib/sdk-js/node_modules/axios/index.d.ts:82](https://github.com/direcuts/sdk-js/tree/master//Users/janbiasi/github/contrib/sdk-js/node_modules/axios/index.d.ts#L82)*
+*Defined in [/Users/janbiasi/github/contrib/sdk-js-fork/node_modules/axios/index.d.ts:82](https://github.com/direcuts/sdk-js/tree/master//Users/janbiasi/github/contrib/sdk-js-fork/node_modules/axios/index.d.ts#L82)*
 
 ___
 
@@ -124,7 +124,7 @@ ___
 
 *Inherited from void*
 
-*Defined in [/Users/janbiasi/github/contrib/sdk-js/node_modules/axios/index.d.ts:83](https://github.com/direcuts/sdk-js/tree/master//Users/janbiasi/github/contrib/sdk-js/node_modules/axios/index.d.ts#L83)*
+*Defined in [/Users/janbiasi/github/contrib/sdk-js-fork/node_modules/axios/index.d.ts:83](https://github.com/direcuts/sdk-js/tree/master//Users/janbiasi/github/contrib/sdk-js-fork/node_modules/axios/index.d.ts#L83)*
 
 ___
 
@@ -136,4 +136,4 @@ ___
 
 *Overrides void*
 
-*Defined in [/Users/janbiasi/github/contrib/sdk-js/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:965](https://github.com/direcuts/sdk-js/tree/master//Users/janbiasi/github/contrib/sdk-js/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts#L965)*
+*Defined in [/Users/janbiasi/github/contrib/sdk-js-fork/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:965](https://github.com/direcuts/sdk-js/tree/master//Users/janbiasi/github/contrib/sdk-js-fork/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts#L965)*

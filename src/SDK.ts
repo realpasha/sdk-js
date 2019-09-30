@@ -46,10 +46,7 @@ import { Configuration, IConfiguration, IConfigurationOptions } from "./Configur
 import { IServerInformationResponse } from "./schemes/response/ServerInformation";
 import { ISettingsResponse } from "./schemes/response/Setting";
 
-// Utilities
-import { invariant } from "./utils/invariant";
-import { isArray, isNotNull, isNumber, isObject, isObjectOrEmpty, isString } from "./utils/is";
-
+// TODO: Move to shared types, SDK is the wrong place for that
 type PrimaryKeyType = string | number;
 
 /**
@@ -130,8 +127,6 @@ export class SDK {
    * temporary password.
    */
   public requestPasswordReset<TResponse extends any = any>(email: string): Promise<TResponse> {
-    invariant(isString(email), "email must be a string");
-
     return this.api.post<TResponse>("/auth/password/request", {
       email,
     });
@@ -147,8 +142,6 @@ export class SDK {
    * Get activity
    */
   public getActivity(params: QueryParamsType = {}): Promise<IActivityResponse> {
-    invariant(isObjectOrEmpty(params), "params must be an object or empty");
-
     return this.api.get<IActivityResponse>("/activity", params);
   }
 
@@ -173,8 +166,6 @@ export class SDK {
    * Get all available collections
    */
   public getCollections(params: QueryParamsType = {}): Promise<ICollectionsResponse[]> {
-    invariant(isObjectOrEmpty(params), "params must be an object or empty");
-
     return this.api.get<ICollectionsResponse[]>("/collections", params);
   }
 
@@ -182,9 +173,6 @@ export class SDK {
    * Get collection info by name
    */
   public getCollection(collection: string, params: QueryParamsType = {}): Promise<ICollectionResponse> {
-    invariant(isString(collection), "collection must be a string");
-    invariant(isObjectOrEmpty(params), "params must be an object or empty");
-
     return this.api.get<ICollectionResponse>(`/collections/${collection}`, params);
   }
 
@@ -192,7 +180,6 @@ export class SDK {
    * Create a collection
    */
   public createCollection(data: ICollection): Promise<ICollectionResponse> {
-    invariant(isObject(data), "data must be an object");
     return this.api.post<ICollectionResponse>("/collections", data);
   }
 
@@ -200,9 +187,6 @@ export class SDK {
    * Updates a certain collection
    */
   public updateCollection(collection: string, data: Partial<ICollection>): Promise<ICollectionResponse> {
-    invariant(isString(collection), "collection must be a string");
-    invariant(isObject(data), "data must be an object");
-
     return this.api.patch<ICollectionResponse>(`/collections/${collection}`, data);
   }
 
@@ -210,8 +194,6 @@ export class SDK {
    * Deletes a certain collection
    */
   public deleteCollection(collection: string): Promise<void> {
-    invariant(isString(collection), "collection must be a string");
-
     return this.api.delete<void>(`/collections/${collection}`);
   }
 
@@ -224,9 +206,6 @@ export class SDK {
    * @see https://docs.directus.io/api/reference.html#collection-presets
    */
   public getCollectionPresets<TResponse extends any[] = any[]>(params: QueryParamsType = {}): Promise<TResponse> {
-    invariant(isString(this.config.token), "defined token is not a string");
-    invariant(isObjectOrEmpty(params), "params must be an object or empty");
-
     const payload = this.api.getPayload<{ id: string; role: string }>();
 
     return Promise.all([
@@ -253,8 +232,6 @@ export class SDK {
   public createCollectionPreset<CollectionPreset extends ICollectionPreset>(
     data: CollectionPreset
   ): Promise<ICollectionPresetResponse<CollectionPreset>> {
-    invariant(isObject(data), "data must be an object");
-
     return this.api.post<ICollectionPresetResponse<CollectionPreset>>("/collection_presets", data);
   }
 
@@ -270,9 +247,6 @@ export class SDK {
     primaryKey: PrimaryKeyType,
     data: IUpdateCollectionPresetBody
   ): Promise<ICollectionPresetResponse<PartialCollectionPreset & TResultCollectionPreset>> {
-    invariant(isNotNull(primaryKey), "primaryKey must be defined");
-    invariant(isObject(data), "data must be an object");
-
     return this.api.patch<ICollectionPresetResponse<PartialCollectionPreset & TResultCollectionPreset>>(
       `/collection_presets/${primaryKey}`,
       data
@@ -284,8 +258,6 @@ export class SDK {
    * @see https://docs.directus.io/api/reference.html#collection-presets
    */
   public deleteCollectionPreset(primaryKey: PrimaryKeyType): Promise<void> {
-    invariant(isNotNull(primaryKey), "primaryKey must be defined");
-
     return this.api.delete<void>(`/collection_presets/${primaryKey}`);
   }
 
@@ -328,8 +300,6 @@ export class SDK {
   public getAllFields<TFieldsType extends IField[]>(
     params: QueryParamsType = {}
   ): Promise<IFieldsResponse<TFieldsType>> {
-    invariant(isObjectOrEmpty(params), "params must be an object or empty");
-
     return this.api.get<IFieldsResponse<TFieldsType>>("/fields", params);
   }
 
@@ -341,9 +311,6 @@ export class SDK {
     collection: string,
     params: QueryParamsType = {}
   ): Promise<IFieldsResponse<TFieldsType>> {
-    invariant(isString(collection), "collection must be a string");
-    invariant(isObjectOrEmpty(params), "params must be an object or empty");
-
     return this.api.get<IFieldsResponse<TFieldsType>>(`/fields/${collection}`, params);
   }
 
@@ -356,10 +323,6 @@ export class SDK {
     fieldName: string,
     params: QueryParamsType = {}
   ): Promise<IFieldResponse<TFieldType>> {
-    invariant(isString(collection), "collection must be a string");
-    invariant(isString(fieldName), "fieldName must be a string");
-    invariant(isObjectOrEmpty(params), "params must be an object or empty");
-
     return this.api.get<IFieldResponse<TFieldType>>(`/fields/${collection}/${fieldName}`, params);
   }
 
@@ -371,9 +334,6 @@ export class SDK {
     collection: string,
     fieldInfo: TFieldType
   ): Promise<IFieldResponse<TFieldType>> {
-    invariant(isString(collection), "collection must be a string");
-    invariant(isObject(fieldInfo), "fieldInfo must be an object");
-
     return this.api.post<IFieldResponse<TFieldType>>(`/fields/${collection}`, fieldInfo);
   }
 
@@ -386,10 +346,6 @@ export class SDK {
     fieldName: string,
     fieldInfo: TFieldType
   ): Promise<IFieldResponse<IField & TFieldType> | undefined> {
-    invariant(isString(collection), "collection must be a string");
-    invariant(isString(fieldName), "fieldName must be a string");
-    invariant(isObject(fieldInfo), "fieldInfo must be an object");
-
     return this.api.patch<IFieldResponse<IField & TFieldType>>(`/fields/${collection}/${fieldName}`, fieldInfo);
   }
 
@@ -433,13 +389,6 @@ export class SDK {
     fieldsInfoOrFieldNames: string[] | Array<Partial<IField>>,
     fieldInfo: Partial<IField> | null = null
   ): Promise<IFieldsResponse<TFieldsType & IField[]> | undefined> {
-    invariant(isString(collection), "collection must be a string");
-    invariant(isArray(fieldsInfoOrFieldNames), "fieldsInfoOrFieldNames must be an array");
-
-    if (fieldInfo) {
-      invariant(isObject(fieldInfo), "fieldInfo must be an object");
-    }
-
     if (fieldInfo) {
       return this.api.patch(`/fields/${collection}/${fieldsInfoOrFieldNames.join(",")}`, fieldInfo);
     }
@@ -452,9 +401,6 @@ export class SDK {
    * @see @see https://docs.directus.io/api/reference.html#fields-2
    */
   public deleteField(collection: string, fieldName: string): Promise<void> {
-    invariant(isString(collection), "collection must be a string");
-    invariant(isString(fieldName), "fieldName must be a string");
-
     return this.api.delete(`/fields/${collection}/${fieldName}`);
   }
 
@@ -467,7 +413,6 @@ export class SDK {
    * @see https://docs.directus.io/api/reference.html#files
    */
   public async getFiles(params: QueryParamsType = {}): Promise<IFilesResponse> {
-    invariant(isObjectOrEmpty(params), "Params must be an object");
     return this.api.get("/files", params);
   }
 
@@ -479,8 +424,6 @@ export class SDK {
     fileName: TFile,
     params: QueryParamsType = {}
   ): Promise<TFile extends string ? IFileResponse : IFilesResponse> {
-    invariant(isString(fileName), "FileName must be string");
-    invariant(isObjectOrEmpty(params), "Params must be an object");
     const files = typeof fileName === "string" ? fileName : (fileName as string[]).join(",");
     return this.api.get(`/files/${files}`, params);
   }
@@ -544,12 +487,7 @@ export class SDK {
     body: TTPartialItem,
     params: QueryParamsType = {}
   ): Promise<IItemResponse<TTPartialItem & TTResult>> {
-    invariant(isString(collection), "collection must be a string");
-    invariant(isNotNull(primaryKey), "primaryKey must be defined");
-    invariant(isObject(body), "body must be an object");
-
     const collectionBasePath = getCollectionItemPath(collection);
-
     return this.api.patch<IItemResponse<TTPartialItem & TTResult>>(`${collectionBasePath}/${primaryKey}`, body, params);
   }
 
@@ -565,11 +503,7 @@ export class SDK {
     body: TPartialItem,
     params: QueryParamsType = {}
   ) {
-    invariant(isString(collection), "collection must be a string");
-    invariant(isArray(body), "body must be an array");
-
     const collectionBasePath = getCollectionItemPath(collection);
-
     return this.api.patch<IItemsResponse<TPartialItem & TResult>>(collectionBasePath, body, params);
   }
 
@@ -579,11 +513,7 @@ export class SDK {
    * @return {Promise<IItemsResponse<TItemType>>}
    */
   public createItem<TItemType extends object>(collection: string, body: TItemType): Promise<IItemResponse<TItemType>> {
-    invariant(isString(collection), "collection must be a string");
-    invariant(isObject(body), "body must be an object");
-
     const collectionBasePath = getCollectionItemPath(collection);
-
     return this.api.post<IItemResponse<TItemType>>(collectionBasePath, body);
   }
 
@@ -596,11 +526,7 @@ export class SDK {
     collection: string,
     body: BodyType
   ): Promise<IItemsResponse<TItemsType>> {
-    invariant(isString(collection), "collection must be a string");
-    invariant(isArray(body), "body must be an array");
-
     const collectionBasePath = getCollectionItemPath(collection);
-
     return this.api.post<IItemsResponse<TItemsType>>(collectionBasePath, body);
   }
 
@@ -613,11 +539,7 @@ export class SDK {
     collection: string,
     params: QueryParamsType = {}
   ): Promise<IItemsResponse<TTItemsType>> {
-    invariant(isString(collection), "collection must be a string");
-    invariant(isObjectOrEmpty(params), "params must be an object or empty");
-
     const collectionBasePath = getCollectionItemPath(collection);
-
     return this.api.get<IItemsResponse<TTItemsType>>(collectionBasePath, params);
   }
 
@@ -631,12 +553,7 @@ export class SDK {
     primaryKey: PrimaryKeyType,
     params: QueryParamsType = {}
   ): Promise<IItemResponse<TItemType>> {
-    invariant(isString(collection), "collection must be a string");
-    invariant(isNotNull(primaryKey), "primaryKey must be defined");
-    invariant(isObjectOrEmpty(params), "params must be an object or empty");
-
     const collectionBasePath = getCollectionItemPath(collection);
-
     return this.api.get<IItemResponse<TItemType>>(`${collectionBasePath}/${primaryKey}`, params);
   }
 
@@ -645,11 +562,7 @@ export class SDK {
    * @see https://docs.directus.io/api/reference.html#delete-items
    */
   public deleteItem(collection: string, primaryKey: PrimaryKeyType) {
-    invariant(isString(collection), "collection must be a string");
-    invariant(isNotNull(primaryKey), "primaryKey must be defined");
-
     const collectionBasePath = getCollectionItemPath(collection);
-
     return this.api.delete<void>(`${collectionBasePath}/${primaryKey}`);
   }
 
@@ -658,11 +571,7 @@ export class SDK {
    * @see https://docs.directus.io/api/reference.html#delete-items
    */
   public deleteItems(collection: string, primaryKeys: PrimaryKeyType[]) {
-    invariant(isString(collection), "collection must be a string");
-    invariant(isArray(primaryKeys), "primaryKeys must be an array");
-
     const collectionBasePath = getCollectionItemPath(collection);
-
     return this.api.delete<void>(`${collectionBasePath}/${primaryKeys.join()}`);
   }
 
@@ -677,9 +586,6 @@ export class SDK {
     collection: string,
     params: QueryParamsType = {}
   ): Promise<TResponse> {
-    invariant(isString(this.config.token), "token must be defined");
-    invariant(isObjectOrEmpty(params), "params must be an object or empty");
-
     const payload = this.api.getPayload<{ role: string; id: string }>();
 
     return Promise.all([
@@ -736,8 +642,6 @@ export class SDK {
    * @return {Promise<IPermission>}
    */
   public getPermissions(params: QueryParamsType = {}): Promise<IItemsResponse<IPermission[]>> {
-    invariant(isObjectOrEmpty(params), "params must be an object or empty");
-
     return this.getItems<IPermission[]>("directus_permissions", params);
   }
 
@@ -747,8 +651,6 @@ export class SDK {
    * @typeparam TResponse Permissions type as array extending any[]
    */
   public getMyPermissions<TResponse extends any[] = any[]>(params: QueryParamsType = {}): Promise<TResponse> {
-    invariant(isObjectOrEmpty(params), "params must be an object or empty");
-
     return this.api.get("/permissions/me", params);
   }
 
@@ -758,8 +660,6 @@ export class SDK {
    * @typeparam TResponse Permissions type as array extending any[]
    */
   public createPermissions<TResponse extends any[] = any[]>(data: any[]): Promise<TResponse> {
-    invariant(isArray(data), "data must be anarry");
-
     return this.api.post("/permissions", data);
   }
 
@@ -769,8 +669,6 @@ export class SDK {
    * @typeparam TResponse Permissions type as array extending any[]
    */
   public updatePermissions<TResponse extends any[] = any[]>(data: any[]): Promise<TResponse> {
-    invariant(isArray(data), "data must be anarry");
-
     return this.api.patch<TResponse>("/permissions", data);
   }
 
@@ -784,7 +682,6 @@ export class SDK {
    * @return {Promise<IRelationsResponse>}
    */
   public getRelations(params: QueryParamsType = {}) {
-    invariant(isObjectOrEmpty(params), "params must be an object or empty");
     return this.api.get<IRelationsResponse>("/relations", params);
   }
 
@@ -809,9 +706,6 @@ export class SDK {
    * Get the relationship information for the given collection
    */
   public getCollectionRelations(collection: string, params: QueryParamsType = {}): Promise<any[]> {
-    invariant(isString(collection), "collection must be a string");
-    invariant(isObjectOrEmpty(params), "params must be an object or empty");
-
     return Promise.all([
       this.api.get<any>("/relations", {
         "filter[collection_a][eq]": collection,
@@ -838,12 +732,7 @@ export class SDK {
     primaryKey: PrimaryKeyType,
     params: QueryParamsType = {}
   ): Promise<IRevisionResponse<TDataAndDelta>> {
-    invariant(isString(collection), "collection must be a string");
-    invariant(isNotNull(primaryKey), "primaryKey must be defined");
-    invariant(isObjectOrEmpty(params), "params must be an object or empty");
-
     const collectionBasePath = getCollectionItemPath(collection);
-
     return this.api.get<IRevisionResponse<TDataAndDelta>>(`${collectionBasePath}/${primaryKey}/revisions`, params);
   }
 
@@ -854,12 +743,7 @@ export class SDK {
    * @param {number} revisionID
    */
   public revert(collection: string, primaryKey: PrimaryKeyType, revisionID: number): Promise<void> {
-    invariant(isString(collection), "collection must be a string");
-    invariant(isNotNull(primaryKey), "primaryKey must be defined");
-    invariant(isNumber(revisionID), "revisionID must be a number");
-
     const collectionBasePath = getCollectionItemPath(collection);
-
     return this.api.patch(`${collectionBasePath}/${primaryKey}/revert/${revisionID}`);
   }
 
@@ -873,9 +757,6 @@ export class SDK {
    * @param {QueryParamsType?} params
    */
   public getRole(primaryKey: PrimaryKeyType, params: QueryParamsType = {}): Promise<IRoleResponse> {
-    invariant(isNumber(primaryKey), "primaryKey must be a number");
-    invariant(isObjectOrEmpty(params), "params must be an object or empty");
-
     return this.api.get<IRoleResponse>(`/roles/${primaryKey}`, params);
   }
 
@@ -884,8 +765,6 @@ export class SDK {
    * @param {QueryParamsType?} params
    */
   public getRoles(params: QueryParamsType = {}): Promise<IRoleResponse[]> {
-    invariant(isObjectOrEmpty(params), "params must be an object or empty");
-
     return this.api.get<IRoleResponse[]>("/roles", params);
   }
 
@@ -895,9 +774,6 @@ export class SDK {
    * @param {Role} body
    */
   public updateRole<Role extends Partial<IRole>>(primaryKey: PrimaryKeyType, body: Role) {
-    invariant(isNotNull(primaryKey), "primaryKey must be defined");
-    invariant(isObject(body), "body must be an object");
-
     return this.updateItem<Role, IRole>("directus_roles", primaryKey, body);
   }
 
@@ -906,8 +782,6 @@ export class SDK {
    * @param {Role} body
    */
   public createRole<TRole extends IRole>(body: TRole) {
-    invariant(isObject(body), "body must be an object");
-
     return this.createItem("directus_roles", body);
   }
 
@@ -916,8 +790,6 @@ export class SDK {
    * @param {PrimaryKeyType} primaryKey
    */
   public deleteRole(primaryKey: PrimaryKeyType): Promise<void> {
-    invariant(isNotNull(primaryKey), "primaryKey must be defined");
-
     return this.deleteItem("directus_roles", primaryKey);
   }
 
@@ -930,8 +802,6 @@ export class SDK {
    * @param {QueryParamsType?} params
    */
   public getSettings(params: QueryParamsType = {}) {
-    invariant(isObjectOrEmpty(params), "params must be an object or empty");
-
     return this.api.get<ISettingsResponse>("/settings", params);
   }
 
@@ -940,8 +810,6 @@ export class SDK {
    * @param {QueryParamsType?} params
    */
   public getSettingsFields(params: QueryParamsType = {}) {
-    invariant(isObjectOrEmpty(params), "params must be an object or empty");
-
     return this.api.get<IFieldsResponse>("/settings/fields", params);
   }
 
@@ -954,8 +822,6 @@ export class SDK {
    * @param {QueryParamsType?} params
    */
   public getUsers(params: QueryParamsType = {}) {
-    invariant(isObjectOrEmpty(params), "params must be an object or empty");
-
     return this.api.get<IUsersResponse>("/users", params);
   }
 
@@ -965,9 +831,6 @@ export class SDK {
    * @param {QueryParamsType?} params
    */
   public getUser<User extends IUser = IUser>(primaryKey: PrimaryKeyType, params: QueryParamsType = {}) {
-    invariant(isNotNull(primaryKey), "primaryKey must be defined");
-    invariant(isObjectOrEmpty(params), "params must be an object or empty");
-
     return this.api.get<IUserResponse<User>>(`/users/${primaryKey}`, params);
   }
 
@@ -976,8 +839,6 @@ export class SDK {
    * @param {QueryParamsType?} params
    */
   public getMe<User extends IUser = IUser>(params: QueryParamsType = {}) {
-    invariant(isObjectOrEmpty(params), "params must be an object or empty");
-
     return this.api.get<IUserResponse<User>>("/users/me", params);
   }
 
@@ -987,9 +848,6 @@ export class SDK {
    * @param {QueryParamsType?} params
    */
   public updateUser<User extends Partial<IUser>>(primaryKey: PrimaryKeyType, body: User) {
-    invariant(isNotNull(primaryKey), "primaryKey must be defined");
-    invariant(isObject(body), "body must be an object");
-
     return this.updateItem<User, IUser>("directus_users", primaryKey, body);
   }
 

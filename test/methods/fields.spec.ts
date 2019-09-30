@@ -41,10 +41,6 @@ describe("Fields", () => {
       expect(client.api.get).to.have.been.calledWith("/fields", {});
     });
 
-    it("Errors if parameter `params` is of a wrong type", () => {
-      expect(() => client.getAllFields("params" as any)).to.throw();
-    });
-
     it("Calls get() for the right endpoint", () => {
       client.getAllFields({ limit: 50 });
       expect(client.api.get).to.have.been.calledWith("/fields", {
@@ -54,14 +50,6 @@ describe("Fields", () => {
   });
 
   describe("#getFields()", () => {
-    it("Errors on missing `collection` parameter", () => {
-      expect(client.getFields).to.throw();
-    });
-
-    it("Errors if parameter `params` is of a wrong type", () => {
-      expect(() => client.getFields("projects", "params" as any)).to.throw();
-    });
-
     it("Calls get() for the right endpoint", () => {
       client.getFields("projects", { limit: 50 });
       expect(client.api.get).to.have.been.calledWith("/fields/projects", {
@@ -71,14 +59,6 @@ describe("Fields", () => {
   });
 
   describe("#getField()", () => {
-    it("Errors on missing `collection` parameter", () => {
-      expect(client.getField).to.throw();
-    });
-
-    it("Errors on missing `fieldName` parameter", () => {
-      expect(() => client.getField("projects", undefined as any)).to.throw();
-    });
-
     it("Calls get() for the right endpoint", () => {
       client.getField("projects", "title", { fields: "interface" });
       expect(client.api.get).to.have.been.calledWith("/fields/projects/title", {
@@ -88,14 +68,6 @@ describe("Fields", () => {
   });
 
   describe("#createField()", () => {
-    it("Errors on missing `collection` parameter", () => {
-      expect(client.createField).to.throw();
-    });
-
-    it("Errors on missing `fieldInfo` parameter", () => {
-      expect(() => client.createField("collection", undefined as any)).to.throw();
-    });
-
     it("Calls post() for the right endpoint", () => {
       // @ts-ignore
       client.createField("members", {
@@ -110,18 +82,6 @@ describe("Fields", () => {
   });
 
   describe("#updateField()", () => {
-    it("Errors on missing `collection` parameter", () => {
-      expect(client.updateField).to.throw();
-    });
-
-    it("Errors on missing `fieldName` parameter", () => {
-      expect(() => client.updateField("collection", undefined as any, undefined as any)).to.throw();
-    });
-
-    it("Errors on missing `fieldInfo` parameter", () => {
-      expect(() => client.updateField("members", "first_name", undefined as any)).to.throw();
-    });
-
     it("Calls patch() for the right endpoint", () => {
       client.updateField("members", "first_name", {
         field: "first_name",
@@ -135,18 +95,6 @@ describe("Fields", () => {
   });
 
   describe("#updateFields", () => {
-    it("Errors on missing `collection` parameter", () => {
-      expect(() => client.updateFields(undefined as any, undefined as any)).to.throw();
-    });
-
-    it("Errors if fieldsInfoOrFieldNames isn not an array", () => {
-      expect(() => client.updateFields("projects", "updates" as any));
-    });
-
-    it("Errors if fieldInfo has been passed in a wrong format", () => {
-      expect(() => client.updateFields("projects", ["first_name", "last_name"], "update" as any)).to.throw();
-    });
-
     it("Calls patch() multiple fields same value", () => {
       client.updateFields("members", ["first_name", "last_name"], {
         default_value: "",
@@ -183,14 +131,6 @@ describe("Fields", () => {
   });
 
   describe("#deleteField()", () => {
-    it("Errors on missing `collection` parameter", () => {
-      expect(() => client.deleteField(undefined as any, undefined as any)).to.throw();
-    });
-
-    it("Errors on missing `fieldName` parameter", () => {
-      expect(() => client.deleteField("test", undefined as any)).to.throw();
-    });
-
     it("Calls delete() for the right endpoint", () => {
       client.deleteField("test", "field");
       expect(client.api.delete).to.have.been.calledWith("/fields/test/field");

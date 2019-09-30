@@ -25,7 +25,7 @@
 
 • **localExp**? : *number*
 
-*Defined in [Configuration.ts:22](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L22)*
+*Defined in [Configuration.ts:21](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L21)*
 
 ___
 
@@ -33,7 +33,7 @@ ___
 
 • **persist**: *boolean*
 
-*Defined in [Configuration.ts:24](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L24)*
+*Defined in [Configuration.ts:23](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L23)*
 
 ___
 
@@ -41,7 +41,7 @@ ___
 
 • **project**: *string*
 
-*Defined in [Configuration.ts:20](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L20)*
+*Defined in [Configuration.ts:19](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L19)*
 
 ___
 
@@ -49,7 +49,7 @@ ___
 
 • **token**? : *string*
 
-*Defined in [Configuration.ts:21](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L21)*
+*Defined in [Configuration.ts:20](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L20)*
 
 ___
 
@@ -57,7 +57,7 @@ ___
 
 • **tokenExpirationTime**? : *number*
 
-*Defined in [Configuration.ts:23](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L23)*
+*Defined in [Configuration.ts:22](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L22)*
 
 ___
 
@@ -65,4 +65,4 @@ ___
 
 • **url**: *string*
 
-*Defined in [Configuration.ts:19](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L19)*
+*Defined in [Configuration.ts:18](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L18)*

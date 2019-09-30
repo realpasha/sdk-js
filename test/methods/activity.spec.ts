@@ -41,10 +41,6 @@ describe("Activity", () => {
       expect(client.api.get).to.have.been.calledWith("/activity", {});
     });
 
-    it("Errors if parameter `params` is of a wrong type", () => {
-      expect(() => client.getActivity("params" as any)).to.throw();
-    });
-
     it("Calls get() for the right endpoint", () => {
       client.getActivity({ limit: 50 });
       expect(client.api.get).to.have.been.calledWith("/activity", {

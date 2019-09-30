@@ -2,9 +2,6 @@
  * @module Configuration
  */
 
-import { invariant } from "./utils/invariant";
-import { isString } from "./utils/is";
-
 const STORAGE_KEY = "directus-sdk-js";
 
 // defining needed methods for the abstract storage adapter
@@ -179,16 +176,6 @@ export class Configuration implements IConfiguration {
   }
 
   // HELPER METHODS ============================================================
-
-  /**
-   * Validates if the configuration is valid
-   * @throws {Error}
-   */
-  public validate() {
-    invariant(isString(this.url), "configuration - url must be defined");
-    invariant(isString(this.project), "configuration - project must be defined");
-    invariant(isString(this.token), "configuration - project must be defined");
-  }
 
   /**
    * Update the configuration values, will also hydrate them if persistance activated

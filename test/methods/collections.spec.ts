@@ -41,10 +41,6 @@ describe("Collections", () => {
       expect(client.api.get).to.have.been.calledWith("/collections", {});
     });
 
-    it("Errors if parameter `params` is of a wrong type", () => {
-      expect(() => client.getCollections("params" as any)).to.throw();
-    });
-
     it("Calls get() for the right endpoint", () => {
       client.getCollections({ limit: 50 });
       expect(client.api.get).to.have.been.calledWith("/collections", {
@@ -54,14 +50,6 @@ describe("Collections", () => {
   });
 
   describe("#getCollection()", () => {
-    it("Errors on missing `collection` parameter", () => {
-      expect(client.getCollection).to.throw();
-    });
-
-    it("Errors if parameter `params` is of a wrong type", () => {
-      expect(() => client.getCollection("projects", "params" as any)).to.throw();
-    });
-
     it("Calls get() for the right endpoint", () => {
       client.getCollection("projects", { limit: 50 });
       expect(client.api.get).to.have.been.calledWith("/collections/projects", {
@@ -71,10 +59,6 @@ describe("Collections", () => {
   });
 
   describe("#createCollection()", () => {
-    it("Errors on missing `data` parameter", () => {
-      expect(client.createCollection).to.throw();
-    });
-
     it("Calls post() for the right endpoint", () => {
       client.createCollection({ collection: "test" });
       expect(client.api.post).to.have.been.calledWith("/collections", {
@@ -84,14 +68,6 @@ describe("Collections", () => {
   });
 
   describe("#updateCollection()", () => {
-    it("Errors on missing `collection` parameter", () => {
-      expect(client.updateCollection).to.throw();
-    });
-
-    it("Errors on missing `data` parameter", () => {
-      expect(() => client.updateCollection("test", undefined as any)).to.throw();
-    });
-
     it("Calls patch() for the right endpoint", () => {
       client.updateCollection("test", { note: "test note" });
       expect(client.api.patch).to.have.been.calledWith("/collections/test", {
@@ -101,10 +77,6 @@ describe("Collections", () => {
   });
 
   describe("#deleteCollection()", () => {
-    it("Errors on missing `collection` parameter", () => {
-      expect(() => client.deleteCollection(undefined as any)).to.throw();
-    });
-
     it("Calls delete() for the right endpoint", () => {
       client.deleteCollection("test");
       expect(client.api.delete).to.have.been.calledWith("/collections/test");

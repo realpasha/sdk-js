@@ -3,7 +3,6 @@
  */
 
 import axios, { AxiosInstance } from "axios";
-import * as qsStringify from "qs/lib/stringify";
 
 import { Authentication, IAuthentication } from "./Authentication";
 import { concurrencyManager } from "./ConcurrencyManager";
@@ -12,12 +11,12 @@ import { IConfiguration } from "./Configuration";
 // Scheme types
 import { BodyType } from "./schemes/http/Body";
 import { RequestMethod } from "./schemes/http/Request";
-import { IErrorResponse } from "./schemes/response/Error";
+import { IErrorResponse, IErrorResponseData } from "./schemes/response/Error";
 
 // Utilities
-import { isArrayOrEmpty, isObjectOrEmpty, isString } from "./utils/is";
-import { invariant } from "./utils/invariant";
+import { isString } from "./utils/is";
 import { getPayload } from "./utils/payload";
+import { querify } from "./utils/qs";
 
 export interface IAPI {
   auth: IAuthentication;
@@ -41,6 +40,45 @@ export interface IAPI {
   ): Promise<T>;
 }
 
+export class APIError extends Error {
+  constructor(public message: string, private info: {
+    code: number | string,
+    method: string,
+    url: string,
+    params?: object,
+    error?: IErrorResponse,
+    data?: any
+  }) {
+    super(message); // 'Error' breaks prototype chain here
+    Object.setPrototypeOf(this, new.target.prototype); // restore prototype chain
+  }
+
+  public get url() {
+    return this.info.url;
+  }
+
+  public get method() {
+    return this.info.method.toUpperCase();
+  }
+
+  public get code() {
+    return `${this.info.code || -1}`;
+  }
+
+  public get params() {
+    return this.info.params || {}
+  }
+
+  public toString() {
+    return [
+      'Directus call failed:',
+      `${this.method} ${this.url} ${JSON.stringify(this.params)} -`,
+      this.message,
+      `(code ${this.code})`
+    ].join(' ');
+  }
+}
+
 /**
  * API definition for HTTP transactions
  * @uses Authentication
@@ -50,7 +88,7 @@ export interface IAPI {
 export class API implements IAPI {
   public auth: IAuthentication;
   public xhr = axios.create({
-    paramsSerializer: qsStringify,
+    paramsSerializer: querify,
     timeout: 10 * 60 * 1000, // 10 min
   });
   public concurrent = concurrencyManager(this.xhr, 10);
@@ -77,9 +115,6 @@ export class API implements IAPI {
    * @return {Promise<T>}
    */
   public get<T extends any = any>(endpoint: string, params: object = {}): Promise<T> {
-    invariant(isString(endpoint), "endpoint must be a string");
-    invariant(isObjectOrEmpty(params), "params must be an object or empty");
-
     return this.request("get", endpoint, params);
   }
 
@@ -89,9 +124,6 @@ export class API implements IAPI {
    * @return {Promise<T>}
    */
   public post<T extends any = any>(endpoint: string, body: BodyType = {}, params: object = {}): Promise<T> {
-    invariant(isString(endpoint), "endpoint must be a string");
-    invariant(Array.isArray(body) ? isArrayOrEmpty(body) : isObjectOrEmpty(body), "body must be an array or object");
-
     return this.request<T>("post", endpoint, params, body);
   }
 
@@ -101,9 +133,6 @@ export class API implements IAPI {
    * @return {Promise<T>}
    */
   public patch<T extends any = any>(endpoint: string, body: BodyType = {}, params: object = {}): Promise<T> {
-    invariant(isString(endpoint), "endpoint must be a string");
-    invariant(Array.isArray(body) ? isArrayOrEmpty(body) : isObjectOrEmpty(body), "body must be an array or object");
-
     return this.request<T>("patch", endpoint, params, body);
   }
 
@@ -113,9 +142,6 @@ export class API implements IAPI {
    * @return {Promise<T>}
    */
   public put<T extends any = any>(endpoint: string, body: BodyType = {}, params: object = {}): Promise<T> {
-    invariant(isString(endpoint), "endpoint must be a string");
-    invariant(Array.isArray(body) ? isArrayOrEmpty(body) : isObjectOrEmpty(body), "body must be an array or object");
-
     return this.request<T>("put", endpoint, params, body);
   }
 
@@ -125,8 +151,6 @@ export class API implements IAPI {
    * @return {Promise<T>}
    */
   public delete<T extends any = any>(endpoint: string): Promise<T> {
-    invariant(isString(endpoint), "endpoint must be a string");
-
     return this.request<T>("delete", endpoint);
   }
 
@@ -164,11 +188,9 @@ export class API implements IAPI {
     headers: { [key: string]: string } = {},
     skipParseToJSON: boolean = false
   ): Promise<T> {
-    invariant(isString(method), "method must be a string");
-    invariant(isString(endpoint), "endpoint must be a string");
-    invariant(isObjectOrEmpty(params), "params must be an object or empty");
-    invariant(isString(this.config.url), "main url must be defined (see constructor)");
-    invariant(Array.isArray(data) ? isArrayOrEmpty(data) : isObjectOrEmpty(data), "data must be an array or object");
+    if (!this.config.url) {
+      throw new Error('API has no URL configured to send requests to, please check the docs.');
+    }
 
     let baseURL = `${this.config.url}/`;
 
@@ -212,22 +234,32 @@ export class API implements IAPI {
 
         return responseData as T;
       })
-      .catch((error: IErrorResponse) => {
+      .catch((error?: IErrorResponse) => {
+        const errorResponse: IErrorResponse['response'] = error
+          ? error.response || {} as IErrorResponse['response']
+          : {} as IErrorResponse['response'];
+        const errorResponseData: IErrorResponseData =
+          errorResponse.data || {} as IErrorResponseData;
+        const baseErrorInfo = {
+          error,
+          url: requestOptions.url,
+          method: requestOptions.method,
+          params: requestOptions.params,
+          code: errorResponseData.error ? errorResponseData.error.code || error.code : -1
+        }
+
         if (error.response) {
-          throw error.response.data.error;
-        } else if (error.json === true) {
-          throw {
-            code: -2,
-            data: error.data,
-            error: error.error,
-            message: "API returned invalid JSON",
-          };
+          throw new APIError(errorResponseData.error.message || 'Unknown error occured', baseErrorInfo);
+        } else if (error.response && error.response.json === true) {
+          throw new APIError("API returned invalid JSON", {
+            ...baseErrorInfo,
+            code: 422
+          });
         } else {
-          throw {
-            code: -1,
-            error,
-            message: "Network Error",
-          };
+          throw new APIError("Network error", {
+            ...baseErrorInfo,
+            code: -1
+          });
         }
       });
   }
