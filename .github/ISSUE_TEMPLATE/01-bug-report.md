@@ -3,7 +3,7 @@ name: "\U0001F41EBug report"
 about: Report a bug in the Directus JS SDK
 ---
 
-# 🐞 bug report
+# 🐞 Bug report
 
 
 ### Is this a regression?

@@ -39,6 +39,13 @@ jspm_packages
 # debug
 debug
 
+# misc
 .DS_Store
-
 .vscode
+
+# unneeded compiled files
+dist/*.html
+dist/cjs
+dist/es2015
+dist/esm
+dist/types
