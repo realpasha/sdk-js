@@ -4,7 +4,7 @@ about: Suggest a feature for the Directus JS SDK
 
 ---
 
-# 🚀 feature request
+# 🚀 Feature request
 
 ### Description
 A clear and concise description of the problem or missing capability...
