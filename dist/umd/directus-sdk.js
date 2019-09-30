@@ -1,7 +1,7 @@
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('base-64'), require('axios')) :
     typeof define === 'function' && define.amd ? define(['exports', 'base-64', 'axios'], factory) :
-    (global = global || self, factory(global.Directus = {}, global.base64, global.axios));
+    (global = global || self, factory(global.DirectusSDK = {}, global.base64, global.axios));
 }(this, function (exports, base64, axios) { 'use strict';
 
     axios = axios && axios.hasOwnProperty('default') ? axios['default'] : axios;
