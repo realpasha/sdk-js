@@ -24,7 +24,8 @@
     "Jan Biasi <biasijan@gmail.com>"
   ],
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
