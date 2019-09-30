@@ -6,14 +6,8 @@
 
 ### Index
 
-#### Variables
-
-* [DIRECTUS_COLLECTION_PREFIX](utils.md#const-directus_collection_prefix)
-
 #### Functions
 
-* [getCollectionItemPath](utils.md#getcollectionitempath)
-* [getPayload](utils.md#getpayload)
 * [invariant](utils.md#const-invariant)
 * [isArray](utils.md#const-isarray)
 * [isArrayOrEmpty](utils.md#const-isarrayorempty)
@@ -25,66 +19,7 @@
 * [isString](utils.md#const-isstring)
 * [isType](utils.md#const-istype)
 
-## Variables
-
-### `Const` DIRECTUS_COLLECTION_PREFIX
-
-• **DIRECTUS_COLLECTION_PREFIX**: *"directus_"* = "directus_"
-
-*Defined in [utils/collection.ts:5](https://github.com/direcuts/sdk-js/tree/master/utils/collection.ts#L5)*
-
 ## Functions
-
-###  getCollectionItemPath
-
-▸ **getCollectionItemPath**(`collection`: string): *string*
-
-*Defined in [utils/collection.ts:22](https://github.com/direcuts/sdk-js/tree/master/utils/collection.ts#L22)*
-
-Returns the correct API path for the collection. It will
-strip the prefix {@link DIRECTUS_COLLECTION_PREFIX | collection-prefix} or will add the
-'/items/' path as prefix if not provided. The 'substr(9)' defines
-the length of the defined {@link DIRECTUS_COLLECTION_PREFIX | collection-prefix}.
-
-**`example`** 
-getCollectionItemPath('directus_users');
-// => '/users'
-getCollectionItemPath('users');
-// => '/items/users'
-
-**Parameters:**
-
-Name | Type | Description |
------- | ------ | ------ |
-`collection` | string | The name of the collection |
-
-**Returns:** *string*
-
-___
-
-###  getPayload
-
-▸ **getPayload**<**T**>(`token`: string): *`T`*
-
-*Defined in [utils/payload.ts:14](https://github.com/direcuts/sdk-js/tree/master/utils/payload.ts#L14)*
-
-Retrieves the payload from a JWT
-
-**Type parameters:**
-
-▪ **T**: *object*
-
-**Parameters:**
-
-Name | Type | Description |
------- | ------ | ------ |
-`token` | string | The JWT to retrieve the payload from |
-
-**Returns:** *`T`*
-
-The JWT payload
-
-___
 
 ### `Const` invariant
 

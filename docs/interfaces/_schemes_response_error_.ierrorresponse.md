@@ -2,11 +2,9 @@
 
 [Globals](../README.md) / ["schemes/response/Error"](../modules/_schemes_response_error_.md) / [IErrorResponse](_schemes_response_error_.ierrorresponse.md) /
 
-# Interface: IErrorResponse <**T, T**>
+# Interface: IErrorResponse <**T**>
 
 ## Type parameters
-
-▪ **T**: *any*
 
 ▪ **T**
 
@@ -22,10 +20,7 @@
 
 * [code](_schemes_response_error_.ierrorresponse.md#optional-code)
 * [config](_schemes_response_error_.ierrorresponse.md#config)
-* [data](_schemes_response_error_.ierrorresponse.md#data)
-* [error](_schemes_response_error_.ierrorresponse.md#error)
 * [isAxiosError](_schemes_response_error_.ierrorresponse.md#isaxioserror)
-* [json](_schemes_response_error_.ierrorresponse.md#optional-json)
 * [message](_schemes_response_error_.ierrorresponse.md#message)
 * [name](_schemes_response_error_.ierrorresponse.md#name)
 * [request](_schemes_response_error_.ierrorresponse.md#optional-request)
@@ -40,7 +35,7 @@
 
 *Inherited from void*
 
-*Defined in [/Users/janbiasi/github/contrib/sdk-js-fork/node_modules/axios/index.d.ts:81](https://github.com/direcuts/sdk-js/tree/master//Users/janbiasi/github/contrib/sdk-js-fork/node_modules/axios/index.d.ts#L81)*
+*Defined in [/Users/rijkvanzanten/Development/directus/sdk-js/node_modules/axios/index.d.ts:81](https://github.com/direcuts/sdk-js/tree/master//Users/rijkvanzanten/Development/directus/sdk-js/node_modules/axios/index.d.ts#L81)*
 
 ___
 
@@ -50,23 +45,7 @@ ___
 
 *Inherited from void*
 
-*Defined in [/Users/janbiasi/github/contrib/sdk-js-fork/node_modules/axios/index.d.ts:80](https://github.com/direcuts/sdk-js/tree/master//Users/janbiasi/github/contrib/sdk-js-fork/node_modules/axios/index.d.ts#L80)*
-
-___
-
-###  data
-
-• **data**: *`T`*
-
-*Defined in [schemes/response/Error.ts:6](https://github.com/direcuts/sdk-js/tree/master/schemes/response/Error.ts#L6)*
-
-___
-
-###  error
-
-• **error**: *`Error`*
-
-*Defined in [schemes/response/Error.ts:5](https://github.com/direcuts/sdk-js/tree/master/schemes/response/Error.ts#L5)*
+*Defined in [/Users/rijkvanzanten/Development/directus/sdk-js/node_modules/axios/index.d.ts:80](https://github.com/direcuts/sdk-js/tree/master//Users/rijkvanzanten/Development/directus/sdk-js/node_modules/axios/index.d.ts#L80)*
 
 ___
 
@@ -76,15 +55,7 @@ ___
 
 *Inherited from void*
 
-*Defined in [/Users/janbiasi/github/contrib/sdk-js-fork/node_modules/axios/index.d.ts:84](https://github.com/direcuts/sdk-js/tree/master//Users/janbiasi/github/contrib/sdk-js-fork/node_modules/axios/index.d.ts#L84)*
-
-___
-
-### `Optional` json
-
-• **json**? : *boolean*
-
-*Defined in [schemes/response/Error.ts:4](https://github.com/direcuts/sdk-js/tree/master/schemes/response/Error.ts#L4)*
+*Defined in [/Users/rijkvanzanten/Development/directus/sdk-js/node_modules/axios/index.d.ts:84](https://github.com/direcuts/sdk-js/tree/master//Users/rijkvanzanten/Development/directus/sdk-js/node_modules/axios/index.d.ts#L84)*
 
 ___
 
@@ -94,7 +65,7 @@ ___
 
 *Inherited from void*
 
-*Defined in [/Users/janbiasi/github/contrib/sdk-js-fork/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:964](https://github.com/direcuts/sdk-js/tree/master//Users/janbiasi/github/contrib/sdk-js-fork/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts#L964)*
+*Defined in [/Users/rijkvanzanten/Development/directus/sdk-js/node_modules/typescript/lib/lib.es5.d.ts:974](https://github.com/direcuts/sdk-js/tree/master//Users/rijkvanzanten/Development/directus/sdk-js/node_modules/typescript/lib/lib.es5.d.ts#L974)*
 
 ___
 
@@ -104,27 +75,43 @@ ___
 
 *Inherited from void*
 
-*Defined in [/Users/janbiasi/github/contrib/sdk-js-fork/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:963](https://github.com/direcuts/sdk-js/tree/master//Users/janbiasi/github/contrib/sdk-js-fork/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts#L963)*
+*Defined in [/Users/rijkvanzanten/Development/directus/sdk-js/node_modules/typescript/lib/lib.es5.d.ts:973](https://github.com/direcuts/sdk-js/tree/master//Users/rijkvanzanten/Development/directus/sdk-js/node_modules/typescript/lib/lib.es5.d.ts#L973)*
 
 ___
 
 ### `Optional` request
 
-• **request**? : *any*
+• **request**? : *object*
 
-*Inherited from void*
+*Overrides void*
 
-*Defined in [/Users/janbiasi/github/contrib/sdk-js-fork/node_modules/axios/index.d.ts:82](https://github.com/direcuts/sdk-js/tree/master//Users/janbiasi/github/contrib/sdk-js-fork/node_modules/axios/index.d.ts#L82)*
+*Defined in [schemes/response/Error.ts:11](https://github.com/direcuts/sdk-js/tree/master/schemes/response/Error.ts#L11)*
 
 ___
 
 ### `Optional` response
 
-• **response**? : *`AxiosResponse<T>`*
+• **response**? : *object*
 
-*Inherited from void*
+*Overrides void*
 
-*Defined in [/Users/janbiasi/github/contrib/sdk-js-fork/node_modules/axios/index.d.ts:83](https://github.com/direcuts/sdk-js/tree/master//Users/janbiasi/github/contrib/sdk-js-fork/node_modules/axios/index.d.ts#L83)*
+*Defined in [schemes/response/Error.ts:12](https://github.com/direcuts/sdk-js/tree/master/schemes/response/Error.ts#L12)*
+
+#### Type declaration:
+
+* **config**: *`AxiosRequestConfig`*
+
+* **data**: *[IErrorResponseData](_schemes_response_error_.ierrorresponsedata.md)*
+
+* **error**: *`Error`*
+
+* **headers**: *`Record<string, string>`*
+
+* **json**? : *boolean*
+
+* **status**: *number*
+
+* **statusText**: *string*
 
 ___
 
@@ -136,4 +123,4 @@ ___
 
 *Overrides void*
 
-*Defined in [/Users/janbiasi/github/contrib/sdk-js-fork/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:965](https://github.com/direcuts/sdk-js/tree/master//Users/janbiasi/github/contrib/sdk-js-fork/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts#L965)*
+*Defined in [/Users/rijkvanzanten/Development/directus/sdk-js/node_modules/typescript/lib/lib.es5.d.ts:975](https://github.com/direcuts/sdk-js/tree/master//Users/rijkvanzanten/Development/directus/sdk-js/node_modules/typescript/lib/lib.es5.d.ts#L975)*

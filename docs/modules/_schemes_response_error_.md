@@ -9,3 +9,4 @@
 #### Interfaces
 
 * [IErrorResponse](../interfaces/_schemes_response_error_.ierrorresponse.md)
+* [IErrorResponseData](../interfaces/_schemes_response_error_.ierrorresponsedata.md)
