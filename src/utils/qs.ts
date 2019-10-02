@@ -1,6 +1,6 @@
 export type QuerifySerializer = (key: string, value: string | number | boolean | undefined | null) => string;
 
-const defaultSerializeTransform: QuerifySerializer = (key, value) => `${key}=${value}`;
+const defaultSerializeTransform: QuerifySerializer = (key, value) => `${key}=${encodeURIComponent(value)}`;
 
 export function querify(
   obj: object,
@@ -22,5 +22,5 @@ export function querify(
     }
   }
 
-  return qs.join('');
+  return qs.join('&');
 }
