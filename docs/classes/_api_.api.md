@@ -50,7 +50,7 @@ API definition for HTTP transactions
 
 \+ **new API**(`config`: [IConfiguration](../interfaces/_configuration_.iconfiguration.md)): *[API](_api_.api.md)*
 
-*Defined in [API.ts:94](https://github.com/direcuts/sdk-js/tree/master/API.ts#L94)*
+*Defined in [API.ts:95](https://github.com/direcuts/sdk-js/tree/master/API.ts#L95)*
 
 **Parameters:**
 
@@ -78,7 +78,7 @@ ___
 
 *Implementation of [IAPI](../interfaces/_api_.iapi.md).[concurrent](../interfaces/_api_.iapi.md#concurrent)*
 
-*Defined in [API.ts:94](https://github.com/direcuts/sdk-js/tree/master/API.ts#L94)*
+*Defined in [API.ts:95](https://github.com/direcuts/sdk-js/tree/master/API.ts#L95)*
 
 #### Type declaration:
 
@@ -114,7 +114,7 @@ ___
 
 • **config**: *[IConfiguration](../interfaces/_configuration_.iconfiguration.md)*
 
-*Defined in [API.ts:96](https://github.com/direcuts/sdk-js/tree/master/API.ts#L96)*
+*Defined in [API.ts:97](https://github.com/direcuts/sdk-js/tree/master/API.ts#L97)*
 
 ___
 
@@ -122,6 +122,7 @@ ___
 
 • **xhr**: *`AxiosInstance`* =  axios.create({
     paramsSerializer: querify,
+    withCredentials: true,
     timeout: 10 * 60 * 1000, // 10 min
   })
 
@@ -137,7 +138,7 @@ ___
 
 *Implementation of [IAPI](../interfaces/_api_.iapi.md)*
 
-*Defined in [API.ts:153](https://github.com/direcuts/sdk-js/tree/master/API.ts#L153)*
+*Defined in [API.ts:154](https://github.com/direcuts/sdk-js/tree/master/API.ts#L154)*
 
 DELETE convenience method. Calls the request method for you
 
@@ -163,7 +164,7 @@ ___
 
 *Implementation of [IAPI](../interfaces/_api_.iapi.md)*
 
-*Defined in [API.ts:117](https://github.com/direcuts/sdk-js/tree/master/API.ts#L117)*
+*Defined in [API.ts:118](https://github.com/direcuts/sdk-js/tree/master/API.ts#L118)*
 
 GET convenience method. Calls the request method for you
 
@@ -190,7 +191,7 @@ ___
 
 *Implementation of [IAPI](../interfaces/_api_.iapi.md)*
 
-*Defined in [API.ts:162](https://github.com/direcuts/sdk-js/tree/master/API.ts#L162)*
+*Defined in [API.ts:163](https://github.com/direcuts/sdk-js/tree/master/API.ts#L163)*
 
 Gets the payload of the current token, return type can be generic
 
@@ -210,7 +211,7 @@ ___
 
 *Implementation of [IAPI](../interfaces/_api_.iapi.md)*
 
-*Defined in [API.ts:135](https://github.com/direcuts/sdk-js/tree/master/API.ts#L135)*
+*Defined in [API.ts:136](https://github.com/direcuts/sdk-js/tree/master/API.ts#L136)*
 
 PATCH convenience method. Calls the request method for you
 
@@ -238,7 +239,7 @@ ___
 
 *Implementation of [IAPI](../interfaces/_api_.iapi.md)*
 
-*Defined in [API.ts:126](https://github.com/direcuts/sdk-js/tree/master/API.ts#L126)*
+*Defined in [API.ts:127](https://github.com/direcuts/sdk-js/tree/master/API.ts#L127)*
 
 POST convenience method. Calls the request method for you
 
@@ -266,7 +267,7 @@ ___
 
 *Implementation of [IAPI](../interfaces/_api_.iapi.md)*
 
-*Defined in [API.ts:144](https://github.com/direcuts/sdk-js/tree/master/API.ts#L144)*
+*Defined in [API.ts:145](https://github.com/direcuts/sdk-js/tree/master/API.ts#L145)*
 
 PUT convenience method. Calls the request method for you
 
@@ -292,7 +293,7 @@ ___
 
 ▸ **request**<**T**>(`method`: [RequestMethod](../modules/_schemes_http_request_.md#requestmethod), `endpoint`: string, `params`: object, `data`: object, `noEnv`: boolean, `headers`: object, `skipParseToJSON`: boolean): *`Promise<T>`*
 
-*Defined in [API.ts:182](https://github.com/direcuts/sdk-js/tree/master/API.ts#L182)*
+*Defined in [API.ts:183](https://github.com/direcuts/sdk-js/tree/master/API.ts#L183)*
 
 Perform an API request to the Directus API
 
@@ -324,7 +325,7 @@ ___
 
 *Implementation of [IAPI](../interfaces/_api_.iapi.md)*
 
-*Defined in [API.ts:105](https://github.com/direcuts/sdk-js/tree/master/API.ts#L105)*
+*Defined in [API.ts:106](https://github.com/direcuts/sdk-js/tree/master/API.ts#L106)*
 
 Resets the client instance by logging out and removing the URL and project
 

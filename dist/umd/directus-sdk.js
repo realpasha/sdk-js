@@ -42,10 +42,12 @@
             }
             var persist = Boolean(dehydratedConfig.persist || initialConfig.persist);
             var project = dehydratedConfig.project || initialConfig.project || Configuration.defaults.project;
+            var mode = dehydratedConfig.mode || initialConfig.mode || Configuration.defaults.mode;
             var tokenExpirationTime = dehydratedConfig.tokenExpirationTime ||
                 initialConfig.tokenExpirationTime ||
                 Configuration.defaults.tokenExpirationTime;
             this.internalConfiguration = __assign({}, initialConfig, dehydratedConfig, { persist: persist,
+                mode: mode,
                 project: project,
                 tokenExpirationTime: tokenExpirationTime });
         }
@@ -111,6 +113,16 @@
             },
             set: function (persist) {
                 this.internalConfiguration.persist = persist;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(Configuration.prototype, "mode", {
+            get: function () {
+                return this.internalConfiguration.mode;
+            },
+            set: function (mode) {
+                this.internalConfiguration.mode = mode;
             },
             enumerable: true,
             configurable: true
@@ -189,6 +201,7 @@
         Configuration.defaults = {
             project: "_",
             tokenExpirationTime: 5 * 6 * 1000,
+            mode: "jwt"
         };
         return Configuration;
     }());
@@ -238,24 +251,6 @@
      * @internal
      */
     var isFunction = function (v) { return v instanceof Function; };
-    /**
-     * @internal
-     */
-    var isObjectOrEmpty = function (v) { return isType("Object", v); };
-    /**
-     * @internal
-     */
-    var isObject = function (v) {
-        if (!isObjectOrEmpty(v)) {
-            return false;
-        }
-        for (var key in v) {
-            if (Object.prototype.hasOwnProperty.call(v, key)) {
-                return true;
-            }
-        }
-        return false;
-    };
 
     /**
      * @module utils
@@ -313,22 +308,6 @@
             }
         }
         /**
-         * If the current auth status is logged in
-         * @return {boolean}
-         */
-        Authentication.prototype.isLoggedIn = function () {
-            if (isString(this.config.token) &&
-                isString(this.config.url) &&
-                isString(this.config.project) &&
-                isObject(this.getPayload())) {
-                if (this.config.localExp > Date.now()) {
-                    // Not expired, succeed
-                    return true;
-                }
-            }
-            return false;
-        };
-        /**
          * Login to the API; Gets a new token from the API and stores it in this.token.
          * @param {ILoginCredentials} credentials   User login credentials
          * @param {ILoginOptions?} options          Additional options regarding persistance and co.
@@ -343,32 +322,54 @@
             if (isString(credentials.project)) {
                 this.config.project = credentials.project;
             }
+            if (options && isString(options.mode)) {
+                this.config.mode = options.mode;
+            }
             if (credentials.persist || (options && options.persist) || this.config.persist) {
                 // use interval for login refresh when option persist enabled
                 this.startInterval();
             }
-            return new Promise(function (resolve, reject) {
-                _this.inject
-                    .post("/auth/authenticate", {
-                    email: credentials.email,
-                    password: credentials.password,
-                })
-                    .then(function (res) {
-                    // save new token in configuration
-                    return (_this.config.token = res.data.token);
-                })
-                    .then(function (token) {
-                    // expiry date is the moment we got the token + 5 minutes
-                    _this.config.localExp = new Date(Date.now() + _this.config.tokenExpirationTime).getTime();
-                    resolve({
-                        localExp: _this.config.localExp,
-                        project: _this.config.project,
-                        token: token,
-                        url: _this.config.url,
-                    });
-                })
-                    .catch(reject);
-            });
+            if (this.config.mode === "cookie") {
+                return new Promise(function (resolve, reject) {
+                    _this.inject
+                        .post("/auth/authenticate", {
+                        email: credentials.email,
+                        password: credentials.password,
+                        mode: "cookie"
+                    })
+                        .then(function () {
+                        resolve({
+                            project: _this.config.project,
+                            url: _this.config.url
+                        });
+                    })
+                        .catch(reject);
+                });
+            }
+            else if (this.config.mode === "jwt") {
+                return new Promise(function (resolve, reject) {
+                    _this.inject
+                        .post("/auth/authenticate", {
+                        email: credentials.email,
+                        password: credentials.password,
+                    })
+                        .then(function (res) {
+                        // save new token in configuration
+                        return (_this.config.token = res.data.token);
+                    })
+                        .then(function (token) {
+                        // expiry date is the moment we got the token + 5 minutes
+                        _this.config.localExp = new Date(Date.now() + _this.config.tokenExpirationTime).getTime();
+                        resolve({
+                            localExp: _this.config.localExp,
+                            project: _this.config.project,
+                            token: token,
+                            url: _this.config.url,
+                        });
+                    })
+                        .catch(reject);
+                });
+            }
         };
         /**
          * Logs the user out by "forgetting" the token, and clearing the refresh interval
@@ -378,6 +379,7 @@
             if (this.refreshInterval) {
                 this.stopInterval();
             }
+            return this.inject.post("/auth/logout");
         };
         /// REFRESH METHODS ----------------------------------------------------------
         /**
@@ -639,6 +641,7 @@
             this.config = config;
             this.xhr = axios.create({
                 paramsSerializer: querify,
+                withCredentials: true,
                 timeout: 10 * 60 * 1000,
             });
             this.concurrent = concurrencyManager(this.xhr, 10);
@@ -846,13 +849,6 @@
             this.config = new Configuration(options);
             this.api = new API(this.config);
         }
-        Object.defineProperty(SDK.prototype, "loggedIn", {
-            get: function () {
-                return this.api.auth.isLoggedIn();
-            },
-            enumerable: true,
-            configurable: true
-        });
         Object.defineProperty(SDK.prototype, "payload", {
             get: function () {
                 if (!this.config.token) {

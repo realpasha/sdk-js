@@ -9,6 +9,7 @@
 #### Interfaces
 
 * [ILoginResponse](../interfaces/_schemes_response_login_.iloginresponse.md)
+* [ILogoutResponse](../interfaces/_schemes_response_login_.ilogoutresponse.md)
 
 #### Type aliases
 

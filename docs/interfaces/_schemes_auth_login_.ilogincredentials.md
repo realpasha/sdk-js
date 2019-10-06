@@ -24,7 +24,7 @@
 
 • **email**: *string*
 
-*Defined in [schemes/auth/Login.ts:2](https://github.com/direcuts/sdk-js/tree/master/schemes/auth/Login.ts#L2)*
+*Defined in [schemes/auth/Login.ts:4](https://github.com/direcuts/sdk-js/tree/master/schemes/auth/Login.ts#L4)*
 
 ___
 
@@ -32,7 +32,7 @@ ___
 
 • **password**: *string*
 
-*Defined in [schemes/auth/Login.ts:3](https://github.com/direcuts/sdk-js/tree/master/schemes/auth/Login.ts#L3)*
+*Defined in [schemes/auth/Login.ts:5](https://github.com/direcuts/sdk-js/tree/master/schemes/auth/Login.ts#L5)*
 
 ___
 
@@ -40,7 +40,7 @@ ___
 
 • **persist**? : *boolean*
 
-*Defined in [schemes/auth/Login.ts:6](https://github.com/direcuts/sdk-js/tree/master/schemes/auth/Login.ts#L6)*
+*Defined in [schemes/auth/Login.ts:8](https://github.com/direcuts/sdk-js/tree/master/schemes/auth/Login.ts#L8)*
 
 ___
 
@@ -48,7 +48,7 @@ ___
 
 • **project**? : *string*
 
-*Defined in [schemes/auth/Login.ts:5](https://github.com/direcuts/sdk-js/tree/master/schemes/auth/Login.ts#L5)*
+*Defined in [schemes/auth/Login.ts:7](https://github.com/direcuts/sdk-js/tree/master/schemes/auth/Login.ts#L7)*
 
 ___
 
@@ -56,4 +56,4 @@ ___
 
 • **url**? : *string*
 
-*Defined in [schemes/auth/Login.ts:4](https://github.com/direcuts/sdk-js/tree/master/schemes/auth/Login.ts#L4)*
+*Defined in [schemes/auth/Login.ts:6](https://github.com/direcuts/sdk-js/tree/master/schemes/auth/Login.ts#L6)*

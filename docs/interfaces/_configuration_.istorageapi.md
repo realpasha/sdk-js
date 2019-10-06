@@ -22,7 +22,7 @@
 
 ▸ **getItem**<**T**>(`key`: string): *`T`*
 
-*Defined in [Configuration.ts:9](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L9)*
+*Defined in [Configuration.ts:11](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L11)*
 
 **Type parameters:**
 
@@ -42,7 +42,7 @@ ___
 
 ▸ **removeItem**(`key`: string): *void*
 
-*Defined in [Configuration.ts:11](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L11)*
+*Defined in [Configuration.ts:13](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L13)*
 
 **Parameters:**
 
@@ -58,7 +58,7 @@ ___
 
 ▸ **setItem**(`key`: string, `value`: any): *void*
 
-*Defined in [Configuration.ts:10](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L10)*
+*Defined in [Configuration.ts:12](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L12)*
 
 **Parameters:**
 

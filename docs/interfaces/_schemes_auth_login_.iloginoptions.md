@@ -12,16 +12,25 @@
 
 #### Properties
 
+* [mode](_schemes_auth_login_.iloginoptions.md#mode)
 * [persist](_schemes_auth_login_.iloginoptions.md#persist)
 * [storage](_schemes_auth_login_.iloginoptions.md#storage)
 
 ## Properties
 
+###  mode
+
+• **mode**: *[AuthModes](../modules/_authentication_.md#authmodes)*
+
+*Defined in [schemes/auth/Login.ts:14](https://github.com/direcuts/sdk-js/tree/master/schemes/auth/Login.ts#L14)*
+
+___
+
 ###  persist
 
 • **persist**: *boolean*
 
-*Defined in [schemes/auth/Login.ts:10](https://github.com/direcuts/sdk-js/tree/master/schemes/auth/Login.ts#L10)*
+*Defined in [schemes/auth/Login.ts:12](https://github.com/direcuts/sdk-js/tree/master/schemes/auth/Login.ts#L12)*
 
 ___
 
@@ -29,4 +38,4 @@ ___
 
 • **storage**: *boolean*
 
-*Defined in [schemes/auth/Login.ts:11](https://github.com/direcuts/sdk-js/tree/master/schemes/auth/Login.ts#L11)*
+*Defined in [schemes/auth/Login.ts:13](https://github.com/direcuts/sdk-js/tree/master/schemes/auth/Login.ts#L13)*

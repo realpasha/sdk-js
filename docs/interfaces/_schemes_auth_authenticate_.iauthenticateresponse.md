@@ -24,4 +24,4 @@
 
 #### Type declaration:
 
-* **token**: *string*
+* **token**? : *string*

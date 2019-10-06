@@ -28,7 +28,7 @@ import { IErrorResponse } from "./schemes/response/Error";
 import { IFieldResponse, IFieldsResponse } from "./schemes/response/Field";
 import { IFileResponse, IFilesResponse } from "./schemes/response/File";
 import { IItemResponse, IItemsResponse } from "./schemes/response/Item";
-import { ILoginResponse } from "./schemes/response/Login";
+import { ILoginResponse, ILogoutResponse } from "./schemes/response/Login";
 import { IRelationResponse } from "./schemes/response/Relation";
 import { IRevisionResponse } from "./schemes/response/Revision";
 import { IRoleResponse } from "./schemes/response/Role";
@@ -56,10 +56,6 @@ type PrimaryKeyType = string | number;
  * @uses Configuration
  */
 export class SDK {
-  public get loggedIn(): boolean {
-    return this.api.auth.isLoggedIn();
-  }
-
   public get payload(): any {
     if (!this.config.token) {
       return null;
@@ -93,8 +89,8 @@ export class SDK {
   /**
    * Logs the user out by "forgetting" the token, and clearing the refresh interval
    */
-  public logout(): void {
-    this.api.auth.logout();
+  public logout(): Promise<ILogoutResponse> {
+    return this.api.auth.logout();
   }
 
   /**

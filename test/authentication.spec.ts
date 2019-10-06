@@ -104,8 +104,9 @@ describe("Authentication", () => {
   });
 
   describe("#logout()", () => {
-    it("Nullifies the token, url, and project", () => {
-      client.logout();
+    it("Nullifies the token, url, and project", async () => {
+      await client.logout();
+
       expect(client.config.token).to.be.undefined;
       expect(client.config.url).to.be.undefined;
       expect(client.config.project).to.equal("_");
@@ -322,7 +323,7 @@ describe("Authentication", () => {
     });
 
     describe("#logout()", () => {
-      it("Removes any interval on logout", () => {
+      it("Removes any interval on logout", async () => {
         client.login({
           email: "testing@example.com",
           password: "testPassword",
@@ -330,7 +331,7 @@ describe("Authentication", () => {
           url: "https://demo-api.getdirectus.com",
         });
 
-        client.logout();
+        await client.logout();
 
         expect(client.api.auth.refreshInterval).to.be.null;
       });
@@ -377,33 +378,6 @@ describe("Authentication", () => {
 
       this.clock.tick(11000);
       expect(client.api.auth.refreshIfNeeded).to.have.been.calledTwice;
-    });
-  });
-
-  describe("#loggedIn", () => {
-    it("Returns true if the client has a valid accesstoken, url, project, and is not expired", () => {
-      client.config.token = jwt.sign({ foo: "bar" }, "secret-string", {
-        expiresIn: "20s",
-        noTimestamp: true,
-      });
-      client.config.localExp = Date.now() + 10e3; // set expiration time in future
-
-      expect(client.loggedIn).to.equal(true);
-    });
-
-    it("Returns false if the accesstoken, url, or project is missing", () => {
-      client.config.url = null;
-      expect(client.loggedIn).to.equal(false);
-
-      client.config.token = jwt.sign({ foo: "bar" }, "secret-string", {
-        expiresIn: "20s",
-        noTimestamp: true,
-      });
-      expect(client.loggedIn).to.equal(false);
-
-      client.config.url = "https://demo-api.getdirectus.com";
-      client.config.localExp = Date.now() + 10e3; // set expiration time in future
-      expect(client.loggedIn).to.equal(true);
     });
   });
 });

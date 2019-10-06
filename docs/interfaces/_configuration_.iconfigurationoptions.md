@@ -13,6 +13,7 @@
 #### Properties
 
 * [localExp](_configuration_.iconfigurationoptions.md#optional-localexp)
+* [mode](_configuration_.iconfigurationoptions.md#optional-mode)
 * [persist](_configuration_.iconfigurationoptions.md#optional-persist)
 * [project](_configuration_.iconfigurationoptions.md#optional-project)
 * [token](_configuration_.iconfigurationoptions.md#optional-token)
@@ -25,9 +26,19 @@
 
 • **localExp**? : *number*
 
-*Defined in [Configuration.ts:62](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L62)*
+*Defined in [Configuration.ts:67](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L67)*
 
 Default login expiration as number in ms
+
+___
+
+### `Optional` mode
+
+• **mode**? : *[AuthModes](../modules/_authentication_.md#authmodes)*
+
+*Defined in [Configuration.ts:75](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L75)*
+
+Whether to use cookies or JWTs
 
 ___
 
@@ -35,7 +46,7 @@ ___
 
 • **persist**? : *boolean*
 
-*Defined in [Configuration.ts:66](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L66)*
+*Defined in [Configuration.ts:71](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L71)*
 
 If the token should be persitated or rehydrated
 
@@ -45,7 +56,7 @@ ___
 
 • **project**? : *string*
 
-*Defined in [Configuration.ts:58](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L58)*
+*Defined in [Configuration.ts:63](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L63)*
 
 Project namespace
 
@@ -55,7 +66,7 @@ ___
 
 • **token**? : *string*
 
-*Defined in [Configuration.ts:54](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L54)*
+*Defined in [Configuration.ts:59](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L59)*
 
 The token to authenticate if preferred
 
@@ -65,7 +76,7 @@ ___
 
 • **tokenExpirationTime**? : *number*
 
-*Defined in [Configuration.ts:70](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L70)*
+*Defined in [Configuration.ts:79](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L79)*
 
 Auto token expiration time
 
@@ -75,6 +86,6 @@ ___
 
 • **url**: *string*
 
-*Defined in [Configuration.ts:50](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L50)*
+*Defined in [Configuration.ts:55](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L55)*
 
 The URL of the direcuts CMS

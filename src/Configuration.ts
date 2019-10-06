@@ -2,6 +2,8 @@
  * @module Configuration
  */
 
+import { AuthModes } from "./Authentication";
+
 const STORAGE_KEY = "directus-sdk-js";
 
 // defining needed methods for the abstract storage adapter
@@ -19,6 +21,7 @@ export interface IConfigurationValues {
   localExp?: number;
   tokenExpirationTime?: number;
   persist: boolean;
+  mode?: AuthModes;
 }
 
 export interface IConfiguration {
@@ -28,6 +31,7 @@ export interface IConfiguration {
   localExp?: number;
   tokenExpirationTime: number;
   persist: boolean;
+  mode: AuthModes;
   dehydrate(): IConfigurationValues;
   deleteHydratedConfig();
   hydrate(config: IConfigurationValues);
@@ -40,6 +44,7 @@ export interface IConfiguration {
 export interface IConfigurationDefaults {
   tokenExpirationTime: number;
   project: string;
+  mode: AuthModes;
 }
 
 // constructor options
@@ -65,6 +70,10 @@ export interface IConfigurationOptions {
    */
   persist?: boolean;
   /**
+   * Whether to use cookies or JWTs
+   */
+  mode?: AuthModes;
+  /**
    * Auto token expiration time
    */
   tokenExpirationTime?: number;
@@ -82,6 +91,7 @@ export class Configuration implements IConfiguration {
   public static defaults: IConfigurationDefaults = {
     project: "_",
     tokenExpirationTime: 5 * 6 * 1000,
+    mode: "jwt"
   };
 
   /**
@@ -106,6 +116,7 @@ export class Configuration implements IConfiguration {
 
     const persist = Boolean(dehydratedConfig.persist || initialConfig.persist);
     const project = dehydratedConfig.project || initialConfig.project || Configuration.defaults.project;
+    const mode = dehydratedConfig.mode || initialConfig.mode || Configuration.defaults.mode;
     const tokenExpirationTime =
       dehydratedConfig.tokenExpirationTime ||
       initialConfig.tokenExpirationTime ||
@@ -115,6 +126,7 @@ export class Configuration implements IConfiguration {
       ...initialConfig,
       ...dehydratedConfig,
       persist,
+      mode,
       project,
       tokenExpirationTime,
     };
@@ -173,6 +185,14 @@ export class Configuration implements IConfiguration {
 
   public set persist(persist: boolean) {
     this.internalConfiguration.persist = persist;
+  }
+
+  public get mode(): AuthModes {
+    return this.internalConfiguration.mode;
+  }
+
+  public set mode(mode: AuthModes) {
+    this.internalConfiguration.mode = mode;
   }
 
   // HELPER METHODS ============================================================

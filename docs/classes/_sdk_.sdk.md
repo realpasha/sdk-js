@@ -29,7 +29,6 @@ remote directus instance.
 
 #### Accessors
 
-* [loggedIn](_sdk_.sdk.md#loggedin)
 * [payload](_sdk_.sdk.md#payload)
 
 #### Methods
@@ -106,7 +105,7 @@ remote directus instance.
 
 \+ **new SDK**(`options`: [IConfigurationOptions](../interfaces/_configuration_.iconfigurationoptions.md)): *[SDK](_sdk_.sdk.md)*
 
-*Defined in [SDK.ts:76](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L76)*
+*Defined in [SDK.ts:72](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L72)*
 
 **Parameters:**
 
@@ -122,7 +121,7 @@ Name | Type |
 
 • **api**: *[IAPI](../interfaces/_api_.iapi.md)*
 
-*Defined in [SDK.ts:76](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L76)*
+*Defined in [SDK.ts:72](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L72)*
 
 ___
 
@@ -130,7 +129,7 @@ ___
 
 • **config**: *[IConfiguration](../interfaces/_configuration_.iconfiguration.md)*
 
-*Defined in [SDK.ts:75](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L75)*
+*Defined in [SDK.ts:71](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L71)*
 
 ___
 
@@ -138,25 +137,15 @@ ___
 
 ▪ **getPayload**: *[getPayload](../modules/_utils_payload_.md#getpayload)* =  getPayload
 
-*Defined in [SDK.ts:72](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L72)*
+*Defined in [SDK.ts:68](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L68)*
 
 ## Accessors
-
-###  loggedIn
-
-• **get loggedIn**(): *boolean*
-
-*Defined in [SDK.ts:59](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L59)*
-
-**Returns:** *boolean*
-
-___
 
 ###  payload
 
 • **get payload**(): *any*
 
-*Defined in [SDK.ts:63](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L63)*
+*Defined in [SDK.ts:59](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L59)*
 
 **Returns:** *any*
 
@@ -166,7 +155,7 @@ ___
 
 ▸ **createCollection**(`data`: [ICollection](../interfaces/_schemes_directus_collection_.icollection.md)): *`Promise<ICollectionResponse>`*
 
-*Defined in [SDK.ts:182](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L182)*
+*Defined in [SDK.ts:178](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L178)*
 
 Create a collection
 
@@ -184,7 +173,7 @@ ___
 
 ▸ **createCollectionPreset**<**CollectionPreset**>(`data`: `CollectionPreset`): *`Promise<ICollectionPresetResponse<CollectionPreset>>`*
 
-*Defined in [SDK.ts:232](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L232)*
+*Defined in [SDK.ts:228](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L228)*
 
 Create a new collection preset (bookmark / listing preferences)
 
@@ -208,7 +197,7 @@ ___
 
 ▸ **createField**<**TFieldType**>(`collection`: string, `fieldInfo`: `TFieldType`): *`Promise<IFieldResponse<TFieldType>>`*
 
-*Defined in [SDK.ts:333](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L333)*
+*Defined in [SDK.ts:329](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L329)*
 
 Create a field in the given collection
 
@@ -233,7 +222,7 @@ ___
 
 ▸ **createItem**<**TItemType**>(`collection`: string, `body`: `TItemType`): *`Promise<IItemResponse<TItemType>>`*
 
-*Defined in [SDK.ts:515](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L515)*
+*Defined in [SDK.ts:511](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L511)*
 
 Create a new item
 
@@ -258,7 +247,7 @@ ___
 
 ▸ **createItems**<**TItemsType**>(`collection`: string, `body`: [BodyType](../modules/_schemes_http_body_.md#bodytype)): *`Promise<IItemsResponse<TItemsType>>`*
 
-*Defined in [SDK.ts:525](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L525)*
+*Defined in [SDK.ts:521](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L521)*
 
 Create multiple items
 
@@ -285,7 +274,7 @@ ___
 
 ▸ **createPermissions**<**TResponse**>(`data`: any[]): *`Promise<TResponse>`*
 
-*Defined in [SDK.ts:662](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L662)*
+*Defined in [SDK.ts:658](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L658)*
 
 TODO: Fix type-def for param and return
 Create multiple new permissions
@@ -310,7 +299,7 @@ ___
 
 ▸ **createRelation**(`data`: [IRelation](../interfaces/_schemes_directus_relation_.irelation.md)): *`Promise<IRelationResponse>`*
 
-*Defined in [SDK.ts:693](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L693)*
+*Defined in [SDK.ts:689](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L689)*
 
 Creates new relation
 
@@ -328,7 +317,7 @@ ___
 
 ▸ **createRole**<**TRole**>(`body`: `TRole`): *`Promise<IItemResponse<TRole>>`*
 
-*Defined in [SDK.ts:784](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L784)*
+*Defined in [SDK.ts:780](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L780)*
 
 Create a new user role
 
@@ -350,7 +339,7 @@ ___
 
 ▸ **deleteCollection**(`collection`: string): *`Promise<void>`*
 
-*Defined in [SDK.ts:196](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L196)*
+*Defined in [SDK.ts:192](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L192)*
 
 Deletes a certain collection
 
@@ -368,7 +357,7 @@ ___
 
 ▸ **deleteCollectionPreset**(`primaryKey`: [PrimaryKeyType](../modules/_sdk_.md#primarykeytype)): *`Promise<void>`*
 
-*Defined in [SDK.ts:260](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L260)*
+*Defined in [SDK.ts:256](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L256)*
 
 Delete collection preset by primarykey
 
@@ -388,7 +377,7 @@ ___
 
 ▸ **deleteField**(`collection`: string, `fieldName`: string): *`Promise<void>`*
 
-*Defined in [SDK.ts:403](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L403)*
+*Defined in [SDK.ts:399](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L399)*
 
 Delete a field from a collection
 
@@ -409,7 +398,7 @@ ___
 
 ▸ **deleteItem**(`collection`: string, `primaryKey`: [PrimaryKeyType](../modules/_sdk_.md#primarykeytype)): *`Promise<void>`*
 
-*Defined in [SDK.ts:564](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L564)*
+*Defined in [SDK.ts:560](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L560)*
 
 Delete a single item by primary key
 
@@ -430,7 +419,7 @@ ___
 
 ▸ **deleteItems**(`collection`: string, `primaryKeys`: [PrimaryKeyType](../modules/_sdk_.md#primarykeytype)[]): *`Promise<void>`*
 
-*Defined in [SDK.ts:573](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L573)*
+*Defined in [SDK.ts:569](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L569)*
 
 Delete multiple items by primary key
 
@@ -451,7 +440,7 @@ ___
 
 ▸ **deleteRole**(`primaryKey`: [PrimaryKeyType](../modules/_sdk_.md#primarykeytype)): *`Promise<void>`*
 
-*Defined in [SDK.ts:792](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L792)*
+*Defined in [SDK.ts:788](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L788)*
 
 Delete a user rol by primary key
 
@@ -469,7 +458,7 @@ ___
 
 ▸ **getActivity**(`params`: `QueryParamsType`): *`Promise<IActivityResponse>`*
 
-*Defined in [SDK.ts:144](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L144)*
+*Defined in [SDK.ts:140](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L140)*
 
 Get activity
 
@@ -487,7 +476,7 @@ ___
 
 ▸ **getAllFields**<**TFieldsType**>(`params`: `QueryParamsType`): *`Promise<IFieldsResponse<TFieldsType>>`*
 
-*Defined in [SDK.ts:300](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L300)*
+*Defined in [SDK.ts:296](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L296)*
 
 Get all fields that are in Directus
 
@@ -511,7 +500,7 @@ ___
 
 ▸ **getCollection**(`collection`: string, `params`: `QueryParamsType`): *`Promise<ICollectionResponse>`*
 
-*Defined in [SDK.ts:175](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L175)*
+*Defined in [SDK.ts:171](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L171)*
 
 Get collection info by name
 
@@ -530,7 +519,7 @@ ___
 
 ▸ **getCollectionPresets**<**TResponse**>(`params`: `QueryParamsType`): *`Promise<TResponse>`*
 
-*Defined in [SDK.ts:208](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L208)*
+*Defined in [SDK.ts:204](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L204)*
 
 Get the collection presets of the current user
 
@@ -554,7 +543,7 @@ ___
 
 ▸ **getCollectionRelations**(`collection`: string, `params`: `QueryParamsType`): *`Promise<any[]>`*
 
-*Defined in [SDK.ts:708](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L708)*
+*Defined in [SDK.ts:704](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L704)*
 
 TODO: Add type-def for return value(s)
 Get the relationship information for the given collection
@@ -574,7 +563,7 @@ ___
 
 ▸ **getCollections**(`params`: `QueryParamsType`): *`Promise<ICollectionsResponse[]>`*
 
-*Defined in [SDK.ts:168](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L168)*
+*Defined in [SDK.ts:164](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L164)*
 
 Get all available collections
 
@@ -592,7 +581,7 @@ ___
 
 ▸ **getField**<**TFieldType**>(`collection`: string, `fieldName`: string, `params`: `QueryParamsType`): *`Promise<IFieldResponse<TFieldType>>`*
 
-*Defined in [SDK.ts:321](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L321)*
+*Defined in [SDK.ts:317](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L317)*
 
 Get the field information for a single given field
 
@@ -618,7 +607,7 @@ ___
 
 ▸ **getFields**<**TFieldsType**>(`collection`: string, `params`: `QueryParamsType`): *`Promise<IFieldsResponse<TFieldsType>>`*
 
-*Defined in [SDK.ts:310](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L310)*
+*Defined in [SDK.ts:306](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L306)*
 
 Get the fields that have been setup for a given collection
 
@@ -643,7 +632,7 @@ ___
 
 ▸ **getFile**<**TFile**>(`fileName`: `TFile`, `params`: `QueryParamsType`): *`Promise<TFile extends string ? IFileResponse<IFile> : IFilesResponse<IFile[]>>`*
 
-*Defined in [SDK.ts:423](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L423)*
+*Defined in [SDK.ts:419](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L419)*
 
 Get a certain file or certain file list from Directus
 
@@ -668,7 +657,7 @@ ___
 
 ▸ **getFiles**(`params`: `QueryParamsType`): *`Promise<IFilesResponse>`*
 
-*Defined in [SDK.ts:415](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L415)*
+*Defined in [SDK.ts:411](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L411)*
 
 Get a list of available files from Directus
 
@@ -688,7 +677,7 @@ ___
 
 ▸ **getInterfaces**<**TResponse**>(): *`Promise<TResponse>`*
 
-*Defined in [SDK.ts:272](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L272)*
+*Defined in [SDK.ts:268](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L268)*
 
 Get the information of all installed interfaces
 
@@ -706,7 +695,7 @@ ___
 
 ▸ **getItem**<**TItemType**>(`collection`: string, `primaryKey`: [PrimaryKeyType](../modules/_sdk_.md#primarykeytype), `params`: `QueryParamsType`): *`Promise<IItemResponse<TItemType>>`*
 
-*Defined in [SDK.ts:551](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L551)*
+*Defined in [SDK.ts:547](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L547)*
 
 Get a single item by primary key
 
@@ -734,7 +723,7 @@ ___
 
 ▸ **getItemRevisions**<**TDataAndDelta**>(`collection`: string, `primaryKey`: [PrimaryKeyType](../modules/_sdk_.md#primarykeytype), `params`: `QueryParamsType`): *`Promise<IRevisionResponse<TDataAndDelta>>`*
 
-*Defined in [SDK.ts:730](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L730)*
+*Defined in [SDK.ts:726](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L726)*
 
 Get a single item's revisions by primary key
 
@@ -760,7 +749,7 @@ ___
 
 ▸ **getItems**<**TTItemsType**>(`collection`: string, `params`: `QueryParamsType`): *`Promise<IItemsResponse<TTItemsType>>`*
 
-*Defined in [SDK.ts:538](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L538)*
+*Defined in [SDK.ts:534](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L534)*
 
 Get items from a given collection
 
@@ -787,7 +776,7 @@ ___
 
 ▸ **getLayouts**<**TResponse**>(): *`Promise<TResponse>`*
 
-*Defined in [SDK.ts:280](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L280)*
+*Defined in [SDK.ts:276](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L276)*
 
 Get the information of all installed layouts
 
@@ -805,7 +794,7 @@ ___
 
 ▸ **getMe**<**User**>(`params`: `QueryParamsType`): *`Promise<IUserResponse<User>>`*
 
-*Defined in [SDK.ts:841](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L841)*
+*Defined in [SDK.ts:837](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L837)*
 
 Get the user info of the currently logged in user
 
@@ -827,7 +816,7 @@ ___
 
 ▸ **getMyBookmarks**<**TResponse**>(`params`: `QueryParamsType`): *`Promise<TResponse>`*
 
-*Defined in [SDK.ts:157](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L157)*
+*Defined in [SDK.ts:153](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L153)*
 
 Get the bookmarks of the current user
 
@@ -853,7 +842,7 @@ ___
 
 ▸ **getMyListingPreferences**<**TResponse**>(`collection`: string, `params`: `QueryParamsType`): *`Promise<TResponse>`*
 
-*Defined in [SDK.ts:585](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L585)*
+*Defined in [SDK.ts:581](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L581)*
 
 Get the collection presets of the current user for a single collection
 
@@ -876,7 +865,7 @@ ___
 
 ▸ **getMyPermissions**<**TResponse**>(`params`: `QueryParamsType`): *`Promise<TResponse>`*
 
-*Defined in [SDK.ts:653](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L653)*
+*Defined in [SDK.ts:649](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L649)*
 
 TODO: Fix type-def for return
 Get the currently logged in user's permissions
@@ -901,7 +890,7 @@ ___
 
 ▸ **getPages**<**TResponse**>(): *`Promise<TResponse>`*
 
-*Defined in [SDK.ts:288](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L288)*
+*Defined in [SDK.ts:284](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L284)*
 
 Get the information of all installed pages
 
@@ -919,7 +908,7 @@ ___
 
 ▸ **getPermissions**(`params`: `QueryParamsType`): *`Promise<IItemsResponse<IPermission[]>>`*
 
-*Defined in [SDK.ts:644](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L644)*
+*Defined in [SDK.ts:640](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L640)*
 
 Get permissions
 
@@ -937,7 +926,7 @@ ___
 
 ▸ **getRelations**(`params`: `QueryParamsType`): *`Promise<IRelationsResponse>`*
 
-*Defined in [SDK.ts:684](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L684)*
+*Defined in [SDK.ts:680](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L680)*
 
 Get all relationships
 
@@ -955,7 +944,7 @@ ___
 
 ▸ **getRole**(`primaryKey`: [PrimaryKeyType](../modules/_sdk_.md#primarykeytype), `params`: `QueryParamsType`): *`Promise<IRoleResponse>`*
 
-*Defined in [SDK.ts:759](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L759)*
+*Defined in [SDK.ts:755](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L755)*
 
 Get a single user role
 
@@ -974,7 +963,7 @@ ___
 
 ▸ **getRoles**(`params`: `QueryParamsType`): *`Promise<IRoleResponse[]>`*
 
-*Defined in [SDK.ts:767](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L767)*
+*Defined in [SDK.ts:763](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L763)*
 
 Get the user roles
 
@@ -992,7 +981,7 @@ ___
 
 ▸ **getSettings**(`params`: `QueryParamsType`): *`Promise<ISettingsResponse>`*
 
-*Defined in [SDK.ts:804](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L804)*
+*Defined in [SDK.ts:800](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L800)*
 
 Get Directus' global settings
 
@@ -1010,7 +999,7 @@ ___
 
 ▸ **getSettingsFields**(`params`: `QueryParamsType`): *`Promise<IFieldsResponse<IField[]>>`*
 
-*Defined in [SDK.ts:812](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L812)*
+*Defined in [SDK.ts:808](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L808)*
 
 Get the "fields" for directus_settings
 
@@ -1028,7 +1017,7 @@ ___
 
 ▸ **getThirdPartyAuthProviders**(): *`Promise<any>`*
 
-*Defined in [SDK.ts:897](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L897)*
+*Defined in [SDK.ts:893](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L893)*
 
 TODO: Add response type-def
 Get all the setup third party auth providers
@@ -1041,7 +1030,7 @@ ___
 
 ▸ **getUser**<**User**>(`primaryKey`: [PrimaryKeyType](../modules/_sdk_.md#primarykeytype), `params`: `QueryParamsType`): *`Promise<IUserResponse<User>>`*
 
-*Defined in [SDK.ts:833](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L833)*
+*Defined in [SDK.ts:829](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L829)*
 
 Get a single Directus user
 
@@ -1064,7 +1053,7 @@ ___
 
 ▸ **getUsers**(`params`: `QueryParamsType`): *`Promise<IUsersResponse<IUser[]>>`*
 
-*Defined in [SDK.ts:824](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L824)*
+*Defined in [SDK.ts:820](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L820)*
 
 Get a list of available users in Directus
 
@@ -1082,7 +1071,7 @@ ___
 
 ▸ **login**(`credentials`: [ILoginCredentials](../interfaces/_schemes_auth_login_.ilogincredentials.md), `options?`: [ILoginOptions](../interfaces/_schemes_auth_login_.iloginoptions.md)): *`Promise<ILoginResponse>`*
 
-*Defined in [SDK.ts:89](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L89)*
+*Defined in [SDK.ts:85](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L85)*
 
 Login to the API; Gets a new token from the API and stores it in this.api.token.
 
@@ -1101,7 +1090,7 @@ ___
 
 ▸ **logout**(): *void*
 
-*Defined in [SDK.ts:96](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L96)*
+*Defined in [SDK.ts:92](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L92)*
 
 Logs the user out by "forgetting" the token, and clearing the refresh interval
 
@@ -1113,7 +1102,7 @@ ___
 
 ▸ **ping**(): *`Promise<string>`*
 
-*Defined in [SDK.ts:871](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L871)*
+*Defined in [SDK.ts:867](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L867)*
 
 Ping the API to check if it exists / is up and running, returns "pong"
 
@@ -1125,7 +1114,7 @@ ___
 
 ▸ **projectInfo**(): *`Promise<any>`*
 
-*Defined in [SDK.ts:888](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L888)*
+*Defined in [SDK.ts:884](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L884)*
 
 TODO: Add response type-def
 Get the server info from the project
@@ -1138,7 +1127,7 @@ ___
 
 ▸ **refresh**(`token`: string): *`Promise<IRefreshTokenResponse>`*
 
-*Defined in [SDK.ts:120](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L120)*
+*Defined in [SDK.ts:116](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L116)*
 
 Use the passed token to request a new one
 
@@ -1156,7 +1145,7 @@ ___
 
 ▸ **refreshIfNeeded**(): *`Promise<[boolean, Error]>`*
 
-*Defined in [SDK.ts:113](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L113)*
+*Defined in [SDK.ts:109](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L109)*
 
 Refresh the token if it is about to expire (within 30 seconds of expiry date).
 - Calls onAutoRefreshSuccess with the new token if the refreshing is successful.
@@ -1170,7 +1159,7 @@ ___
 
 ▸ **requestPasswordReset**<**TResponse**>(`email`: string): *`Promise<TResponse>`*
 
-*Defined in [SDK.ts:129](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L129)*
+*Defined in [SDK.ts:125](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L125)*
 
 Request to reset the password of the user with the given email address.
 The API will send an email to the given email address with a link to generate a new
@@ -1194,7 +1183,7 @@ ___
 
 ▸ **reset**(): *void*
 
-*Defined in [SDK.ts:103](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L103)*
+*Defined in [SDK.ts:99](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L99)*
 
 Resets the client instance by logging out and removing the URL and project
 
@@ -1206,7 +1195,7 @@ ___
 
 ▸ **revert**(`collection`: string, `primaryKey`: [PrimaryKeyType](../modules/_sdk_.md#primarykeytype), `revisionID`: number): *`Promise<void>`*
 
-*Defined in [SDK.ts:745](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L745)*
+*Defined in [SDK.ts:741](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L741)*
 
 Revert an item to a previous state
 
@@ -1226,7 +1215,7 @@ ___
 
 ▸ **serverInfo**(): *`Promise<IServerInformationResponse>`*
 
-*Defined in [SDK.ts:879](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L879)*
+*Defined in [SDK.ts:875](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L875)*
 
 Get the server info from the API
 
@@ -1238,7 +1227,7 @@ ___
 
 ▸ **updateCollection**(`collection`: string, `data`: `Partial<ICollection>`): *`Promise<ICollectionResponse>`*
 
-*Defined in [SDK.ts:189](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L189)*
+*Defined in [SDK.ts:185](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L185)*
 
 Updates a certain collection
 
@@ -1257,7 +1246,7 @@ ___
 
 ▸ **updateCollectionPreset**<**PartialCollectionPreset**, **TResultCollectionPreset**>(`primaryKey`: [PrimaryKeyType](../modules/_sdk_.md#primarykeytype), `data`: [IUpdateCollectionPresetBody](../interfaces/_schemes_request_collection_.iupdatecollectionpresetbody.md)): *`Promise<ICollectionPresetResponse<PartialCollectionPreset & TResultCollectionPreset>>`*
 
-*Defined in [SDK.ts:243](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L243)*
+*Defined in [SDK.ts:239](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L239)*
 
 Update collection preset (bookmark / listing preference)
 
@@ -1284,7 +1273,7 @@ ___
 
 ▸ **updateDatabase**(): *`Promise<void>`*
 
-*Defined in [SDK.ts:863](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L863)*
+*Defined in [SDK.ts:859](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L859)*
 
 This will update the database of the API instance to the latest version
 using the migrations in the API
@@ -1297,7 +1286,7 @@ ___
 
 ▸ **updateField**<**TFieldType**>(`collection`: string, `fieldName`: string, `fieldInfo`: `TFieldType`): *`Promise<IFieldResponse<IField & TFieldType> | undefined>`*
 
-*Defined in [SDK.ts:344](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L344)*
+*Defined in [SDK.ts:340](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L340)*
 
 Update a given field in a given collection
 
@@ -1323,7 +1312,7 @@ ___
 
 ▸ **updateFields**<**TFieldsType**>(`collection`: string, `fields`: `Array<Partial<IField>>`): *`Promise<IFieldsResponse<TFieldsType & IField[]> | undefined>`*
 
-*Defined in [SDK.ts:378](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L378)*
+*Defined in [SDK.ts:374](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L374)*
 
 Update multiple fields at once
 
@@ -1367,7 +1356,7 @@ Name | Type |
 
 ▸ **updateFields**<**TFieldsType**>(`collection`: string, `fields`: string[], `fieldInfo`: `Partial<IField>`): *`Promise<IFieldsResponse<TFieldsType & IField[]> | undefined>`*
 
-*Defined in [SDK.ts:382](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L382)*
+*Defined in [SDK.ts:378](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L378)*
 
 **Type parameters:**
 
@@ -1389,7 +1378,7 @@ ___
 
 ▸ **updateItem**<**TTPartialItem**, **TTResult**>(`collection`: string, `primaryKey`: [PrimaryKeyType](../modules/_sdk_.md#primarykeytype), `body`: `TTPartialItem`, `params`: `QueryParamsType`): *`Promise<IItemResponse<TTPartialItem & TTResult>>`*
 
-*Defined in [SDK.ts:484](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L484)*
+*Defined in [SDK.ts:480](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L480)*
 
 Update an existing item
 
@@ -1422,7 +1411,7 @@ ___
 
 ▸ **updateItems**<**TPartialItem**, **TResult**>(`collection`: string, `body`: `TPartialItem`, `params`: `QueryParamsType`): *`Promise<IItemsResponse<TPartialItem & TResult>>`*
 
-*Defined in [SDK.ts:501](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L501)*
+*Defined in [SDK.ts:497](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L497)*
 
 Update multiple items
 
@@ -1454,7 +1443,7 @@ ___
 
 ▸ **updatePermissions**<**TResponse**>(`data`: any[]): *`Promise<TResponse>`*
 
-*Defined in [SDK.ts:671](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L671)*
+*Defined in [SDK.ts:667](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L667)*
 
 TODO: Fix type-def for param and return
 Update multiple permission records
@@ -1479,7 +1468,7 @@ ___
 
 ▸ **updateRelation**(`primaryKey`: [PrimaryKeyType](../modules/_sdk_.md#primarykeytype), `data`: `Partial<IRelation>`): *`Promise<IRelationResponse>`*
 
-*Defined in [SDK.ts:700](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L700)*
+*Defined in [SDK.ts:696](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L696)*
 
 Updates existing relation
 
@@ -1498,7 +1487,7 @@ ___
 
 ▸ **updateRole**<**Role**>(`primaryKey`: [PrimaryKeyType](../modules/_sdk_.md#primarykeytype), `body`: `Role`): *`Promise<IItemResponse<Role & IRole>>`*
 
-*Defined in [SDK.ts:776](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L776)*
+*Defined in [SDK.ts:772](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L772)*
 
 Update a user role
 
@@ -1521,7 +1510,7 @@ ___
 
 ▸ **updateUser**<**User**>(`primaryKey`: [PrimaryKeyType](../modules/_sdk_.md#primarykeytype), `body`: `User`): *`Promise<IItemResponse<User & IUser>>`*
 
-*Defined in [SDK.ts:850](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L850)*
+*Defined in [SDK.ts:846](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L846)*
 
 Update a single user based on primaryKey
 
@@ -1544,7 +1533,7 @@ ___
 
 ▸ **uploadFiles**<**TResponse**>(`data`: object, `onUploadProgress`: function): *`Promise<TResponse>`*
 
-*Defined in [SDK.ts:435](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L435)*
+*Defined in [SDK.ts:431](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L431)*
 
 Upload multipart files in multipart/form-data
 

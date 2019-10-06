@@ -89,6 +89,7 @@ export class API implements IAPI {
   public auth: IAuthentication;
   public xhr = axios.create({
     paramsSerializer: querify,
+    withCredentials: true,
     timeout: 10 * 60 * 1000, // 10 min
   });
   public concurrent = concurrencyManager(this.xhr, 10);

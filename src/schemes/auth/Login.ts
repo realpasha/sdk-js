@@ -1,3 +1,5 @@
+import { AuthModes } from "../../Authentication";
+
 export interface ILoginCredentials {
   email: string;
   password: string;
@@ -9,4 +11,5 @@ export interface ILoginCredentials {
 export interface ILoginOptions {
   persist: boolean;
   storage: boolean;
+  mode: AuthModes;
 }

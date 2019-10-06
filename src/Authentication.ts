@@ -10,7 +10,7 @@ import { IAPI } from "./API";
 // Scheme types
 import { IAuthenticateResponse } from "./schemes/auth/Authenticate";
 import { ILoginCredentials, ILoginOptions } from "./schemes/auth/Login";
-import { ILoginResponse, RefreshIfNeededResponse } from "./schemes/response/Login";
+import { ILoginResponse, RefreshIfNeededResponse, ILogoutResponse } from "./schemes/response/Login";
 import { IRefreshTokenResponse } from "./schemes/response/Token";
 
 // Utilities
@@ -28,12 +28,13 @@ interface IAuthenticationInjectableProps {
 
 export interface IAuthentication {
   refreshInterval?: number;
-  isLoggedIn(): boolean;
   login(credentials: ILoginCredentials, options?: ILoginOptions): Promise<ILoginResponse>;
-  logout(): void;
+  logout(): Promise<ILogoutResponse>;
   refreshIfNeeded(): Promise<[boolean, Error?]>;
   refresh(token: string): Promise<IRefreshTokenResponse>;
 }
+
+export type AuthModes = "jwt" | "cookie";
 
 /**
  * Handles all authentication related logic, decoupled from the core
@@ -73,25 +74,6 @@ export class Authentication implements IAuthentication {
   }
 
   /**
-   * If the current auth status is logged in
-   * @return {boolean}
-   */
-  public isLoggedIn(): boolean {
-    if (
-      isString(this.config.token) &&
-      isString(this.config.url) &&
-      isString(this.config.project) &&
-      isObject(this.getPayload())
-    ) {
-      if (this.config.localExp > Date.now()) {
-        // Not expired, succeed
-        return true;
-      }
-    }
-    return false;
-  }
-
-  /**
    * Login to the API; Gets a new token from the API and stores it in this.token.
    * @param {ILoginCredentials} credentials   User login credentials
    * @param {ILoginOptions?} options          Additional options regarding persistance and co.
@@ -108,45 +90,71 @@ export class Authentication implements IAuthentication {
       this.config.project = credentials.project;
     }
 
+    if (options && isString(options.mode)) {
+      this.config.mode = options.mode;
+    }
+
     if (credentials.persist || (options && options.persist) || this.config.persist) {
       // use interval for login refresh when option persist enabled
       this.startInterval();
     }
 
-    return new Promise((resolve, reject) => {
-      this.inject
-        .post("/auth/authenticate", {
-          email: credentials.email,
-          password: credentials.password,
-        })
-        .then((res: IAuthenticateResponse) => {
-          // save new token in configuration
-          return (this.config.token = res.data.token);
-        })
-        .then((token: string) => {
-          // expiry date is the moment we got the token + 5 minutes
-          this.config.localExp = new Date(Date.now() + this.config.tokenExpirationTime).getTime();
+    if (this.config.mode === "cookie") {
+      return new Promise((resolve, reject) => {
+        this.inject
+          .post("/auth/authenticate", {
+            email: credentials.email,
+            password: credentials.password,
+            mode: "cookie"
+          })
+          .then(() => {
+            resolve({
+              project: this.config.project,
+              url: this.config.url
+            });
+          })
+          .catch(reject);
+      });
+    } else if (this.config.mode === "jwt") {
+      return new Promise((resolve, reject) => {
+        this.inject
+          .post("/auth/authenticate", {
+            email: credentials.email,
+            password: credentials.password,
+          })
+          .then((res: IAuthenticateResponse) => {
+            // save new token in configuration
+            return (this.config.token = res.data.token);
+          })
+          .then((token: string) => {
+            // expiry date is the moment we got the token + 5 minutes
+            this.config.localExp = new Date(Date.now() + this.config.tokenExpirationTime).getTime();
 
-          resolve({
-            localExp: this.config.localExp,
-            project: this.config.project,
-            token,
-            url: this.config.url,
-          });
-        })
-        .catch(reject);
-    });
+            resolve({
+              localExp: this.config.localExp,
+              project: this.config.project,
+              token,
+              url: this.config.url,
+            });
+          })
+          .catch(reject);
+      });
+    }
   }
 
   /**
    * Logs the user out by "forgetting" the token, and clearing the refresh interval
    */
-  public logout(): void {
+  public async logout(): Promise<ILogoutResponse> {
+    const response = await this.inject.post<ILogoutResponse>("/auth/logout");
+
     this.config.reset();
 
     if (this.refreshInterval) {
       this.stopInterval();
     }
+
+    return response;
   }
 
   /// REFRESH METHODS ----------------------------------------------------------

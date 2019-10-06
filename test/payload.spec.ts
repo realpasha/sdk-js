@@ -40,20 +40,4 @@ describe("Payload", () => {
 
     expect(client.payload.exp).to.equalDate(date);
   });
-
-  it("Reports a loggedIn flag when token, url, project are set and token has not expired", () => {
-    client.config.token = jwt.sign({ foo: "bar" }, "secret-string", {
-      expiresIn: "-1h",
-      noTimestamp: true,
-    });
-    client.config.url = "https://demo-api.getdirectus.com";
-    expect(client.loggedIn).to.equal(false);
-
-    client.config.token = jwt.sign({ foo: "bar" }, "secret-string", {
-      expiresIn: "1h",
-      noTimestamp: true,
-    });
-    client.config.localExp = Date.now() + 10e5; // set expiration to future
-    expect(client.loggedIn).to.equal(true);
-  });
 });
