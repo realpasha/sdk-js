@@ -87,14 +87,22 @@ export class APIError extends Error {
  */
 export class API implements IAPI {
   public auth: IAuthentication;
-  public xhr = axios.create({
-    paramsSerializer: querify,
-    withCredentials: true,
-    timeout: 10 * 60 * 1000, // 10 min
-  });
+  public xhr: AxiosInstance;
   public concurrent = concurrencyManager(this.xhr, 10);
 
   constructor(private config: IConfiguration) {
+    const axiosOptions = {
+      paramsSerializer: querify,
+      timeout: 10 * 60 * 1000, // 10 min
+      withCredentials: false
+    };
+
+    if (config.mode === 'cookie') {
+      axiosOptions.withCredentials = true;
+    }
+
+    this.xhr = axios.create(axiosOptions);
+
     this.auth = new Authentication(config, {
       post: this.post.bind(this),
     });
