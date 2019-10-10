@@ -137,7 +137,7 @@ Current set auto-refresh interval or undefined
 
 ▸ **getPayload**<**T**>(): *`T`*
 
-*Defined in [Authentication.ts:251](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L251)*
+*Defined in [Authentication.ts:253](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L253)*
 
 Gets the payload of the current token, return type can be generic
 
@@ -192,7 +192,7 @@ ___
 
 *Implementation of [IAuthentication](../interfaces/_authentication_.iauthentication.md)*
 
-*Defined in [Authentication.ts:222](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L222)*
+*Defined in [Authentication.ts:224](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L224)*
 
 Use the passed token to request a new one.
 
@@ -212,7 +212,7 @@ ___
 
 *Implementation of [IAuthentication](../interfaces/_authentication_.iauthentication.md)*
 
-*Defined in [Authentication.ts:166](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L166)*
+*Defined in [Authentication.ts:168](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L168)*
 
 Refresh the token if it is about to expire (within 30 seconds of expiry date).
 - Calls onAutoRefreshSuccess with the new token if the refreshing is successful.
@@ -226,7 +226,7 @@ ___
 
 ▸ **startInterval**(`fireImmediately?`: boolean): *void*
 
-*Defined in [Authentication.ts:230](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L230)*
+*Defined in [Authentication.ts:232](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L232)*
 
 Starts an interval of 10 seconds that will check if the token needs refreshing
 
@@ -244,7 +244,7 @@ ___
 
 ▸ **stopInterval**(): *void*
 
-*Defined in [Authentication.ts:241](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L241)*
+*Defined in [Authentication.ts:243](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L243)*
 
 Clears and nullifies the token refreshing interval
 

@@ -1088,13 +1088,13 @@ ___
 
 ###  logout
 
-▸ **logout**(): *void*
+▸ **logout**(): *`Promise<ILogoutResponse>`*
 
 *Defined in [SDK.ts:92](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L92)*
 
 Logs the user out by "forgetting" the token, and clearing the refresh interval
 
-**Returns:** *void*
+**Returns:** *`Promise<ILogoutResponse>`*
 
 ___
 
