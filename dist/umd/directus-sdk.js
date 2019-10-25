@@ -356,6 +356,7 @@
             }
             if (isString(credentials.project)) {
                 this.config.project = credentials.project;
+                this.inject.xhr.defaults.headers['X-Directus-Project'] = credentials.project;
             }
             if (options && isString(options.mode)) {
                 this.config.mode = options.mode;
@@ -696,6 +697,7 @@
             this.xhr = axios.create(axiosOptions);
             this.auth = new Authentication(config, {
                 post: this.post.bind(this),
+                xhr: this.xhr
             });
         }
         /**

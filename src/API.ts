@@ -105,6 +105,7 @@ export class API implements IAPI {
 
     this.auth = new Authentication(config, {
       post: this.post.bind(this),
+      xhr: this.xhr
     });
   }
 

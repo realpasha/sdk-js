@@ -24,6 +24,7 @@ interface IAuthenticationRefreshError {
 
 interface IAuthenticationInjectableProps {
   post: IAPI["post"];
+  xhr: IAPI["xhr"];
 }
 
 export interface IAuthentication {
@@ -88,6 +89,7 @@ export class Authentication implements IAuthentication {
 
     if (isString(credentials.project)) {
       this.config.project = credentials.project;
+      this.inject.xhr.defaults.headers['X-Directus-Project'] = credentials.project;
     }
 
     if (options && isString(options.mode)) {
