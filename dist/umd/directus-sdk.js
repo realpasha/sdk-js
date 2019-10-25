@@ -1,8 +1,8 @@
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('base-64'), require('axios')) :
-    typeof define === 'function' && define.amd ? define(['exports', 'base-64', 'axios'], factory) :
-    (global = global || self, factory(global.DirectusSDK = {}, global.base64, global.axios));
-}(this, function (exports, base64, axios) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('axios'), require('base-64')) :
+    typeof define === 'function' && define.amd ? define(['exports', 'axios', 'base-64'], factory) :
+    (global = global || self, factory(global.DirectusSDK = {}, global.axios, global.base64));
+}(this, function (exports, axios, base64) { 'use strict';
 
     axios = axios && axios.hasOwnProperty('default') ? axios['default'] : axios;
 
@@ -901,16 +901,6 @@
             this.config = new Configuration(options);
             this.api = new API(this.config);
         }
-        Object.defineProperty(SDK.prototype, "payload", {
-            get: function () {
-                if (!this.config.token) {
-                    return null;
-                }
-                return this.api.getPayload();
-            },
-            enumerable: true,
-            configurable: true
-        });
         // #region authentication
         /**
          * Login to the API; Gets a new token from the API and stores it in this.api.token.
@@ -1017,20 +1007,31 @@
          * @see https://docs.directus.io/api/reference.html#collection-presets
          */
         SDK.prototype.getCollectionPresets = function (params) {
-            var payload = this.api.getPayload();
-            return Promise.all([
-                this.api.get("/collection_presets", {
-                    "filter[title][nnull]": 1,
-                    "filter[user][eq]": payload.id,
-                }),
-                this.api.get("/collection_presets", {
-                    "filter[role][eq]": payload.role,
-                    "filter[title][nnull]": 1,
-                    "filter[user][null]": 1,
-                }),
-            ]).then(function (values) {
-                var user = values[0], role = values[1];
-                return (user.data || []).concat((role.data || []));
+            return __awaiter$1(this, void 0, void 0, function () {
+                var user, id, role;
+                return __generator$1(this, function (_a) {
+                    switch (_a.label) {
+                        case 0: return [4 /*yield*/, this.getMe({ fields: "*.*" })];
+                        case 1:
+                            user = _a.sent();
+                            id = user.id;
+                            role = user.roles[0].role;
+                            return [2 /*return*/, Promise.all([
+                                    this.api.get("/collection_presets", {
+                                        "filter[title][nnull]": 1,
+                                        "filter[user][eq]": id,
+                                    }),
+                                    this.api.get("/collection_presets", {
+                                        "filter[role][eq]": role,
+                                        "filter[title][nnull]": 1,
+                                        "filter[user][null]": 1,
+                                    }),
+                                ]).then(function (values) {
+                                    var user = values[0], role = values[1];
+                                    return (user.data || []).concat((role.data || []));
+                                })];
+                    }
+                });
             });
         };
         /**
@@ -1284,44 +1285,55 @@
          * Get the collection presets of the current user for a single collection
          */
         SDK.prototype.getMyListingPreferences = function (collection, params) {
-            var payload = this.api.getPayload();
-            return Promise.all([
-                this.api.get("/collection_presets", {
-                    "filter[collection][eq]": collection,
-                    "filter[role][null]": 1,
-                    "filter[title][null]": 1,
-                    "filter[user][null]": 1,
-                    limit: 1,
-                    sort: "-id",
-                }),
-                this.api.get("/collection_presets", {
-                    "filter[collection][eq]": collection,
-                    "filter[role][eq]": payload.role,
-                    "filter[title][null]": 1,
-                    "filter[user][null]": 1,
-                    limit: 1,
-                    sort: "-id",
-                }),
-                this.api.get("/collection_presets", {
-                    "filter[collection][eq]": collection,
-                    "filter[role][eq]": payload.role,
-                    "filter[title][null]": 1,
-                    "filter[user][eq]": payload.id,
-                    limit: 1,
-                    sort: "-id",
-                }),
-            ]).then(function (values) {
-                var col = values[0], role = values[1], user = values[2];
-                if (user.data && user.data.length > 0) {
-                    return user.data[0];
-                }
-                if (role.data && role.data.length > 0) {
-                    return role.data[0];
-                }
-                if (col.data && col.data.length > 0) {
-                    return col.data[0];
-                }
-                return {};
+            return __awaiter$1(this, void 0, void 0, function () {
+                var user, id, role;
+                return __generator$1(this, function (_a) {
+                    switch (_a.label) {
+                        case 0: return [4 /*yield*/, this.getMe({ fields: "*.*" })];
+                        case 1:
+                            user = _a.sent();
+                            id = user.id;
+                            role = user.roles[0].role;
+                            return [2 /*return*/, Promise.all([
+                                    this.api.get("/collection_presets", {
+                                        "filter[collection][eq]": collection,
+                                        "filter[role][null]": 1,
+                                        "filter[title][null]": 1,
+                                        "filter[user][null]": 1,
+                                        limit: 1,
+                                        sort: "-id",
+                                    }),
+                                    this.api.get("/collection_presets", {
+                                        "filter[collection][eq]": collection,
+                                        "filter[role][eq]": role,
+                                        "filter[title][null]": 1,
+                                        "filter[user][null]": 1,
+                                        limit: 1,
+                                        sort: "-id",
+                                    }),
+                                    this.api.get("/collection_presets", {
+                                        "filter[collection][eq]": collection,
+                                        "filter[role][eq]": role,
+                                        "filter[title][null]": 1,
+                                        "filter[user][eq]": id,
+                                        limit: 1,
+                                        sort: "-id",
+                                    }),
+                                ]).then(function (values) {
+                                    var col = values[0], role = values[1], user = values[2];
+                                    if (user.data && user.data.length > 0) {
+                                        return user.data[0];
+                                    }
+                                    if (role.data && role.data.length > 0) {
+                                        return role.data[0];
+                                    }
+                                    if (col.data && col.data.length > 0) {
+                                        return col.data[0];
+                                    }
+                                    return {};
+                                })];
+                    }
+                });
             });
         };
         // #endregion listing preferences
@@ -1557,8 +1569,6 @@
         SDK.prototype.getThirdPartyAuthProviders = function () {
             return this.api.get("/auth/sso");
         };
-        // convenience method
-        SDK.getPayload = getPayload;
         return SDK;
     }());
 

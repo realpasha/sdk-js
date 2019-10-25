@@ -37,7 +37,6 @@ import { IUserResponse, IUsersResponse } from "./schemes/response/User";
 
 // Utilities
 import { getCollectionItemPath } from "./utils/collection";
-import { getPayload } from "./utils/payload";
 
 // Manager classes
 import { API, IAPI } from "./API";
@@ -56,17 +55,6 @@ type PrimaryKeyType = string | number;
  * @uses Configuration
  */
 export class SDK {
-  public get payload(): any {
-    if (!this.config.token) {
-      return null;
-    }
-
-    return this.api.getPayload();
-  }
-
-  // convenience method
-  public static getPayload = getPayload;
-
   // api connection and settings
   public config: IConfiguration;
   public api: IAPI;
@@ -201,16 +189,18 @@ export class SDK {
    * Get the collection presets of the current user
    * @see https://docs.directus.io/api/reference.html#collection-presets
    */
-  public getCollectionPresets<TResponse extends any[] = any[]>(params: QueryParamsType = {}): Promise<TResponse> {
-    const payload = this.api.getPayload<{ id: string; role: string }>();
+  public async getCollectionPresets<TResponse extends any[] = any[]>(params: QueryParamsType = {}): Promise<TResponse> {
+    const user = await this.getMe({ fields: "*.*" });
+    const id = user.id;
+    const role = user.roles[0].role;
 
     return Promise.all([
       this.api.get("/collection_presets", {
         "filter[title][nnull]": 1,
-        "filter[user][eq]": payload.id,
+        "filter[user][eq]": id,
       }),
       this.api.get("/collection_presets", {
-        "filter[role][eq]": payload.role,
+        "filter[role][eq]": role,
         "filter[title][nnull]": 1,
         "filter[user][null]": 1,
       }),
@@ -578,11 +568,13 @@ export class SDK {
   /**
    * Get the collection presets of the current user for a single collection
    */
-  public getMyListingPreferences<TResponse extends any[] = any[]>(
+  public async getMyListingPreferences<TResponse extends any[] = any[]>(
     collection: string,
     params: QueryParamsType = {}
   ): Promise<TResponse> {
-    const payload = this.api.getPayload<{ role: string; id: string }>();
+    const user = await this.getMe({ fields: "*.*" });
+    const id = user.id;
+    const role = user.roles[0].role;
 
     return Promise.all([
       this.api.get<IFieldResponse<any>>("/collection_presets", {
@@ -595,7 +587,7 @@ export class SDK {
       }),
       this.api.get<IFieldResponse<any>>("/collection_presets", {
         "filter[collection][eq]": collection,
-        "filter[role][eq]": payload.role,
+        "filter[role][eq]": role,
         "filter[title][null]": 1,
         "filter[user][null]": 1,
         limit: 1,
@@ -603,9 +595,9 @@ export class SDK {
       }),
       this.api.get<IFieldResponse<any>>("/collection_presets", {
         "filter[collection][eq]": collection,
-        "filter[role][eq]": payload.role,
+        "filter[role][eq]": role,
         "filter[title][null]": 1,
-        "filter[user][eq]": payload.id,
+        "filter[user][eq]": id,
         limit: 1,
         sort: "-id",
       }),
