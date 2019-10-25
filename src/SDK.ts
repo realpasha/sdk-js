@@ -572,7 +572,7 @@ export class SDK {
     collection: string,
     params: QueryParamsType = {}
   ): Promise<TResponse> {
-    const user = await this.getMe({ fields: "*.*" });
+    const { data: user } = await this.getMe({ fields: "*.*" });
     const id = user.id;
     const role = user.roles[0].role;
 
