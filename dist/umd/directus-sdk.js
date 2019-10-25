@@ -1013,7 +1013,7 @@
                     switch (_a.label) {
                         case 0: return [4 /*yield*/, this.getMe({ fields: "*.*" })];
                         case 1:
-                            user = _a.sent();
+                            user = (_a.sent()).data;
                             id = user.id;
                             role = user.roles[0].role;
                             return [2 /*return*/, Promise.all([

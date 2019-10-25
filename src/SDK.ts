@@ -190,8 +190,8 @@ export class SDK {
    * @see https://docs.directus.io/api/reference.html#collection-presets
    */
   public async getCollectionPresets<TResponse extends any[] = any[]>(params: QueryParamsType = {}): Promise<TResponse> {
-    const user = await this.getMe({ fields: "*.*" });
-    const id = user.id;
+    const { data: user } = await this.getMe({ fields: "*.*" });
+    const id = user.id
     const role = user.roles[0].role;
 
     return Promise.all([
