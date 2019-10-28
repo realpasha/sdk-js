@@ -89,7 +89,6 @@ export class Authentication implements IAuthentication {
 
     if (isString(credentials.project)) {
       this.config.project = credentials.project;
-      this.inject.xhr.defaults.headers['X-Directus-Project'] = credentials.project;
     }
 
     if (options && isString(options.mode)) {

@@ -356,7 +356,6 @@
             }
             if (isString(credentials.project)) {
                 this.config.project = credentials.project;
-                this.inject.xhr.defaults.headers['X-Directus-Project'] = credentials.project;
             }
             if (options && isString(options.mode)) {
                 this.config.mode = options.mode;
@@ -802,6 +801,8 @@
             if (this.config.token && isString(this.config.token) && this.config.token.length > 0) {
                 requestOptions.headers = headers;
                 requestOptions.headers.Authorization = "Bearer " + this.config.token;
+            }
+            if (this.config.project) {
                 requestOptions.headers['X-Directus-Project'] = this.config.project;
             }
             return this.xhr

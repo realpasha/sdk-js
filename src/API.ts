@@ -220,6 +220,9 @@ export class API implements IAPI {
     if (this.config.token && isString(this.config.token) && this.config.token.length > 0) {
       requestOptions.headers = headers;
       requestOptions.headers.Authorization = `Bearer ${this.config.token}`;
+    }
+
+    if (this.config.project) {
       requestOptions.headers['X-Directus-Project'] = this.config.project;
     }
 
