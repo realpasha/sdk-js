@@ -37,6 +37,7 @@ import { IUserResponse, IUsersResponse } from "./schemes/response/User";
 
 // Utilities
 import { getCollectionItemPath } from "./utils/collection";
+import { isString } from "./utils/is";
 
 // Manager classes
 import { API, IAPI } from "./API";
@@ -423,9 +424,13 @@ export class SDK {
     onUploadProgress: () => object = () => ({})
   ): Promise<TResponse> {
     const headers = {
-      Authorization: `Bearer ${this.config.token}`,
       "Content-Type": "multipart/form-data",
+      "X-Directus-Project": this.config.project
     };
+
+    if (this.config.token && isString(this.config.token) && this.config.token.length > 0) {
+      headers['Authorization'] = `Bearer ${this.config.token}`;
+    }
 
     // limit concurrent requests to 5
     this.api.concurrent.attach(5);

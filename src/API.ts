@@ -88,7 +88,7 @@ export class APIError extends Error {
 export class API implements IAPI {
   public auth: IAuthentication;
   public xhr: AxiosInstance;
-  public concurrent = concurrencyManager(this.xhr, 10);
+  public concurrent: ReturnType<typeof concurrencyManager>;
 
   constructor(private config: IConfiguration) {
     const axiosOptions = {
@@ -107,6 +107,8 @@ export class API implements IAPI {
       post: this.post.bind(this),
       xhr: this.xhr
     });
+
+    this.concurrent = concurrencyManager(this.xhr, 10);
   }
 
   /**

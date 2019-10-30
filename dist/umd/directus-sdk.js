@@ -684,7 +684,6 @@
     var API = /** @class */ (function () {
         function API(config) {
             this.config = config;
-            this.concurrent = concurrencyManager(this.xhr, 10);
             var axiosOptions = {
                 paramsSerializer: querify,
                 timeout: 10 * 60 * 1000,
@@ -698,6 +697,7 @@
                 post: this.post.bind(this),
                 xhr: this.xhr
             });
+            this.concurrent = concurrencyManager(this.xhr, 10);
         }
         /**
          * Resets the client instance by logging out and removing the URL and project
@@ -1171,9 +1171,12 @@
             var _this = this;
             if (onUploadProgress === void 0) { onUploadProgress = function () { return ({}); }; }
             var headers = {
-                Authorization: "Bearer " + this.config.token,
                 "Content-Type": "multipart/form-data",
+                "X-Directus-Project": this.config.project
             };
+            if (this.config.token && isString(this.config.token) && this.config.token.length > 0) {
+                headers['Authorization'] = "Bearer " + this.config.token;
+            }
             // limit concurrent requests to 5
             this.api.concurrent.attach(5);
             return this.api.xhr
