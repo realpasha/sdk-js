@@ -149,7 +149,8 @@ export class Authentication implements IAuthentication {
   public async logout(): Promise<ILogoutResponse> {
     const response = await this.inject.post<ILogoutResponse>("/auth/logout");
 
-    this.config.reset();
+    this.config.token = null;
+    this.config.tokenExpirationTime = null;
 
     if (this.refreshInterval) {
       this.stopInterval();
