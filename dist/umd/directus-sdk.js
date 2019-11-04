@@ -786,7 +786,9 @@
             if (!this.config.url) {
                 throw new Error('API has no URL configured to send requests to, please check the docs.');
             }
-            var baseURL = this.config.url + "/";
+            var baseURL = "" + this.config.url;
+            if (baseURL.endsWith('/') === false)
+                baseURL += '/';
             if (noEnv === false) {
                 baseURL += this.config.project + "/";
             }

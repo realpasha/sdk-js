@@ -204,7 +204,9 @@ export class API implements IAPI {
       throw new Error('API has no URL configured to send requests to, please check the docs.');
     }
 
-    let baseURL = `${this.config.url}/`;
+    let baseURL = `${this.config.url}`;
+
+    if (baseURL.endsWith('/') === false) baseURL += '/';
 
     if (noEnv === false) {
       baseURL += `${this.config.project}/`;
