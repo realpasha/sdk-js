@@ -41,7 +41,7 @@
                 dehydratedConfig = this.dehydratedInitialConfiguration(storage);
             }
             var persist = Boolean(dehydratedConfig.persist || initialConfig.persist);
-            var project = dehydratedConfig.project || initialConfig.project || Configuration.defaults.project;
+            var project = dehydratedConfig.project || initialConfig.project;
             var mode = dehydratedConfig.mode || initialConfig.mode || Configuration.defaults.mode;
             var tokenExpirationTime = dehydratedConfig.tokenExpirationTime ||
                 initialConfig.tokenExpirationTime ||
@@ -91,7 +91,7 @@
             },
             set: function (project) {
                 this.partialUpdate({
-                    project: project || "_",
+                    project: project,
                 });
             },
             enumerable: true,
@@ -150,8 +150,8 @@
         Configuration.prototype.reset = function () {
             delete this.internalConfiguration.token;
             delete this.internalConfiguration.url;
+            delete this.internalConfiguration.project;
             delete this.internalConfiguration.localExp;
-            this.internalConfiguration.project = "_";
             this.deleteHydratedConfig();
         };
         // STORAGE METHODS ===========================================================
@@ -199,7 +199,6 @@
          * @type {IConfigurationDefaults}
          */
         Configuration.defaults = {
-            project: "_",
             tokenExpirationTime: 5 * 6 * 1000,
             mode: "jwt"
         };
@@ -784,7 +783,10 @@
             if (headers === void 0) { headers = {}; }
             if (skipParseToJSON === void 0) { skipParseToJSON = false; }
             if (!this.config.url) {
-                throw new Error('API has no URL configured to send requests to, please check the docs.');
+                throw new Error('SDK has no URL configured to send requests to, please check the docs.');
+            }
+            if (!this.config.project) {
+                throw new Error('SDK has no project configured to send requests to, please check the docs.');
             }
             var baseURL = "" + this.config.url;
             if (baseURL.endsWith('/') === false)

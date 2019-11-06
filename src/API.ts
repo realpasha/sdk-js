@@ -201,7 +201,11 @@ export class API implements IAPI {
     skipParseToJSON: boolean = false
   ): Promise<T> {
     if (!this.config.url) {
-      throw new Error('API has no URL configured to send requests to, please check the docs.');
+      throw new Error('SDK has no URL configured to send requests to, please check the docs.');
+    }
+
+    if (!this.config.project) {
+      throw new Error('SDK has no project configured to send requests to, please check the docs.');
     }
 
     let baseURL = `${this.config.url}`;

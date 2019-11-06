@@ -43,7 +43,6 @@ export interface IConfiguration {
 // default settings
 export interface IConfigurationDefaults {
   tokenExpirationTime: number;
-  project: string;
   mode: AuthModes;
 }
 
@@ -89,7 +88,6 @@ export class Configuration implements IConfiguration {
    * @type {IConfigurationDefaults}
    */
   public static defaults: IConfigurationDefaults = {
-    project: "_",
     tokenExpirationTime: 5 * 6 * 1000,
     mode: "jwt"
   };
@@ -115,7 +113,7 @@ export class Configuration implements IConfiguration {
     }
 
     const persist = Boolean(dehydratedConfig.persist || initialConfig.persist);
-    const project = dehydratedConfig.project || initialConfig.project || Configuration.defaults.project;
+    const project = dehydratedConfig.project || initialConfig.project;
     const mode = dehydratedConfig.mode || initialConfig.mode || Configuration.defaults.mode;
     const tokenExpirationTime =
       dehydratedConfig.tokenExpirationTime ||
@@ -167,7 +165,7 @@ export class Configuration implements IConfiguration {
 
   public set project(project: string) {
     this.partialUpdate({
-      project: project || "_",
+      project: project,
     });
   }
 
@@ -226,9 +224,8 @@ export class Configuration implements IConfiguration {
   public reset(): void {
     delete this.internalConfiguration.token;
     delete this.internalConfiguration.url;
+    delete this.internalConfiguration.project;
     delete this.internalConfiguration.localExp;
-
-    this.internalConfiguration.project = "_";
 
     this.deleteHydratedConfig();
   }
