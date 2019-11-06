@@ -416,7 +416,7 @@
                         case 0: return [4 /*yield*/, this.inject.post("/auth/logout")];
                         case 1:
                             response = _a.sent();
-                            this.config.reset();
+                            this.config.token = null;
                             if (this.refreshInterval) {
                                 this.stopInterval();
                             }
