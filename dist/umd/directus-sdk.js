@@ -770,28 +770,28 @@
          * @param {string} endpoint         Endpoint definition as path
          * @param {object={}} params        Query parameters
          * @param {object={}} data          Data passed to directus
-         * @param {boolean=false} noEnv     Do not include the `env` in the url (for system calls)
+         * @param {boolean=false} noProject Do not include the `project` in the url (for system calls)
          * @param {object={}} headers       Optional headers to include
          * @param {boolean=false} skipParseToJSON  Whether to skip `JSON.parse` or not
          * @typeparam T                     Response type definition, defaults to `any`
          * @return {Promise<T>}
          */
-        API.prototype.request = function (method, endpoint, params, data, noEnv, headers, skipParseToJSON) {
+        API.prototype.request = function (method, endpoint, params, data, noProject, headers, skipParseToJSON) {
             if (params === void 0) { params = {}; }
             if (data === void 0) { data = {}; }
-            if (noEnv === void 0) { noEnv = false; }
+            if (noProject === void 0) { noProject = false; }
             if (headers === void 0) { headers = {}; }
             if (skipParseToJSON === void 0) { skipParseToJSON = false; }
             if (!this.config.url) {
                 throw new Error('SDK has no URL configured to send requests to, please check the docs.');
             }
-            if (!this.config.project) {
+            if (noProject === false && !this.config.project) {
                 throw new Error('SDK has no project configured to send requests to, please check the docs.');
             }
             var baseURL = "" + this.config.url;
             if (baseURL.endsWith('/') === false)
                 baseURL += '/';
-            if (noEnv === false) {
+            if (noProject === false) {
                 baseURL += this.config.project + "/";
             }
             var requestOptions = {
