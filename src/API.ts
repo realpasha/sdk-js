@@ -34,7 +34,7 @@ export interface IAPI {
     endpoint: string,
     params?: object,
     data?: object,
-    noEnv?: boolean,
+    noProject?: boolean,
     headers?: { [key: string]: string },
     skipParseToJSON?: boolean
   ): Promise<T>;
@@ -185,7 +185,7 @@ export class API implements IAPI {
    * @param {string} endpoint         Endpoint definition as path
    * @param {object={}} params        Query parameters
    * @param {object={}} data          Data passed to directus
-   * @param {boolean=false} noEnv     Do not include the `env` in the url (for system calls)
+   * @param {boolean=false} noProject Do not include the `project` in the url (for system calls)
    * @param {object={}} headers       Optional headers to include
    * @param {boolean=false} skipParseToJSON  Whether to skip `JSON.parse` or not
    * @typeparam T                     Response type definition, defaults to `any`
@@ -196,7 +196,7 @@ export class API implements IAPI {
     endpoint: string,
     params: object = {},
     data: object = {},
-    noEnv: boolean = false,
+    noProject: boolean = false,
     headers: { [key: string]: string } = {},
     skipParseToJSON: boolean = false
   ): Promise<T> {
@@ -204,7 +204,7 @@ export class API implements IAPI {
       throw new Error('SDK has no URL configured to send requests to, please check the docs.');
     }
 
-    if (!this.config.project) {
+    if (noProject === false && !this.config.project) {
       throw new Error('SDK has no project configured to send requests to, please check the docs.');
     }
 
@@ -212,7 +212,7 @@ export class API implements IAPI {
 
     if (baseURL.endsWith('/') === false) baseURL += '/';
 
-    if (noEnv === false) {
+    if (noProject === false) {
       baseURL += `${this.config.project}/`;
     }
 
