@@ -1321,7 +1321,6 @@
                                     }),
                                     this.api.get("/collection_presets", {
                                         "filter[collection][eq]": collection,
-                                        "filter[role][eq]": role,
                                         "filter[title][null]": 1,
                                         "filter[user][eq]": id,
                                         limit: 1,
