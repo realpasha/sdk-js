@@ -436,7 +436,7 @@ export class SDK {
     this.api.concurrent.attach(5);
 
     return this.api.xhr
-      .post(`${this.config.url}/${this.config.project}/files`, data, {
+      .post(`${this.config.url}${this.config.project}/files`, data, {
         headers,
         onUploadProgress,
       })
