@@ -106,6 +106,7 @@ export class Authentication implements IAuthentication {
           .post("/auth/authenticate", {
             email: credentials.email,
             password: credentials.password,
+            otp: credentials.otp || null,
             mode: "cookie"
           })
           .then(() => {
@@ -122,6 +123,7 @@ export class Authentication implements IAuthentication {
           .post("/auth/authenticate", {
             email: credentials.email,
             password: credentials.password,
+            otp: credentials.otp || null
           })
           .then((res: IAuthenticateResponse) => {
             // save new token in configuration

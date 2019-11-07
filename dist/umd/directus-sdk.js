@@ -369,6 +369,7 @@
                         .post("/auth/authenticate", {
                         email: credentials.email,
                         password: credentials.password,
+                        otp: credentials.otp || null,
                         mode: "cookie"
                     })
                         .then(function () {
@@ -386,6 +387,7 @@
                         .post("/auth/authenticate", {
                         email: credentials.email,
                         password: credentials.password,
+                        otp: credentials.otp || null
                     })
                         .then(function (res) {
                         // save new token in configuration

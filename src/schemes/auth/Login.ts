@@ -6,6 +6,7 @@ export interface ILoginCredentials {
   url?: string;
   project?: string;
   persist?: boolean;
+  otp?: string;
 }
 
 export interface ILoginOptions {
