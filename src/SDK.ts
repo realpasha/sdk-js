@@ -20,6 +20,7 @@ import { IUser } from "./schemes/directus/User";
 import { IUpdateCollectionPresetBody } from "./schemes/request/Collection";
 
 // Response schemes
+import { IAuthenticateResponse } from "./schemes/auth/Authenticate";
 import { IRelationsResponse } from "./schemes/response/Relation";
 import { IActivityResponse } from "./schemes/response/Activity";
 import { ICollectionResponse, ICollectionsResponse } from "./schemes/response/Collection";
@@ -28,7 +29,7 @@ import { IErrorResponse } from "./schemes/response/Error";
 import { IFieldResponse, IFieldsResponse } from "./schemes/response/Field";
 import { IFileResponse, IFilesResponse } from "./schemes/response/File";
 import { IItemResponse, IItemsResponse } from "./schemes/response/Item";
-import { ILoginResponse, ILogoutResponse } from "./schemes/response/Login";
+import { ILogoutResponse } from "./schemes/response/Login";
 import { IRelationResponse } from "./schemes/response/Relation";
 import { IRevisionResponse } from "./schemes/response/Revision";
 import { IRoleResponse } from "./schemes/response/Role";
@@ -71,7 +72,7 @@ export class SDK {
   /**
    * Login to the API; Gets a new token from the API and stores it in this.api.token.
    */
-  public login(credentials: ILoginCredentials, options?: ILoginOptions): Promise<ILoginResponse> {
+  public login(credentials: ILoginCredentials, options?: ILoginOptions): Promise<IAuthenticateResponse> {
     return this.api.auth.login(credentials, options);
   }
 

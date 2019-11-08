@@ -22,7 +22,7 @@
 
 • **mode**: *[AuthModes](../modules/_authentication_.md#authmodes)*
 
-*Defined in [schemes/auth/Login.ts:14](https://github.com/direcuts/sdk-js/tree/master/schemes/auth/Login.ts#L14)*
+*Defined in [schemes/auth/Login.ts:15](https://github.com/direcuts/sdk-js/tree/master/schemes/auth/Login.ts#L15)*
 
 ___
 
@@ -30,7 +30,7 @@ ___
 
 • **persist**: *boolean*
 
-*Defined in [schemes/auth/Login.ts:12](https://github.com/direcuts/sdk-js/tree/master/schemes/auth/Login.ts#L12)*
+*Defined in [schemes/auth/Login.ts:13](https://github.com/direcuts/sdk-js/tree/master/schemes/auth/Login.ts#L13)*
 
 ___
 
@@ -38,4 +38,4 @@ ___
 
 • **storage**: *boolean*
 
-*Defined in [schemes/auth/Login.ts:13](https://github.com/direcuts/sdk-js/tree/master/schemes/auth/Login.ts#L13)*
+*Defined in [schemes/auth/Login.ts:14](https://github.com/direcuts/sdk-js/tree/master/schemes/auth/Login.ts#L14)*

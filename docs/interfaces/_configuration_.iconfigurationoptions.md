@@ -26,7 +26,7 @@
 
 • **localExp**? : *number*
 
-*Defined in [Configuration.ts:67](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L67)*
+*Defined in [Configuration.ts:66](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L66)*
 
 Default login expiration as number in ms
 
@@ -36,7 +36,7 @@ ___
 
 • **mode**? : *[AuthModes](../modules/_authentication_.md#authmodes)*
 
-*Defined in [Configuration.ts:75](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L75)*
+*Defined in [Configuration.ts:74](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L74)*
 
 Whether to use cookies or JWTs
 
@@ -46,7 +46,7 @@ ___
 
 • **persist**? : *boolean*
 
-*Defined in [Configuration.ts:71](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L71)*
+*Defined in [Configuration.ts:70](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L70)*
 
 If the token should be persitated or rehydrated
 
@@ -56,7 +56,7 @@ ___
 
 • **project**? : *string*
 
-*Defined in [Configuration.ts:63](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L63)*
+*Defined in [Configuration.ts:62](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L62)*
 
 Project namespace
 
@@ -66,7 +66,7 @@ ___
 
 • **token**? : *string*
 
-*Defined in [Configuration.ts:59](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L59)*
+*Defined in [Configuration.ts:58](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L58)*
 
 The token to authenticate if preferred
 
@@ -76,7 +76,7 @@ ___
 
 • **tokenExpirationTime**? : *number*
 
-*Defined in [Configuration.ts:79](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L79)*
+*Defined in [Configuration.ts:78](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L78)*
 
 Auto token expiration time
 
@@ -86,6 +86,6 @@ ___
 
 • **url**: *string*
 
-*Defined in [Configuration.ts:55](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L55)*
+*Defined in [Configuration.ts:54](https://github.com/direcuts/sdk-js/tree/master/Configuration.ts#L54)*
 
 The URL of the direcuts CMS

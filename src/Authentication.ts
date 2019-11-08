@@ -9,8 +9,8 @@ import { IAPI } from "./API";
 
 // Scheme types
 import { IAuthenticateResponse } from "./schemes/auth/Authenticate";
-import { ILoginCredentials, ILoginOptions } from "./schemes/auth/Login";
-import { ILoginResponse, RefreshIfNeededResponse, ILogoutResponse } from "./schemes/response/Login";
+import { ILoginBody, ILoginCredentials, ILoginOptions } from "./schemes/auth/Login";
+import { RefreshIfNeededResponse, ILogoutResponse } from "./schemes/response/Login";
 import { IRefreshTokenResponse } from "./schemes/response/Token";
 
 // Utilities
@@ -29,7 +29,7 @@ interface IAuthenticationInjectableProps {
 
 export interface IAuthentication {
   refreshInterval?: number;
-  login(credentials: ILoginCredentials, options?: ILoginOptions): Promise<ILoginResponse>;
+  login(credentials: ILoginCredentials, options?: ILoginOptions): Promise<IAuthenticateResponse>;
   logout(): Promise<ILogoutResponse>;
   refreshIfNeeded(): Promise<[boolean, Error?]>;
   refresh(token: string): Promise<IRefreshTokenResponse>;
@@ -78,9 +78,9 @@ export class Authentication implements IAuthentication {
    * Login to the API; Gets a new token from the API and stores it in this.token.
    * @param {ILoginCredentials} credentials   User login credentials
    * @param {ILoginOptions?} options          Additional options regarding persistance and co.
-   * @return {Promise<ILoginResponse>}
+   * @return {Promise<IAuthenticateResponse>}
    */
-  public login(credentials: ILoginCredentials, options?: ILoginOptions): Promise<ILoginResponse> {
+  public login(credentials: ILoginCredentials, options?: ILoginOptions): Promise<IAuthenticateResponse> {
     this.config.token = null;
 
     if (isString(credentials.url)) {
@@ -100,49 +100,38 @@ export class Authentication implements IAuthentication {
       this.startInterval();
     }
 
-    if (this.config.mode === "cookie") {
-      return new Promise((resolve, reject) => {
-        this.inject
-          .post("/auth/authenticate", {
-            email: credentials.email,
-            password: credentials.password,
-            otp: credentials.otp || null,
-            mode: "cookie"
-          })
-          .then(() => {
-            resolve({
-              project: this.config.project,
-              url: this.config.url
-            });
-          })
-          .catch(reject);
-      });
-    } else if (this.config.mode === "jwt") {
-      return new Promise((resolve, reject) => {
-        this.inject
-          .post("/auth/authenticate", {
-            email: credentials.email,
-            password: credentials.password,
-            otp: credentials.otp || null
-          })
-          .then((res: IAuthenticateResponse) => {
-            // save new token in configuration
-            return (this.config.token = res.data.token);
-          })
-          .then((token: string) => {
-            // expiry date is the moment we got the token + 5 minutes
-            this.config.localExp = new Date(Date.now() + this.config.tokenExpirationTime).getTime();
+    let body: ILoginBody = {
+      email: credentials.email,
+      password: credentials.password,
+      mode: "jwt"
+    };
 
-            resolve({
-              localExp: this.config.localExp,
-              project: this.config.project,
-              token,
-              url: this.config.url,
-            });
-          })
-          .catch(reject);
-      });
+    if (this.config.mode === 'cookie') {
+      body.mode = 'cookie';
     }
+
+    if (credentials.otp) {
+      body.otp = credentials.otp;
+    }
+
+    const activeRequest = this.inject.post("/auth/authenticate");
+
+    if (this.config.mode === 'jwt') {
+      activeRequest
+        .then((res: IAuthenticateResponse) => {
+          // save new token in configuration
+          this.config.token = res.data.token;
+          return res;
+        })
+        .then((res: IAuthenticateResponse) => {
+          this.config.token = res.data.token;
+          this.config.localExp = new Date(Date.now() + this.config.tokenExpirationTime).getTime();
+
+          return res;
+        });
+    }
+
+    return activeRequest;
   }
 
   /**

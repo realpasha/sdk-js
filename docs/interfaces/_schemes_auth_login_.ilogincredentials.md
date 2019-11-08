@@ -13,6 +13,7 @@
 #### Properties
 
 * [email](_schemes_auth_login_.ilogincredentials.md#email)
+* [otp](_schemes_auth_login_.ilogincredentials.md#optional-otp)
 * [password](_schemes_auth_login_.ilogincredentials.md#password)
 * [persist](_schemes_auth_login_.ilogincredentials.md#optional-persist)
 * [project](_schemes_auth_login_.ilogincredentials.md#optional-project)
@@ -25,6 +26,14 @@
 • **email**: *string*
 
 *Defined in [schemes/auth/Login.ts:4](https://github.com/direcuts/sdk-js/tree/master/schemes/auth/Login.ts#L4)*
+
+___
+
+### `Optional` otp
+
+• **otp**? : *string*
+
+*Defined in [schemes/auth/Login.ts:9](https://github.com/direcuts/sdk-js/tree/master/schemes/auth/Login.ts#L9)*
 
 ___
 

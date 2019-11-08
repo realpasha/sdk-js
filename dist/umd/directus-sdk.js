@@ -345,7 +345,7 @@
          * Login to the API; Gets a new token from the API and stores it in this.token.
          * @param {ILoginCredentials} credentials   User login credentials
          * @param {ILoginOptions?} options          Additional options regarding persistance and co.
-         * @return {Promise<ILoginResponse>}
+         * @return {Promise<IAuthenticateResponse>}
          */
         Authentication.prototype.login = function (credentials, options) {
             var _this = this;
@@ -363,49 +363,32 @@
                 // use interval for login refresh when option persist enabled
                 this.startInterval();
             }
-            if (this.config.mode === "cookie") {
-                return new Promise(function (resolve, reject) {
-                    _this.inject
-                        .post("/auth/authenticate", {
-                        email: credentials.email,
-                        password: credentials.password,
-                        otp: credentials.otp || null,
-                        mode: "cookie"
-                    })
-                        .then(function () {
-                        resolve({
-                            project: _this.config.project,
-                            url: _this.config.url
-                        });
-                    })
-                        .catch(reject);
+            var body = {
+                email: credentials.email,
+                password: credentials.password,
+                mode: "jwt"
+            };
+            if (this.config.mode === 'cookie') {
+                body.mode = 'cookie';
+            }
+            if (credentials.otp) {
+                body.otp = credentials.otp;
+            }
+            var activeRequest = this.inject.post("/auth/authenticate");
+            if (this.config.mode === 'jwt') {
+                activeRequest
+                    .then(function (res) {
+                    // save new token in configuration
+                    _this.config.token = res.data.token;
+                    return res;
+                })
+                    .then(function (res) {
+                    _this.config.token = res.data.token;
+                    _this.config.localExp = new Date(Date.now() + _this.config.tokenExpirationTime).getTime();
+                    return res;
                 });
             }
-            else if (this.config.mode === "jwt") {
-                return new Promise(function (resolve, reject) {
-                    _this.inject
-                        .post("/auth/authenticate", {
-                        email: credentials.email,
-                        password: credentials.password,
-                        otp: credentials.otp || null
-                    })
-                        .then(function (res) {
-                        // save new token in configuration
-                        return (_this.config.token = res.data.token);
-                    })
-                        .then(function (token) {
-                        // expiry date is the moment we got the token + 5 minutes
-                        _this.config.localExp = new Date(Date.now() + _this.config.tokenExpirationTime).getTime();
-                        resolve({
-                            localExp: _this.config.localExp,
-                            project: _this.config.project,
-                            token: token,
-                            url: _this.config.url,
-                        });
-                    })
-                        .catch(reject);
-                });
-            }
+            return activeRequest;
         };
         /**
          * Logs the user out by "forgetting" the token, and clearing the refresh interval

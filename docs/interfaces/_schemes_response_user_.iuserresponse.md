@@ -24,7 +24,9 @@
 
 * [data](_schemes_response_user_.iuserresponse.md#data)
 * [error](_schemes_response_user_.iuserresponse.md#optional-error)
+* [id](_schemes_response_user_.iuserresponse.md#id)
 * [meta](_schemes_response_user_.iuserresponse.md#meta)
+* [roles](_schemes_response_user_.iuserresponse.md#optional-roles)
 
 ## Properties
 
@@ -54,6 +56,14 @@ ___
 
 ___
 
+###  id
+
+• **id**: *number*
+
+*Defined in [schemes/response/User.ts:9](https://github.com/direcuts/sdk-js/tree/master/schemes/response/User.ts#L9)*
+
+___
+
 ###  meta
 
 • **meta**: *`MetaDataType`*
@@ -61,3 +71,11 @@ ___
 *Inherited from [IAPIResponse](_schemes_apiresponse_.iapiresponse.md).[meta](_schemes_apiresponse_.iapiresponse.md#meta)*
 
 *Defined in [schemes/APIResponse.ts:12](https://github.com/direcuts/sdk-js/tree/master/schemes/APIResponse.ts#L12)*
+
+___
+
+### `Optional` roles
+
+• **roles**? : *[[IUserRole](_schemes_directus_userrole_.iuserrole.md)]*
+
+*Defined in [schemes/response/User.ts:10](https://github.com/direcuts/sdk-js/tree/master/schemes/response/User.ts#L10)*

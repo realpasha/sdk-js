@@ -8,7 +8,6 @@
 
 #### Interfaces
 
-* [ILoginResponse](../interfaces/_schemes_response_login_.iloginresponse.md)
 * [ILogoutResponse](../interfaces/_schemes_response_login_.ilogoutresponse.md)
 
 #### Type aliases
@@ -21,4 +20,4 @@
 
 Ƭ **RefreshIfNeededResponse**: *[boolean, `Error`]*
 
-*Defined in [schemes/response/Login.ts:8](https://github.com/direcuts/sdk-js/tree/master/schemes/response/Login.ts#L8)*
+*Defined in [schemes/response/Login.ts:1](https://github.com/direcuts/sdk-js/tree/master/schemes/response/Login.ts#L1)*

@@ -8,5 +8,6 @@
 
 #### Interfaces
 
+* [ILoginBody](../interfaces/_schemes_auth_login_.iloginbody.md)
 * [ILoginCredentials](../interfaces/_schemes_auth_login_.ilogincredentials.md)
 * [ILoginOptions](../interfaces/_schemes_auth_login_.iloginoptions.md)

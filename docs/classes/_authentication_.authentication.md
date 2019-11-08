@@ -46,7 +46,7 @@ Handles all authentication related logic, decoupled from the core
 
 \+ **new Authentication**(`config`: [IConfiguration](../interfaces/_configuration_.iconfiguration.md), `inject`: [IAuthenticationInjectableProps](../interfaces/_authentication_.iauthenticationinjectableprops.md)): *[Authentication](_authentication_.authentication.md)*
 
-*Defined in [Authentication.ts:61](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L61)*
+*Defined in [Authentication.ts:62](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L62)*
 
 Creates a new authentication instance
 
@@ -67,7 +67,7 @@ Name | Type | Description |
 
 • **config**: *[IConfiguration](../interfaces/_configuration_.iconfiguration.md)*
 
-*Defined in [Authentication.ts:69](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L69)*
+*Defined in [Authentication.ts:70](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L70)*
 
 ___
 
@@ -75,7 +75,7 @@ ___
 
 • **inject**: *[IAuthenticationInjectableProps](../interfaces/_authentication_.iauthenticationinjectableprops.md)*
 
-*Defined in [Authentication.ts:69](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L69)*
+*Defined in [Authentication.ts:70](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L70)*
 
 ___
 
@@ -83,7 +83,7 @@ ___
 
 • **onAutoRefreshError**? : *function*
 
-*Defined in [Authentication.ts:55](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L55)*
+*Defined in [Authentication.ts:56](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L56)*
 
 Optional customized error handler
 
@@ -103,7 +103,7 @@ ___
 
 • **onAutoRefreshSuccess**? : *function*
 
-*Defined in [Authentication.ts:61](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L61)*
+*Defined in [Authentication.ts:62](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L62)*
 
 Optional customized success handler
 
@@ -125,7 +125,7 @@ ___
 
 *Implementation of [IAuthentication](../interfaces/_authentication_.iauthentication.md).[refreshInterval](../interfaces/_authentication_.iauthentication.md#optional-refreshinterval)*
 
-*Defined in [Authentication.ts:49](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L49)*
+*Defined in [Authentication.ts:50](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L50)*
 
 Current set auto-refresh interval or undefined
 
@@ -137,7 +137,7 @@ Current set auto-refresh interval or undefined
 
 ▸ **getPayload**<**T**>(): *`T`*
 
-*Defined in [Authentication.ts:253](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L253)*
+*Defined in [Authentication.ts:245](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L245)*
 
 Gets the payload of the current token, return type can be generic
 
@@ -153,11 +153,11 @@ ___
 
 ###  login
 
-▸ **login**(`credentials`: [ILoginCredentials](../interfaces/_schemes_auth_login_.ilogincredentials.md), `options?`: [ILoginOptions](../interfaces/_schemes_auth_login_.iloginoptions.md)): *`Promise<ILoginResponse>`*
+▸ **login**(`credentials`: [ILoginCredentials](../interfaces/_schemes_auth_login_.ilogincredentials.md), `options?`: [ILoginOptions](../interfaces/_schemes_auth_login_.iloginoptions.md)): *`Promise<IAuthenticateResponse>`*
 
 *Implementation of [IAuthentication](../interfaces/_authentication_.iauthentication.md)*
 
-*Defined in [Authentication.ts:82](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L82)*
+*Defined in [Authentication.ts:83](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L83)*
 
 Login to the API; Gets a new token from the API and stores it in this.token.
 
@@ -168,7 +168,7 @@ Name | Type | Description |
 `credentials` | [ILoginCredentials](../interfaces/_schemes_auth_login_.ilogincredentials.md) | User login credentials |
 `options?` | [ILoginOptions](../interfaces/_schemes_auth_login_.iloginoptions.md) | Additional options regarding persistance and co. |
 
-**Returns:** *`Promise<ILoginResponse>`*
+**Returns:** *`Promise<IAuthenticateResponse>`*
 
 ___
 
@@ -178,7 +178,7 @@ ___
 
 *Implementation of [IAuthentication](../interfaces/_authentication_.iauthentication.md)*
 
-*Defined in [Authentication.ts:148](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L148)*
+*Defined in [Authentication.ts:140](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L140)*
 
 Logs the user out by "forgetting" the token, and clearing the refresh interval
 
@@ -192,7 +192,7 @@ ___
 
 *Implementation of [IAuthentication](../interfaces/_authentication_.iauthentication.md)*
 
-*Defined in [Authentication.ts:224](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L224)*
+*Defined in [Authentication.ts:216](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L216)*
 
 Use the passed token to request a new one.
 
@@ -212,7 +212,7 @@ ___
 
 *Implementation of [IAuthentication](../interfaces/_authentication_.iauthentication.md)*
 
-*Defined in [Authentication.ts:168](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L168)*
+*Defined in [Authentication.ts:160](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L160)*
 
 Refresh the token if it is about to expire (within 30 seconds of expiry date).
 - Calls onAutoRefreshSuccess with the new token if the refreshing is successful.
@@ -226,7 +226,7 @@ ___
 
 ▸ **startInterval**(`fireImmediately?`: boolean): *void*
 
-*Defined in [Authentication.ts:232](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L232)*
+*Defined in [Authentication.ts:224](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L224)*
 
 Starts an interval of 10 seconds that will check if the token needs refreshing
 
@@ -244,7 +244,7 @@ ___
 
 ▸ **stopInterval**(): *void*
 
-*Defined in [Authentication.ts:243](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L243)*
+*Defined in [Authentication.ts:235](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L235)*
 
 Clears and nullifies the token refreshing interval
 

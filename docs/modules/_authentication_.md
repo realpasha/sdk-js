@@ -26,4 +26,4 @@
 
 Ƭ **AuthModes**: *"jwt" | "cookie"*
 
-*Defined in [Authentication.ts:37](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L37)*
+*Defined in [Authentication.ts:38](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L38)*

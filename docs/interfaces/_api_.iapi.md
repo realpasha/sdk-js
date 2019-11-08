@@ -180,7 +180,7 @@ ___
 
 ###  request
 
-▸ **request**<**T**>(`method`: [RequestMethod](../modules/_schemes_http_request_.md#requestmethod), `endpoint`: string, `params?`: object, `data?`: object, `noEnv?`: boolean, `headers?`: object, `skipParseToJSON?`: boolean): *`Promise<T>`*
+▸ **request**<**T**>(`method`: [RequestMethod](../modules/_schemes_http_request_.md#requestmethod), `endpoint`: string, `params?`: object, `data?`: object, `noProject?`: boolean, `headers?`: object, `skipParseToJSON?`: boolean): *`Promise<T>`*
 
 *Defined in [API.ts:32](https://github.com/direcuts/sdk-js/tree/master/API.ts#L32)*
 
@@ -196,7 +196,7 @@ Name | Type |
 `endpoint` | string |
 `params?` | object |
 `data?` | object |
-`noEnv?` | boolean |
+`noProject?` | boolean |
 `headers?` | object |
 `skipParseToJSON?` | boolean |
 

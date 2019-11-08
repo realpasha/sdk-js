@@ -31,15 +31,15 @@
 
 • **refreshInterval**? : *number*
 
-*Defined in [Authentication.ts:30](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L30)*
+*Defined in [Authentication.ts:31](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L31)*
 
 ## Methods
 
 ###  login
 
-▸ **login**(`credentials`: [ILoginCredentials](_schemes_auth_login_.ilogincredentials.md), `options?`: [ILoginOptions](_schemes_auth_login_.iloginoptions.md)): *`Promise<ILoginResponse>`*
+▸ **login**(`credentials`: [ILoginCredentials](_schemes_auth_login_.ilogincredentials.md), `options?`: [ILoginOptions](_schemes_auth_login_.iloginoptions.md)): *`Promise<IAuthenticateResponse>`*
 
-*Defined in [Authentication.ts:31](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L31)*
+*Defined in [Authentication.ts:32](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L32)*
 
 **Parameters:**
 
@@ -48,7 +48,7 @@ Name | Type |
 `credentials` | [ILoginCredentials](_schemes_auth_login_.ilogincredentials.md) |
 `options?` | [ILoginOptions](_schemes_auth_login_.iloginoptions.md) |
 
-**Returns:** *`Promise<ILoginResponse>`*
+**Returns:** *`Promise<IAuthenticateResponse>`*
 
 ___
 
@@ -56,7 +56,7 @@ ___
 
 ▸ **logout**(): *`Promise<ILogoutResponse>`*
 
-*Defined in [Authentication.ts:32](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L32)*
+*Defined in [Authentication.ts:33](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L33)*
 
 **Returns:** *`Promise<ILogoutResponse>`*
 
@@ -66,7 +66,7 @@ ___
 
 ▸ **refresh**(`token`: string): *`Promise<IRefreshTokenResponse>`*
 
-*Defined in [Authentication.ts:34](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L34)*
+*Defined in [Authentication.ts:35](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L35)*
 
 **Parameters:**
 
@@ -82,6 +82,6 @@ ___
 
 ▸ **refreshIfNeeded**(): *`Promise<[boolean, Error]>`*
 
-*Defined in [Authentication.ts:33](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L33)*
+*Defined in [Authentication.ts:34](https://github.com/direcuts/sdk-js/tree/master/Authentication.ts#L34)*
 
 **Returns:** *`Promise<[boolean, Error]>`*

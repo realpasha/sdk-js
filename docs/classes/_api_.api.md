@@ -50,7 +50,7 @@ API definition for HTTP transactions
 
 \+ **new API**(`config`: [IConfiguration](../interfaces/_configuration_.iconfiguration.md)): *[API](_api_.api.md)*
 
-*Defined in [API.ts:95](https://github.com/direcuts/sdk-js/tree/master/API.ts#L95)*
+*Defined in [API.ts:91](https://github.com/direcuts/sdk-js/tree/master/API.ts#L91)*
 
 **Parameters:**
 
@@ -74,39 +74,11 @@ ___
 
 ###  concurrent
 
-• **concurrent**: *object* =  concurrencyManager(this.xhr, 10)
+• **concurrent**: *`ReturnType<concurrencyManager>`*
 
 *Implementation of [IAPI](../interfaces/_api_.iapi.md).[concurrent](../interfaces/_api_.iapi.md#concurrent)*
 
-*Defined in [API.ts:95](https://github.com/direcuts/sdk-js/tree/master/API.ts#L95)*
-
-#### Type declaration:
-
-* **limit**: *number*
-
-* **queue**: *[IConcurrencyQueueItem](../interfaces/_concurrencymanager_.iconcurrencyqueueitem.md)[]* =  [] as IConcurrencyQueueItem[]
-
-* **running**: *[IConcurrencyQueueItem](../interfaces/_concurrencymanager_.iconcurrencyqueueitem.md)[]* =  [] as IConcurrencyQueueItem[]
-
-* **attach**(`limitConcurrentRequestsTo?`: number): *void*
-
-* **detach**(): *void*
-
-* **push**(`reqHandler`: [IConcurrencyQueueItem](../interfaces/_concurrencymanager_.iconcurrencyqueueitem.md)): *void*
-
-* **requestHandler**(`req`: `AxiosRequestConfig`): *`Promise<AxiosRequestConfig>`*
-
-* **responseHandler**(`res`: `AxiosResponse<any>`): *`AxiosResponse<any>`*
-
-* **shift**(): *void*
-
-* **shiftInitial**(): *void*
-
-* ### **interceptors**: *object*
-
-  * **request**: *null* =  null
-
-  * **response**: *null* =  null
+*Defined in [API.ts:91](https://github.com/direcuts/sdk-js/tree/master/API.ts#L91)*
 
 ___
 
@@ -114,17 +86,13 @@ ___
 
 • **config**: *[IConfiguration](../interfaces/_configuration_.iconfiguration.md)*
 
-*Defined in [API.ts:97](https://github.com/direcuts/sdk-js/tree/master/API.ts#L97)*
+*Defined in [API.ts:93](https://github.com/direcuts/sdk-js/tree/master/API.ts#L93)*
 
 ___
 
 ###  xhr
 
-• **xhr**: *`AxiosInstance`* =  axios.create({
-    paramsSerializer: querify,
-    withCredentials: true,
-    timeout: 10 * 60 * 1000, // 10 min
-  })
+• **xhr**: *`AxiosInstance`*
 
 *Implementation of [IAPI](../interfaces/_api_.iapi.md).[xhr](../interfaces/_api_.iapi.md#xhr)*
 
@@ -138,7 +106,7 @@ ___
 
 *Implementation of [IAPI](../interfaces/_api_.iapi.md)*
 
-*Defined in [API.ts:154](https://github.com/direcuts/sdk-js/tree/master/API.ts#L154)*
+*Defined in [API.ts:165](https://github.com/direcuts/sdk-js/tree/master/API.ts#L165)*
 
 DELETE convenience method. Calls the request method for you
 
@@ -164,7 +132,7 @@ ___
 
 *Implementation of [IAPI](../interfaces/_api_.iapi.md)*
 
-*Defined in [API.ts:118](https://github.com/direcuts/sdk-js/tree/master/API.ts#L118)*
+*Defined in [API.ts:129](https://github.com/direcuts/sdk-js/tree/master/API.ts#L129)*
 
 GET convenience method. Calls the request method for you
 
@@ -191,7 +159,7 @@ ___
 
 *Implementation of [IAPI](../interfaces/_api_.iapi.md)*
 
-*Defined in [API.ts:163](https://github.com/direcuts/sdk-js/tree/master/API.ts#L163)*
+*Defined in [API.ts:174](https://github.com/direcuts/sdk-js/tree/master/API.ts#L174)*
 
 Gets the payload of the current token, return type can be generic
 
@@ -211,7 +179,7 @@ ___
 
 *Implementation of [IAPI](../interfaces/_api_.iapi.md)*
 
-*Defined in [API.ts:136](https://github.com/direcuts/sdk-js/tree/master/API.ts#L136)*
+*Defined in [API.ts:147](https://github.com/direcuts/sdk-js/tree/master/API.ts#L147)*
 
 PATCH convenience method. Calls the request method for you
 
@@ -239,7 +207,7 @@ ___
 
 *Implementation of [IAPI](../interfaces/_api_.iapi.md)*
 
-*Defined in [API.ts:127](https://github.com/direcuts/sdk-js/tree/master/API.ts#L127)*
+*Defined in [API.ts:138](https://github.com/direcuts/sdk-js/tree/master/API.ts#L138)*
 
 POST convenience method. Calls the request method for you
 
@@ -267,7 +235,7 @@ ___
 
 *Implementation of [IAPI](../interfaces/_api_.iapi.md)*
 
-*Defined in [API.ts:145](https://github.com/direcuts/sdk-js/tree/master/API.ts#L145)*
+*Defined in [API.ts:156](https://github.com/direcuts/sdk-js/tree/master/API.ts#L156)*
 
 PUT convenience method. Calls the request method for you
 
@@ -291,9 +259,9 @@ ___
 
 ###  request
 
-▸ **request**<**T**>(`method`: [RequestMethod](../modules/_schemes_http_request_.md#requestmethod), `endpoint`: string, `params`: object, `data`: object, `noEnv`: boolean, `headers`: object, `skipParseToJSON`: boolean): *`Promise<T>`*
+▸ **request**<**T**>(`method`: [RequestMethod](../modules/_schemes_http_request_.md#requestmethod), `endpoint`: string, `params`: object, `data`: object, `noProject`: boolean, `headers`: object, `skipParseToJSON`: boolean): *`Promise<T>`*
 
-*Defined in [API.ts:183](https://github.com/direcuts/sdk-js/tree/master/API.ts#L183)*
+*Defined in [API.ts:194](https://github.com/direcuts/sdk-js/tree/master/API.ts#L194)*
 
 Perform an API request to the Directus API
 
@@ -311,7 +279,7 @@ Name | Type | Default | Description |
 `endpoint` | string | - | Endpoint definition as path |
 `params` | object |  {} | Query parameters |
 `data` | object |  {} | Data passed to directus |
-`noEnv` | boolean | false | Do not include the `env` in the url (for system calls) |
+`noProject` | boolean | false | Do not include the `project` in the url (for system calls) |
 `headers` | object |  {} | Optional headers to include |
 `skipParseToJSON` | boolean | false | Whether to skip `JSON.parse` or not |
 
@@ -325,7 +293,7 @@ ___
 
 *Implementation of [IAPI](../interfaces/_api_.iapi.md)*
 
-*Defined in [API.ts:106](https://github.com/direcuts/sdk-js/tree/master/API.ts#L106)*
+*Defined in [API.ts:117](https://github.com/direcuts/sdk-js/tree/master/API.ts#L117)*
 
 Resets the client instance by logging out and removing the URL and project
 
