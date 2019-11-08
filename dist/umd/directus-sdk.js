@@ -374,7 +374,7 @@
             if (credentials.otp) {
                 body.otp = credentials.otp;
             }
-            var activeRequest = this.inject.post("/auth/authenticate");
+            var activeRequest = this.inject.post("/auth/authenticate", body);
             if (this.config.mode === 'jwt') {
                 activeRequest
                     .then(function (res) {

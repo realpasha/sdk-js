@@ -1,6 +1,6 @@
 {
   "name": "@directus/sdk-js",
-  "version": "6.0.0-beta.2",
+  "version": "6.0.0-beta.3",
   "description": "Directus SDK for JavaScript (Node and Browser)",
   "keywords": [
     "api",

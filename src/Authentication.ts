@@ -114,7 +114,7 @@ export class Authentication implements IAuthentication {
       body.otp = credentials.otp;
     }
 
-    const activeRequest = this.inject.post("/auth/authenticate");
+    const activeRequest = this.inject.post("/auth/authenticate", body);
 
     if (this.config.mode === 'jwt') {
       activeRequest
