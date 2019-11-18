@@ -1005,7 +1005,7 @@
                         case 1:
                             user = (_a.sent()).data;
                             id = user.id;
-                            role = user.roles[0].role;
+                            role = user.role.id;
                             return [2 /*return*/, Promise.all([
                                     this.api.get("/collection_presets", {
                                         "filter[title][nnull]": 1,
@@ -1286,7 +1286,7 @@
                         case 1:
                             user = (_a.sent()).data;
                             id = user.id;
-                            role = user.roles[0].role;
+                            role = user.role.id;
                             return [2 /*return*/, Promise.all([
                                     this.api.get("/collection_presets", {
                                         "filter[collection][eq]": collection,

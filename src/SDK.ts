@@ -194,7 +194,7 @@ export class SDK {
   public async getCollectionPresets<TResponse extends any[] = any[]>(params: QueryParamsType = {}): Promise<TResponse> {
     const { data: user } = await this.getMe({ fields: "*.*" });
     const id = user.id
-    const role = user.roles[0].role;
+    const role = user.role.id;
 
     return Promise.all([
       this.api.get("/collection_presets", {
@@ -580,7 +580,7 @@ export class SDK {
   ): Promise<TResponse> {
     const { data: user } = await this.getMe({ fields: "*.*" });
     const id = user.id;
-    const role = user.roles[0].role;
+    const role = user.role.id;
 
     return Promise.all([
       this.api.get<IFieldResponse<any>>("/collection_presets", {

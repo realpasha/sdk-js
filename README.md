@@ -26,6 +26,8 @@
 
 <p>&nbsp;</p>
 
+> NOTE: SDK v6+ is meant to be used with Directus v8+
+
 ## Installation
 
 Install the package using [npm](https://www.npmjs.com) or [Yarn](https://yarnpkg.com/):
