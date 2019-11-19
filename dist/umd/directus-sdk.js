@@ -1561,6 +1561,25 @@
         SDK.prototype.getThirdPartyAuthProviders = function () {
             return this.api.get("/auth/sso");
         };
+        /**
+         * Do a test call to check if you're logged in
+         * @return {Promise<boolean>}
+         */
+        SDK.prototype.isLoggedIn = function () {
+            var _this = this;
+            return new Promise(function (resolve) {
+                _this.api.get('/')
+                    .then(function (res) {
+                    if (res.data.public === undefined) {
+                        return resolve(true);
+                    }
+                    else {
+                        return resolve(false);
+                    }
+                })
+                    .catch(function () { return resolve(false); });
+            });
+        };
         return SDK;
     }());
 
