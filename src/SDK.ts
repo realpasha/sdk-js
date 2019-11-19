@@ -891,5 +891,23 @@ export class SDK {
     return this.api.get("/auth/sso");
   }
 
+  /**
+   * Do a test call to check if you're logged in
+   * @return {Promise<boolean>}
+   */
+  public isLoggedIn(): Promise<boolean> {
+    return new Promise(resolve => {
+      this.api.get('/')
+        .then(res => {
+          if (res.data.public === undefined) {
+            return resolve(true);
+          } else {
+            return resolve(false);
+          }
+        })
+        .catch(() => resolve(false));
+    });
+  }
+
   // #endregion server admin
 }
