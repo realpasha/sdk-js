@@ -11,7 +11,7 @@ interface IQueryParameters {
   sort: string | string[];
   status: string | string[];
   filter: {
-    [field: string]: { [operator in FilterOperator]: any };
+    [field: string]: { [operator in FilterOperator]?: any };
   };
   lang: object; // TODO: fix type
   q: string;

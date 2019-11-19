@@ -42,6 +42,7 @@ debug
 # misc
 .DS_Store
 .vscode
+.idea
 
 # unneeded compiled files
 dist/*.html
