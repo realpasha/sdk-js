@@ -13,7 +13,7 @@ interface IQueryParameters {
   filter: {
     [field: string]: { [operator in FilterOperator]?: any };
   };
-  lang: object; // TODO: fix type
+  lang: string;
   q: string;
   groups: string | string[];
   activity_skip: number;
