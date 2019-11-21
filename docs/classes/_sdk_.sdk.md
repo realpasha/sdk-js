@@ -71,6 +71,7 @@ remote directus instance.
 * [getThirdPartyAuthProviders](_sdk_.sdk.md#getthirdpartyauthproviders)
 * [getUser](_sdk_.sdk.md#getuser)
 * [getUsers](_sdk_.sdk.md#getusers)
+* [isLoggedIn](_sdk_.sdk.md#isloggedin)
 * [login](_sdk_.sdk.md#login)
 * [logout](_sdk_.sdk.md#logout)
 * [ping](_sdk_.sdk.md#ping)
@@ -1041,6 +1042,18 @@ Name | Type | Default | Description |
 `params` | `QueryParamsType` |  {} |   |
 
 **Returns:** *`Promise<IUsersResponse<IUser[]>>`*
+
+___
+
+###  isLoggedIn
+
+▸ **isLoggedIn**(): *`Promise<boolean>`*
+
+*Defined in [SDK.ts:898](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L898)*
+
+Do a test call to check if you're logged in
+
+**Returns:** *`Promise<boolean>`*
 
 ___
 

@@ -74,7 +74,7 @@ ___
 
 ###  lang
 
-• **lang**: *object*
+• **lang**: *string*
 
 *Defined in [schemes/http/Query.ts:16](https://github.com/direcuts/sdk-js/tree/master/schemes/http/Query.ts#L16)*
 
