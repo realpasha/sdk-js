@@ -206,10 +206,19 @@ export class SDK {
         "filter[title][nnull]": 1,
         "filter[user][null]": 1,
       }),
+      this.api.get("/collection_presets", {
+        "filter[role][null]": 1,
+        "filter[title][nnull]": 1,
+        "filter[user][null]": 1,
+      })
     ]).then((values: Array<{ data: any }>) => {
-      const [user, role] = values;
+      const [user, role, globalBookmarks] = values;
 
-      return [...(user.data || []), ...(role.data || [])] as TResponse;
+      return [
+        ...(user.data || []),
+        ...(role.data || []),
+        ...(globalBookmarks.data || [])
+      ] as TResponse;
     });
   }
 
