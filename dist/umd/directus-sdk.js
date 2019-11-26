@@ -1016,9 +1016,14 @@
                                         "filter[title][nnull]": 1,
                                         "filter[user][null]": 1,
                                     }),
+                                    this.api.get("/collection_presets", {
+                                        "filter[role][null]": 1,
+                                        "filter[title][nnull]": 1,
+                                        "filter[user][null]": 1,
+                                    })
                                 ]).then(function (values) {
-                                    var user = values[0], role = values[1];
-                                    return (user.data || []).concat((role.data || []));
+                                    var user = values[0], role = values[1], globalBookmarks = values[2];
+                                    return (user.data || []).concat((role.data || []), (globalBookmarks.data || []));
                                 })];
                     }
                 });
