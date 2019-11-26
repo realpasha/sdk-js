@@ -41,10 +41,10 @@ describe("Extensions", () => {
     });
   });
 
-  describe("#getPages()", () => {
+  describe("#getModules()", () => {
     it("Calls request() for the right endpoint", () => {
-      client.getPages();
-      expect(client.api.request).to.have.been.calledWith("get", "/pages", {}, {}, true);
+      client.getModules();
+      expect(client.api.request).to.have.been.calledWith("get", "/modules", {}, {}, true);
     });
   });
 });

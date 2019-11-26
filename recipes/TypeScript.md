@@ -64,7 +64,7 @@ updateDatabase(): Promise<void>;
 // Predefined
 getInterfaces<T>(): Promise<T>;
 getLayouts<T>(): Promise<T>;
-getPages<T>(): Promise<T>;
+getModules<T>(): Promise<T>;
 
 // Fields
 getAllFields<T>(params?: object): Promise<T>;

@@ -270,11 +270,11 @@ export class SDK {
   }
 
   /**
-   * Get the information of all installed pages
+   * Get the information of all installed modules
    * @see https://docs.directus.io/api/reference.html#get-extensions
    */
-  public getPages<TResponse extends any[] = any[]>(): Promise<TResponse> {
-    return this.api.request<TResponse>("get", "/pages", {}, {}, true);
+  public getModules<TResponse extends any[] = any[]>(): Promise<TResponse> {
+    return this.api.request<TResponse>("get", "/modules", {}, {}, true);
   }
 
   // #endregion extensions
