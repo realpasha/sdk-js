@@ -1063,11 +1063,11 @@
             return this.api.request("get", "/layouts", {}, {}, true);
         };
         /**
-         * Get the information of all installed pages
+         * Get the information of all installed modules
          * @see https://docs.directus.io/api/reference.html#get-extensions
          */
-        SDK.prototype.getPages = function () {
-            return this.api.request("get", "/pages", {}, {}, true);
+        SDK.prototype.getModules = function () {
+            return this.api.request("get", "/modules", {}, {}, true);
         };
         // #endregion extensions
         // #region fields

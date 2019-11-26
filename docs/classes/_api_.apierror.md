@@ -100,7 +100,7 @@ ___
 
 *Inherited from void*
 
-*Defined in [/Users/rijkvanzanten/Development/directus/sdk-js/node_modules/typescript/lib/lib.es5.d.ts:973](https://github.com/direcuts/sdk-js/tree/master//Users/rijkvanzanten/Development/directus/sdk-js/node_modules/typescript/lib/lib.es5.d.ts#L973)*
+*Defined in [/Users/rijk/Development/directus/sdk-js/node_modules/typescript/lib/lib.es5.d.ts:973](https://github.com/direcuts/sdk-js/tree/master//Users/rijk/Development/directus/sdk-js/node_modules/typescript/lib/lib.es5.d.ts#L973)*
 
 ___
 
@@ -112,7 +112,7 @@ ___
 
 *Overrides void*
 
-*Defined in [/Users/rijkvanzanten/Development/directus/sdk-js/node_modules/typescript/lib/lib.es5.d.ts:975](https://github.com/direcuts/sdk-js/tree/master//Users/rijkvanzanten/Development/directus/sdk-js/node_modules/typescript/lib/lib.es5.d.ts#L975)*
+*Defined in [/Users/rijk/Development/directus/sdk-js/node_modules/typescript/lib/lib.es5.d.ts:975](https://github.com/direcuts/sdk-js/tree/master//Users/rijk/Development/directus/sdk-js/node_modules/typescript/lib/lib.es5.d.ts#L975)*
 
 ___
 
@@ -120,7 +120,7 @@ ___
 
 ▪ **Error**: *`ErrorConstructor`*
 
-*Defined in [/Users/rijkvanzanten/Development/directus/sdk-js/node_modules/typescript/lib/lib.es5.d.ts:984](https://github.com/direcuts/sdk-js/tree/master//Users/rijkvanzanten/Development/directus/sdk-js/node_modules/typescript/lib/lib.es5.d.ts#L984)*
+*Defined in [/Users/rijk/Development/directus/sdk-js/node_modules/typescript/lib/lib.es5.d.ts:984](https://github.com/direcuts/sdk-js/tree/master//Users/rijk/Development/directus/sdk-js/node_modules/typescript/lib/lib.es5.d.ts#L984)*
 
 ## Accessors
 

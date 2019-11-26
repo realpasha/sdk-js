@@ -35,7 +35,7 @@
 
 *Inherited from void*
 
-*Defined in [/Users/rijkvanzanten/Development/directus/sdk-js/node_modules/axios/index.d.ts:81](https://github.com/direcuts/sdk-js/tree/master//Users/rijkvanzanten/Development/directus/sdk-js/node_modules/axios/index.d.ts#L81)*
+*Defined in [/Users/rijk/Development/directus/sdk-js/node_modules/axios/index.d.ts:81](https://github.com/direcuts/sdk-js/tree/master//Users/rijk/Development/directus/sdk-js/node_modules/axios/index.d.ts#L81)*
 
 ___
 
@@ -45,7 +45,7 @@ ___
 
 *Inherited from void*
 
-*Defined in [/Users/rijkvanzanten/Development/directus/sdk-js/node_modules/axios/index.d.ts:80](https://github.com/direcuts/sdk-js/tree/master//Users/rijkvanzanten/Development/directus/sdk-js/node_modules/axios/index.d.ts#L80)*
+*Defined in [/Users/rijk/Development/directus/sdk-js/node_modules/axios/index.d.ts:80](https://github.com/direcuts/sdk-js/tree/master//Users/rijk/Development/directus/sdk-js/node_modules/axios/index.d.ts#L80)*
 
 ___
 
@@ -55,7 +55,7 @@ ___
 
 *Inherited from void*
 
-*Defined in [/Users/rijkvanzanten/Development/directus/sdk-js/node_modules/axios/index.d.ts:84](https://github.com/direcuts/sdk-js/tree/master//Users/rijkvanzanten/Development/directus/sdk-js/node_modules/axios/index.d.ts#L84)*
+*Defined in [/Users/rijk/Development/directus/sdk-js/node_modules/axios/index.d.ts:84](https://github.com/direcuts/sdk-js/tree/master//Users/rijk/Development/directus/sdk-js/node_modules/axios/index.d.ts#L84)*
 
 ___
 
@@ -65,7 +65,7 @@ ___
 
 *Inherited from void*
 
-*Defined in [/Users/rijkvanzanten/Development/directus/sdk-js/node_modules/typescript/lib/lib.es5.d.ts:974](https://github.com/direcuts/sdk-js/tree/master//Users/rijkvanzanten/Development/directus/sdk-js/node_modules/typescript/lib/lib.es5.d.ts#L974)*
+*Defined in [/Users/rijk/Development/directus/sdk-js/node_modules/typescript/lib/lib.es5.d.ts:974](https://github.com/direcuts/sdk-js/tree/master//Users/rijk/Development/directus/sdk-js/node_modules/typescript/lib/lib.es5.d.ts#L974)*
 
 ___
 
@@ -75,7 +75,7 @@ ___
 
 *Inherited from void*
 
-*Defined in [/Users/rijkvanzanten/Development/directus/sdk-js/node_modules/typescript/lib/lib.es5.d.ts:973](https://github.com/direcuts/sdk-js/tree/master//Users/rijkvanzanten/Development/directus/sdk-js/node_modules/typescript/lib/lib.es5.d.ts#L973)*
+*Defined in [/Users/rijk/Development/directus/sdk-js/node_modules/typescript/lib/lib.es5.d.ts:973](https://github.com/direcuts/sdk-js/tree/master//Users/rijk/Development/directus/sdk-js/node_modules/typescript/lib/lib.es5.d.ts#L973)*
 
 ___
 
@@ -123,4 +123,4 @@ ___
 
 *Overrides void*
 
-*Defined in [/Users/rijkvanzanten/Development/directus/sdk-js/node_modules/typescript/lib/lib.es5.d.ts:975](https://github.com/direcuts/sdk-js/tree/master//Users/rijkvanzanten/Development/directus/sdk-js/node_modules/typescript/lib/lib.es5.d.ts#L975)*
+*Defined in [/Users/rijk/Development/directus/sdk-js/node_modules/typescript/lib/lib.es5.d.ts:975](https://github.com/direcuts/sdk-js/tree/master//Users/rijk/Development/directus/sdk-js/node_modules/typescript/lib/lib.es5.d.ts#L975)*

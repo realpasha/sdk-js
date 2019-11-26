@@ -58,10 +58,10 @@ remote directus instance.
 * [getItems](_sdk_.sdk.md#getitems)
 * [getLayouts](_sdk_.sdk.md#getlayouts)
 * [getMe](_sdk_.sdk.md#getme)
+* [getModules](_sdk_.sdk.md#getmodules)
 * [getMyBookmarks](_sdk_.sdk.md#getmybookmarks)
 * [getMyListingPreferences](_sdk_.sdk.md#getmylistingpreferences)
 * [getMyPermissions](_sdk_.sdk.md#getmypermissions)
-* [getModules](_sdk_.sdk.md#getModules)
 * [getPermissions](_sdk_.sdk.md#getpermissions)
 * [getRelations](_sdk_.sdk.md#getrelations)
 * [getRole](_sdk_.sdk.md#getrole)
@@ -790,6 +790,24 @@ Name | Type | Default | Description |
 
 ___
 
+###  getModules
+
+▸ **getModules**<**TResponse**>(): *`Promise<TResponse>`*
+
+*Defined in [SDK.ts:276](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L276)*
+
+Get the information of all installed modules
+
+**`see`** https://docs.directus.io/api/reference.html#get-extensions
+
+**Type parameters:**
+
+▪ **TResponse**: *any[]*
+
+**Returns:** *`Promise<TResponse>`*
+
+___
+
 ###  getMyBookmarks
 
 ▸ **getMyBookmarks**<**TResponse**>(`params`: `QueryParamsType`): *`Promise<TResponse>`*
@@ -859,24 +877,6 @@ Permissions type as array extending any[]
 Name | Type | Default |
 ------ | ------ | ------ |
 `params` | `QueryParamsType` |  {} |
-
-**Returns:** *`Promise<TResponse>`*
-
-___
-
-###  getModules
-
-▸ **getModules**<**TResponse**>(): *`Promise<TResponse>`*
-
-*Defined in [SDK.ts:276](https://github.com/direcuts/sdk-js/tree/master/SDK.ts#L276)*
-
-Get the information of all installed modules
-
-**`see`** https://docs.directus.io/api/reference.html#get-extensions
-
-**Type parameters:**
-
-▪ **TResponse**: *any[]*
 
 **Returns:** *`Promise<TResponse>`*
 
