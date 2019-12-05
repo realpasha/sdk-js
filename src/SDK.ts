@@ -442,33 +442,10 @@ export class SDK {
       headers['Authorization'] = `Bearer ${this.config.token}`;
     }
 
-    // limit concurrent requests to 5
-    this.api.concurrent.attach(5);
-
     return this.api.xhr
       .post(`${this.config.url}${this.config.project}/files`, data, {
         headers,
         onUploadProgress,
-      })
-      .then((res: { data: any }) => {
-        // detach concurrency manager
-        this.api.concurrent.detach();
-
-        return res.data;
-      })
-      .catch((error: IErrorResponse) => {
-        // detach concurrency manager
-        this.api.concurrent.detach();
-
-        if (error.response) {
-          throw error.response.data.error;
-        } else {
-          throw {
-            code: -1,
-            error,
-            message: "Network Error",
-          };
-        }
       });
   }
 

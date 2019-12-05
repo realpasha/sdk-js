@@ -12,8 +12,9 @@ export interface IConcurrencyQueueItem {
 /**
  * Handling and limiting concurrent requests for the API.
  * @param {AxiosInstance} axios   Reference to the caller instance
- * @param {number=10} limit       When to reate-limit outgoing requests
- * @author Jan Biasi <biasijan@gmail.com>
+ * @param {number=10} limit       How many requests to allow at once
+ *
+ * Based on https://github.com/bernawil/axios-concurrency/blob/master/index.js
  */
 export const concurrencyManager = (axios: AxiosInstance, limit: number = 10) => {
   if (limit < 1) {
@@ -21,28 +22,26 @@ export const concurrencyManager = (axios: AxiosInstance, limit: number = 10) => 
   }
 
   const instance = {
-    limit,
     queue: [] as IConcurrencyQueueItem[],
     running: [] as IConcurrencyQueueItem[],
     interceptors: {
       request: null,
       response: null,
     },
-    push(reqHandler: IConcurrencyQueueItem) {
-      instance.queue.push(reqHandler);
-      instance.shiftInitial();
-    },
     shiftInitial(): void {
       setTimeout(() => {
-        if (instance.running.length < instance.limit) {
+        if (instance.running.length < limit) {
           instance.shift();
         }
       }, 0);
     },
+    push(reqHandler: IConcurrencyQueueItem) {
+      instance.queue.push(reqHandler);
+      instance.shiftInitial();
+    },
     shift(): void {
       if (instance.queue.length) {
         const queued = instance.queue.shift();
-
         queued.resolver(queued.request);
         instance.running.push(queued);
       }
@@ -60,26 +59,23 @@ export const concurrencyManager = (axios: AxiosInstance, limit: number = 10) => 
     responseHandler(res: AxiosResponse<any>): AxiosResponse<any> {
       instance.running.shift();
       instance.shift();
-
       return res;
+    },
+    responseErrorHandler(res: AxiosResponse<any>): any {
+      return Promise.reject(instance.responseHandler(res));
     },
     detach(): void {
       axios.interceptors.request.eject(instance.interceptors.request);
       axios.interceptors.response.eject(instance.interceptors.response);
-    },
-    attach(limitConcurrentRequestsTo?: number): void {
-      if (limitConcurrentRequestsTo) {
-        instance.limit = limitConcurrentRequestsTo;
-      }
-
-      // queue concurrent requests
-      instance.interceptors.request = axios.interceptors.request.use(instance.requestHandler);
-      instance.interceptors.response = axios.interceptors.response.use(
-        instance.responseHandler,
-        instance.responseHandler
-      );
-    },
+    }
   };
+
+  // queue concurrent requests
+  instance.interceptors.request = axios.interceptors.request.use(instance.requestHandler);
+  instance.interceptors.response = axios.interceptors.response.use(
+    instance.responseHandler,
+    instance.responseErrorHandler
+  );
 
   return instance;
 };

@@ -503,8 +503,9 @@
     /**
      * Handling and limiting concurrent requests for the API.
      * @param {AxiosInstance} axios   Reference to the caller instance
-     * @param {number=10} limit       When to reate-limit outgoing requests
-     * @author Jan Biasi <biasijan@gmail.com>
+     * @param {number=10} limit       How many requests to allow at once
+     *
+     * Based on https://github.com/bernawil/axios-concurrency/blob/master/index.js
      */
     var concurrencyManager = function (axios, limit) {
         if (limit === void 0) { limit = 10; }
@@ -512,23 +513,22 @@
             throw new Error("ConcurrencyManager Error: minimun concurrent requests is 1");
         }
         var instance = {
-            limit: limit,
             queue: [],
             running: [],
             interceptors: {
                 request: null,
                 response: null,
             },
-            push: function (reqHandler) {
-                instance.queue.push(reqHandler);
-                instance.shiftInitial();
-            },
             shiftInitial: function () {
                 setTimeout(function () {
-                    if (instance.running.length < instance.limit) {
+                    if (instance.running.length < limit) {
                         instance.shift();
                     }
                 }, 0);
+            },
+            push: function (reqHandler) {
+                instance.queue.push(reqHandler);
+                instance.shiftInitial();
             },
             shift: function () {
                 if (instance.queue.length) {
@@ -552,19 +552,17 @@
                 instance.shift();
                 return res;
             },
+            responseErrorHandler: function (res) {
+                return Promise.reject(instance.responseHandler(res));
+            },
             detach: function () {
                 axios.interceptors.request.eject(instance.interceptors.request);
                 axios.interceptors.response.eject(instance.interceptors.response);
-            },
-            attach: function (limitConcurrentRequestsTo) {
-                if (limitConcurrentRequestsTo) {
-                    instance.limit = limitConcurrentRequestsTo;
-                }
-                // queue concurrent requests
-                instance.interceptors.request = axios.interceptors.request.use(instance.requestHandler);
-                instance.interceptors.response = axios.interceptors.response.use(instance.responseHandler, instance.responseHandler);
-            },
+            }
         };
+        // queue concurrent requests
+        instance.interceptors.request = axios.interceptors.request.use(instance.requestHandler);
+        instance.interceptors.response = axios.interceptors.response.use(instance.responseHandler, instance.responseErrorHandler);
         return instance;
     };
 
@@ -1162,7 +1160,6 @@
          */
         SDK.prototype.uploadFiles = function (data, // TODO: fix type definition
         onUploadProgress) {
-            var _this = this;
             if (onUploadProgress === void 0) { onUploadProgress = function () { return ({}); }; }
             var headers = {
                 "Content-Type": "multipart/form-data",
@@ -1171,31 +1168,10 @@
             if (this.config.token && isString(this.config.token) && this.config.token.length > 0) {
                 headers['Authorization'] = "Bearer " + this.config.token;
             }
-            // limit concurrent requests to 5
-            this.api.concurrent.attach(5);
             return this.api.xhr
                 .post("" + this.config.url + this.config.project + "/files", data, {
                 headers: headers,
                 onUploadProgress: onUploadProgress,
-            })
-                .then(function (res) {
-                // detach concurrency manager
-                _this.api.concurrent.detach();
-                return res.data;
-            })
-                .catch(function (error) {
-                // detach concurrency manager
-                _this.api.concurrent.detach();
-                if (error.response) {
-                    throw error.response.data.error;
-                }
-                else {
-                    throw {
-                        code: -1,
-                        error: error,
-                        message: "Network Error",
-                    };
-                }
             });
         };
         // #endregion files
