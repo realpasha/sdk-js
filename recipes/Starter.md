@@ -1,4 +1,4 @@
-## Getting startet with the SDK
+## Getting started with the SDK
 
 ### Authentication
 
