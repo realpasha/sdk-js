@@ -1551,7 +1551,7 @@
             return new Promise(function (resolve) {
                 _this.api.get('/')
                     .then(function (res) {
-                    if (res.data.public === undefined) {
+                    if (res.public === undefined) {
                         return resolve(true);
                     }
                     else {
