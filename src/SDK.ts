@@ -885,7 +885,7 @@ export class SDK {
     return new Promise(resolve => {
       this.api.get('/')
         .then(res => {
-          if (res.data.public === undefined) {
+          if (res.public === undefined) {
             return resolve(true);
           } else {
             return resolve(false);
