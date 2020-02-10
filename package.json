@@ -48,7 +48,8 @@
     "lint:test": "eslint ./test/**/*.ts -c ./.eslintrc.test.js",
     "prettier": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\" \"**/*.json\"",
     "test": "ts-mocha -p ./tsconfig.test.json \"test/**/*.spec.ts\" --recursive --exit",
-    "coverage": "nyc mocha -r ts-node/register -r source-map-support/register  -p ./tsconfig.test.json \"test/**/*.spec.ts\" --recursive && nyc report"
+    "coverage": "nyc mocha -r ts-node/register -r source-map-support/register  -p ./tsconfig.test.json \"test/**/*.spec.ts\" --recursive && nyc report",
+    "release": "npm version -m \":rocket: Release %s\""
   },
   "dependencies": {
     "axios": "0.19.0",
