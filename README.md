@@ -32,7 +32,7 @@ npm install @directus/sdk-js --production
 yarn add @directus/sdk-js
 ```
 
-Or use a service that distributes npm packages like [unpkg](https://unpkg.org) (Browse files here https://unpkg.com/browse/@directus/sdk-js@6.0.2/dist/umd/):
+Or use a service that distributes npm packages like [unpkg](https://unpkg.org), see [here](https://unpkg.com/browse/@directus/sdk-js/dist/umd/):
 ```html
 <script src="https://unpkg.com/@directus/sdk-js/dist/umd/directus-sdk.min.js"></script>
 ```
