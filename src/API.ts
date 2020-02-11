@@ -41,14 +41,17 @@ export interface IAPI {
 }
 
 export class APIError extends Error {
-  constructor(public message: string, private info: {
-    code: number | string,
-    method: string,
-    url: string,
-    params?: object,
-    error?: IErrorResponse,
-    data?: any
-  }) {
+  constructor(
+    public message: string,
+    private info: {
+      code: number | string;
+      method: string;
+      url: string;
+      params?: object;
+      error?: IErrorResponse;
+      data?: any;
+    }
+  ) {
     super(message); // 'Error' breaks prototype chain here
     Object.setPrototypeOf(this, new.target.prototype); // restore prototype chain
   }
@@ -66,16 +69,16 @@ export class APIError extends Error {
   }
 
   public get params() {
-    return this.info.params || {}
+    return this.info.params || {};
   }
 
   public toString() {
     return [
-      'Directus call failed:',
+      "Directus call failed:",
       `${this.method} ${this.url} ${JSON.stringify(this.params)} -`,
       this.message,
-      `(code ${this.code})`
-    ].join(' ');
+      `(code ${this.code})`,
+    ].join(" ");
   }
 }
 
@@ -94,10 +97,10 @@ export class API implements IAPI {
     const axiosOptions = {
       paramsSerializer: querify,
       timeout: 10 * 60 * 1000, // 10 min
-      withCredentials: false
+      withCredentials: false,
     };
 
-    if (config.mode === 'cookie') {
+    if (config.mode === "cookie") {
       axiosOptions.withCredentials = true;
     }
 
@@ -105,7 +108,7 @@ export class API implements IAPI {
 
     this.auth = new Authentication(config, {
       post: this.post.bind(this),
-      xhr: this.xhr
+      xhr: this.xhr,
     });
 
     this.concurrent = concurrencyManager(this.xhr, 10);
@@ -201,16 +204,16 @@ export class API implements IAPI {
     skipParseToJSON: boolean = false
   ): Promise<T> {
     if (!this.config.url) {
-      throw new Error('SDK has no URL configured to send requests to, please check the docs.');
+      throw new Error("SDK has no URL configured to send requests to, please check the docs.");
     }
 
     if (noProject === false && !this.config.project) {
-      throw new Error('SDK has no project configured to send requests to, please check the docs.');
+      throw new Error("SDK has no project configured to send requests to, please check the docs.");
     }
 
     let baseURL = `${this.config.url}`;
 
-    if (baseURL.endsWith('/') === false) baseURL += '/';
+    if (baseURL.endsWith("/") === false) baseURL += "/";
 
     if (noProject === false) {
       baseURL += `${this.config.project}/`;
@@ -231,7 +234,7 @@ export class API implements IAPI {
     }
 
     if (this.config.project) {
-      requestOptions.headers['X-Directus-Project'] = this.config.project;
+      requestOptions.headers["X-Directus-Project"] = this.config.project;
     }
 
     return this.xhr
@@ -257,30 +260,29 @@ export class API implements IAPI {
         return responseData as T;
       })
       .catch((error?: IErrorResponse) => {
-        const errorResponse: IErrorResponse['response'] = error
-          ? error.response || {} as IErrorResponse['response']
-          : {} as IErrorResponse['response'];
-        const errorResponseData: IErrorResponseData =
-          errorResponse.data || {} as IErrorResponseData;
+        const errorResponse: IErrorResponse["response"] = error
+          ? error.response || ({} as IErrorResponse["response"])
+          : ({} as IErrorResponse["response"]);
+        const errorResponseData: IErrorResponseData = errorResponse.data || ({} as IErrorResponseData);
         const baseErrorInfo = {
           error,
           url: requestOptions.url,
           method: requestOptions.method,
           params: requestOptions.params,
-          code: errorResponseData.error ? errorResponseData.error.code || error.code : -1
-        }
+          code: errorResponseData.error ? errorResponseData.error.code || error.code : -1,
+        };
 
         if (error.response) {
-          throw new APIError(errorResponseData.error.message || 'Unknown error occured', baseErrorInfo);
+          throw new APIError(errorResponseData.error.message || "Unknown error occured", baseErrorInfo);
         } else if (error.response && error.response.json === true) {
           throw new APIError("API returned invalid JSON", {
             ...baseErrorInfo,
-            code: 422
+            code: 422,
           });
         } else {
           throw new APIError("Network error", {
             ...baseErrorInfo,
-            code: -1
+            code: -1,
           });
         }
       });

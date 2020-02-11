@@ -6,15 +6,9 @@
     "moduleResolution": "node",
     "outDir": "dist",
     "sourceMap": true,
-    "lib": [
-      "dom",
-      "es2015"
-    ],
+    "lib": ["dom", "es2015"],
     "rootDir": "src",
     "baseUrl": "."
   },
-  "exclude": [
-    "test",
-    "dist"
-  ]
+  "exclude": ["test", "dist"]
 }

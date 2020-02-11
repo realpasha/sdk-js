@@ -67,7 +67,7 @@ export const concurrencyManager = (axios: AxiosInstance, limit: number = 10) => 
     detach(): void {
       axios.interceptors.request.eject(instance.interceptors.request);
       axios.interceptors.response.eject(instance.interceptors.response);
-    }
+    },
   };
 
   // queue concurrent requests

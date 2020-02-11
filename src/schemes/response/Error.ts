@@ -2,13 +2,13 @@ import { AxiosError, AxiosRequestConfig } from "axios";
 
 export interface IErrorResponseData {
   error?: {
-    code: string,
-    message: string
-  }
+    code: string;
+    message: string;
+  };
 }
 
 export interface IErrorResponse extends AxiosError {
-  request?: object,
+  request?: object;
   response?: {
     json?: boolean;
     error: Error;
@@ -17,5 +17,5 @@ export interface IErrorResponse extends AxiosError {
     statusText: string;
     headers: Record<string, string>;
     config: AxiosRequestConfig;
-  }
+  };
 }

@@ -103,11 +103,11 @@ export class Authentication implements IAuthentication {
     let body: ILoginBody = {
       email: credentials.email,
       password: credentials.password,
-      mode: "jwt"
+      mode: "jwt",
     };
 
-    if (this.config.mode === 'cookie') {
-      body.mode = 'cookie';
+    if (this.config.mode === "cookie") {
+      body.mode = "cookie";
     }
 
     if (credentials.otp) {
@@ -116,7 +116,7 @@ export class Authentication implements IAuthentication {
 
     const activeRequest = this.inject.post("/auth/authenticate", body);
 
-    if (this.config.mode === 'jwt') {
+    if (this.config.mode === "jwt") {
       activeRequest
         .then((res: IAuthenticateResponse) => {
           // save new token in configuration

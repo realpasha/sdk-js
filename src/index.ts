@@ -17,8 +17,7 @@ export {
   concurrencyManager,
   // helper functions which can be used standalone
   getCollectionItemPath,
-  getPayload
-
+  getPayload,
 };
 
 /**

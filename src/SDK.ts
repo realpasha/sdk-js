@@ -193,7 +193,7 @@ export class SDK {
    */
   public async getCollectionPresets<TResponse extends any[] = any[]>(params: QueryParamsType = {}): Promise<TResponse> {
     const { data: user } = await this.getMe({ fields: "*.*" });
-    const id = user.id
+    const id = user.id;
     const role = user.role.id;
 
     return Promise.all([
@@ -210,15 +210,11 @@ export class SDK {
         "filter[role][null]": 1,
         "filter[title][nnull]": 1,
         "filter[user][null]": 1,
-      })
+      }),
     ]).then((values: Array<{ data: any }>) => {
       const [user, role, globalBookmarks] = values;
 
-      return [
-        ...(user.data || []),
-        ...(role.data || []),
-        ...(globalBookmarks.data || [])
-      ] as TResponse;
+      return [...(user.data || []), ...(role.data || []), ...(globalBookmarks.data || [])] as TResponse;
     });
   }
 
@@ -435,18 +431,17 @@ export class SDK {
   ): Promise<TResponse> {
     const headers = {
       "Content-Type": "multipart/form-data",
-      "X-Directus-Project": this.config.project
+      "X-Directus-Project": this.config.project,
     };
 
     if (this.config.token && isString(this.config.token) && this.config.token.length > 0) {
-      headers['Authorization'] = `Bearer ${this.config.token}`;
+      headers["Authorization"] = `Bearer ${this.config.token}`;
     }
 
-    return this.api.xhr
-      .post(`${this.config.url}${this.config.project}/files`, data, {
-        headers,
-        onUploadProgress,
-      });
+    return this.api.xhr.post(`${this.config.url}${this.config.project}/files`, data, {
+      headers,
+      onUploadProgress,
+    });
   }
 
   // #endregion files
@@ -883,7 +878,8 @@ export class SDK {
    */
   public isLoggedIn(): Promise<boolean> {
     return new Promise(resolve => {
-      this.api.get('/')
+      this.api
+        .get("/")
         .then(res => {
           if (res.public === undefined) {
             return resolve(true);

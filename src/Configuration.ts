@@ -89,7 +89,7 @@ export class Configuration implements IConfiguration {
    */
   public static defaults: IConfigurationDefaults = {
     tokenExpirationTime: 5 * 6 * 1000,
-    mode: "jwt"
+    mode: "jwt",
   };
 
   /**
