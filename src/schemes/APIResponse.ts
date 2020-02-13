@@ -8,7 +8,7 @@ export interface IAbstractAPIResponse {
   };
 }
 
-export interface IAPIResponse<DataType, MetaDataType extends object = undefined> extends IAbstractAPIResponse {
+export interface IAPIResponse<DataType, MetaDataType extends object = {}> extends IAbstractAPIResponse {
   meta: MetaDataType;
   data: DataType;
 }

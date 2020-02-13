@@ -9,13 +9,15 @@ export interface IErrorResponseData {
 
 export interface IErrorResponse extends AxiosError {
   request?: object;
-  response?: {
-    json?: boolean;
-    error: Error;
-    data: IErrorResponseData;
-    status: number;
-    statusText: string;
-    headers: Record<string, string>;
-    config: AxiosRequestConfig;
-  };
+  response?: IErrorResponseMeta;
+}
+
+export interface IErrorResponseMeta {
+  json?: boolean;
+  error: Error;
+  data: IErrorResponseData;
+  status: number;
+  statusText: string;
+  headers: Record<string, string>;
+  config: AxiosRequestConfig;
 }

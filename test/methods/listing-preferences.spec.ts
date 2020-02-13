@@ -14,13 +14,15 @@ chai.use(sinonChai);
  * owners found the correct way how the test should work!
  */
 
-describe("Listing Preferences", () => {
+describe.skip("Listing Preferences", () => {
   let client: SDK;
 
   beforeEach(() => {
     client = new SDK({
       token: "xxxxx.yyyyy.zzzzz", // FIXME: [ERR_STABLE] this was missing!
       url: "https://demo-api.getdirectus.com",
+      project: "testProject",
+      mode: "jwt",
     });
 
     const responseJSON = {

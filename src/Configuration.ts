@@ -21,23 +21,23 @@ export interface IConfigurationValues {
   localExp?: number;
   tokenExpirationTime?: number;
   persist: boolean;
-  mode?: AuthModes;
+  mode: AuthModes;
 }
 
 export interface IConfiguration {
-  token: string;
+  token?: string;
   url: string;
   project: string;
   localExp?: number;
-  tokenExpirationTime: number;
+  tokenExpirationTime?: number;
   persist: boolean;
   mode: AuthModes;
-  dehydrate(): IConfigurationValues;
-  deleteHydratedConfig();
-  hydrate(config: IConfigurationValues);
+  dehydrate(): IConfigurationValues | undefined;
+  deleteHydratedConfig(): void;
+  hydrate(config: IConfigurationValues): void;
   partialUpdate(config: Partial<IConfigurationValues>): void;
   reset(): void;
-  update(config: IConfigurationValues);
+  update(config: IConfigurationValues): void;
 }
 
 // default settings
@@ -59,7 +59,7 @@ export interface IConfigurationOptions {
   /**
    * Project namespace
    */
-  project?: string;
+  project: string;
   /**
    * Default login expiration as number in ms
    */
@@ -71,7 +71,7 @@ export interface IConfigurationOptions {
   /**
    * Whether to use cookies or JWTs
    */
-  mode?: AuthModes;
+  mode: AuthModes;
   /**
    * Auto token expiration time
    */
@@ -136,7 +136,7 @@ export class Configuration implements IConfiguration {
     return this.internalConfiguration.token;
   }
 
-  public set token(token: string) {
+  public set token(token: string | undefined) {
     this.partialUpdate({ token });
   }
 
@@ -144,7 +144,9 @@ export class Configuration implements IConfiguration {
     return this.internalConfiguration.tokenExpirationTime;
   }
 
-  public set tokenExpirationTime(tokenExpirationTime: number) {
+  public set tokenExpirationTime(tokenExpirationTime: number | undefined) {
+    if (typeof tokenExpirationTime === "undefined") return;
+
     // TODO: Optionally re-compute the localExp property for the auto-refresh
     this.partialUpdate({
       tokenExpirationTime: tokenExpirationTime * 60000,
@@ -273,7 +275,7 @@ export class Configuration implements IConfiguration {
     const nativeValue = storage.getItem(STORAGE_KEY);
 
     if (!nativeValue) {
-      return;
+      return {} as IConfigurationValues;
     }
 
     try {

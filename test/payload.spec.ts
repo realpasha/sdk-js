@@ -18,14 +18,14 @@ describe("Payload", () => {
   });
 
   it("Returns null when there is no token set", () => {
-    expect(client.payload).to.be.null;
+    expect(client.api.getPayload()).to.be.null;
   });
 
   it("Returns the correct payload from the set token", () => {
     client.config.token = jwt.sign({ foo: "bar" }, "secret-string", {
       noTimestamp: true,
     });
-    expect(client.payload).to.deep.include({ foo: "bar" });
+    expect(client.api.getPayload()).to.deep.include({ foo: "bar" });
   });
 
   it("Converts the optional exp in payload to the correct JS Date", () => {
@@ -37,7 +37,10 @@ describe("Payload", () => {
 
     const date = new Date();
     date.setHours(date.getHours() + 1);
+    const payload = client.api.getPayload();
 
-    expect(client.payload.exp).to.equalDate(date);
+    expect(payload).to.not.be.null;
+    // @ts-ignore
+    expect(payload.exp).to.equalDate(date);
   });
 });

@@ -14,6 +14,8 @@ describe("Bookmarks", () => {
     client = new SDK({
       token: "token",
       url: "https://demo-api.getdirectus.com",
+      project: "testProject",
+      mode: "jwt",
     });
 
     const responseJSON = {

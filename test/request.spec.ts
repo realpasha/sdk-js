@@ -14,6 +14,8 @@ describe("Request", () => {
   beforeEach(() => {
     client = new SDK({
       url: "https://demo-api.getdirectus.com",
+      project: "testProject",
+      mode: "jwt",
     });
   });
 
@@ -71,9 +73,9 @@ describe("Request", () => {
       client.api.request("get", "/ping");
 
       expect(client.api.xhr.request).to.have.been.calledWith({
-        baseURL: "https://demo-api.getdirectus.com/_/",
+        baseURL: "https://demo-api.getdirectus.com/testProject/",
         data: {},
-        headers: {},
+        headers: { "X-Directus-Project": "testProject" },
         method: "get",
         params: {},
         url: "/ping",
@@ -104,11 +106,11 @@ describe("Request", () => {
       );
 
       expect(client.api.xhr.request).to.have.been.calledWith({
-        baseURL: "https://demo-api.getdirectus.com/_/",
+        baseURL: "https://demo-api.getdirectus.com/testProject/",
         data: {
           testing: true,
         },
-        headers: {},
+        headers: { "X-Directus-Project": "testProject" },
         method: "post",
         params: {},
         url: "/utils/random_string",
@@ -132,9 +134,9 @@ describe("Request", () => {
       client.api.request("get", "/utils/random_string", { queryParam: true });
 
       expect(client.api.xhr.request).to.have.been.calledWith({
-        baseURL: "https://demo-api.getdirectus.com/_/",
+        baseURL: "https://demo-api.getdirectus.com/testProject/",
         data: {},
-        headers: {},
+        headers: { "X-Directus-Project": "testProject" },
         method: "get",
         params: {
           queryParam: true,
@@ -165,10 +167,11 @@ describe("Request", () => {
       client.api.request("get", "/utils/random_string", { queryParam: true });
 
       expect(client.api.xhr.request).to.have.been.calledWith({
-        baseURL: "https://demo-api.getdirectus.com/_/",
+        baseURL: "https://demo-api.getdirectus.com/testProject/",
         data: {},
         headers: {
           Authorization: `Bearer ${client.config.token}`,
+          "X-Directus-Project": "testProject",
         },
         method: "get",
         params: {
@@ -193,10 +196,15 @@ describe("Request", () => {
         error = err;
       }
 
+      // @ts-ignore
       expect(error.code).to.equal("-1");
+      // @ts-ignore
       expect(error.method).to.equal("GET");
+      // @ts-ignore
       expect(error.url).to.equal("/ping");
+      // @ts-ignore
       expect(Object.keys(error.params).length).to.equal(0);
+      // @ts-ignore
       expect(`${error}`).to.be.equal("Directus call failed: GET /ping {} - Network error (code -1)");
     });
 
@@ -222,11 +230,17 @@ describe("Request", () => {
         error = err;
       }
 
+      // @ts-ignore
       expect(error.code).to.equal("1");
+      // @ts-ignore
       expect(error.message).to.equal("Not Found");
+      // @ts-ignore
       expect(error.method).to.equal("GET");
+      // @ts-ignore
       expect(error.url).to.equal("/ping");
+      // @ts-ignore
       expect(Object.keys(error.params).length).to.equal(0);
+      // @ts-ignore
       expect(`${error}`).to.equal("Directus call failed: GET /ping {} - Not Found (code 1)");
     });
 
@@ -240,7 +254,7 @@ describe("Request", () => {
         status: 200,
       });
 
-      const result = await client.api.request("get", "/ping");
+      const result = await client.api.request("get", "/ping", {}, {}, true);
 
       expect(result).to.deep.include({
         data: {},
@@ -260,12 +274,12 @@ describe("Request", () => {
         },
       });
 
-      await client.api.request("get", "/interfaces", {}, {});
+      await client.api.request("get", "/interfaces", {}, {}, true);
 
       expect(client.api.xhr.request).to.have.been.calledWith({
-        baseURL: "https://demo-api.getdirectus.com/_/",
+        baseURL: "https://demo-api.getdirectus.com/",
         data: {},
-        headers: {},
+        headers: { "X-Directus-Project": "testProject" },
         method: "get",
         params: {},
         url: "/interfaces",
@@ -276,7 +290,7 @@ describe("Request", () => {
       expect(client.api.xhr.request).to.have.been.calledWith({
         baseURL: "https://demo-api.getdirectus.com/",
         data: {},
-        headers: {},
+        headers: { "X-Directus-Project": "testProject" },
         method: "get",
         params: {},
         url: "/interfaces",

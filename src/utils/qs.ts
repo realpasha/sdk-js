@@ -1,9 +1,9 @@
-export type QuerifySerializer = (key: string, value: string | number | boolean | undefined | null) => string;
+export type QuerifySerializer = (key: string, value: string | number | boolean) => string;
 
 const defaultSerializeTransform: QuerifySerializer = (key, value) => `${key}=${encodeURIComponent(value)}`;
 
 export function querify(
-  obj: object,
+  obj: { [index: string]: any },
   prefix?: string,
   serializer: QuerifySerializer = defaultSerializeTransform
 ): string {

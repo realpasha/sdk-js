@@ -6,7 +6,6 @@
 import { ILoginCredentials, ILoginOptions } from "./schemes/auth/Login";
 import { BodyType } from "./schemes/http/Body";
 import { QueryParams as QueryParamsType } from "./schemes/http/Query";
-
 // Directus scheme types
 import { IField } from "./schemes/directus/Field";
 import { IRelation } from "./schemes/directus/Relation";
@@ -15,31 +14,25 @@ import { ICollection } from "./schemes/directus/Collection";
 import { ICollectionPreset } from "./schemes/directus/CollectionPreset";
 import { IPermission } from "./schemes/directus/Permission";
 import { IUser } from "./schemes/directus/User";
-
 // Request schemes
 import { IUpdateCollectionPresetBody } from "./schemes/request/Collection";
-
 // Response schemes
 import { IAuthenticateResponse } from "./schemes/auth/Authenticate";
-import { IRelationsResponse } from "./schemes/response/Relation";
+import { IRelationResponse, IRelationsResponse } from "./schemes/response/Relation";
 import { IActivityResponse } from "./schemes/response/Activity";
 import { ICollectionResponse, ICollectionsResponse } from "./schemes/response/Collection";
 import { ICollectionPresetResponse } from "./schemes/response/CollectionPreset";
-import { IErrorResponse } from "./schemes/response/Error";
 import { IFieldResponse, IFieldsResponse } from "./schemes/response/Field";
 import { IFileResponse, IFilesResponse } from "./schemes/response/File";
 import { IItemResponse, IItemsResponse } from "./schemes/response/Item";
 import { ILogoutResponse } from "./schemes/response/Login";
-import { IRelationResponse } from "./schemes/response/Relation";
 import { IRevisionResponse } from "./schemes/response/Revision";
 import { IRoleResponse } from "./schemes/response/Role";
 import { IRefreshTokenResponse } from "./schemes/response/Token";
 import { IUserResponse, IUsersResponse } from "./schemes/response/User";
-
 // Utilities
 import { getCollectionItemPath } from "./utils/collection";
 import { isString } from "./utils/is";
-
 // Manager classes
 import { API, IAPI } from "./API";
 import { Configuration, IConfiguration, IConfigurationOptions } from "./Configuration";
@@ -96,7 +89,7 @@ export class SDK {
    * - Calls onAutoRefreshError if refreshing the token fails for some reason.
    * @returns {[boolean, Error?]}
    */
-  public refreshIfNeeded(): Promise<[boolean, Error?]> {
+  public refreshIfNeeded(): Promise<[boolean, Error?]> | void {
     return this.api.auth.refreshIfNeeded();
   }
 
@@ -429,7 +422,7 @@ export class SDK {
     data: object, // TODO: fix type definition
     onUploadProgress: () => object = () => ({})
   ): Promise<TResponse> {
-    const headers = {
+    const headers: { [index: string]: any } = {
       "Content-Type": "multipart/form-data",
       "X-Directus-Project": this.config.project,
     };
@@ -438,7 +431,7 @@ export class SDK {
       headers["Authorization"] = `Bearer ${this.config.token}`;
     }
 
-    return this.api.xhr.post(`${this.config.url}${this.config.project}/files`, data, {
+    return this.api.xhr.post(`${this.config.url}/${this.config.project}/files`, data, {
       headers,
       onUploadProgress,
     });

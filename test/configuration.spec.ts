@@ -10,6 +10,8 @@ describe("Configuration", () => {
       it("url", () => {
         const config = new Configuration({
           url: "https://demo-api.getdirectus.com",
+          project: "testProject",
+          mode: "jwt",
         });
 
         expect(config.url).to.equal("https://demo-api.getdirectus.com");
@@ -19,6 +21,8 @@ describe("Configuration", () => {
         const config = new Configuration({
           token: "abc",
           url: "https://demo-api.getdirectus.com",
+          project: "testProject",
+          mode: "jwt",
         });
 
         expect(config.url).to.equal("https://demo-api.getdirectus.com");
@@ -27,15 +31,11 @@ describe("Configuration", () => {
     });
 
     describe("defaults", () => {
-      it("project", () => {
-        const config = new Configuration({
-          url: "https://demo-api.getdirectus.com",
-        });
-        expect(config.project).to.equal("_");
-      });
       it("tokenExpirationTime", () => {
         const config = new Configuration({
           url: "https://demo-api.getdirectus.com",
+          project: "testProject",
+          mode: "jwt",
         });
         expect(config.tokenExpirationTime).to.equal(5 * 6 * 1000);
       });
@@ -43,28 +43,32 @@ describe("Configuration", () => {
       describe("custom defaults", () => {
         beforeEach(() => {
           Configuration.defaults = {
-            project: "custom",
+            mode: "cookie",
             tokenExpirationTime: 10,
           };
         });
 
         afterEach(() => {
           Configuration.defaults = {
-            project: "_",
+            mode: "jwt",
             tokenExpirationTime: 5 * 6 * 1000,
           };
         });
 
-        it("project", () => {
+        it("mode", () => {
           const config = new Configuration({
             url: "https://demo-api.getdirectus.com",
+            project: "testProject",
+            mode: "cookie",
           });
-          expect(config.project).to.equal("custom");
+          expect(config.mode).to.equal("cookie");
         });
 
         it("tokenExpirationTime", () => {
           const config = new Configuration({
             url: "https://demo-api.getdirectus.com",
+            project: "testProject",
+            mode: "jwt",
           });
           expect(config.tokenExpirationTime).to.equal(10);
         });
@@ -75,6 +79,8 @@ describe("Configuration", () => {
       it("url", () => {
         const config = new Configuration({
           url: "https://demo-api.getdirectus.com",
+          project: "testProject",
+          mode: "jwt",
         });
 
         config.url = "https://new-demo-api.getdirectus.com";
@@ -86,6 +92,8 @@ describe("Configuration", () => {
         const config = new Configuration({
           token: "abc",
           url: "https://demo-api.getdirectus.com",
+          project: "testProject",
+          mode: "jwt",
         });
 
         config.token = "def";
@@ -100,10 +108,11 @@ describe("Configuration", () => {
     it("should construct correctly", () => {
       const config = new Configuration({
         url: "https://demo-api.getdirectus.com",
+        project: "testProject",
+        mode: "jwt",
       });
 
       expect(config.url).to.equal("https://demo-api.getdirectus.com");
-      expect(config.project).to.equal("_");
       expect(config.token).to.equal(undefined);
       expect(config.localExp).to.equal(undefined);
       expect(config.tokenExpirationTime).to.equal(5 * 6 * 1000);
@@ -114,6 +123,8 @@ describe("Configuration", () => {
     it("should calculate the tokenExpirationTime correctly", () => {
       const config = new Configuration({
         url: "https://demo-api.getdirectus.com",
+        project: "testProject",
+        mode: "jwt",
       });
 
       config.tokenExpirationTime = 14; // 10s equals 840k ms
@@ -136,13 +147,13 @@ describe("Configuration", () => {
           {
             url: "https://demo-api.getdirectus.com",
             persist: undefined,
+            project: "testProject",
+            mode: "jwt",
           },
           fakeStorage
         );
 
         expect(config.url).to.equal("https://demo-api.getdirectus.com");
-        expect(config.project).to.equal("_"); // default value
-        expect(config.token).to.be.undefined;
         expect(config.localExp).to.be.undefined;
         expect(config.tokenExpirationTime).to.equal(30000); // default value
       });
@@ -160,6 +171,8 @@ describe("Configuration", () => {
           {
             url: "https://demo-api.getdirectus.com",
             persist: true,
+            project: "testProject",
+            mode: "jwt",
           },
           fakeStorage
         );
@@ -185,6 +198,8 @@ describe("Configuration", () => {
           {
             url: "https://demo-api.getdirectus.com",
             persist: true,
+            project: "testProject",
+            mode: "jwt",
           },
           fakeStorage
         );
@@ -211,6 +226,8 @@ describe("Configuration", () => {
           {
             url: "https://demo-api.getdirectus.com",
             persist: true,
+            project: "testProject",
+            mode: "jwt",
           },
           fakeStorage
         );

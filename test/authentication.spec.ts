@@ -3,6 +3,8 @@ import * as jwt from "jsonwebtoken";
 import * as sinon from "sinon";
 import * as sinonChai from "sinon-chai";
 import SDK from "../src/index";
+import { IAuthenticationRefreshError } from "../src/Authentication";
+import { IConfigurationValues } from "../src/Configuration";
 
 const expect = chai.expect;
 chai.use(sinonChai);
@@ -13,6 +15,8 @@ describe("Authentication", () => {
   beforeEach(() => {
     client = new SDK({
       url: "https://demo-api.getdirectus.com",
+      project: "testProject",
+      mode: "jwt",
     });
 
     client.config.reset();
@@ -40,6 +44,7 @@ describe("Authentication", () => {
       await client.login({
         email: "test@example.com",
         password: "testPassword",
+        project: "testProject",
         url: "https://demo-api.getdirectus.com",
       });
 
@@ -50,15 +55,20 @@ describe("Authentication", () => {
       await client.login({
         email: "test@example.com",
         password: "testPassword",
+        project: "testProject",
+        url: "https://demo-api.getdirectus.com",
       });
 
       expect(client.api.xhr.request).to.have.been.calledWith({
-        baseURL: "https://demo-api.getdirectus.com/_/",
+        baseURL: "https://demo-api.getdirectus.com/testProject/",
         data: {
           email: "test@example.com",
           password: "testPassword",
+          mode: "jwt",
         },
-        headers: {},
+        headers: {
+          "X-Directus-Project": "testProject",
+        },
         method: "post",
         params: {},
         url: "/auth/authenticate",
@@ -69,6 +79,8 @@ describe("Authentication", () => {
       await client.login({
         email: "text@example.com",
         password: "testPassword",
+        project: "testProject",
+        url: "https://demo-api.getdirectus.com",
       });
 
       expect(client.config.token).to.equal("abcdef");
@@ -94,27 +106,21 @@ describe("Authentication", () => {
         url: "https://example.com",
       });
 
-      expect(result).to.deep.equal({
-        localExp: client.config.localExp,
-        project: "testProject",
-        token: "abcdef",
-        url: "https://example.com",
-      });
+      expect(result).to.deep.equal({ data: { token: "abcdef" } });
     });
   });
 
   describe("#logout()", () => {
-    it("Nullifies the token, url, and project", async () => {
+    it("Nullifies the token", async () => {
       await client.logout();
 
       expect(client.config.token).to.be.undefined;
-      expect(client.config.url).to.be.undefined;
-      expect(client.config.project).to.equal("_");
     });
   });
 
   describe("#refresh()", () => {
     it("Resolves with the new token", async () => {
+      client.config.project = "testProject";
       const result = await client.refresh("oldToken");
       expect(result).to.deep.include({
         data: {
@@ -127,8 +133,7 @@ describe("Authentication", () => {
   describe("#refreshIfNeeded()", () => {
     it("Does nothing when token, url, project, or payload.exp is missing", () => {
       // Nothing
-      client.config.url = null;
-      client.config.project = null;
+      client.config.token = undefined;
       expect(client.refreshIfNeeded()).to.be.undefined;
       // URL
       client.config.url = "https://demo-api.getdirectus.com";
@@ -148,24 +153,32 @@ describe("Authentication", () => {
         data: {
           token: "abcdef",
         },
-        meta: undefined,
+        meta: {},
       });
+      client.config.url = "https://example.com";
+      client.config.project = "testProject";
       client.config.token = jwt.sign({ foo: "bar" }, "secret-string", {
         expiresIn: "20s",
         noTimestamp: true,
       });
       client.config.localExp = Date.now() + 10e2;
+
       await client.refreshIfNeeded();
+
       expect(client.config.token).to.equal("abcdef");
       (client.api.auth.refresh as any).restore();
     });
 
     it("Calls refresh() if expiry date is within 30 seconds of now", async () => {
       sinon.stub(client.api.auth, "refresh").resolves();
+      client.config.url = "https://example.com";
+      client.config.project = "testProject";
+
       client.config.token = jwt.sign({ foo: "bar" }, "secret-string", {
         expiresIn: "1h",
         noTimestamp: true,
       });
+      await client.api.auth.refreshIfNeeded();
       expect(client.api.auth.refreshIfNeeded()).to.be.undefined;
       client.config.token = jwt.sign({ foo: "bar" }, "secret-string", {
         expiresIn: "20s",
@@ -182,17 +195,19 @@ describe("Authentication", () => {
         data: {
           token: "abcdef",
         },
-        meta: undefined,
+        meta: {},
       });
 
+      client.config.url = "https://demo-api.getdirectus.com";
+      client.config.project = "testProject";
       client.config.token = jwt.sign({ foo: "bar" }, "secret-string", {
         expiresIn: "15s",
         noTimestamp: true,
       });
 
-      (client.api.auth as any).onAutoRefreshSuccess = info => {
+      (client.api.auth as any).onAutoRefreshSuccess = (info: IConfigurationValues) => {
         expect(info).to.deep.include({
-          project: "_",
+          project: "testProject",
           token: "abcdef",
           url: "https://demo-api.getdirectus.com",
         });
@@ -210,13 +225,15 @@ describe("Authentication", () => {
         message: "Network Error",
       });
 
+      client.config.url = "https://example.com";
+      client.config.project = "testProject";
       client.config.token = jwt.sign({ foo: "bar" }, "secret-string", {
         expiresIn: "20s",
         noTimestamp: true,
       });
       client.config.localExp = Date.now() + 10;
 
-      (client.api.auth as any).onAutoRefreshError = error => {
+      (client.api.auth as any).onAutoRefreshError = (error: IAuthenticationRefreshError) => {
         expect(error).to.deep.include({
           code: -1,
           message: "Network Error",
@@ -240,12 +257,14 @@ describe("Authentication", () => {
     it("Calls the optional onAutoRefreshError() callback when trying to refresh an expired token", done => {
       sinon.stub(client.api.auth, "refresh").rejects({});
 
+      client.config.url = "https://example.com";
+      client.config.project = "testProject";
       client.config.token = jwt.sign({ foo: "bar" }, "secret-string", {
         expiresIn: "-20s",
         noTimestamp: true,
       });
 
-      (client.api.auth as any).onAutoRefreshError = error => {
+      (client.api.auth as any).onAutoRefreshError = (error: IAuthenticationRefreshError) => {
         expect(error).to.deep.include({
           code: 102,
           message: "auth_expired_token",
@@ -261,11 +280,13 @@ describe("Authentication", () => {
 
   describe("Interval", () => {
     beforeEach(() => {
+      // @ts-ignore
       this.clock = sinon.useFakeTimers();
       sinon.stub(client.api.auth, "refreshIfNeeded");
     });
 
     afterEach(() => {
+      // @ts-ignore
       this.clock.restore();
       (client.api.auth as any).refreshIfNeeded.restore();
     });
@@ -289,7 +310,7 @@ describe("Authentication", () => {
         // startInterval() and stopInterval() are private
         (client.api.auth as any).startInterval();
         (client.api.auth as any).stopInterval();
-        expect(client.api.auth.refreshInterval).to.be.null;
+        expect(client.api.auth.refreshInterval).to.be.undefined;
       });
     });
 
@@ -299,6 +320,7 @@ describe("Authentication", () => {
           email: "testing@example.com",
           password: "testPassword",
           persist: true,
+          project: "testProject",
           url: "https://demo-api.getdirectus.com",
         });
 
@@ -316,6 +338,7 @@ describe("Authentication", () => {
           email: "testing@example.com",
           password: "testPassword",
           url: "https://demo-api.getdirectus.com",
+          project: "testProject",
         });
 
         expect(client.api.auth.refreshInterval).to.be.undefined;
@@ -328,12 +351,13 @@ describe("Authentication", () => {
           email: "testing@example.com",
           password: "testPassword",
           persist: true,
+          project: "testProject",
           url: "https://demo-api.getdirectus.com",
         });
 
         await client.logout();
 
-        expect(client.api.auth.refreshInterval).to.be.null;
+        expect(client.api.auth.refreshInterval).to.be.undefined;
       });
     });
 
@@ -365,6 +389,7 @@ describe("Authentication", () => {
         password: "testPassword",
         persist: true,
         url: "https://demo-api.getdirectus.com",
+        project: "testProject",
       });
       expect(client.api.auth.refreshIfNeeded).to.have.not.been.called;
 
@@ -373,9 +398,11 @@ describe("Authentication", () => {
         noTimestamp: true,
       });
 
+      // @ts-ignore
       this.clock.tick(11000);
       expect(client.api.auth.refreshIfNeeded).to.have.been.calledOnce;
 
+      // @ts-ignore
       this.clock.tick(11000);
       expect(client.api.auth.refreshIfNeeded).to.have.been.calledTwice;
     });

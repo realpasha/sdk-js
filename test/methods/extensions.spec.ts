@@ -12,6 +12,8 @@ describe("Extensions", () => {
   beforeEach(() => {
     client = new SDK({
       url: "https://demo-api.getdirectus.com",
+      project: "testProject",
+      mode: "jwt",
     });
 
     const responseJSON = {

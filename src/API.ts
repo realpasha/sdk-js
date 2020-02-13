@@ -11,7 +11,7 @@ import { IConfiguration } from "./Configuration";
 // Scheme types
 import { BodyType } from "./schemes/http/Body";
 import { RequestMethod } from "./schemes/http/Request";
-import { IErrorResponse, IErrorResponseData } from "./schemes/response/Error";
+import { IErrorResponse, IErrorResponseData, IErrorResponseMeta } from "./schemes/response/Error";
 
 // Utilities
 import { isString } from "./utils/is";
@@ -28,7 +28,7 @@ export interface IAPI {
   patch<T extends any = any>(endpoint: string, body?: BodyType, params?: object): Promise<T>;
   put<T extends any = any>(endpoint: string, body?: BodyType, params?: object): Promise<T>;
   delete<T extends any = any>(endpoint: string): Promise<T>;
-  getPayload<T extends object = object>(): T;
+  getPayload<T extends object = object>(): T | null;
   request<T extends any = any>(
     method: RequestMethod,
     endpoint: string,
@@ -109,6 +109,7 @@ export class API implements IAPI {
     this.auth = new Authentication(config, {
       post: this.post.bind(this),
       xhr: this.xhr,
+      request: this.request.bind(this),
     });
 
     this.concurrent = concurrencyManager(this.xhr, 10);
@@ -172,9 +173,9 @@ export class API implements IAPI {
   /**
    * Gets the payload of the current token, return type can be generic
    * @typeparam T   extends object, payload type
-   * @return {Promise<T>}
+   * @return {T}
    */
-  public getPayload<T extends object = object>(): T {
+  public getPayload<T extends object = object>(): T | null {
     if (!isString(this.config.token)) {
       return null;
     }
@@ -259,20 +260,20 @@ export class API implements IAPI {
 
         return responseData as T;
       })
-      .catch((error?: IErrorResponse) => {
-        const errorResponse: IErrorResponse["response"] = error
-          ? error.response || ({} as IErrorResponse["response"])
-          : ({} as IErrorResponse["response"]);
+      .catch((error: IErrorResponse) => {
+        const errorResponse: IErrorResponseMeta = error
+          ? error.response || ({} as IErrorResponseMeta)
+          : ({} as IErrorResponseMeta);
         const errorResponseData: IErrorResponseData = errorResponse.data || ({} as IErrorResponseData);
         const baseErrorInfo = {
           error,
           url: requestOptions.url,
           method: requestOptions.method,
           params: requestOptions.params,
-          code: errorResponseData.error ? errorResponseData.error.code || error.code : -1,
+          code: errorResponseData.error ? errorResponseData.error.code || error.code || -1 : -1,
         };
 
-        if (error.response) {
+        if (error && error.response && errorResponseData.error) {
           throw new APIError(errorResponseData.error.message || "Unknown error occured", baseErrorInfo);
         } else if (error.response && error.response.json === true) {
           throw new APIError("API returned invalid JSON", {

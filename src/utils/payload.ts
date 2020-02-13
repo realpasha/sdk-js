@@ -11,7 +11,7 @@ import { isNumber } from "./is";
  * @param  {String} token The JWT to retrieve the payload from
  * @return {Object}       The JWT payload
  */
-export function getPayload<T extends object = object>(token: string): T {
+export function getPayload<T extends object = object>(token?: string): T {
   if (!token || token.length < 0 || token.split(".").length <= 0) {
     // no token or invalid token equals no payload
     return {} as T;

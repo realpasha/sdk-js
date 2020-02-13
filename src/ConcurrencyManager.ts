@@ -25,8 +25,8 @@ export const concurrencyManager = (axios: AxiosInstance, limit: number = 10) => 
     queue: [] as IConcurrencyQueueItem[],
     running: [] as IConcurrencyQueueItem[],
     interceptors: {
-      request: null,
-      response: null,
+      request: 0,
+      response: 0,
     },
     shiftInitial(): void {
       setTimeout(() => {
@@ -42,8 +42,10 @@ export const concurrencyManager = (axios: AxiosInstance, limit: number = 10) => 
     shift(): void {
       if (instance.queue.length) {
         const queued = instance.queue.shift();
-        queued.resolver(queued.request);
-        instance.running.push(queued);
+        if (queued) {
+          queued.resolver(queued.request);
+          instance.running.push(queued);
+        }
       }
     },
     // use as interceptor. Queue outgoing requests
@@ -56,12 +58,12 @@ export const concurrencyManager = (axios: AxiosInstance, limit: number = 10) => 
       });
     },
     // use as interceptor. Execute queued request upon receiving a response
-    responseHandler(res: AxiosResponse<any>): AxiosResponse<any> {
+    responseHandler(res: AxiosResponse): AxiosResponse {
       instance.running.shift();
       instance.shift();
       return res;
     },
-    responseErrorHandler(res: AxiosResponse<any>): any {
+    responseErrorHandler(res: AxiosResponse): any {
       return Promise.reject(instance.responseHandler(res));
     },
     detach(): void {

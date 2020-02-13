@@ -15,6 +15,8 @@ describe("Files", () => {
     client = new SDK({
       token: "abcdef",
       url: "https://demo-api.getdirectus.com",
+      project: "testProject",
+      mode: "jwt",
     });
 
     const responseJSON = mockAxiosResponse({
@@ -36,12 +38,17 @@ describe("Files", () => {
 
       // Validate against upload post parameters
       expect(client.api.xhr.post).to.have.been.calledWith(
-        "https://demo-api.getdirectus.com/_/files",
+        "https://demo-api.getdirectus.com/testProject/files",
         ["fileA", "fileB"]
         // {
-        //   headers: { Authorization: "Bearer abcdef", "Content-Type": "multipart/form-data" },
-        //   onUploadProgress: function onUploadProgress() { }
-        // }
+        //   headers: {
+        //     Authorization: "Bearer abcdef",
+        //     "Content-Type": "multipart/form-data",
+        //     "X-Directus-Project": "testProject",
+        //   },
+        //   onUploadProgress: function onUploadProgress() {
+        //   },
+        // },
       );
     });
   });

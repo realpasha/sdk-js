@@ -3,21 +3,18 @@
  */
 
 import { IConfiguration, IConfigurationValues } from "./Configuration";
-
 // Other classes
 import { IAPI } from "./API";
-
 // Scheme types
 import { IAuthenticateResponse } from "./schemes/auth/Authenticate";
 import { ILoginBody, ILoginCredentials, ILoginOptions } from "./schemes/auth/Login";
-import { RefreshIfNeededResponse, ILogoutResponse } from "./schemes/response/Login";
+import { ILogoutResponse, RefreshIfNeededResponse } from "./schemes/response/Login";
 import { IRefreshTokenResponse } from "./schemes/response/Token";
-
 // Utilities
-import { isFunction, isObject, isString } from "./utils/is";
+import { isFunction, isString } from "./utils/is";
 import { getPayload } from "./utils/payload";
 
-interface IAuthenticationRefreshError {
+export interface IAuthenticationRefreshError {
   code?: number;
   message: string;
 }
@@ -25,13 +22,18 @@ interface IAuthenticationRefreshError {
 interface IAuthenticationInjectableProps {
   post: IAPI["post"];
   xhr: IAPI["xhr"];
+  request: IAPI["request"];
 }
 
 export interface IAuthentication {
   refreshInterval?: number;
+
   login(credentials: ILoginCredentials, options?: ILoginOptions): Promise<IAuthenticateResponse>;
+
   logout(): Promise<ILogoutResponse>;
-  refreshIfNeeded(): Promise<[boolean, Error?]>;
+
+  refreshIfNeeded(): Promise<[boolean, Error?]> | void;
+
   refresh(token: string): Promise<IRefreshTokenResponse>;
 }
 
@@ -81,13 +83,13 @@ export class Authentication implements IAuthentication {
    * @return {Promise<IAuthenticateResponse>}
    */
   public login(credentials: ILoginCredentials, options?: ILoginOptions): Promise<IAuthenticateResponse> {
-    this.config.token = null;
+    this.config.token = undefined;
 
-    if (isString(credentials.url)) {
+    if (credentials.url && isString(credentials.url)) {
       this.config.url = credentials.url;
     }
 
-    if (isString(credentials.project)) {
+    if (credentials.project && isString(credentials.project)) {
       this.config.project = credentials.project;
     }
 
@@ -125,7 +127,7 @@ export class Authentication implements IAuthentication {
         })
         .then((res: IAuthenticateResponse) => {
           this.config.token = res.data.token;
-          this.config.localExp = new Date(Date.now() + this.config.tokenExpirationTime).getTime();
+          this.config.localExp = new Date(Date.now() + (this.config.tokenExpirationTime || 0)).getTime();
 
           return res;
         });
@@ -138,9 +140,9 @@ export class Authentication implements IAuthentication {
    * Logs the user out by "forgetting" the token, and clearing the refresh interval
    */
   public async logout(): Promise<ILogoutResponse> {
-    const response = await this.inject.post<ILogoutResponse>("/auth/logout");
+    const response = await this.inject.request<ILogoutResponse>("post", "/auth/logout", {}, {}, true);
 
-    this.config.token = null;
+    this.config.token = undefined;
 
     if (this.refreshInterval) {
       this.stopInterval();
@@ -157,11 +159,11 @@ export class Authentication implements IAuthentication {
    * - Calls onAutoRefreshError if refreshing the token fails for some reason.
    * @return {RefreshIfNeededResponse}
    */
-  public refreshIfNeeded(): Promise<RefreshIfNeededResponse> {
+  public refreshIfNeeded(): Promise<RefreshIfNeededResponse> | void {
     const payload = this.getPayload<{ exp: any }>();
-    const { token, url, project, localExp } = this.config;
+    const { token, localExp } = this.config;
 
-    if (!isString(token) || !isString(url) || !isString(project)) {
+    if (!isString(token)) {
       return;
     }
 
@@ -174,6 +176,7 @@ export class Authentication implements IAuthentication {
     if (timeDiff <= 0) {
       // token has expired, skipping auto refresh
       if (isFunction(this.onAutoRefreshError)) {
+        // @ts-ignore
         this.onAutoRefreshError({
           code: 102,
           message: "auth_expired_token",
@@ -184,25 +187,29 @@ export class Authentication implements IAuthentication {
 
     if (timeDiff < 30000) {
       return new Promise<RefreshIfNeededResponse>((resolve: (res: RefreshIfNeededResponse) => any) => {
-        this.refresh(token)
-          .then((res: IRefreshTokenResponse) => {
-            this.config.localExp = new Date(Date.now() + this.config.tokenExpirationTime).getTime();
-            this.config.token = res.data.token || token;
+        if (token) {
+          this.refresh(token)
+            .then((res: IRefreshTokenResponse) => {
+              this.config.localExp = new Date(Date.now() + (this.config.tokenExpirationTime || 0)).getTime();
+              this.config.token = res.data.token || token;
 
-            // if autorefresh succeeded
-            if (isFunction(this.onAutoRefreshSuccess)) {
-              this.onAutoRefreshSuccess(this.config);
-            }
+              // if autorefresh succeeded
+              if (isFunction(this.onAutoRefreshSuccess)) {
+                // @ts-ignore
+                this.onAutoRefreshSuccess(this.config);
+              }
 
-            resolve([true]);
-          })
-          .catch((error: Error) => {
-            if (isFunction(this.onAutoRefreshError)) {
-              this.onAutoRefreshError(error);
-            }
+              resolve([true]);
+            })
+            .catch((error: Error) => {
+              if (isFunction(this.onAutoRefreshError)) {
+                // @ts-ignore
+                this.onAutoRefreshError(error);
+              }
 
-            resolve([true, error]);
-          });
+              resolve([true, error]);
+            });
+        }
       });
     } else {
       Promise.resolve([false]);
@@ -234,7 +241,7 @@ export class Authentication implements IAuthentication {
    */
   private stopInterval(): void {
     clearInterval(this.refreshInterval);
-    this.refreshInterval = null;
+    this.refreshInterval = undefined;
   }
 
   /**
@@ -242,7 +249,7 @@ export class Authentication implements IAuthentication {
    * @typeparam T     The payload response type, arbitrary object
    * @return {T}
    */
-  private getPayload<T extends object = object>(): T {
+  private getPayload<T extends object = object>(): T | null {
     if (!isString(this.config.token)) {
       return null;
     }
