@@ -105,10 +105,12 @@ export class SDK {
    * The API will send an email to the given email address with a link to generate a new
    * temporary password.
    */
-  public requestPasswordReset<TResponse extends any = any>(email: string): Promise<TResponse> {
-    return this.api.post<TResponse>("/auth/password/request", {
-      email,
-    });
+  public requestPasswordReset<TResponse extends any = any>(email: string, reset_url?: string): Promise<TResponse> {
+    const body:any = {
+      email
+    };
+    reset_url ? body.reset_url = reset_url : null;
+    return this.api.post<TResponse>("/auth/password/request", body);
   }
 
   // #endregion authentication
