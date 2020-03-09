@@ -19,5 +19,5 @@ export interface ILoginBody {
   email: string;
   password: string;
   otp?: string;
-  mode: "cookie" | "jwt";
+  mode: AuthModes;
 }
