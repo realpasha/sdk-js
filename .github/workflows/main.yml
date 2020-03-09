@@ -16,7 +16,7 @@ jobs:
         with:
           version: ${{ matrix.node-version }}
 
-      - run: npm ci
-      - run: npm run lint
-      - run: npm run build
-      - run: npm test
+      - run: yarn install --frozen-lockfile
+      - run: yarn lint
+      - run: yarn build
+      - run: yarn test
