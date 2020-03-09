@@ -1,10 +1,7 @@
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑
+<!-- 
+Hi there!
 
-Please help us process issues more efficiently by filing an
-issue using one of the following templates:
+Thanks for opening an Issue!
 
-https://github.com/directus/sdk-js/issues/new/choose
-
-Thank you!
-
-🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑
+Please describe in as much detail as possible what's wrong and how you think it should be fixed.
+-->
