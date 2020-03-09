@@ -769,8 +769,10 @@ export class SDK {
   /**
    * Get Directus' global settings
    * @param {QueryParamsType?} params
+   * Limit is hardcoded to -1 because we always want to return all settings
    */
   public getSettings(params: QueryParamsType = {}) {
+    params.limit = -1;
     return this.api.get<ISettingsResponse>("/settings", params);
   }
 

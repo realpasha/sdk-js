@@ -40,13 +40,15 @@ describe("Settings", () => {
   describe("#getSettings()", () => {
     it("Defaults to an empty object if no parameters are passed", () => {
       client.getSettings();
-      expect(client.api.get).to.have.been.calledWith("/settings", {});
+      expect(client.api.get).to.have.been.calledWith("/settings", {
+        limit: -1
+      });
     });
 
     it("Calls get() for the right endpoint", () => {
       client.getSettings({ limit: 50 });
       expect(client.api.get).to.have.been.calledWith("/settings", {
-        limit: 50,
+        limit: -1,
       });
     });
   });
