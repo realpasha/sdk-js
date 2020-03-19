@@ -98,10 +98,10 @@ createPermissions<T[]>(data: any[]): Promise<T>;
 updatePermissions<T[]>(data: any[]): Promise<T>;
 
 // Relations
-getRelations<T[]>(params?: object): Promise<T>;
-createRelation<T>(data: object): Promise<T>;
-updateRelation<T>(primaryKey: PrimaryKeyType, data: object): Promise<T>;
-getCollectionRelations<T>(collection: string, params?: object): Promise<T[]>;
+getRelations(params?: object): Promise<IRelationsResponse>;
+createRelation(data: object): Promise<IRelationsResponse>;
+updateRelation(primaryKey: PrimaryKeyType, data: object): Promise<IRelationsResponse>;
+getCollectionRelations(collection: string, params?: object): Promise<IRelationsResponse[]>;
 
 // Revision and versioning
 getItemRevisions<T>(collection: string, primaryKey: PrimaryKeyType, params?: object): Promise<IRevisionResponse<T>>;
