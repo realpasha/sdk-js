@@ -671,16 +671,15 @@ export class SDK {
   }
 
   /**
-   * TODO: Add type-def for return value(s)
    * Get the relationship information for the given collection
    */
-  public getCollectionRelations(collection: string, params: QueryParamsType = {}): Promise<any[]> {
+  public getCollectionRelations(collection: string, params: QueryParamsType = {}): Promise<IRelationsResponse[]> {
     return Promise.all([
-      this.api.get<any>("/relations", {
-        "filter[collection_a][eq]": collection,
+      this.api.get<IRelationsResponse>("/relations", {
+        "filter[collection_many][eq]": collection,
       }),
-      this.api.get<any>("/relations", {
-        "filter[collection_b][eq]": collection,
+      this.api.get<IRelationsResponse>("/relations", {
+        "filter[collection_one][eq]": collection,
       }),
     ]);
   }
